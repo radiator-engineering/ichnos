@@ -12,3 +12,7 @@ pub use ichnos_core::{
 /// Process models: Petri nets, process trees, DFGs, transition systems and
 /// their conversions. See [`ichnos_model`].
 pub use ichnos_model as model;
+
+/// Conformance checking: alignments, fitness and precision. See
+/// [`ichnos_conformance`].
+pub use ichnos_conformance as conformance;

@@ -144,6 +144,11 @@ impl Aligner {
         self.best_worst_cost
     }
 
+    /// The prepared model half of every synchronous product.
+    pub(super) fn model(&self) -> &ModelPart {
+        &self.model
+    }
+
     /// The options this aligner was built with.
     pub fn options(&self) -> &AlignmentOptions {
         &self.options

@@ -45,6 +45,9 @@ pub enum Error {
         /// The number of costs given.
         actual: usize,
     },
+    /// The base of a discounted alignment is not a finite positive number.
+    #[error("the discount exponent must be finite and positive, got {0}")]
+    DiscountExponent(f64),
     /// A marking puts tokens on a place that is not in the net.
     #[error("the marking puts tokens on {0:?}, which is not a place of the net")]
     UnknownPlace(ichnos_model::PlaceId),
