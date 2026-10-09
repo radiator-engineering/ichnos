@@ -39,22 +39,30 @@ fn scalar_and_missing_attributes() {
     let mut log = EventLog::default();
     log.traces.push(trace);
     let counts =
-        get_event_attribute_values(&log, &keys, "value", AttributeCountOptions::default()).unwrap();
+        get_event_attribute_values(&log, "value", AttributeCountOptions::default()).unwrap();
     assert_eq!(counts[&Scalar::Int(1)], 3);
+    for first in [AttributeValue::from(1.0), AttributeValue::from(true)] {
+        log.traces[0].events[0]
+            .attributes
+            .insert("value", first.clone());
+        let counts =
+            get_event_attribute_values(&log, "value", AttributeCountOptions::default()).unwrap();
+        let key = counts.first().unwrap().0;
+        match first {
+            AttributeValue::Float(_) => assert!(matches!(key, Scalar::Float(_))),
+            _ => assert!(matches!(key, Scalar::Bool(true))),
+        }
+        assert_eq!(counts[&Scalar::Int(1)], 3);
+    }
     assert!(
-        get_event_attribute_values(&log, &keys, "missing", AttributeCountOptions::default())
+        get_event_attribute_values(&log, "missing", AttributeCountOptions::default())
             .unwrap()
             .is_empty()
     );
     assert!(get_events_distribution(&log, &keys, Distribution::Hours).is_err());
-    assert!(!verify_if_trace_attribute_is_in_each_trace(
-        &log, &keys, "value"
-    ));
-    assert!(verify_if_event_attribute_is_in_each_trace(
-        &log, &keys, "value"
-    ));
-    let selected =
-        select_attributes_from_log_for_tree(&log, &keys, SelectionOptions::default()).unwrap();
+    assert!(!verify_if_trace_attribute_is_in_each_trace(&log, "value"));
+    assert!(verify_if_event_attribute_is_in_each_trace(&log, "value"));
+    let selected = select_attributes_from_log_for_tree(&log, SelectionOptions::default()).unwrap();
     assert!(selected.numeric_event.is_empty());
     assert!(get_kde_numeric_values(&[f64::NAN], KdeOptions::default()).is_err());
     assert!(
@@ -79,22 +87,17 @@ fn oracle_attributes() {
         let check = |field: &str, actual: Value| assert_eq!(actual, e[field], "{name}: {field}");
         check(
             "event_attributes",
-            serde_json::json!(get_event_attributes(&log, &keys)),
+            serde_json::json!(get_event_attributes(&log)),
         );
         check(
             "trace_attributes",
-            serde_json::json!(get_trace_attributes(&log, &keys)),
+            serde_json::json!(get_trace_attributes(&log)),
         );
         check(
             "activities",
             serde_json::json!(strings(
-                get_event_attribute_values(
-                    &log,
-                    &keys,
-                    "concept:name",
-                    AttributeCountOptions::default()
-                )
-                .unwrap()
+                get_event_attribute_values(&log, "concept:name", AttributeCountOptions::default())
+                    .unwrap()
             )),
         );
         check(
@@ -102,7 +105,6 @@ fn oracle_attributes() {
             serde_json::json!(strings(
                 get_event_attribute_values(
                     &log,
-                    &keys,
                     "concept:name",
                     AttributeCountOptions {
                         keep_once_per_case: true
@@ -114,7 +116,7 @@ fn oracle_attributes() {
         check(
             "trace_ids",
             serde_json::json!(strings(
-                get_trace_attribute_values(&log, &keys, "concept:name").unwrap()
+                get_trace_attribute_values(&log, "concept:name").unwrap()
             )),
         );
         let start = get_start_activities(&log, &keys)
@@ -127,13 +129,9 @@ fn oracle_attributes() {
             .collect::<BTreeMap<_, _>>();
         check("start", serde_json::json!(start));
         check("end", serde_json::json!(end));
-        let counts = get_event_attribute_values(
-            &log,
-            &keys,
-            "concept:name",
-            AttributeCountOptions::default(),
-        )
-        .unwrap();
+        let counts =
+            get_event_attribute_values(&log, "concept:name", AttributeCountOptions::default())
+                .unwrap();
         let sorted = get_sorted_attributes_list(&counts);
         let ordered: Vec<_> = sorted
             .iter()
@@ -175,23 +173,18 @@ fn oracle_attributes() {
                 e["distributions"][label]
             );
         }
-        let attrs = get_event_attributes(&log, &keys)
-            .into_iter()
-            .collect::<Vec<_>>();
+        let attrs = get_event_attributes(&log).into_iter().collect::<Vec<_>>();
         check(
             "event_presence",
-            serde_json::json!(check_event_attributes_presence(&log, &keys, &attrs)),
+            serde_json::json!(check_event_attributes_presence(&log, &attrs)),
         );
-        let attrs = get_trace_attributes(&log, &keys)
-            .into_iter()
-            .collect::<Vec<_>>();
+        let attrs = get_trace_attributes(&log).into_iter().collect::<Vec<_>>();
         check(
             "trace_presence",
-            serde_json::json!(check_trace_attributes_presence(&log, &keys, &attrs)),
+            serde_json::json!(check_trace_attributes_presence(&log, &attrs)),
         );
         let selected = select_attributes_from_log_for_tree(
             &log,
-            &keys,
             SelectionOptions {
                 max_cases: log.len(),
                 ..Default::default()
@@ -234,8 +227,8 @@ fn oracle_attributes() {
                 }
             }
         }
-        let density = get_kde_date_attribute(&log, &keys, &keys.timestamp, options).unwrap();
-        let numeric = get_kde_numeric_attribute(&log, &keys, "@@index", options).unwrap();
+        let density = get_kde_date_attribute(&log, &keys.timestamp, options).unwrap();
+        let numeric = get_kde_numeric_attribute(&log, "@@index", options).unwrap();
         for (i, axis) in [numeric.x, numeric.y].iter().enumerate() {
             let expected: Vec<f64> =
                 serde_json::from_value(e["event_numeric_kde"][i].clone()).unwrap();

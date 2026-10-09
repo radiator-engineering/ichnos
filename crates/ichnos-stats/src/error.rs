@@ -7,7 +7,10 @@ pub enum Error {
     Core(#[from] ichnos_core::Error),
     /// An unsupported attribute value cannot be counted.
     #[error("attribute {key} is not scalar")]
-    NonScalar { key: String },
+    NonScalar {
+        /// Name of the attribute that cannot be counted.
+        key: String,
+    },
     /// An option is outside its valid range.
     #[error("invalid option: {0}")]
     InvalidOption(&'static str),

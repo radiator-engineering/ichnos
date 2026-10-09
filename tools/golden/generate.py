@@ -17,7 +17,13 @@ import pkgutil
 import subprocess
 import sys
 import traceback
+import time
 from pathlib import Path
+
+# pm4py interprets naive date KDE and parsed dates in the process time zone.
+# Pin it so regeneration is reproducible on machines outside UTC.
+os.environ["TZ"] = "UTC"
+time.tzset()
 
 # Quiet pm4py before it is imported anywhere.
 os.environ.setdefault("PM4PY_SHOW_PROGRESS_BAR", "False")

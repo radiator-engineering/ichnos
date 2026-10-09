@@ -7,16 +7,58 @@ use indexmap::IndexMap;
 use std::collections::BTreeSet;
 
 /// Hashable scalar attribute, preserving its type. Numbers follow Python equality.
-#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Debug)]
 pub enum Scalar {
     /// String or XES identifier.
     String(String),
-    /// Integral number (including booleans).
+    /// Integral number.
     Int(i64),
-    /// Nonintegral floating point number, represented by its bits.
+    /// Boolean, equal to the corresponding integer under Python equality.
+    Bool(bool),
+    /// Floating point number, represented by its bits.
     Float(u64),
     /// UTC timestamp in seconds and nanoseconds.
     Date(i64, u32),
+}
+#[derive(PartialEq, Eq, Hash)]
+enum ScalarKey<'a> {
+    String(&'a str),
+    Int(i64),
+    Float(u64),
+    Date(i64, u32),
+}
+impl Scalar {
+    fn equality_key(&self) -> ScalarKey<'_> {
+        match self {
+            Self::String(v) => ScalarKey::String(v),
+            Self::Bool(v) => ScalarKey::Int(i64::from(*v)),
+            Self::Int(v) => ScalarKey::Int(*v),
+            Self::Float(bits) => {
+                let v = f64::from_bits(*bits);
+                if v.is_finite()
+                    && v.fract() == 0.0
+                    && v >= i64::MIN as f64
+                    && v < -(i64::MIN as f64)
+                {
+                    ScalarKey::Int(v as i64)
+                } else {
+                    ScalarKey::Float(*bits)
+                }
+            }
+            Self::Date(s, ns) => ScalarKey::Date(*s, *ns),
+        }
+    }
+}
+impl PartialEq for Scalar {
+    fn eq(&self, other: &Self) -> bool {
+        self.equality_key() == other.equality_key()
+    }
+}
+impl Eq for Scalar {}
+impl std::hash::Hash for Scalar {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        std::hash::Hash::hash(&self.equality_key(), state);
+    }
 }
 impl Scalar {
     /// Convert a scalar, looking through meta-attributes.
@@ -25,15 +67,12 @@ impl Scalar {
             return Some(Self::String(v.to_owned()));
         }
         if let Some(v) = value.as_bool() {
-            return Some(Self::Int(i64::from(v)));
+            return Some(Self::Bool(v));
         }
         if let Some(v) = value.as_i64() {
             return Some(Self::Int(v));
         }
         if let Some(v) = value.as_f64() {
-            if v.is_finite() && v.fract() == 0.0 && v >= i64::MIN as f64 && v < -(i64::MIN as f64) {
-                return Some(Self::Int(v as i64));
-            }
             return Some(Self::Float(v.to_bits()));
         }
         value
@@ -48,7 +87,7 @@ pub struct AttributeCountOptions {
     pub keep_once_per_case: bool,
 }
 /// Event attribute names, excluding the lifecycle transition as pm4py does.
-pub fn get_event_attributes(log: &EventLog, _keys: &EventKeys) -> BTreeSet<String> {
+pub fn get_event_attributes(log: &EventLog) -> BTreeSet<String> {
     log.traces
         .iter()
         .flat_map(|t| &t.events)
@@ -58,7 +97,7 @@ pub fn get_event_attributes(log: &EventLog, _keys: &EventKeys) -> BTreeSet<Strin
         .collect()
 }
 /// Trace attribute names, excluding the trace identifier.
-pub fn get_trace_attributes(log: &EventLog, _keys: &EventKeys) -> BTreeSet<String> {
+pub fn get_trace_attributes(log: &EventLog) -> BTreeSet<String> {
     log.traces
         .iter()
         .flat_map(|t| t.attributes.iter())
@@ -69,7 +108,6 @@ pub fn get_trace_attributes(log: &EventLog, _keys: &EventKeys) -> BTreeSet<Strin
 /// Count values of an event attribute; missing attributes are skipped.
 pub fn get_event_attribute_values(
     log: &EventLog,
-    _keys: &EventKeys,
     attribute: &str,
     options: AttributeCountOptions,
 ) -> Result<IndexMap<Scalar, usize>> {
@@ -92,7 +130,6 @@ pub fn get_event_attribute_values(
 /// Count values of a trace attribute; missing attributes are skipped.
 pub fn get_trace_attribute_values(
     log: &EventLog,
-    _keys: &EventKeys,
     attribute: &str,
 ) -> Result<IndexMap<Scalar, usize>> {
     let mut counts = IndexMap::new();
@@ -173,46 +210,30 @@ pub use get_sorted_attributes_list as get_sorted_end_activities_list;
 /// Trace attribute enumeration.
 pub use get_trace_attributes as get_all_trace_attributes_from_log;
 /// Whether each trace has at least one event carrying an attribute.
-pub fn verify_if_event_attribute_is_in_each_trace(
-    log: &EventLog,
-    _keys: &EventKeys,
-    attribute: &str,
-) -> bool {
+pub fn verify_if_event_attribute_is_in_each_trace(log: &EventLog, attribute: &str) -> bool {
     log.traces
         .iter()
         .all(|t| t.events.iter().any(|e| e.get(attribute).is_some()))
 }
 /// Whether each trace carries an attribute.
-pub fn verify_if_trace_attribute_is_in_each_trace(
-    log: &EventLog,
-    _keys: &EventKeys,
-    attribute: &str,
-) -> bool {
+pub fn verify_if_trace_attribute_is_in_each_trace(log: &EventLog, attribute: &str) -> bool {
     log.traces
         .iter()
         .all(|t| t.attributes.get(attribute).is_some())
 }
 /// Retain attributes present in at least one event of every trace.
-pub fn check_event_attributes_presence(
-    log: &EventLog,
-    keys: &EventKeys,
-    attributes: &[String],
-) -> Vec<String> {
+pub fn check_event_attributes_presence(log: &EventLog, attributes: &[String]) -> Vec<String> {
     attributes
         .iter()
-        .filter(|a| verify_if_event_attribute_is_in_each_trace(log, keys, a))
+        .filter(|a| verify_if_event_attribute_is_in_each_trace(log, a))
         .cloned()
         .collect()
 }
 /// Retain attributes present in every trace.
-pub fn check_trace_attributes_presence(
-    log: &EventLog,
-    keys: &EventKeys,
-    attributes: &[String],
-) -> Vec<String> {
+pub fn check_trace_attributes_presence(log: &EventLog, attributes: &[String]) -> Vec<String> {
     attributes
         .iter()
-        .filter(|a| verify_if_trace_attribute_is_in_each_trace(log, keys, a))
+        .filter(|a| verify_if_trace_attribute_is_in_each_trace(log, a))
         .cloned()
         .collect()
 }
@@ -346,30 +367,29 @@ pub struct SelectedAttributes {
 /// Discover candidates from sampled cases, then check values and presence over the full log.
 pub fn select_attributes_from_log_for_tree(
     log: &EventLog,
-    keys: &EventKeys,
     options: SelectionOptions,
 ) -> Result<SelectedAttributes> {
     let sample = log.sample_cases(options.max_cases, options.seed);
     let mut result = SelectedAttributes::default();
     for trace in [false, true] {
         let names = if trace {
-            get_trace_attributes(&sample, keys)
+            get_trace_attributes(&sample)
         } else {
-            get_event_attributes(&sample, keys)
+            get_event_attributes(&sample)
         };
         for name in names {
             let present = if trace {
-                verify_if_trace_attribute_is_in_each_trace(log, keys, &name)
+                verify_if_trace_attribute_is_in_each_trace(log, &name)
             } else {
-                verify_if_event_attribute_is_in_each_trace(log, keys, &name)
+                verify_if_event_attribute_is_in_each_trace(log, &name)
             };
             if !present {
                 continue;
             }
             let values = if trace {
-                get_trace_attribute_values(log, keys, &name)?
+                get_trace_attribute_values(log, &name)?
             } else {
-                get_event_attribute_values(log, keys, &name, AttributeCountOptions::default())?
+                get_event_attribute_values(log, &name, AttributeCountOptions::default())?
             };
             let no_bools = if trace {
                 log.traces

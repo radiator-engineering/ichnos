@@ -1,5 +1,5 @@
 use crate::{Error, Result};
-use ichnos_core::{EventKeys, EventLog};
+use ichnos_core::EventLog;
 
 /// Gaussian bandwidth selection.
 #[derive(Clone, Copy, Debug, Default)]
@@ -162,7 +162,6 @@ pub fn get_kde_date_values(values: &[f64], options: KdeOptions) -> Result<Densit
 /// KDE of the present numeric event attributes.
 pub fn get_kde_numeric_attribute(
     log: &EventLog,
-    _keys: &EventKeys,
     attribute: &str,
     options: KdeOptions,
 ) -> Result<Density> {
@@ -178,10 +177,10 @@ pub fn get_kde_numeric_attribute(
         .collect::<Result<Vec<_>>>()?;
     get_kde_numeric_values(&values, options)
 }
-/// KDE of present date attributes, using their local wall-clock time as pm4py does.
+/// KDE of present date attributes, interpreting local wall-clock values as UTC.
+/// pm4py instead uses the process time zone; the golden generator pins it to UTC.
 pub fn get_kde_date_attribute(
     log: &EventLog,
-    _keys: &EventKeys,
     attribute: &str,
     options: KdeOptions,
 ) -> Result<Density> {
