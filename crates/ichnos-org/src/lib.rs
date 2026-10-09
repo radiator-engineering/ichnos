@@ -15,6 +15,9 @@
 //!
 //! Attribute values are compared and reported in their Python `str` form,
 //! so a resource `5` and a resource `"5"` are the same node.
+//!
+//! When no pair of resources is linked, the social networks are empty;
+//! pm4py raises `ValueError` there.
 
 mod error;
 mod network_analysis;

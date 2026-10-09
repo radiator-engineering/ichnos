@@ -3,6 +3,8 @@
 
 use ichnos_core::{EventLog, Trace};
 
+use crate::{Error, Result};
+
 /// Splits a log into a training log and a test log, as pm4py's
 /// `split_train_test` does for an `EventLog`.
 ///
@@ -17,11 +19,21 @@ use ichnos_core::{EventLog, Trace};
 /// pm4py's data-frame variant instead draws `random.random()` once per case
 /// and keeps the case for training when the draw is at most
 /// `train_percentage`; it is not ported.
+///
+/// # Errors
+///
+/// [`Error::InvalidOption`] when `train_percentage` is not between 0 and 1,
+/// or is NaN. pm4py accepts any value and slices with it.
 pub fn split_train_test(
     log: &EventLog,
     train_percentage: f64,
     mut rand_below: impl FnMut(usize) -> usize,
-) -> (EventLog, EventLog) {
+) -> Result<(EventLog, EventLog)> {
+    if !(0.0..=1.0).contains(&train_percentage) {
+        return Err(Error::InvalidOption(
+            "train_percentage must be between 0 and 1",
+        ));
+    }
     let n = log.traces.len();
     let mut idxs: Vec<usize> = (0..n).collect();
     for i in (1..n).rev() {
@@ -30,7 +42,7 @@ pub fn split_train_test(
     }
     let stop = ((n as f64 * train_percentage).floor() as usize + 1).min(n);
     let (train, test) = idxs.split_at(stop);
-    (with_traces(log, train), with_traces(log, test))
+    Ok((with_traces(log, train), with_traces(log, test)))
 }
 
 /// Keeps at most the first `length` events of each trace, as pm4py's
@@ -85,17 +97,20 @@ mod tests {
 
     #[test]
     fn identity_draws_keep_the_order_and_add_one_to_training() {
-        let (train, test) = split_train_test(&log(5), 0.5, |k| k - 1);
+        let (train, test) = split_train_test(&log(5), 0.5, |k| k - 1).unwrap();
         assert_eq!(ids(&train), ["0", "1", "2"]);
         assert_eq!(ids(&test), ["3", "4"]);
     }
 
     #[test]
     fn a_full_split_keeps_every_trace_for_training() {
-        let (train, test) = split_train_test(&log(3), 1.0, |_| 0);
+        let (train, test) = split_train_test(&log(3), 1.0, |_| 0).unwrap();
         assert_eq!(train.traces.len(), 3);
         assert!(test.traces.is_empty());
-        let (train, test) = split_train_test(&log(0), 0.8, |_| 0);
+        let (train, test) = split_train_test(&log(0), 0.8, |_| 0).unwrap();
+        for bad in [-0.1, 1.5, f64::NAN] {
+            assert!(split_train_test(&log(3), bad, |_| 0).is_err(), "{bad}");
+        }
         assert!(train.traces.is_empty() && test.traces.is_empty());
     }
 }

@@ -70,7 +70,8 @@ fn oracle_split_train_test() {
             let d = draws.next().unwrap();
             assert!(d < k);
             d
-        });
+        })
+        .unwrap();
         assert!(draws.next().is_none());
         assert_eq!(case_ids(&train), strings(&e["train"]), "{name}");
         assert_eq!(case_ids(&test), strings(&e["test"]), "{name}");

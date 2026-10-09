@@ -139,3 +139,14 @@ fn missing_resources_are_errors() {
     let err = discover_handover_of_work_network(&log, 0.0, &EventKeys::default()).unwrap_err();
     assert!(err.to_string().contains("org:resource"), "{err}");
 }
+
+#[test]
+fn subcontracting_needs_a_window() {
+    let log = load("running-example");
+    let keys = EventKeys::default();
+    let err = discover_subcontracting_network(&log, 0, &keys).unwrap_err();
+    assert!(matches!(err, Error::InvalidOption(_)), "{err}");
+    // A window of one has no resource in between: an empty network.
+    let sna = discover_subcontracting_network(&log, 1, &keys).unwrap();
+    assert!(sna.connections.is_empty());
+}

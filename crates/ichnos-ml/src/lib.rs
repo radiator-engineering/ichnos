@@ -12,12 +12,14 @@
 //! - [`extract_target_vector`] gives the targets of next-activity,
 //!   next-time and remaining-time prediction;
 //! - [`extract_ocel_features`] gives one row of features per object of an
-//!   object-centric event log.
+//!   object-centric event log;
+//! - [`profiles`] gives trace profiles and deterministic Lloyd clustering.
 
 mod error;
 mod features;
 mod ocel_features;
 mod outcome;
+pub mod profiles;
 mod split;
 mod target;
 mod temporal;

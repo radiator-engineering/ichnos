@@ -1,0 +1,214 @@
+{
+  "expected": {
+    "data": [
+      [
+        1.0,
+        1.0,
+        0.0,
+        2.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        0.0,
+        3.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        21.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        20.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        22.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        21.0
+      ]
+    ],
+    "groups": [
+      [
+        "0",
+        "1"
+      ],
+      [
+        "2",
+        "3"
+      ]
+    ],
+    "inferred_data": [
+      [
+        1.0,
+        1.0,
+        0.0,
+        2.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        0.0,
+        3.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        21.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        20.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        22.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        21.0
+      ]
+    ],
+    "inferred_names": [
+      "event:concept:name@A",
+      "event:concept:name@B",
+      "event:concept:name@C",
+      "event:cost",
+      "succession:concept:name@A#B",
+      "succession:concept:name@B#A",
+      "succession:concept:name@C#C",
+      "succession:concept:name@UNDEFINED",
+      "trace:group@high",
+      "trace:group@low",
+      "trace:score"
+    ],
+    "input": [
+      {
+        "events": [
+          [
+            "A",
+            1
+          ],
+          [
+            "B",
+            2
+          ]
+        ],
+        "group": "low",
+        "score": 1
+      },
+      {
+        "events": [
+          [
+            "B",
+            2
+          ],
+          [
+            "A",
+            3
+          ]
+        ],
+        "group": "low",
+        "score": 2
+      },
+      {
+        "events": [
+          [
+            "C",
+            20
+          ],
+          [
+            "C",
+            21
+          ]
+        ],
+        "group": "high",
+        "score": 20
+      },
+      {
+        "events": [
+          [
+            "C",
+            22
+          ]
+        ],
+        "group": "high",
+        "score": 21
+      }
+    ],
+    "names": [
+      "event:concept:name@A",
+      "event:concept:name@B",
+      "event:concept:name@C",
+      "event:cost",
+      "succession:concept:name@A#B",
+      "succession:concept:name@B#A",
+      "succession:concept:name@C#C",
+      "succession:concept:name@UNDEFINED",
+      "trace:group@high",
+      "trace:group@low",
+      "trace:score"
+    ]
+  },
+  "meta": {
+    "area": "analysis_remaining",
+    "case": "profiles-numeric",
+    "fixtures": {},
+    "functions": [
+      "pm4py.cluster_log"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

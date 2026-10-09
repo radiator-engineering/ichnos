@@ -6,7 +6,7 @@ use std::collections::{BTreeMap, BTreeSet};
 use ichnos_core::{EventKeys, EventLog};
 use indexmap::IndexMap;
 
-use crate::error::{Result, event_str};
+use crate::error::{Error, Result, event_str};
 
 /// A social network: one value for each ordered pair of resources that the
 /// metric links (pm4py's `SNA`).
@@ -187,8 +187,14 @@ fn pearson(x: &[f64], y: &[f64]) -> f64 {
 ///
 /// # Errors
 ///
-/// An event without the resource attribute.
+/// [`Error::InvalidOption`] when `n` is 0; pm4py raises `ValueError` there,
+/// because the network is empty. An event without the resource attribute.
 pub fn discover_subcontracting_network(log: &EventLog, n: usize, keys: &EventKeys) -> Result<Sna> {
+    if n == 0 {
+        return Err(Error::InvalidOption(
+            "n must be at least 1 for the subcontracting network",
+        ));
+    }
     let mut sums: BTreeMap<String, BTreeMap<String, u64>> = BTreeMap::new();
     let mut dividend = 0_u64;
     for (rv, &occ) in &resource_variants(log, &keys.resource)? {

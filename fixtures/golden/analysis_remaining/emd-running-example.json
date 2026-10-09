@@ -1,0 +1,174 @@
+{
+  "expected": {
+    "a": [
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        0.16666666666666666
+      ]
+    ],
+    "b": [
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        0.08333333333333333
+      ],
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        0.25
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        0.08333333333333333
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        0.16666666666666666
+      ],
+      [
+        [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        0.25
+      ]
+    ],
+    "distance": 0.09102564102564104
+  },
+  "meta": {
+    "area": "analysis_remaining",
+    "case": "emd-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.compute_emd"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

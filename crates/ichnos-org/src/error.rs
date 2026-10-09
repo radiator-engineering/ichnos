@@ -9,6 +9,9 @@ pub enum Error {
     /// A core log error, such as an event without a needed attribute.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),
+    /// An option is outside its valid range.
+    #[error("invalid option: {0}")]
+    InvalidOption(&'static str),
 }
 
 /// A result whose error is [`Error`].
