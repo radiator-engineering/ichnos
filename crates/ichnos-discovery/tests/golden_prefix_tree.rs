@@ -17,11 +17,17 @@ fn describe(tree: &PrefixTree) -> Value {
             assert!(node.label.is_none());
             assert_eq!(node.depth, 0);
         }
-        rows.push(json!({"path":paths[i],"depth":node.depth,"final":node.final_node,"children":node.children.keys().map(ToString::to_string).collect::<Vec<_>>()}));
+        rows.push(json!({
+            "path": paths[i],
+            "depth": node.depth,
+            "final": node.final_node,
+            "children": node.children.keys().map(ToString::to_string).collect::<Vec<_>>(),
+        }));
     }
     rows.sort_by_key(|row| serde_json::from_value::<Vec<String>>(row["path"].clone()).unwrap());
     json!(rows)
 }
+
 fn check(name: &str) {
     let g = golden("discovery", &format!("prefix-tree-{name}"));
     let keys = EventKeys::default().with_activity(
@@ -62,8 +68,31 @@ fn check(name: &str) {
     }
     assert_eq!(log, before);
 }
-macro_rules! cases { ($($test:ident=>$name:literal),*)=>{$(#[test]fn $test(){check($name);})*}; }
-cases!(running_example=>"running-example-xes",receipt=>"receipt-xes",roadtraffic=>"roadtraffic100traces-xes",even=>"interleavings-receipt_even-csv",odd=>"interleavings-receipt_odd-csv",empty=>"empty",empty_traces=>"empty-traces",prefixes=>"prefixes",loops=>"loops",custom_key=>"custom-key");
+
+macro_rules! cases {
+    ($($test:ident => $name:literal),* $(,)?) => {
+        $(
+            #[test]
+            fn $test() {
+                check($name);
+            }
+        )*
+    };
+}
+
+cases!(
+    running_example => "running-example-xes",
+    receipt => "receipt-xes",
+    roadtraffic => "roadtraffic100traces-xes",
+    even => "interleavings-receipt_even-csv",
+    odd => "interleavings-receipt_odd-csv",
+    empty => "empty",
+    empty_traces => "empty-traces",
+    prefixes => "prefixes",
+    loops => "loops",
+    custom_key => "custom-key",
+);
+
 #[test]
 fn typed_errors_and_deep_arena() {
     let mut event = Event::new();

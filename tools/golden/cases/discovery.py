@@ -727,28 +727,185 @@ BATCHES_CORRELATION_SYNTHETIC = {
 for _name,(_rows,_interval) in BATCHES_CORRELATION_SYNTHETIC.items():
     _params={"traces":_batches_correlation_rows(_rows),"interval":_interval,"activity_key":"task" if _name=="custom-key" else "concept:name"}
     case("batches-correlation-"+_name,functions=BATCHES_CORRELATION_FUNCTIONS,params=_params)(batches_correlation)
+# miners-classic ILP region discovery cases.
+def _ilp_language(model, depth=3):
+    """Exact executable visible prefixes up to depth, with silent closure.
+
+    Unlike unrestricted reachability, this terminates for the visible loops
+    of the supplied unsound miners. Never emit a partial language on a cap.
+    """
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+    def key(m):
+        return tuple(m.get(p, 0) for p in places)
+    todo = deque([(im, ())])
+    seen = {(key(im), ())}
+    prefixes = {()}
+    accepted = set()
+    while todo:
+        marking, word = todo.popleft()
+        if marking == fm:
+            accepted.add(word)
+        for t in semantics.enabled_transitions(net, marking):
+            next_word = word if t.label is None else (*word, t.label)
+            if len(next_word) > depth:
+                continue
+            next_marking = semantics.execute(t, net, marking)
+            state = (key(next_marking), next_word)
+            prefixes.add(next_word)
+            if state not in seen:
+                if len(seen) >= 100000:
+                    raise RuntimeError("classic miner bounded language exceeded 100000 states")
+                seen.add(state)
+                todo.append((next_marking, next_word))
+    return {"depth": depth, "prefixes": sorted(prefixes), "accepted": sorted(accepted)}
+
+
+def _ilp_footprints(model):
+    """Only emit full footprints after a bounded reachability preflight."""
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+    def key(m):
+        return tuple(m.get(p, 0) for p in places)
+    todo = deque([im])
+    seen = {key(im)}
+    while todo:
+        m = todo.popleft()
+        for t in semantics.enabled_transitions(net, m):
+            nxt = semantics.execute(t, net, m)
+            state = key(nxt)
+            if state not in seen:
+                if len(seen) >= 10000:
+                    return {"status": "state_space_limit", "value": None}
+                seen.add(state)
+                todo.append(nxt)
+    return {"status": "complete", "value": pm4py.discover_footprints(net, im, fm)}
+
+
+def ilp_miner(fixtures, traces=None, activity_key="concept:name", alphas=None, causal=None):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.algo.discovery.ilp.variants import classic
+    from pm4py.util.lp.variants import scipy_solver
+    from pm4py.util.lp import solver
+    from unittest.mock import patch
+    if traces is None:
+        log=pm4py.convert_to_event_log(load_log(fixtures["log"]),stream_postprocessing=True)
+    else:
+        log=EventLog([Trace([Event({activity_key:a}) for a in trace]) for trace in traces])
+    original=scipy_solver.apply
+    def integer_highs(c,Aub,bub,Aeq,beq,parameters=None):
+        import numpy as np
+        options={**(parameters or {}),"method":"highs"}
+        solution=original(c,Aub,bub,Aeq,beq,parameters=options)
+        # Only region problems end with m<=0; implicit-place reduction uses
+        # an unbounded integer feasibility problem and needs no tie policy.
+        if not solution.success or np.asarray(Aub)[-1,-1] != 1:
+            return solution
+        eq=np.asarray(Aeq).reshape((-1,len(c))).tolist()+[list(c)]
+        rhs=np.asarray(beq).ravel().tolist()+[round(solution.fun)]
+        for i in range(len(c)):
+            row=[0]*len(c);row[i]=1
+            if round(solution.x[i]):
+                candidate=original(c,Aub,bub,eq+[row],rhs+[0],parameters=options)
+                if candidate.success:
+                    solution=candidate
+                    value=0
+                else:
+                    value=1
+            else:
+                value=0
+            eq.append(row);rhs.append(value)
+        return solution
+    result=[]
+    for alpha in (alphas or [1.0,0.2,0.0]):
+        params={"pm4py:param:activity_key":activity_key,"show_progress_bar":False,"alpha":alpha}
+        if causal is not None: params["causal_relation"]={tuple(pair):1 for pair in causal}
+        with patch.dict(solver.VERSIONS_APPLY,{solver.SCIPY:integer_highs}):
+            try:
+                model=pm4py.discover_petri_net_ilp(log,alpha=alpha,activity_key=activity_key) if causal is None else classic.apply(log,parameters=params)
+            except Exception as error:
+                if traces != []: raise
+                result.append({"alpha":alpha,"error":type(error).__name__})
+                continue
+        result.append({"alpha":alpha,"model":{"language":_ilp_language(model),"footprints":_ilp_footprints(model)}})
+    return {"runs":result,"solver":"scipy/highs/integer/lexicographic"}
+
+ILP_FUNCTIONS=["pm4py.discover_petri_net_ilp","pm4py.algo.discovery.ilp.variants.classic.apply","pm4py.util.lp.variants.scipy_solver.apply"]
+for fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes","interleavings/receipt_even.csv","interleavings/receipt_odd.csv"]:
+    case("ilp-miner-"+fixture.replace("/","-").replace(".","-"),fixture=fixture,functions=ILP_FUNCTIONS)(ilp_miner)
+for name,traces in {
+ "empty":[],"empty-traces":[[],[]],"sequence":[["a","b","c"],["a","b","c"]],
+ "parallel":[["a","b","c","d"],["a","c","b","d"]],
+ "loops":[["a","b","a","b","c"],["a","c"],["a","a","c"]],
+ "weighted":[["a","b","d"]]*8+[["a","c","d"],["a","b","c","d"]],
+ "custom-key":[["α","β"],["α","γ","β"],[]]
+}.items():
+    case("ilp-miner-"+name,functions=ILP_FUNCTIONS,params={"traces":traces,"activity_key":"task" if name=="custom-key" else "concept:name"})(ilp_miner)
+case("ilp-miner-causal",functions=ILP_FUNCTIONS,params={"traces":[["a","b"]],"causal":[["▶","a"],["a","b"],["b","■"]]})(ilp_miner)
 
 # miners-classic prefix-tree discovery cases.
-def prefix_tree_case(fixtures,traces=None,activity_key="concept:name"):
-    from pm4py.objects.log.obj import EventLog,Trace,Event
-    if traces is None:log=pm4py.convert_to_event_log(load_log(fixtures["log"]))
-    else:log=EventLog([Trace([Event({activity_key:a}) for a in trace]) for trace in traces])
-    runs=[]
-    for limit in [None,0,1,2,1000000000]:
-        root=pm4py.discover_prefix_tree(log,max_path_length=limit,activity_key=activity_key)
-        rows=[];todo=[(root,[])]
+def prefix_tree_case(fixtures, traces=None, activity_key="concept:name"):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in trace]) for trace in traces])
+    runs = []
+    for limit in [None, 0, 1, 2, 1000000000]:
+        root = pm4py.discover_prefix_tree(log, max_path_length=limit, activity_key=activity_key)
+        rows = []
+        todo = [(root, [])]
         while todo:
-            node,path=todo.pop();rows.append({"path":path,"depth":node.depth,"final":node.final,"children":sorted(child.label for child in node.children)})
+            node, path = todo.pop()
+            rows.append(
+                {
+                    "path": path,
+                    "depth": node.depth,
+                    "final": node.final,
+                    "children": sorted((child.label for child in node.children)),
+                }
+            )
             for child in node.children:
                 assert child.parent is node
-                todo.append((child,path+[child.label]))
-        runs.append({"limit":limit,"nodes":sorted(rows,key=lambda row:row["path"])})
-    return {"runs":runs}
-PREFIX_TREE_FUNCTIONS=["pm4py.discover_prefix_tree"]
-for fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes","interleavings/receipt_even.csv","interleavings/receipt_odd.csv"]:
-    case("prefix-tree-"+fixture.replace("/","-").replace(".","-"),fixture=fixture,functions=PREFIX_TREE_FUNCTIONS)(prefix_tree_case)
-for name,traces in {"empty":[],"empty-traces":[[],[]],"prefixes":[[],["a"],["a","b"],["a","b"],["a","c"],["b"]],"loops":[["a","b","a","a"],["a","a"]],"custom-key":[["λ","","終"],["λ", "終"]]}.items():
-    case("prefix-tree-"+name,functions=PREFIX_TREE_FUNCTIONS,params={"traces":traces,"activity_key":"work" if name=="custom-key" else "concept:name"})(prefix_tree_case)
+                todo.append((child, path + [child.label]))
+        runs.append({"limit": limit, "nodes": sorted(rows, key=lambda row: row["path"])})
+    return {"runs": runs}
+
+
+_PREFIX_TREE_FUNCTIONS = ["pm4py.discover_prefix_tree"]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "prefix-tree-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_PREFIX_TREE_FUNCTIONS,
+    )(prefix_tree_case)
+for _name, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "prefixes": [[], ["a"], ["a", "b"], ["a", "b"], ["a", "c"], ["b"]],
+    "loops": [["a", "b", "a", "a"], ["a", "a"]],
+    "custom-key": [["λ", "", "終"], ["λ", "終"]],
+}.items():
+    case(
+        "prefix-tree-" + _name,
+        functions=_PREFIX_TREE_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "work" if _name == "custom-key" else "concept:name",
+        },
+    )(prefix_tree_case)
+
 
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.

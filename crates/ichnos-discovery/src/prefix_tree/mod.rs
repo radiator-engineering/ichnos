@@ -1,4 +1,4 @@
-//! Prefix-tree discovery over distinct activity sequences.
+//! Prefix-tree discovery from pm4py's `algo.transformation.log_to_trie.apply`.
 use crate::Result;
 use ichnos_core::{EventKeys, EventLog};
 use ichnos_model::Label;
@@ -8,9 +8,10 @@ use std::collections::BTreeMap;
 #[derive(Debug, Clone, Copy, Default)]
 pub struct PrefixTreeOptions {
     /// Trim each trace to at most this many activities. None means unlimited.
-    /// Zero returns only the non-final root, as in the pinned source.
+    /// Zero returns only the non-final root, as in pm4py.
     pub max_path_length: Option<usize>,
 }
+
 /// A node in a prefix-tree arena. The root is node zero.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PrefixNode {
@@ -25,6 +26,7 @@ pub struct PrefixNode {
     /// Number of visible activities from the root.
     pub depth: usize,
 }
+
 /// A prefix tree with stable arena indices and no reference cycles.
 /// Trace frequencies are intentionally absent: this represents unique prefixes.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -32,6 +34,7 @@ pub struct PrefixTree {
     /// Nodes in first-creation order, beginning with the root.
     pub nodes: Vec<PrefixNode>,
 }
+
 /// Discover unique prefixes, marking the ends of nonempty truncated traces.
 /// Empty traces do not mark the root final, matching pm4py's trie algorithm.
 /// Activity order is retained; timestamps and case identifiers are unnecessary.
