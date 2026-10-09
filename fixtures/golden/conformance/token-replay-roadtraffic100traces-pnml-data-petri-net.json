@@ -6,6 +6,7 @@
       "perc_fit_traces": 88.0,
       "percentage_of_fitting_traces": 88.0
     },
+    "generalization": 0.489294629930463,
     "model": {
       "arcs": [
         {
@@ -1094,6 +1095,100 @@
         ]
       }
     },
+    "precision": 0.4463157894736842,
+    "prefixes": [
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine"
+        ],
+        "reached": {
+          "p11": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p2": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p2": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine"
+        ],
+        "reached": {
+          "p11": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p2": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification"
+        ],
+        "reached": {
+          "p4": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification"
+        ],
+        "reached": {
+          "p4": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Payment"
+        ],
+        "reached": {
+          "p8": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p2": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        "reached": {
+          "p4": 1
+        }
+      }
+    ],
     "traces": [
       {
         "case_id": "A10466",
@@ -2223,7 +2318,10 @@
     "functions": [
       "pm4py.convert_to_event_log",
       "pm4py.conformance_diagnostics_token_based_replay",
-      "pm4py.fitness_token_based_replay"
+      "pm4py.fitness_token_based_replay",
+      "pm4py.precision_token_based_replay",
+      "pm4py.generalization_tbr",
+      "pm4py.replay_prefix_tbr"
     ],
     "loaders": {
       "log": {
