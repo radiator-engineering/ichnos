@@ -28,7 +28,6 @@ pub mod heuristics;
 pub mod ilp;
 pub mod inductive;
 pub mod log_skeleton;
-/// Classic and lifecycle-aware SM2 BPMN discovery.
 pub mod split_miner;
 pub mod temporal_profile;
 

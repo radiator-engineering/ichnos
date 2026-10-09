@@ -267,6 +267,97 @@
         ]
       },
       "options": {
+        "epsilon": 0.1,
+        "eta": 1.0,
+        "minimize_or_joins": true,
+        "variant": "classic"
+      }
+    },
+    {
+      "error": null,
+      "graph": {
+        "edges": [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "nodes": [
+          [
+            "end",
+            "",
+            false
+          ],
+          [
+            "start",
+            "",
+            false
+          ],
+          [
+            "task",
+            "a",
+            false
+          ],
+          [
+            "xor",
+            "",
+            false
+          ],
+          [
+            "xor",
+            "",
+            false
+          ],
+          [
+            "task",
+            "b",
+            false
+          ],
+          [
+            "xor",
+            "",
+            false
+          ],
+          [
+            "xor",
+            "",
+            false
+          ]
+        ]
+      },
+      "options": {
         "epsilon": 0.0,
         "eta": 0.0,
         "minimize_or_joins": true,
@@ -406,7 +497,7 @@
       },
       "options": {
         "epsilon": 0.1,
-        "eta": 0.4,
+        "eta": 1.0,
         "minimize_or_joins": true,
         "variant": "sm2"
       }
@@ -452,55 +543,8 @@
         ]
       },
       "options": {
-        "epsilon": 0.1,
-        "eta": 0.4,
-        "minimize_or_joins": false,
-        "variant": "sm2"
-      }
-    },
-    {
-      "error": null,
-      "graph": {
-        "edges": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            3,
-            0
-          ]
-        ],
-        "nodes": [
-          [
-            "end",
-            "",
-            false
-          ],
-          [
-            "start",
-            "",
-            false
-          ],
-          [
-            "task",
-            "a",
-            false
-          ],
-          [
-            "task",
-            "b",
-            false
-          ]
-        ]
-      },
-      "options": {
         "epsilon": 0.0,
-        "eta": 0.0,
+        "eta": 1.0,
         "minimize_or_joins": true,
         "variant": "sm2"
       }
@@ -547,6 +591,53 @@
       },
       "options": {
         "epsilon": 0.5,
+        "eta": 1.0,
+        "minimize_or_joins": true,
+        "variant": "sm2"
+      }
+    },
+    {
+      "error": null,
+      "graph": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "nodes": [
+          [
+            "end",
+            "",
+            false
+          ],
+          [
+            "start",
+            "",
+            false
+          ],
+          [
+            "task",
+            "a",
+            false
+          ],
+          [
+            "task",
+            "b",
+            false
+          ]
+        ]
+      },
+      "options": {
+        "epsilon": 1.0,
         "eta": 1.0,
         "minimize_or_joins": true,
         "variant": "sm2"

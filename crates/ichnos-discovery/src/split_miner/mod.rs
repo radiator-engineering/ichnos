@@ -66,8 +66,8 @@ impl Default for SplitMinerOptions {
 /// trace by `keys.timestamp` when all its events have timestamps. Activity
 /// errors retain core positions.
 /// Synthetic boundaries and gateways have distinct arena identities even when
-/// activity names resemble the source's synthetic labels. Direct DFG inputs
-/// and path loading are handled by separate reader/DFG APIs.
+/// activity names resemble pm4py's synthetic labels. The precomputed-DFG discovery entry point
+/// is not ported; paths can be loaded separately through reader APIs.
 pub fn bpmn_split_miner(
     log: &EventLog,
     keys: &EventKeys,

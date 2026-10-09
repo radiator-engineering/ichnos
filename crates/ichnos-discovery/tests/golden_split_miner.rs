@@ -1,3 +1,5 @@
+//! Complete typed BPMN graph goldens for classic and lifecycle-aware SM2.
+
 use ichnos_core::{Event, EventKeys, EventLog, Trace};
 use ichnos_discovery::{
     SplitMinerOptions, SplitMinerVariant, bpmn_split_miner, discover_split_miner,
@@ -6,6 +8,7 @@ use ichnos_golden::{Golden, fixture_path, golden};
 use ichnos_model::bpmn::{Bpmn, GatewayKind};
 use serde_json::{Value, json};
 use std::collections::BTreeMap;
+
 fn load(g: &Golden) -> (EventLog, EventKeys) {
     let keys = EventKeys::default()
         .with_activity(
@@ -85,6 +88,7 @@ fn load(g: &Golden) -> (EventLog, EventKeys) {
     };
     (log, keys)
 }
+
 fn graph(b: &Bpmn, looped: &std::collections::BTreeSet<ichnos_model::bpmn::NodeId>) -> Value {
     let nodes: Vec<_> = b.nodes().collect();
     let ids: BTreeMap<_, _> = nodes
@@ -92,8 +96,33 @@ fn graph(b: &Bpmn, looped: &std::collections::BTreeSet<ichnos_model::bpmn::NodeI
         .enumerate()
         .map(|(i, (id, _))| (*id, i))
         .collect();
-    json!({"nodes":nodes.iter().map(|(id,n)|{let kind=if n.kind.is_task(){"task"}else if n.kind.is_start_event(){"start"}else if n.kind.is_end_event(){"end"}else{match n.kind.gateway_kind().unwrap(){GatewayKind::Exclusive=>"xor",GatewayKind::Parallel=>"and",GatewayKind::Inclusive=>"or",_=>panic!("unexpected gateway")}};json!([kind,n.name,looped.contains(id)])}).collect::<Vec<_>>(),"edges":b.flows().map(|(_,f)|json!([ids[&f.source()],ids[&f.target()]])).collect::<Vec<_>>()})
+    let node_rows: Vec<_> = nodes
+        .iter()
+        .map(|(id, node)| {
+            let kind = if node.kind.is_task() {
+                "task"
+            } else if node.kind.is_start_event() {
+                "start"
+            } else if node.kind.is_end_event() {
+                "end"
+            } else {
+                match node.kind.gateway_kind().unwrap() {
+                    GatewayKind::Exclusive => "xor",
+                    GatewayKind::Parallel => "and",
+                    GatewayKind::Inclusive => "or",
+                    _ => panic!("unexpected gateway"),
+                }
+            };
+            json!([kind, node.name, looped.contains(id)])
+        })
+        .collect();
+    let edges: Vec<_> = b
+        .flows()
+        .map(|(_, flow)| json!([ids[&flow.source()], ids[&flow.target()]]))
+        .collect();
+    json!({"nodes": node_rows, "edges": edges})
 }
+
 fn matrix(v: &Value) -> Vec<Vec<usize>> {
     let n = v["nodes"].as_array().unwrap().len();
     let mut m = vec![vec![0; n]; n];
@@ -102,6 +131,7 @@ fn matrix(v: &Value) -> Vec<Vec<usize>> {
     }
     m
 }
+
 fn isomorphic(a: &Value, b: &Value) -> bool {
     let an = a["nodes"].as_array().unwrap();
     let bn = b["nodes"].as_array().unwrap();
@@ -182,6 +212,7 @@ fn isomorphic(a: &Value, b: &Value) -> bool {
     }
     search(&am, &bm, &colors, &mut vec![None; n], &mut vec![false; n])
 }
+
 fn check(name: &str) {
     let g = golden("discovery", &format!("split-miner-{name}"));
     let expected: Value = g.expected_as();
@@ -219,6 +250,7 @@ fn check(name: &str) {
     }
     assert_eq!(log, before);
 }
+
 macro_rules! cases{($($id:ident=>$name:literal),*)=>{$(#[test]fn $id(){check($name);})*};}
 cases!(running_example=>"running-example-xes",receipt=>"receipt-xes",roadtraffic=>"roadtraffic100traces-xes",even=>"interleavings-receipt_even-csv",odd=>"interleavings-receipt_odd-csv",empty=>"empty",empty_traces=>"empty-traces",single=>"single",sequence=>"sequence",xor=>"xor",parallel=>"parallel",self_loop=>"self-loop",short_loop=>"short-loop",nested=>"nested",rigid=>"rigid",custom_key=>"custom-key",overlap=>"overlap",or_lifecycle=>"or-lifecycle",lifecycle_sorting=>"lifecycle-sorting",lifecycle_fallback=>"lifecycle-fallback",start_only=>"start-only",ignored_lifecycle=>"ignored-lifecycle",custom_lifecycle=>"custom-lifecycle");
 #[test]
@@ -322,4 +354,45 @@ fn core_errors_and_sm2_ignored_settings() {
 #[test]
 fn submicroseconds() {
     check("submicroseconds");
+}
+
+#[test]
+fn lifecycle_or_split_promotion() {
+    check("or-promotion");
+    let g = golden("discovery", "split-miner-or-promotion");
+    let mut promoted = 0;
+    for row in g.expected.as_array().unwrap() {
+        if row["options"]["variant"] == "sm2" && row["options"]["epsilon"].as_f64().unwrap() <= 0.1
+        {
+            let nodes = row["graph"]["nodes"].as_array().unwrap();
+            let edges = row["graph"]["edges"].as_array().unwrap();
+            let inclusive: Vec<_> = nodes
+                .iter()
+                .enumerate()
+                .filter(|(_, node)| node[0] == "or")
+                .map(|(i, _)| i)
+                .collect();
+            assert_eq!(
+                inclusive.len(),
+                2,
+                "native SM2 must promote the split and its join"
+            );
+            assert!(inclusive.iter().any(|&id| {
+                edges
+                    .iter()
+                    .filter(|edge| edge[0].as_u64().unwrap() as usize == id)
+                    .count()
+                    == 3
+            }));
+            assert!(inclusive.iter().any(|&id| {
+                edges
+                    .iter()
+                    .filter(|edge| edge[1].as_u64().unwrap() as usize == id)
+                    .count()
+                    == 3
+            }));
+            promoted += 1;
+        }
+    }
+    assert_eq!(promoted, 2);
 }
