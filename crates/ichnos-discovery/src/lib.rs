@@ -30,6 +30,8 @@ pub mod heuristics;
 pub mod ilp;
 pub mod inductive;
 pub mod log_skeleton;
+pub mod prefix_tree;
+pub mod split_miner;
 pub mod temporal_profile;
 pub mod transition_system;
 
@@ -56,6 +58,10 @@ pub use inductive::{
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
+pub use prefix_tree::{PrefixNode, PrefixTree, PrefixTreeOptions, prefix_tree};
+pub use split_miner::{
+    SplitMinerOptions, SplitMinerResult, SplitMinerVariant, bpmn_split_miner, discover_split_miner,
+};
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
 pub use transition_system::{
     TransitionAbstraction, TransitionDirection, TransitionDiscovery, TransitionEvent,
