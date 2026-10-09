@@ -264,8 +264,14 @@ impl ProcessTree {
 }
 
 impl PetriNet {
-    /// Computes the footprints of the net from its reachability graph
-    /// (pm4py's `footprints_discovery` on a Petri net).
+    /// Computes the footprints of the net from its reachability graph.
+    ///
+    /// What can follow a transition comes from a complete search of the
+    /// markings reachable through silent transitions. pm4py's
+    /// `discover_footprints(net, im, fm)` (the `petri_reach_graph` variant)
+    /// uses a search that can miss some of them, so its footprints can
+    /// differ from these. `ichnos_conformance::footprints::ModelFootprints::of_net`
+    /// gives pm4py's values.
     ///
     /// Inhibitor and reset arcs act as such. pm4py explores the state space
     /// with `ClassicSemantics`, which treats them as normal arcs, so on nets
