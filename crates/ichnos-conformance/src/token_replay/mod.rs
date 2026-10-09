@@ -44,9 +44,11 @@
 //! assert!((twice.fitness - 2.0 / 3.0).abs() < 1e-12);
 //! ```
 //!
-//! [`replay_log`] and [`fitness_token_based_replay`] are pm4py's
-//! `conformance_diagnostics_token_based_replay` and
-//! `fitness_token_based_replay`.
+//! [`replay_log`], [`fitness_token_based_replay`],
+//! [`precision_token_based_replay`] and [`replay_prefix_tbr`] are pm4py's
+//! `conformance_diagnostics_token_based_replay`, `fitness_token_based_replay`,
+//! `precision_token_based_replay` and `replay_prefix_tbr`. Generalization is
+//! in [`crate::generalization`].
 //!
 //! # Matching pm4py
 //!
@@ -62,7 +64,10 @@
 //! default and are not ported; they only speed up the replay.
 
 mod net;
+mod precision;
 mod replay;
+
+pub use precision::precision_token_based_replay;
 
 use std::collections::{BTreeSet, HashMap};
 
@@ -121,6 +126,16 @@ impl Default for TokenReplayOptions {
 }
 
 impl TokenReplayOptions {
+    /// The options pm4py replays prefixes with, in ETConformance precision
+    /// and `replay_prefix_tbr`: remaining tokens ignored, no walk to the
+    /// final marking, stop at the first problem.
+    pub fn for_prefixes() -> Self {
+        Self::default()
+            .consider_remaining_in_fitness(false)
+            .try_to_reach_final_marking_through_hidden(false)
+            .stop_immediately_unfit(true)
+    }
+
     /// Sets [`consider_remaining_in_fitness`](Self::consider_remaining_in_fitness).
     pub fn consider_remaining_in_fitness(mut self, on: bool) -> Self {
         self.consider_remaining_in_fitness = on;
@@ -272,6 +287,16 @@ impl LogReplay {
         self.trace_variant.len()
     }
 
+    /// The index in `variants.variants` and `replays` of trace `i`'s
+    /// variant.
+    ///
+    /// # Panics
+    ///
+    /// Panics if `i` is not a trace index of the log.
+    pub fn variant_of(&self, i: usize) -> usize {
+        self.trace_variant[i]
+    }
+
     /// The replay of trace `i`.
     ///
     /// # Panics
@@ -412,6 +437,19 @@ pub fn fitness_token_based_replay(
 ) -> Result<TokenReplayFitness> {
     let options = TokenReplayOptions::default();
     Ok(replay_log(log, net, initial_marking, final_marking, keys, options)?.fitness())
+}
+
+/// The marking reached by replaying `prefix`, a list of activities (pm4py's
+/// `replay_prefix_tbr`), with [`TokenReplayOptions::for_prefixes`].
+pub fn replay_prefix_tbr<S: AsRef<str>>(
+    prefix: &[S],
+    net: &PetriNet,
+    initial_marking: &Marking,
+    final_marking: &Marking,
+) -> Result<Marking> {
+    let options = TokenReplayOptions::for_prefixes();
+    let replayer = TokenReplayer::new(net, initial_marking, final_marking, options)?;
+    Ok(replayer.replay(prefix)?.reached_marking)
 }
 
 #[cfg(test)]

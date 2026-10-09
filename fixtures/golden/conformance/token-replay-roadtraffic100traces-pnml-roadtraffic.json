@@ -6,6 +6,7 @@
       "perc_fit_traces": 100.0,
       "percentage_of_fitting_traces": 100.0
     },
+    "generalization": 0.6028905790421475,
     "model": {
       "arcs": [
         {
@@ -1374,6 +1375,139 @@
         ]
       }
     },
+    "precision": 0.27377300613496935,
+    "prefixes": [
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p22": 1,
+          "p7": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p8": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p8": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p22": 1,
+          "p7": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p8": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p22": 1,
+          "p23": 1,
+          "p25": 1,
+          "p27": 1,
+          "p3": 1,
+          "p9": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p22": 1,
+          "p23": 1,
+          "p25": 1,
+          "p27": 1,
+          "p3": 1,
+          "p9": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Payment"
+        ],
+        "reached": {
+          "p0": 1,
+          "p1": 1,
+          "p15": 1,
+          "p22": 1,
+          "p7": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p8": 1
+        }
+      },
+      {
+        "prefix": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        "reached": {
+          "p1": 1,
+          "p13": 1,
+          "p16": 1,
+          "p22": 1,
+          "p23": 1,
+          "p25": 1,
+          "p27": 1,
+          "p9": 1
+        }
+      }
+    ],
     "traces": [
       {
         "case_id": "A10466",
@@ -2496,7 +2630,10 @@
     "functions": [
       "pm4py.convert_to_event_log",
       "pm4py.conformance_diagnostics_token_based_replay",
-      "pm4py.fitness_token_based_replay"
+      "pm4py.fitness_token_based_replay",
+      "pm4py.precision_token_based_replay",
+      "pm4py.generalization_tbr",
+      "pm4py.replay_prefix_tbr"
     ],
     "loaders": {
       "log": {
