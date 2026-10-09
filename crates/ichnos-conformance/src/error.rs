@@ -45,6 +45,9 @@ pub enum Error {
         /// The number of costs given.
         actual: usize,
     },
+    /// The base of a discounted alignment is not a finite positive number.
+    #[error("the discount exponent must be finite and positive, got {0}")]
+    DiscountExponent(f64),
     /// The linear program of the state-equation heuristic failed in a way
     /// other than infeasibility.
     #[error("the state-equation linear program failed: {0}")]

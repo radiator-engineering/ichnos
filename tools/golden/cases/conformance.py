@@ -38,6 +38,14 @@ traces deviate:
   string form) and, per trace, ``cost`` and ``fitness`` from
   ``conformance_diagnostics_alignments(log, tree)``.
   ``alignments-tree-running-example-ptml`` uses the fixture tree instead.
+- ``alignments-discounted-<log>-im``: the inductive-miner net (``model``,
+  canonical as above) and, per trace, ``cost_choices`` from pm4py's
+  ``discounted_a_star`` variant with its default exponent 2. pm4py breaks
+  ties by sets of places, transitions and arcs hashed by object id, so its cost
+  can change between runs. :func:`seeded_node_hashes` replaces those hashes
+  with ``DISCOUNTED_ORDERS`` seeded random orders, rebuilding the net under
+  each, and ``cost_choices`` lists the distinct costs, sorted. pm4py's
+  ``fitness`` and ``bwc`` for this variant are always 0; the case asserts it.
 - ``alignments-edit-distance-<log>``: the model variants (``model``) and,
   per trace, ``bwc`` and ``cost_choices`` from
   ``conformance_diagnostics_alignments(log, model_log)``. When several model
@@ -51,12 +59,18 @@ from __future__ import annotations
 import difflib
 import hashlib
 import json
+import random
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
 import pm4py
+from pm4py.algo.conformance.alignments.petri_net import algorithm as petri_alignments
 from pm4py.algo.evaluation.precision.variants import align_etconformance
+from pm4py.objects.log.obj import Event, Trace
 from pm4py.objects.petri_net import semantics
+from pm4py.objects.petri_net.obj import Marking, PetriNet
+from pm4py.objects.petri_net.utils import petri_utils
 from pm4py.util import string_distance
 
 from harness import case
@@ -239,6 +253,94 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
             fixtures={"log": _log, "model": _net},
             functions=ALIGNMENT_FUNCTIONS,
         )(alignments)
+
+
+DISCOUNTED_ORDERS = 32
+
+
+@contextmanager
+def seeded_node_hashes(seed: int):
+    """Hash places, transitions and arcs by numbers from a seeded generator.
+
+    pm4py hashes them by object id, so the iteration order of their sets,
+    and with it the tie-breaking of its searches, changes between runs. Each
+    node gets the next number from ``random.Random(seed)`` the first time it
+    is hashed. Nets must be built inside the block: a set keeps the order of
+    the hashes its members had when they were added.
+    """
+    rng = random.Random(seed)
+
+    def node_hash(self: Any) -> int:
+        h = self.__dict__.get("_golden_hash")
+        if h is None:
+            h = rng.getrandbits(61)
+            self.__dict__["_golden_hash"] = h
+        return h
+
+    classes = (PetriNet.Place, PetriNet.Transition, PetriNet.Arc)
+    saved = [c.__hash__ for c in classes]
+    for c in classes:
+        c.__hash__ = node_hash
+    try:
+        yield
+    finally:
+        for c, h in zip(classes, saved):
+            c.__hash__ = h
+
+
+def build_canonical_net(model: dict[str, Any]) -> tuple[Any, Any, Any]:
+    """A pm4py net from :func:`describe_canonical_net`'s form."""
+    net = PetriNet("canonical")
+    nodes: dict[str, Any] = {}
+    for p in model["places"]:
+        nodes[p] = PetriNet.Place(p)
+        net.places.add(nodes[p])
+    for t in model["transitions"]:
+        nodes[t["name"]] = PetriNet.Transition(t["name"], t["label"])
+        net.transitions.add(nodes[t["name"]])
+    for a in model["arcs"]:
+        petri_utils.add_arc_from_to(nodes[a["source"]], nodes[a["target"]], net, weight=a["weight"])
+    im = Marking({nodes[p]: n for p, n in model["initial_marking"].items()})
+    fm = Marking({nodes[p]: n for p, n in model["final_marking"].items()})
+    return net, im, fm
+
+
+def alignments_discounted(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Discounted alignments of each variant against the IM net, under seeded hash orders."""
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    net, im, fm = pm4py.discover_petri_net_inductive(log)
+    model = describe_canonical_net(net, im, fm)
+    variants = list(dict.fromkeys(_variant(t) for t in log))
+    choices: dict[tuple[str, ...], set[float]] = {v: set() for v in variants}
+    for seed in range(DISCOUNTED_ORDERS):
+        with seeded_node_hashes(seed):
+            net, im, fm = build_canonical_net(model)
+            for v in variants:
+                trace = Trace([Event({"concept:name": a}) for a in v])
+                d = petri_alignments.apply_trace(
+                    trace, net, im, fm,
+                    variant=petri_alignments.Variants.VERSION_DISCOUNTED_A_STAR,
+                )
+                assert d["fitness"] == 0 and d["bwc"] == 0, (d["fitness"], d["bwc"])
+                choices[v].add(d["cost"])
+    return {
+        "model": model,
+        "traces": [
+            {
+                "case_id": trace.attributes["concept:name"],
+                "cost_choices": sorted(choices[_variant(trace)]),
+            }
+            for trace in log
+        ],
+    }
+
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"alignments-discounted-{_log_id}-im",
+        fixture=_log,
+        functions=["pm4py.convert_to_event_log", "pm4py.discover_petri_net_inductive"],
+    )(alignments_discounted)
 
 
 SEQUENCE_TOP_K = 2
