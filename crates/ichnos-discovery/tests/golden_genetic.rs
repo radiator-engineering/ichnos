@@ -34,14 +34,28 @@ fn language(net: &AcceptingPetriNet, depth: usize) -> Value {
     }
     json!({"depth":depth,"prefixes":prefixes,"accepted":accepted})
 }
+
 fn check_model(net: &AcceptingPetriNet, expected: &Value, context: &str) {
+    if let Some(count) = expected["silent_transitions"].as_u64() {
+        assert!(count > 0);
+        assert_eq!(
+            net.net
+                .transitions()
+                .filter(|(_, t)| t.label.is_none())
+                .count(),
+            count as usize
+        );
+    }
     for marking in [&net.initial_marking, &net.final_marking] {
         assert!(
             marking.iter().all(|(p, _)| net.net.contains_place(p)),
             "{context}: orphan marking"
         );
     }
-    let actual_language = language(net, 3);
+    let actual_language = language(
+        net,
+        expected["language"]["depth"].as_u64().unwrap() as usize,
+    );
     for field in ["prefixes", "accepted"] {
         let actual: BTreeSet<Vec<String>> =
             serde_json::from_value(actual_language[field].clone()).unwrap();
@@ -54,16 +68,18 @@ fn check_model(net: &AcceptingPetriNet, expected: &Value, context: &str) {
             actual.difference(&expected).take(12).collect::<Vec<_>>()
         );
     }
-    let actual = net.net.footprints(
-        &net.initial_marking,
-        ichnos_model::petri::ReachabilityOptions {
-            max_markings: 10000,
-        },
-    );
+    let actual =
+        ichnos_conformance::footprints::ModelFootprints::of_net(&net.net, &net.initial_marking);
     if expected["footprints"]["status"] == "complete" {
         let footprints: Footprints =
             serde_json::from_value(expected["footprints"]["value"].clone()).unwrap();
-        assert_eq!(actual.unwrap(), footprints, "{context}: footprints");
+        let activities: BTreeSet<_> = net
+            .net
+            .transitions()
+            .filter_map(|(_, t)| t.label.clone())
+            .collect();
+        assert_eq!(activities, footprints.activities, "{context}: activities");
+        assert_eq!(actual.unwrap(), footprints.into(), "{context}: footprints");
     } else {
         assert!(actual.is_err(), "{context}: expected state space cap");
     }
@@ -101,6 +117,7 @@ fn input(g: &ichnos_golden::Golden, name: &str) -> (EventLog, EventKeys) {
     };
     (log, keys)
 }
+
 fn matrix(value: &Value) -> GeneticMatrix {
     let map = |v: &Value| {
         v.as_object()
@@ -136,6 +153,7 @@ fn matrix(value: &Value) -> GeneticMatrix {
         outputs: map(&value["outputs"]),
     }
 }
+
 fn check_matrix(name: &str) {
     let g = golden("discovery", &format!("genetic-matrix-{name}"));
     let (log, keys) = input(&g, name);
@@ -150,6 +168,7 @@ fn check_matrix(name: &str) {
     );
     assert_eq!(log, before);
 }
+
 fn check_public(name: &str) {
     let g = golden("discovery", &format!("genetic-public-{name}"));
     let (log, keys) = input(&g, name);
@@ -163,6 +182,7 @@ fn check_public(name: &str) {
     assert!((result.fitness - g.expected["fitness"].as_f64().unwrap()).abs() < 1e-9);
     assert_eq!(result.history, vec![result.fitness]);
 }
+
 macro_rules! matrices { ($($test:ident=>$name:literal),*)=>{$(#[test] fn $test(){check_matrix($name);})*}; }
 matrices!(running_example=>"running-example-xes",receipt=>"receipt-xes",roadtraffic=>"roadtraffic100traces-xes",even=>"interleavings-receipt_even-csv",odd=>"interleavings-receipt_odd-csv",sequence=>"sequence",parallel=>"parallel",loops=>"loop",silent=>"silent",custom_key=>"custom-key",grouped=>"grouped");
 #[test]
@@ -276,6 +296,10 @@ fn stagnation_and_timestamp_sorting() {
     let result = discover_genetic(&log, &keys, &options).unwrap();
     check_model(&result.model, &g.expected["model"], "timestamp-sort");
     assert_eq!(result.history, vec![1.0]);
+    assert_eq!(
+        genetic_matrix_fitness(&log, &keys, &result.matrix).unwrap(),
+        result.fitness
+    );
     assert_eq!(log, before);
     let mut missing = log.clone();
     missing.traces[0].events[1]
@@ -286,3 +310,5 @@ fn stagnation_and_timestamp_sorting() {
         Err(Error::Core(_))
     ));
 }
+
+matrices!(non_simple=>"non-simple",non_simple_exit=>"non-simple-exit",overlapping_simple=>"overlapping-simple");

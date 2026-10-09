@@ -1,4 +1,5 @@
-//! Seeded genetic discovery over causal binding partitions.
+//! Seeded causal-partition discovery from pm4py's
+//! `algo.discovery.genetic.variants.classic`.
 mod matrix;
 mod operators;
 use crate::{Error, Result};
@@ -29,6 +30,7 @@ pub struct GeneticOptions {
     /// ChaCha8 seed (default zero); Python's random sequence is not reproduced.
     pub seed: u64,
 }
+
 impl Default for GeneticOptions {
     fn default() -> Self {
         Self {
@@ -42,6 +44,7 @@ impl Default for GeneticOptions {
         }
     }
 }
+
 /// Selected model and reproducible search diagnostics.
 #[derive(Debug, Clone)]
 pub struct GeneticResult {
@@ -54,6 +57,7 @@ pub struct GeneticResult {
     /// Best fitness after each evaluated population, including the initial one.
     pub history: Vec<f64>,
 }
+
 fn fitness(log: &EventLog, keys: &EventKeys, model: &AcceptingPetriNet) -> Result<f64> {
     let metrics = ichnos_conformance::token_replay::fitness_token_based_replay(
         log,
@@ -62,65 +66,26 @@ fn fitness(log: &EventLog, keys: &EventKeys, model: &AcceptingPetriNet) -> Resul
         &model.final_marking,
         keys,
     )
-    .map_err(|e| Error::GeneticReplay(e.to_string()))?;
+    .map_err(Error::GeneticReplay)?;
     Ok(0.4 * metrics.average_trace_fitness + 0.6 * metrics.percentage_of_fitting_traces / 100.0)
 }
-/// Evaluate the source genetic fitness formula for a supplied causal matrix.
-/// Uses the existing token-replay implementation and the caller's activity keys.
+
+/// Evaluate pm4py's genetic fitness formula for a supplied causal matrix.
+///
+/// Uses the existing token replay, caller activity keys, and the same stable
+/// per-trace timestamp sorting as `discover_genetic`. Every event must have
+/// a date timestamp. pm4py's tournament
+/// replays input order, so unsorted logs may yield different scores.
 pub fn genetic_matrix_fitness(
     log: &EventLog,
     keys: &EventKeys,
     matrix: &GeneticMatrix,
 ) -> Result<f64> {
-    fitness(log, keys, &matrix.to_petri_net()?)
+    fitness(&prepare_log(log, keys)?, keys, &matrix.to_petri_net()?)
 }
-fn evaluate(
-    population: Vec<Individual>,
-    labels: &[Label],
-    log: &EventLog,
-    keys: &EventKeys,
-) -> Result<Vec<(Individual, f64)>> {
-    let mut scored = Vec::new();
-    for individual in population {
-        let matrix = GeneticMatrix::from_individual(labels, &individual);
-        scored.push((individual, fitness(log, keys, &matrix.to_petri_net()?)?));
-    }
-    scored.sort_by(|a, b| b.1.total_cmp(&a.1));
-    Ok(scored)
-}
-/// Discover a causal-partition model with seeded initial sampling, connectivity
-/// repair, stable fitness tournaments, elitism, crossover and repartition mutation.
-/// Events are stably timestamp-sorted within canonical traces. Case IDs are not
-/// used to merge traces. Custom keys apply to both discovery and fitness.
-/// Stagnation stopping follows the pinned source's available history window;
-/// it does not require a full half-budget window. Identical parents safely fall
-/// back to different population indices rather than a Python sample-size error.
-pub fn discover_genetic(
-    log: &EventLog,
-    keys: &EventKeys,
-    options: &GeneticOptions,
-) -> Result<GeneticResult> {
-    if options.population_size < 2
-        || options.elitism_min_sample == 0
-        || [
-            options.elitism_rate,
-            options.crossover_rate,
-            options.mutation_rate,
-        ]
-        .iter()
-        .any(|v| !v.is_finite() || !(0.0..=1.0).contains(v))
-    {
-        return Err(Error::InvalidOption(
-            "genetic population must be at least two, sample positive, rates finite and in `[0,1]`",
-        ));
-    }
-    let sequences = log.activity_sequences(keys)?;
-    let labels: Vec<_> = sequences
-        .activities
-        .iter()
-        .map(|(_, label)| Label::from(label))
-        .collect();
-    let n = labels.len();
+
+// Share preparation so public discovery and matrix fitness replay the same order.
+fn prepare_log(log: &EventLog, keys: &EventKeys) -> Result<EventLog> {
     let mut prepared = log.clone();
     for (ti, trace) in prepared.traces.iter_mut().enumerate() {
         let mut order = Vec::new();
@@ -154,13 +119,72 @@ pub fn discover_genetic(
             .map(|&(_, ei)| trace.events[ei].clone())
             .collect();
     }
+    Ok(prepared)
+}
+
+fn evaluate(
+    population: Vec<Individual>,
+    labels: &[Label],
+    log: &EventLog,
+    keys: &EventKeys,
+) -> Result<Vec<(Individual, f64)>> {
+    let mut scored = Vec::new();
+    for individual in population {
+        let matrix = GeneticMatrix::from_individual(labels, &individual);
+        scored.push((
+            individual,
+            fitness(&prepare_log(log, keys)?, keys, &matrix.to_petri_net()?)?,
+        ));
+    }
+    scored.sort_by(|a, b| b.1.total_cmp(&a.1));
+    Ok(scored)
+}
+
+/// Discover a causal-partition model with seeded initial sampling, connectivity
+/// repair, stable fitness tournaments, elitism, crossover and repartition mutation.
+/// Events are stably timestamp-sorted within canonical traces. Case IDs are not
+/// used to merge traces. Custom keys apply to both discovery and fitness.
+/// Fitness replays this sorted copy; pm4py tournaments replay input order,
+/// so logs out of time order can change scores and selected models.
+/// Stagnation stopping follows pm4py's available history window;
+/// it does not require a full half-budget window. Identical parents safely fall
+/// back to different population indices rather than a Python sample-size error.
+pub fn discover_genetic(
+    log: &EventLog,
+    keys: &EventKeys,
+    options: &GeneticOptions,
+) -> Result<GeneticResult> {
+    if options.population_size < 2
+        || options.elitism_min_sample == 0
+        || [
+            options.elitism_rate,
+            options.crossover_rate,
+            options.mutation_rate,
+        ]
+        .iter()
+        .any(|v| !v.is_finite() || !(0.0..=1.0).contains(v))
+    {
+        return Err(Error::InvalidOption(
+            "genetic population must be at least two, sample positive, rates finite and in `[0,1]`",
+        ));
+    }
+    let sequences = log.activity_sequences(keys)?;
+    let labels: Vec<_> = sequences
+        .activities
+        .iter()
+        .map(|(_, label)| Label::from(label))
+        .collect();
+    let n = labels.len();
+    let prepared = prepare_log(log, keys)?;
     if n == 0 {
         let mut net = PetriNet::new("genetic-empty");
         let source = net.add_place("i");
         let sink = net.add_place("o");
         let tau = net.add_transition("skip", None::<Label>);
-        net.add_input_arc(source, tau).unwrap();
-        net.add_output_arc(tau, sink).unwrap();
+        net.add_input_arc(source, tau)
+            .expect("place and transition were created in this net");
+        net.add_output_arc(tau, sink)
+            .expect("place and transition were created in this net");
         let model = AcceptingPetriNet::new(
             net,
             Marking::from([(source, 1)]),
@@ -249,6 +273,7 @@ pub fn discover_genetic(
         history,
     })
 }
+
 /// Discover only the selected Petri net; use [`discover_genetic`] for diagnostics.
 pub fn petri_net_genetic(
     log: &EventLog,

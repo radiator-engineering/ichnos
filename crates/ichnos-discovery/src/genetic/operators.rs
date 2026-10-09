@@ -6,9 +6,11 @@ pub(super) struct Individual {
     pub inputs: Vec<Vec<BTreeSet<usize>>>,
     pub outputs: Vec<Vec<BTreeSet<usize>>>,
 }
+
 pub(super) fn flat(partitions: &[BTreeSet<usize>]) -> BTreeSet<usize> {
     partitions.iter().flatten().copied().collect()
 }
+
 fn roots(partitions: &[Vec<BTreeSet<usize>>], order: &[usize]) -> Vec<usize> {
     let mut graphs: Vec<Vec<usize>> = Vec::new();
     for &t in order {
@@ -39,18 +41,21 @@ fn roots(partitions: &[Vec<BTreeSet<usize>>], order: &[usize]) -> Vec<usize> {
     }
     graphs.iter().map(|graph| graph[0]).collect()
 }
+
 pub(super) fn boundaries(individual: &Individual) -> (Vec<usize>, Vec<usize>) {
     boundaries_for(
         individual,
         &(0..individual.inputs.len()).collect::<Vec<_>>(),
     )
 }
+
 fn boundaries_for(individual: &Individual, order: &[usize]) -> (Vec<usize>, Vec<usize>) {
     (
         roots(&individual.outputs, order),
         roots(&individual.inputs, order),
     )
 }
+
 fn partition(mut pool: Vec<usize>, rng: &mut impl Rng) -> Vec<BTreeSet<usize>> {
     let mut result = Vec::new();
     while !pool.is_empty() {
@@ -61,10 +66,12 @@ fn partition(mut pool: Vec<usize>, rng: &mut impl Rng) -> Vec<BTreeSet<usize>> {
     }
     result
 }
+
 fn connect(individual: &mut Individual, from: usize, to: usize) {
     individual.outputs[from].push(BTreeSet::from([to]));
     individual.inputs[to].push(BTreeSet::from([from]));
 }
+
 fn weighted_connect(
     individual: &mut Individual,
     from: &[usize],
@@ -94,6 +101,7 @@ fn weighted_connect(
     let (a, b) = pairs[index];
     connect(individual, a, b);
 }
+
 fn repair(individual: &mut Individual, counts: &[Vec<u64>], rng: &mut impl Rng) {
     let mut left: BTreeSet<_> = (0..counts.len()).collect();
     let mut components = Vec::new();
@@ -124,6 +132,7 @@ fn repair(individual: &mut Individual, counts: &[Vec<u64>], rng: &mut impl Rng) 
         components[0].sort_unstable();
     }
 }
+
 pub(super) fn initial(counts: &[Vec<u64>], rng: &mut impl Rng) -> Individual {
     let n = counts.len();
     let mut result = Individual {
@@ -150,6 +159,7 @@ pub(super) fn initial(counts: &[Vec<u64>], rng: &mut impl Rng) -> Individual {
     }
     result
 }
+
 fn tournament(
     candidates: &mut [usize],
     sample: usize,
@@ -165,6 +175,7 @@ fn tournament(
     }
     best
 }
+
 pub(super) fn parents(
     scored: &[(Individual, f64)],
     sample: usize,
@@ -185,6 +196,7 @@ pub(super) fn parents(
     let b = tournament(&mut candidates, sample, scored, rng);
     (a, b)
 }
+
 fn synchronize(
     partitions: &mut [Vec<BTreeSet<usize>>],
     t: usize,
@@ -203,6 +215,7 @@ fn synchronize(
         partitions[neighbor].retain(|binding| !binding.is_empty());
     }
 }
+
 fn swap(
     first: &mut [Vec<BTreeSet<usize>>],
     second: &mut [Vec<BTreeSet<usize>>],
@@ -234,6 +247,7 @@ fn swap(
     synchronize(reverse_first, t, &old_a, &flat(&first[t]));
     synchronize(reverse_second, t, &old_b, &flat(&second[t]));
 }
+
 pub(super) fn crossover(a: &Individual, b: &Individual, rng: &mut impl Rng) -> [Individual; 2] {
     let mut first = a.clone();
     let mut second = b.clone();
@@ -256,6 +270,7 @@ pub(super) fn crossover(a: &Individual, b: &Individual, rng: &mut impl Rng) -> [
     );
     [first, second]
 }
+
 pub(super) fn mutate(individual: &mut Individual, rate: f64, rng: &mut impl Rng) {
     for bindings in individual.inputs.iter_mut().chain(&mut individual.outputs) {
         if rng.random::<f64>() < rate {
@@ -296,9 +311,11 @@ mod tests {
             outputs: convert(&value["outputs"]),
         }
     }
+
     fn serial(individual: &Individual) -> Value {
         json!({"inputs":individual.inputs,"outputs":individual.outputs})
     }
+
     fn invariant(individual: &Individual) {
         let n = individual.inputs.len();
         assert_eq!(n, individual.outputs.len());
@@ -318,17 +335,24 @@ mod tests {
             }
         }
     }
+
     #[test]
-    fn crossover_matches_pinned_operator_choices() {
-        let golden: Value = serde_json::from_str(include_str!(
+    fn crossover_matches_pm4py_operator_choices() {
+        check_crossover(include_str!(
             "../../../../fixtures/golden/discovery/genetic-operators.json"
-        ))
-        .unwrap();
+        ));
+        check_crossover(include_str!(
+            "../../../../fixtures/golden/discovery/genetic-operators-prefix.json"
+        ));
+    }
+
+    fn check_crossover(source: &str) {
+        let golden: Value = serde_json::from_str(source).unwrap();
         let expected = &golden["expected"];
         let a = parse(&expected["parents"][0]);
         let b = parse(&expected["parents"][1]);
         let mut observed = BTreeSet::new();
-        for seed in 0..64 {
+        for seed in 0..512 {
             let children = crossover(&a, &b, &mut ChaCha8Rng::seed_from_u64(seed));
             let actual = json!([serial(&children[0]), serial(&children[1])]);
             assert!(
@@ -351,6 +375,7 @@ mod tests {
                 .len()
         );
     }
+
     #[test]
     fn repair_mutation_and_identical_parent_fallback() {
         for counts in [

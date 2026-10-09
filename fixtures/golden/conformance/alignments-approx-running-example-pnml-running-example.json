@@ -1,0 +1,1999 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t6",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t7",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t8",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t9",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p2": 1
+      },
+      "initial_marking": {
+        "p1": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
+      "transitions": [
+        {
+          "label": "examine thoroughly",
+          "name": "t0"
+        },
+        {
+          "label": "decide",
+          "name": "t1"
+        },
+        {
+          "label": "pay compensation",
+          "name": "t2"
+        },
+        {
+          "label": "reject request",
+          "name": "t3"
+        },
+        {
+          "label": null,
+          "name": "t4"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "t5"
+        },
+        {
+          "label": "examine casually",
+          "name": "t6"
+        },
+        {
+          "label": "register request",
+          "name": "t7"
+        },
+        {
+          "label": null,
+          "name": "t8"
+        },
+        {
+          "label": "check ticket",
+          "name": "t9"
+        }
+      ]
+    },
+    "runs": {
+      "fixed_horizon": {},
+      "fixed_horizon_small": {
+        "horizon": 2
+      },
+      "sliding_window": {},
+      "sliding_window_small": {
+        "max_candidates": 2,
+        "window_size": 3
+      },
+      "tandem_repeats": {}
+    },
+    "variants": [
+      {
+        "fixed_horizon": {
+          "bwc": 100002,
+          "committed_horizons": [
+            4,
+            4
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 33,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t0"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 65,
+          "standard_cost": 2,
+          "traversed": 103,
+          "visited": 65
+        },
+        "fixed_horizon_small": {
+          "bwc": 100002,
+          "committed_horizons": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 18,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t0"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 36,
+          "standard_cost": 2,
+          "traversed": 39,
+          "visited": 36
+        },
+        "sliding_window": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t0"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 22,
+          "retained_candidates": [
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 23,
+          "visited": 8,
+          "window_count": 1
+        },
+        "sliding_window_small": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t0"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 40,
+          "retained_candidates": [
+            2,
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 44,
+          "visited": 19,
+          "window_count": 2
+        },
+        "tandem_repeats": {
+          "bwc": 100002,
+          "cost": 2,
+          "fitness": 1.0,
+          "is_valid": true,
+          "model_loop_expansions": 0,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t0"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 22,
+          "reduced_trace_length": 5,
+          "removed_events": 0,
+          "standard_cost": 2,
+          "tandem_repeats": 0,
+          "traversed": 23,
+          "visited": 8
+        },
+        "trace": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "fixed_horizon": {
+          "bwc": 100002,
+          "committed_horizons": [
+            4,
+            4
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 33,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t6"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 65,
+          "standard_cost": 2,
+          "traversed": 104,
+          "visited": 65
+        },
+        "fixed_horizon_small": {
+          "bwc": 100002,
+          "committed_horizons": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 18,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t6"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 36,
+          "standard_cost": 2,
+          "traversed": 41,
+          "visited": 36
+        },
+        "sliding_window": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t6"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 22,
+          "retained_candidates": [
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 24,
+          "visited": 8,
+          "window_count": 1
+        },
+        "sliding_window_small": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t6"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 40,
+          "retained_candidates": [
+            2,
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 47,
+          "visited": 19,
+          "window_count": 2
+        },
+        "tandem_repeats": {
+          "bwc": 100002,
+          "cost": 2,
+          "fitness": 1.0,
+          "is_valid": true,
+          "model_loop_expansions": 0,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t6"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 22,
+          "reduced_trace_length": 5,
+          "removed_events": 0,
+          "standard_cost": 2,
+          "tandem_repeats": 0,
+          "traversed": 24,
+          "visited": 8
+        },
+        "trace": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ]
+      },
+      {
+        "fixed_horizon": {
+          "bwc": 140002,
+          "committed_horizons": [
+            4,
+            4,
+            4
+          ],
+          "cost": 3,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 64,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t0"
+            ],
+            [
+              6,
+              "t9"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              8,
+              "t2"
+            ]
+          ],
+          "queued": 117,
+          "standard_cost": 3,
+          "traversed": 176,
+          "visited": 117
+        },
+        "fixed_horizon_small": {
+          "bwc": 140002,
+          "committed_horizons": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "cost": 3,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 34,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t0"
+            ],
+            [
+              6,
+              "t9"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              8,
+              "t2"
+            ]
+          ],
+          "queued": 66,
+          "standard_cost": 3,
+          "traversed": 72,
+          "visited": 66
+        },
+        "sliding_window": {
+          "bwc": 140002,
+          "cost": 3,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t0"
+            ],
+            [
+              6,
+              "t9"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              8,
+              "t2"
+            ]
+          ],
+          "queued": 40,
+          "retained_candidates": [
+            1
+          ],
+          "standard_cost": 3,
+          "traversed": 43,
+          "visited": 14,
+          "window_count": 1
+        },
+        "sliding_window_small": {
+          "bwc": 140002,
+          "cost": 3,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t0"
+            ],
+            [
+              6,
+              "t9"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              8,
+              "t2"
+            ]
+          ],
+          "queued": 84,
+          "retained_candidates": [
+            2,
+            2,
+            1
+          ],
+          "standard_cost": 3,
+          "traversed": 102,
+          "visited": 40,
+          "window_count": 3
+        },
+        "tandem_repeats": {
+          "bwc": 140002,
+          "cost": 3,
+          "fitness": 1.0,
+          "is_valid": true,
+          "model_loop_expansions": 0,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t0"
+            ],
+            [
+              6,
+              "t9"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              8,
+              "t2"
+            ]
+          ],
+          "queued": 40,
+          "reduced_trace_length": 9,
+          "removed_events": 0,
+          "standard_cost": 3,
+          "tandem_repeats": 0,
+          "traversed": 43,
+          "visited": 14
+        },
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ]
+      },
+      {
+        "fixed_horizon": {
+          "bwc": 100002,
+          "committed_horizons": [
+            4,
+            4
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 33,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t0"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 65,
+          "standard_cost": 2,
+          "traversed": 104,
+          "visited": 65
+        },
+        "fixed_horizon_small": {
+          "bwc": 100002,
+          "committed_horizons": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 18,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t0"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 36,
+          "standard_cost": 2,
+          "traversed": 41,
+          "visited": 36
+        },
+        "sliding_window": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t0"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 22,
+          "retained_candidates": [
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 24,
+          "visited": 8,
+          "window_count": 1
+        },
+        "sliding_window_small": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t0"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 40,
+          "retained_candidates": [
+            2,
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 47,
+          "visited": 19,
+          "window_count": 2
+        },
+        "tandem_repeats": {
+          "bwc": 100002,
+          "cost": 2,
+          "fitness": 1.0,
+          "is_valid": true,
+          "model_loop_expansions": 0,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t9"
+            ],
+            [
+              2,
+              "t0"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t3"
+            ]
+          ],
+          "queued": 22,
+          "reduced_trace_length": 5,
+          "removed_events": 0,
+          "standard_cost": 2,
+          "tandem_repeats": 0,
+          "traversed": 24,
+          "visited": 8
+        },
+        "trace": [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "fixed_horizon": {
+          "bwc": 180002,
+          "committed_horizons": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "cost": 4,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 94,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t9"
+            ],
+            [
+              6,
+              "t6"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              8,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              9,
+              "t6"
+            ],
+            [
+              10,
+              "t9"
+            ],
+            [
+              11,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              12,
+              "t3"
+            ]
+          ],
+          "queued": 168,
+          "standard_cost": 4,
+          "traversed": 263,
+          "visited": 168
+        },
+        "fixed_horizon_small": {
+          "bwc": 180002,
+          "committed_horizons": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "cost": 4,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 50,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t9"
+            ],
+            [
+              6,
+              "t6"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              8,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              9,
+              "t6"
+            ],
+            [
+              10,
+              "t9"
+            ],
+            [
+              11,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              12,
+              "t3"
+            ]
+          ],
+          "queued": 96,
+          "standard_cost": 4,
+          "traversed": 107,
+          "visited": 96
+        },
+        "sliding_window": {
+          "bwc": 180002,
+          "cost": 4,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t9"
+            ],
+            [
+              6,
+              "t6"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              8,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              9,
+              "t6"
+            ],
+            [
+              10,
+              "t9"
+            ],
+            [
+              11,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              12,
+              "t3"
+            ]
+          ],
+          "queued": 58,
+          "retained_candidates": [
+            1
+          ],
+          "standard_cost": 4,
+          "traversed": 64,
+          "visited": 20,
+          "window_count": 1
+        },
+        "sliding_window_small": {
+          "bwc": 180002,
+          "cost": 4,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t9"
+            ],
+            [
+              6,
+              "t6"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              8,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              9,
+              "t6"
+            ],
+            [
+              10,
+              "t9"
+            ],
+            [
+              11,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              12,
+              "t3"
+            ]
+          ],
+          "queued": 121,
+          "retained_candidates": [
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "standard_cost": 4,
+          "traversed": 138,
+          "visited": 56,
+          "window_count": 5
+        },
+        "tandem_repeats": {
+          "bwc": 180002,
+          "cost": 4,
+          "fitness": 1.0,
+          "is_valid": true,
+          "model_loop_expansions": 0,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              4,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              5,
+              "t9"
+            ],
+            [
+              6,
+              "t6"
+            ],
+            [
+              7,
+              "t1"
+            ],
+            [
+              8,
+              "t5"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              9,
+              "t6"
+            ],
+            [
+              10,
+              "t9"
+            ],
+            [
+              11,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              12,
+              "t3"
+            ]
+          ],
+          "queued": 58,
+          "reduced_trace_length": 13,
+          "removed_events": 0,
+          "standard_cost": 4,
+          "tandem_repeats": 0,
+          "traversed": 64,
+          "visited": 20
+        },
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "fixed_horizon": {
+          "bwc": 100002,
+          "committed_horizons": [
+            4,
+            4
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 33,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 65,
+          "standard_cost": 2,
+          "traversed": 103,
+          "visited": 65
+        },
+        "fixed_horizon_small": {
+          "bwc": 100002,
+          "committed_horizons": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "cost": 2,
+          "fallback_reason": null,
+          "fitness": 1.0,
+          "is_valid": true,
+          "lp_solved": 18,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 36,
+          "standard_cost": 2,
+          "traversed": 39,
+          "visited": 36
+        },
+        "sliding_window": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 22,
+          "retained_candidates": [
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 23,
+          "visited": 8,
+          "window_count": 1
+        },
+        "sliding_window_small": {
+          "bwc": 100002,
+          "cost": 2,
+          "fallback_used": false,
+          "fitness": 1.0,
+          "is_valid": true,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 40,
+          "retained_candidates": [
+            2,
+            1
+          ],
+          "standard_cost": 2,
+          "traversed": 44,
+          "visited": 19,
+          "window_count": 2
+        },
+        "tandem_repeats": {
+          "bwc": 100002,
+          "cost": 2,
+          "fitness": 1.0,
+          "is_valid": true,
+          "model_loop_expansions": 0,
+          "moves": [
+            [
+              0,
+              "t7"
+            ],
+            [
+              null,
+              "t4"
+            ],
+            [
+              1,
+              "t6"
+            ],
+            [
+              2,
+              "t9"
+            ],
+            [
+              3,
+              "t1"
+            ],
+            [
+              null,
+              "t8"
+            ],
+            [
+              4,
+              "t2"
+            ]
+          ],
+          "queued": 22,
+          "reduced_trace_length": 5,
+          "removed_events": 0,
+          "standard_cost": 2,
+          "tandem_repeats": 0,
+          "traversed": 23,
+          "visited": 8
+        },
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-approx-running-example-pnml-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv",
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.algo.conformance.alignments.petri_net.algorithm.apply_trace",
+      "pm4py.algo.conformance.alignments.petri_net.variants.approx_tandem_repeats.apply",
+      "pm4py.algo.conformance.alignments.petri_net.variants.approx_sliding_window.apply",
+      "pm4py.algo.conformance.alignments.petri_net.variants.approx_fixed_horizon.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

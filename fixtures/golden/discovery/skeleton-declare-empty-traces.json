@@ -1,0 +1,369 @@
+{
+  "expected": {
+    "declare": [
+      {
+        "model": {},
+        "options": {}
+      },
+      {
+        "model": {},
+        "options": {
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "min_confidence_ratio": 1.0,
+          "min_support_ratio": 1.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "min_support_ratio": 0.5
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "min_confidence_ratio": 0.5
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "auto_selection_multiplier": 0.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "auto_selection_multiplier": 1.0
+        }
+      },
+      {
+        "model": {
+          "absence": [
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              2,
+              2
+            ]
+          ],
+          "exactly_one": [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ],
+          "existence": [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ],
+          "init": [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ]
+        },
+        "options": {
+          "considered_activities": [
+            "a",
+            "b",
+            "ghost"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "considered_activities": []
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "allowed_templates": []
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "allowed_templates": [
+            "absence",
+            "succession",
+            "coexistence",
+            "noncoexistence",
+            "altsuccession",
+            "chainsuccession",
+            "nonsuccession",
+            "nonchainsuccession"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "allowed_templates": [
+            "response",
+            "precedence",
+            "succession",
+            "nonsuccession"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "allowed_templates": [
+            "altresponse",
+            "altprecedence",
+            "altsuccession",
+            "chainresponse",
+            "chainprecedence",
+            "chainsuccession",
+            "nonchainsuccession"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      },
+      {
+        "model": {},
+        "options": {
+          "allowed_templates": [
+            "responded_existence",
+            "coexistence",
+            "noncoexistence",
+            "existence",
+            "absence"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      }
+    ],
+    "labels": [
+      "a",
+      "b",
+      "ghost"
+    ],
+    "skeleton": [
+      {
+        "model": {
+          "activ_freq": [],
+          "always_after": [],
+          "always_before": [],
+          "directly_follows": [],
+          "equivalence": [],
+          "never_together": []
+        },
+        "noise": 0.0
+      },
+      {
+        "model": {
+          "activ_freq": [],
+          "always_after": [],
+          "always_before": [],
+          "directly_follows": [],
+          "equivalence": [],
+          "never_together": []
+        },
+        "noise": 0.2
+      },
+      {
+        "model": {
+          "activ_freq": [],
+          "always_after": [],
+          "always_before": [],
+          "directly_follows": [],
+          "equivalence": [],
+          "never_together": []
+        },
+        "noise": 0.5
+      },
+      {
+        "model": {
+          "activ_freq": [],
+          "always_after": [],
+          "always_before": [],
+          "directly_follows": [],
+          "equivalence": [],
+          "never_together": []
+        },
+        "noise": 0.9
+      },
+      {
+        "model": {
+          "activ_freq": [],
+          "always_after": [],
+          "always_before": [],
+          "directly_follows": [],
+          "equivalence": [],
+          "never_together": []
+        },
+        "noise": 1.0
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "skeleton-declare-empty-traces",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_log_skeleton",
+      "pm4py.discover_declare",
+      "pm4py.algo.discovery.declare.variants.classic.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "declare_options": [
+        {},
+        {
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        {
+          "min_confidence_ratio": 1.0,
+          "min_support_ratio": 1.0
+        },
+        {
+          "min_support_ratio": 0.5
+        },
+        {
+          "min_confidence_ratio": 0.5
+        },
+        {
+          "auto_selection_multiplier": 0.0
+        },
+        {
+          "auto_selection_multiplier": 1.0
+        },
+        {
+          "considered_activities": [
+            "a",
+            "b",
+            "ghost"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        {
+          "considered_activities": []
+        },
+        {
+          "allowed_templates": []
+        },
+        {
+          "allowed_templates": [
+            "absence",
+            "succession",
+            "coexistence",
+            "noncoexistence",
+            "altsuccession",
+            "chainsuccession",
+            "nonsuccession",
+            "nonchainsuccession"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        {
+          "allowed_templates": [
+            "response",
+            "precedence",
+            "succession",
+            "nonsuccession"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        {
+          "allowed_templates": [
+            "altresponse",
+            "altprecedence",
+            "altsuccession",
+            "chainresponse",
+            "chainprecedence",
+            "chainsuccession",
+            "nonchainsuccession"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        {
+          "allowed_templates": [
+            "responded_existence",
+            "coexistence",
+            "noncoexistence",
+            "existence",
+            "absence"
+          ],
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        }
+      ],
+      "traces": [
+        [],
+        []
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -15,6 +15,7 @@ pub struct GeneticMatrix {
     /// Output partitions per activity. Missing keys mean no outputs.
     pub outputs: BTreeMap<Label, Vec<BTreeSet<Label>>>,
 }
+
 impl GeneticMatrix {
     pub(super) fn from_individual(labels: &[Label], individual: &Individual) -> Self {
         let convert = |partitions: &[Vec<BTreeSet<usize>>]| {
@@ -38,6 +39,7 @@ impl GeneticMatrix {
             outputs: convert(&individual.outputs),
         }
     }
+
     fn individual(&self) -> Result<Individual> {
         let indices: BTreeMap<_, _> = self
             .activities
@@ -95,6 +97,7 @@ impl GeneticMatrix {
         }
         Ok(individual)
     }
+
     /// Convert with the classic sophisticated mapping, falling back to silent
     /// transitions for adjacent non-simple bindings. No reduction is applied.
     /// An empty matrix returns a silent workflow shell.
@@ -112,8 +115,10 @@ impl GeneticMatrix {
             .collect();
         if n == 0 {
             let tau = net.add_transition("skip", None::<Label>);
-            net.add_input_arc(source, tau).unwrap();
-            net.add_output_arc(tau, sink).unwrap();
+            net.add_input_arc(source, tau)
+                .expect("place and transition were created in this net");
+            net.add_output_arc(tau, sink)
+                .expect("place and transition were created in this net");
         }
         let input_sets: BTreeSet<_> = individual.inputs.iter().flatten().cloned().collect();
         let output_sets: BTreeSet<_> = individual.outputs.iter().flatten().cloned().collect();
@@ -154,18 +159,22 @@ impl GeneticMatrix {
         }
         let (sources, sinks) = boundaries(&individual);
         for i in sources {
-            net.add_input_arc(source, transitions[i]).unwrap();
+            net.add_input_arc(source, transitions[i])
+                .expect("place and transition were created in this net");
         }
         for i in sinks {
-            net.add_output_arc(transitions[i], sink).unwrap();
+            net.add_output_arc(transitions[i], sink)
+                .expect("place and transition were created in this net");
         }
         for (i, (inputs, outputs)) in simple.iter().enumerate() {
             let place = net.add_place(format!("p{i}"));
             for &t in inputs {
-                net.add_output_arc(transitions[t], place).unwrap();
+                net.add_output_arc(transitions[t], place)
+                    .expect("place and transition were created in this net");
             }
             for &t in outputs {
-                net.add_input_arc(place, transitions[t]).unwrap();
+                net.add_input_arc(place, transitions[t])
+                    .expect("place and transition were created in this net");
             }
         }
         let producers: BTreeSet<_> = other.iter().flat_map(|(a, _)| a.iter().copied()).collect();
@@ -174,24 +183,28 @@ impl GeneticMatrix {
         for t in producers {
             for (i, binding) in individual.outputs[t].iter().enumerate() {
                 let place = net.add_place(format!("out-{t}-{i}"));
-                net.add_output_arc(transitions[t], place).unwrap();
+                net.add_output_arc(transitions[t], place)
+                    .expect("place and transition were created in this net");
                 for &u in binding {
                     let tau = *silent.entry((t, u)).or_insert_with(|| {
                         net.add_transition(format!("tau-{t}-{u}"), None::<Label>)
                     });
-                    net.add_input_arc(place, tau).unwrap();
+                    net.add_input_arc(place, tau)
+                        .expect("place and transition were created in this net");
                 }
             }
         }
         for t in consumers {
             for (i, binding) in individual.inputs[t].iter().enumerate() {
                 let place = net.add_place(format!("in-{t}-{i}"));
-                net.add_input_arc(place, transitions[t]).unwrap();
+                net.add_input_arc(place, transitions[t])
+                    .expect("place and transition were created in this net");
                 for &u in binding {
                     let tau = *silent.entry((u, t)).or_insert_with(|| {
                         net.add_transition(format!("tau-{u}-{t}"), None::<Label>)
                     });
-                    net.add_output_arc(tau, place).unwrap();
+                    net.add_output_arc(tau, place)
+                        .expect("place and transition were created in this net");
                 }
             }
         }
