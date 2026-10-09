@@ -111,7 +111,7 @@ pub struct Ocel {
     /// Whether the event times had no offset in the source file. pm4py
     /// keeps such times naive. Here they are UTC, and the writers that
     /// pm4py lets write a naive time without an offset do the same: the
-    /// OCEL 1.0 CSV and OCEL 2.0 XML writers.
+    /// OCEL 1.0 CSV, OCEL 2.0 XML and SQLite writers.
     pub naive_times: bool,
 }
 

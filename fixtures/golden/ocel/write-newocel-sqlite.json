@@ -1,27 +1,6 @@
 {
   "expected": {
-    "globals": {
-      "ocel:global-event": {
-        "ocel:activity": "__INVALID__"
-      },
-      "ocel:global-log": {
-        "ocel:attribute-names": [],
-        "ocel:object-types": [
-          "order",
-          "item",
-          "line",
-          "goodsissue",
-          "delivery",
-          "invoice",
-          "payment"
-        ],
-        "ocel:ordering": "timestamp",
-        "ocel:version": "1.0"
-      },
-      "ocel:global-object": {
-        "ocel:activity": "__INVALID__"
-      }
-    },
+    "globals": {},
     "input": {
       "e2e": [],
       "events": [
@@ -152,77 +131,77 @@
         {
           "attributes": {},
           "id": "o1",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "attributes": {},
           "id": "i1",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "attributes": {},
           "id": "i2",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "attributes": {},
           "id": "i3",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "attributes": {},
           "id": "L1",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "attributes": {},
           "id": "gi1",
-          "type": "goodsissue"
+          "type": "ocel:type:goodsissue"
         },
         {
           "attributes": {},
           "id": "d1",
-          "type": "delivery"
+          "type": "ocel:type:delivery"
         },
         {
           "attributes": {},
           "id": "r1",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "attributes": {},
           "id": "r2",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "attributes": {},
           "id": "o2",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "attributes": {},
           "id": "i4",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "attributes": {},
           "id": "i5",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "attributes": {},
           "id": "d2",
-          "type": "delivery"
+          "type": "ocel:type:delivery"
         },
         {
           "attributes": {},
           "id": "r3",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "attributes": {},
           "id": "pay1",
-          "type": "payment"
+          "type": "ocel:type:payment"
         }
       ],
       "relations": [
@@ -232,7 +211,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T00:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Create Purchase Order",
@@ -240,7 +219,7 @@
           "object": "i1",
           "qualifier": "",
           "timestamp": "1970-01-01T00:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Create Purchase Order",
@@ -248,7 +227,7 @@
           "object": "i2",
           "qualifier": "",
           "timestamp": "1970-01-01T00:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Create Purchase Order",
@@ -256,7 +235,7 @@
           "object": "i3",
           "qualifier": "",
           "timestamp": "1970-01-01T00:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Produce Item",
@@ -264,7 +243,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T01:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Produce Item",
@@ -272,7 +251,7 @@
           "object": "i1",
           "qualifier": "",
           "timestamp": "1970-01-01T01:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Produce Item",
@@ -280,7 +259,7 @@
           "object": "L1",
           "qualifier": "",
           "timestamp": "1970-01-01T01:00:00.000000+00:00",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "activity": "Item Issue",
@@ -288,7 +267,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T02:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Item Issue",
@@ -296,7 +275,7 @@
           "object": "i1",
           "qualifier": "",
           "timestamp": "1970-01-01T02:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Item Issue",
@@ -304,7 +283,7 @@
           "object": "L1",
           "qualifier": "",
           "timestamp": "1970-01-01T02:00:00.000000+00:00",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "activity": "Item Issue",
@@ -312,7 +291,7 @@
           "object": "gi1",
           "qualifier": "",
           "timestamp": "1970-01-01T02:00:00.000000+00:00",
-          "type": "goodsissue"
+          "type": "ocel:type:goodsissue"
         },
         {
           "activity": "Replace Item",
@@ -320,7 +299,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T03:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Replace Item",
@@ -328,7 +307,7 @@
           "object": "i1",
           "qualifier": "",
           "timestamp": "1970-01-01T03:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Replace Item",
@@ -336,7 +315,7 @@
           "object": "L1",
           "qualifier": "",
           "timestamp": "1970-01-01T03:00:00.000000+00:00",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "activity": "Replace Item",
@@ -344,7 +323,7 @@
           "object": "gi1",
           "qualifier": "",
           "timestamp": "1970-01-01T03:00:00.000000+00:00",
-          "type": "goodsissue"
+          "type": "ocel:type:goodsissue"
         },
         {
           "activity": "Produce Item",
@@ -352,7 +331,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T04:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Produce Item",
@@ -360,7 +339,7 @@
           "object": "i2",
           "qualifier": "",
           "timestamp": "1970-01-01T04:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Produce Item",
@@ -368,7 +347,7 @@
           "object": "L1",
           "qualifier": "",
           "timestamp": "1970-01-01T04:00:00.000000+00:00",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "activity": "Produce Item",
@@ -376,7 +355,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T05:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Produce Item",
@@ -384,7 +363,7 @@
           "object": "i3",
           "qualifier": "",
           "timestamp": "1970-01-01T05:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Collect Items",
@@ -392,7 +371,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T06:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Collect Items",
@@ -400,7 +379,7 @@
           "object": "i1",
           "qualifier": "",
           "timestamp": "1970-01-01T06:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Collect Items",
@@ -408,7 +387,7 @@
           "object": "i2",
           "qualifier": "",
           "timestamp": "1970-01-01T06:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Collect Items",
@@ -416,7 +395,7 @@
           "object": "i3",
           "qualifier": "",
           "timestamp": "1970-01-01T06:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Start Delivery",
@@ -424,7 +403,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T07:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Start Delivery",
@@ -432,7 +411,7 @@
           "object": "d1",
           "qualifier": "",
           "timestamp": "1970-01-01T07:00:00.000000+00:00",
-          "type": "delivery"
+          "type": "ocel:type:delivery"
         },
         {
           "activity": "Send Invoice",
@@ -440,7 +419,7 @@
           "object": "o1",
           "qualifier": "",
           "timestamp": "1970-01-01T08:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Send Invoice",
@@ -448,7 +427,7 @@
           "object": "r1",
           "qualifier": "",
           "timestamp": "1970-01-01T08:00:00.000000+00:00",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "activity": "Delivery Successful",
@@ -456,7 +435,7 @@
           "object": "d1",
           "qualifier": "",
           "timestamp": "1970-01-01T09:00:00.000000+00:00",
-          "type": "delivery"
+          "type": "ocel:type:delivery"
         },
         {
           "activity": "Revert Invoice",
@@ -464,7 +443,7 @@
           "object": "r1",
           "qualifier": "",
           "timestamp": "1970-01-01T10:00:00.000000+00:00",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "activity": "Revert Invoice",
@@ -472,7 +451,7 @@
           "object": "r2",
           "qualifier": "",
           "timestamp": "1970-01-01T10:00:00.000000+00:00",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "activity": "Send Invoice",
@@ -480,7 +459,7 @@
           "object": "r2",
           "qualifier": "",
           "timestamp": "1970-01-01T10:00:00.000000+00:00",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "activity": "Create Purchase Order",
@@ -488,7 +467,7 @@
           "object": "o2",
           "qualifier": "",
           "timestamp": "1970-01-01T11:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Create Purchase Order",
@@ -496,7 +475,7 @@
           "object": "i4",
           "qualifier": "",
           "timestamp": "1970-01-01T11:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Create Purchase Order",
@@ -504,7 +483,7 @@
           "object": "i5",
           "qualifier": "",
           "timestamp": "1970-01-01T11:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Produce Item",
@@ -512,7 +491,7 @@
           "object": "o2",
           "qualifier": "",
           "timestamp": "1970-01-01T12:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Produce Item",
@@ -520,7 +499,7 @@
           "object": "i4",
           "qualifier": "",
           "timestamp": "1970-01-01T12:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Produce Item",
@@ -528,7 +507,7 @@
           "object": "L1",
           "qualifier": "",
           "timestamp": "1970-01-01T12:00:00.000000+00:00",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "activity": "Produce Item",
@@ -536,7 +515,7 @@
           "object": "o2",
           "qualifier": "",
           "timestamp": "1970-01-01T13:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Produce Item",
@@ -544,7 +523,7 @@
           "object": "i5",
           "qualifier": "",
           "timestamp": "1970-01-01T13:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Produce Item",
@@ -552,7 +531,7 @@
           "object": "L1",
           "qualifier": "",
           "timestamp": "1970-01-01T13:00:00.000000+00:00",
-          "type": "line"
+          "type": "ocel:type:line"
         },
         {
           "activity": "Collect Items",
@@ -560,7 +539,7 @@
           "object": "o2",
           "qualifier": "",
           "timestamp": "1970-01-01T14:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Collect Items",
@@ -568,7 +547,7 @@
           "object": "i4",
           "qualifier": "",
           "timestamp": "1970-01-01T14:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Collect Items",
@@ -576,7 +555,7 @@
           "object": "i5",
           "qualifier": "",
           "timestamp": "1970-01-01T14:00:00.000000+00:00",
-          "type": "item"
+          "type": "ocel:type:item"
         },
         {
           "activity": "Start Delivery",
@@ -584,7 +563,7 @@
           "object": "o2",
           "qualifier": "",
           "timestamp": "1970-01-01T15:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Start Delivery",
@@ -592,7 +571,7 @@
           "object": "d2",
           "qualifier": "",
           "timestamp": "1970-01-01T15:00:00.000000+00:00",
-          "type": "delivery"
+          "type": "ocel:type:delivery"
         },
         {
           "activity": "Delivery Successful",
@@ -600,7 +579,7 @@
           "object": "d2",
           "qualifier": "",
           "timestamp": "1970-01-01T16:00:00.000000+00:00",
-          "type": "delivery"
+          "type": "ocel:type:delivery"
         },
         {
           "activity": "Send Invoice",
@@ -608,7 +587,7 @@
           "object": "o2",
           "qualifier": "",
           "timestamp": "1970-01-01T17:00:00.000000+00:00",
-          "type": "order"
+          "type": "ocel:type:order"
         },
         {
           "activity": "Send Invoice",
@@ -616,7 +595,7 @@
           "object": "r3",
           "qualifier": "",
           "timestamp": "1970-01-01T17:00:00.000000+00:00",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "activity": "Payment",
@@ -624,7 +603,7 @@
           "object": "r3",
           "qualifier": "",
           "timestamp": "1970-01-01T18:00:00.000000+00:00",
-          "type": "invoice"
+          "type": "ocel:type:invoice"
         },
         {
           "activity": "Payment",
@@ -632,23 +611,23 @@
           "object": "pay1",
           "qualifier": "",
           "timestamp": "1970-01-01T18:00:00.000000+00:00",
-          "type": "payment"
+          "type": "ocel:type:payment"
         }
       ]
     },
     "writers": {
       "csv": {
-        "objects": "ocel:oid,ocel:type\no1,order\ni1,item\ni2,item\ni3,item\nL1,line\ngi1,goodsissue\nd1,delivery\nr1,invoice\nr2,invoice\no2,order\ni4,item\ni5,item\nd2,delivery\nr3,invoice\npay1,payment\n",
-        "text": "ocel:eid,ocel:timestamp,ocel:activity,ocel:type:order,ocel:type:item,ocel:type:line,ocel:type:goodsissue,ocel:type:delivery,ocel:type:invoice,ocel:type:payment\ne1,1970-01-01 00:00:00+00:00,Create Purchase Order,['o1'],\"['i1', 'i2', 'i3']\",,,,,\ne2,1970-01-01 01:00:00+00:00,Produce Item,['o1'],['i1'],['L1'],,,,\ne3,1970-01-01 02:00:00+00:00,Item Issue,['o1'],['i1'],['L1'],['gi1'],,,\ne4,1970-01-01 03:00:00+00:00,Replace Item,['o1'],['i1'],['L1'],['gi1'],,,\ne5,1970-01-01 04:00:00+00:00,Produce Item,['o1'],['i2'],['L1'],,,,\ne6,1970-01-01 05:00:00+00:00,Produce Item,['o1'],['i3'],,,,,\ne7,1970-01-01 06:00:00+00:00,Collect Items,['o1'],\"['i1', 'i2', 'i3']\",,,,,\ne8,1970-01-01 07:00:00+00:00,Start Delivery,['o1'],,,,['d1'],,\ne9,1970-01-01 08:00:00+00:00,Send Invoice,['o1'],,,,,['r1'],\ne10,1970-01-01 09:00:00+00:00,Delivery Successful,,,,,['d1'],,\ne11,1970-01-01 10:00:00+00:00,Revert Invoice,,,,,,\"['r1', 'r2']\",\ne12,1970-01-01 10:00:00+00:00,Send Invoice,,,,,,['r2'],\ne13,1970-01-01 11:00:00+00:00,Create Purchase Order,['o2'],\"['i4', 'i5']\",,,,,\ne14,1970-01-01 12:00:00+00:00,Produce Item,['o2'],['i4'],['L1'],,,,\ne15,1970-01-01 13:00:00+00:00,Produce Item,['o2'],['i5'],['L1'],,,,\ne16,1970-01-01 14:00:00+00:00,Collect Items,['o2'],\"['i4', 'i5']\",,,,,\ne17,1970-01-01 15:00:00+00:00,Start Delivery,['o2'],,,,['d2'],,\ne18,1970-01-01 16:00:00+00:00,Delivery Successful,,,,,['d2'],,\ne19,1970-01-01 17:00:00+00:00,Send Invoice,['o2'],,,,,['r3'],\ne20,1970-01-01 18:00:00+00:00,Payment,,,,,,['r3'],['pay1']\n"
+        "objects": "ocel:oid,ocel:type\no1,ocel:type:order\ni1,ocel:type:item\ni2,ocel:type:item\ni3,ocel:type:item\nL1,ocel:type:line\ngi1,ocel:type:goodsissue\nd1,ocel:type:delivery\nr1,ocel:type:invoice\nr2,ocel:type:invoice\no2,ocel:type:order\ni4,ocel:type:item\ni5,ocel:type:item\nd2,ocel:type:delivery\nr3,ocel:type:invoice\npay1,ocel:type:payment\n",
+        "text": "ocel:eid,ocel:timestamp,ocel:activity,ocel:type:ocel:type:order,ocel:type:ocel:type:item,ocel:type:ocel:type:line,ocel:type:ocel:type:goodsissue,ocel:type:ocel:type:delivery,ocel:type:ocel:type:invoice,ocel:type:ocel:type:payment\ne1,1970-01-01 00:00:00+00:00,Create Purchase Order,['o1'],\"['i1', 'i2', 'i3']\",,,,,\ne2,1970-01-01 01:00:00+00:00,Produce Item,['o1'],['i1'],['L1'],,,,\ne3,1970-01-01 02:00:00+00:00,Item Issue,['o1'],['i1'],['L1'],['gi1'],,,\ne4,1970-01-01 03:00:00+00:00,Replace Item,['o1'],['i1'],['L1'],['gi1'],,,\ne5,1970-01-01 04:00:00+00:00,Produce Item,['o1'],['i2'],['L1'],,,,\ne6,1970-01-01 05:00:00+00:00,Produce Item,['o1'],['i3'],,,,,\ne7,1970-01-01 06:00:00+00:00,Collect Items,['o1'],\"['i1', 'i2', 'i3']\",,,,,\ne8,1970-01-01 07:00:00+00:00,Start Delivery,['o1'],,,,['d1'],,\ne9,1970-01-01 08:00:00+00:00,Send Invoice,['o1'],,,,,['r1'],\ne10,1970-01-01 09:00:00+00:00,Delivery Successful,,,,,['d1'],,\ne11,1970-01-01 10:00:00+00:00,Revert Invoice,,,,,,\"['r1', 'r2']\",\ne12,1970-01-01 10:00:00+00:00,Send Invoice,,,,,,['r2'],\ne13,1970-01-01 11:00:00+00:00,Create Purchase Order,['o2'],\"['i4', 'i5']\",,,,,\ne14,1970-01-01 12:00:00+00:00,Produce Item,['o2'],['i4'],['L1'],,,,\ne15,1970-01-01 13:00:00+00:00,Produce Item,['o2'],['i5'],['L1'],,,,\ne16,1970-01-01 14:00:00+00:00,Collect Items,['o2'],\"['i4', 'i5']\",,,,,\ne17,1970-01-01 15:00:00+00:00,Start Delivery,['o2'],,,,['d2'],,\ne18,1970-01-01 16:00:00+00:00,Delivery Successful,,,,,['d2'],,\ne19,1970-01-01 17:00:00+00:00,Send Invoice,['o2'],,,,,['r3'],\ne20,1970-01-01 18:00:00+00:00,Payment,,,,,,['r3'],['pay1']\n"
       },
       "csv2": {
-        "text": "id,activity,timestamp,ot:delivery,ot:goodsissue,ot:invoice,ot:item,ot:line,ot:order,ot:payment\r\ne1,Create Purchase Order,1970-01-01T00:00:00+00:00,,,,i1/i2/i3,,o1,\r\ne2,Produce Item,1970-01-01T01:00:00+00:00,,,,i1,L1,o1,\r\ne3,Item Issue,1970-01-01T02:00:00+00:00,,gi1,,i1,L1,o1,\r\ne4,Replace Item,1970-01-01T03:00:00+00:00,,gi1,,i1,L1,o1,\r\ne5,Produce Item,1970-01-01T04:00:00+00:00,,,,i2,L1,o1,\r\ne6,Produce Item,1970-01-01T05:00:00+00:00,,,,i3,,o1,\r\ne7,Collect Items,1970-01-01T06:00:00+00:00,,,,i1/i2/i3,,o1,\r\ne8,Start Delivery,1970-01-01T07:00:00+00:00,d1,,,,,o1,\r\ne9,Send Invoice,1970-01-01T08:00:00+00:00,,,r1,,,o1,\r\ne10,Delivery Successful,1970-01-01T09:00:00+00:00,d1,,,,,,\r\ne11,Revert Invoice,1970-01-01T10:00:00+00:00,,,r1/r2,,,,\r\ne12,Send Invoice,1970-01-01T10:00:00+00:00,,,r2,,,,\r\ne13,Create Purchase Order,1970-01-01T11:00:00+00:00,,,,i4/i5,,o2,\r\ne14,Produce Item,1970-01-01T12:00:00+00:00,,,,i4,L1,o2,\r\ne15,Produce Item,1970-01-01T13:00:00+00:00,,,,i5,L1,o2,\r\ne16,Collect Items,1970-01-01T14:00:00+00:00,,,,i4/i5,,o2,\r\ne17,Start Delivery,1970-01-01T15:00:00+00:00,d2,,,,,o2,\r\ne18,Delivery Successful,1970-01-01T16:00:00+00:00,d2,,,,,,\r\ne19,Send Invoice,1970-01-01T17:00:00+00:00,,,r3,,,o2,\r\ne20,Payment,1970-01-01T18:00:00+00:00,,,r3,,,,pay1\r\n"
+        "text": "id,activity,timestamp,ot:ocel:type:delivery,ot:ocel:type:goodsissue,ot:ocel:type:invoice,ot:ocel:type:item,ot:ocel:type:line,ot:ocel:type:order,ot:ocel:type:payment\r\ne1,Create Purchase Order,1970-01-01T00:00:00+00:00,,,,i1/i2/i3,,o1,\r\ne2,Produce Item,1970-01-01T01:00:00+00:00,,,,i1,L1,o1,\r\ne3,Item Issue,1970-01-01T02:00:00+00:00,,gi1,,i1,L1,o1,\r\ne4,Replace Item,1970-01-01T03:00:00+00:00,,gi1,,i1,L1,o1,\r\ne5,Produce Item,1970-01-01T04:00:00+00:00,,,,i2,L1,o1,\r\ne6,Produce Item,1970-01-01T05:00:00+00:00,,,,i3,,o1,\r\ne7,Collect Items,1970-01-01T06:00:00+00:00,,,,i1/i2/i3,,o1,\r\ne8,Start Delivery,1970-01-01T07:00:00+00:00,d1,,,,,o1,\r\ne9,Send Invoice,1970-01-01T08:00:00+00:00,,,r1,,,o1,\r\ne10,Delivery Successful,1970-01-01T09:00:00+00:00,d1,,,,,,\r\ne11,Revert Invoice,1970-01-01T10:00:00+00:00,,,r1/r2,,,,\r\ne12,Send Invoice,1970-01-01T10:00:00+00:00,,,r2,,,,\r\ne13,Create Purchase Order,1970-01-01T11:00:00+00:00,,,,i4/i5,,o2,\r\ne14,Produce Item,1970-01-01T12:00:00+00:00,,,,i4,L1,o2,\r\ne15,Produce Item,1970-01-01T13:00:00+00:00,,,,i5,L1,o2,\r\ne16,Collect Items,1970-01-01T14:00:00+00:00,,,,i4/i5,,o2,\r\ne17,Start Delivery,1970-01-01T15:00:00+00:00,d2,,,,,o2,\r\ne18,Delivery Successful,1970-01-01T16:00:00+00:00,d2,,,,,,\r\ne19,Send Invoice,1970-01-01T17:00:00+00:00,,,r3,,,o2,\r\ne20,Payment,1970-01-01T18:00:00+00:00,,,r3,,,,pay1\r\n"
       },
       "json": {
-        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"order\",\n      \"item\",\n      \"line\",\n      \"goodsissue\",\n      \"delivery\",\n      \"invoice\",\n      \"payment\"\n    ],\n    \"ocel:attribute-names\": [],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:timestamp\": \"1970-01-01T00:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i2\",\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:timestamp\": \"1970-01-01T01:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:timestamp\": \"1970-01-01T02:00:00Z\",\n      \"ocel:activity\": \"Item Issue\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"L1\",\n        \"gi1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"gi1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e4\": {\n      \"ocel:timestamp\": \"1970-01-01T03:00:00Z\",\n      \"ocel:activity\": \"Replace Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"L1\",\n        \"gi1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"gi1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e5\": {\n      \"ocel:timestamp\": \"1970-01-01T04:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i2\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e6\": {\n      \"ocel:timestamp\": \"1970-01-01T05:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e7\": {\n      \"ocel:timestamp\": \"1970-01-01T06:00:00Z\",\n      \"ocel:activity\": \"Collect Items\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i2\",\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e8\": {\n      \"ocel:timestamp\": \"1970-01-01T07:00:00Z\",\n      \"ocel:activity\": \"Start Delivery\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e9\": {\n      \"ocel:timestamp\": \"1970-01-01T08:00:00Z\",\n      \"ocel:activity\": \"Send Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"r1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"r1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e10\": {\n      \"ocel:timestamp\": \"1970-01-01T09:00:00Z\",\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e11\": {\n      \"ocel:timestamp\": \"1970-01-01T10:00:00Z\",\n      \"ocel:activity\": \"Revert Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"r1\",\n        \"r2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"r1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"r2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e12\": {\n      \"ocel:timestamp\": \"1970-01-01T10:00:00Z\",\n      \"ocel:activity\": \"Send Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"r2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"r2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e13\": {\n      \"ocel:timestamp\": \"1970-01-01T11:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i4\",\n        \"i5\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e14\": {\n      \"ocel:timestamp\": \"1970-01-01T12:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i4\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e15\": {\n      \"ocel:timestamp\": \"1970-01-01T13:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i5\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e16\": {\n      \"ocel:timestamp\": \"1970-01-01T14:00:00Z\",\n      \"ocel:activity\": \"Collect Items\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i4\",\n        \"i5\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e17\": {\n      \"ocel:timestamp\": \"1970-01-01T15:00:00Z\",\n      \"ocel:activity\": \"Start Delivery\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"d2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"d2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e18\": {\n      \"ocel:timestamp\": \"1970-01-01T16:00:00Z\",\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e19\": {\n      \"ocel:timestamp\": \"1970-01-01T17:00:00Z\",\n      \"ocel:activity\": \"Send Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"r3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"r3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e20\": {\n      \"ocel:timestamp\": \"1970-01-01T18:00:00Z\",\n      \"ocel:activity\": \"Payment\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"r3\",\n        \"pay1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"r3\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"pay1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"o1\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i1\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i2\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i3\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    },\n    \"L1\": {\n      \"ocel:type\": \"line\",\n      \"ocel:ovmap\": {}\n    },\n    \"gi1\": {\n      \"ocel:type\": \"goodsissue\",\n      \"ocel:ovmap\": {}\n    },\n    \"d1\": {\n      \"ocel:type\": \"delivery\",\n      \"ocel:ovmap\": {}\n    },\n    \"r1\": {\n      \"ocel:type\": \"invoice\",\n      \"ocel:ovmap\": {}\n    },\n    \"r2\": {\n      \"ocel:type\": \"invoice\",\n      \"ocel:ovmap\": {}\n    },\n    \"o2\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i4\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i5\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    },\n    \"d2\": {\n      \"ocel:type\": \"delivery\",\n      \"ocel:ovmap\": {}\n    },\n    \"r3\": {\n      \"ocel:type\": \"invoice\",\n      \"ocel:ovmap\": {}\n    },\n    \"pay1\": {\n      \"ocel:type\": \"payment\",\n      \"ocel:ovmap\": {}\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"Collect Items\": {},\n    \"Create Purchase Order\": {},\n    \"Delivery Successful\": {},\n    \"Item Issue\": {},\n    \"Payment\": {},\n    \"Produce Item\": {},\n    \"Replace Item\": {},\n    \"Revert Invoice\": {},\n    \"Send Invoice\": {},\n    \"Start Delivery\": {}\n  },\n  \"ocel:objectTypes\": {\n    \"delivery\": {},\n    \"goodsissue\": {},\n    \"invoice\": {},\n    \"item\": {},\n    \"line\": {},\n    \"order\": {},\n    \"payment\": {}\n  },\n  \"ocel:objectChanges\": []\n}"
+        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"ocel:type:order\",\n      \"ocel:type:item\",\n      \"ocel:type:line\",\n      \"ocel:type:goodsissue\",\n      \"ocel:type:delivery\",\n      \"ocel:type:invoice\",\n      \"ocel:type:payment\"\n    ],\n    \"ocel:attribute-names\": [],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:timestamp\": \"1970-01-01T00:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i2\",\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:timestamp\": \"1970-01-01T01:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:timestamp\": \"1970-01-01T02:00:00Z\",\n      \"ocel:activity\": \"Item Issue\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"L1\",\n        \"gi1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"gi1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e4\": {\n      \"ocel:timestamp\": \"1970-01-01T03:00:00Z\",\n      \"ocel:activity\": \"Replace Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"L1\",\n        \"gi1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"gi1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e5\": {\n      \"ocel:timestamp\": \"1970-01-01T04:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i2\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e6\": {\n      \"ocel:timestamp\": \"1970-01-01T05:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e7\": {\n      \"ocel:timestamp\": \"1970-01-01T06:00:00Z\",\n      \"ocel:activity\": \"Collect Items\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i2\",\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e8\": {\n      \"ocel:timestamp\": \"1970-01-01T07:00:00Z\",\n      \"ocel:activity\": \"Start Delivery\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e9\": {\n      \"ocel:timestamp\": \"1970-01-01T08:00:00Z\",\n      \"ocel:activity\": \"Send Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\",\n        \"r1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"r1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e10\": {\n      \"ocel:timestamp\": \"1970-01-01T09:00:00Z\",\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e11\": {\n      \"ocel:timestamp\": \"1970-01-01T10:00:00Z\",\n      \"ocel:activity\": \"Revert Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"r1\",\n        \"r2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"r1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"r2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e12\": {\n      \"ocel:timestamp\": \"1970-01-01T10:00:00Z\",\n      \"ocel:activity\": \"Send Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"r2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"r2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e13\": {\n      \"ocel:timestamp\": \"1970-01-01T11:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i4\",\n        \"i5\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e14\": {\n      \"ocel:timestamp\": \"1970-01-01T12:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i4\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e15\": {\n      \"ocel:timestamp\": \"1970-01-01T13:00:00Z\",\n      \"ocel:activity\": \"Produce Item\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i5\",\n        \"L1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"L1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e16\": {\n      \"ocel:timestamp\": \"1970-01-01T14:00:00Z\",\n      \"ocel:activity\": \"Collect Items\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"i4\",\n        \"i5\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e17\": {\n      \"ocel:timestamp\": \"1970-01-01T15:00:00Z\",\n      \"ocel:activity\": \"Start Delivery\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"d2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"d2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e18\": {\n      \"ocel:timestamp\": \"1970-01-01T16:00:00Z\",\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e19\": {\n      \"ocel:timestamp\": \"1970-01-01T17:00:00Z\",\n      \"ocel:activity\": \"Send Invoice\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\",\n        \"r3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"r3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e20\": {\n      \"ocel:timestamp\": \"1970-01-01T18:00:00Z\",\n      \"ocel:activity\": \"Payment\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"r3\",\n        \"pay1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"r3\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"pay1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"o1\": {\n      \"ocel:type\": \"ocel:type:order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i1\": {\n      \"ocel:type\": \"ocel:type:item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i2\": {\n      \"ocel:type\": \"ocel:type:item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i3\": {\n      \"ocel:type\": \"ocel:type:item\",\n      \"ocel:ovmap\": {}\n    },\n    \"L1\": {\n      \"ocel:type\": \"ocel:type:line\",\n      \"ocel:ovmap\": {}\n    },\n    \"gi1\": {\n      \"ocel:type\": \"ocel:type:goodsissue\",\n      \"ocel:ovmap\": {}\n    },\n    \"d1\": {\n      \"ocel:type\": \"ocel:type:delivery\",\n      \"ocel:ovmap\": {}\n    },\n    \"r1\": {\n      \"ocel:type\": \"ocel:type:invoice\",\n      \"ocel:ovmap\": {}\n    },\n    \"r2\": {\n      \"ocel:type\": \"ocel:type:invoice\",\n      \"ocel:ovmap\": {}\n    },\n    \"o2\": {\n      \"ocel:type\": \"ocel:type:order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i4\": {\n      \"ocel:type\": \"ocel:type:item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i5\": {\n      \"ocel:type\": \"ocel:type:item\",\n      \"ocel:ovmap\": {}\n    },\n    \"d2\": {\n      \"ocel:type\": \"ocel:type:delivery\",\n      \"ocel:ovmap\": {}\n    },\n    \"r3\": {\n      \"ocel:type\": \"ocel:type:invoice\",\n      \"ocel:ovmap\": {}\n    },\n    \"pay1\": {\n      \"ocel:type\": \"ocel:type:payment\",\n      \"ocel:ovmap\": {}\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"Collect Items\": {},\n    \"Create Purchase Order\": {},\n    \"Delivery Successful\": {},\n    \"Item Issue\": {},\n    \"Payment\": {},\n    \"Produce Item\": {},\n    \"Replace Item\": {},\n    \"Revert Invoice\": {},\n    \"Send Invoice\": {},\n    \"Start Delivery\": {}\n  },\n  \"ocel:objectTypes\": {\n    \"ocel:type:delivery\": {},\n    \"ocel:type:goodsissue\": {},\n    \"ocel:type:invoice\": {},\n    \"ocel:type:item\": {},\n    \"ocel:type:line\": {},\n    \"ocel:type:order\": {},\n    \"ocel:type:payment\": {}\n  },\n  \"ocel:objectChanges\": []\n}"
       },
       "json2": {
-        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"delivery\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"goodsissue\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"invoice\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"line\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"payment\",\n      \"attributes\": []\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"Collect Items\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Create Purchase Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Delivery Successful\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Item Issue\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Payment\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Produce Item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Replace Item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Revert Invoice\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Send Invoice\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Start Delivery\",\n      \"attributes\": []\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\"\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"i2\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"i3\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"L1\",\n      \"type\": \"line\"\n    },\n    {\n      \"id\": \"gi1\",\n      \"type\": \"goodsissue\"\n    },\n    {\n      \"id\": \"d1\",\n      \"type\": \"delivery\"\n    },\n    {\n      \"id\": \"r1\",\n      \"type\": \"invoice\"\n    },\n    {\n      \"id\": \"r2\",\n      \"type\": \"invoice\"\n    },\n    {\n      \"id\": \"o2\",\n      \"type\": \"order\"\n    },\n    {\n      \"id\": \"i4\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"i5\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"d2\",\n      \"type\": \"delivery\"\n    },\n    {\n      \"id\": \"r3\",\n      \"type\": \"invoice\"\n    },\n    {\n      \"id\": \"pay1\",\n      \"type\": \"payment\"\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"1970-01-01T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T01:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"Item Issue\",\n      \"time\": \"1970-01-01T02:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"gi1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"Replace Item\",\n      \"time\": \"1970-01-01T03:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"gi1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e5\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T04:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e6\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T05:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e7\",\n      \"type\": \"Collect Items\",\n      \"time\": \"1970-01-01T06:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"Start Delivery\",\n      \"time\": \"1970-01-01T07:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e9\",\n      \"type\": \"Send Invoice\",\n      \"time\": \"1970-01-01T08:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"r1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1970-01-01T09:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e11\",\n      \"type\": \"Revert Invoice\",\n      \"time\": \"1970-01-01T10:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"r1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"r2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e12\",\n      \"type\": \"Send Invoice\",\n      \"time\": \"1970-01-01T10:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"r2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e13\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"1970-01-01T11:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e14\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T12:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e15\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T13:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e16\",\n      \"type\": \"Collect Items\",\n      \"time\": \"1970-01-01T14:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e17\",\n      \"type\": \"Start Delivery\",\n      \"time\": \"1970-01-01T15:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"d2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e18\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1970-01-01T16:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e19\",\n      \"type\": \"Send Invoice\",\n      \"time\": \"1970-01-01T17:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"r3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e20\",\n      \"type\": \"Payment\",\n      \"time\": \"1970-01-01T18:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"r3\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"pay1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    }\n  ]\n}"
+        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"ocel:type:delivery\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ocel:type:goodsissue\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ocel:type:invoice\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ocel:type:item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ocel:type:line\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ocel:type:order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ocel:type:payment\",\n      \"attributes\": []\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"Collect Items\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Create Purchase Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Delivery Successful\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Item Issue\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Payment\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Produce Item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Replace Item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Revert Invoice\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Send Invoice\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Start Delivery\",\n      \"attributes\": []\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"ocel:type:order\"\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"ocel:type:item\"\n    },\n    {\n      \"id\": \"i2\",\n      \"type\": \"ocel:type:item\"\n    },\n    {\n      \"id\": \"i3\",\n      \"type\": \"ocel:type:item\"\n    },\n    {\n      \"id\": \"L1\",\n      \"type\": \"ocel:type:line\"\n    },\n    {\n      \"id\": \"gi1\",\n      \"type\": \"ocel:type:goodsissue\"\n    },\n    {\n      \"id\": \"d1\",\n      \"type\": \"ocel:type:delivery\"\n    },\n    {\n      \"id\": \"r1\",\n      \"type\": \"ocel:type:invoice\"\n    },\n    {\n      \"id\": \"r2\",\n      \"type\": \"ocel:type:invoice\"\n    },\n    {\n      \"id\": \"o2\",\n      \"type\": \"ocel:type:order\"\n    },\n    {\n      \"id\": \"i4\",\n      \"type\": \"ocel:type:item\"\n    },\n    {\n      \"id\": \"i5\",\n      \"type\": \"ocel:type:item\"\n    },\n    {\n      \"id\": \"d2\",\n      \"type\": \"ocel:type:delivery\"\n    },\n    {\n      \"id\": \"r3\",\n      \"type\": \"ocel:type:invoice\"\n    },\n    {\n      \"id\": \"pay1\",\n      \"type\": \"ocel:type:payment\"\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"1970-01-01T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T01:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"Item Issue\",\n      \"time\": \"1970-01-01T02:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"gi1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"Replace Item\",\n      \"time\": \"1970-01-01T03:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"gi1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e5\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T04:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e6\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T05:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e7\",\n      \"type\": \"Collect Items\",\n      \"time\": \"1970-01-01T06:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"Start Delivery\",\n      \"time\": \"1970-01-01T07:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e9\",\n      \"type\": \"Send Invoice\",\n      \"time\": \"1970-01-01T08:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"r1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1970-01-01T09:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e11\",\n      \"type\": \"Revert Invoice\",\n      \"time\": \"1970-01-01T10:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"r1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"r2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e12\",\n      \"type\": \"Send Invoice\",\n      \"time\": \"1970-01-01T10:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"r2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e13\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"1970-01-01T11:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e14\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T12:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e15\",\n      \"type\": \"Produce Item\",\n      \"time\": \"1970-01-01T13:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"L1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e16\",\n      \"type\": \"Collect Items\",\n      \"time\": \"1970-01-01T14:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e17\",\n      \"type\": \"Start Delivery\",\n      \"time\": \"1970-01-01T15:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"d2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e18\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1970-01-01T16:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e19\",\n      \"type\": \"Send Invoice\",\n      \"time\": \"1970-01-01T17:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"r3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e20\",\n      \"type\": \"Payment\",\n      \"time\": \"1970-01-01T18:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"r3\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"pay1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    }\n  ]\n}"
       },
       "sqlite": {
         "reread": {
@@ -782,77 +761,77 @@
               {
                 "attributes": {},
                 "id": "o1",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "attributes": {},
                 "id": "i1",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i2",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i3",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "L1",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "attributes": {},
                 "id": "gi1",
-                "type": "goodsissue"
+                "type": "ocel:type:goodsissue"
               },
               {
                 "attributes": {},
                 "id": "d1",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "attributes": {},
                 "id": "r1",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "attributes": {},
                 "id": "r2",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "attributes": {},
                 "id": "o2",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "attributes": {},
                 "id": "i4",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i5",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "d2",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "attributes": {},
                 "id": "r3",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "attributes": {},
                 "id": "pay1",
-                "type": "payment"
+                "type": "ocel:type:payment"
               }
             ],
             "relations": [
@@ -862,7 +841,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Create Purchase Order",
@@ -870,7 +849,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Create Purchase Order",
@@ -878,7 +857,7 @@
                 "object": "i2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Create Purchase Order",
@@ -886,7 +865,7 @@
                 "object": "i3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -894,7 +873,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T01:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -902,7 +881,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T01:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -910,7 +889,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T01:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Item Issue",
@@ -918,7 +897,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Item Issue",
@@ -926,7 +905,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Item Issue",
@@ -934,7 +913,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Item Issue",
@@ -942,7 +921,7 @@
                 "object": "gi1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "goodsissue"
+                "type": "ocel:type:goodsissue"
               },
               {
                 "activity": "Replace Item",
@@ -950,7 +929,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Replace Item",
@@ -958,7 +937,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Replace Item",
@@ -966,7 +945,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Replace Item",
@@ -974,7 +953,7 @@
                 "object": "gi1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "goodsissue"
+                "type": "ocel:type:goodsissue"
               },
               {
                 "activity": "Produce Item",
@@ -982,7 +961,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T04:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -990,7 +969,7 @@
                 "object": "i2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T04:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -998,7 +977,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T04:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Produce Item",
@@ -1006,7 +985,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T05:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -1014,7 +993,7 @@
                 "object": "i3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T05:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -1022,7 +1001,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Collect Items",
@@ -1030,7 +1009,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -1038,7 +1017,7 @@
                 "object": "i2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -1046,7 +1025,7 @@
                 "object": "i3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Start Delivery",
@@ -1054,7 +1033,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T07:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Start Delivery",
@@ -1062,7 +1041,7 @@
                 "object": "d1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T07:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Send Invoice",
@@ -1070,7 +1049,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T08:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Send Invoice",
@@ -1078,7 +1057,7 @@
                 "object": "r1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T08:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Delivery Successful",
@@ -1086,7 +1065,7 @@
                 "object": "d1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T09:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Revert Invoice",
@@ -1094,7 +1073,7 @@
                 "object": "r1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T10:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Revert Invoice",
@@ -1102,7 +1081,7 @@
                 "object": "r2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T10:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Send Invoice",
@@ -1110,7 +1089,7 @@
                 "object": "r2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T10:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Create Purchase Order",
@@ -1118,7 +1097,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T11:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Create Purchase Order",
@@ -1126,7 +1105,7 @@
                 "object": "i4",
                 "qualifier": "",
                 "timestamp": "1970-01-01T11:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Create Purchase Order",
@@ -1134,7 +1113,7 @@
                 "object": "i5",
                 "qualifier": "",
                 "timestamp": "1970-01-01T11:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -1142,7 +1121,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T12:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -1150,7 +1129,7 @@
                 "object": "i4",
                 "qualifier": "",
                 "timestamp": "1970-01-01T12:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -1158,7 +1137,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T12:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Produce Item",
@@ -1166,7 +1145,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T13:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -1174,7 +1153,7 @@
                 "object": "i5",
                 "qualifier": "",
                 "timestamp": "1970-01-01T13:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -1182,7 +1161,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T13:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Collect Items",
@@ -1190,7 +1169,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T14:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Collect Items",
@@ -1198,7 +1177,7 @@
                 "object": "i4",
                 "qualifier": "",
                 "timestamp": "1970-01-01T14:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -1206,7 +1185,7 @@
                 "object": "i5",
                 "qualifier": "",
                 "timestamp": "1970-01-01T14:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Start Delivery",
@@ -1214,7 +1193,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T15:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Start Delivery",
@@ -1222,7 +1201,7 @@
                 "object": "d2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T15:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Delivery Successful",
@@ -1230,7 +1209,7 @@
                 "object": "d2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T16:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Send Invoice",
@@ -1238,7 +1217,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T17:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Send Invoice",
@@ -1246,7 +1225,7 @@
                 "object": "r3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T17:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Payment",
@@ -1254,7 +1233,7 @@
                 "object": "r3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T18:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Payment",
@@ -1262,7 +1241,7 @@
                 "object": "pay1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T18:00:00.000000+00:00",
-                "type": "payment"
+                "type": "ocel:type:payment"
               }
             ]
           }
@@ -1577,7 +1556,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -1603,7 +1582,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -1629,7 +1608,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -1655,7 +1634,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -1681,7 +1660,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -1707,7 +1686,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -1733,7 +1712,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
@@ -1759,7 +1738,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -1785,7 +1764,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -1811,7 +1790,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
@@ -1837,7 +1816,7 @@
                 ],
                 [
                   "text",
-                  "goodsissue"
+                  "ocel:type:goodsissue"
                 ],
                 [
                   "text",
@@ -1863,7 +1842,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -1889,7 +1868,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -1915,7 +1894,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
@@ -1941,7 +1920,7 @@
                 ],
                 [
                   "text",
-                  "goodsissue"
+                  "ocel:type:goodsissue"
                 ],
                 [
                   "text",
@@ -1967,7 +1946,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -1993,7 +1972,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2019,7 +1998,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
@@ -2045,7 +2024,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2071,7 +2050,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2097,7 +2076,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2123,7 +2102,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2149,7 +2128,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2175,7 +2154,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2201,7 +2180,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2227,7 +2206,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ],
                 [
                   "text",
@@ -2253,7 +2232,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2279,7 +2258,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
@@ -2305,7 +2284,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ],
                 [
                   "text",
@@ -2331,7 +2310,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
@@ -2357,7 +2336,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
@@ -2383,7 +2362,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
@@ -2409,7 +2388,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2435,7 +2414,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2461,7 +2440,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2487,7 +2466,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2513,7 +2492,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2539,7 +2518,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
@@ -2565,7 +2544,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2591,7 +2570,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2617,7 +2596,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
@@ -2643,7 +2622,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2669,7 +2648,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2695,7 +2674,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
@@ -2721,7 +2700,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2747,7 +2726,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ],
                 [
                   "text",
@@ -2773,7 +2752,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ],
                 [
                   "text",
@@ -2799,7 +2778,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
@@ -2825,7 +2804,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
@@ -2851,7 +2830,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
@@ -2877,7 +2856,7 @@
                 ],
                 [
                   "text",
-                  "payment"
+                  "ocel:type:payment"
                 ],
                 [
                   "text",
@@ -2898,7 +2877,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ]
               ],
               [
@@ -2908,7 +2887,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -2918,7 +2897,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -2928,7 +2907,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -2938,7 +2917,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ]
               ],
               [
@@ -2948,7 +2927,7 @@
                 ],
                 [
                   "text",
-                  "goodsissue"
+                  "ocel:type:goodsissue"
                 ]
               ],
               [
@@ -2958,7 +2937,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ]
               ],
               [
@@ -2968,7 +2947,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ]
               ],
               [
@@ -2978,7 +2957,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ]
               ],
               [
@@ -2988,7 +2967,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ]
               ],
               [
@@ -2998,7 +2977,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -3008,7 +2987,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -3018,7 +2997,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ]
               ],
               [
@@ -3028,7 +3007,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ]
               ],
               [
@@ -3038,7 +3017,7 @@
                 ],
                 [
                   "text",
-                  "payment"
+                  "ocel:type:payment"
                 ]
               ]
             ],
@@ -3179,77 +3158,77 @@
               {
                 "attributes": {},
                 "id": "d1",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "attributes": {},
                 "id": "d2",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "attributes": {},
                 "id": "gi1",
-                "type": "goodsissue"
+                "type": "ocel:type:goodsissue"
               },
               {
                 "attributes": {},
                 "id": "r1",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "attributes": {},
                 "id": "r2",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "attributes": {},
                 "id": "r3",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "attributes": {},
                 "id": "i1",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i2",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i3",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i4",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "i5",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "attributes": {},
                 "id": "L1",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "attributes": {},
                 "id": "o1",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "attributes": {},
                 "id": "o2",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "attributes": {},
                 "id": "pay1",
-                "type": "payment"
+                "type": "ocel:type:payment"
               }
             ],
             "relations": [
@@ -3259,7 +3238,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Create Purchase Order",
@@ -3267,7 +3246,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Create Purchase Order",
@@ -3275,7 +3254,7 @@
                 "object": "i2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Create Purchase Order",
@@ -3283,7 +3262,7 @@
                 "object": "i3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T00:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -3291,7 +3270,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T01:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -3299,7 +3278,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T01:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -3307,7 +3286,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T01:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Item Issue",
@@ -3315,7 +3294,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Item Issue",
@@ -3323,7 +3302,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Item Issue",
@@ -3331,7 +3310,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Item Issue",
@@ -3339,7 +3318,7 @@
                 "object": "gi1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T02:00:00.000000+00:00",
-                "type": "goodsissue"
+                "type": "ocel:type:goodsissue"
               },
               {
                 "activity": "Replace Item",
@@ -3347,7 +3326,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Replace Item",
@@ -3355,7 +3334,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Replace Item",
@@ -3363,7 +3342,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Replace Item",
@@ -3371,7 +3350,7 @@
                 "object": "gi1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T03:00:00.000000+00:00",
-                "type": "goodsissue"
+                "type": "ocel:type:goodsissue"
               },
               {
                 "activity": "Produce Item",
@@ -3379,7 +3358,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T04:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -3387,7 +3366,7 @@
                 "object": "i2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T04:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -3395,7 +3374,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T04:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Produce Item",
@@ -3403,7 +3382,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T05:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -3411,7 +3390,7 @@
                 "object": "i3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T05:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -3419,7 +3398,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Collect Items",
@@ -3427,7 +3406,7 @@
                 "object": "i1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -3435,7 +3414,7 @@
                 "object": "i2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -3443,7 +3422,7 @@
                 "object": "i3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T06:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Start Delivery",
@@ -3451,7 +3430,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T07:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Start Delivery",
@@ -3459,7 +3438,7 @@
                 "object": "d1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T07:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Send Invoice",
@@ -3467,7 +3446,7 @@
                 "object": "o1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T08:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Send Invoice",
@@ -3475,7 +3454,7 @@
                 "object": "r1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T08:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Delivery Successful",
@@ -3483,7 +3462,7 @@
                 "object": "d1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T09:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Revert Invoice",
@@ -3491,7 +3470,7 @@
                 "object": "r1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T10:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Revert Invoice",
@@ -3499,7 +3478,7 @@
                 "object": "r2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T10:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Send Invoice",
@@ -3507,7 +3486,7 @@
                 "object": "r2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T10:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Create Purchase Order",
@@ -3515,7 +3494,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T11:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Create Purchase Order",
@@ -3523,7 +3502,7 @@
                 "object": "i4",
                 "qualifier": "",
                 "timestamp": "1970-01-01T11:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Create Purchase Order",
@@ -3531,7 +3510,7 @@
                 "object": "i5",
                 "qualifier": "",
                 "timestamp": "1970-01-01T11:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -3539,7 +3518,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T12:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -3547,7 +3526,7 @@
                 "object": "i4",
                 "qualifier": "",
                 "timestamp": "1970-01-01T12:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -3555,7 +3534,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T12:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Produce Item",
@@ -3563,7 +3542,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T13:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Produce Item",
@@ -3571,7 +3550,7 @@
                 "object": "i5",
                 "qualifier": "",
                 "timestamp": "1970-01-01T13:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Produce Item",
@@ -3579,7 +3558,7 @@
                 "object": "L1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T13:00:00.000000+00:00",
-                "type": "line"
+                "type": "ocel:type:line"
               },
               {
                 "activity": "Collect Items",
@@ -3587,7 +3566,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T14:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Collect Items",
@@ -3595,7 +3574,7 @@
                 "object": "i4",
                 "qualifier": "",
                 "timestamp": "1970-01-01T14:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Collect Items",
@@ -3603,7 +3582,7 @@
                 "object": "i5",
                 "qualifier": "",
                 "timestamp": "1970-01-01T14:00:00.000000+00:00",
-                "type": "item"
+                "type": "ocel:type:item"
               },
               {
                 "activity": "Start Delivery",
@@ -3611,7 +3590,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T15:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Start Delivery",
@@ -3619,7 +3598,7 @@
                 "object": "d2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T15:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Delivery Successful",
@@ -3627,7 +3606,7 @@
                 "object": "d2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T16:00:00.000000+00:00",
-                "type": "delivery"
+                "type": "ocel:type:delivery"
               },
               {
                 "activity": "Send Invoice",
@@ -3635,7 +3614,7 @@
                 "object": "o2",
                 "qualifier": "",
                 "timestamp": "1970-01-01T17:00:00.000000+00:00",
-                "type": "order"
+                "type": "ocel:type:order"
               },
               {
                 "activity": "Send Invoice",
@@ -3643,7 +3622,7 @@
                 "object": "r3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T17:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Payment",
@@ -3651,7 +3630,7 @@
                 "object": "r3",
                 "qualifier": "",
                 "timestamp": "1970-01-01T18:00:00.000000+00:00",
-                "type": "invoice"
+                "type": "ocel:type:invoice"
               },
               {
                 "activity": "Payment",
@@ -3659,7 +3638,7 @@
                 "object": "pay1",
                 "qualifier": "",
                 "timestamp": "1970-01-01T18:00:00.000000+00:00",
-                "type": "payment"
+                "type": "ocel:type:payment"
               }
             ]
           }
@@ -3882,7 +3861,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ]
               ],
               [
@@ -3892,7 +3871,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -3902,7 +3881,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -3912,7 +3891,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -3922,7 +3901,7 @@
                 ],
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ]
               ],
               [
@@ -3932,7 +3911,7 @@
                 ],
                 [
                   "text",
-                  "goodsissue"
+                  "ocel:type:goodsissue"
                 ]
               ],
               [
@@ -3942,7 +3921,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ]
               ],
               [
@@ -3952,7 +3931,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ]
               ],
               [
@@ -3962,7 +3941,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ]
               ],
               [
@@ -3972,7 +3951,7 @@
                 ],
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ]
               ],
               [
@@ -3982,7 +3961,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -3992,7 +3971,7 @@
                 ],
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ]
               ],
               [
@@ -4002,7 +3981,7 @@
                 ],
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ]
               ],
               [
@@ -4012,7 +3991,7 @@
                 ],
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ]
               ],
               [
@@ -4022,7 +4001,7 @@
                 ],
                 [
                   "text",
-                  "payment"
+                  "ocel:type:payment"
                 ]
               ]
             ],
@@ -4142,71 +4121,71 @@
               [
                 [
                   "text",
-                  "delivery"
+                  "ocel:type:delivery"
                 ],
                 [
                   "text",
-                  "Delivery"
+                  "Oceltypedelivery"
                 ]
               ],
               [
                 [
                   "text",
-                  "goodsissue"
+                  "ocel:type:goodsissue"
                 ],
                 [
                   "text",
-                  "Goodsissue"
+                  "Oceltypegoodsissue"
                 ]
               ],
               [
                 [
                   "text",
-                  "invoice"
+                  "ocel:type:invoice"
                 ],
                 [
                   "text",
-                  "Invoice"
+                  "Oceltypeinvoice"
                 ]
               ],
               [
                 [
                   "text",
-                  "item"
+                  "ocel:type:item"
                 ],
                 [
                   "text",
-                  "Item"
+                  "Oceltypeitem"
                 ]
               ],
               [
                 [
                   "text",
-                  "line"
+                  "ocel:type:line"
                 ],
                 [
                   "text",
-                  "Line"
+                  "Oceltypeline"
                 ]
               ],
               [
                 [
                   "text",
-                  "order"
+                  "ocel:type:order"
                 ],
                 [
                   "text",
-                  "Order"
+                  "Oceltypeorder"
                 ]
               ],
               [
                 [
                   "text",
-                  "payment"
+                  "ocel:type:payment"
                 ],
                 [
                   "text",
-                  "Payment"
+                  "Oceltypepayment"
                 ]
               ]
             ],
@@ -5291,7 +5270,7 @@
             "type": "table"
           },
           {
-            "name": "object_Delivery",
+            "name": "object_Oceltypedelivery",
             "rows": [
               [
                 [
@@ -5306,11 +5285,11 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Delivery\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypedelivery\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           },
           {
-            "name": "object_Goodsissue",
+            "name": "object_Oceltypegoodsissue",
             "rows": [
               [
                 [
@@ -5319,11 +5298,11 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Goodsissue\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypegoodsissue\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           },
           {
-            "name": "object_Invoice",
+            "name": "object_Oceltypeinvoice",
             "rows": [
               [
                 [
@@ -5344,11 +5323,11 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Invoice\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypeinvoice\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           },
           {
-            "name": "object_Item",
+            "name": "object_Oceltypeitem",
             "rows": [
               [
                 [
@@ -5381,11 +5360,11 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Item\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypeitem\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           },
           {
-            "name": "object_Line",
+            "name": "object_Oceltypeline",
             "rows": [
               [
                 [
@@ -5394,11 +5373,11 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Line\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypeline\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           },
           {
-            "name": "object_Order",
+            "name": "object_Oceltypeorder",
             "rows": [
               [
                 [
@@ -5413,11 +5392,11 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Order\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypeorder\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           },
           {
-            "name": "object_Payment",
+            "name": "object_Oceltypepayment",
             "rows": [
               [
                 [
@@ -5426,27 +5405,27 @@
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Payment\" (\n\"ocel_id\" TEXT\n)",
+            "sql": "CREATE TABLE \"object_Oceltypepayment\" (\n\"ocel_id\" TEXT\n)",
             "type": "table"
           }
         ]
       },
       "xml": {
-        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\"/>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"item\"/>\n      <string key=\"object-type\" value=\"line\"/>\n      <string key=\"object-type\" value=\"goodsissue\"/>\n      <string key=\"object-type\" value=\"delivery\"/>\n      <string key=\"object-type\" value=\"invoice\"/>\n      <string key=\"object-type\" value=\"payment\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T00:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T01:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T02:00:00Z\"/>\n      <string key=\"activity\" value=\"Item Issue\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n        <string key=\"object-id\" value=\"gi1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T03:00:00Z\"/>\n      <string key=\"activity\" value=\"Replace Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n        <string key=\"object-id\" value=\"gi1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e5\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T04:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e6\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T05:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e7\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T06:00:00Z\"/>\n      <string key=\"activity\" value=\"Collect Items\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T07:00:00Z\"/>\n      <string key=\"activity\" value=\"Start Delivery\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e9\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T08:00:00Z\"/>\n      <string key=\"activity\" value=\"Send Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"r1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T09:00:00Z\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e11\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T10:00:00Z\"/>\n      <string key=\"activity\" value=\"Revert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"r1\"/>\n        <string key=\"object-id\" value=\"r2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e12\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T10:00:00Z\"/>\n      <string key=\"activity\" value=\"Send Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"r2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e13\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T11:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e14\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T12:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e15\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T13:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e16\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T14:00:00Z\"/>\n      <string key=\"activity\" value=\"Collect Items\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e17\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T15:00:00Z\"/>\n      <string key=\"activity\" value=\"Start Delivery\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"d2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e18\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T16:00:00Z\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e19\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T17:00:00Z\"/>\n      <string key=\"activity\" value=\"Send Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"r3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e20\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T18:00:00Z\"/>\n      <string key=\"activity\" value=\"Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"r3\"/>\n        <string key=\"object-id\" value=\"pay1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i2\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i3\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"L1\"/>\n      <string key=\"type\" value=\"line\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"gi1\"/>\n      <string key=\"type\" value=\"goodsissue\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d1\"/>\n      <string key=\"type\" value=\"delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"r1\"/>\n      <string key=\"type\" value=\"invoice\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"r2\"/>\n      <string key=\"type\" value=\"invoice\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"o2\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i4\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i5\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d2\"/>\n      <string key=\"type\" value=\"delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"r3\"/>\n      <string key=\"type\" value=\"invoice\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"pay1\"/>\n      <string key=\"type\" value=\"payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n  </objects>\n</log>\n"
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\"/>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"ocel:type:order\"/>\n      <string key=\"object-type\" value=\"ocel:type:item\"/>\n      <string key=\"object-type\" value=\"ocel:type:line\"/>\n      <string key=\"object-type\" value=\"ocel:type:goodsissue\"/>\n      <string key=\"object-type\" value=\"ocel:type:delivery\"/>\n      <string key=\"object-type\" value=\"ocel:type:invoice\"/>\n      <string key=\"object-type\" value=\"ocel:type:payment\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T00:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T01:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T02:00:00Z\"/>\n      <string key=\"activity\" value=\"Item Issue\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n        <string key=\"object-id\" value=\"gi1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T03:00:00Z\"/>\n      <string key=\"activity\" value=\"Replace Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n        <string key=\"object-id\" value=\"gi1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e5\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T04:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e6\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T05:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e7\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T06:00:00Z\"/>\n      <string key=\"activity\" value=\"Collect Items\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T07:00:00Z\"/>\n      <string key=\"activity\" value=\"Start Delivery\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e9\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T08:00:00Z\"/>\n      <string key=\"activity\" value=\"Send Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"r1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T09:00:00Z\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e11\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T10:00:00Z\"/>\n      <string key=\"activity\" value=\"Revert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"r1\"/>\n        <string key=\"object-id\" value=\"r2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e12\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T10:00:00Z\"/>\n      <string key=\"activity\" value=\"Send Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"r2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e13\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T11:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e14\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T12:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e15\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T13:00:00Z\"/>\n      <string key=\"activity\" value=\"Produce Item\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n        <string key=\"object-id\" value=\"L1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e16\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T14:00:00Z\"/>\n      <string key=\"activity\" value=\"Collect Items\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e17\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T15:00:00Z\"/>\n      <string key=\"activity\" value=\"Start Delivery\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"d2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e18\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T16:00:00Z\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e19\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T17:00:00Z\"/>\n      <string key=\"activity\" value=\"Send Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"r3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e20\"/>\n      <date key=\"timestamp\" value=\"1970-01-01T18:00:00Z\"/>\n      <string key=\"activity\" value=\"Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"r3\"/>\n        <string key=\"object-id\" value=\"pay1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"ocel:type:order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"ocel:type:item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i2\"/>\n      <string key=\"type\" value=\"ocel:type:item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i3\"/>\n      <string key=\"type\" value=\"ocel:type:item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"L1\"/>\n      <string key=\"type\" value=\"ocel:type:line\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"gi1\"/>\n      <string key=\"type\" value=\"ocel:type:goodsissue\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d1\"/>\n      <string key=\"type\" value=\"ocel:type:delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"r1\"/>\n      <string key=\"type\" value=\"ocel:type:invoice\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"r2\"/>\n      <string key=\"type\" value=\"ocel:type:invoice\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"o2\"/>\n      <string key=\"type\" value=\"ocel:type:order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i4\"/>\n      <string key=\"type\" value=\"ocel:type:item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i5\"/>\n      <string key=\"type\" value=\"ocel:type:item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d2\"/>\n      <string key=\"type\" value=\"ocel:type:delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"r3\"/>\n      <string key=\"type\" value=\"ocel:type:invoice\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"pay1\"/>\n      <string key=\"type\" value=\"ocel:type:payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n  </objects>\n</log>\n"
       },
       "xml2": {
-        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"delivery\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"goodsissue\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"invoice\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"item\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"line\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"order\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"payment\">\n      <attributes/>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"Collect Items\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Create Purchase Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Delivery Successful\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Item Issue\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Payment\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Produce Item\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Replace Item\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Revert Invoice\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Send Invoice\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Start Delivery\">\n      <attributes/>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"o1\" type=\"order\">\n      <attributes/>\n    </object>\n    <object id=\"i1\" type=\"item\">\n      <attributes/>\n    </object>\n    <object id=\"i2\" type=\"item\">\n      <attributes/>\n    </object>\n    <object id=\"i3\" type=\"item\">\n      <attributes/>\n    </object>\n    <object id=\"L1\" type=\"line\">\n      <attributes/>\n    </object>\n    <object id=\"gi1\" type=\"goodsissue\">\n      <attributes/>\n    </object>\n    <object id=\"d1\" type=\"delivery\">\n      <attributes/>\n    </object>\n    <object id=\"r1\" type=\"invoice\">\n      <attributes/>\n    </object>\n    <object id=\"r2\" type=\"invoice\">\n      <attributes/>\n    </object>\n    <object id=\"o2\" type=\"order\">\n      <attributes/>\n    </object>\n    <object id=\"i4\" type=\"item\">\n      <attributes/>\n    </object>\n    <object id=\"i5\" type=\"item\">\n      <attributes/>\n    </object>\n    <object id=\"d2\" type=\"delivery\">\n      <attributes/>\n    </object>\n    <object id=\"r3\" type=\"invoice\">\n      <attributes/>\n    </object>\n    <object id=\"pay1\" type=\"payment\">\n      <attributes/>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"Create Purchase Order\" time=\"1970-01-01T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"Produce Item\" time=\"1970-01-01T01:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"Item Issue\" time=\"1970-01-01T02:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n        <relationship object-id=\"gi1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e4\" type=\"Replace Item\" time=\"1970-01-01T03:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n        <relationship object-id=\"gi1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e5\" type=\"Produce Item\" time=\"1970-01-01T04:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e6\" type=\"Produce Item\" time=\"1970-01-01T05:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e7\" type=\"Collect Items\" time=\"1970-01-01T06:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e8\" type=\"Start Delivery\" time=\"1970-01-01T07:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e9\" type=\"Send Invoice\" time=\"1970-01-01T08:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"r1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e10\" type=\"Delivery Successful\" time=\"1970-01-01T09:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e11\" type=\"Revert Invoice\" time=\"1970-01-01T10:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"r1\" qualifier=\"\"/>\n        <relationship object-id=\"r2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e12\" type=\"Send Invoice\" time=\"1970-01-01T10:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"r2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e13\" type=\"Create Purchase Order\" time=\"1970-01-01T11:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e14\" type=\"Produce Item\" time=\"1970-01-01T12:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e15\" type=\"Produce Item\" time=\"1970-01-01T13:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e16\" type=\"Collect Items\" time=\"1970-01-01T14:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e17\" type=\"Start Delivery\" time=\"1970-01-01T15:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"d2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e18\" type=\"Delivery Successful\" time=\"1970-01-01T16:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e19\" type=\"Send Invoice\" time=\"1970-01-01T17:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"r3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e20\" type=\"Payment\" time=\"1970-01-01T18:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"r3\" qualifier=\"\"/>\n        <relationship object-id=\"pay1\" qualifier=\"\"/>\n      </objects>\n    </event>\n  </events>\n</log>\n"
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"ocel:type:delivery\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"ocel:type:goodsissue\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"ocel:type:invoice\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"ocel:type:item\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"ocel:type:line\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"ocel:type:order\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"ocel:type:payment\">\n      <attributes/>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"Collect Items\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Create Purchase Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Delivery Successful\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Item Issue\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Payment\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Produce Item\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Replace Item\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Revert Invoice\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Send Invoice\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Start Delivery\">\n      <attributes/>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"o1\" type=\"ocel:type:order\">\n      <attributes/>\n    </object>\n    <object id=\"i1\" type=\"ocel:type:item\">\n      <attributes/>\n    </object>\n    <object id=\"i2\" type=\"ocel:type:item\">\n      <attributes/>\n    </object>\n    <object id=\"i3\" type=\"ocel:type:item\">\n      <attributes/>\n    </object>\n    <object id=\"L1\" type=\"ocel:type:line\">\n      <attributes/>\n    </object>\n    <object id=\"gi1\" type=\"ocel:type:goodsissue\">\n      <attributes/>\n    </object>\n    <object id=\"d1\" type=\"ocel:type:delivery\">\n      <attributes/>\n    </object>\n    <object id=\"r1\" type=\"ocel:type:invoice\">\n      <attributes/>\n    </object>\n    <object id=\"r2\" type=\"ocel:type:invoice\">\n      <attributes/>\n    </object>\n    <object id=\"o2\" type=\"ocel:type:order\">\n      <attributes/>\n    </object>\n    <object id=\"i4\" type=\"ocel:type:item\">\n      <attributes/>\n    </object>\n    <object id=\"i5\" type=\"ocel:type:item\">\n      <attributes/>\n    </object>\n    <object id=\"d2\" type=\"ocel:type:delivery\">\n      <attributes/>\n    </object>\n    <object id=\"r3\" type=\"ocel:type:invoice\">\n      <attributes/>\n    </object>\n    <object id=\"pay1\" type=\"ocel:type:payment\">\n      <attributes/>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"Create Purchase Order\" time=\"1970-01-01T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"Produce Item\" time=\"1970-01-01T01:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"Item Issue\" time=\"1970-01-01T02:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n        <relationship object-id=\"gi1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e4\" type=\"Replace Item\" time=\"1970-01-01T03:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n        <relationship object-id=\"gi1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e5\" type=\"Produce Item\" time=\"1970-01-01T04:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e6\" type=\"Produce Item\" time=\"1970-01-01T05:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e7\" type=\"Collect Items\" time=\"1970-01-01T06:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e8\" type=\"Start Delivery\" time=\"1970-01-01T07:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e9\" type=\"Send Invoice\" time=\"1970-01-01T08:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"r1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e10\" type=\"Delivery Successful\" time=\"1970-01-01T09:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e11\" type=\"Revert Invoice\" time=\"1970-01-01T10:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"r1\" qualifier=\"\"/>\n        <relationship object-id=\"r2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e12\" type=\"Send Invoice\" time=\"1970-01-01T10:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"r2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e13\" type=\"Create Purchase Order\" time=\"1970-01-01T11:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e14\" type=\"Produce Item\" time=\"1970-01-01T12:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e15\" type=\"Produce Item\" time=\"1970-01-01T13:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n        <relationship object-id=\"L1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e16\" type=\"Collect Items\" time=\"1970-01-01T14:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e17\" type=\"Start Delivery\" time=\"1970-01-01T15:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"d2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e18\" type=\"Delivery Successful\" time=\"1970-01-01T16:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e19\" type=\"Send Invoice\" time=\"1970-01-01T17:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"r3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e20\" type=\"Payment\" time=\"1970-01-01T18:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"r3\" qualifier=\"\"/>\n        <relationship object-id=\"pay1\" qualifier=\"\"/>\n      </objects>\n    </event>\n  </events>\n</log>\n"
       }
     }
   },
   "meta": {
     "area": "ocel",
-    "case": "write-newocel-jsonocel",
+    "case": "write-newocel-sqlite",
     "fixtures": {
-      "log": "fixtures/logs/ocel/newocel.jsonocel"
+      "log": "fixtures/logs/ocel/newocel.sqlite"
     },
     "functions": [
-      "pm4py.read_ocel_json",
+      "pm4py.read_ocel_sqlite",
       "pm4py.write_ocel_json",
       "pm4py.write_ocel_xml",
       "pm4py.write_ocel2_json",

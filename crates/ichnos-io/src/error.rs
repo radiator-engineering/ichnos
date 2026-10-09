@@ -36,6 +36,9 @@ pub enum Error {
     /// Invalid OCEL structure or value.
     #[error("invalid OCEL: {0}")]
     Ocel(String),
+    /// A SQLite database could not be opened, read or written.
+    #[error(transparent)]
+    Sqlite(#[from] rusqlite::Error),
     /// The JSON document is malformed or does not have the expected shape.
     #[error(transparent)]
     Json(#[from] serde_json::Error),
