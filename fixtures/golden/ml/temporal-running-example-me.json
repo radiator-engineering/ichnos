@@ -1,0 +1,57 @@
+{
+  "expected": [
+    {
+      "average_arrival_rate": 4200.0,
+      "average_finish_rate": 106440.0,
+      "average_service_time": 0.0,
+      "average_sojourn_time": 950560.0,
+      "average_waiting_time": 950560.0,
+      "avg_cases_per_resource": 1.4,
+      "avg_events_per_case": 2.6666666666666665,
+      "avg_resources_per_case": 2.3333333333333335,
+      "num_events": 8.0,
+      "number_of_cases": 3.0,
+      "timestamp": "2010-12-31T00:00:00+00:00",
+      "total_number_of_reworked_activities": 0.0,
+      "unique_activities": 4.0,
+      "unique_resources": 5.0
+    },
+    {
+      "average_arrival_rate": 103200.0,
+      "average_finish_rate": 245120.0,
+      "average_service_time": 0.0,
+      "average_sojourn_time": 966890.0,
+      "average_waiting_time": 966890.0,
+      "avg_cases_per_resource": 3.6666666666666665,
+      "avg_events_per_case": 5.666666666666667,
+      "avg_resources_per_case": 3.6666666666666665,
+      "num_events": 34.0,
+      "number_of_cases": 6.0,
+      "timestamp": "2011-01-31T00:00:00+00:00",
+      "total_number_of_reworked_activities": 8.0,
+      "unique_activities": 8.0,
+      "unique_resources": 6.0
+    }
+  ],
+  "meta": {
+    "area": "ml",
+    "case": "temporal-running-example-me",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.extract_temporal_features_dataframe"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "grouper_freq": "ME"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

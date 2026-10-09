@@ -39,6 +39,17 @@ pub enum EventField<'a> {
     Attribute(&'a str),
 }
 
+/// A time field usable for timestamp filtering.
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
+pub enum EventTimeField<'a> {
+    /// The event timestamp.
+    #[default]
+    Timestamp,
+    /// An additional date-valued event attribute.
+    /// Missing attributes and values of another type do not match.
+    DateAttribute(&'a str),
+}
+
 /// An object field to match.
 #[derive(Debug, Clone, Copy)]
 pub enum ObjectField<'a> {
@@ -265,16 +276,30 @@ pub fn filter_ocel_end_events_per_object_type(log: &Ocel, object_type: &str) -> 
 }
 
 /// Keeps events within an inclusive timestamp interval.
-/// Use [`EventField::Timestamp`] for pm4py's default timestamp column. A custom
+/// Use [`EventTimeField::Timestamp`] for the event timestamp, or
+/// [`EventTimeField::DateAttribute`] for an additional date attribute. A custom
 /// attribute must hold a date; missing or non-date values do not match.
 /// Bounds are typed instants, so string parsing and local-time assumptions are
 /// the caller's responsibility. Reversed bounds produce an empty log.
+/// Event ids and activities are not time-field choices:
+///
+/// ```compile_fail
+/// use chrono::{DateTime, FixedOffset};
+/// use ichnos_ocel::{Ocel, EventField, filter_ocel_events_timestamp};
+/// fn invalid(log: &Ocel, start: DateTime<FixedOffset>, end: DateTime<FixedOffset>) {
+///     filter_ocel_events_timestamp(log, start, end, EventField::Id);
+/// }
+/// ```
 pub fn filter_ocel_events_timestamp(
     log: &Ocel,
     minimum: DateTime<FixedOffset>,
     maximum: DateTime<FixedOffset>,
-    field: EventField<'_>,
+    field: EventTimeField<'_>,
 ) -> Ocel {
+    let field = match field {
+        EventTimeField::Timestamp => EventField::Timestamp,
+        EventTimeField::DateAttribute(key) => EventField::Attribute(key),
+    };
     let mut result = log.clone();
     result.events.retain(|e| matches!(event_value(e, field), Some(AttributeValue::Date(t)) if t >= minimum && t <= maximum));
     propagate_events(result)

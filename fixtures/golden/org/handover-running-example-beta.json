@@ -1,0 +1,178 @@
+{
+  "expected": {
+    "connections": [
+      {
+        "from": "Ellen",
+        "to": "Ellen",
+        "value": 0.0015493741980778077
+      },
+      {
+        "from": "Ellen",
+        "to": "Mike",
+        "value": 0.05449439562301789
+      },
+      {
+        "from": "Ellen",
+        "to": "Pete",
+        "value": 0.011394356081697211
+      },
+      {
+        "from": "Ellen",
+        "to": "Sara",
+        "value": 0.05359866366475416
+      },
+      {
+        "from": "Ellen",
+        "to": "Sean",
+        "value": 0.004131664528207487
+      },
+      {
+        "from": "Ellen",
+        "to": "Sue",
+        "value": 0.0021303895223569857
+      },
+      {
+        "from": "Mike",
+        "to": "Ellen",
+        "value": 0.04570653884329533
+      },
+      {
+        "from": "Mike",
+        "to": "Mike",
+        "value": 0.03668466200240476
+      },
+      {
+        "from": "Mike",
+        "to": "Pete",
+        "value": 0.027953292823653778
+      },
+      {
+        "from": "Mike",
+        "to": "Sara",
+        "value": 0.10977961765963799
+      },
+      {
+        "from": "Mike",
+        "to": "Sean",
+        "value": 0.04338247754617861
+      },
+      {
+        "from": "Mike",
+        "to": "Sue",
+        "value": 0.004260779044713971
+      },
+      {
+        "from": "Pete",
+        "to": "Ellen",
+        "value": 0.022853269421647664
+      },
+      {
+        "from": "Pete",
+        "to": "Mike",
+        "value": 0.05167808523172021
+      },
+      {
+        "from": "Pete",
+        "to": "Pete",
+        "value": 0.0027114048466361632
+      },
+      {
+        "from": "Pete",
+        "to": "Sara",
+        "value": 0.07417628973297503
+      },
+      {
+        "from": "Pete",
+        "to": "Sean",
+        "value": 0.009296245188466846
+      },
+      {
+        "from": "Pete",
+        "to": "Sue",
+        "value": 0.016784887145842916
+      },
+      {
+        "from": "Sara",
+        "to": "Ellen",
+        "value": 0.07746870990389038
+      },
+      {
+        "from": "Sara",
+        "to": "Mike",
+        "value": 0.048740729981197696
+      },
+      {
+        "from": "Sara",
+        "to": "Pete",
+        "value": 0.042091332381113775
+      },
+      {
+        "from": "Sara",
+        "to": "Sara",
+        "value": 0.0716585566610986
+      },
+      {
+        "from": "Sara",
+        "to": "Sean",
+        "value": 0.024789987169244923
+      },
+      {
+        "from": "Sara",
+        "to": "Sue",
+        "value": 0.02633936136732273
+      },
+      {
+        "from": "Sean",
+        "to": "Ellen",
+        "value": 0.020658322641037435
+      },
+      {
+        "from": "Sean",
+        "to": "Pete",
+        "value": 0.016526658112829946
+      },
+      {
+        "from": "Sean",
+        "to": "Sara",
+        "value": 0.04131664528207487
+      },
+      {
+        "from": "Sue",
+        "to": "Mike",
+        "value": 0.020658322641037435
+      },
+      {
+        "from": "Sue",
+        "to": "Pete",
+        "value": 0.020658322641037435
+      },
+      {
+        "from": "Sue",
+        "to": "Sara",
+        "value": 0.016526658112829946
+      }
+    ],
+    "directed": true
+  },
+  "meta": {
+    "area": "org",
+    "case": "handover-running-example-beta",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_handover_of_work_network"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "beta": 0.5
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

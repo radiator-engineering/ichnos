@@ -128,6 +128,12 @@ fn event_field(key: &str) -> EventField<'_> {
         key => EventField::Attribute(key),
     }
 }
+fn time_field(key: &str) -> EventTimeField<'_> {
+    match key {
+        "ocel:timestamp" => EventTimeField::Timestamp,
+        key => EventTimeField::DateAttribute(key),
+    }
+}
 fn object_field(key: &str) -> ObjectField<'_> {
     match key {
         "ocel:oid" => ObjectField::Id,
@@ -195,7 +201,7 @@ fn apply(log: &Ocel, row: &Value) -> Ocel {
             log,
             timestamp(&args[0]),
             timestamp(&args[1]),
-            event_field(kwargs["timestamp_key"].as_str().unwrap_or("ocel:timestamp")),
+            time_field(kwargs["timestamp_key"].as_str().unwrap_or("ocel:timestamp")),
         ),
         "filter_ocel_object_types" => filter_ocel_object_types(log, &strings(&args[0]), options),
         "filter_ocel_objects" => filter_ocel_objects(log, &strings(&args[0]), options),
@@ -337,6 +343,31 @@ fn allowed_activity_pairs_do_not_collide_on_pm4py_separator() {
     assert!(
         filter_ocel_object_types_allowed_activities(&log, &allowed)
             .relations
+            .is_empty()
+    );
+}
+
+#[test]
+fn lifecycle_endpoints_skip_relations_to_unlisted_objects() {
+    let g = golden("ocel_filters", "start-events-per-object-type");
+    let mut log = build(&g.expected["input"]);
+    assert!(!log.relations.is_empty());
+    let object_index = log.object_index()[log.relations[0].object.as_ref()];
+    let object_type = log.objects[object_index].object_type.clone();
+    assert!(
+        !filter_ocel_start_events_per_object_type(&log, &object_type)
+            .events
+            .is_empty()
+    );
+    log.objects.clear();
+    assert!(
+        filter_ocel_start_events_per_object_type(&log, &object_type)
+            .events
+            .is_empty()
+    );
+    assert!(
+        filter_ocel_end_events_per_object_type(&log, &object_type)
+            .events
             .is_empty()
     );
 }
