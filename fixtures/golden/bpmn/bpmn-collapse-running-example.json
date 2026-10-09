@@ -1,0 +1,568 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n7",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n5",
+          "name": "end"
+        },
+        {
+          "class": "NormalStartEvent",
+          "direction": null,
+          "key": "n6",
+          "name": "start"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n9",
+          "name": "check ticket"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "decide"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "examine casually"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "examine thoroughly"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "pay compensation"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "register request"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "reinitiate request"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "reject request"
+        }
+      ]
+    },
+    "model": {
+      "flows": [
+        {
+          "class": "SequenceFlow",
+          "id": "idd125eb77-5023-4fa5-ae39-13f0f03e14f3",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id12442c46-240c-4ef8-b16c-249cb1e050b6",
+          "target": "idffd64fe5-2f7f-4ab0-b08d-121be76f6dd8"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id76bb5667-a4d1-4649-b9f1-5bfd6288b8be",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id1c963927-0fbe-4028-9d31-536a6e5362a9",
+          "target": "id12442c46-240c-4ef8-b16c-249cb1e050b6"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "idf3264316-df43-4e89-96d6-af7e56e8f3d3",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id25fcead3-d54b-47a1-b9dc-5ac5df8a31db",
+          "target": "id47439984-1040-47c3-994b-2a70fb880ee4"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "ide522380c-6a5f-4483-b6b2-13869776e4d5",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id3152b404-1b39-4c61-bff7-1e4e507f627a",
+          "target": "id25fcead3-d54b-47a1-b9dc-5ac5df8a31db"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "idb737272a-ad35-412c-84bb-fe615b4925d1",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id3152b404-1b39-4c61-bff7-1e4e507f627a",
+          "target": "ide78b8ded-70fd-43fc-9699-acee5a4f095a"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "idd401aa5b-8c47-4ee7-a629-375e3f4270b4",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id34fba6ea-bbb7-47b7-94a8-3417ede3ceef",
+          "target": "id3fe498e9-097b-4628-96b0-639beba726c7"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id0366387f-beb2-43f4-b458-8ad094403e5c",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id3a2e2f29-0e15-4dca-9602-6f8929a0dbcb",
+          "target": "id47439984-1040-47c3-994b-2a70fb880ee4"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id20df78ac-619b-420f-b4a8-5bdbd8515f4c",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id47439984-1040-47c3-994b-2a70fb880ee4",
+          "target": "iddbfcda1a-fe29-4119-a63f-7f66c7b4526b"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "idf741b33d-c107-497b-913b-1a38e148055e",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id56711e94-7c7b-4c1d-8d12-ef3ed256da80",
+          "target": "id3a2e2f29-0e15-4dca-9602-6f8929a0dbcb"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id7e12c7e5-b2a9-48b6-ad7d-2b94afd8a4bc",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "id8c2e27f2-838e-47e7-9506-1387d1d642eb",
+          "target": "idffd64fe5-2f7f-4ab0-b08d-121be76f6dd8"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id37d193f5-4ea8-4878-89d3-a8bf304b282d",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idb86a1356-bb12-4a45-b1a3-d430cf587b6b",
+          "target": "id3152b404-1b39-4c61-bff7-1e4e507f627a"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id394604e4-1b8f-4346-b194-39938251ad53",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idc5b9256f-0a5c-43f7-9877-8a7d17977ee2",
+          "target": "id12442c46-240c-4ef8-b16c-249cb1e050b6"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id9ffbb3dc-348f-4569-9d06-2d94ff80957d",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idd371ddf5-0e93-4afa-bd26-49c2c4bc293e",
+          "target": "id1c963927-0fbe-4028-9d31-536a6e5362a9"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id70cba5cf-d9af-4bd9-bc9f-7906c7b9b8d8",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idd371ddf5-0e93-4afa-bd26-49c2c4bc293e",
+          "target": "idc5b9256f-0a5c-43f7-9877-8a7d17977ee2"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id956cfd06-9c43-470d-aed0-2f7fc30a1af7",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idd3814e0c-ae8b-41d6-b7a1-7c0e9385eb3e",
+          "target": "id34fba6ea-bbb7-47b7-94a8-3417ede3ceef"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id1cfe480f-8d47-4eff-b6c6-8880f57cbc88",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "iddbfcda1a-fe29-4119-a63f-7f66c7b4526b",
+          "target": "id8c2e27f2-838e-47e7-9506-1387d1d642eb"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id02dba9bf-d791-44dd-8ce3-391b0ef769f3",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "iddbfcda1a-fe29-4119-a63f-7f66c7b4526b",
+          "target": "idd371ddf5-0e93-4afa-bd26-49c2c4bc293e"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "idd12c27b4-41a6-4c2c-8c22-96e4d623f66b",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "ide78b8ded-70fd-43fc-9699-acee5a4f095a",
+          "target": "idd3814e0c-ae8b-41d6-b7a1-7c0e9385eb3e"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "iddda531cb-be39-4b3a-bcaf-f9cd8a399c6f",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "ide78b8ded-70fd-43fc-9699-acee5a4f095a",
+          "target": "idfe1bd2a5-fb67-4a1a-b520-d7d02ee587e7"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id558b31b1-e33c-4846-8b8f-61be0e142a3b",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idfe1bd2a5-fb67-4a1a-b520-d7d02ee587e7",
+          "target": "id34fba6ea-bbb7-47b7-94a8-3417ede3ceef"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "id7a483afa-5263-43fd-a30d-02039c582849",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a",
+          "source": "idffd64fe5-2f7f-4ab0-b08d-121be76f6dd8",
+          "target": "idb86a1356-bb12-4a45-b1a3-d430cf587b6b"
+        }
+      ],
+      "nodes": [
+        {
+          "activity": null,
+          "class": "ExclusiveGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "id12442c46-240c-4ef8-b16c-249cb1e050b6",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "id1c963927-0fbe-4028-9d31-536a6e5362a9",
+          "name": "examine casually",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "id25fcead3-d54b-47a1-b9dc-5ac5df8a31db",
+          "name": "reinitiate request",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ExclusiveGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "id3152b404-1b39-4c61-bff7-1e4e507f627a",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ExclusiveGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "id34fba6ea-bbb7-47b7-94a8-3417ede3ceef",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "id3a2e2f29-0e15-4dca-9602-6f8929a0dbcb",
+          "name": "register request",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "NormalEndEvent",
+          "depth": null,
+          "direction": null,
+          "id": "id3fe498e9-097b-4628-96b0-639beba726c7",
+          "name": "end",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ExclusiveGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "id47439984-1040-47c3-994b-2a70fb880ee4",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "NormalStartEvent",
+          "depth": null,
+          "direction": null,
+          "id": "id56711e94-7c7b-4c1d-8d12-ef3ed256da80",
+          "name": "start",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "id8c2e27f2-838e-47e7-9506-1387d1d642eb",
+          "name": "check ticket",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "idb86a1356-bb12-4a45-b1a3-d430cf587b6b",
+          "name": "decide",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "idc5b9256f-0a5c-43f7-9877-8a7d17977ee2",
+          "name": "examine thoroughly",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ExclusiveGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "idd371ddf5-0e93-4afa-bd26-49c2c4bc293e",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "idd3814e0c-ae8b-41d6-b7a1-7c0e9385eb3e",
+          "name": "pay compensation",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "iddbfcda1a-fe29-4119-a63f-7f66c7b4526b",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ExclusiveGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "ide78b8ded-70fd-43fc-9699-acee5a4f095a",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "idfe1bd2a5-fb67-4a1a-b520-d7d02ee587e7",
+          "name": "reject request",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "idffd64fe5-2f7f-4ab0-b08d-121be76f6dd8",
+          "name": "",
+          "process": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+        }
+      ],
+      "process_id": "idbeeb14b8-5b77-443b-bdc8-38790770e66a"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "bpmn-collapse-running-example",
+    "fixtures": {
+      "model": "fixtures/logs/running-example.bpmn"
+    },
+    "functions": [
+      "pm4py.objects.bpmn.util.reduction.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_bpmn",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

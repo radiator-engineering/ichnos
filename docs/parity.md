@@ -1315,6 +1315,15 @@ Rows cite these as `core-N`.
 29. **`set_classifier` is two methods**: `insert_classifier_attribute` takes attribute keys and `insert_named_classifier_attribute` takes a log classifier name. Neither records the activity key on the log (see core-4).
 30. **`serialize` and `deserialize` are not ported.** The `ichnos-io` readers and writers give and take the bytes for each format.
 
+### ichnos-model (BPMN)
+
+1. **`ProcessTree::to_bpmn` rejects interleaving** with `UnsupportedOperator`. pm4py drops the node and its subtree without a warning.
+2. **A one-child sequence reaches the end of its block.** `ProcessTree::to_bpmn` connects it to the following node; pm4py's tau chaining leaves it unconnected.
+3. **`Bpmn::reduce_xor_gateways` keeps an exclusive gateway whose only flow is a self-loop.** pm4py tries to splice it out on every pass and never ends.
+4. **Inclusive-gateway skips break ties by place name.** When two places before a converging inclusive gateway are equally near, `Bpmn::to_petri_net` links the `<place>_skip` transition to the smallest name. pm4py's choice depends on set order.
+5. **The element maps of `Bpmn::to_petri_net` leave out what reduction removed.** pm4py turns reduction off when it returns the maps.
+6. **Generated ids are counters, not UUIDs.** Nodes are `id_<n>`, flows `flow_<n>`, and the helper transitions of the Petri net conversion are named after their node (`<id>_start`, `<id>_end`, `<place>_skip`). pm4py uses random UUIDs.
+
 ## Proposed lanes
 
 Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.

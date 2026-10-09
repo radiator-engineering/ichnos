@@ -30,6 +30,13 @@ Cases:
 - ``bpmn-to-petri-*``: ``{"model": diagram, "petri_net": net,
   "petri_net_unreduced": net}`` from ``pm4py.convert_to_petri_net`` and from
   the converter with ``ENABLE_REDUCTION`` off.
+- ``bpmn-semantics-*``: ``{"model": diagram, "markings": [{node id:
+  tokens}], "edges": [[from, node id, to]]}``, every marking reachable from
+  ``get_initial_marking`` by ``weak_execute`` on ``enabled_nodes``, sorted;
+  edges index into ``markings``.
+- ``bpmn-collapse-*``: ``{"model": diagram, "bpmn": canonical diagram}``
+  from ``reduction.apply`` with ``COLLAPSE_GATEWAYS`` on. The ``nested-*``
+  diagrams nest two splits and two joins of one gateway type.
 """
 
 from __future__ import annotations
@@ -232,3 +239,114 @@ for name, path in [
             "pm4py.objects.conversion.bpmn.variants.to_petri_net.apply",
         ],
     )(bpmn_to_petri)
+
+
+def _reachable_markings(b: Any, limit: int = 2000) -> dict[str, Any]:
+    """Every marking reachable from ``get_initial_marking`` by
+    ``weak_execute`` on ``enabled_nodes``, breadth first. pm4py's
+    ``execute`` calls ``weak_execute`` with too few arguments, so it is not
+    used."""
+    from pm4py.objects.bpmn import semantics
+    from pm4py.objects.bpmn.util import bpmn_utils
+
+    def key(m: Any) -> tuple[tuple[str, int], ...]:
+        return tuple(sorted((str(n.get_id()), c) for n, c in m.items() if c > 0))
+
+    start = bpmn_utils.get_initial_marking(b)
+    seen = {key(start): start}
+    queue = [start]
+    edges = set()
+    while queue:
+        m = queue.pop(0)
+        for node in semantics.enabled_nodes(b, m):
+            for m2 in semantics.weak_execute(node, m, b):
+                k2 = key(m2)
+                edges.add((key(m), str(node.get_id()), k2))
+                if k2 not in seen:
+                    if len(seen) >= limit:
+                        raise ValueError(f"more than {limit} markings")
+                    seen[k2] = m2
+                    queue.append(m2)
+    order = sorted(seen)
+    index = {k: i for i, k in enumerate(order)}
+    return {
+        "markings": [dict(k) for k in order],
+        "edges": sorted([index[a], n, index[c]] for a, n, c in edges),
+    }
+
+
+def bpmn_semantics(fixtures: dict[str, Path]) -> dict[str, Any]:
+    b = load_model(fixtures["model"])
+    return {"model": describe_bpmn(b), **_reachable_markings(b)}
+
+
+for name, path in [
+    ("running-example", "running-example.bpmn"),
+    ("simple-parallel", "more_models/SimpleParallel.bpmn"),
+    ("subprocess1", "more_models/Subprocess1.bpmn"),
+]:
+    case(
+        f"bpmn-semantics-{name}",
+        fixtures={"model": path},
+        functions=[
+            "pm4py.objects.bpmn.semantics.enabled_nodes",
+            "pm4py.objects.bpmn.semantics.weak_execute",
+            "pm4py.objects.bpmn.util.bpmn_utils.get_initial_marking",
+        ],
+    )(bpmn_semantics)
+
+
+def _nested_gateways(kind: str) -> Any:
+    """start → split → (a | split → (b | c) → join) → join → end, with
+    gateways of ``kind`` and fixed ids."""
+    pid = "nested"
+    gateway = {"xor": BPMN.ExclusiveGateway, "and": BPMN.ParallelGateway}[kind]
+    div, conv = BPMN.Gateway.Direction.DIVERGING, BPMN.Gateway.Direction.CONVERGING
+    nodes = {
+        "start": BPMN.StartEvent(id="start", name="start", process=pid),
+        "s1": gateway(id="s1", name="s1", gateway_direction=div, process=pid),
+        "s2": gateway(id="s2", name="s2", gateway_direction=div, process=pid),
+        "j2": gateway(id="j2", name="j2", gateway_direction=conv, process=pid),
+        "j1": gateway(id="j1", name="j1", gateway_direction=conv, process=pid),
+        "end": BPMN.EndEvent(id="end", name="end", process=pid),
+    }
+    for t in ["a", "b", "c"]:
+        nodes[t] = BPMN.Task(id=t, name=t, process=pid)
+    b = BPMN(process_id=pid)
+    for n in nodes.values():
+        b.add_node(n)
+    for i, (s, t) in enumerate(
+        [("start", "s1"), ("s1", "a"), ("s1", "s2"), ("s2", "b"), ("s2", "c"),
+         ("b", "j2"), ("c", "j2"), ("a", "j1"), ("j2", "j1"), ("j1", "end")]
+    ):
+        b.add_flow(BPMN.SequenceFlow(nodes[s], nodes[t], id=f"f{i}", process=pid))
+    return b
+
+
+def bpmn_collapse(fixtures: dict[str, Path], nested: str | None = None) -> dict[str, Any]:
+    from pm4py.objects.bpmn.util import reduction
+
+    b = _nested_gateways(nested) if nested is not None else load_model(fixtures["model"])
+    model = describe_bpmn(b)
+    reduced = reduction.apply(b, parameters={reduction.Parameters.COLLAPSE_GATEWAYS: True})
+    return {"model": model, "bpmn": canonical_bpmn(reduced)}
+
+
+COLLAPSE_FUNCTIONS = ["pm4py.objects.bpmn.util.reduction.apply"]
+
+for kind in ["xor", "and"]:
+    case(
+        f"bpmn-collapse-nested-{kind}",
+        functions=COLLAPSE_FUNCTIONS,
+        params={"nested": kind},
+    )(bpmn_collapse)
+
+for name, path in [
+    ("running-example", "running-example.bpmn"),
+    ("a32f0n00", "a32f0n00.bpmn"),
+]:
+    case(
+        f"bpmn-collapse-{name}",
+        fixtures={"model": path},
+        functions=COLLAPSE_FUNCTIONS,
+    )(bpmn_collapse)

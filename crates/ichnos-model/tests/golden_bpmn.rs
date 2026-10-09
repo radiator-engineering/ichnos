@@ -458,3 +458,87 @@ fn bpmn_to_petri_nets_match_pm4py() {
         }
     }
 }
+
+/// A marking as sorted `(node id, tokens)` pairs, as the golden sorts them.
+type MarkingKey = Vec<(String, u32)>;
+
+#[test]
+fn bpmn_token_flow_matches_pm4py() {
+    let ids: Vec<String> = cases("bpmn")
+        .into_iter()
+        .filter(|id| id.starts_with("bpmn-semantics-"))
+        .collect();
+    assert_eq!(ids.len(), 3, "expected 3 semantics goldens, found {ids:?}");
+    for id in ids {
+        let g = golden("bpmn", &id);
+        let b = build_bpmn(g.expected_at("/model"));
+        let key = |m: &ichnos_model::bpmn::BpmnMarking| -> MarkingKey {
+            m.iter()
+                .filter(|&(_, &n)| n > 0)
+                .map(|(&node, &n)| (b.node(node).id.clone(), n))
+                .collect::<BTreeSet<_>>()
+                .into_iter()
+                .collect()
+        };
+        let start = b.initial_marking();
+        let mut seen = BTreeMap::from([(key(&start), start.clone())]);
+        let mut queue = std::collections::VecDeque::from([start]);
+        let mut edges = BTreeSet::new();
+        while let Some(m) = queue.pop_front() {
+            for node in b.enabled_nodes(&m) {
+                for m2 in b.weak_fire(node, &m) {
+                    let k2 = key(&m2);
+                    edges.insert((key(&m), b.node(node).id.clone(), k2.clone()));
+                    if !seen.contains_key(&k2) {
+                        assert!(seen.len() < 2000, "{id}: more than 2000 markings");
+                        seen.insert(k2, m2.clone());
+                        queue.push_back(m2);
+                    }
+                }
+            }
+        }
+        let index: BTreeMap<&MarkingKey, usize> =
+            seen.keys().enumerate().map(|(i, k)| (k, i)).collect();
+        let markings: Vec<BTreeMap<&str, u32>> = seen
+            .keys()
+            .map(|k| k.iter().map(|(n, c)| (n.as_str(), *c)).collect())
+            .collect();
+        let mut edges: Vec<Value> = edges
+            .iter()
+            .map(|(a, n, c)| json!([index[a], n, index[c]]))
+            .collect();
+        edges.sort_by_key(|e| {
+            (
+                e[0].as_u64(),
+                e[1].as_str().map(str::to_owned),
+                e[2].as_u64(),
+            )
+        });
+        assert_eq!(
+            json!(markings),
+            *g.expected_at("/markings"),
+            "{id}: markings"
+        );
+        assert_eq!(json!(edges), *g.expected_at("/edges"), "{id}: edges");
+    }
+}
+
+#[test]
+fn collapsed_gateways_match_pm4py() {
+    let ids: Vec<String> = cases("bpmn")
+        .into_iter()
+        .filter(|id| id.starts_with("bpmn-collapse-"))
+        .collect();
+    assert_eq!(ids.len(), 4, "expected 4 collapse goldens, found {ids:?}");
+    for id in ids {
+        let g = golden("bpmn", &id);
+        let mut b = build_bpmn(g.expected_at("/model"));
+        b.reduce(true);
+        let actual = bpmn_graph(&b);
+        let expected = canonical_graph(g.expected_at("/bpmn"));
+        assert!(
+            isomorphic(&actual, &expected),
+            "{id}: diagrams differ\nichnos: {actual:?}\npm4py: {expected:?}"
+        );
+    }
+}

@@ -34,7 +34,8 @@ impl Bpmn {
     /// Removes every exclusive gateway with exactly one incoming and one
     /// outgoing flow, linking its neighbours with a new sequence flow
     /// (pm4py's `reduce_xor_gateways`). A gateway whose only flow is a
-    /// self-loop stays.
+    /// self-loop stays: splicing it out would leave the same self-loop, so
+    /// pm4py, which tries anyway, never ends on such a diagram.
     pub fn reduce_xor_gateways(&mut self) {
         while let Some(g) = self.find_node(|node| {
             node.kind.gateway_kind() == Some(GatewayKind::Exclusive)
