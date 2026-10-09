@@ -4,11 +4,11 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 586; ported: 0; dropped: 40; total: 626.
+todo: 499; ported: 0; dropped: 127; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
-All Rust paths below are **planned**. Lanes replace them with actual public paths when porting. Distinct defined log/pandas/polars functions remain separate rows; pure imported aliases are counted once under their defining module (top-level spelling preferred). All public definitions under statistics are retained conservatively, including common helpers; streaming includes direct functions, classes and public methods, with parameter/variant enums represented by the owning entry point. Top-level namespace exports are explicit compatibility rows. Private names and underscore metadata are excluded. Source paths are relative to `pm4py/`; arrows identify implementation dependencies, and variant lists describe available backends rather than requiring separate Rust implementations.
+All Rust paths below are **planned**. Lanes replace them with actual public paths when porting. Python module namespaces and runtime implementation helpers are dropped explicitly. Defined pandas/polars functions with log/common counterparts are dropped into the exact named canonical row; backend-only operations without those counterparts remain todo and share one Rust implementation. Pure imported aliases are counted once under their defining module (top-level spelling preferred). Statistics includes public common helpers conservatively; streaming includes direct functions, classes and public methods, with parameter/variant enums represented by the owning entry point. Private names and underscore metadata are excluded. Source paths are relative to `pm4py/`; arrows identify implementation dependencies. Variant lists describe available backends, not separate Rust implementations; HTML/matplotlib alternatives are excluded where dot export is retained.
 
 ## read
 
@@ -111,44 +111,44 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.filter_log_relative_occurrence_event_attribute` | `filtering.py` → `algo/filtering/log/attributes/attributes_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_log_relative_occurrence_event_attribute` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_start_activities` | `filtering.py` → `algo/filtering/log/start_activities/start_activities_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_start_activities` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_end_activities` | `filtering.py` → `algo/filtering/log/end_activities/end_activities_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_end_activities` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_event_attribute_values` | `filtering.py` → `algo/filtering/log/attributes/attributes_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_event_attribute_values` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_trace_attribute_values` | `filtering.py` → `algo/filtering/log/attributes/attributes_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_trace_attribute_values` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_variants` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_variants` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_directly_follows_relation` | `filtering.py` → `algo/filtering/log/paths/paths_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_directly_follows_relation` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_eventually_follows_relation` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_eventually_follows_relation` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_time_range` | `filtering.py` → `algo/filtering/log/timestamp/timestamp_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_time_range` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_between` | `filtering.py` → `algo/filtering/log/between/between_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_between` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_case_size` | `filtering.py` → `algo/filtering/log/cases/case_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_case_size` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_case_performance` | `filtering.py` → `algo/filtering/log/cases/case_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_case_performance` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_activities_rework` | `filtering.py` → `algo/filtering/log/rework/rework_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_activities_rework` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_paths_performance` | `filtering.py` → `algo/filtering/log/paths/paths_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_paths_performance` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_variants_top_k` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_variants_top_k` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_variants_by_coverage_percentage` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_variants_by_coverage_percentage` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_prefixes` | `filtering.py` → `algo/filtering/log/prefixes/prefix_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_prefixes` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_suffixes` | `filtering.py` → `algo/filtering/log/suffixes/suffix_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_suffixes` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_ocel_event_attribute` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos::core::filter_ocel_event_attribute` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_object_attribute` | `filtering.py` → `algo/filtering/ocel/object_attributes`, `objects/ocel/obj` | `ichnos::core::filter_ocel_object_attribute` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_object_types_allowed_activities` | `filtering.py` → `algo/filtering/ocel/activity_type_matching`, `objects/ocel/obj` | `ichnos::core::filter_ocel_object_types_allowed_activities` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_object_per_type_count` | `filtering.py` → `algo/filtering/ocel/objects_ot_count`, `objects/ocel/obj` | `ichnos::core::filter_ocel_object_per_type_count` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_start_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos::core::filter_ocel_start_events_per_object_type` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_end_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos::core::filter_ocel_end_events_per_object_type` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_events_timestamp` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos::core::filter_ocel_events_timestamp` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_four_eyes_principle` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_four_eyes_principle` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_activity_done_different_resources` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_activity_done_different_resources` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_trace_segments` | `filtering.py` → `algo/filtering/log/traces/trace_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::core::filter_trace_segments` (planned) | `ichnos-core` | todo | Variants: variants_filter. |
-| `pm4py.filter_ocel_object_types` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_object_types` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_objects` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_objects` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_events` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_events` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_activities_connected_object_type` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_activities_connected_object_type` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_object` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_cc_object` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_length` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_cc_length` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_otype` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_cc_otype` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_activity` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::core::filter_ocel_cc_activity` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_dfg_activities_percentage` | `filtering.py` → `algo/filtering/dfg/dfg_filtering` | `ichnos::core::filter_dfg_activities_percentage` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_dfg_paths_percentage` | `filtering.py` → `algo/filtering/dfg/dfg_filtering` | `ichnos::core::filter_dfg_paths_percentage` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_log_relative_occurrence_event_attribute` | `filtering.py` → `algo/filtering/log/attributes/attributes_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_log_relative_occurrence_event_attribute` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_start_activities` | `filtering.py` → `algo/filtering/log/start_activities/start_activities_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_start_activities` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_end_activities` | `filtering.py` → `algo/filtering/log/end_activities/end_activities_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_end_activities` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_event_attribute_values` | `filtering.py` → `algo/filtering/log/attributes/attributes_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_event_attribute_values` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_trace_attribute_values` | `filtering.py` → `algo/filtering/log/attributes/attributes_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_trace_attribute_values` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_variants` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_variants` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_directly_follows_relation` | `filtering.py` → `algo/filtering/log/paths/paths_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_directly_follows_relation` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_eventually_follows_relation` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_eventually_follows_relation` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_time_range` | `filtering.py` → `algo/filtering/log/timestamp/timestamp_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_time_range` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_between` | `filtering.py` → `algo/filtering/log/between/between_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_between` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_case_size` | `filtering.py` → `algo/filtering/log/cases/case_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_case_size` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_case_performance` | `filtering.py` → `algo/filtering/log/cases/case_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_case_performance` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_activities_rework` | `filtering.py` → `algo/filtering/log/rework/rework_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_activities_rework` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_paths_performance` | `filtering.py` → `algo/filtering/log/paths/paths_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_paths_performance` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_variants_top_k` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_variants_top_k` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_variants_by_coverage_percentage` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_variants_by_coverage_percentage` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_prefixes` | `filtering.py` → `algo/filtering/log/prefixes/prefix_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_prefixes` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_suffixes` | `filtering.py` → `algo/filtering/log/suffixes/suffix_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_suffixes` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_ocel_event_attribute` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_event_attribute` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_object_attribute` | `filtering.py` → `algo/filtering/ocel/object_attributes`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_object_attribute` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_object_types_allowed_activities` | `filtering.py` → `algo/filtering/ocel/activity_type_matching`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_object_types_allowed_activities` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_object_per_type_count` | `filtering.py` → `algo/filtering/ocel/objects_ot_count`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_object_per_type_count` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_start_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_start_events_per_object_type` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_end_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_end_events_per_object_type` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_events_timestamp` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_events_timestamp` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_four_eyes_principle` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_four_eyes_principle` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_activity_done_different_resources` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_activity_done_different_resources` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_trace_segments` | `filtering.py` → `algo/filtering/log/traces/trace_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos::stats::filter_trace_segments` (planned) | `ichnos-stats` | todo | Variants: variants_filter. |
+| `pm4py.filter_ocel_object_types` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_object_types` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_objects` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_objects` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_events` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_events` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_activities_connected_object_type` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_activities_connected_object_type` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_cc_object` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_object` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_cc_length` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_length` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_cc_otype` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_otype` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_cc_activity` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_activity` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_dfg_activities_percentage` | `filtering.py` → `algo/filtering/dfg/dfg_filtering` | `ichnos::stats::filter_dfg_activities_percentage` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_dfg_paths_percentage` | `filtering.py` → `algo/filtering/dfg/dfg_filtering` | `ichnos::stats::filter_dfg_paths_percentage` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
 
 ## stats
 
@@ -182,15 +182,15 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.utils.Shared` | `utils.py` | `ichnos::core::Shared` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.utils.is_polars_lazyframe` | `utils.py` | `ichnos::core::is_polars_lazyframe` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.utils.Shared` | `utils.py` | `ichnos::core::Shared` (planned) | `ichnos-core` | dropped | Python global warning-state holder, not a process-mining API; Rust diagnostics replace it. |
+| `pm4py.utils.is_polars_lazyframe` | `utils.py` | `ichnos::core::is_polars_lazyframe` (planned) | `ichnos-core` | dropped | Python backend type detection; Rust types replace runtime pandas/polars dispatch. |
 | `pm4py.format_dataframe` | `utils.py` → `objects/log/util/dataframe_utils` | `ichnos::core::format_dataframe` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
 | `pm4py.rebase` | `utils.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/dataframe_utils` | `ichnos::core::rebase` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.parse_process_tree` | `utils.py` → `objects/process_tree/obj`, `objects/process_tree/utils/generic` | `ichnos::core::parse_process_tree` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.parse_powl_model_string` | `utils.py` → `objects/powl/obj`, `objects/powl/parser` | `ichnos::core::parse_powl_model_string` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.parse_process_tree` | `utils.py` → `objects/process_tree/obj`, `objects/process_tree/utils/generic` | `ichnos::model::parse_process_tree` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.parse_powl_model_string` | `utils.py` → `objects/powl/obj`, `objects/powl/parser` | `ichnos::model::parse_powl_model_string` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.serialize` | `utils.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/obj`, `objects/dfg/exporter/exporter`, `objects/log/exporter/xes/exporter`, `objects/log/obj`, `objects/petri_net/exporter/exporter`, `objects/petri_net/obj`, `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos::core::serialize` (planned) | `ichnos-core` | todo | Variants: classic, etree, etree_xes_exp, line_by_line, pnml, ptml. |
 | `pm4py.deserialize` | `utils.py` → `objects/bpmn/importer/importer`, `objects/dfg/importer/importer`, `objects/log/importer/xes/importer`, `objects/petri_net/importer/importer`, `objects/process_tree/importer/importer` | `ichnos::core::deserialize` (planned) | `ichnos-core` | todo | Variants: chunk_regex, classic, iterparse, iterparse_20, iterparse_mem_compressed, line_by_line, lxml, pnml, ptml, rustxes. |
-| `pm4py.utils.get_properties` | `utils.py` | `ichnos::core::get_properties` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.utils.get_properties` | `utils.py` | `ichnos::core::get_properties` (planned) | `ichnos-core` | dropped | Python string-keyed parameter-map adapter; typed Rust options replace it. |
 | `pm4py.set_classifier` | `utils.py` → `objects/log/obj` | `ichnos::core::set_classifier` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
 | `pm4py.parse_event_log_string` | `utils.py` → `objects/log/obj` | `ichnos::core::parse_event_log_string` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
 | `pm4py.project_on_event_attribute` | `utils.py` → `objects/log/obj`, `streaming/conversion/from_pandas` | `ichnos::core::project_on_event_attribute` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
@@ -313,18 +313,18 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.convert_to_event_log` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::model::convert_to_event_log` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.convert_to_event_stream` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::model::convert_to_event_stream` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.convert_to_dataframe` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::model::convert_to_dataframe` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_to_event_log` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_to_event_log` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_to_event_stream` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_to_event_stream` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_to_dataframe` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_to_dataframe` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
 | `pm4py.convert_to_bpmn` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/process_tree/variants/to_bpmn`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/conversion/wf_net/variants/to_bpmn`, `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_bpmn` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
 | `pm4py.convert_to_petri_net` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/genetic_matrix/obj`, `objects/heuristics_net/obj`, `objects/petri_net/obj`, `objects/powl/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_petri_net` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
 | `pm4py.convert_to_process_tree` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/powl/variants/to_process_tree`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/conversion/wf_net/variants/to_process_tree`, `objects/petri_net/obj`, `objects/powl/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_process_tree` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
 | `pm4py.convert_to_powl` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/process_tree/variants/to_powl`, `objects/conversion/wf_net/variants/to_powl`, `objects/petri_net/obj`, `objects/powl/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_powl` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.convert_to_reachability_graph` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/petri_net/obj`, `objects/petri_net/utils/reachability_graph`, `objects/process_tree/obj`, `objects/transition_system/obj` | `ichnos::model::convert_to_reachability_graph` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
-| `pm4py.convert_log_to_ocel` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/ocel/obj`, `objects/ocel/util/log_ocel` | `ichnos::model::convert_log_to_ocel` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.convert_ocel_to_networkx` | `convert.py` → `objects/conversion/ocel/converter`, `objects/ocel/obj` | `ichnos::model::convert_ocel_to_networkx` (planned) | `ichnos-model` | todo | Variants: ocel_features_to_nx, ocel_to_nx. |
-| `pm4py.convert_log_to_networkx` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::model::convert_log_to_networkx` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.convert_log_to_time_intervals` | `convert.py` → `algo/transformation/log_to_interval_tree/variants/open_paths`, `objects/log/obj` | `ichnos::model::convert_log_to_time_intervals` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.convert_log_to_ocel` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/ocel/obj`, `objects/ocel/util/log_ocel` | `ichnos::ocel::convert_log_to_ocel` (planned) | `ichnos-ocel` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_ocel_to_networkx` | `convert.py` → `objects/conversion/ocel/converter`, `objects/ocel/obj` | `ichnos::ocel::convert_ocel_to_networkx` (planned) | `ichnos-ocel` | todo | Variants: ocel_features_to_nx, ocel_to_nx. |
+| `pm4py.convert_log_to_networkx` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_log_to_networkx` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_log_to_time_intervals` | `convert.py` → `algo/transformation/log_to_interval_tree/variants/open_paths`, `objects/log/obj` | `ichnos::perf::convert_log_to_time_intervals` (planned) | `ichnos-perf` | todo | Single entry point; preserve source defaults. |
 | `pm4py.convert_petri_net_to_networkx` | `convert.py` → `objects/petri_net/obj` | `ichnos::model::convert_petri_net_to_networkx` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.convert_petri_net_type` | `convert.py` → `objects/petri_net/obj`, `objects/petri_net/utils/petri_utils` | `ichnos::model::convert_petri_net_type` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 
@@ -333,15 +333,15 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.construct_synchronous_product_net` | `analysis.py` → `objects/log/obj`, `objects/petri_net/obj`, `objects/petri_net/utils/align_utils`, `objects/petri_net/utils/petri_utils`, `objects/petri_net/utils/synchronous_product` | `ichnos::model::construct_synchronous_product_net` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.compute_emd` | `analysis.py` → `algo/evaluation/earth_mover_distance/algorithm` | `ichnos::model::compute_emd` (planned) | `ichnos-model` | todo | Variants: pyemd. |
+| `pm4py.compute_emd` | `analysis.py` → `algo/evaluation/earth_mover_distance/algorithm` | `ichnos::stats::compute_emd` (planned) | `ichnos-stats` | todo | Variants: pyemd. |
 | `pm4py.solve_marking_equation` | `analysis.py` → `algo/analysis/marking_equation/algorithm`, `objects/petri_net/obj` | `ichnos::model::solve_marking_equation` (planned) | `ichnos-model` | todo | Variants: classic. |
 | `pm4py.solve_extended_marking_equation` | `analysis.py` → `algo/analysis/extended_marking_equation/algorithm`, `objects/log/obj`, `objects/petri_net/obj` | `ichnos::model::solve_extended_marking_equation` (planned) | `ichnos-model` | todo | Variants: classic. |
 | `pm4py.analysis.check_is_sound` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos::model::check_is_sound` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.check_soundness` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos::model::check_soundness` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos::model::cluster_log` (planned) | `ichnos-model` | todo | Variants: sklearn_profiles. |
-| `pm4py.insert_artificial_start_end` | `analysis.py` → `objects/log/obj`, `objects/log/util/artificial`, `objects/log/util/dataframe_utils` | `ichnos::model::insert_artificial_start_end` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::model::insert_case_service_waiting_time` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::model::insert_case_arrival_finish_rate` (planned) | `ichnos-model` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos::ml::cluster_log` (planned) | `ichnos-ml` | todo | Variants: sklearn_profiles. |
+| `pm4py.insert_artificial_start_end` | `analysis.py` → `objects/log/obj`, `objects/log/util/artificial`, `objects/log/util/dataframe_utils` | `ichnos::core::insert_artificial_start_end` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::perf::insert_case_service_waiting_time` (planned) | `ichnos-perf` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::perf::insert_case_arrival_finish_rate` (planned) | `ichnos-perf` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
 | `pm4py.check_is_workflow_net` | `analysis.py` → `algo/analysis/workflow_net/algorithm`, `objects/petri_net/obj` | `ichnos::model::check_is_workflow_net` (planned) | `ichnos-model` | todo | Variants: petri_net. |
 | `pm4py.maximal_decomposition` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/decomposition` | `ichnos::model::maximal_decomposition` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.simplicity_petri_net` | `analysis.py` → `algo/evaluation/simplicity/variants/arc_degree`, `algo/evaluation/simplicity/variants/extended_cardoso`, `algo/evaluation/simplicity/variants/extended_cyclomatic`, `objects/petri_net/obj` | `ichnos::model::simplicity_petri_net` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
@@ -353,7 +353,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.replace_activity_labels` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/obj`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/obj`, `objects/process_tree/utils/label_replacing` | `ichnos::model::replace_activity_labels` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.behavioral_similarity` | `analysis.py` → `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos::model::behavioral_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.structural_similarity` | `analysis.py` → `objects/process_tree/utils/struct_similarity` | `ichnos::model::structural_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.embeddings_similarity` | `analysis.py` → `objects/petri_net/utils/embeddings_similarity` | `ichnos::model::embeddings_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.embeddings_similarity` | `analysis.py` → `objects/petri_net/utils/embeddings_similarity` | `ichnos::ml::embeddings_similarity` (planned) | `ichnos-ml` | todo | Single entry point; preserve source defaults. |
 | `pm4py.label_sets_similarity` | `analysis.py` | `ichnos::model::label_sets_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.map_labels_from_second_model` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/utils/label_replacing` | `ichnos::model::map_labels_from_second_model` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 
@@ -361,8 +361,8 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.hof.filter_log` | `hof.py` → `objects/log/obj` | `ichnos::core::filter_log` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.hof.filter_trace` | `hof.py` → `objects/log/obj` | `ichnos::core::filter_trace` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.hof.filter_log` | `hof.py` → `objects/log/obj` | `ichnos::stats::filter_log` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.hof.filter_trace` | `hof.py` → `objects/log/obj` | `ichnos::stats::filter_trace` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
 | `pm4py.hof.sort_log` | `hof.py` → `objects/log/obj` | `ichnos::core::sort_log` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
 | `pm4py.hof.sort_trace` | `hof.py` → `objects/log/obj` | `ichnos::core::sort_trace` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
 
@@ -460,23 +460,23 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.attributes.pandas.get.get_events_distribution` | `statistics/attributes/pandas/get.py` | `ichnos::stats::attributes::pandas::get::get_events_distribution` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.pandas.get.get_attribute_values` | `statistics/attributes/pandas/get.py` | `ichnos::stats::attributes::pandas::get::get_attribute_values` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.pandas.get.get_kde_numeric_attribute` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_numeric_attribute` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.pandas.get.get_kde_numeric_attribute_json` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_numeric_attribute_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.pandas.get.get_kde_date_attribute` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_date_attribute` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.pandas.get.get_kde_date_attribute_json` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_date_attribute_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.attributes.pandas.get.get_events_distribution` | `statistics/attributes/pandas/get.py` | `ichnos::stats::attributes::pandas::get::get_events_distribution` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_events_distribution; ichnos has one implementation |
+| `pm4py.statistics.attributes.pandas.get.get_attribute_values` | `statistics/attributes/pandas/get.py` | `ichnos::stats::attributes::pandas::get::get_attribute_values` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_attribute_values; ichnos has one implementation |
+| `pm4py.statistics.attributes.pandas.get.get_kde_numeric_attribute` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_numeric_attribute` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_numeric_attribute; ichnos has one implementation |
+| `pm4py.statistics.attributes.pandas.get.get_kde_numeric_attribute_json` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_numeric_attribute_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_numeric_attribute_json; ichnos has one implementation |
+| `pm4py.statistics.attributes.pandas.get.get_kde_date_attribute` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_date_attribute` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_date_attribute; ichnos has one implementation |
+| `pm4py.statistics.attributes.pandas.get.get_kde_date_attribute_json` | `statistics/attributes/pandas/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::pandas::get::get_kde_date_attribute_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_date_attribute_json; ichnos has one implementation |
 
 ## statistics.attributes.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.attributes.polars.get.get_events_distribution` | `statistics/attributes/polars/get.py` | `ichnos::stats::attributes::polars::get::get_events_distribution` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.polars.get.get_attribute_values` | `statistics/attributes/polars/get.py` | `ichnos::stats::attributes::polars::get::get_attribute_values` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.polars.get.get_kde_numeric_attribute` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_numeric_attribute` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.polars.get.get_kde_numeric_attribute_json` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_numeric_attribute_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.polars.get.get_kde_date_attribute` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_date_attribute` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.attributes.polars.get.get_kde_date_attribute_json` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_date_attribute_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.attributes.polars.get.get_events_distribution` | `statistics/attributes/polars/get.py` | `ichnos::stats::attributes::polars::get::get_events_distribution` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_events_distribution; ichnos has one implementation |
+| `pm4py.statistics.attributes.polars.get.get_attribute_values` | `statistics/attributes/polars/get.py` | `ichnos::stats::attributes::polars::get::get_attribute_values` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_attribute_values; ichnos has one implementation |
+| `pm4py.statistics.attributes.polars.get.get_kde_numeric_attribute` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_numeric_attribute` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_numeric_attribute; ichnos has one implementation |
+| `pm4py.statistics.attributes.polars.get.get_kde_numeric_attribute_json` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_numeric_attribute_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_numeric_attribute_json; ichnos has one implementation |
+| `pm4py.statistics.attributes.polars.get.get_kde_date_attribute` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_date_attribute` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_date_attribute; ichnos has one implementation |
+| `pm4py.statistics.attributes.polars.get.get_kde_date_attribute_json` | `statistics/attributes/polars/get.py` → `statistics/attributes/common/get` | `ichnos::stats::attributes::polars::get::get_kde_date_attribute_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.attributes.log.get.get_kde_date_attribute_json; ichnos has one implementation |
 
 ## statistics.chaotic_activities.algorithm
 
@@ -502,14 +502,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.concurrent_activities.pandas.get.apply` | `statistics/concurrent_activities/pandas/get.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::concurrent_activities::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.concurrent_activities.pandas.get.apply` | `statistics/concurrent_activities/pandas/get.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::concurrent_activities::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.concurrent_activities.log.get.apply; ichnos has one implementation |
 
 ## statistics.concurrent_activities.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe` | `statistics/concurrent_activities/polars/get.py` | `ichnos::stats::concurrent_activities::polars::get::get_concurrent_events_dataframe` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.concurrent_activities.polars.get.apply` | `statistics/concurrent_activities/polars/get.py` | `ichnos::stats::concurrent_activities::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe` | `statistics/concurrent_activities/polars/get.py` | `ichnos::stats::concurrent_activities::polars::get::get_concurrent_events_dataframe` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.concurrent_activities.polars.get.apply` | `statistics/concurrent_activities/polars/get.py` | `ichnos::stats::concurrent_activities::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.concurrent_activities.log.get.apply; ichnos has one implementation |
 
 ## statistics.end_activities.common.get
 
@@ -528,13 +528,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.end_activities.pandas.get.get_end_activities` | `statistics/end_activities/pandas/get.py` | `ichnos::stats::end_activities::pandas::get::get_end_activities` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.end_activities.pandas.get.get_end_activities` | `statistics/end_activities/pandas/get.py` | `ichnos::stats::end_activities::pandas::get::get_end_activities` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.end_activities.log.get.get_end_activities; ichnos has one implementation |
 
 ## statistics.end_activities.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.end_activities.polars.get.get_end_activities` | `statistics/end_activities/polars/get.py` | `ichnos::stats::end_activities::polars::get::get_end_activities` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.end_activities.polars.get.get_end_activities` | `statistics/end_activities/polars/get.py` | `ichnos::stats::end_activities::polars::get::get_end_activities` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.end_activities.log.get.get_end_activities; ichnos has one implementation |
 
 ## statistics.eventually_follows.log.get
 
@@ -546,14 +546,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.eventually_follows.pandas.get.apply` | `statistics/eventually_follows/pandas/get.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::eventually_follows::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.eventually_follows.pandas.get.apply` | `statistics/eventually_follows/pandas/get.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::eventually_follows::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.eventually_follows.log.get.apply; ichnos has one implementation |
 
 ## statistics.eventually_follows.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe` | `statistics/eventually_follows/polars/get.py` | `ichnos::stats::eventually_follows::polars::get::get_partial_order_dataframe` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.eventually_follows.polars.get.apply` | `statistics/eventually_follows/polars/get.py` | `ichnos::stats::eventually_follows::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe` | `statistics/eventually_follows/polars/get.py` | `ichnos::stats::eventually_follows::polars::get::get_partial_order_dataframe` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.eventually_follows.polars.get.apply` | `statistics/eventually_follows/polars/get.py` | `ichnos::stats::eventually_follows::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.eventually_follows.log.get.apply; ichnos has one implementation |
 
 ## statistics.eventually_follows.uvcl.get
 
@@ -612,13 +612,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.cases.pandas.get.apply` | `statistics/overlap/cases/pandas/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::cases::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.overlap.cases.pandas.get.apply` | `statistics/overlap/cases/pandas/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::cases::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.overlap.cases.log.get.apply; ichnos has one implementation |
 
 ## statistics.overlap.cases.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.cases.polars.get.apply` | `statistics/overlap/cases/polars/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::cases::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.overlap.cases.polars.get.apply` | `statistics/overlap/cases/polars/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::cases::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.overlap.cases.log.get.apply; ichnos has one implementation |
 
 ## statistics.overlap.interval_events.log.get
 
@@ -630,13 +630,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.interval_events.pandas.get.apply` | `statistics/overlap/interval_events/pandas/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::interval_events::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.overlap.interval_events.pandas.get.apply` | `statistics/overlap/interval_events/pandas/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::interval_events::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.overlap.interval_events.log.get.apply; ichnos has one implementation |
 
 ## statistics.overlap.interval_events.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.interval_events.polars.get.apply` | `statistics/overlap/interval_events/polars/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::interval_events::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.overlap.interval_events.polars.get.apply` | `statistics/overlap/interval_events/polars/get.py` → `statistics/overlap/utils/compute` | `ichnos::stats::overlap::interval_events::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.overlap.interval_events.log.get.apply; ichnos has one implementation |
 
 ## statistics.overlap.utils.compute
 
@@ -672,73 +672,73 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.pandas.algorithm.apply` | `statistics/passed_time/pandas/algorithm.py` | `ichnos::stats::passed_time::pandas::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.pandas.algorithm.apply` | `statistics/passed_time/pandas/algorithm.py` | `ichnos::stats::passed_time::pandas::algorithm::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.algorithm.apply; ichnos has one implementation |
 
 ## statistics.passed_time.pandas.variants.post
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.pandas.variants.post.apply` | `statistics/passed_time/pandas/variants/post.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::passed_time::pandas::variants::post::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.pandas.variants.post.apply` | `statistics/passed_time/pandas/variants/post.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::passed_time::pandas::variants::post::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.variants.post.apply; ichnos has one implementation |
 
 ## statistics.passed_time.pandas.variants.pre
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.pandas.variants.pre.apply` | `statistics/passed_time/pandas/variants/pre.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::passed_time::pandas::variants::pre::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.pandas.variants.pre.apply` | `statistics/passed_time/pandas/variants/pre.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::passed_time::pandas::variants::pre::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.variants.pre.apply; ichnos has one implementation |
 
 ## statistics.passed_time.pandas.variants.prepost
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.pandas.variants.prepost.apply` | `statistics/passed_time/pandas/variants/prepost.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::passed_time::pandas::variants::prepost::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.pandas.variants.prepost.apply` | `statistics/passed_time/pandas/variants/prepost.py` → `algo/discovery/dfg/adapters/pandas/df_statistics` | `ichnos::stats::passed_time::pandas::variants::prepost::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.variants.prepost.apply; ichnos has one implementation |
 
 ## statistics.passed_time.polars.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.polars.algorithm.apply` | `statistics/passed_time/polars/algorithm.py` | `ichnos::stats::passed_time::polars::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.polars.algorithm.apply` | `statistics/passed_time/polars/algorithm.py` | `ichnos::stats::passed_time::polars::algorithm::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.algorithm.apply; ichnos has one implementation |
 
 ## statistics.passed_time.polars.variants.post
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.polars.variants.post.apply` | `statistics/passed_time/polars/variants/post.py` | `ichnos::stats::passed_time::polars::variants::post::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.polars.variants.post.apply` | `statistics/passed_time/polars/variants/post.py` | `ichnos::stats::passed_time::polars::variants::post::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.variants.post.apply; ichnos has one implementation |
 
 ## statistics.passed_time.polars.variants.pre
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.polars.variants.pre.apply` | `statistics/passed_time/polars/variants/pre.py` | `ichnos::stats::passed_time::polars::variants::pre::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.polars.variants.pre.apply` | `statistics/passed_time/polars/variants/pre.py` | `ichnos::stats::passed_time::polars::variants::pre::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.variants.pre.apply; ichnos has one implementation |
 
 ## statistics.passed_time.polars.variants.prepost
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.polars.variants.prepost.apply` | `statistics/passed_time/polars/variants/prepost.py` → `statistics/passed_time/polars/variants/post`, `statistics/passed_time/polars/variants/pre` | `ichnos::stats::passed_time::polars::variants::prepost::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.polars.variants.prepost.apply` | `statistics/passed_time/polars/variants/prepost.py` → `statistics/passed_time/polars/variants/post`, `statistics/passed_time/polars/variants/pre` | `ichnos::stats::passed_time::polars::variants::prepost::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.passed_time.log.variants.prepost.apply; ichnos has one implementation |
 
 ## statistics.process_cube.pandas.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.pandas.algorithm.apply` | `statistics/process_cube/pandas/algorithm.py` | `ichnos::stats::process_cube::pandas::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.process_cube.pandas.algorithm.apply` | `statistics/process_cube/pandas/algorithm.py` | `ichnos::stats::process_cube::pandas::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
 
 ## statistics.process_cube.pandas.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.pandas.variants.classic.apply` | `statistics/process_cube/pandas/variants/classic.py` | `ichnos::stats::process_cube::pandas::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.process_cube.pandas.variants.classic.apply` | `statistics/process_cube/pandas/variants/classic.py` | `ichnos::stats::process_cube::pandas::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
 
 ## statistics.process_cube.polars.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.polars.algorithm.apply` | `statistics/process_cube/polars/algorithm.py` | `ichnos::stats::process_cube::polars::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.process_cube.polars.algorithm.apply` | `statistics/process_cube/polars/algorithm.py` | `ichnos::stats::process_cube::polars::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
 
 ## statistics.process_cube.polars.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.polars.variants.classic.apply` | `statistics/process_cube/polars/variants/classic.py` | `ichnos::stats::process_cube::polars::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.process_cube.polars.variants.classic.apply` | `statistics/process_cube/polars/variants/classic.py` | `ichnos::stats::process_cube::polars::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
 
 ## statistics.rework.cases.log.get
 
@@ -750,13 +750,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.rework.cases.pandas.get.apply` | `statistics/rework/cases/pandas/get.py` | `ichnos::stats::rework::cases::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.rework.cases.pandas.get.apply` | `statistics/rework/cases/pandas/get.py` | `ichnos::stats::rework::cases::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.rework.cases.log.get.apply; ichnos has one implementation |
 
 ## statistics.rework.cases.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.rework.cases.polars.get.apply` | `statistics/rework/cases/polars/get.py` | `ichnos::stats::rework::cases::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.rework.cases.polars.get.apply` | `statistics/rework/cases/polars/get.py` | `ichnos::stats::rework::cases::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.rework.cases.log.get.apply; ichnos has one implementation |
 
 ## statistics.rework.log.get
 
@@ -768,13 +768,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.rework.pandas.get.apply` | `statistics/rework/pandas/get.py` | `ichnos::stats::rework::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.rework.pandas.get.apply` | `statistics/rework/pandas/get.py` | `ichnos::stats::rework::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.rework.log.get.apply; ichnos has one implementation |
 
 ## statistics.rework.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.rework.polars.get.apply` | `statistics/rework/polars/get.py` | `ichnos::stats::rework::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.rework.polars.get.apply` | `statistics/rework/polars/get.py` | `ichnos::stats::rework::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.rework.log.get.apply; ichnos has one implementation |
 
 ## statistics.service_time.log.get
 
@@ -786,13 +786,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.service_time.pandas.get.apply` | `statistics/service_time/pandas/get.py` | `ichnos::stats::service_time::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.service_time.pandas.get.apply` | `statistics/service_time/pandas/get.py` | `ichnos::stats::service_time::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.service_time.log.get.apply; ichnos has one implementation |
 
 ## statistics.service_time.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.service_time.polars.get.apply` | `statistics/service_time/polars/get.py` | `ichnos::stats::service_time::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.service_time.polars.get.apply` | `statistics/service_time/polars/get.py` | `ichnos::stats::service_time::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.service_time.log.get.apply; ichnos has one implementation |
 
 ## statistics.start_activities.common.get
 
@@ -811,13 +811,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.start_activities.pandas.get.get_start_activities` | `statistics/start_activities/pandas/get.py` | `ichnos::stats::start_activities::pandas::get::get_start_activities` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.start_activities.pandas.get.get_start_activities` | `statistics/start_activities/pandas/get.py` | `ichnos::stats::start_activities::pandas::get::get_start_activities` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.start_activities.log.get.get_start_activities; ichnos has one implementation |
 
 ## statistics.start_activities.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.start_activities.polars.get.get_start_activities` | `statistics/start_activities/polars/get.py` | `ichnos::stats::start_activities::polars::get::get_start_activities` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.start_activities.polars.get.get_start_activities` | `statistics/start_activities/polars/get.py` | `ichnos::stats::start_activities::polars::get::get_start_activities` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.start_activities.log.get.get_start_activities; ichnos has one implementation |
 
 ## statistics.traces.cycle_time.log.get
 
@@ -829,13 +829,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.cycle_time.pandas.get.apply` | `statistics/traces/cycle_time/pandas/get.py` → `statistics/traces/cycle_time/util/compute` | `ichnos::stats::traces::cycle_time::pandas::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.cycle_time.pandas.get.apply` | `statistics/traces/cycle_time/pandas/get.py` → `statistics/traces/cycle_time/util/compute` | `ichnos::stats::traces::cycle_time::pandas::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.cycle_time.log.get.apply; ichnos has one implementation |
 
 ## statistics.traces.cycle_time.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.cycle_time.polars.get.apply` | `statistics/traces/cycle_time/polars/get.py` → `statistics/traces/cycle_time/util/compute` | `ichnos::stats::traces::cycle_time::polars::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.cycle_time.polars.get.apply` | `statistics/traces/cycle_time/polars/get.py` → `statistics/traces/cycle_time/util/compute` | `ichnos::stats::traces::cycle_time::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.cycle_time.log.get.apply; ichnos has one implementation |
 
 ## statistics.traces.cycle_time.util.compute
 
@@ -875,45 +875,45 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.pandas.case_arrival.get_case_arrival_avg` | `statistics/traces/generic/pandas/case_arrival.py` | `ichnos::stats::traces::generic::pandas::case_arrival::get_case_arrival_avg` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_arrival.get_case_dispersion_avg` | `statistics/traces/generic/pandas/case_arrival.py` | `ichnos::stats::traces::generic::pandas::case_arrival::get_case_dispersion_avg` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.generic.pandas.case_arrival.get_case_arrival_avg` | `statistics/traces/generic/pandas/case_arrival.py` | `ichnos::stats::traces::generic::pandas::case_arrival::get_case_arrival_avg` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_arrival.get_case_arrival_avg; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_arrival.get_case_dispersion_avg` | `statistics/traces/generic/pandas/case_arrival.py` | `ichnos::stats::traces::generic::pandas::case_arrival::get_case_dispersion_avg` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_arrival.get_case_dispersion_avg; ichnos has one implementation |
 
 ## statistics.traces.generic.pandas.case_statistics
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variant_statistics` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df_and_list` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_cases_description` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_cases_description` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_with_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df_with_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_events` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_events` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration` | `statistics/traces/generic/pandas/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::pandas::case_statistics::get_kde_caseduration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/pandas/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::pandas::case_statistics::get_kde_caseduration_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_all_case_durations` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_all_case_durations` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_first_quartile_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_median_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_median_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variant_statistics` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df_and_list` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_cases_description` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_cases_description` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_cases_description; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_with_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df_with_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_events` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_events` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_events; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration` | `statistics/traces/generic/pandas/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::pandas::case_statistics::get_kde_caseduration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/pandas/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::pandas::case_statistics::get_kde_caseduration_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_all_case_durations` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_all_case_durations` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_first_quartile_case_duration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_median_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_median_case_duration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration; ichnos has one implementation |
 
 ## statistics.traces.generic.polars.case_arrival
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.polars.case_arrival.get_case_arrival_avg` | `statistics/traces/generic/polars/case_arrival.py` | `ichnos::stats::traces::generic::polars::case_arrival::get_case_arrival_avg` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_arrival.get_case_dispersion_avg` | `statistics/traces/generic/polars/case_arrival.py` | `ichnos::stats::traces::generic::polars::case_arrival::get_case_dispersion_avg` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.generic.polars.case_arrival.get_case_arrival_avg` | `statistics/traces/generic/polars/case_arrival.py` | `ichnos::stats::traces::generic::polars::case_arrival::get_case_arrival_avg` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_arrival.get_case_arrival_avg; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_arrival.get_case_dispersion_avg` | `statistics/traces/generic/polars/case_arrival.py` | `ichnos::stats::traces::generic::polars::case_arrival::get_case_dispersion_avg` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_arrival.get_case_dispersion_avg; ichnos has one implementation |
 
 ## statistics.traces.generic.polars.case_statistics
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_variant_statistics` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variants_df_and_list` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_cases_description` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_cases_description` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variants_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_all_case_durations` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_all_case_durations` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_median_case_duration` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_median_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_first_quartile_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_kde_caseduration` | `statistics/traces/generic/polars/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::polars::case_statistics::get_kde_caseduration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/polars/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::polars::case_statistics::get_kde_caseduration_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_variant_statistics` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variants_df_and_list` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_cases_description` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_cases_description` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_cases_description; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variants_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_all_case_durations` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_all_case_durations` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_median_case_duration` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_median_case_duration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_first_quartile_case_duration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_kde_caseduration` | `statistics/traces/generic/polars/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::polars::case_statistics::get_kde_caseduration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration; ichnos has one implementation |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/polars/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::polars::case_statistics::get_kde_caseduration_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json; ichnos has one implementation |
 
 ## statistics.util.times_bipartite_matching
 
@@ -936,16 +936,16 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.variants.pandas.get.get_variants_count` | `statistics/variants/pandas/get.py` → `objects/log/util/pandas_numpy_variants` | `ichnos::stats::variants::pandas::get::get_variants_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.variants.pandas.get.get_variants_set` | `statistics/variants/pandas/get.py` | `ichnos::stats::variants::pandas::get::get_variants_set` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.variants.pandas.get.get_variants_count` | `statistics/variants/pandas/get.py` → `objects/log/util/pandas_numpy_variants` | `ichnos::stats::variants::pandas::get::get_variants_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.variants.pandas.get.get_variants_set` | `statistics/variants/pandas/get.py` | `ichnos::stats::variants::pandas::get::get_variants_set` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
 
 ## statistics.variants.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.variants.polars.get.pandas_numpy_variants_apply_polars` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::pandas_numpy_variants_apply_polars` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.variants.polars.get.get_variants_count` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::get_variants_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.variants.polars.get.get_variants_set` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::get_variants_set` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.variants.polars.get.pandas_numpy_variants_apply_polars` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::pandas_numpy_variants_apply_polars` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.variants.polars.get.get_variants_count` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::get_variants_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.variants.polars.get.get_variants_set` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::get_variants_set` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
 
 ## streaming.algo.conformance.alignments.algorithm
 
@@ -1225,31 +1225,31 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.sys` | `__init__.py` | `ichnos::core::exports::sys` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Python sys/time implementation leakage; lane must document compatibility decision. |
-| `pm4py.time` | `__init__.py` | `ichnos::core::exports::time` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Python sys/time implementation leakage; lane must document compatibility decision. |
-| `pm4py.objects` | `__init__.py` | `ichnos::core::exports::objects` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.util` | `__init__.py` | `ichnos::core::exports::util` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.utils` | `__init__.py` | `ichnos::core::exports::utils` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.algo` | `__init__.py` | `ichnos::core::exports::algo` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.statistics` | `__init__.py` | `ichnos::core::exports::statistics` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.visualization` | `__init__.py` | `ichnos::core::exports::visualization` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.llm` | `__init__.py` | `ichnos::core::exports::llm` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.connectors` | `__init__.py` | `ichnos::core::exports::connectors` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.analysis` | `__init__.py` | `ichnos::core::exports::analysis` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.conformance` | `__init__.py` | `ichnos::core::exports::conformance` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.convert` | `__init__.py` | `ichnos::core::exports::convert` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.discovery` | `__init__.py` | `ichnos::core::exports::discovery` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.filtering` | `__init__.py` | `ichnos::core::exports::filtering` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.hof` | `__init__.py` | `ichnos::core::exports::hof` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.ml` | `__init__.py` | `ichnos::core::exports::ml` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.ocel` | `__init__.py` | `ichnos::core::exports::ocel` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.org` | `__init__.py` | `ichnos::core::exports::org` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.read` | `__init__.py` | `ichnos::core::exports::read` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.sim` | `__init__.py` | `ichnos::core::exports::sim` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.stats` | `__init__.py` | `ichnos::core::exports::stats` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.vis` | `__init__.py` | `ichnos::core::exports::vis` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.write` | `__init__.py` | `ichnos::core::exports::write` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
-| `pm4py.meta` | `__init__.py` | `ichnos::core::exports::meta` (planned) | `ichnos-core` | todo | Namespace compatibility export; map to Rust modules, not a duplicate algorithm. Contents covered by defining-module rows where in inventory scope. |
+| `pm4py.sys` | `__init__.py` | `ichnos::core::exports::sys` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.time` | `__init__.py` | `ichnos::core::exports::time` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.objects` | `__init__.py` | `ichnos::core::exports::objects` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.util` | `__init__.py` | `ichnos::core::exports::util` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.utils` | `__init__.py` | `ichnos::core::exports::utils` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.algo` | `__init__.py` | `ichnos::core::exports::algo` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.statistics` | `__init__.py` | `ichnos::core::exports::statistics` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.visualization` | `__init__.py` | `ichnos::core::exports::visualization` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.llm` | `__init__.py` | `ichnos::core::exports::llm` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.connectors` | `__init__.py` | `ichnos::core::exports::connectors` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.analysis` | `__init__.py` | `ichnos::core::exports::analysis` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.conformance` | `__init__.py` | `ichnos::core::exports::conformance` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.convert` | `__init__.py` | `ichnos::core::exports::convert` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.discovery` | `__init__.py` | `ichnos::core::exports::discovery` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.filtering` | `__init__.py` | `ichnos::core::exports::filtering` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.hof` | `__init__.py` | `ichnos::core::exports::hof` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.ml` | `__init__.py` | `ichnos::core::exports::ml` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.ocel` | `__init__.py` | `ichnos::core::exports::ocel` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.org` | `__init__.py` | `ichnos::core::exports::org` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.read` | `__init__.py` | `ichnos::core::exports::read` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.sim` | `__init__.py` | `ichnos::core::exports::sim` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.stats` | `__init__.py` | `ichnos::core::exports::stats` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.vis` | `__init__.py` | `ichnos::core::exports::vis` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.write` | `__init__.py` | `ichnos::core::exports::write` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
+| `pm4py.meta` | `__init__.py` | `ichnos::core::exports::meta` (planned) | `ichnos-core` | dropped | Python module namespace, not a function; Rust modules replace it. |
 
 ## objects.petri_net.obj
 
@@ -1282,1024 +1282,406 @@ Lanes record each deliberate change from pm4py here.
 
 ## Proposed lanes
 
-Packages below cover every todo row exactly once. Each targets one to two agent-days; split a package if its first source inspection reveals a larger algorithm. Complete core/model packages before dependent I/O and miners, then conformance; statistics precede performance, organizational, ML and visualization consumers. Source dependencies may overlap: reuse earlier packages rather than porting them twice. Every package adds golden coverage for its listed rows.
+Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.
 
-### core---init---1
+### log-model-utils
 
-Crate: `ichnos-core`. Rows: `pm4py.sys`, `pm4py.time`, `pm4py.objects`, `pm4py.util`, `pm4py.utils`, `pm4py.algo`, `pm4py.statistics`, `pm4py.visualization`.
+Crate: `ichnos-core`. Rows: `pm4py.format_dataframe`, `pm4py.rebase`, `pm4py.set_classifier`, `pm4py.parse_event_log_string`, `pm4py.project_on_event_attribute`, `pm4py.sample_cases`, `pm4py.sample_events`, `pm4py.convert_to_event_log`, `pm4py.convert_to_event_stream`, `pm4py.convert_to_dataframe`, `pm4py.convert_log_to_networkx`, `pm4py.insert_artificial_start_end`, `pm4py.hof.sort_log`, `pm4py.hof.sort_trace`.
 
-Port sources: `pm4py/__init__.py`.
+Port sources: `pm4py/analysis.py`, `pm4py/convert.py`, `pm4py/hof.py`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/artificial`, `pm4py/objects/log/util/dataframe_utils`, `pm4py/objects/log/util/sampling`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/sampling`, `pm4py/streaming/conversion/from_pandas`, `pm4py/utils.py`.
 
-### core---init---2
+### petri-model
 
-Crate: `ichnos-core`. Rows: `pm4py.llm`, `pm4py.connectors`, `pm4py.analysis`, `pm4py.conformance`, `pm4py.convert`, `pm4py.discovery`, `pm4py.filtering`, `pm4py.hof`.
-
-Port sources: `pm4py/__init__.py`.
-
-### core---init---3
-
-Crate: `ichnos-core`. Rows: `pm4py.ml`, `pm4py.ocel`, `pm4py.org`, `pm4py.read`, `pm4py.sim`, `pm4py.stats`, `pm4py.vis`, `pm4py.write`.
-
-Port sources: `pm4py/__init__.py`.
-
-### core---init---4
-
-Crate: `ichnos-core`. Rows: `pm4py.meta`.
-
-Port sources: `pm4py/__init__.py`.
-
-### core-filtering-1
-
-Crate: `ichnos-core`. Rows: `pm4py.filter_log_relative_occurrence_event_attribute`, `pm4py.filter_start_activities`, `pm4py.filter_end_activities`, `pm4py.filter_event_attribute_values`, `pm4py.filter_trace_attribute_values`, `pm4py.filter_variants`, `pm4py.filter_directly_follows_relation`, `pm4py.filter_eventually_follows_relation`.
-
-Port sources: `pm4py/algo/filtering/log/attributes/attributes_filter`, `pm4py/algo/filtering/log/end_activities/end_activities_filter`, `pm4py/algo/filtering/log/ltl/ltl_checker`, `pm4py/algo/filtering/log/paths/paths_filter`, `pm4py/algo/filtering/log/start_activities/start_activities_filter`, `pm4py/algo/filtering/log/variants/variants_filter`, `pm4py/algo/filtering/pandas`, `pm4py/algo/filtering/polars`, `pm4py/filtering.py`, `pm4py/objects/log/obj`.
-
-### core-filtering-2
-
-Crate: `ichnos-core`. Rows: `pm4py.filter_time_range`, `pm4py.filter_between`, `pm4py.filter_case_size`, `pm4py.filter_case_performance`, `pm4py.filter_activities_rework`, `pm4py.filter_paths_performance`, `pm4py.filter_variants_top_k`, `pm4py.filter_variants_by_coverage_percentage`.
-
-Port sources: `pm4py/algo/filtering/log/between/between_filter`, `pm4py/algo/filtering/log/cases/case_filter`, `pm4py/algo/filtering/log/paths/paths_filter`, `pm4py/algo/filtering/log/rework/rework_filter`, `pm4py/algo/filtering/log/timestamp/timestamp_filter`, `pm4py/algo/filtering/log/variants/variants_filter`, `pm4py/algo/filtering/pandas`, `pm4py/algo/filtering/polars`, `pm4py/filtering.py`, `pm4py/objects/log/obj`.
-
-### core-filtering-3
-
-Crate: `ichnos-core`. Rows: `pm4py.filter_prefixes`, `pm4py.filter_suffixes`, `pm4py.filter_ocel_event_attribute`, `pm4py.filter_ocel_object_attribute`, `pm4py.filter_ocel_object_types_allowed_activities`, `pm4py.filter_ocel_object_per_type_count`, `pm4py.filter_ocel_start_events_per_object_type`, `pm4py.filter_ocel_end_events_per_object_type`.
-
-Port sources: `pm4py/algo/filtering/log/prefixes/prefix_filter`, `pm4py/algo/filtering/log/suffixes/suffix_filter`, `pm4py/algo/filtering/ocel/activity_type_matching`, `pm4py/algo/filtering/ocel/event_attributes`, `pm4py/algo/filtering/ocel/object_attributes`, `pm4py/algo/filtering/ocel/objects_ot_count`, `pm4py/algo/filtering/ocel/ot_endpoints`, `pm4py/algo/filtering/pandas`, `pm4py/algo/filtering/polars`, `pm4py/filtering.py`, `pm4py/objects/log/obj`, `pm4py/objects/ocel/obj`.
-
-### core-filtering-4
-
-Crate: `ichnos-core`. Rows: `pm4py.filter_ocel_events_timestamp`, `pm4py.filter_four_eyes_principle`, `pm4py.filter_activity_done_different_resources`, `pm4py.filter_trace_segments`, `pm4py.filter_ocel_object_types`, `pm4py.filter_ocel_objects`, `pm4py.filter_ocel_events`, `pm4py.filter_ocel_activities_connected_object_type`.
-
-Port sources: `pm4py/algo/filtering/log/ltl/ltl_checker`, `pm4py/algo/filtering/log/traces/trace_filter`, `pm4py/algo/filtering/ocel/event_attributes`, `pm4py/algo/filtering/pandas`, `pm4py/algo/filtering/polars`, `pm4py/filtering.py`, `pm4py/objects/log/obj`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/filtering_utils`.
-
-### core-filtering-5
-
-Crate: `ichnos-core`. Rows: `pm4py.filter_ocel_cc_object`, `pm4py.filter_ocel_cc_length`, `pm4py.filter_ocel_cc_otype`, `pm4py.filter_ocel_cc_activity`, `pm4py.filter_dfg_activities_percentage`, `pm4py.filter_dfg_paths_percentage`.
-
-Port sources: `pm4py/algo/filtering/dfg/dfg_filtering`, `pm4py/algo/transformation/ocel/graphs/object_interaction_graph`, `pm4py/filtering.py`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/filtering_utils`.
-
-### core-hof-1
-
-Crate: `ichnos-core`. Rows: `pm4py.hof.filter_log`, `pm4py.hof.filter_trace`, `pm4py.hof.sort_log`, `pm4py.hof.sort_trace`.
-
-Port sources: `pm4py/hof.py`, `pm4py/objects/log/obj`.
-
-### core-utils-1
-
-Crate: `ichnos-core`. Rows: `pm4py.utils.Shared`, `pm4py.utils.is_polars_lazyframe`, `pm4py.format_dataframe`, `pm4py.rebase`, `pm4py.parse_process_tree`, `pm4py.parse_powl_model_string`, `pm4py.serialize`, `pm4py.deserialize`.
-
-Port sources: `pm4py/objects/bpmn/exporter/exporter`, `pm4py/objects/bpmn/importer/importer`, `pm4py/objects/bpmn/obj`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/dfg/exporter/exporter`, `pm4py/objects/dfg/importer/importer`, `pm4py/objects/log/exporter/xes/exporter`, `pm4py/objects/log/importer/xes/importer`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/dataframe_utils`, `pm4py/objects/petri_net/exporter/exporter`, `pm4py/objects/petri_net/importer/importer`, `pm4py/objects/petri_net/obj`, `pm4py/objects/powl/obj`, `pm4py/objects/powl/parser`, `pm4py/objects/process_tree/exporter/exporter`, `pm4py/objects/process_tree/importer/importer`, `pm4py/objects/process_tree/obj`, `pm4py/objects/process_tree/utils/generic`, `pm4py/utils.py`.
-
-### core-utils-2
-
-Crate: `ichnos-core`. Rows: `pm4py.utils.get_properties`, `pm4py.set_classifier`, `pm4py.parse_event_log_string`, `pm4py.project_on_event_attribute`, `pm4py.sample_cases`, `pm4py.sample_events`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/objects/log/util/dataframe_utils`, `pm4py/objects/log/util/sampling`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/sampling`, `pm4py/streaming/conversion/from_pandas`, `pm4py/utils.py`.
-
-### model-objects-bpmn-obj-1
-
-Crate: `ichnos-model`. Rows: `pm4py.BPMN`, `pm4py.replace_activity_labels`, `pm4py.map_labels_from_second_model`, `pm4py.convert_to_bpmn`, `pm4py.convert_to_petri_net`, `pm4py.convert_to_process_tree`, `pm4py.convert_to_powl`, `pm4py.convert_to_reachability_graph`.
-
-Port sources: `pm4py/analysis.py`, `pm4py/convert.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/bpmn/obj.py`, `pm4py/objects/bpmn/util/label_replacing`, `pm4py/objects/conversion/bpmn/variants/to_petri_net`, `pm4py/objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `pm4py/objects/conversion/genetic_matrix/variants/to_petri_net`, `pm4py/objects/conversion/heuristics_net/variants/to_petri_net`, `pm4py/objects/conversion/powl/converter`, `pm4py/objects/conversion/powl/variants/to_process_tree`, `pm4py/objects/conversion/process_tree/variants/to_bpmn`, `pm4py/objects/conversion/process_tree/variants/to_petri_net`, `pm4py/objects/conversion/process_tree/variants/to_powl`, `pm4py/objects/conversion/wf_net/variants/to_bpmn`, `pm4py/objects/conversion/wf_net/variants/to_powl`, `pm4py/objects/conversion/wf_net/variants/to_process_tree`, `pm4py/objects/genetic_matrix/obj`, `pm4py/objects/heuristics_net/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/label_replacing`, `pm4py/objects/petri_net/utils/reachability_graph`, `pm4py/objects/powl/obj`, `pm4py/objects/powl/utils/label_replacing`, `pm4py/objects/process_tree/obj`, `pm4py/objects/process_tree/utils/label_replacing`, `pm4py/objects/transition_system/obj`.
-
-### model-objects-petri-net-utils-petri-utils-1
-
-Crate: `ichnos-model`. Rows: `pm4py.PetriNet`.
+Crate: `ichnos-model`. Rows: `pm4py.PetriNet`, `pm4py.Marking`.
 
 Port sources: `pm4py/objects/petri_net/obj.py`, `pm4py/objects/petri_net/utils/petri_utils`.
 
-### model-objects-petri-net-obj-1
+### tree-model
 
-Crate: `ichnos-model`. Rows: `pm4py.Marking`, `pm4py.maximal_decomposition`, `pm4py.generate_marking`, `pm4py.reduce_petri_net_invisibles`, `pm4py.reduce_petri_net_implicit_places`, `pm4py.get_enabled_transitions`, `pm4py.behavioral_similarity`, `pm4py.convert_petri_net_to_networkx`.
+Crate: `ichnos-model`. Rows: `pm4py.parse_process_tree`, `pm4py.ProcessTree`.
 
-Port sources: `pm4py/analysis.py`, `pm4py/convert.py`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/obj.py`, `pm4py/objects/petri_net/semantics`, `pm4py/objects/petri_net/utils/decomposition`, `pm4py/objects/petri_net/utils/murata`, `pm4py/objects/petri_net/utils/reduction`, `pm4py/objects/process_tree/obj`.
+Port sources: `pm4py/objects/process_tree/obj`, `pm4py/objects/process_tree/obj.py`, `pm4py/objects/process_tree/utils/generic`, `pm4py/utils.py`.
 
-### model-objects-petri-net-obj-2
+### bpmn-model
 
-Crate: `ichnos-model`. Rows: `pm4py.convert_petri_net_type`.
+Crate: `ichnos-model`. Rows: `pm4py.BPMN`.
 
-Port sources: `pm4py/convert.py`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/petri_utils`.
+Port sources: `pm4py/objects/bpmn/obj.py`.
 
-### model-objects-process-tree-obj-1
+### powl-model
 
-Crate: `ichnos-model`. Rows: `pm4py.ProcessTree`.
+Crate: `ichnos-model`. Rows: `pm4py.parse_powl_model_string`.
 
-Port sources: `pm4py/objects/process_tree/obj.py`.
+Port sources: `pm4py/objects/powl/obj`, `pm4py/objects/powl/parser`, `pm4py/utils.py`.
 
-### model-objects-log-obj-1
-
-Crate: `ichnos-model`. Rows: `pm4py.construct_synchronous_product_net`, `pm4py.insert_artificial_start_end`, `pm4py.get_activity_labels`.
-
-Port sources: `pm4py/analysis.py`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/artificial`, `pm4py/objects/log/util/dataframe_utils`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/align_utils`, `pm4py/objects/petri_net/utils/petri_utils`, `pm4py/objects/petri_net/utils/synchronous_product`.
-
-### model-algo-evaluation-earth-mover-distance-algorithm-1
-
-Crate: `ichnos-model`. Rows: `pm4py.compute_emd`.
-
-Port sources: `pm4py/algo/evaluation/earth_mover_distance/algorithm`, `pm4py/analysis.py`.
-
-### model-algo-analysis-marking-equation-algorithm-1
-
-Crate: `ichnos-model`. Rows: `pm4py.solve_marking_equation`.
-
-Port sources: `pm4py/algo/analysis/marking_equation/algorithm`, `pm4py/analysis.py`, `pm4py/objects/petri_net/obj`.
-
-### model-algo-analysis-extended-marking-equation-algorithm-1
-
-Crate: `ichnos-model`. Rows: `pm4py.solve_extended_marking_equation`.
-
-Port sources: `pm4py/algo/analysis/extended_marking_equation/algorithm`, `pm4py/analysis.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
-
-### model-algo-analysis-woflan-algorithm-1
-
-Crate: `ichnos-model`. Rows: `pm4py.analysis.check_is_sound`, `pm4py.check_soundness`.
-
-Port sources: `pm4py/algo/analysis/woflan/algorithm`, `pm4py/analysis.py`, `pm4py/objects/petri_net/obj`.
-
-### model-algo-clustering-profiles-algorithm-1
-
-Crate: `ichnos-model`. Rows: `pm4py.cluster_log`.
-
-Port sources: `pm4py/algo/clustering/profiles/algorithm`, `pm4py/analysis.py`, `pm4py/objects/log/obj`.
-
-### model-objects-conversion-log-converter-1
-
-Crate: `ichnos-model`. Rows: `pm4py.insert_case_service_waiting_time`, `pm4py.insert_case_arrival_finish_rate`, `pm4py.convert_to_event_log`, `pm4py.convert_to_event_stream`, `pm4py.convert_to_dataframe`, `pm4py.convert_log_to_ocel`, `pm4py.convert_log_to_networkx`.
-
-Port sources: `pm4py/analysis.py`, `pm4py/convert.py`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/log_ocel`.
-
-### model-algo-analysis-workflow-net-algorithm-1
-
-Crate: `ichnos-model`. Rows: `pm4py.check_is_workflow_net`.
-
-Port sources: `pm4py/algo/analysis/workflow_net/algorithm`, `pm4py/analysis.py`, `pm4py/objects/petri_net/obj`.
-
-### model-algo-evaluation-simplicity-variants-arc-degree-1
-
-Crate: `ichnos-model`. Rows: `pm4py.simplicity_petri_net`.
-
-Port sources: `pm4py/algo/evaluation/simplicity/variants/arc_degree`, `pm4py/algo/evaluation/simplicity/variants/extended_cardoso`, `pm4py/algo/evaluation/simplicity/variants/extended_cyclomatic`, `pm4py/analysis.py`, `pm4py/objects/petri_net/obj`.
-
-### model-objects-process-tree-utils-struct-similarity-1
-
-Crate: `ichnos-model`. Rows: `pm4py.structural_similarity`.
-
-Port sources: `pm4py/analysis.py`, `pm4py/objects/process_tree/utils/struct_similarity`.
-
-### model-objects-petri-net-utils-embeddings-similarity-1
-
-Crate: `ichnos-model`. Rows: `pm4py.embeddings_similarity`.
-
-Port sources: `pm4py/analysis.py`, `pm4py/objects/petri_net/utils/embeddings_similarity`.
-
-### model-analysis-1
-
-Crate: `ichnos-model`. Rows: `pm4py.label_sets_similarity`.
-
-Port sources: `pm4py/analysis.py`.
-
-### model-objects-conversion-ocel-converter-1
-
-Crate: `ichnos-model`. Rows: `pm4py.convert_ocel_to_networkx`.
-
-Port sources: `pm4py/convert.py`, `pm4py/objects/conversion/ocel/converter`, `pm4py/objects/ocel/obj`.
-
-### model-algo-transformation-log-to-interval-tree-variants-open-paths-1
-
-Crate: `ichnos-model`. Rows: `pm4py.convert_log_to_time_intervals`.
-
-Port sources: `pm4py/algo/transformation/log_to_interval_tree/variants/open_paths`, `pm4py/convert.py`, `pm4py/objects/log/obj`.
-
-### ocel-objects-ocel-constants-1
+### ocel-model
 
 Crate: `ichnos-ocel`. Rows: `pm4py.OCEL`.
 
 Port sources: `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj.py`.
 
-### ocel-objects-ocel-obj-1
+### log-io
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_get_object_types`, `pm4py.ocel_get_attribute_names`, `pm4py.ocel_flattening`, `pm4py.ocel_object_type_activities`, `pm4py.ocel_objects_ot_count`, `pm4py.ocel_temporal_summary`, `pm4py.ocel_objects_summary`, `pm4py.ocel_objects_interactions_summary`.
+Crate: `ichnos-io`. Rows: `pm4py.read_xes`, `pm4py.write_xes`.
 
-Port sources: `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/attributes_names`, `pm4py/objects/ocel/util/flattening`, `pm4py/ocel.py`, `pm4py/statistics/ocel/objects_ot_count`, `pm4py/statistics/ocel/ot_activities`.
+Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/exporter/xes/exporter`, `pm4py/objects/log/importer/xes/importer`, `pm4py/objects/log/obj`, `pm4py/read.py`, `pm4py/write.py`.
 
-### ocel-objects-ocel-obj-2
+### model-io
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_e2o_lifecycle_enrichment`, `pm4py.sample_ocel_objects`, `pm4py.ocel_drop_duplicates`, `pm4py.ocel_merge_duplicates`, `pm4py.ocel_sort_by_additional_column`, `pm4py.ocel_add_index_based_timedelta`.
+Crate: `ichnos-io`. Rows: `pm4py.read_pnml`, `pm4py.read_ptml`, `pm4py.read_dfg`, `pm4py.read_bpmn`, `pm4py.write_pnml`, `pm4py.write_ptml`, `pm4py.write_dfg`, `pm4py.write_bpmn`.
 
-Port sources: `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/e2o_qualification`, `pm4py/objects/ocel/util/filtering_utils`, `pm4py/objects/ocel/util/sampling`, `pm4py/ocel.py`.
+Port sources: `pm4py/objects/bpmn/exporter/exporter`, `pm4py/objects/bpmn/importer/importer`, `pm4py/objects/bpmn/layout/layouter`, `pm4py/objects/bpmn/obj`, `pm4py/objects/dfg/exporter/exporter`, `pm4py/objects/dfg/importer/importer`, `pm4py/objects/petri_net/exporter/exporter`, `pm4py/objects/petri_net/importer/importer`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/exporter/exporter`, `pm4py/objects/process_tree/importer/importer`, `pm4py/objects/process_tree/obj`, `pm4py/read.py`, `pm4py/write.py`.
 
-### ocel-algo-discovery-ocel-ocdfg-algorithm-1
+### ocel-io
 
-Crate: `ichnos-ocel`. Rows: `pm4py.discover_ocdfg`.
+Crate: `ichnos-io`. Rows: `pm4py.read_ocel`, `pm4py.read_ocel_csv`, `pm4py.read_ocel_json`, `pm4py.read_ocel_xml`, `pm4py.read_ocel_sqlite`, `pm4py.read_ocel2`, `pm4py.read_ocel2_bundle`, `pm4py.read_ocel2_csv`, `pm4py.read_ocel2_json`, `pm4py.read_ocel2_sqlite`, `pm4py.read_ocel2_xml`, `pm4py.write_ocel`, `pm4py.write_ocel_csv`, `pm4py.write_ocel_json`, `pm4py.write_ocel_xml`, `pm4py.write_ocel_sqlite`, `pm4py.write_ocel2`, `pm4py.write_ocel2_bundle`, `pm4py.write_ocel2_csv`, `pm4py.write_ocel2_json`, `pm4py.write_ocel2_sqlite`, `pm4py.write_ocel2_xml`, `pm4py.connectors.extract_ocel_github`, `pm4py.connectors.extract_ocel_camunda_workflow`, `pm4py.connectors.extract_ocel_sap_o2c`, `pm4py.connectors.extract_ocel_sap_accounting`.
 
-Port sources: `pm4py/algo/discovery/ocel/ocdfg/algorithm`, `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/connectors.py`, `pm4py/objects/ocel/exporter/bundled/exporter`, `pm4py/objects/ocel/exporter/csv/exporter`, `pm4py/objects/ocel/exporter/jsonocel/exporter`, `pm4py/objects/ocel/exporter/sqlite/exporter`, `pm4py/objects/ocel/exporter/xmlocel/exporter`, `pm4py/objects/ocel/importer/bundled/importer`, `pm4py/objects/ocel/importer/csv/importer`, `pm4py/objects/ocel/importer/jsonocel/importer`, `pm4py/objects/ocel/importer/sqlite/importer`, `pm4py/objects/ocel/importer/xmlocel/importer`, `pm4py/objects/ocel/obj`, `pm4py/read.py`, `pm4py/write.py`.
 
-### ocel-algo-discovery-ocel-ocpn-algorithm-1
+### log-serialization
 
-Crate: `ichnos-ocel`. Rows: `pm4py.discover_oc_petri_net`.
+Crate: `ichnos-core`. Rows: `pm4py.serialize`, `pm4py.deserialize`.
 
-Port sources: `pm4py/algo/discovery/ocel/ocpn/algorithm`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocpn/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/objects/bpmn/exporter/exporter`, `pm4py/objects/bpmn/importer/importer`, `pm4py/objects/bpmn/obj`, `pm4py/objects/dfg/exporter/exporter`, `pm4py/objects/dfg/importer/importer`, `pm4py/objects/log/exporter/xes/exporter`, `pm4py/objects/log/importer/xes/importer`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/exporter/exporter`, `pm4py/objects/petri_net/importer/importer`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/exporter/exporter`, `pm4py/objects/process_tree/importer/importer`, `pm4py/objects/process_tree/obj`, `pm4py/utils.py`.
 
-### ocel-algo-transformation-ocel-graphs-object-cobirth-graph-1
+### model-conversion
 
-Crate: `ichnos-ocel`. Rows: `pm4py.discover_objects_graph`.
+Crate: `ichnos-model`. Rows: `pm4py.convert_to_bpmn`, `pm4py.convert_to_petri_net`, `pm4py.convert_to_process_tree`, `pm4py.convert_to_powl`, `pm4py.convert_to_reachability_graph`, `pm4py.convert_petri_net_to_networkx`, `pm4py.convert_petri_net_type`.
 
-Port sources: `pm4py/algo/transformation/ocel/graphs/object_cobirth_graph`, `pm4py/algo/transformation/ocel/graphs/object_codeath_graph`, `pm4py/algo/transformation/ocel/graphs/object_descendants_graph`, `pm4py/algo/transformation/ocel/graphs/object_inheritance_graph`, `pm4py/algo/transformation/ocel/graphs/object_interaction_graph`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/convert.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/conversion/bpmn/variants/to_petri_net`, `pm4py/objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `pm4py/objects/conversion/genetic_matrix/variants/to_petri_net`, `pm4py/objects/conversion/heuristics_net/variants/to_petri_net`, `pm4py/objects/conversion/powl/converter`, `pm4py/objects/conversion/powl/variants/to_process_tree`, `pm4py/objects/conversion/process_tree/variants/to_bpmn`, `pm4py/objects/conversion/process_tree/variants/to_petri_net`, `pm4py/objects/conversion/process_tree/variants/to_powl`, `pm4py/objects/conversion/wf_net/variants/to_bpmn`, `pm4py/objects/conversion/wf_net/variants/to_powl`, `pm4py/objects/conversion/wf_net/variants/to_process_tree`, `pm4py/objects/genetic_matrix/obj`, `pm4py/objects/heuristics_net/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/petri_utils`, `pm4py/objects/petri_net/utils/reachability_graph`, `pm4py/objects/powl/obj`, `pm4py/objects/process_tree/obj`, `pm4py/objects/transition_system/obj`.
 
-### ocel-algo-transformation-ocel-graphs-ocel20-computation-1
+### petri-analysis
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_o2o_enrichment`.
+Crate: `ichnos-model`. Rows: `pm4py.construct_synchronous_product_net`, `pm4py.solve_marking_equation`, `pm4py.solve_extended_marking_equation`, `pm4py.analysis.check_is_sound`, `pm4py.check_soundness`, `pm4py.check_is_workflow_net`, `pm4py.maximal_decomposition`, `pm4py.simplicity_petri_net`, `pm4py.generate_marking`, `pm4py.reduce_petri_net_invisibles`, `pm4py.reduce_petri_net_implicit_places`, `pm4py.get_enabled_transitions`.
 
-Port sources: `pm4py/algo/transformation/ocel/graphs/ocel20_computation`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/algo/analysis/extended_marking_equation/algorithm`, `pm4py/algo/analysis/marking_equation/algorithm`, `pm4py/algo/analysis/woflan/algorithm`, `pm4py/algo/analysis/workflow_net/algorithm`, `pm4py/algo/evaluation/simplicity/variants/arc_degree`, `pm4py/algo/evaluation/simplicity/variants/extended_cardoso`, `pm4py/algo/evaluation/simplicity/variants/extended_cyclomatic`, `pm4py/analysis.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/semantics`, `pm4py/objects/petri_net/utils/align_utils`, `pm4py/objects/petri_net/utils/decomposition`, `pm4py/objects/petri_net/utils/murata`, `pm4py/objects/petri_net/utils/petri_utils`, `pm4py/objects/petri_net/utils/reduction`, `pm4py/objects/petri_net/utils/synchronous_product`.
 
-### ocel-algo-transformation-ocel-split-ocel-algorithm-1
+### ocel-conversion
 
-Crate: `ichnos-ocel`. Rows: `pm4py.sample_ocel_connected_components`.
+Crate: `ichnos-ocel`. Rows: `pm4py.convert_log_to_ocel`, `pm4py.convert_ocel_to_networkx`.
 
-Port sources: `pm4py/algo/transformation/ocel/split_ocel/algorithm`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/convert.py`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/conversion/ocel/converter`, `pm4py/objects/log/obj`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/log_ocel`.
 
-### ocel-algo-transformation-ocel-description-algorithm-1
+### log-attributes
 
-Crate: `ichnos-ocel`. Rows: `pm4py.cluster_equivalent_ocel`.
+Crate: `ichnos-stats`. Rows: `pm4py.get_start_activities`, `pm4py.get_end_activities`, `pm4py.get_event_attributes`, `pm4py.get_trace_attributes`, `pm4py.get_event_attribute_values`, `pm4py.get_trace_attribute_values`, `pm4py.statistics.attributes.common.get.get_sorted_attributes_list`, `pm4py.statistics.attributes.common.get.get_attributes_threshold`, `pm4py.statistics.attributes.common.get.get_kde_numeric_attribute`, `pm4py.statistics.attributes.common.get.get_kde_numeric_attribute_json`, `pm4py.statistics.attributes.common.get.get_kde_date_attribute`, `pm4py.statistics.attributes.common.get.get_kde_date_attribute_json`, `pm4py.statistics.attributes.log.get.get_events_distribution`, `pm4py.statistics.attributes.log.get.get_all_trace_attributes_from_log`, `pm4py.statistics.attributes.log.get.get_all_event_attributes_from_log`, `pm4py.statistics.attributes.log.get.get_attribute_values`, `pm4py.statistics.attributes.log.get.get_trace_attribute_values`, `pm4py.statistics.attributes.log.get.get_kde_numeric_attribute`, `pm4py.statistics.attributes.log.get.get_kde_numeric_attribute_json`, `pm4py.statistics.attributes.log.get.get_kde_date_attribute`, `pm4py.statistics.attributes.log.get.get_kde_date_attribute_json`, `pm4py.statistics.attributes.log.select.select_attributes_from_log_for_tree`, `pm4py.statistics.attributes.log.select.check_trace_attributes_presence`, `pm4py.statistics.attributes.log.select.check_event_attributes_presence`, `pm4py.statistics.attributes.log.select.verify_if_event_attribute_is_in_each_trace`, `pm4py.statistics.attributes.log.select.verify_if_trace_attribute_is_in_each_trace`, `pm4py.statistics.end_activities.common.get.get_sorted_end_activities_list`, `pm4py.statistics.end_activities.common.get.get_end_activities_threshold`, `pm4py.statistics.end_activities.log.get.get_end_activities`, `pm4py.statistics.start_activities.common.get.get_sorted_start_activities_list`, `pm4py.statistics.start_activities.common.get.get_start_activities_threshold`, `pm4py.statistics.start_activities.log.get.get_start_activities`.
 
-Port sources: `pm4py/algo/transformation/ocel/description/algorithm`, `pm4py/algo/transformation/ocel/split_ocel/algorithm`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/rename_objs_ot_tim_lex`, `pm4py/ocel.py`.
+Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/sampling`, `pm4py/statistics/attributes/common/get`, `pm4py/statistics/attributes/common/get.py`, `pm4py/statistics/attributes/log/get`, `pm4py/statistics/attributes/log/get.py`, `pm4py/statistics/attributes/log/select.py`, `pm4py/statistics/end_activities/common/get.py`, `pm4py/statistics/end_activities/log/get`, `pm4py/statistics/end_activities/log/get.py`, `pm4py/statistics/start_activities/common/get.py`, `pm4py/statistics/start_activities/log/get`, `pm4py/statistics/start_activities/log/get.py`, `pm4py/stats.py`.
 
-### ocel-algo-transformation-ocel-olap-drill-down-algorithm-1
+### log-variants
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_drill_down`.
+Crate: `ichnos-stats`. Rows: `pm4py.get_variants`, `pm4py.get_variants_as_tuples`, `pm4py.split_by_process_variant`, `pm4py.get_variants_paths_duration`, `pm4py.get_stochastic_language`, `pm4py.get_frequent_trace_segments`, `pm4py.statistics.chaotic_activities.algorithm.apply`, `pm4py.statistics.chaotic_activities.variants.niek_sidorova.apply`, `pm4py.statistics.chaotic_activities.variants.niek_sidorova.chaotic_metrics`, `pm4py.statistics.chaotic_activities.variants.niek_sidorova.total_entropy`, `pm4py.statistics.rework.cases.log.get.apply`, `pm4py.statistics.rework.log.get.apply`, `pm4py.statistics.variants.log.get.get_language`, `pm4py.statistics.variants.log.get.get_variants`, `pm4py.statistics.variants.log.get.get_variants_along_with_case_durations`, `pm4py.statistics.variants.log.get.get_variants_from_log_trace_idx`, `pm4py.statistics.variants.log.get.get_variants_sorted_by_count`, `pm4py.statistics.variants.log.get.convert_variants_trace_idx_to_trace_obj`, `pm4py.statistics.variants.pandas.get.get_variants_count`, `pm4py.statistics.variants.pandas.get.get_variants_set`, `pm4py.statistics.variants.polars.get.pandas_numpy_variants_apply_polars`, `pm4py.statistics.variants.polars.get.get_variants_count`, `pm4py.statistics.variants.polars.get.get_variants_set`.
 
-Port sources: `pm4py/algo/transformation/ocel/olap/drill_down/algorithm`, `pm4py/algo/transformation/ocel/olap/drill_down/variants/classic`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/pandas_numpy_variants`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`, `pm4py/statistics/chaotic_activities/algorithm.py`, `pm4py/statistics/chaotic_activities/variants/niek_sidorova.py`, `pm4py/statistics/rework/cases/log/get.py`, `pm4py/statistics/rework/log/get.py`, `pm4py/statistics/variants/log/get`, `pm4py/statistics/variants/log/get.py`, `pm4py/statistics/variants/pandas/get.py`, `pm4py/statistics/variants/polars/get.py`, `pm4py/stats.py`.
 
-### ocel-algo-transformation-ocel-olap-roll-up-algorithm-1
+### log-case-stats
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_roll_up`.
+Crate: `ichnos-stats`. Rows: `pm4py.get_minimum_self_distances`, `pm4py.get_minimum_self_distance_witnesses`, `pm4py.get_case_arrival_average`, `pm4py.get_rework_cases_per_activity`, `pm4py.get_case_overlap`, `pm4py.get_cycle_time`, `pm4py.get_service_time`, `pm4py.get_all_case_durations`, `pm4py.get_case_duration`, `pm4py.get_activity_position_summary`, `pm4py.statistics.traces.cycle_time.log.get.apply`, `pm4py.statistics.traces.cycle_time.util.compute.cycle_time`, `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration`, `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration_json`, `pm4py.statistics.traces.generic.log.case_arrival.get_case_arrival_avg`, `pm4py.statistics.traces.generic.log.case_arrival.get_case_dispersion_avg`, `pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics`, `pm4py.statistics.traces.generic.log.case_statistics.get_cases_description`, `pm4py.statistics.traces.generic.log.case_statistics.index_log_caseid`, `pm4py.statistics.traces.generic.log.case_statistics.get_events`, `pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations`, `pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration`, `pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration`, `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration`, `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_and_list`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_with_case_duration`, `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list`, `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df`.
 
-Port sources: `pm4py/algo/transformation/ocel/olap/roll_up/algorithm`, `pm4py/algo/transformation/ocel/olap/roll_up/variants/classic`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/algo/discovery/minimum_self_distance/algorithm`, `pm4py/algo/discovery/minimum_self_distance/utils`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/overlap/cases/log/get`, `pm4py/statistics/rework/log/get`, `pm4py/statistics/service_time/log/get`, `pm4py/statistics/traces/cycle_time/log/get`, `pm4py/statistics/traces/cycle_time/log/get.py`, `pm4py/statistics/traces/cycle_time/util/compute`, `pm4py/statistics/traces/cycle_time/util/compute.py`, `pm4py/statistics/traces/generic/common/case_duration`, `pm4py/statistics/traces/generic/common/case_duration.py`, `pm4py/statistics/traces/generic/log/case_arrival`, `pm4py/statistics/traces/generic/log/case_arrival.py`, `pm4py/statistics/traces/generic/log/case_statistics`, `pm4py/statistics/traces/generic/log/case_statistics.py`, `pm4py/statistics/traces/generic/pandas/case_statistics.py`, `pm4py/statistics/traces/generic/polars/case_statistics.py`, `pm4py/statistics/variants/log/get`, `pm4py/stats.py`.
 
-### ocel-algo-transformation-ocel-olap-unfold-algorithm-1
+### log-time-stats
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_unfold`.
+Crate: `ichnos-stats`. Rows: `pm4py.statistics.concurrent_activities.log.get.apply`, `pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe`, `pm4py.statistics.eventually_follows.log.get.apply`, `pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe`, `pm4py.statistics.eventually_follows.uvcl.get.apply`, `pm4py.statistics.overlap.cases.log.get.apply`, `pm4py.statistics.overlap.interval_events.log.get.apply`, `pm4py.statistics.overlap.utils.compute.apply`, `pm4py.statistics.passed_time.log.algorithm.apply`, `pm4py.statistics.passed_time.log.variants.post.apply`, `pm4py.statistics.passed_time.log.variants.pre.apply`, `pm4py.statistics.passed_time.log.variants.prepost.apply`, `pm4py.statistics.service_time.log.get.apply`.
 
-Port sources: `pm4py/algo/transformation/ocel/olap/unfold/algorithm`, `pm4py/algo/transformation/ocel/olap/unfold/variants/classic`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/algo/discovery/dfg/variants/native`, `pm4py/algo/discovery/dfg/variants/performance`, `pm4py/algo/discovery/inductive/dtypes/im_ds`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/sorting`, `pm4py/statistics/concurrent_activities/log/get.py`, `pm4py/statistics/concurrent_activities/polars/get.py`, `pm4py/statistics/eventually_follows/log/get.py`, `pm4py/statistics/eventually_follows/polars/get.py`, `pm4py/statistics/eventually_follows/uvcl/get.py`, `pm4py/statistics/overlap/cases/log/get.py`, `pm4py/statistics/overlap/interval_events/log/get.py`, `pm4py/statistics/overlap/utils/compute`, `pm4py/statistics/overlap/utils/compute.py`, `pm4py/statistics/passed_time/log/algorithm.py`, `pm4py/statistics/passed_time/log/variants/post.py`, `pm4py/statistics/passed_time/log/variants/pre.py`, `pm4py/statistics/passed_time/log/variants/prepost.py`, `pm4py/statistics/service_time/log/get.py`.
 
-### ocel-algo-transformation-ocel-olap-fold-algorithm-1
+### stats-process-cube
 
-Crate: `ichnos-ocel`. Rows: `pm4py.ocel_fold`.
+Crate: `ichnos-stats`. Rows: `pm4py.get_process_cube`, `pm4py.statistics.process_cube.pandas.algorithm.apply`, `pm4py.statistics.process_cube.pandas.variants.classic.apply`, `pm4py.statistics.process_cube.polars.algorithm.apply`, `pm4py.statistics.process_cube.polars.variants.classic.apply`.
 
-Port sources: `pm4py/algo/transformation/ocel/olap/fold/algorithm`, `pm4py/algo/transformation/ocel/olap/fold/variants/classic`, `pm4py/objects/ocel/obj`, `pm4py/ocel.py`.
+Port sources: `pm4py/statistics/process_cube/pandas/algorithm`, `pm4py/statistics/process_cube/pandas/algorithm.py`, `pm4py/statistics/process_cube/pandas/variants/classic.py`, `pm4py/statistics/process_cube/polars/algorithm`, `pm4py/statistics/process_cube/polars/algorithm.py`, `pm4py/statistics/process_cube/polars/variants/classic.py`, `pm4py/stats.py`.
 
-### io-algo-connectors-variants-github-repo-1
-
-Crate: `ichnos-io`. Rows: `pm4py.connectors.extract_log_github`.
-
-Port sources: `pm4py/algo/connectors/variants/github_repo`, `pm4py/connectors.py`.
-
-### io-algo-connectors-variants-camunda-workflow-1
-
-Crate: `ichnos-io`. Rows: `pm4py.connectors.extract_log_camunda_workflow`.
-
-Port sources: `pm4py/algo/connectors/variants/camunda_workflow`, `pm4py/connectors.py`.
-
-### io-algo-connectors-variants-sap-o2c-1
-
-Crate: `ichnos-io`. Rows: `pm4py.connectors.extract_log_sap_o2c`.
-
-Port sources: `pm4py/algo/connectors/variants/sap_o2c`, `pm4py/connectors.py`.
-
-### io-algo-connectors-variants-sap-accounting-1
-
-Crate: `ichnos-io`. Rows: `pm4py.connectors.extract_log_sap_accounting`.
-
-Port sources: `pm4py/algo/connectors/variants/sap_accounting`, `pm4py/connectors.py`.
-
-### io-objects-ocel-obj-1
-
-Crate: `ichnos-io`. Rows: `pm4py.connectors.extract_ocel_github`, `pm4py.connectors.extract_ocel_camunda_workflow`, `pm4py.connectors.extract_ocel_sap_o2c`, `pm4py.connectors.extract_ocel_sap_accounting`.
-
-Port sources: `pm4py/connectors.py`, `pm4py/objects/ocel/obj`.
-
-### io-objects-conversion-log-converter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_xes`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/importer/xes/importer`, `pm4py/objects/log/obj`, `pm4py/read.py`.
-
-### io-objects-petri-net-importer-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_pnml`.
-
-Port sources: `pm4py/objects/petri_net/importer/importer`, `pm4py/objects/petri_net/obj`, `pm4py/read.py`.
-
-### io-objects-process-tree-importer-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_ptml`.
-
-Port sources: `pm4py/objects/process_tree/importer/importer`, `pm4py/objects/process_tree/obj`, `pm4py/read.py`.
-
-### io-objects-dfg-importer-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_dfg`.
-
-Port sources: `pm4py/objects/dfg/importer/importer`, `pm4py/read.py`.
-
-### io-objects-bpmn-importer-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_bpmn`.
-
-Port sources: `pm4py/objects/bpmn/importer/importer`, `pm4py/objects/bpmn/obj`, `pm4py/read.py`.
-
-### io-objects-ocel-importer-csv-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_ocel`, `pm4py.read_ocel_csv`, `pm4py.read_ocel2_csv`.
-
-Port sources: `pm4py/objects/ocel/importer/csv/importer`, `pm4py/objects/ocel/importer/jsonocel/importer`, `pm4py/objects/ocel/importer/sqlite/importer`, `pm4py/objects/ocel/importer/xmlocel/importer`, `pm4py/objects/ocel/obj`, `pm4py/read.py`.
-
-### io-objects-ocel-importer-jsonocel-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_ocel_json`, `pm4py.read_ocel2_json`.
-
-Port sources: `pm4py/objects/ocel/importer/jsonocel/importer`, `pm4py/objects/ocel/obj`, `pm4py/read.py`.
-
-### io-objects-ocel-importer-xmlocel-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_ocel_xml`, `pm4py.read_ocel2_xml`.
-
-Port sources: `pm4py/objects/ocel/importer/xmlocel/importer`, `pm4py/objects/ocel/obj`, `pm4py/read.py`.
-
-### io-objects-ocel-importer-sqlite-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_ocel_sqlite`, `pm4py.read_ocel2_sqlite`.
-
-Port sources: `pm4py/objects/ocel/importer/sqlite/importer`, `pm4py/objects/ocel/obj`, `pm4py/read.py`.
-
-### io-objects-ocel-importer-bundled-importer-1
-
-Crate: `ichnos-io`. Rows: `pm4py.read_ocel2`, `pm4py.read_ocel2_bundle`.
-
-Port sources: `pm4py/objects/ocel/importer/bundled/importer`, `pm4py/objects/ocel/importer/csv/importer`, `pm4py/objects/ocel/importer/jsonocel/importer`, `pm4py/objects/ocel/importer/sqlite/importer`, `pm4py/objects/ocel/importer/xmlocel/importer`, `pm4py/objects/ocel/obj`, `pm4py/read.py`.
-
-### io-objects-log-exporter-xes-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_xes`.
-
-Port sources: `pm4py/objects/log/exporter/xes/exporter`, `pm4py/objects/log/obj`, `pm4py/write.py`.
-
-### io-objects-petri-net-exporter-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_pnml`.
-
-Port sources: `pm4py/objects/petri_net/exporter/exporter`, `pm4py/objects/petri_net/obj`, `pm4py/write.py`.
-
-### io-objects-process-tree-exporter-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_ptml`.
-
-Port sources: `pm4py/objects/process_tree/exporter/exporter`, `pm4py/objects/process_tree/obj`, `pm4py/write.py`.
-
-### io-objects-dfg-exporter-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_dfg`.
-
-Port sources: `pm4py/objects/dfg/exporter/exporter`, `pm4py/write.py`.
-
-### io-objects-bpmn-exporter-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_bpmn`.
-
-Port sources: `pm4py/objects/bpmn/exporter/exporter`, `pm4py/objects/bpmn/layout/layouter`, `pm4py/objects/bpmn/obj`, `pm4py/write.py`.
-
-### io-objects-ocel-exporter-csv-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_ocel`, `pm4py.write_ocel_csv`, `pm4py.write_ocel2_csv`.
-
-Port sources: `pm4py/objects/ocel/exporter/csv/exporter`, `pm4py/objects/ocel/exporter/jsonocel/exporter`, `pm4py/objects/ocel/exporter/sqlite/exporter`, `pm4py/objects/ocel/exporter/xmlocel/exporter`, `pm4py/objects/ocel/obj`, `pm4py/write.py`.
-
-### io-objects-ocel-exporter-jsonocel-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_ocel_json`, `pm4py.write_ocel2_json`.
-
-Port sources: `pm4py/objects/ocel/exporter/jsonocel/exporter`, `pm4py/objects/ocel/obj`, `pm4py/write.py`.
-
-### io-objects-ocel-exporter-xmlocel-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_ocel_xml`, `pm4py.write_ocel2_xml`.
-
-Port sources: `pm4py/objects/ocel/exporter/xmlocel/exporter`, `pm4py/objects/ocel/obj`, `pm4py/write.py`.
-
-### io-objects-ocel-exporter-sqlite-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_ocel_sqlite`, `pm4py.write_ocel2_sqlite`.
-
-Port sources: `pm4py/objects/ocel/exporter/sqlite/exporter`, `pm4py/objects/ocel/obj`, `pm4py/write.py`.
-
-### io-objects-ocel-exporter-bundled-exporter-1
-
-Crate: `ichnos-io`. Rows: `pm4py.write_ocel2`, `pm4py.write_ocel2_bundle`.
-
-Port sources: `pm4py/objects/ocel/exporter/bundled/exporter`, `pm4py/objects/ocel/exporter/csv/exporter`, `pm4py/objects/ocel/exporter/jsonocel/exporter`, `pm4py/objects/ocel/exporter/sqlite/exporter`, `pm4py/objects/ocel/exporter/xmlocel/exporter`, `pm4py/objects/ocel/obj`, `pm4py/write.py`.
-
-### stats-attributes-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.attributes.common.get.get_sorted_attributes_list`, `pm4py.statistics.attributes.common.get.get_attributes_threshold`, `pm4py.statistics.attributes.common.get.get_kde_numeric_attribute`, `pm4py.statistics.attributes.common.get.get_kde_numeric_attribute_json`, `pm4py.statistics.attributes.common.get.get_kde_date_attribute`, `pm4py.statistics.attributes.common.get.get_kde_date_attribute_json`, `pm4py.statistics.attributes.log.get.get_events_distribution`, `pm4py.statistics.attributes.log.get.get_all_trace_attributes_from_log`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/attributes/common/get.py`, `pm4py/statistics/attributes/log/get.py`.
-
-### stats-attributes-2
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.attributes.log.get.get_all_event_attributes_from_log`, `pm4py.statistics.attributes.log.get.get_attribute_values`, `pm4py.statistics.attributes.log.get.get_trace_attribute_values`, `pm4py.statistics.attributes.log.get.get_kde_numeric_attribute`, `pm4py.statistics.attributes.log.get.get_kde_numeric_attribute_json`, `pm4py.statistics.attributes.log.get.get_kde_date_attribute`, `pm4py.statistics.attributes.log.get.get_kde_date_attribute_json`, `pm4py.statistics.attributes.log.select.select_attributes_from_log_for_tree`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/sampling`, `pm4py/statistics/attributes/common/get`, `pm4py/statistics/attributes/log/get`, `pm4py/statistics/attributes/log/get.py`, `pm4py/statistics/attributes/log/select.py`.
-
-### stats-attributes-3
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.attributes.log.select.check_trace_attributes_presence`, `pm4py.statistics.attributes.log.select.check_event_attributes_presence`, `pm4py.statistics.attributes.log.select.verify_if_event_attribute_is_in_each_trace`, `pm4py.statistics.attributes.log.select.verify_if_trace_attribute_is_in_each_trace`, `pm4py.statistics.attributes.pandas.get.get_events_distribution`, `pm4py.statistics.attributes.pandas.get.get_attribute_values`, `pm4py.statistics.attributes.pandas.get.get_kde_numeric_attribute`, `pm4py.statistics.attributes.pandas.get.get_kde_numeric_attribute_json`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/attributes/common/get`, `pm4py/statistics/attributes/log/select.py`, `pm4py/statistics/attributes/pandas/get.py`.
-
-### stats-attributes-4
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.attributes.pandas.get.get_kde_date_attribute`, `pm4py.statistics.attributes.pandas.get.get_kde_date_attribute_json`, `pm4py.statistics.attributes.polars.get.get_events_distribution`, `pm4py.statistics.attributes.polars.get.get_attribute_values`, `pm4py.statistics.attributes.polars.get.get_kde_numeric_attribute`, `pm4py.statistics.attributes.polars.get.get_kde_numeric_attribute_json`, `pm4py.statistics.attributes.polars.get.get_kde_date_attribute`, `pm4py.statistics.attributes.polars.get.get_kde_date_attribute_json`.
-
-Port sources: `pm4py/statistics/attributes/common/get`, `pm4py/statistics/attributes/pandas/get.py`, `pm4py/statistics/attributes/polars/get.py`.
-
-### stats-chaotic-activities-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.chaotic_activities.algorithm.apply`, `pm4py.statistics.chaotic_activities.variants.niek_sidorova.apply`, `pm4py.statistics.chaotic_activities.variants.niek_sidorova.chaotic_metrics`, `pm4py.statistics.chaotic_activities.variants.niek_sidorova.total_entropy`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/statistics/chaotic_activities/algorithm.py`, `pm4py/statistics/chaotic_activities/variants/niek_sidorova.py`.
-
-### stats-concurrent-activities-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.concurrent_activities.log.get.apply`, `pm4py.statistics.concurrent_activities.pandas.get.apply`, `pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe`, `pm4py.statistics.concurrent_activities.polars.get.apply`.
-
-Port sources: `pm4py/algo/discovery/dfg/adapters/pandas/df_statistics`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/sorting`, `pm4py/statistics/concurrent_activities/log/get.py`, `pm4py/statistics/concurrent_activities/pandas/get.py`, `pm4py/statistics/concurrent_activities/polars/get.py`.
-
-### stats-end-activities-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.end_activities.common.get.get_sorted_end_activities_list`, `pm4py.statistics.end_activities.common.get.get_end_activities_threshold`, `pm4py.statistics.end_activities.log.get.get_end_activities`, `pm4py.statistics.end_activities.pandas.get.get_end_activities`, `pm4py.statistics.end_activities.polars.get.get_end_activities`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/end_activities/common/get.py`, `pm4py/statistics/end_activities/log/get.py`, `pm4py/statistics/end_activities/pandas/get.py`, `pm4py/statistics/end_activities/polars/get.py`.
-
-### stats-eventually-follows-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.eventually_follows.log.get.apply`, `pm4py.statistics.eventually_follows.pandas.get.apply`, `pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe`, `pm4py.statistics.eventually_follows.polars.get.apply`, `pm4py.statistics.eventually_follows.uvcl.get.apply`.
-
-Port sources: `pm4py/algo/discovery/dfg/adapters/pandas/df_statistics`, `pm4py/algo/discovery/inductive/dtypes/im_ds`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/sorting`, `pm4py/statistics/eventually_follows/log/get.py`, `pm4py/statistics/eventually_follows/pandas/get.py`, `pm4py/statistics/eventually_follows/polars/get.py`, `pm4py/statistics/eventually_follows/uvcl/get.py`.
-
-### stats-ocel-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.ocel.act_ot_dependent.aggregate_events`, `pm4py.statistics.ocel.act_ot_dependent.aggregate_unique_objects`, `pm4py.statistics.ocel.act_ot_dependent.aggregate_total_objects`, `pm4py.statistics.ocel.act_ot_dependent.find_associations_from_ocel`, `pm4py.statistics.ocel.act_utils.aggregate_events`, `pm4py.statistics.ocel.act_utils.aggregate_unique_objects`, `pm4py.statistics.ocel.act_utils.aggregate_total_objects`, `pm4py.statistics.ocel.act_utils.find_associations_from_relations_df`.
-
-Port sources: `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj`, `pm4py/statistics/ocel/act_ot_dependent.py`, `pm4py/statistics/ocel/act_utils`, `pm4py/statistics/ocel/act_utils.py`.
-
-### stats-ocel-2
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.ocel.act_utils.find_associations_from_ocel`, `pm4py.statistics.ocel.edge_metrics.performance_calculation_ocel_aggregation`, `pm4py.statistics.ocel.edge_metrics.aggregate_ev_couples`, `pm4py.statistics.ocel.edge_metrics.aggregate_unique_objects`, `pm4py.statistics.ocel.edge_metrics.aggregate_total_objects`, `pm4py.statistics.ocel.edge_metrics.find_associations_per_edge`, `pm4py.statistics.ocel.objects_ot_count.get_objects_ot_count`, `pm4py.statistics.ocel.ot_activities.get_object_type_activities`.
-
-Port sources: `pm4py/objects/ocel/obj`, `pm4py/statistics/ocel/act_utils.py`, `pm4py/statistics/ocel/edge_metrics.py`, `pm4py/statistics/ocel/objects_ot_count.py`, `pm4py/statistics/ocel/ot_activities.py`.
-
-### stats-overlap-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.overlap.cases.log.get.apply`, `pm4py.statistics.overlap.cases.pandas.get.apply`, `pm4py.statistics.overlap.cases.polars.get.apply`, `pm4py.statistics.overlap.interval_events.log.get.apply`, `pm4py.statistics.overlap.interval_events.pandas.get.apply`, `pm4py.statistics.overlap.interval_events.polars.get.apply`, `pm4py.statistics.overlap.utils.compute.apply`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/overlap/cases/log/get.py`, `pm4py/statistics/overlap/cases/pandas/get.py`, `pm4py/statistics/overlap/cases/polars/get.py`, `pm4py/statistics/overlap/interval_events/log/get.py`, `pm4py/statistics/overlap/interval_events/pandas/get.py`, `pm4py/statistics/overlap/interval_events/polars/get.py`, `pm4py/statistics/overlap/utils/compute`, `pm4py/statistics/overlap/utils/compute.py`.
-
-### stats-passed-time-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.passed_time.log.algorithm.apply`, `pm4py.statistics.passed_time.log.variants.post.apply`, `pm4py.statistics.passed_time.log.variants.pre.apply`, `pm4py.statistics.passed_time.log.variants.prepost.apply`, `pm4py.statistics.passed_time.pandas.algorithm.apply`, `pm4py.statistics.passed_time.pandas.variants.post.apply`, `pm4py.statistics.passed_time.pandas.variants.pre.apply`, `pm4py.statistics.passed_time.pandas.variants.prepost.apply`.
-
-Port sources: `pm4py/algo/discovery/dfg/adapters/pandas/df_statistics`, `pm4py/algo/discovery/dfg/variants/native`, `pm4py/algo/discovery/dfg/variants/performance`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/passed_time/log/algorithm.py`, `pm4py/statistics/passed_time/log/variants/post.py`, `pm4py/statistics/passed_time/log/variants/pre.py`, `pm4py/statistics/passed_time/log/variants/prepost.py`, `pm4py/statistics/passed_time/pandas/algorithm.py`, `pm4py/statistics/passed_time/pandas/variants/post.py`, `pm4py/statistics/passed_time/pandas/variants/pre.py`, `pm4py/statistics/passed_time/pandas/variants/prepost.py`.
-
-### stats-passed-time-2
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.passed_time.polars.algorithm.apply`, `pm4py.statistics.passed_time.polars.variants.post.apply`, `pm4py.statistics.passed_time.polars.variants.pre.apply`, `pm4py.statistics.passed_time.polars.variants.prepost.apply`.
-
-Port sources: `pm4py/statistics/passed_time/polars/algorithm.py`, `pm4py/statistics/passed_time/polars/variants/post`, `pm4py/statistics/passed_time/polars/variants/post.py`, `pm4py/statistics/passed_time/polars/variants/pre`, `pm4py/statistics/passed_time/polars/variants/pre.py`, `pm4py/statistics/passed_time/polars/variants/prepost.py`.
-
-### stats-process-cube-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.process_cube.pandas.algorithm.apply`, `pm4py.statistics.process_cube.pandas.variants.classic.apply`, `pm4py.statistics.process_cube.polars.algorithm.apply`, `pm4py.statistics.process_cube.polars.variants.classic.apply`.
-
-Port sources: `pm4py/statistics/process_cube/pandas/algorithm.py`, `pm4py/statistics/process_cube/pandas/variants/classic.py`, `pm4py/statistics/process_cube/polars/algorithm.py`, `pm4py/statistics/process_cube/polars/variants/classic.py`.
-
-### stats-rework-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.rework.cases.log.get.apply`, `pm4py.statistics.rework.cases.pandas.get.apply`, `pm4py.statistics.rework.cases.polars.get.apply`, `pm4py.statistics.rework.log.get.apply`, `pm4py.statistics.rework.pandas.get.apply`, `pm4py.statistics.rework.polars.get.apply`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/rework/cases/log/get.py`, `pm4py/statistics/rework/cases/pandas/get.py`, `pm4py/statistics/rework/cases/polars/get.py`, `pm4py/statistics/rework/log/get.py`, `pm4py/statistics/rework/pandas/get.py`, `pm4py/statistics/rework/polars/get.py`.
-
-### stats-service-time-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.service_time.log.get.apply`, `pm4py.statistics.service_time.pandas.get.apply`, `pm4py.statistics.service_time.polars.get.apply`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/service_time/log/get.py`, `pm4py/statistics/service_time/pandas/get.py`, `pm4py/statistics/service_time/polars/get.py`.
-
-### stats-start-activities-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.start_activities.common.get.get_sorted_start_activities_list`, `pm4py.statistics.start_activities.common.get.get_start_activities_threshold`, `pm4py.statistics.start_activities.log.get.get_start_activities`, `pm4py.statistics.start_activities.pandas.get.get_start_activities`, `pm4py.statistics.start_activities.polars.get.get_start_activities`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/start_activities/common/get.py`, `pm4py/statistics/start_activities/log/get.py`, `pm4py/statistics/start_activities/pandas/get.py`, `pm4py/statistics/start_activities/polars/get.py`.
-
-### stats-traces-1
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.traces.cycle_time.log.get.apply`, `pm4py.statistics.traces.cycle_time.pandas.get.apply`, `pm4py.statistics.traces.cycle_time.polars.get.apply`, `pm4py.statistics.traces.cycle_time.util.compute.cycle_time`, `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration`, `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration_json`, `pm4py.statistics.traces.generic.log.case_arrival.get_case_arrival_avg`, `pm4py.statistics.traces.generic.log.case_arrival.get_case_dispersion_avg`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/traces/cycle_time/log/get.py`, `pm4py/statistics/traces/cycle_time/pandas/get.py`, `pm4py/statistics/traces/cycle_time/polars/get.py`, `pm4py/statistics/traces/cycle_time/util/compute`, `pm4py/statistics/traces/cycle_time/util/compute.py`, `pm4py/statistics/traces/generic/common/case_duration.py`, `pm4py/statistics/traces/generic/log/case_arrival.py`.
-
-### stats-traces-2
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics`, `pm4py.statistics.traces.generic.log.case_statistics.get_cases_description`, `pm4py.statistics.traces.generic.log.case_statistics.index_log_caseid`, `pm4py.statistics.traces.generic.log.case_statistics.get_events`, `pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations`, `pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration`, `pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration`, `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/statistics/traces/generic/common/case_duration`, `pm4py/statistics/traces/generic/log/case_statistics.py`, `pm4py/statistics/variants/log/get`.
-
-### stats-traces-3
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json`, `pm4py.statistics.traces.generic.pandas.case_arrival.get_case_arrival_avg`, `pm4py.statistics.traces.generic.pandas.case_arrival.get_case_dispersion_avg`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variant_statistics`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_and_list`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_cases_description`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_with_case_duration`.
-
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/statistics/traces/generic/common/case_duration`, `pm4py/statistics/traces/generic/log/case_statistics.py`, `pm4py/statistics/traces/generic/pandas/case_arrival.py`, `pm4py/statistics/traces/generic/pandas/case_statistics.py`.
-
-### stats-traces-4
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.traces.generic.pandas.case_statistics.get_events`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration_json`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_all_case_durations`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_first_quartile_case_duration`, `pm4py.statistics.traces.generic.pandas.case_statistics.get_median_case_duration`, `pm4py.statistics.traces.generic.polars.case_arrival.get_case_arrival_avg`, `pm4py.statistics.traces.generic.polars.case_arrival.get_case_dispersion_avg`.
-
-Port sources: `pm4py/statistics/traces/generic/common/case_duration`, `pm4py/statistics/traces/generic/pandas/case_statistics.py`, `pm4py/statistics/traces/generic/polars/case_arrival.py`.
-
-### stats-traces-5
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.traces.generic.polars.case_statistics.get_variant_statistics`, `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list`, `pm4py.statistics.traces.generic.polars.case_statistics.get_cases_description`, `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df`, `pm4py.statistics.traces.generic.polars.case_statistics.get_all_case_durations`, `pm4py.statistics.traces.generic.polars.case_statistics.get_median_case_duration`, `pm4py.statistics.traces.generic.polars.case_statistics.get_first_quartile_case_duration`, `pm4py.statistics.traces.generic.polars.case_statistics.get_kde_caseduration`.
-
-Port sources: `pm4py/statistics/traces/generic/common/case_duration`, `pm4py/statistics/traces/generic/polars/case_statistics.py`.
-
-### stats-traces-6
-
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.traces.generic.polars.case_statistics.get_kde_caseduration_json`.
-
-Port sources: `pm4py/statistics/traces/generic/common/case_duration`, `pm4py/statistics/traces/generic/polars/case_statistics.py`.
-
-### stats-util-1
+### stats-util
 
 Crate: `ichnos-stats`. Rows: `pm4py.statistics.util.times_bipartite_matching.exact_match_minimum_average`.
 
 Port sources: `pm4py/statistics/util/times_bipartite_matching.py`.
 
-### stats-variants-1
+### log-filters
 
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.variants.log.get.get_language`, `pm4py.statistics.variants.log.get.get_variants`, `pm4py.statistics.variants.log.get.get_variants_along_with_case_durations`, `pm4py.statistics.variants.log.get.get_variants_from_log_trace_idx`, `pm4py.statistics.variants.log.get.get_variants_sorted_by_count`, `pm4py.statistics.variants.log.get.convert_variants_trace_idx_to_trace_obj`, `pm4py.statistics.variants.pandas.get.get_variants_count`, `pm4py.statistics.variants.pandas.get.get_variants_set`.
+Crate: `ichnos-stats`. Rows: `pm4py.filter_log_relative_occurrence_event_attribute`, `pm4py.filter_start_activities`, `pm4py.filter_end_activities`, `pm4py.filter_event_attribute_values`, `pm4py.filter_trace_attribute_values`, `pm4py.filter_variants`, `pm4py.filter_directly_follows_relation`, `pm4py.filter_eventually_follows_relation`, `pm4py.filter_time_range`, `pm4py.filter_between`, `pm4py.filter_case_size`, `pm4py.filter_case_performance`, `pm4py.filter_activities_rework`, `pm4py.filter_paths_performance`, `pm4py.filter_variants_top_k`, `pm4py.filter_variants_by_coverage_percentage`, `pm4py.filter_prefixes`, `pm4py.filter_suffixes`, `pm4py.filter_four_eyes_principle`, `pm4py.filter_activity_done_different_resources`, `pm4py.filter_trace_segments`, `pm4py.filter_dfg_activities_percentage`, `pm4py.filter_dfg_paths_percentage`, `pm4py.hof.filter_log`, `pm4py.hof.filter_trace`.
 
-Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/pandas_numpy_variants`, `pm4py/statistics/variants/log/get.py`, `pm4py/statistics/variants/pandas/get.py`.
+Port sources: `pm4py/algo/filtering/dfg/dfg_filtering`, `pm4py/algo/filtering/log/attributes/attributes_filter`, `pm4py/algo/filtering/log/between/between_filter`, `pm4py/algo/filtering/log/cases/case_filter`, `pm4py/algo/filtering/log/end_activities/end_activities_filter`, `pm4py/algo/filtering/log/ltl/ltl_checker`, `pm4py/algo/filtering/log/paths/paths_filter`, `pm4py/algo/filtering/log/prefixes/prefix_filter`, `pm4py/algo/filtering/log/rework/rework_filter`, `pm4py/algo/filtering/log/start_activities/start_activities_filter`, `pm4py/algo/filtering/log/suffixes/suffix_filter`, `pm4py/algo/filtering/log/timestamp/timestamp_filter`, `pm4py/algo/filtering/log/traces/trace_filter`, `pm4py/algo/filtering/log/variants/variants_filter`, `pm4py/algo/filtering/pandas`, `pm4py/algo/filtering/polars`, `pm4py/filtering.py`, `pm4py/hof.py`, `pm4py/objects/log/obj`.
 
-### stats-variants-2
+### ocel-transforms
 
-Crate: `ichnos-stats`. Rows: `pm4py.statistics.variants.polars.get.pandas_numpy_variants_apply_polars`, `pm4py.statistics.variants.polars.get.get_variants_count`, `pm4py.statistics.variants.polars.get.get_variants_set`.
+Crate: `ichnos-ocel`. Rows: `pm4py.ocel_get_object_types`, `pm4py.ocel_get_attribute_names`, `pm4py.ocel_flattening`, `pm4py.ocel_object_type_activities`, `pm4py.ocel_objects_ot_count`, `pm4py.ocel_temporal_summary`, `pm4py.ocel_objects_summary`, `pm4py.ocel_objects_interactions_summary`, `pm4py.ocel_o2o_enrichment`, `pm4py.ocel_e2o_lifecycle_enrichment`, `pm4py.sample_ocel_objects`, `pm4py.sample_ocel_connected_components`, `pm4py.ocel_drop_duplicates`, `pm4py.ocel_merge_duplicates`, `pm4py.ocel_sort_by_additional_column`, `pm4py.ocel_add_index_based_timedelta`, `pm4py.cluster_equivalent_ocel`, `pm4py.ocel_drill_down`, `pm4py.ocel_roll_up`, `pm4py.ocel_unfold`, `pm4py.ocel_fold`.
 
-Port sources: `pm4py/statistics/variants/polars/get.py`.
+Port sources: `pm4py/algo/transformation/ocel/description/algorithm`, `pm4py/algo/transformation/ocel/graphs/ocel20_computation`, `pm4py/algo/transformation/ocel/olap/drill_down/algorithm`, `pm4py/algo/transformation/ocel/olap/drill_down/variants/classic`, `pm4py/algo/transformation/ocel/olap/fold/algorithm`, `pm4py/algo/transformation/ocel/olap/fold/variants/classic`, `pm4py/algo/transformation/ocel/olap/roll_up/algorithm`, `pm4py/algo/transformation/ocel/olap/roll_up/variants/classic`, `pm4py/algo/transformation/ocel/olap/unfold/algorithm`, `pm4py/algo/transformation/ocel/olap/unfold/variants/classic`, `pm4py/algo/transformation/ocel/split_ocel/algorithm`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/attributes_names`, `pm4py/objects/ocel/util/e2o_qualification`, `pm4py/objects/ocel/util/filtering_utils`, `pm4py/objects/ocel/util/flattening`, `pm4py/objects/ocel/util/rename_objs_ot_tim_lex`, `pm4py/objects/ocel/util/sampling`, `pm4py/ocel.py`, `pm4py/statistics/ocel/objects_ot_count`, `pm4py/statistics/ocel/ot_activities`.
 
-### stats-stats-1
+### ocel-filters
 
-Crate: `ichnos-stats`. Rows: `pm4py.get_start_activities`, `pm4py.get_end_activities`, `pm4py.get_event_attributes`, `pm4py.get_trace_attributes`, `pm4py.get_event_attribute_values`, `pm4py.get_trace_attribute_values`, `pm4py.get_variants`, `pm4py.get_variants_as_tuples`.
+Crate: `ichnos-ocel`. Rows: `pm4py.filter_ocel_event_attribute`, `pm4py.filter_ocel_object_attribute`, `pm4py.filter_ocel_object_types_allowed_activities`, `pm4py.filter_ocel_object_per_type_count`, `pm4py.filter_ocel_start_events_per_object_type`, `pm4py.filter_ocel_end_events_per_object_type`, `pm4py.filter_ocel_events_timestamp`, `pm4py.filter_ocel_object_types`, `pm4py.filter_ocel_objects`, `pm4py.filter_ocel_events`, `pm4py.filter_ocel_activities_connected_object_type`, `pm4py.filter_ocel_cc_object`, `pm4py.filter_ocel_cc_length`, `pm4py.filter_ocel_cc_otype`, `pm4py.filter_ocel_cc_activity`.
 
-Port sources: `pm4py/objects/log/obj`, `pm4py/statistics/attributes/log/get`, `pm4py/statistics/end_activities/log/get`, `pm4py/statistics/start_activities/log/get`, `pm4py/statistics/variants/log/get`, `pm4py/stats.py`.
+Port sources: `pm4py/algo/filtering/ocel/activity_type_matching`, `pm4py/algo/filtering/ocel/event_attributes`, `pm4py/algo/filtering/ocel/object_attributes`, `pm4py/algo/filtering/ocel/objects_ot_count`, `pm4py/algo/filtering/ocel/ot_endpoints`, `pm4py/algo/transformation/ocel/graphs/object_interaction_graph`, `pm4py/filtering.py`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocel/util/filtering_utils`.
 
-### stats-stats-2
+### ocel-statistics
 
-Crate: `ichnos-stats`. Rows: `pm4py.split_by_process_variant`, `pm4py.get_variants_paths_duration`, `pm4py.get_stochastic_language`, `pm4py.get_minimum_self_distances`, `pm4py.get_minimum_self_distance_witnesses`, `pm4py.get_case_arrival_average`, `pm4py.get_rework_cases_per_activity`, `pm4py.get_case_overlap`.
+Crate: `ichnos-stats`. Rows: `pm4py.statistics.ocel.act_ot_dependent.aggregate_events`, `pm4py.statistics.ocel.act_ot_dependent.aggregate_unique_objects`, `pm4py.statistics.ocel.act_ot_dependent.aggregate_total_objects`, `pm4py.statistics.ocel.act_ot_dependent.find_associations_from_ocel`, `pm4py.statistics.ocel.act_utils.aggregate_events`, `pm4py.statistics.ocel.act_utils.aggregate_unique_objects`, `pm4py.statistics.ocel.act_utils.aggregate_total_objects`, `pm4py.statistics.ocel.act_utils.find_associations_from_relations_df`, `pm4py.statistics.ocel.act_utils.find_associations_from_ocel`, `pm4py.statistics.ocel.edge_metrics.performance_calculation_ocel_aggregation`, `pm4py.statistics.ocel.edge_metrics.aggregate_ev_couples`, `pm4py.statistics.ocel.edge_metrics.aggregate_unique_objects`, `pm4py.statistics.ocel.edge_metrics.aggregate_total_objects`, `pm4py.statistics.ocel.edge_metrics.find_associations_per_edge`, `pm4py.statistics.ocel.objects_ot_count.get_objects_ot_count`, `pm4py.statistics.ocel.ot_activities.get_object_type_activities`.
 
-Port sources: `pm4py/algo/discovery/minimum_self_distance/algorithm`, `pm4py/algo/discovery/minimum_self_distance/utils`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/pandas_numpy_variants`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`, `pm4py/statistics/overlap/cases/log/get`, `pm4py/statistics/rework/log/get`, `pm4py/statistics/traces/generic/log/case_arrival`, `pm4py/statistics/variants/log/get`, `pm4py/stats.py`.
+Port sources: `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj`, `pm4py/statistics/ocel/act_ot_dependent.py`, `pm4py/statistics/ocel/act_utils`, `pm4py/statistics/ocel/act_utils.py`, `pm4py/statistics/ocel/edge_metrics.py`, `pm4py/statistics/ocel/objects_ot_count.py`, `pm4py/statistics/ocel/ot_activities.py`.
 
-### stats-stats-3
+### dfg-mining
 
-Crate: `ichnos-stats`. Rows: `pm4py.get_cycle_time`, `pm4py.get_service_time`, `pm4py.get_all_case_durations`, `pm4py.get_case_duration`, `pm4py.get_frequent_trace_segments`, `pm4py.get_activity_position_summary`, `pm4py.get_process_cube`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_dfg`, `pm4py.discover_directly_follows_graph`, `pm4py.discover_dfg_typed`, `pm4py.discover_performance_dfg`, `pm4py.derive_minimum_self_distance`, `pm4py.discover_eventually_follows_graph`.
 
-Port sources: `pm4py/objects/log/obj`, `pm4py/statistics/process_cube/pandas/algorithm`, `pm4py/statistics/process_cube/polars/algorithm`, `pm4py/statistics/service_time/log/get`, `pm4py/statistics/traces/cycle_time/log/get`, `pm4py/statistics/traces/generic/log/case_statistics`, `pm4py/stats.py`.
+Port sources: `pm4py/algo/discovery/dfg/adapters/pandas/df_statistics`, `pm4py/algo/discovery/dfg/adapters/polars/df_statistics`, `pm4py/algo/discovery/dfg/algorithm`, `pm4py/algo/discovery/dfg/variants/performance`, `pm4py/algo/discovery/minimum_self_distance/algorithm`, `pm4py/discovery.py`, `pm4py/objects/dfg/obj`, `pm4py/objects/log/obj`, `pm4py/statistics/end_activities/log/get`, `pm4py/statistics/end_activities/pandas/get`, `pm4py/statistics/end_activities/polars/get`, `pm4py/statistics/eventually_follows/log/get`, `pm4py/statistics/eventually_follows/pandas/get`, `pm4py/statistics/eventually_follows/polars/get`, `pm4py/statistics/start_activities/log/get`, `pm4py/statistics/start_activities/pandas/get`, `pm4py/statistics/start_activities/polars/get`.
 
-### discovery-algo-discovery-dfg-adapters-pandas-df-statistics-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_dfg`, `pm4py.discover_directly_follows_graph`, `pm4py.discover_dfg_typed`, `pm4py.discover_performance_dfg`.
-
-Port sources: `pm4py/algo/discovery/dfg/adapters/pandas/df_statistics`, `pm4py/algo/discovery/dfg/adapters/polars/df_statistics`, `pm4py/algo/discovery/dfg/algorithm`, `pm4py/algo/discovery/dfg/variants/performance`, `pm4py/discovery.py`, `pm4py/objects/dfg/obj`, `pm4py/objects/log/obj`, `pm4py/statistics/end_activities/log/get`, `pm4py/statistics/end_activities/pandas/get`, `pm4py/statistics/end_activities/polars/get`, `pm4py/statistics/start_activities/log/get`, `pm4py/statistics/start_activities/pandas/get`, `pm4py/statistics/start_activities/polars/get`.
-
-### discovery-algo-discovery-alpha-algorithm-1
+### miner-alpha
 
 Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_alpha`, `pm4py.discover_petri_net_alpha_plus`.
 
 Port sources: `pm4py/algo/discovery/alpha/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
 
-### discovery-algo-discovery-ilp-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_ilp`.
-
-Port sources: `pm4py/algo/discovery/ilp/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
-
-### discovery-algo-discovery-genetic-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_genetic`.
-
-Port sources: `pm4py/algo/discovery/genetic/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
-
-### discovery-algo-discovery-inductive-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_inductive`, `pm4py.discover_process_tree_inductive`, `pm4py.discover_bpmn_inductive`.
-
-Port sources: `pm4py/algo/discovery/inductive/algorithm`, `pm4py/discovery.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/dfg/obj`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`.
-
-### discovery-algo-discovery-heuristics-variants-classic-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_heuristics`, `pm4py.discover_heuristics_net`.
-
-Port sources: `pm4py/algo/discovery/heuristics/variants/classic`, `pm4py/discovery.py`, `pm4py/objects/heuristics_net/obj`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
-
-### discovery-algo-discovery-minimum-self-distance-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.derive_minimum_self_distance`.
-
-Port sources: `pm4py/algo/discovery/minimum_self_distance/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
-
-### discovery-algo-discovery-footprints-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_footprints`.
-
-Port sources: `pm4py/algo/discovery/footprints/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/powl/obj`, `pm4py/objects/process_tree/obj`.
-
-### discovery-objects-log-obj-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_eventually_follows_graph`.
-
-Port sources: `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/statistics/eventually_follows/log/get`, `pm4py/statistics/eventually_follows/pandas/get`, `pm4py/statistics/eventually_follows/polars/get`.
-
-### discovery-algo-discovery-split-miner-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_bpmn_split_miner`.
-
-Port sources: `pm4py/algo/discovery/split_miner/algorithm`, `pm4py/algo/discovery/split_miner/variants/classic`, `pm4py/algo/discovery/split_miner/variants/sm2`, `pm4py/discovery.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/log/obj`.
-
-### discovery-algo-discovery-transition-system-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_transition_system`.
-
-Port sources: `pm4py/algo/discovery/transition_system/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/transition_system/obj`.
-
-### discovery-algo-transformation-log-to-trie-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_prefix_tree`.
-
-Port sources: `pm4py/algo/transformation/log_to_trie/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/trie/obj`.
-
-### discovery-algo-discovery-temporal-profile-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_temporal_profile`.
-
-Port sources: `pm4py/algo/discovery/temporal_profile/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
-
-### discovery-algo-discovery-log-skeleton-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_log_skeleton`.
-
-Port sources: `pm4py/algo/discovery/log_skeleton/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
-
-### discovery-algo-discovery-declare-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_declare`.
-
-Port sources: `pm4py/algo/discovery/declare/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
-
-### discovery-algo-discovery-powl-algorithm-1
-
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_powl`.
-
-Port sources: `pm4py/algo/discovery/powl/algorithm`, `pm4py/algo/discovery/powl/inductive/variants/dynamic_clustering_frequency/dynamic_clustering_frequency_partial_order_cut`, `pm4py/algo/discovery/powl/inductive/variants/powl_discovery_varaints`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/powl/obj`.
-
-### discovery-algo-discovery-batches-algorithm-1
+### miner-batches
 
 Crate: `ichnos-discovery`. Rows: `pm4py.discover_batches`.
 
 Port sources: `pm4py/algo/discovery/batches/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
 
-### discovery-algo-discovery-correlation-mining-algorithm-1
+### miner-correlation-mining
 
 Crate: `ichnos-discovery`. Rows: `pm4py.correlation_miner`.
 
 Port sources: `pm4py/algo/discovery/correlation_mining/algorithm`, `pm4py/discovery.py`.
 
-### discovery-algo-discovery-ocel-otg-algorithm-1
+### miner-declare
 
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_otg`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_declare`.
 
-Port sources: `pm4py/algo/discovery/ocel/otg/algorithm`, `pm4py/discovery.py`, `pm4py/objects/ocel/obj`.
+Port sources: `pm4py/algo/discovery/declare/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
 
-### discovery-algo-discovery-ocel-etot-algorithm-1
+### miner-genetic
 
-Crate: `ichnos-discovery`. Rows: `pm4py.discover_etot`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_genetic`.
 
-Port sources: `pm4py/algo/discovery/ocel/etot/algorithm`, `pm4py/discovery.py`, `pm4py/objects/ocel/obj`.
+Port sources: `pm4py/algo/discovery/genetic/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
 
-### conformance-algo-conformance-tokenreplay-algorithm-1
+### miner-heuristics
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_diagnostics_token_based_replay`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_heuristics`, `pm4py.discover_heuristics_net`.
 
-Port sources: `pm4py/algo/conformance/tokenreplay/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
+Port sources: `pm4py/algo/discovery/heuristics/variants/classic`, `pm4py/discovery.py`, `pm4py/objects/heuristics_net/obj`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
 
-### conformance-algo-conformance-alignments-dfg-algorithm-1
+### miner-ilp
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_diagnostics_alignments`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_ilp`.
 
-Port sources: `pm4py/algo/conformance/alignments/dfg/algorithm`, `pm4py/algo/conformance/alignments/edit_distance/algorithm`, `pm4py/algo/conformance/alignments/petri_net/algorithm`, `pm4py/algo/conformance/alignments/process_tree/variants/search_graph_pt`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`.
+Port sources: `pm4py/algo/discovery/ilp/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
 
-### conformance-algo-evaluation-replay-fitness-algorithm-1
+### miner-inductive
 
-Crate: `ichnos-conformance`. Rows: `pm4py.fitness_token_based_replay`, `pm4py.fitness_alignments`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_petri_net_inductive`, `pm4py.discover_process_tree_inductive`, `pm4py.discover_bpmn_inductive`, `pm4py.discover_powl`.
 
-Port sources: `pm4py/algo/evaluation/replay_fitness/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
+Port sources: `pm4py/algo/discovery/inductive/algorithm`, `pm4py/algo/discovery/powl/algorithm`, `pm4py/algo/discovery/powl/inductive/variants/dynamic_clustering_frequency/dynamic_clustering_frequency_partial_order_cut`, `pm4py/algo/discovery/powl/inductive/variants/powl_discovery_varaints`, `pm4py/discovery.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/dfg/obj`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/powl/obj`, `pm4py/objects/process_tree/obj`.
 
-### conformance-algo-evaluation-precision-algorithm-1
+### miner-log-skeleton
 
-Crate: `ichnos-conformance`. Rows: `pm4py.precision_token_based_replay`, `pm4py.precision_alignments`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_log_skeleton`.
 
-Port sources: `pm4py/algo/evaluation/precision/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
+Port sources: `pm4py/algo/discovery/log_skeleton/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
 
-### conformance-algo-evaluation-generalization-algorithm-1
+### miner-powl
 
-Crate: `ichnos-conformance`. Rows: `pm4py.generalization_tbr`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_footprints`.
 
-Port sources: `pm4py/algo/evaluation/generalization/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
+Port sources: `pm4py/algo/discovery/footprints/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/powl/obj`, `pm4py/objects/process_tree/obj`.
 
-### conformance-algo-conformance-tokenreplay-variants-token-replay-1
+### miner-prefix-tree
 
-Crate: `ichnos-conformance`. Rows: `pm4py.replay_prefix_tbr`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_prefix_tree`.
 
-Port sources: `pm4py/algo/conformance/tokenreplay/variants/token_replay`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`.
+Port sources: `pm4py/algo/transformation/log_to_trie/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/trie/obj`.
 
-### conformance-algo-conformance-footprints-algorithm-1
+### miner-split-miner
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_diagnostics_footprints`, `pm4py.fitness_footprints`.
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_bpmn_split_miner`.
+
+Port sources: `pm4py/algo/discovery/split_miner/algorithm`, `pm4py/algo/discovery/split_miner/variants/classic`, `pm4py/algo/discovery/split_miner/variants/sm2`, `pm4py/discovery.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/log/obj`.
+
+### miner-temporal-profile
+
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_temporal_profile`.
+
+Port sources: `pm4py/algo/discovery/temporal_profile/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`.
+
+### miner-transition-system
+
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_transition_system`.
+
+Port sources: `pm4py/algo/discovery/transition_system/algorithm`, `pm4py/discovery.py`, `pm4py/objects/log/obj`, `pm4py/objects/transition_system/obj`.
+
+### ocel-discovery
+
+Crate: `ichnos-ocel`. Rows: `pm4py.discover_ocdfg`, `pm4py.discover_oc_petri_net`, `pm4py.discover_objects_graph`.
+
+Port sources: `pm4py/algo/discovery/ocel/ocdfg/algorithm`, `pm4py/algo/discovery/ocel/ocpn/algorithm`, `pm4py/algo/transformation/ocel/graphs/object_cobirth_graph`, `pm4py/algo/transformation/ocel/graphs/object_codeath_graph`, `pm4py/algo/transformation/ocel/graphs/object_descendants_graph`, `pm4py/algo/transformation/ocel/graphs/object_inheritance_graph`, `pm4py/algo/transformation/ocel/graphs/object_interaction_graph`, `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj`, `pm4py/objects/ocpn/obj`, `pm4py/ocel.py`.
+
+### ocel-temporal-mining
+
+Crate: `ichnos-discovery`. Rows: `pm4py.discover_otg`, `pm4py.discover_etot`.
+
+Port sources: `pm4py/algo/discovery/ocel/etot/algorithm`, `pm4py/algo/discovery/ocel/otg/algorithm`, `pm4py/discovery.py`, `pm4py/objects/ocel/obj`.
+
+### token-replay
+
+Crate: `ichnos-conformance`. Rows: `pm4py.conformance_diagnostics_token_based_replay`, `pm4py.fitness_token_based_replay`, `pm4py.precision_token_based_replay`, `pm4py.generalization_tbr`, `pm4py.replay_prefix_tbr`, `pm4py.check_is_fitting`.
+
+Port sources: `pm4py/algo/conformance/tokenreplay/algorithm`, `pm4py/algo/conformance/tokenreplay/variants/token_replay`, `pm4py/algo/evaluation/generalization/algorithm`, `pm4py/algo/evaluation/precision/algorithm`, `pm4py/algo/evaluation/replay_fitness/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`.
+
+### alignments
+
+Crate: `ichnos-conformance`. Rows: `pm4py.conformance_diagnostics_alignments`, `pm4py.fitness_alignments`, `pm4py.precision_alignments`.
+
+Port sources: `pm4py/algo/conformance/alignments/dfg/algorithm`, `pm4py/algo/conformance/alignments/edit_distance/algorithm`, `pm4py/algo/conformance/alignments/petri_net/algorithm`, `pm4py/algo/conformance/alignments/process_tree/variants/search_graph_pt`, `pm4py/algo/evaluation/precision/algorithm`, `pm4py/algo/evaluation/replay_fitness/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`.
+
+### footprint-conformance
+
+Crate: `ichnos-conformance`. Rows: `pm4py.conformance_diagnostics_footprints`, `pm4py.fitness_footprints`, `pm4py.precision_footprints`.
 
 Port sources: `pm4py/algo/conformance/footprints/algorithm`, `pm4py/algo/conformance/footprints/util/evaluation`, `pm4py/conformance.py`.
 
-### conformance-algo-conformance-footprints-util-evaluation-1
-
-Crate: `ichnos-conformance`. Rows: `pm4py.precision_footprints`.
-
-Port sources: `pm4py/algo/conformance/footprints/util/evaluation`, `pm4py/conformance.py`.
-
-### conformance-objects-log-obj-1
-
-Crate: `ichnos-conformance`. Rows: `pm4py.check_is_fitting`.
-
-Port sources: `pm4py/conformance.py`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/process_tree/obj`.
-
-### conformance-algo-conformance-temporal-profile-algorithm-1
-
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_temporal_profile`.
-
-Port sources: `pm4py/algo/conformance/temporal_profile/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`.
-
-### conformance-algo-conformance-declare-algorithm-1
+### declare-conformance
 
 Crate: `ichnos-conformance`. Rows: `pm4py.conformance_declare`.
 
 Port sources: `pm4py/algo/conformance/declare/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`.
 
-### conformance-algo-conformance-log-skeleton-algorithm-1
+### log-skeleton-conformance
 
 Crate: `ichnos-conformance`. Rows: `pm4py.conformance_log_skeleton`.
 
 Port sources: `pm4py/algo/conformance/log_skeleton/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`.
 
-### conformance-algo-conformance-ocel-ocdfg-algorithm-1
+### temporal-profile-conformance
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_ocdfg`.
+Crate: `ichnos-conformance`. Rows: `pm4py.conformance_temporal_profile`.
 
-Port sources: `pm4py/algo/conformance/ocel/ocdfg/algorithm`, `pm4py/conformance.py`, `pm4py/objects/ocel/obj`.
+Port sources: `pm4py/algo/conformance/temporal_profile/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`.
 
-### conformance-algo-conformance-ocel-otg-algorithm-1
+### ocel-conformance
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_otg`.
+Crate: `ichnos-conformance`. Rows: `pm4py.conformance_ocdfg`, `pm4py.conformance_otg`, `pm4py.conformance_etot`.
 
-Port sources: `pm4py/algo/conformance/ocel/otg/algorithm`, `pm4py/conformance.py`, `pm4py/objects/ocel/obj`.
+Port sources: `pm4py/algo/conformance/ocel/etot/algorithm`, `pm4py/algo/conformance/ocel/ocdfg/algorithm`, `pm4py/algo/conformance/ocel/otg/algorithm`, `pm4py/conformance.py`, `pm4py/objects/ocel/obj`.
 
-### conformance-algo-conformance-ocel-etot-algorithm-1
-
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_etot`.
-
-Port sources: `pm4py/algo/conformance/ocel/etot/algorithm`, `pm4py/conformance.py`, `pm4py/objects/ocel/obj`.
-
-### org-org-1
+### organizational-mining
 
 Crate: `ichnos-org`. Rows: `pm4py.discover_handover_of_work_network`, `pm4py.discover_working_together_network`, `pm4py.discover_activity_based_resource_similarity`, `pm4py.discover_subcontracting_network`, `pm4py.discover_organizational_roles`, `pm4py.discover_network_analysis`.
 
 Port sources: `pm4py/algo/organizational_mining/network_analysis/algorithm`, `pm4py/algo/organizational_mining/network_analysis/variants/dataframe`, `pm4py/algo/organizational_mining/roles/algorithm`, `pm4py/algo/organizational_mining/sna/algorithm`, `pm4py/objects/log/obj`, `pm4py/objects/org/roles/obj`, `pm4py/objects/org/sna/obj`, `pm4py/org.py`.
 
-### sim-sim-1
+### performance
+
+Crate: `ichnos-perf`. Rows: `pm4py.convert_log_to_time_intervals`, `pm4py.insert_case_service_waiting_time`, `pm4py.insert_case_arrival_finish_rate`.
+
+Port sources: `pm4py/algo/transformation/log_to_interval_tree/variants/open_paths`, `pm4py/analysis.py`, `pm4py/convert.py`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`.
+
+### simulation
 
 Crate: `ichnos-sim`. Rows: `pm4py.play_out`, `pm4py.generate_process_tree`.
 
 Port sources: `pm4py/algo/simulation/playout/declare/algorithm`, `pm4py/algo/simulation/playout/dfg/algorithm`, `pm4py/algo/simulation/playout/petri_net/algorithm`, `pm4py/algo/simulation/playout/process_tree/algorithm`, `pm4py/algo/simulation/tree_generator/algorithm`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/inhibitor_reset/semantics`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/semantics`, `pm4py/objects/process_tree/obj`, `pm4py/sim.py`.
 
-### ml-ml-1
+### ml-features
 
-Crate: `ichnos-ml`. Rows: `pm4py.split_train_test`, `pm4py.get_prefixes_from_log`, `pm4py.extract_outcome_enriched_dataframe`, `pm4py.extract_features_dataframe`, `pm4py.extract_ocel_features`, `pm4py.extract_temporal_features_dataframe`, `pm4py.extract_target_vector`.
+Crate: `ichnos-ml`. Rows: `pm4py.split_train_test`, `pm4py.get_prefixes_from_log`, `pm4py.extract_outcome_enriched_dataframe`, `pm4py.extract_features_dataframe`, `pm4py.extract_ocel_features`, `pm4py.extract_temporal_features_dataframe`, `pm4py.extract_target_vector`, `pm4py.cluster_log`, `pm4py.embeddings_similarity`.
 
-Port sources: `pm4py/algo/transformation/log_to_target/algorithm`, `pm4py/algo/transformation/ocel/features/objects/algorithm`, `pm4py/algo/transformation/trace_encodings/algorithm`, `pm4py/algo/transformation/trace_encodings/variants/temporal`, `pm4py/algo/transformation/trace_encodings/variants/temporal_lazy`, `pm4py/ml.py`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/get_prefixes`, `pm4py/objects/log/util/split_train_test`, `pm4py/objects/ocel/obj`.
+Port sources: `pm4py/algo/clustering/profiles/algorithm`, `pm4py/algo/transformation/log_to_target/algorithm`, `pm4py/algo/transformation/ocel/features/objects/algorithm`, `pm4py/algo/transformation/trace_encodings/algorithm`, `pm4py/algo/transformation/trace_encodings/variants/temporal`, `pm4py/algo/transformation/trace_encodings/variants/temporal_lazy`, `pm4py/analysis.py`, `pm4py/ml.py`, `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/obj`, `pm4py/objects/log/util/get_prefixes`, `pm4py/objects/log/util/split_train_test`, `pm4py/objects/ocel/obj`, `pm4py/objects/petri_net/utils/embeddings_similarity`.
 
-### stream-algo-1
+### language-distance
 
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.alignments.algorithm.apply`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._TrieNode`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._State`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments.finish`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.apply`, `pm4py.streaming.algo.conformance.declare.algorithm.apply`, `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance`.
+Crate: `ichnos-stats`. Rows: `pm4py.compute_emd`.
 
-Port sources: `pm4py/algo/conformance/alignments/petri_net/utils/approx_utils`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/align_utils`, `pm4py/streaming/algo/conformance/alignments/algorithm.py`, `pm4py/streaming/algo/conformance/alignments/variants/approx_iws.py`, `pm4py/streaming/algo/conformance/declare/algorithm.py`, `pm4py/streaming/algo/conformance/declare/variants/automata.py`, `pm4py/streaming/algo/interface`.
+Port sources: `pm4py/algo/evaluation/earth_mover_distance/algorithm`, `pm4py/analysis.py`.
 
-### stream-algo-2
+### model-similarity
 
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.declare.variants.automata.apply`, `pm4py.streaming.algo.conformance.footprints.algorithm.apply`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.build_dictionaries`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.encode_str`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case`.
+Crate: `ichnos-model`. Rows: `pm4py.get_activity_labels`, `pm4py.replace_activity_labels`, `pm4py.behavioral_similarity`, `pm4py.structural_similarity`, `pm4py.label_sets_similarity`, `pm4py.map_labels_from_second_model`.
 
-Port sources: `pm4py/streaming/algo/conformance/declare/variants/automata.py`, `pm4py/streaming/algo/conformance/footprints/algorithm.py`, `pm4py/streaming/algo/conformance/footprints/variants/classic.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
+Port sources: `pm4py/analysis.py`, `pm4py/objects/bpmn/obj`, `pm4py/objects/bpmn/util/label_replacing`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/label_replacing`, `pm4py/objects/powl/obj`, `pm4py/objects/powl/utils/label_replacing`, `pm4py/objects/process_tree/obj`, `pm4py/objects/process_tree/utils/label_replacing`, `pm4py/objects/process_tree/utils/struct_similarity`.
 
-### stream-algo-3
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_or_activity_not_in_event`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_activity_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_footprints_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_start_activity_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_end_activity_not_possible`.
-
-Port sources: `pm4py/streaming/algo/conformance/footprints/variants/classic.py`.
-
-### stream-algo-4
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_not_in_dictionary`, `pm4py.streaming.algo.conformance.footprints.variants.classic.apply`, `pm4py.streaming.algo.conformance.tbr.algorithm.apply`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.build_dictionaries`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_str`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_marking`.
-
-Port sources: `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/semantics`, `pm4py/streaming/algo/conformance/footprints/variants/classic.py`, `pm4py/streaming/algo/conformance/tbr/algorithm.py`, `pm4py/streaming/algo/conformance/tbr/variants/classic.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
-
-### stream-algo-5
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.decode_marking`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.reach_fm_with_invisibles`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_or_activity_not_in_event`.
-
-Port sources: `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/semantics`, `pm4py/streaming/algo/conformance/tbr/variants/classic.py`.
-
-### stream-algo-6
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_activity_not_possible`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_missing_tokens`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_not_in_dictionary`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_final_marking_not_reached`, `pm4py.streaming.algo.conformance.tbr.variants.classic.apply`, `pm4py.streaming.algo.conformance.temporal.algorithm.apply`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.check_conformance`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/algo/conformance/tbr/variants/classic.py`, `pm4py/streaming/algo/conformance/temporal/algorithm.py`, `pm4py/streaming/algo/conformance/temporal/variants/classic.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
-
-### stream-algo-7
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_event_is_not_complete`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_deviation`, `pm4py.streaming.algo.conformance.temporal.variants.classic.apply`, `pm4py.streaming.algo.discovery.dfg.algorithm.apply`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.build_dictionaries`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.event_without_activity_or_case`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_str`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/algo/conformance/temporal/variants/classic.py`, `pm4py/streaming/algo/discovery/dfg/algorithm.py`, `pm4py/streaming/algo/discovery/dfg/variants/frequency.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
-
-### stream-algo-8
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_tuple`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.apply`, `pm4py.streaming.algo.interface.StreamingAlgorithm`, `pm4py.streaming.algo.interface.StreamingAlgorithm.get`, `pm4py.streaming.algo.interface.StreamingAlgorithm.receive`.
-
-Port sources: `pm4py/streaming/algo/discovery/dfg/variants/frequency.py`, `pm4py/streaming/algo/interface.py`.
-
-### stream-connectors-1
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.run`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.stop`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.get_process_name`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.record`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_click`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_key_release`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/connectors/windows/click_key_logger.py`.
-
-### stream-conversion-1
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable`, `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.read_trace`, `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.reset`, `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.to_trace_stream`, `pm4py.streaming.conversion.from_pandas.apply`, `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor`, `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register`, `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/objects/ocel/constants`, `pm4py/streaming/conversion/from_pandas.py`, `pm4py/streaming/conversion/ocel_flatts_distributor.py`, `pm4py/streaming/stream/live_event_stream`, `pm4py/streaming/stream/live_trace_stream`.
-
-### stream-importer-1
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.importer.csv.importer.apply`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.reset`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.to_event_stream`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.read_event`, `pm4py.streaming.importer.csv.variants.csv_event_stream.apply`, `pm4py.streaming.importer.xes.importer.apply`, `pm4py.streaming.importer.xes.variants.xes_event_stream.parse_attribute`.
-
-Port sources: `pm4py/streaming/importer/csv/importer.py`, `pm4py/streaming/importer/csv/variants/csv_event_stream.py`, `pm4py/streaming/importer/xes/importer.py`, `pm4py/streaming/importer/xes/variants/xes_event_stream.py`.
-
-### stream-importer-2
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.to_event_stream`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.reset`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.read_event`, `pm4py.streaming.importer.xes.variants.xes_event_stream.apply`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.parse_attribute`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.to_trace_stream`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/importer/xes/variants/xes_event_stream.py`, `pm4py/streaming/importer/xes/variants/xes_trace_stream.py`.
-
-### stream-importer-3
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.reset`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.read_trace`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.apply`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/importer/xes/variants/xes_trace_stream.py`.
-
-### stream-stream-1
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.stream.live_event_stream.StreamState`, `pm4py.streaming.stream.live_event_stream.LiveEventStream`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.append`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.start`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.stop`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.register`, `pm4py.streaming.stream.live_trace_stream.StreamState`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream`.
-
-Port sources: `pm4py/streaming/stream/live_event_stream.py`, `pm4py/streaming/stream/live_trace_stream.py`.
-
-### stream-stream-2
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.append`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.start`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.stop`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.register`.
-
-Port sources: `pm4py/streaming/stream/live_trace_stream.py`.
-
-### stream-util-1
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.util.dictio.generator.apply`, `pm4py.streaming.util.dictio.versions.classic.apply`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.keys`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.values`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.itervalues`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushdb`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushall`.
-
-Port sources: `pm4py/streaming/util/dictio/generator.py`, `pm4py/streaming/util/dictio/versions/classic.py`, `pm4py/streaming/util/dictio/versions/redis.py`.
-
-### stream-util-2
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.util.dictio.versions.redis.apply`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.keys`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.values`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.itervalues`, `pm4py.streaming.util.dictio.versions.thread_safe.apply`, `pm4py.streaming.util.event_stream_printer.EventStreamPrinter`, `pm4py.streaming.util.live_to_static_stream.LiveToStaticStream`.
-
-Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/versions/redis.py`, `pm4py/streaming/util/dictio/versions/thread_safe.py`, `pm4py/streaming/util/event_stream_printer.py`, `pm4py/streaming/util/live_to_static_stream.py`.
-
-### stream-util-3
-
-Crate: `ichnos-stream`. Rows: `pm4py.streaming.util.trace_stream_printer.TraceStreamPrinter`.
-
-Port sources: `pm4py/streaming/algo/interface`, `pm4py/streaming/util/trace_stream_printer.py`.
-
-### privacy-privacy-1
+### privacy
 
 Crate: `ichnos-privacy`. Rows: `pm4py.privacy.anonymize_differential_privacy`.
 
 Port sources: `pm4py/algo/anonymization/pripel/algorithm`, `pm4py/algo/anonymization/trace_variant_query/algorithm`, `pm4py/objects/log/obj`, `pm4py/privacy.py`.
 
-### viz-objects-log-obj-1
+### stream-io
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_petri_net`, `pm4py.save_vis_petri_net`, `pm4py.view_dotted_chart`, `pm4py.save_vis_dotted_chart`, `pm4py.view_alignments`, `pm4py.save_vis_alignments`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable`, `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.read_trace`, `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.reset`, `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.to_trace_stream`, `pm4py.streaming.conversion.from_pandas.apply`, `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor`, `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register`, `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append`, `pm4py.streaming.importer.csv.importer.apply`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.reset`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.to_event_stream`, `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.read_event`, `pm4py.streaming.importer.csv.variants.csv_event_stream.apply`, `pm4py.streaming.importer.xes.importer.apply`, `pm4py.streaming.importer.xes.variants.xes_event_stream.parse_attribute`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.to_event_stream`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.reset`, `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.read_event`, `pm4py.streaming.importer.xes.variants.xes_event_stream.apply`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.parse_attribute`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.to_trace_stream`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.reset`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.read_trace`, `pm4py.streaming.importer.xes.variants.xes_trace_stream.apply`.
 
-Port sources: `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/vis.py`, `pm4py/visualization/align_table/visualizer`, `pm4py/visualization/dotted_chart/visualizer`, `pm4py/visualization/petri_net/visualizer`.
+Port sources: `pm4py/objects/log/obj`, `pm4py/objects/ocel/constants`, `pm4py/streaming/conversion/from_pandas.py`, `pm4py/streaming/conversion/ocel_flatts_distributor.py`, `pm4py/streaming/importer/csv/importer.py`, `pm4py/streaming/importer/csv/variants/csv_event_stream.py`, `pm4py/streaming/importer/xes/importer.py`, `pm4py/streaming/importer/xes/variants/xes_event_stream.py`, `pm4py/streaming/importer/xes/variants/xes_trace_stream.py`, `pm4py/streaming/stream/live_event_stream`, `pm4py/streaming/stream/live_trace_stream`.
 
-### viz-visualization-dfg-variants-performance-1
+### stream-runtime
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_performance_dfg`, `pm4py.save_vis_performance_dfg`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.interface.StreamingAlgorithm`, `pm4py.streaming.algo.interface.StreamingAlgorithm.get`, `pm4py.streaming.algo.interface.StreamingAlgorithm.receive`, `pm4py.streaming.stream.live_event_stream.StreamState`, `pm4py.streaming.stream.live_event_stream.LiveEventStream`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.append`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.start`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.stop`, `pm4py.streaming.stream.live_event_stream.LiveEventStream.register`, `pm4py.streaming.stream.live_trace_stream.StreamState`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.append`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.start`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.stop`, `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.register`, `pm4py.streaming.util.dictio.generator.apply`, `pm4py.streaming.util.dictio.versions.classic.apply`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.keys`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.values`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.itervalues`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushdb`, `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushall`, `pm4py.streaming.util.dictio.versions.redis.apply`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.keys`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.values`, `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.itervalues`, `pm4py.streaming.util.dictio.versions.thread_safe.apply`, `pm4py.streaming.util.event_stream_printer.EventStreamPrinter`, `pm4py.streaming.util.live_to_static_stream.LiveToStaticStream`, `pm4py.streaming.util.trace_stream_printer.TraceStreamPrinter`.
 
-Port sources: `pm4py/vis.py`, `pm4py/visualization/dfg/variants/performance`, `pm4py/visualization/dfg/visualizer`.
+Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/algo/interface`, `pm4py/streaming/algo/interface.py`, `pm4py/streaming/stream/live_event_stream.py`, `pm4py/streaming/stream/live_trace_stream.py`, `pm4py/streaming/util/dictio/generator.py`, `pm4py/streaming/util/dictio/versions/classic.py`, `pm4py/streaming/util/dictio/versions/redis.py`, `pm4py/streaming/util/dictio/versions/thread_safe.py`, `pm4py/streaming/util/event_stream_printer.py`, `pm4py/streaming/util/live_to_static_stream.py`, `pm4py/streaming/util/trace_stream_printer.py`.
 
-### viz-visualization-dfg-visualizer-1
+### stream-dfg
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_dfg`, `pm4py.save_vis_dfg`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.discovery.dfg.algorithm.apply`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.build_dictionaries`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.event_without_activity_or_case`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_str`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_tuple`, `pm4py.streaming.algo.discovery.dfg.variants.frequency.apply`.
 
-Port sources: `pm4py/vis.py`, `pm4py/visualization/dfg/visualizer`.
+Port sources: `pm4py/streaming/algo/discovery/dfg/algorithm.py`, `pm4py/streaming/algo/discovery/dfg/variants/frequency.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
 
-### viz-objects-process-tree-obj-1
+### stream-alignments
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_process_tree`, `pm4py.save_vis_process_tree`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.alignments.algorithm.apply`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._TrieNode`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._State`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments.finish`, `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.apply`.
 
-Port sources: `pm4py/objects/process_tree/obj`, `pm4py/vis.py`, `pm4py/visualization/process_tree/visualizer`.
+Port sources: `pm4py/algo/conformance/alignments/petri_net/utils/approx_utils`, `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/utils/align_utils`, `pm4py/streaming/algo/conformance/alignments/algorithm.py`, `pm4py/streaming/algo/conformance/alignments/variants/approx_iws.py`, `pm4py/streaming/algo/interface`.
 
-### viz-objects-bpmn-obj-1
+### stream-declare
 
-Crate: `ichnos-viz`. Rows: `pm4py.save_vis_bpmn`, `pm4py.view_bpmn`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.declare.algorithm.apply`, `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance`, `pm4py.streaming.algo.conformance.declare.variants.automata.apply`.
 
-Port sources: `pm4py/objects/bpmn/obj`, `pm4py/vis.py`, `pm4py/visualization/bpmn/visualizer`.
+Port sources: `pm4py/streaming/algo/conformance/declare/algorithm.py`, `pm4py/streaming/algo/conformance/declare/variants/automata.py`, `pm4py/streaming/algo/interface`.
 
-### viz-objects-heuristics-net-obj-1
+### stream-footprints
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_heuristics_net`, `pm4py.save_vis_heuristics_net`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.footprints.algorithm.apply`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.build_dictionaries`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.encode_str`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_or_activity_not_in_event`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_activity_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_footprints_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_start_activity_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_end_activity_not_possible`, `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_not_in_dictionary`, `pm4py.streaming.algo.conformance.footprints.variants.classic.apply`.
 
-Port sources: `pm4py/objects/heuristics_net/obj`, `pm4py/vis.py`, `pm4py/visualization/heuristics_net/visualizer`.
+Port sources: `pm4py/streaming/algo/conformance/footprints/algorithm.py`, `pm4py/streaming/algo/conformance/footprints/variants/classic.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
 
-### viz-algo-discovery-performance-spectrum-algorithm-1
+### stream-tbr
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_performance_spectrum`, `pm4py.save_vis_performance_spectrum`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.tbr.algorithm.apply`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.build_dictionaries`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_str`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_marking`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.decode_marking`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.reach_fm_with_invisibles`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_or_activity_not_in_event`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_activity_not_possible`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_missing_tokens`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_not_in_dictionary`, `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_final_marking_not_reached`, `pm4py.streaming.algo.conformance.tbr.variants.classic.apply`.
 
-Port sources: `pm4py/algo/discovery/performance_spectrum/algorithm`, `pm4py/objects/log/obj`, `pm4py/vis.py`, `pm4py/visualization/performance_spectrum/variants/neato`, `pm4py/visualization/performance_spectrum/visualizer`.
+Port sources: `pm4py/objects/petri_net/obj`, `pm4py/objects/petri_net/semantics`, `pm4py/streaming/algo/conformance/tbr/algorithm.py`, `pm4py/streaming/algo/conformance/tbr/variants/classic.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
 
-### viz-visualization-ocel-ocdfg-visualizer-1
+### stream-temporal
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_ocdfg`, `pm4py.save_vis_ocdfg`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.algo.conformance.temporal.algorithm.apply`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.check_conformance`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_event_is_not_complete`, `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_deviation`, `pm4py.streaming.algo.conformance.temporal.variants.classic.apply`.
 
-Port sources: `pm4py/vis.py`, `pm4py/visualization/ocel/ocdfg/visualizer`.
+Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/algo/conformance/temporal/algorithm.py`, `pm4py/streaming/algo/conformance/temporal/variants/classic.py`, `pm4py/streaming/algo/interface`, `pm4py/streaming/util/dictio/generator`.
 
-### viz-objects-ocpn-obj-1
+### service-connectors
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_ocpn`, `pm4py.save_vis_ocpn`.
+Crate: `ichnos-io`. Rows: `pm4py.connectors.extract_log_github`, `pm4py.connectors.extract_log_camunda_workflow`, `pm4py.connectors.extract_log_sap_o2c`, `pm4py.connectors.extract_log_sap_accounting`.
 
-Port sources: `pm4py/objects/ocpn/obj`, `pm4py/vis.py`, `pm4py/visualization/ocel/ocpn/visualizer`.
+Port sources: `pm4py/algo/connectors/variants/camunda_workflow`, `pm4py/algo/connectors/variants/github_repo`, `pm4py/algo/connectors/variants/sap_accounting`, `pm4py/algo/connectors/variants/sap_o2c`, `pm4py/connectors.py`.
 
-### viz-visualization-network-analysis-visualizer-1
+### stream-connectors
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_network_analysis`, `pm4py.save_vis_network_analysis`.
+Crate: `ichnos-stream`. Rows: `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.run`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.stop`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.get_process_name`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.record`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_click`, `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_key_release`.
 
-Port sources: `pm4py/vis.py`, `pm4py/visualization/network_analysis/visualizer`.
+Port sources: `pm4py/objects/log/obj`, `pm4py/streaming/connectors/windows/click_key_logger.py`.
 
-### viz-objects-transition-system-obj-1
+### model-dot
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_transition_system`, `pm4py.save_vis_transition_system`.
+Crate: `ichnos-viz`. Rows: `pm4py.view_petri_net`, `pm4py.save_vis_petri_net`, `pm4py.view_dfg`, `pm4py.save_vis_dfg`, `pm4py.view_process_tree`, `pm4py.save_vis_process_tree`, `pm4py.save_vis_bpmn`, `pm4py.view_bpmn`, `pm4py.view_heuristics_net`, `pm4py.save_vis_heuristics_net`, `pm4py.view_transition_system`, `pm4py.save_vis_transition_system`, `pm4py.view_prefix_tree`, `pm4py.save_vis_prefix_tree`, `pm4py.view_alignments`, `pm4py.save_vis_alignments`, `pm4py.view_footprints`, `pm4py.save_vis_footprints`, `pm4py.view_powl`, `pm4py.save_vis_powl`.
 
-Port sources: `pm4py/objects/transition_system/obj`, `pm4py/vis.py`, `pm4py/visualization/transition_system/visualizer`.
+Port sources: `pm4py/objects/bpmn/obj`, `pm4py/objects/heuristics_net/obj`, `pm4py/objects/log/obj`, `pm4py/objects/petri_net/obj`, `pm4py/objects/powl/obj`, `pm4py/objects/process_tree/obj`, `pm4py/objects/transition_system/obj`, `pm4py/objects/trie/obj`, `pm4py/vis.py`, `pm4py/visualization/align_table/visualizer`, `pm4py/visualization/bpmn/visualizer`, `pm4py/visualization/dfg/visualizer`, `pm4py/visualization/footprints/visualizer`, `pm4py/visualization/heuristics_net/visualizer`, `pm4py/visualization/petri_net/visualizer`, `pm4py/visualization/powl/visualizer`, `pm4py/visualization/process_tree/visualizer`, `pm4py/visualization/transition_system/visualizer`, `pm4py/visualization/trie/visualizer`.
 
-### viz-objects-trie-obj-1
+### performance-dot
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_prefix_tree`, `pm4py.save_vis_prefix_tree`.
+Crate: `ichnos-viz`. Rows: `pm4py.view_performance_dfg`, `pm4py.save_vis_performance_dfg`, `pm4py.view_dotted_chart`, `pm4py.save_vis_dotted_chart`, `pm4py.view_performance_spectrum`, `pm4py.save_vis_performance_spectrum`, `pm4py.view_network_analysis`, `pm4py.save_vis_network_analysis`.
 
-Port sources: `pm4py/objects/trie/obj`, `pm4py/vis.py`, `pm4py/visualization/trie/visualizer`.
+Port sources: `pm4py/algo/discovery/performance_spectrum/algorithm`, `pm4py/objects/log/obj`, `pm4py/vis.py`, `pm4py/visualization/dfg/variants/performance`, `pm4py/visualization/dfg/visualizer`, `pm4py/visualization/dotted_chart/visualizer`, `pm4py/visualization/network_analysis/visualizer`, `pm4py/visualization/performance_spectrum/variants/neato`, `pm4py/visualization/performance_spectrum/visualizer`.
 
-### viz-visualization-footprints-visualizer-1
+### ocel-dot
 
-Crate: `ichnos-viz`. Rows: `pm4py.view_footprints`, `pm4py.save_vis_footprints`.
+Crate: `ichnos-viz`. Rows: `pm4py.view_ocdfg`, `pm4py.save_vis_ocdfg`, `pm4py.view_ocpn`, `pm4py.save_vis_ocpn`, `pm4py.view_object_graph`, `pm4py.save_vis_object_graph`.
 
-Port sources: `pm4py/vis.py`, `pm4py/visualization/footprints/visualizer`.
-
-### viz-objects-powl-obj-1
-
-Crate: `ichnos-viz`. Rows: `pm4py.view_powl`, `pm4py.save_vis_powl`.
-
-Port sources: `pm4py/objects/powl/obj`, `pm4py/vis.py`, `pm4py/visualization/powl/visualizer`.
-
-### viz-objects-ocel-obj-1
-
-Crate: `ichnos-viz`. Rows: `pm4py.view_object_graph`, `pm4py.save_vis_object_graph`.
-
-Port sources: `pm4py/objects/ocel/obj`, `pm4py/vis.py`, `pm4py/visualization/ocel/object_graph/visualizer`.
+Port sources: `pm4py/objects/ocel/obj`, `pm4py/objects/ocpn/obj`, `pm4py/vis.py`, `pm4py/visualization/ocel/object_graph/visualizer`, `pm4py/visualization/ocel/ocdfg/visualizer`, `pm4py/visualization/ocel/ocpn/visualizer`.
