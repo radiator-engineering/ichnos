@@ -2,6 +2,15 @@
 //! `algo/discovery/inductive/` and the inductive functions of
 //! `pm4py/discovery.py`.
 //!
+//! [`petri_net_inductive`] and [`bpmn_inductive`] convert the tree to a
+//! Petri net or a BPMN diagram, as pm4py's `discover_petri_net_inductive`
+//! and `discover_bpmn_inductive` do.
+//!
+//! [`powl_inductive`] runs the POWL miner (pm4py's `discover_powl`). It uses
+//! the same recursion, but builds partial orders where IM builds sequence
+//! and parallel nodes, and some variants add a partial-order cut; see
+//! [`PowlVariant`].
+//!
 //! The miner splits the input recursively. At each step it tries base cases,
 //! then four cuts on the directly-follows graph (exclusive choice, sequence,
 //! concurrency, loop), then fall-throughs. The result is a
@@ -51,22 +60,41 @@
 //!   that merges into one group counts as no cut (pm4py recurses without
 //!   end), and an IMd base case whose only activity is an end activity
 //!   gives that activity (pm4py raises `IndexError`).
+//!
+//! # POWL differences from pm4py
+//!
+//! - The brute-force variant adds up the counts of the variants that
+//!   project to the same trace of a group. pm4py keeps the count of the last
+//!   such variant. Only the variant filter reads counts, so the models
+//!   differ only when `filtering_weight_factor` is above 0.
+//! - When the dynamic-clustering variant would merge a cluster with itself
+//!   to make its order transitive, ichnos finds no cut and goes on to the
+//!   fall-throughs. pm4py recurses without end.
+//! - Options out of range are errors before mining starts. pm4py checks
+//!   them only when the miner first needs them.
+//! - As with [`Powl::simplify`], each order of the result holds the pairs
+//!   that transitivity implies; pm4py's can leave them out. Children of a
+//!   choice or a partial order can come in a different order, because
+//!   pm4py's cuts list groups in Python's set order.
 
 mod cuts;
 mod data;
 mod fall_through;
 mod miner;
+mod powl;
 #[cfg(test)]
 mod tests;
 
 use std::collections::BTreeMap;
 
 use ichnos_core::{EventKeys, EventLog, Variants};
-use ichnos_model::{AcceptingPetriNet, Label, ProcessTree};
+use ichnos_model::{AcceptingPetriNet, Bpmn, Label, Powl, ProcessTree};
 
 use crate::{Error, Result};
 use data::{Act, Dfg, Uvcl, add_trace};
 use miner::Miner;
+use powl::PowlMiner;
+pub use powl::{PowlOptions, PowlVariant};
 
 /// Which inductive miner to run.
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -184,16 +212,7 @@ pub fn process_tree_inductive_variants(
     {
         return Err(Error::NoiseThreshold(noise_threshold));
     }
-    let (labels, ids) = sorted_labels(variants.activities.iter().map(|(_, name)| name));
-    let mut log = Uvcl::new();
-    for v in variants.iter() {
-        let trace = v
-            .activities
-            .iter()
-            .map(|a| ids[variants.activities.name(*a)])
-            .collect();
-        add_trace(&mut log, trace, v.count() as u64);
-    }
+    let (labels, log) = to_uvcl(variants);
     let miner = options.miner(&labels);
     let tree = match options.variant {
         InductiveVariant::Im => miner.im(log),
@@ -252,6 +271,76 @@ pub fn petri_net_inductive_dfg(
     options: &InductiveOptions,
 ) -> AcceptingPetriNet {
     process_tree_inductive_dfg(dfg, options).to_petri_net()
+}
+
+/// Discovers a BPMN diagram with the inductive miner: the tree of
+/// [`process_tree_inductive`], converted with [`ProcessTree::to_bpmn`]
+/// (pm4py's `discover_bpmn_inductive`).
+///
+/// Fails if an event has no activity or the noise threshold is not in
+/// `[0, 1]`.
+pub fn bpmn_inductive(
+    log: &EventLog,
+    keys: &EventKeys,
+    options: &InductiveOptions,
+) -> Result<Bpmn> {
+    Ok(to_bpmn(&process_tree_inductive(log, keys, options)?))
+}
+
+/// Discovers a BPMN diagram from a directly-follows graph: the tree of
+/// [`process_tree_inductive_dfg`], converted with [`ProcessTree::to_bpmn`]
+/// (pm4py's `discover_bpmn_inductive` on a `DFG`).
+pub fn bpmn_inductive_dfg(dfg: &ichnos_model::Dfg, options: &InductiveOptions) -> Bpmn {
+    to_bpmn(&process_tree_inductive_dfg(dfg, options))
+}
+
+fn to_bpmn(tree: &ProcessTree) -> Bpmn {
+    tree.to_bpmn()
+        .expect("the inductive miner builds no interleaving nodes")
+}
+
+/// Discovers a POWL model with the POWL inductive miner (pm4py's
+/// `discover_powl`).
+///
+/// Reads activities from `keys.activity`. The result is simplified, as
+/// pm4py's is.
+///
+/// Fails if an event has no activity or an option is out of range (see
+/// [`PowlOptions`]).
+pub fn powl_inductive(log: &EventLog, keys: &EventKeys, options: &PowlOptions) -> Result<Powl> {
+    powl_inductive_variants(&log.variants(keys)?, options)
+}
+
+/// Discovers a POWL model from the variants of a log (pm4py's
+/// `powl.algorithm.apply` on a UVCL).
+///
+/// Fails if an option is out of range (see [`PowlOptions`]).
+pub fn powl_inductive_variants(variants: &Variants, options: &PowlOptions) -> Result<Powl> {
+    if let Some(message) = options.invalid() {
+        return Err(Error::InvalidOption(message));
+    }
+    let (labels, log) = to_uvcl(variants);
+    let miner = PowlMiner {
+        labels: &labels,
+        options: *options,
+    };
+    Ok(miner.mine(log).simplify())
+}
+
+/// The activity names in sorted order, and the variants as traces of their
+/// numbers.
+fn to_uvcl(variants: &Variants) -> (Vec<Label>, Uvcl) {
+    let (labels, ids) = sorted_labels(variants.activities.iter().map(|(_, name)| name));
+    let mut log = Uvcl::new();
+    for v in variants.iter() {
+        let trace = v
+            .activities
+            .iter()
+            .map(|a| ids[variants.activities.name(*a)])
+            .collect();
+        add_trace(&mut log, trace, v.count() as u64);
+    }
+    (labels, log)
 }
 
 /// Numbers the distinct `names` in sorted order. Returns the labels by

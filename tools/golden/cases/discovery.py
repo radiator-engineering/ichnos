@@ -39,6 +39,43 @@ So each ``imf`` case mines the log once per seed in ``IMF_SEEDS``, each in a
 fresh interpreter, and emits ``runs``: one entry per distinct tree, with the
 three fields above and the ``seeds`` that produced it, sorted by tree.
 
+Cases ``bpmn-inductive-<variant>-<log>`` run
+``pm4py.discover_bpmn_inductive`` with the same arguments and logs as the
+``inductive`` cases. Each emits ``tree`` (the tree
+``pm4py.discover_process_tree_inductive`` gives for the same arguments) and
+``bpmn``: :func:`cases.bpmn.canonical_bpmn` of the diagram, which a Rust
+test compares up to isomorphism. The ``imf`` cases emit ``runs`` over
+``IMF_SEEDS``, grouped by tree, as above.
+
+Cases ``powl-<variant>-<log>`` run ``pm4py.discover_powl`` with one entry of
+``POWL_VARIANTS`` on the ``inductive`` logs, or on a log given as ``traces``
+in ``params`` (lists of activities, so traces can be empty). The brute-force
+variant runs on the logs where pm4py finishes in seconds. Each case emits
+``powl``: :func:`cases.powl.describe_powl` of the model, made independent of
+child order by :func:`canonical_powl`.
+
+Footprints (lane ``miner-powl``) emit each footprints dict with sets as
+sorted lists, pairs as ``[a, b]`` and the DFG as sorted ``[[a, b], count]``:
+
+- ``footprints-log-<log>``: ``entire`` is ``pm4py.discover_footprints`` of
+  the DataFrame (``entire_dataframe``); ``traces`` is the same on
+  ``pm4py.convert_to_event_log`` of it (``trace_by_trace``): one entry per
+  distinct result with its ``count``, sorted by its JSON with sorted keys and
+  no spaces. ``first`` keeps the first ``FOOTPRINTS_TRACE_ROWS`` entries in
+  full; ``traces`` and ``groups`` count all traces and entries, and
+  ``rest_sha256`` is the SHA-256 of the remaining entries in that JSON
+  form; ``dfg`` is the same on the dict
+  of ``pm4py.discover_dfg``; ``powl`` is the same on
+  ``pm4py.discover_powl`` of the DataFrame.
+- ``footprints-log-synthetic-emptytraces``: ``entire`` (``entire_event_log``,
+  through ``footprints.algorithm.apply``) and ``traces`` of a log with empty
+  traces, given as ``traces``.
+- ``footprints-powl-<model>``: ``powl`` is the footprints of each POWL string
+  of ``cases.powl.MODELS``, and ``frequent`` of its
+  ``simplify_using_frequent_transitions()``. ``frequent`` is null when
+  pm4py makes a frequent transition without an activity from two silent
+  steps, which ichnos keeps as they are.
+
 Logs are CSV only until ichnos can read XES in the discovery tests.
 
 Temporal profile (lane ``miner-temporal-profile``), cases
@@ -53,6 +90,7 @@ timestamp as the start. Each profile is a list of
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -130,8 +168,8 @@ def _inductive_run(path: Path, variant: str) -> dict[str, Any]:
     }
 
 
-def _inductive_seeds(path: Path, variant: str) -> dict[str, Any]:
-    """Runs :func:`_inductive_run` once per seed in ``IMF_SEEDS`` and groups
+def _inductive_seeds(path: Path, variant: str, kind: str = "tree") -> dict[str, Any]:
+    """Runs ``SEEDED_RUNS[kind]`` once per seed in ``IMF_SEEDS`` and groups
     the runs by tree."""
     golden_tools = str(Path(__file__).resolve().parents[1])
     runs: dict[str, dict[str, Any]] = {}
@@ -139,7 +177,7 @@ def _inductive_seeds(path: Path, variant: str) -> dict[str, Any]:
         env = dict(os.environ, PYTHONHASHSEED=str(seed))
         env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
         out = subprocess.run(
-            [sys.executable, __file__, str(path), variant],
+            [sys.executable, __file__, str(path), variant, kind],
             env=env,
             check=True,
             capture_output=True,
@@ -1216,6 +1254,291 @@ case(
 )(genetic_operators_prefix_case)
 
 
+BPMN_INDUCTIVE_FUNCTIONS = [
+    "pm4py.discover_bpmn_inductive",
+    "pm4py.discover_process_tree_inductive",
+]
+
+
+def bpmn_inductive(fixtures: dict[str, Path], variant: str) -> dict[str, Any]:
+    """Runs ``pm4py.discover_bpmn_inductive`` with one inductive variant on
+    the log in ``fixtures``."""
+    if variant == "imf":
+        return _inductive_seeds(fixtures["log"], variant, "bpmn")
+    return _bpmn_inductive_run(fixtures["log"], variant)
+
+
+def _bpmn_inductive_run(path: Path, variant: str) -> dict[str, Any]:
+    from cases.bpmn import canonical_bpmn
+
+    kwargs, on_dfg = INDUCTIVE_VARIANTS[variant]
+    log = load_log(path)
+    source = DFG(*pm4py.discover_dfg(log)) if on_dfg else log
+    return {
+        "tree": str(pm4py.discover_process_tree_inductive(source, **kwargs)),
+        "bpmn": canonical_bpmn(pm4py.discover_bpmn_inductive(source, **kwargs)),
+    }
+
+
+def _register_bpmn_inductive() -> None:
+    for variant in INDUCTIVE_VARIANTS:
+        for log_id, rel in INDUCTIVE_LOGS.items():
+            case(
+                f"bpmn-inductive-{variant}-{log_id}",
+                fixture=rel,
+                functions=BPMN_INDUCTIVE_FUNCTIONS,
+                params={"variant": variant},
+            )(bpmn_inductive)
+
+
+_register_bpmn_inductive()
+
+
+# Variant name -> (POWLDiscoveryVariant member, discover_powl keyword arguments).
+POWL_VARIANTS = {
+    "tree": ("TREE", {}),
+    "maximal": ("MAXIMAL", {}),
+    "bruteforce": ("BRUTE_FORCE", {}),
+    "dynamic": ("DYNAMIC_CLUSTERING", {}),
+    "dynamic-ratio08": ("DYNAMIC_CLUSTERING", {"order_graph_filtering_threshold": 0.8}),
+    "maximal-filter03": ("MAXIMAL", {"filtering_weight_factor": 0.3}),
+    "tree-filter03": ("TREE", {"filtering_weight_factor": 0.3}),
+}
+
+# Logs the brute-force variant runs on; pm4py takes too long on the others.
+POWL_BRUTE_FORCE_LOGS = [
+    "running-example-csv",
+    "roadtraffic100traces-csv",
+    "interleavings-receipt_odd-csv",
+    "reviewing-csv",
+]
+
+# Small logs, by name, for the cases the six logs miss.
+POWL_SYNTHETIC_LOGS = {
+    "fallthroughs": [list(t.split(",")) for t in INDUCTIVE_SYNTHETIC_TRACES],
+    "emptytraces": [[], ["a", "b"], ["b", "a"], ["a"], []],
+    "allempty": [[], []],
+}
+
+
+def powl(
+    fixtures: dict[str, Path], variant: str, traces: list[list[str]] | None = None
+) -> dict[str, Any]:
+    """Runs ``pm4py.discover_powl`` with one variant on the log in
+    ``fixtures``, or on ``traces``."""
+    from pm4py.algo.discovery.powl.inductive.variants.powl_discovery_varaints import (
+        POWLDiscoveryVariant,
+    )
+    from pm4py.objects.log.obj import Event, EventLog, Trace
+
+    from cases.powl import describe_powl
+
+    if traces is None:
+        log = load_log(fixtures["log"])
+    else:
+        log = EventLog()
+        for i, activities in enumerate(traces):
+            trace = Trace(attributes={"concept:name": str(i)})
+            for a in activities:
+                trace.append(Event({"concept:name": a}))
+            log.append(trace)
+    member, kwargs = POWL_VARIANTS[variant]
+    model = pm4py.discover_powl(log, variant=POWLDiscoveryVariant[member], **kwargs)
+    return {"powl": canonical_powl(describe_powl(model))}
+
+
+def canonical_powl(d: dict[str, Any]) -> dict[str, Any]:
+    """A described POWL model with XOR children sorted, every order closed
+    under transitivity, and partial-order children sorted by their own form
+    and the forms of their predecessors and successors."""
+    if "children" not in d:
+        return d
+    children = [canonical_powl(c) for c in d["children"]]
+    key = lambda c: json.dumps(c, sort_keys=True)  # noqa: E731
+    if d["kind"] == "loop":
+        return {**d, "children": children}
+    if d["kind"] == "xor":
+        return {**d, "children": sorted(children, key=key)}
+    n = len(children)
+    order = {(i, j) for i, j in d["order"]}
+    while True:
+        more = {(i, k) for i, j in order for j2, k in order if j == j2} - order
+        if not more:
+            break
+        order |= more
+    keys = [key(c) for c in children]
+    rank = sorted(
+        range(n),
+        key=lambda i: (
+            keys[i],
+            sorted(keys[p] for p in range(n) if (p, i) in order),
+            sorted(keys[q] for q in range(n) if (i, q) in order),
+        ),
+    )
+    at = {old: new for new, old in enumerate(rank)}
+    return {
+        **d,
+        "children": [children[i] for i in rank],
+        "order": sorted([at[i], at[j]] for i, j in order),
+    }
+
+
+def _register_powl() -> None:
+    for variant in POWL_VARIANTS:
+        for log_id, rel in INDUCTIVE_LOGS.items():
+            if variant == "bruteforce" and log_id not in POWL_BRUTE_FORCE_LOGS:
+                continue
+            case(
+                f"powl-{variant}-{log_id}",
+                fixture=rel,
+                functions=["pm4py.discover_powl"],
+                params={"variant": variant},
+            )(powl)
+        for name, traces in POWL_SYNTHETIC_LOGS.items():
+            case(
+                f"powl-{variant}-synthetic-{name}",
+                functions=["pm4py.discover_powl"],
+                params={"variant": variant, "traces": traces},
+            )(powl)
+
+
+_register_powl()
+
+
+FOOTPRINTS_FUNCTIONS = [
+    "pm4py.discover_footprints",
+    "pm4py.convert_to_event_log",
+    "pm4py.discover_dfg",
+    "pm4py.discover_powl",
+]
+
+
+def footprints_json(fp: dict[str, Any]) -> dict[str, Any]:
+    """A footprints dict with sets as sorted lists."""
+    out: dict[str, Any] = {}
+    for key, value in fp.items():
+        if key == "dfg":
+            out[key] = sorted([[a, b], int(n)] for (a, b), n in value.items())
+        elif key in ("sequence", "parallel"):
+            out[key] = sorted([a, b] for a, b in value)
+        elif isinstance(value, (set, frozenset)):
+            out[key] = sorted(value)
+        elif key == "trace":
+            out[key] = list(value)
+        elif isinstance(value, bool):
+            out[key] = value
+        else:
+            out[key] = int(value)
+    return out
+
+
+FOOTPRINTS_TRACE_ROWS = 20
+"""How many distinct per-trace footprints a golden keeps in full."""
+
+
+def _compact(value: Any) -> str:
+    """JSON with sorted keys and no spaces, as serde_json writes it."""
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+
+
+def _traces_footprints(log: Any) -> dict[str, Any]:
+    groups: dict[str, dict[str, Any]] = {}
+    for fp in pm4py.discover_footprints(log):
+        j = footprints_json(fp)
+        groups.setdefault(_compact(j), {**j, "count": 0})["count"] += 1
+    rows = [groups[k] for k in sorted(groups)]
+    rest = rows[FOOTPRINTS_TRACE_ROWS:]
+    return {
+        "traces": sum(r["count"] for r in rows),
+        "groups": len(rows),
+        "first": rows[:FOOTPRINTS_TRACE_ROWS],
+        "rest_sha256": hashlib.sha256(_compact(rest).encode("utf-8")).hexdigest(),
+    }
+
+
+def footprints_log(
+    fixtures: dict[str, Path], traces: list[list[str]] | None = None
+) -> dict[str, Any]:
+    """Footprints of the log in ``fixtures`` and of its DFG and POWL model,
+    or of the log ``traces``."""
+    if traces is not None:
+        from pm4py.algo.discovery.footprints import algorithm as footprints_algorithm
+        from pm4py.objects.log.obj import Event, EventLog, Trace
+
+        log = EventLog()
+        for i, activities in enumerate(traces):
+            trace = Trace(attributes={"concept:name": str(i)})
+            for a in activities:
+                trace.append(Event({"concept:name": a}))
+            log.append(trace)
+        entire = footprints_algorithm.apply(
+            log, variant=footprints_algorithm.Variants.ENTIRE_EVENT_LOG
+        )
+        return {"entire": footprints_json(entire), "traces": _traces_footprints(log)}
+    df = load_log(fixtures["log"])
+    dfg, _, _ = pm4py.discover_dfg(df)
+    return {
+        "entire": footprints_json(pm4py.discover_footprints(df)),
+        "traces": _traces_footprints(pm4py.convert_to_event_log(df)),
+        "dfg": footprints_json(pm4py.discover_footprints(dfg)),
+        "powl": footprints_json(pm4py.discover_footprints(pm4py.discover_powl(df))),
+    }
+
+
+def _has_silent_frequent(model: Any) -> bool:
+    """Whether ``model`` holds a frequent transition without an activity:
+    pm4py makes one from a choice or loop of two silent steps, which
+    ichnos keeps as it is."""
+    if getattr(model, "activity", "") is None:
+        return True
+    return any(_has_silent_frequent(c) for c in getattr(model, "children", []))
+
+
+def footprints_powl(fixtures: dict[str, Path], text: str) -> dict[str, Any]:
+    """Footprints of the POWL string ``text``, before and after
+    ``simplify_using_frequent_transitions()``. ``frequent`` is null when
+    the simplified model differs from ichnos's (see
+    ``_has_silent_frequent``)."""
+    model = pm4py.parse_powl_model_string(text)
+    frequent = model.simplify_using_frequent_transitions()
+    return {
+        "powl": footprints_json(pm4py.discover_footprints(model)),
+        "frequent": None
+        if _has_silent_frequent(frequent)
+        else footprints_json(pm4py.discover_footprints(frequent)),
+    }
+
+
+def _register_footprints() -> None:
+    from cases.powl import MODELS
+
+    for log_id, rel in INDUCTIVE_LOGS.items():
+        case(f"footprints-log-{log_id}", fixture=rel, functions=FOOTPRINTS_FUNCTIONS)(
+            footprints_log
+        )
+    case(
+        "footprints-log-synthetic-emptytraces",
+        functions=["pm4py.algo.discovery.footprints.algorithm.apply"],
+        params={"traces": POWL_SYNTHETIC_LOGS["emptytraces"]},
+    )(footprints_log)
+    for name, text in MODELS:
+        case(
+            f"footprints-powl-{name}",
+            functions=[
+                "pm4py.parse_powl_model_string",
+                "pm4py.discover_footprints",
+                "pm4py.objects.powl.obj.POWL.simplify_using_frequent_transitions",
+            ],
+            params={"text": text},
+        )(footprints_powl)
+
+
+_register_footprints()
+
+# What one seeded run of _inductive_seeds computes, by kind.
+SEEDED_RUNS = {"tree": _inductive_run, "bpmn": _bpmn_inductive_run}
+
+
 # Classic and SM2 Split Miner BPMN discovery cases.
 _SPLIT_MINER_FUNCTIONS = [
     "pm4py.discover_bpmn_split_miner",
@@ -1738,4 +2061,5 @@ if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical
 
-    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
+    path, variant, kind = Path(sys.argv[1]), sys.argv[2], sys.argv[3]
+    print(json.dumps(canonical.normalize(SEEDED_RUNS[kind](path, variant))))
