@@ -1,0 +1,110 @@
+{
+  "expected": {
+    "fitness": 1.0,
+    "matrix": {
+      "activities": [
+        "a",
+        "b",
+        "c"
+      ],
+      "inputs": {
+        "a": [],
+        "b": [
+          [
+            "a"
+          ]
+        ],
+        "c": [
+          [
+            "b"
+          ]
+        ]
+      },
+      "outputs": {
+        "a": [
+          [
+            "b"
+          ]
+        ],
+        "b": [
+          [
+            "c"
+          ]
+        ],
+        "c": []
+      }
+    },
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "a",
+            "b",
+            "c"
+          ],
+          "parallel": [],
+          "sequence": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "start_activities": [
+            "a"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "depth": 3,
+        "prefixes": [
+          [],
+          [
+            "a"
+          ],
+          [
+            "a",
+            "b"
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-matrix-sequence",
+    "fixtures": {},
+    "functions": [
+      "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {},
+    "params": {
+      "traces": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

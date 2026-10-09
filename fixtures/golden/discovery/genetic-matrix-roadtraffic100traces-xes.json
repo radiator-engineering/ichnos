@@ -1,0 +1,225 @@
+{
+  "expected": {
+    "fitness": 0.19702638326585697,
+    "matrix": {
+      "activities": [
+        "Create Fine",
+        "Send Fine",
+        "Payment",
+        "Insert Fine Notification",
+        "Add penalty",
+        "Send for Credit Collection",
+        "Insert Date Appeal to Prefecture",
+        "Send Appeal to Prefecture",
+        "Receive Result Appeal from Prefecture",
+        "Notify Result Appeal to Offender"
+      ],
+      "inputs": {
+        "Add penalty": [
+          [
+            "Insert Date Appeal to Prefecture"
+          ],
+          [
+            "Insert Fine Notification"
+          ],
+          [
+            "Payment"
+          ]
+        ],
+        "Create Fine": [],
+        "Insert Date Appeal to Prefecture": [
+          [
+            "Insert Fine Notification"
+          ]
+        ],
+        "Insert Fine Notification": [
+          [
+            "Payment"
+          ],
+          [
+            "Send Fine"
+          ]
+        ],
+        "Notify Result Appeal to Offender": [
+          [
+            "Receive Result Appeal from Prefecture"
+          ]
+        ],
+        "Payment": [
+          [
+            "Add penalty"
+          ],
+          [
+            "Create Fine"
+          ],
+          [
+            "Insert Fine Notification"
+          ],
+          [
+            "Notify Result Appeal to Offender"
+          ],
+          [
+            "Payment"
+          ],
+          [
+            "Send Fine"
+          ]
+        ],
+        "Receive Result Appeal from Prefecture": [
+          [
+            "Send Appeal to Prefecture"
+          ]
+        ],
+        "Send Appeal to Prefecture": [
+          [
+            "Add penalty"
+          ]
+        ],
+        "Send Fine": [
+          [
+            "Create Fine"
+          ],
+          [
+            "Payment"
+          ]
+        ],
+        "Send for Credit Collection": [
+          [
+            "Add penalty"
+          ]
+        ]
+      },
+      "outputs": {
+        "Add penalty": [
+          [
+            "Payment"
+          ],
+          [
+            "Send Appeal to Prefecture"
+          ],
+          [
+            "Send for Credit Collection"
+          ]
+        ],
+        "Create Fine": [
+          [
+            "Payment"
+          ],
+          [
+            "Send Fine"
+          ]
+        ],
+        "Insert Date Appeal to Prefecture": [
+          [
+            "Add penalty"
+          ]
+        ],
+        "Insert Fine Notification": [
+          [
+            "Add penalty"
+          ],
+          [
+            "Insert Date Appeal to Prefecture"
+          ],
+          [
+            "Payment"
+          ]
+        ],
+        "Notify Result Appeal to Offender": [
+          [
+            "Payment"
+          ]
+        ],
+        "Payment": [
+          [
+            "Add penalty"
+          ],
+          [
+            "Insert Fine Notification"
+          ],
+          [
+            "Payment"
+          ],
+          [
+            "Send Fine"
+          ]
+        ],
+        "Receive Result Appeal from Prefecture": [
+          [
+            "Notify Result Appeal to Offender"
+          ]
+        ],
+        "Send Appeal to Prefecture": [
+          [
+            "Receive Result Appeal from Prefecture"
+          ]
+        ],
+        "Send Fine": [
+          [
+            "Insert Fine Notification"
+          ],
+          [
+            "Payment"
+          ]
+        ],
+        "Send for Credit Collection": []
+      }
+    },
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Date Appeal to Prefecture",
+            "Insert Fine Notification",
+            "Notify Result Appeal to Offender",
+            "Payment",
+            "Receive Result Appeal from Prefecture",
+            "Send Appeal to Prefecture",
+            "Send Fine",
+            "Send for Credit Collection"
+          ],
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [
+            "Create Fine"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [],
+        "depth": 3,
+        "prefixes": [
+          [],
+          [
+            "Create Fine"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-matrix-roadtraffic100traces-xes",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

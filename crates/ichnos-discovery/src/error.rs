@@ -7,6 +7,10 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    /// Genetic fitness token replay failed.
+    #[error("genetic replay: {0}")]
+    GeneticReplay(String),
+
     /// Reading the log failed, for example because an event has no
     /// activity.
     #[error(transparent)]
