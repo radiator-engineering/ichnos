@@ -1,0 +1,3276 @@
+{
+  "expected": {
+    "expected": {
+      "act-ot-dependent-aggregate-events": {
+        "end": {
+          "Invoice": {
+            "Insert Payment": [
+              "e13",
+              "e7",
+              "e8"
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              "e13",
+              "e7",
+              "e8"
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              "e10"
+            ],
+            "Insert Invoice": [
+              "e6"
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Order": [
+              "e3"
+            ]
+          }
+        },
+        "none": {
+          "Invoice": {
+            "Create Purchase Order": [
+              "e10"
+            ],
+            "Insert Invoice": [
+              "e5",
+              "e6",
+              "e9"
+            ],
+            "Insert Payment": [
+              "e13",
+              "e7",
+              "e8"
+            ],
+            "Remove Payment Block": [
+              "e12"
+            ],
+            "Set Payment Block": [
+              "e11"
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              "e13",
+              "e7",
+              "e8"
+            ]
+          },
+          "Purchase Order": {
+            "Change PO Quantity": [
+              "e4"
+            ],
+            "Create Purchase Order": [
+              "e10",
+              "e3"
+            ],
+            "Insert Invoice": [
+              "e5",
+              "e6"
+            ]
+          },
+          "Purchase Requisition": {
+            "Approve Purchase Requisition": [
+              "e2"
+            ],
+            "Create Purchase Order": [
+              "e3"
+            ],
+            "Create Purchase Requisition": [
+              "e1"
+            ]
+          }
+        },
+        "start": {
+          "Invoice": {
+            "Insert Invoice": [
+              "e5",
+              "e6",
+              "e9"
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              "e13",
+              "e7",
+              "e8"
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              "e10",
+              "e3"
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Requisition": [
+              "e1"
+            ]
+          }
+        }
+      },
+      "act-ot-dependent-aggregate-total-objects": {
+        "end": {
+          "Invoice": {
+            "Insert Payment": [
+              [
+                "e7",
+                "R1"
+              ],
+              [
+                "e8",
+                "R2"
+              ],
+              [
+                "e13",
+                "R3"
+              ]
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ],
+              [
+                "e13",
+                "P3"
+              ]
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              [
+                "e10",
+                "PO2"
+              ]
+            ],
+            "Insert Invoice": [
+              [
+                "e6",
+                "PO1"
+              ]
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PR1"
+              ]
+            ]
+          }
+        },
+        "none": {
+          "Invoice": {
+            "Create Purchase Order": [
+              [
+                "e10",
+                "R3"
+              ]
+            ],
+            "Insert Invoice": [
+              [
+                "e5",
+                "R1"
+              ],
+              [
+                "e6",
+                "R2"
+              ],
+              [
+                "e9",
+                "R3"
+              ]
+            ],
+            "Insert Payment": [
+              [
+                "e7",
+                "R1"
+              ],
+              [
+                "e8",
+                "R2"
+              ],
+              [
+                "e13",
+                "R3"
+              ]
+            ],
+            "Remove Payment Block": [
+              [
+                "e12",
+                "R3"
+              ]
+            ],
+            "Set Payment Block": [
+              [
+                "e11",
+                "R3"
+              ]
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ],
+              [
+                "e13",
+                "P3"
+              ]
+            ]
+          },
+          "Purchase Order": {
+            "Change PO Quantity": [
+              [
+                "e4",
+                "PO1"
+              ]
+            ],
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PO1"
+              ],
+              [
+                "e10",
+                "PO2"
+              ]
+            ],
+            "Insert Invoice": [
+              [
+                "e5",
+                "PO1"
+              ],
+              [
+                "e6",
+                "PO1"
+              ]
+            ]
+          },
+          "Purchase Requisition": {
+            "Approve Purchase Requisition": [
+              [
+                "e2",
+                "PR1"
+              ]
+            ],
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PR1"
+              ]
+            ],
+            "Create Purchase Requisition": [
+              [
+                "e1",
+                "PR1"
+              ]
+            ]
+          }
+        },
+        "start": {
+          "Invoice": {
+            "Insert Invoice": [
+              [
+                "e5",
+                "R1"
+              ],
+              [
+                "e6",
+                "R2"
+              ],
+              [
+                "e9",
+                "R3"
+              ]
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ],
+              [
+                "e13",
+                "P3"
+              ]
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PO1"
+              ],
+              [
+                "e10",
+                "PO2"
+              ]
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Requisition": [
+              [
+                "e1",
+                "PR1"
+              ]
+            ]
+          }
+        }
+      },
+      "act-ot-dependent-aggregate-unique-objects": {
+        "end": {
+          "Invoice": {
+            "Insert Payment": [
+              "R1",
+              "R2",
+              "R3"
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              "PO2"
+            ],
+            "Insert Invoice": [
+              "PO1"
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Order": [
+              "PR1"
+            ]
+          }
+        },
+        "none": {
+          "Invoice": {
+            "Create Purchase Order": [
+              "R3"
+            ],
+            "Insert Invoice": [
+              "R1",
+              "R2",
+              "R3"
+            ],
+            "Insert Payment": [
+              "R1",
+              "R2",
+              "R3"
+            ],
+            "Remove Payment Block": [
+              "R3"
+            ],
+            "Set Payment Block": [
+              "R3"
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "Purchase Order": {
+            "Change PO Quantity": [
+              "PO1"
+            ],
+            "Create Purchase Order": [
+              "PO1",
+              "PO2"
+            ],
+            "Insert Invoice": [
+              "PO1"
+            ]
+          },
+          "Purchase Requisition": {
+            "Approve Purchase Requisition": [
+              "PR1"
+            ],
+            "Create Purchase Order": [
+              "PR1"
+            ],
+            "Create Purchase Requisition": [
+              "PR1"
+            ]
+          }
+        },
+        "start": {
+          "Invoice": {
+            "Insert Invoice": [
+              "R1",
+              "R2",
+              "R3"
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              "PO1",
+              "PO2"
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Requisition": [
+              "PR1"
+            ]
+          }
+        }
+      },
+      "act-ot-dependent-find-associations-from-ocel": {
+        "end": {
+          "Invoice": {
+            "Insert Payment": [
+              [
+                "e7",
+                "R1"
+              ],
+              [
+                "e8",
+                "R2"
+              ],
+              [
+                "e13",
+                "R3"
+              ]
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ],
+              [
+                "e13",
+                "P3"
+              ]
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              [
+                "e10",
+                "PO2"
+              ]
+            ],
+            "Insert Invoice": [
+              [
+                "e6",
+                "PO1"
+              ]
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PR1"
+              ]
+            ]
+          }
+        },
+        "none": {
+          "Invoice": {
+            "Create Purchase Order": [
+              [
+                "e10",
+                "R3"
+              ]
+            ],
+            "Insert Invoice": [
+              [
+                "e5",
+                "R1"
+              ],
+              [
+                "e6",
+                "R2"
+              ],
+              [
+                "e9",
+                "R3"
+              ]
+            ],
+            "Insert Payment": [
+              [
+                "e7",
+                "R1"
+              ],
+              [
+                "e8",
+                "R2"
+              ],
+              [
+                "e13",
+                "R3"
+              ]
+            ],
+            "Remove Payment Block": [
+              [
+                "e12",
+                "R3"
+              ]
+            ],
+            "Set Payment Block": [
+              [
+                "e11",
+                "R3"
+              ]
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ],
+              [
+                "e13",
+                "P3"
+              ]
+            ]
+          },
+          "Purchase Order": {
+            "Change PO Quantity": [
+              [
+                "e4",
+                "PO1"
+              ]
+            ],
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PO1"
+              ],
+              [
+                "e10",
+                "PO2"
+              ]
+            ],
+            "Insert Invoice": [
+              [
+                "e5",
+                "PO1"
+              ],
+              [
+                "e6",
+                "PO1"
+              ]
+            ]
+          },
+          "Purchase Requisition": {
+            "Approve Purchase Requisition": [
+              [
+                "e2",
+                "PR1"
+              ]
+            ],
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PR1"
+              ]
+            ],
+            "Create Purchase Requisition": [
+              [
+                "e1",
+                "PR1"
+              ]
+            ]
+          }
+        },
+        "start": {
+          "Invoice": {
+            "Insert Invoice": [
+              [
+                "e5",
+                "R1"
+              ],
+              [
+                "e6",
+                "R2"
+              ],
+              [
+                "e9",
+                "R3"
+              ]
+            ]
+          },
+          "Payment": {
+            "Insert Payment": [
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ],
+              [
+                "e13",
+                "P3"
+              ]
+            ]
+          },
+          "Purchase Order": {
+            "Create Purchase Order": [
+              [
+                "e3",
+                "PO1"
+              ],
+              [
+                "e10",
+                "PO2"
+              ]
+            ]
+          },
+          "Purchase Requisition": {
+            "Create Purchase Requisition": [
+              [
+                "e1",
+                "PR1"
+              ]
+            ]
+          }
+        }
+      },
+      "act-utils-aggregate-events": {
+        "end": {
+          "Create Purchase Order": [
+            "e10",
+            "e3"
+          ],
+          "Insert Invoice": [
+            "e6"
+          ],
+          "Insert Payment": [
+            "e13",
+            "e7",
+            "e8"
+          ]
+        },
+        "none": {
+          "Approve Purchase Requisition": [
+            "e2"
+          ],
+          "Change PO Quantity": [
+            "e4"
+          ],
+          "Create Purchase Order": [
+            "e10",
+            "e3"
+          ],
+          "Create Purchase Requisition": [
+            "e1"
+          ],
+          "Insert Invoice": [
+            "e5",
+            "e6",
+            "e9"
+          ],
+          "Insert Payment": [
+            "e13",
+            "e7",
+            "e8"
+          ],
+          "Remove Payment Block": [
+            "e12"
+          ],
+          "Set Payment Block": [
+            "e11"
+          ]
+        },
+        "start": {
+          "Create Purchase Order": [
+            "e10",
+            "e3"
+          ],
+          "Create Purchase Requisition": [
+            "e1"
+          ],
+          "Insert Invoice": [
+            "e5",
+            "e6",
+            "e9"
+          ],
+          "Insert Payment": [
+            "e13",
+            "e7",
+            "e8"
+          ]
+        }
+      },
+      "act-utils-aggregate-total-objects": {
+        "end": {
+          "Create Purchase Order": [
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e3",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e6",
+              "PO1"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "P3"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "R2"
+            ],
+            [
+              "e13",
+              "R3"
+            ]
+          ]
+        },
+        "none": {
+          "Approve Purchase Requisition": [
+            [
+              "e2",
+              "PR1"
+            ]
+          ],
+          "Change PO Quantity": [
+            [
+              "e4",
+              "PO1"
+            ]
+          ],
+          "Create Purchase Order": [
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e3",
+              "PR1"
+            ],
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e10",
+              "R3"
+            ]
+          ],
+          "Create Purchase Requisition": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e5",
+              "PO1"
+            ],
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "PO1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "R2"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "R3"
+            ],
+            [
+              "e13",
+              "P3"
+            ]
+          ],
+          "Remove Payment Block": [
+            [
+              "e12",
+              "R3"
+            ]
+          ],
+          "Set Payment Block": [
+            [
+              "e11",
+              "R3"
+            ]
+          ]
+        },
+        "start": {
+          "Create Purchase Order": [
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e10",
+              "PO2"
+            ]
+          ],
+          "Create Purchase Requisition": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "P3"
+            ]
+          ]
+        }
+      },
+      "act-utils-aggregate-unique-objects": {
+        "end": {
+          "Create Purchase Order": [
+            "PO2",
+            "PR1"
+          ],
+          "Insert Invoice": [
+            "PO1"
+          ],
+          "Insert Payment": [
+            "P1",
+            "P2",
+            "P3",
+            "R1",
+            "R2",
+            "R3"
+          ]
+        },
+        "none": {
+          "Approve Purchase Requisition": [
+            "PR1"
+          ],
+          "Change PO Quantity": [
+            "PO1"
+          ],
+          "Create Purchase Order": [
+            "PO1",
+            "PO2",
+            "PR1",
+            "R3"
+          ],
+          "Create Purchase Requisition": [
+            "PR1"
+          ],
+          "Insert Invoice": [
+            "PO1",
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "Insert Payment": [
+            "P1",
+            "P2",
+            "P3",
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "Remove Payment Block": [
+            "R3"
+          ],
+          "Set Payment Block": [
+            "R3"
+          ]
+        },
+        "start": {
+          "Create Purchase Order": [
+            "PO1",
+            "PO2"
+          ],
+          "Create Purchase Requisition": [
+            "PR1"
+          ],
+          "Insert Invoice": [
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "Insert Payment": [
+            "P1",
+            "P2",
+            "P3"
+          ]
+        }
+      },
+      "act-utils-find-associations-from-ocel": {
+        "end": {
+          "Create Purchase Order": [
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e3",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e6",
+              "PO1"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "P3"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "R2"
+            ],
+            [
+              "e13",
+              "R3"
+            ]
+          ]
+        },
+        "none": {
+          "Approve Purchase Requisition": [
+            [
+              "e2",
+              "PR1"
+            ]
+          ],
+          "Change PO Quantity": [
+            [
+              "e4",
+              "PO1"
+            ]
+          ],
+          "Create Purchase Order": [
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e3",
+              "PR1"
+            ],
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e10",
+              "R3"
+            ]
+          ],
+          "Create Purchase Requisition": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e5",
+              "PO1"
+            ],
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "PO1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "R2"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "R3"
+            ],
+            [
+              "e13",
+              "P3"
+            ]
+          ],
+          "Remove Payment Block": [
+            [
+              "e12",
+              "R3"
+            ]
+          ],
+          "Set Payment Block": [
+            [
+              "e11",
+              "R3"
+            ]
+          ]
+        },
+        "start": {
+          "Create Purchase Order": [
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e10",
+              "PO2"
+            ]
+          ],
+          "Create Purchase Requisition": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "P3"
+            ]
+          ]
+        }
+      },
+      "act-utils-find-associations-from-relations-df": {
+        "end": {
+          "Create Purchase Order": [
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e3",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e6",
+              "PO1"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "P3"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "R2"
+            ],
+            [
+              "e13",
+              "R3"
+            ]
+          ]
+        },
+        "none": {
+          "Approve Purchase Requisition": [
+            [
+              "e2",
+              "PR1"
+            ]
+          ],
+          "Change PO Quantity": [
+            [
+              "e4",
+              "PO1"
+            ]
+          ],
+          "Create Purchase Order": [
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e3",
+              "PR1"
+            ],
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e10",
+              "R3"
+            ]
+          ],
+          "Create Purchase Requisition": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e5",
+              "PO1"
+            ],
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "PO1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "R2"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "R3"
+            ],
+            [
+              "e13",
+              "P3"
+            ]
+          ],
+          "Remove Payment Block": [
+            [
+              "e12",
+              "R3"
+            ]
+          ],
+          "Set Payment Block": [
+            [
+              "e11",
+              "R3"
+            ]
+          ]
+        },
+        "start": {
+          "Create Purchase Order": [
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e10",
+              "PO2"
+            ]
+          ],
+          "Create Purchase Requisition": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "Insert Invoice": [
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "Insert Payment": [
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e13",
+              "P3"
+            ]
+          ]
+        }
+      },
+      "edge-metrics-aggregate-ev-couples": {
+        "Invoice": [
+          [
+            [
+              "Create Purchase Order",
+              "Set Payment Block"
+            ],
+            [
+              [
+                "e10",
+                "e11"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Create Purchase Order"
+            ],
+            [
+              [
+                "e9",
+                "e10"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Payment"
+            ],
+            [
+              [
+                "e5",
+                "e7"
+              ],
+              [
+                "e6",
+                "e8"
+              ]
+            ]
+          ],
+          [
+            [
+              "Remove Payment Block",
+              "Insert Payment"
+            ],
+            [
+              [
+                "e12",
+                "e13"
+              ]
+            ]
+          ],
+          [
+            [
+              "Set Payment Block",
+              "Remove Payment Block"
+            ],
+            [
+              [
+                "e11",
+                "e12"
+              ]
+            ]
+          ]
+        ],
+        "Purchase Order": [
+          [
+            [
+              "Change PO Quantity",
+              "Insert Invoice"
+            ],
+            [
+              [
+                "e4",
+                "e5"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Purchase Order",
+              "Change PO Quantity"
+            ],
+            [
+              [
+                "e3",
+                "e4"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Invoice"
+            ],
+            [
+              [
+                "e5",
+                "e6"
+              ]
+            ]
+          ]
+        ],
+        "Purchase Requisition": [
+          [
+            [
+              "Approve Purchase Requisition",
+              "Create Purchase Order"
+            ],
+            [
+              [
+                "e2",
+                "e3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Purchase Requisition",
+              "Approve Purchase Requisition"
+            ],
+            [
+              [
+                "e1",
+                "e2"
+              ]
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-aggregate-total-objects": {
+        "Invoice": [
+          [
+            [
+              "Create Purchase Order",
+              "Set Payment Block"
+            ],
+            [
+              [
+                "e10",
+                "e11",
+                "R3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Create Purchase Order"
+            ],
+            [
+              [
+                "e9",
+                "e10",
+                "R3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Payment"
+            ],
+            [
+              [
+                "e5",
+                "e7",
+                "R1"
+              ],
+              [
+                "e6",
+                "e8",
+                "R2"
+              ]
+            ]
+          ],
+          [
+            [
+              "Remove Payment Block",
+              "Insert Payment"
+            ],
+            [
+              [
+                "e12",
+                "e13",
+                "R3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Set Payment Block",
+              "Remove Payment Block"
+            ],
+            [
+              [
+                "e11",
+                "e12",
+                "R3"
+              ]
+            ]
+          ]
+        ],
+        "Purchase Order": [
+          [
+            [
+              "Change PO Quantity",
+              "Insert Invoice"
+            ],
+            [
+              [
+                "e4",
+                "e5",
+                "PO1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Purchase Order",
+              "Change PO Quantity"
+            ],
+            [
+              [
+                "e3",
+                "e4",
+                "PO1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Invoice"
+            ],
+            [
+              [
+                "e5",
+                "e6",
+                "PO1"
+              ]
+            ]
+          ]
+        ],
+        "Purchase Requisition": [
+          [
+            [
+              "Approve Purchase Requisition",
+              "Create Purchase Order"
+            ],
+            [
+              [
+                "e2",
+                "e3",
+                "PR1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Purchase Requisition",
+              "Approve Purchase Requisition"
+            ],
+            [
+              [
+                "e1",
+                "e2",
+                "PR1"
+              ]
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-aggregate-unique-objects": {
+        "Invoice": [
+          [
+            [
+              "Create Purchase Order",
+              "Set Payment Block"
+            ],
+            [
+              "R3"
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Create Purchase Order"
+            ],
+            [
+              "R3"
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Payment"
+            ],
+            [
+              "R1",
+              "R2"
+            ]
+          ],
+          [
+            [
+              "Remove Payment Block",
+              "Insert Payment"
+            ],
+            [
+              "R3"
+            ]
+          ],
+          [
+            [
+              "Set Payment Block",
+              "Remove Payment Block"
+            ],
+            [
+              "R3"
+            ]
+          ]
+        ],
+        "Purchase Order": [
+          [
+            [
+              "Change PO Quantity",
+              "Insert Invoice"
+            ],
+            [
+              "PO1"
+            ]
+          ],
+          [
+            [
+              "Create Purchase Order",
+              "Change PO Quantity"
+            ],
+            [
+              "PO1"
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Invoice"
+            ],
+            [
+              "PO1"
+            ]
+          ]
+        ],
+        "Purchase Requisition": [
+          [
+            [
+              "Approve Purchase Requisition",
+              "Create Purchase Order"
+            ],
+            [
+              "PR1"
+            ]
+          ],
+          [
+            [
+              "Create Purchase Requisition",
+              "Approve Purchase Requisition"
+            ],
+            [
+              "PR1"
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-find-associations-per-edge": {
+        "Invoice": [
+          [
+            [
+              "Create Purchase Order",
+              "Set Payment Block"
+            ],
+            [
+              [
+                "e10",
+                "e11",
+                "R3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Create Purchase Order"
+            ],
+            [
+              [
+                "e9",
+                "e10",
+                "R3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Payment"
+            ],
+            [
+              [
+                "e5",
+                "e7",
+                "R1"
+              ],
+              [
+                "e6",
+                "e8",
+                "R2"
+              ]
+            ]
+          ],
+          [
+            [
+              "Remove Payment Block",
+              "Insert Payment"
+            ],
+            [
+              [
+                "e12",
+                "e13",
+                "R3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Set Payment Block",
+              "Remove Payment Block"
+            ],
+            [
+              [
+                "e11",
+                "e12",
+                "R3"
+              ]
+            ]
+          ]
+        ],
+        "Purchase Order": [
+          [
+            [
+              "Change PO Quantity",
+              "Insert Invoice"
+            ],
+            [
+              [
+                "e4",
+                "e5",
+                "PO1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Purchase Order",
+              "Change PO Quantity"
+            ],
+            [
+              [
+                "e3",
+                "e4",
+                "PO1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Insert Invoice",
+              "Insert Invoice"
+            ],
+            [
+              [
+                "e5",
+                "e6",
+                "PO1"
+              ]
+            ]
+          ]
+        ],
+        "Purchase Requisition": [
+          [
+            [
+              "Approve Purchase Requisition",
+              "Create Purchase Order"
+            ],
+            [
+              [
+                "e2",
+                "e3",
+                "PR1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Purchase Requisition",
+              "Approve Purchase Requisition"
+            ],
+            [
+              [
+                "e1",
+                "e2",
+                "PR1"
+              ]
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-performance-calculation-ocel-aggregation": {
+        "pairs-business": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                3600.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                28800.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                381600.0,
+                396000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                612000.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                117900.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                21600.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                4500.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "pairs-elapsed": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                52200.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                28800.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                1335600.0,
+                1422000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                2158200.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                57600.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                269100.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                169200.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                60300.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                5400.0
+              ]
+            ]
+          ]
+        },
+        "pairs-holiday": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                3600.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                28800.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                381600.0,
+                396000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                612000.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                117900.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                21600.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                4500.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "pairs-slots": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                72000.0,
+                108000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                144000.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                31500.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                4500.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "triples-business": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                3600.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                28800.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                381600.0,
+                396000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                612000.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                117900.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                21600.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                4500.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "triples-elapsed": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                52200.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                28800.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                1335600.0,
+                1422000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                2158200.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                57600.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                269100.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                169200.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                60300.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                5400.0
+              ]
+            ]
+          ]
+        },
+        "triples-holiday": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                3600.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                28800.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                381600.0,
+                396000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                612000.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                117900.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                21600.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                4500.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "triples-slots": {
+          "Invoice": [
+            [
+              [
+                "Create Purchase Order",
+                "Set Payment Block"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Create Purchase Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              [
+                72000.0,
+                108000.0
+              ]
+            ],
+            [
+              [
+                "Remove Payment Block",
+                "Insert Payment"
+              ],
+              [
+                144000.0
+              ]
+            ],
+            [
+              [
+                "Set Payment Block",
+                "Remove Payment Block"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "Purchase Order": [
+            [
+              [
+                "Change PO Quantity",
+                "Insert Invoice"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Order",
+                "Change PO Quantity"
+              ],
+              [
+                31500.0
+              ]
+            ],
+            [
+              [
+                "Insert Invoice",
+                "Insert Invoice"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "Purchase Requisition": [
+            [
+              [
+                "Approve Purchase Requisition",
+                "Create Purchase Order"
+              ],
+              [
+                4500.0
+              ]
+            ],
+            [
+              [
+                "Create Purchase Requisition",
+                "Approve Purchase Requisition"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        }
+      },
+      "objects-ot-count-get-objects-ot-count": {
+        "e1": {
+          "Purchase Requisition": 1
+        },
+        "e10": {
+          "Invoice": 1,
+          "Purchase Order": 1
+        },
+        "e11": {
+          "Invoice": 1
+        },
+        "e12": {
+          "Invoice": 1
+        },
+        "e13": {
+          "Invoice": 1,
+          "Payment": 1
+        },
+        "e2": {
+          "Purchase Requisition": 1
+        },
+        "e3": {
+          "Purchase Order": 1,
+          "Purchase Requisition": 1
+        },
+        "e4": {
+          "Purchase Order": 1
+        },
+        "e5": {
+          "Invoice": 1,
+          "Purchase Order": 1
+        },
+        "e6": {
+          "Invoice": 1,
+          "Purchase Order": 1
+        },
+        "e7": {
+          "Invoice": 1,
+          "Payment": 1
+        },
+        "e8": {
+          "Invoice": 1,
+          "Payment": 1
+        },
+        "e9": {
+          "Invoice": 1
+        }
+      },
+      "ot-activities-get-object-type-activities": {
+        "Invoice": [
+          "Create Purchase Order",
+          "Insert Invoice",
+          "Insert Payment",
+          "Remove Payment Block",
+          "Set Payment Block"
+        ],
+        "Payment": [
+          "Insert Payment"
+        ],
+        "Purchase Order": [
+          "Change PO Quantity",
+          "Create Purchase Order",
+          "Insert Invoice"
+        ],
+        "Purchase Requisition": [
+          "Approve Purchase Requisition",
+          "Create Purchase Order",
+          "Create Purchase Requisition"
+        ]
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Purchase Requisition",
+          "attributes": {
+            "pr_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "attributes": {
+            "pr_approver": [
+              "string",
+              "Tania"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-10T08:15:00.000000+00:00"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "attributes": {
+            "po_editor": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2022-01-14T11:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e6",
+          "timestamp": "2022-01-16T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2022-01-30T22:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e8",
+          "timestamp": "2022-01-31T21:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e9",
+          "timestamp": "2022-02-02T08:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e10",
+          "timestamp": "2022-02-02T16:00:00.000000+00:00"
+        },
+        {
+          "activity": "Set Payment Block",
+          "attributes": {
+            "invoice_blocker": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e11",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "attributes": {
+            "invoice_block_rem": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e12",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e13",
+          "timestamp": "2022-02-28T22:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R1",
+          "target": "P1"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R2",
+          "target": "P2"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R3",
+          "target": "P3"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R1"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R2"
+        },
+        {
+          "qualifier": "Maverick buying",
+          "source": "PO2",
+          "target": "R3"
+        },
+        {
+          "qualifier": "PO from PR",
+          "source": "PR1",
+          "target": "PO1"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "Yes"
+          ]
+        },
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "No"
+          ]
+        },
+        {
+          "field": "po_quantity",
+          "object": "PO1",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00",
+          "type": "Purchase Order",
+          "value": [
+            "string",
+            "600"
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R1",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R2",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R3",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {},
+          "id": "P1",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P2",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P3",
+          "type": "Payment"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Cows"
+            ],
+            "po_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PO1",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Notebooks"
+            ],
+            "po_quantity": [
+              "string",
+              "1"
+            ]
+          },
+          "id": "PO2",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "pr_product": [
+              "string",
+              "Cows"
+            ],
+            "pr_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PR1",
+          "type": "Purchase Requisition"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Purchase Requisition",
+          "event": "e1",
+          "object": "PR1",
+          "qualifier": "Regular placement of PR",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "event": "e2",
+          "object": "PR1",
+          "qualifier": "Regular approval of PR",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PO1",
+          "qualifier": "Created order with identifier",
+          "timestamp": "2022-01-10T08:15:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PR1",
+          "qualifier": "Created order from PR",
+          "timestamp": "2022-01-10T08:15:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "event": "e4",
+          "object": "PO1",
+          "qualifier": "Change of quantity",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e5",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO",
+          "timestamp": "2022-01-14T11:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e5",
+          "object": "R1",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-01-14T11:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e6",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO",
+          "timestamp": "2022-01-16T10:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e6",
+          "object": "R2",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-01-16T10:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "P1",
+          "qualifier": "Payment inserted with identifier",
+          "timestamp": "2022-01-30T22:00:00.000000+00:00",
+          "type": "Payment"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "R1",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-30T22:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e8",
+          "object": "R2",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-31T21:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e8",
+          "object": "P2",
+          "qualifier": "Payment created with identifier",
+          "timestamp": "2022-01-31T21:00:00.000000+00:00",
+          "type": "Payment"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e9",
+          "object": "R3",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-02-02T08:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "PO2",
+          "qualifier": "Purhcase order created with identifier",
+          "timestamp": "2022-02-02T16:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "R3",
+          "qualifier": "Purchase order created with maverick buying from",
+          "timestamp": "2022-02-02T16:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Set Payment Block",
+          "event": "e11",
+          "object": "R3",
+          "qualifier": "Payment block due to unethical maverick buying",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "event": "e12",
+          "object": "R3",
+          "qualifier": "Payment block removed ...",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e13",
+          "object": "R3",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-02-28T22:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e13",
+          "object": "P3",
+          "qualifier": "Payment inserted with identifier",
+          "timestamp": "2022-02-28T22:00:00.000000+00:00",
+          "type": "Payment"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_stats",
+    "case": "all-ocel20-example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.read_ocel2_json",
+      "pm4py.statistics.ocel.act_utils.aggregate_events",
+      "pm4py.statistics.ocel.act_utils.aggregate_unique_objects",
+      "pm4py.statistics.ocel.act_utils.aggregate_total_objects",
+      "pm4py.statistics.ocel.act_utils.find_associations_from_relations_df",
+      "pm4py.statistics.ocel.act_utils.find_associations_from_ocel",
+      "pm4py.statistics.ocel.act_ot_dependent.aggregate_events",
+      "pm4py.statistics.ocel.act_ot_dependent.aggregate_unique_objects",
+      "pm4py.statistics.ocel.act_ot_dependent.aggregate_total_objects",
+      "pm4py.statistics.ocel.act_ot_dependent.find_associations_from_ocel",
+      "pm4py.statistics.ocel.edge_metrics.aggregate_ev_couples",
+      "pm4py.statistics.ocel.edge_metrics.aggregate_unique_objects",
+      "pm4py.statistics.ocel.edge_metrics.aggregate_total_objects",
+      "pm4py.statistics.ocel.edge_metrics.find_associations_per_edge",
+      "pm4py.statistics.ocel.edge_metrics.performance_calculation_ocel_aggregation",
+      "pm4py.statistics.ocel.objects_ot_count.get_objects_ot_count",
+      "pm4py.statistics.ocel.ot_activities.get_object_type_activities"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 100; ported: 344; dropped: 182; total: 626.
+todo: 84; ported: 360; dropped: 182; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -565,42 +565,42 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.ocel.act_ot_dependent.aggregate_events` | `statistics/ocel/act_ot_dependent.py` | `ichnos::stats::ocel::act_ot_dependent::aggregate_events` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_ot_dependent.aggregate_unique_objects` | `statistics/ocel/act_ot_dependent.py` | `ichnos::stats::ocel::act_ot_dependent::aggregate_unique_objects` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_ot_dependent.aggregate_total_objects` | `statistics/ocel/act_ot_dependent.py` | `ichnos::stats::ocel::act_ot_dependent::aggregate_total_objects` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_ot_dependent.find_associations_from_ocel` | `statistics/ocel/act_ot_dependent.py` → `objects/ocel/obj`, `statistics/ocel/act_utils` | `ichnos::stats::ocel::act_ot_dependent::find_associations_from_ocel` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.ocel.act_ot_dependent.aggregate_events` | `statistics/ocel/act_ot_dependent.py` | `ichnos::stats::ocel::act_ot_dependent::aggregate_events` | `ichnos-stats` | ported | Distinct event ids per object type and activity. Golden `ocel_stats/act-ot-dependent-aggregate-events` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_ot_dependent.aggregate_unique_objects` | `statistics/ocel/act_ot_dependent.py` | `ichnos::stats::ocel::act_ot_dependent::aggregate_unique_objects` | `ichnos-stats` | ported | Distinct object ids per object type and activity. Golden `ocel_stats/act-ot-dependent-aggregate-unique-objects` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_ot_dependent.aggregate_total_objects` | `statistics/ocel/act_ot_dependent.py` | `ichnos::stats::ocel::act_ot_dependent::aggregate_total_objects` | `ichnos-stats` | ported | Borrowed input occurrences; duplicates and order retained. Golden `ocel_stats/act-ot-dependent-aggregate-total-objects` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_ot_dependent.find_associations_from_ocel` | `statistics/ocel/act_ot_dependent.py` → `objects/ocel/obj`, `statistics/ocel/act_utils` | `ichnos::stats::ocel::act_ot_dependent::find_associations_from_ocel` | `ichnos-stats` | ported | Per-type pair deduplication and relation-order start/end selection. Golden `ocel_stats/act-ot-dependent-find-associations-from-ocel` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
 
 ## statistics.ocel.act_utils
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.ocel.act_utils.aggregate_events` | `statistics/ocel/act_utils.py` | `ichnos::stats::ocel::act_utils::aggregate_events` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_utils.aggregate_unique_objects` | `statistics/ocel/act_utils.py` | `ichnos::stats::ocel::act_utils::aggregate_unique_objects` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_utils.aggregate_total_objects` | `statistics/ocel/act_utils.py` | `ichnos::stats::ocel::act_utils::aggregate_total_objects` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_utils.find_associations_from_relations_df` | `statistics/ocel/act_utils.py` → `objects/ocel/constants` | `ichnos::stats::ocel::act_utils::find_associations_from_relations_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.act_utils.find_associations_from_ocel` | `statistics/ocel/act_utils.py` → `objects/ocel/obj` | `ichnos::stats::ocel::act_utils::find_associations_from_ocel` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.ocel.act_utils.aggregate_events` | `statistics/ocel/act_utils.py` | `ichnos::stats::ocel::act_utils::aggregate_events` | `ichnos-stats` | ported | Distinct event ids per activity; empty entries retained. Golden `ocel_stats/act-utils-aggregate-events` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_utils.aggregate_unique_objects` | `statistics/ocel/act_utils.py` | `ichnos::stats::ocel::act_utils::aggregate_unique_objects` | `ichnos-stats` | ported | Distinct object ids per activity; empty entries retained. Golden `ocel_stats/act-utils-aggregate-unique-objects` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_utils.aggregate_total_objects` | `statistics/ocel/act_utils.py` | `ichnos::stats::ocel::act_utils::aggregate_total_objects` | `ichnos-stats` | ported | Borrowed input occurrences; duplicates and order retained. Golden `ocel_stats/act-utils-aggregate-total-objects` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_utils.find_associations_from_relations_df` | `statistics/ocel/act_utils.py` → `objects/ocel/constants` | `ichnos::stats::ocel::act_utils::find_associations_from_relations_df` | `ichnos-stats` | ported | Typed ActivityRelation rows; pair deduplication before relation-order start/end selection. Golden `ocel_stats/act-utils-find-associations-from-relations-df` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.act_utils.find_associations_from_ocel` | `statistics/ocel/act_utils.py` → `objects/ocel/obj` | `ichnos::stats::ocel::act_utils::find_associations_from_ocel` | `ichnos-stats` | ported | Canonical OCEL fields; relation-order start/end selection after pair deduplication. Golden `ocel_stats/act-utils-find-associations-from-ocel` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
 
 ## statistics.ocel.edge_metrics
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.ocel.edge_metrics.performance_calculation_ocel_aggregation` | `statistics/ocel/edge_metrics.py` → `objects/ocel/obj` | `ichnos::stats::ocel::edge_metrics::performance_calculation_ocel_aggregation` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.edge_metrics.aggregate_ev_couples` | `statistics/ocel/edge_metrics.py` | `ichnos::stats::ocel::edge_metrics::aggregate_ev_couples` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.edge_metrics.aggregate_unique_objects` | `statistics/ocel/edge_metrics.py` | `ichnos::stats::ocel::edge_metrics::aggregate_unique_objects` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.edge_metrics.aggregate_total_objects` | `statistics/ocel/edge_metrics.py` | `ichnos::stats::ocel::edge_metrics::aggregate_total_objects` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.ocel.edge_metrics.find_associations_per_edge` | `statistics/ocel/edge_metrics.py` → `objects/ocel/obj` | `ichnos::stats::ocel::edge_metrics::find_associations_per_edge` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.ocel.edge_metrics.performance_calculation_ocel_aggregation` | `statistics/ocel/edge_metrics.py` → `objects/ocel/obj` | `ichnos::stats::ocel::edge_metrics::performance_calculation_ocel_aggregation` | `ichnos-stats` | ported | Sorted raw or business-hour seconds for pair/triple sets, with pm4py microsecond precision; negative raw durations and repeated pair observations for distinct objects retained. Golden `ocel_stats/edge-metrics-performance-calculation-ocel-aggregation` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.edge_metrics.aggregate_ev_couples` | `statistics/ocel/edge_metrics.py` | `ichnos::stats::ocel::edge_metrics::aggregate_ev_couples` | `ichnos-stats` | ported | Distinct source/target event pairs per type and activity edge. Golden `ocel_stats/edge-metrics-aggregate-ev-couples` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.edge_metrics.aggregate_unique_objects` | `statistics/ocel/edge_metrics.py` | `ichnos::stats::ocel::edge_metrics::aggregate_unique_objects` | `ichnos-stats` | ported | Distinct object ids per type and activity edge. Golden `ocel_stats/edge-metrics-aggregate-unique-objects` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.edge_metrics.aggregate_total_objects` | `statistics/ocel/edge_metrics.py` | `ichnos::stats::ocel::edge_metrics::aggregate_total_objects` | `ichnos-stats` | ported | Distinct source/target event/object triples per type and activity edge. Golden `ocel_stats/edge-metrics-aggregate-total-objects` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
+| `pm4py.statistics.ocel.edge_metrics.find_associations_per_edge` | `statistics/ocel/edge_metrics.py` → `objects/ocel/obj` | `ichnos::stats::ocel::edge_metrics::find_associations_per_edge` | `ichnos-stats` | ported | Event-order edges; distinct related objects in relation order. First activity/type per duplicate id. Golden `ocel_stats/edge-metrics-find-associations-per-edge` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
 
 ## statistics.ocel.objects_ot_count
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.ocel.objects_ot_count.get_objects_ot_count` | `statistics/ocel/objects_ot_count.py` → `objects/ocel/obj` | `ichnos::stats::ocel::objects_ot_count::get_objects_ot_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.ocel.objects_ot_count.get_objects_ot_count` | `statistics/ocel/objects_ot_count.py` → `objects/ocel/obj` | `ichnos::stats::ocel::objects_ot_count::get_objects_ot_count` | `ichnos-stats` | ported | Counts relation rows including duplicates; unrelated events/types absent. Golden `ocel_stats/objects-ot-count-get-objects-ot-count` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
 
 ## statistics.ocel.ot_activities
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.ocel.ot_activities.get_object_type_activities` | `statistics/ocel/ot_activities.py` → `objects/ocel/obj` | `ichnos::stats::ocel::ot_activities::get_object_type_activities` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.ocel.ot_activities.get_object_type_activities` | `statistics/ocel/ot_activities.py` → `objects/ocel/obj` | `ichnos::stats::ocel::ot_activities::get_object_type_activities` | `ichnos-stats` | ported | Distinct related activities per object type; unrelated types absent. Golden `ocel_stats/ot-activities-get-object-type-activities` plus `all-{example-log,newocel,ocel20-example}`. See OCEL statistics Behaviour changes. |
 
 ## statistics.overlap.cases.log.get
 
@@ -1785,6 +1785,20 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - Empty logs return an empty copy; pm4py's DataFrame arrival helper fails on no cases.
 - Enrichment requires date-valued timestamps.
 - Computed durations use microsecond resolution; submicrosecond detail is not retained in the enrichment values.
+
+### ichnos-stats (OCEL statistics)
+
+- OCEL queries use canonical typed event, object and relation fields, without parameters for alternative column names.
+- The relations-dataframe helper takes `ActivityRelation` rows.
+- Activity endpoint selection uses the typed `Prefilter` enum, defaulting to no filtering.
+- OCEL activity and type queries look up the first event/object row per id. Inconsistent redundant activity/type columns in pm4py relations cannot be represented here.
+- OCEL association/count/type queries return `MissingOcelEvent` or `MissingOcelObject` for dangling relations. pm4py can use denormalized relation columns without these lookups.
+- Performance observations return `MissingOcelEvent` for an absent event timestamp source, instead of a Python lookup error.
+- Maps and sets have sorted iteration, rather than Python insertion or set order.
+- Activity total-object aggregation borrows the original association map unchanged. Python returns its mutable input object; Rust prevents mutation through the shared borrow.
+- Edge performance accepts typed event-pair or event/object-triple sets.
+- Business-hour performance uses an optional `BusinessHours` schedule, and rejects invalid schedules even with no observations.
+- Calendars use explicit excluded dates instead of a Python workcalendar object.
 
 ## Proposed lanes
 

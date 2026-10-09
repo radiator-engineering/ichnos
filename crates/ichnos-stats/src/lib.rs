@@ -1,10 +1,11 @@
-//! Event log statistics for attributes, variants, cases, and time.
+//! Event and object-centric log statistics for attributes, variants, cases, and time.
 
 pub mod attributes;
 pub mod error;
 pub use error::{Error, Result};
 pub mod cases;
 pub mod filters;
+pub mod ocel;
 pub mod time;
 pub mod variants;
 
