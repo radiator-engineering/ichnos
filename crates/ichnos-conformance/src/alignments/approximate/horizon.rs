@@ -11,6 +11,7 @@ use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 use std::time::Instant;
 
+use ichnos_core::python::repr;
 use rustc_hash::FxHashMap;
 
 use super::super::marking::{Packed, apply_delta, place, tokens};
@@ -225,41 +226,12 @@ fn move_order(sp: &SyncProduct, labels: &[&str], names: &[&str]) -> Vec<u32> {
                     (">>".to_owned(), names[transition.index()].to_owned())
                 }
             };
-            (sp.cost[m], format!("({}, {})", py_repr(&a), py_repr(&b)))
+            (sp.cost[m], format!("({}, {})", repr(&a), repr(&b)))
         })
         .collect();
     let mut order: Vec<u32> = (0..sp.len() as u32).collect();
     order.sort_by(|&a, &b| keys[a as usize].cmp(&keys[b as usize]));
     order
-}
-
-/// Python's `repr` of a string.
-fn py_repr(s: &str) -> String {
-    let quote = if s.contains('\'') && !s.contains('"') {
-        '"'
-    } else {
-        '\''
-    };
-    let mut out = String::with_capacity(s.len() + 2);
-    out.push(quote);
-    for c in s.chars() {
-        match c {
-            '\\' => out.push_str("\\\\"),
-            '\n' => out.push_str("\\n"),
-            '\r' => out.push_str("\\r"),
-            '\t' => out.push_str("\\t"),
-            c if c == quote => {
-                out.push('\\');
-                out.push(c);
-            }
-            c if (c as u32) < 0x20 || c as u32 == 0x7f => {
-                out.push_str(&format!("\\x{:02x}", c as u32));
-            }
-            c => out.push(c),
-        }
-    }
-    out.push(quote);
-    out
 }
 
 struct Entry {
@@ -409,17 +381,4 @@ fn path(nodes: &[(u32, u32)], mut node: u32) -> Vec<u32> {
     }
     out.reverse();
     out
-}
-
-#[cfg(test)]
-mod tests {
-    use super::py_repr;
-
-    #[test]
-    fn python_repr() {
-        assert_eq!(py_repr("a b"), "'a b'");
-        assert_eq!(py_repr("it's"), "\"it's\"");
-        assert_eq!(py_repr("'\""), "'\\'\"'");
-        assert_eq!(py_repr("a\\b\n"), "'a\\\\b\\n'");
-    }
 }

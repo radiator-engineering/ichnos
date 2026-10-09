@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Every element kind pm4py's BPMN importer distinguishes. -->
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             id="defs" targetNamespace="http://example.org/bpmn">
+  <collaboration id="collab">
+    <participant id="pool_a" name="Pool&#10;A" processRef="proc_a"/>
+    <participant id="pool_b" name="Pool B" processRef="proc_b"/>
+    <messageFlow id="mf" name="order" sourceRef="send" targetRef="b_start"/>
+  </collaboration>
+  <process id="proc_a" name="Process&#13;&#10;A" isExecutable="false">
+    <startEvent id="start" name="Order&#10;received">
+      <messageEventDefinition/>
+    </startEvent>
+    <userTask id="check" name="Check&#10;order"/>
+    <sendTask id="send" name="Send order"/>
+    <serviceTask id="bill" name="Bill"/>
+    <exclusiveGateway id="xor" name="ok?" gatewayDirection="diverging"/>
+    <parallelGateway id="and" gatewayDirection="Converging"/>
+    <inclusiveGateway id="or" gatewayDirection="Mixed"/>
+    <eventBasedGateway id="evg"/>
+    <intermediateCatchEvent id="timer" name="wait">
+      <timerEventDefinition/>
+    </intermediateCatchEvent>
+    <intermediateCatchEvent id="catch_msg"><messageEventDefinition/></intermediateCatchEvent>
+    <intermediateCatchEvent id="catch_err"><errorEventDefinition/></intermediateCatchEvent>
+    <intermediateCatchEvent id="catch_cancel"><cancelEventDefinition/></intermediateCatchEvent>
+    <intermediateThrowEvent id="throw_msg"><messageEventDefinition/></intermediateThrowEvent>
+    <intermediateThrowEvent id="throw"/>
+    <boundaryEvent id="b_err" attachedToRef="check"><errorEventDefinition/></boundaryEvent>
+    <boundaryEvent id="b_msg" attachedToRef="check"><messageEventDefinition/></boundaryEvent>
+    <boundaryEvent id="b_cancel" attachedToRef="sub"><cancelEventDefinition/></boundaryEvent>
+    <boundaryEvent id="b_timer" name="late" attachedToRef="bill"><timerEventDefinition/></boundaryEvent>
+    <subProcess id="sub" name="Ship">
+      <startEvent id="sub_start"/>
+      <task id="pack" name="Pack">
+        <incoming>sf_sub1</incoming>
+        <outgoing>sf_sub2</outgoing>
+      </task>
+      <endEvent id="sub_end"/>
+      <sequenceFlow id="sf_sub1" sourceRef="sub_start" targetRef="pack"/>
+      <sequenceFlow id="sf_sub2" sourceRef="pack" targetRef="sub_end"/>
+    </subProcess>
+    <endEvent id="end_msg"><messageEventDefinition/></endEvent>
+    <endEvent id="end_term"><terminateEventDefinition/></endEvent>
+    <endEvent id="end_err"><errorEventDefinition/></endEvent>
+    <endEvent id="end_cancel"><cancelEventDefinition/></endEvent>
+    <endEvent id="end" name="Done"/>
+    <textAnnotation id="note"><text>Checks take &lt;1 day</text></textAnnotation>
+    <textAnnotation id="empty_note"/>
+    <association id="assoc" sourceRef="check" targetRef="note"/>
+    <sequenceFlow id="sf1" name="go&#10;on" sourceRef="start" targetRef="check"/>
+    <sequenceFlow id="sf2" sourceRef="check" targetRef="xor"/>
+    <sequenceFlow id="sf3" name="yes" sourceRef="xor" targetRef="send"/>
+    <sequenceFlow id="sf4" name="no" sourceRef="xor" targetRef="end_err"/>
+    <sequenceFlow id="sf5" sourceRef="send" targetRef="sub"/>
+    <sequenceFlow id="sf6" sourceRef="sub" targetRef="bill"/>
+    <sequenceFlow id="sf7" sourceRef="bill" targetRef="evg"/>
+    <sequenceFlow id="sf8" sourceRef="evg" targetRef="timer"/>
+    <sequenceFlow id="sf9" sourceRef="evg" targetRef="catch_msg"/>
+    <sequenceFlow id="sf10" sourceRef="timer" targetRef="and"/>
+    <sequenceFlow id="sf11" sourceRef="catch_msg" targetRef="and"/>
+    <sequenceFlow id="sf12" sourceRef="and" targetRef="throw_msg"/>
+    <sequenceFlow id="sf13" sourceRef="throw_msg" targetRef="or"/>
+    <sequenceFlow id="sf14" sourceRef="or" targetRef="end"/>
+    <sequenceFlow id="sf15" sourceRef="or" targetRef="throw"/>
+    <sequenceFlow id="sf16" sourceRef="throw" targetRef="end_msg"/>
+    <sequenceFlow id="sf17" sourceRef="b_err" targetRef="end_term"/>
+    <sequenceFlow id="sf18" sourceRef="b_cancel" targetRef="end_cancel"/>
+    <sequenceFlow id="sf19" sourceRef="b_msg" targetRef="catch_err"/>
+    <sequenceFlow id="sf20" sourceRef="b_timer" targetRef="catch_cancel"/>
+    <!-- Ends from the incoming and outgoing children only. -->
+    <sequenceFlow id="sf_refs"/>
+  </process>
+  <process id="proc_b" name="Process B">
+    <startEvent id="b_start"><outgoing>sf_refs</outgoing></startEvent>
+    <task id="b_task" name="Receive"><incoming>sf_refs</incoming></task>
+  </process>
+  <bpmndi:BPMNDiagram id="d1">
+    <bpmndi:BPMNPlane id="p1" bpmnElement="collab">
+      <bpmndi:BPMNShape id="s_pool_a" bpmnElement="pool_a">
+        <dc:Bounds x="0" y="0" width="1200" height="400"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="s_start" bpmnElement="start">
+        <dc:Bounds x="40.5" y="100" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="20" y="140" width="80" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="s_check" bpmnElement="check">
+        <dc:Bounds x="120" y="78" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="s_sub" bpmnElement="sub">
+        <dc:Bounds x="400" y="60" width="300" height="200"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="s_note" bpmnElement="note">
+        <dc:Bounds x="120" y="10" width="140" height="30"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="e_sf1" bpmnElement="sf1">
+        <di:waypoint x="76.5" y="118"/>
+        <di:waypoint x="120" y="118"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="e_mf" bpmnElement="mf">
+        <di:waypoint x="300" y="160"/>
+        <di:waypoint x="300" y="460"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

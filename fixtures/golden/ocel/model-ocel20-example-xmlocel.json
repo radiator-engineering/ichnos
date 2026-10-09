@@ -1,0 +1,658 @@
+{
+  "expected": {
+    "extended_table": {
+      "object_types": [
+        "Purchase Requisition",
+        "Purchase Order",
+        "Invoice",
+        "Payment"
+      ],
+      "rows": [
+        {
+          "event": "e1",
+          "objects": {
+            "Purchase Requisition": [
+              "PR1"
+            ]
+          }
+        },
+        {
+          "event": "e2",
+          "objects": {
+            "Purchase Requisition": [
+              "PR1"
+            ]
+          }
+        },
+        {
+          "event": "e3",
+          "objects": {
+            "Purchase Order": [
+              "PO1"
+            ],
+            "Purchase Requisition": [
+              "PR1"
+            ]
+          }
+        },
+        {
+          "event": "e4",
+          "objects": {
+            "Purchase Order": [
+              "PO1"
+            ]
+          }
+        },
+        {
+          "event": "e5",
+          "objects": {
+            "Invoice": [
+              "R1"
+            ],
+            "Purchase Order": [
+              "PO1"
+            ]
+          }
+        },
+        {
+          "event": "e6",
+          "objects": {
+            "Invoice": [
+              "R2"
+            ],
+            "Purchase Order": [
+              "PO1"
+            ]
+          }
+        },
+        {
+          "event": "e7",
+          "objects": {
+            "Invoice": [
+              "R1"
+            ],
+            "Payment": [
+              "P1"
+            ]
+          }
+        },
+        {
+          "event": "e8",
+          "objects": {
+            "Invoice": [
+              "R2"
+            ],
+            "Payment": [
+              "P2"
+            ]
+          }
+        },
+        {
+          "event": "e9",
+          "objects": {
+            "Invoice": [
+              "R3"
+            ]
+          }
+        },
+        {
+          "event": "e10",
+          "objects": {
+            "Invoice": [
+              "R3"
+            ],
+            "Purchase Order": [
+              "PO2"
+            ]
+          }
+        },
+        {
+          "event": "e11",
+          "objects": {
+            "Invoice": [
+              "R3"
+            ]
+          }
+        },
+        {
+          "event": "e12",
+          "objects": {
+            "Invoice": [
+              "R3"
+            ]
+          }
+        },
+        {
+          "event": "e13",
+          "objects": {
+            "Invoice": [
+              "R3"
+            ],
+            "Payment": [
+              "P3"
+            ]
+          }
+        }
+      ]
+    },
+    "is_ocel20": true,
+    "ocel": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Purchase Requisition",
+          "attributes": {
+            "pr_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T15:00:00.000000+00:00"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "attributes": {
+            "pr_approver": [
+              "string",
+              "Tania"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T16:30:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-10T09:15:00.000000+00:00"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "attributes": {
+            "po_editor": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2022-01-13T12:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2022-01-14T12:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e6",
+          "timestamp": "2022-01-16T11:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2022-01-30T23:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e8",
+          "timestamp": "2022-01-31T22:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e9",
+          "timestamp": "2022-02-02T09:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e10",
+          "timestamp": "2022-02-02T17:00:00.000000+00:00"
+        },
+        {
+          "activity": "Set Payment Block",
+          "attributes": {
+            "invoice_blocker": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e11",
+          "timestamp": "2022-02-03T07:30:00.000000+00:00"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "attributes": {
+            "invoice_block_rem": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e12",
+          "timestamp": "2022-02-03T23:30:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e13",
+          "timestamp": "2022-02-28T23:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R1",
+          "target": "P1"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R2",
+          "target": "P2"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R3",
+          "target": "P3"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R1"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R2"
+        },
+        {
+          "qualifier": "Maverick buying",
+          "source": "PO2",
+          "target": "R3"
+        },
+        {
+          "qualifier": "PO from PR",
+          "source": "PR1",
+          "target": "PO1"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T07:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "Yes"
+          ]
+        },
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T23:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "No"
+          ]
+        },
+        {
+          "field": "po_quantity",
+          "object": "PO1",
+          "timestamp": "2022-01-13T12:00:00.000000+00:00",
+          "type": "Purchase Order",
+          "value": [
+            "string",
+            "600"
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R1",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R2",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R3",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {},
+          "id": "P1",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P2",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P3",
+          "type": "Payment"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Cows"
+            ],
+            "po_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PO1",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Notebooks"
+            ],
+            "po_quantity": [
+              "string",
+              "1"
+            ]
+          },
+          "id": "PO2",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "pr_product": [
+              "string",
+              "Cows"
+            ],
+            "pr_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PR1",
+          "type": "Purchase Requisition"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Purchase Requisition",
+          "event": "e1",
+          "object": "PR1",
+          "qualifier": "Regular placement of PR",
+          "timestamp": "2022-01-09T15:00:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "event": "e2",
+          "object": "PR1",
+          "qualifier": "Regular approval of PR",
+          "timestamp": "2022-01-09T16:30:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PR1",
+          "qualifier": "Created order from PR",
+          "timestamp": "2022-01-10T09:15:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PO1",
+          "qualifier": "Created order with identifier",
+          "timestamp": "2022-01-10T09:15:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "event": "e4",
+          "object": "PO1",
+          "qualifier": "Change of quantity",
+          "timestamp": "2022-01-13T12:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e5",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO",
+          "timestamp": "2022-01-14T12:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e5",
+          "object": "R1",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-01-14T12:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e6",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO",
+          "timestamp": "2022-01-16T11:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e6",
+          "object": "R2",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-01-16T11:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "R1",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-30T23:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "P1",
+          "qualifier": "Payment inserted with identifier",
+          "timestamp": "2022-01-30T23:00:00.000000+00:00",
+          "type": "Payment"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e8",
+          "object": "R2",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-31T22:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e8",
+          "object": "P2",
+          "qualifier": "Payment created with identifier",
+          "timestamp": "2022-01-31T22:00:00.000000+00:00",
+          "type": "Payment"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e9",
+          "object": "R3",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-02-02T09:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "R3",
+          "qualifier": "Purchase order created with maverick buying from",
+          "timestamp": "2022-02-02T17:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "PO2",
+          "qualifier": "Purhcase order created with identifier",
+          "timestamp": "2022-02-02T17:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Set Payment Block",
+          "event": "e11",
+          "object": "R3",
+          "qualifier": "Payment block due to unethical maverick buying",
+          "timestamp": "2022-02-03T07:30:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "event": "e12",
+          "object": "R3",
+          "qualifier": "Payment block removed ...",
+          "timestamp": "2022-02-03T23:30:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e13",
+          "object": "R3",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-02-28T23:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e13",
+          "object": "P3",
+          "qualifier": "Payment inserted with identifier",
+          "timestamp": "2022-02-28T23:00:00.000000+00:00",
+          "type": "Payment"
+        }
+      ]
+    },
+    "summary": {
+      "activities": 8,
+      "activities_per_object_type": {
+        "Invoice": 5,
+        "Payment": 1,
+        "Purchase Order": 3,
+        "Purchase Requisition": 3
+      },
+      "activity_counts": {
+        "Approve Purchase Requisition": 1,
+        "Change PO Quantity": 1,
+        "Create Purchase Order": 2,
+        "Create Purchase Requisition": 1,
+        "Insert Invoice": 3,
+        "Insert Payment": 3,
+        "Remove Payment Block": 1,
+        "Set Payment Block": 1
+      },
+      "events": 13,
+      "object_type_counts": {
+        "Invoice": 3,
+        "Payment": 3,
+        "Purchase Order": 2,
+        "Purchase Requisition": 1
+      },
+      "object_types": 4,
+      "objects": 9,
+      "relations": 20,
+      "text": "Object-Centric Event Log (number of events: 13, number of objects: 9, number of activities: 8, number of object types: 4, events-objects relationships: 20)\nActivities occurrences: Counter({'Insert Invoice': 3, 'Insert Payment': 3, 'Create Purchase Order': 2, 'Create Purchase Requisition': 1, 'Approve Purchase Requisition': 1, 'Change PO Quantity': 1, 'Set Payment Block': 1, 'Remove Payment Block': 1})\nObject types occurrences (number of objects): Counter({'Invoice': 3, 'Payment': 3, 'Purchase Order': 2, 'Purchase Requisition': 1})\nUnique activities per object type: Counter({'Invoice': 5, 'Purchase Order': 3, 'Purchase Requisition': 3, 'Payment': 1})\nPlease use <THIS>.get_extended_table() to get a dataframe representation of the events related to the objects."
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "model-ocel20-example-xmlocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.xmlocel"
+    },
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.read_ocel2_xml"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

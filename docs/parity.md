@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 297; ported: 199; dropped: 130; total: 626.
+todo: 294; ported: 202; dropped: 130; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -18,7 +18,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.read_pnml` | `read.py` → `objects/petri_net/importer/importer`, `objects/petri_net/obj` | `ichnos_io::read_pnml` | `ichnos-io` | ported | PnmlDocument holds an AcceptingPetriNet plus alternate finals and stochastic/data metadata. 22 fixture goldens and round trips; SampleNet is round-trip-only because it is unbounded. See ichnos-io Behaviour changes. |
 | `pm4py.read_ptml` | `read.py` → `objects/process_tree/importer/importer`, `objects/process_tree/obj` | `ichnos_io::read_ptml` | `ichnos-io` | ported | Builds ProcessTree; seven fixture goldens and round trips. Referenced/shared subtrees, two/three-child loops and edge declaration order are supported. See ichnos-io Behaviour changes. |
 | `pm4py.read_dfg` | `read.py` → `objects/dfg/importer/importer` | `ichnos_io::read_dfg` | `ichnos-io` | ported | Builds Dfg from the line format, including boundary/edge counts. Fixture counts, frequencies, footprints and round trip are golden-tested. Last duplicate frequency wins. |
-| `pm4py.read_bpmn` | `read.py` → `objects/bpmn/importer/importer`, `objects/bpmn/obj` | `ichnos::io::read_bpmn` (planned) | `ichnos-io` | todo | Variants: lxml. |
+| `pm4py.read_bpmn` | `read.py` → `objects/bpmn/importer/importer`, `objects/bpmn/obj` | `ichnos_io::read_bpmn` | `ichnos-io` | ported | Returns a `BpmnDocument`: the `Bpmn` plus shape bounds and edge waypoints. Goldens `io/bpmn-read-*` on nine pm4py fixtures and a synthetic diagram with every element kind (`fixtures/logs/synthetic-bpmn/all_kinds.bpmn`); `io/bpmn-writer-special` reads ichnos output with pm4py. ch7_CreditAppSimulation fails in both. See ichnos-io Behaviour changes. |
 | `pm4py.read_ocel` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/importer/jsonocel/importer`, `objects/ocel/importer/sqlite/importer`, `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_rustxes, ocel20_standard, pandas, pandas_importer. |
 | `pm4py.read_ocel_csv` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
 | `pm4py.read_ocel_json` | `read.py` → `objects/ocel/importer/jsonocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20_rustxes, ocel20_standard. |
@@ -39,7 +39,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.write_pnml` | `write.py` → `objects/petri_net/exporter/exporter`, `objects/petri_net/obj` | `ichnos_io::write_pnml` | `ichnos-io` | ported | Weighted normal/inhibitor/reset arcs, final markings and stochastic/data declarations round-trip. Uses deterministic XML ids/layout; graphics and arbitrary tool metadata are not exported. See ichnos-io Behaviour changes. |
 | `pm4py.write_ptml` | `write.py` → `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos_io::write_ptml` | `ichnos-io` | ported | Deterministic node ids; emits a silent third loop child for ProM by default. Seven fixture round trips. Interleaving and loops with more than two model children return errors. |
 | `pm4py.write_dfg` | `write.py` → `objects/dfg/exporter/exporter` | `ichnos_io::write_dfg` | `ichnos-io` | ported | Deterministic lexical activity indexes, explicit start/end frequencies; optional inferred boundaries. Empty graphs and boundary-only activities round-trip. Unrepresentable whitespace/newline labels error. |
-| `pm4py.write_bpmn` | `write.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/layout/layouter`, `objects/bpmn/obj` | `ichnos::io::write_bpmn` (planned) | `ichnos-io` | todo | Variants: etree, graphviz, graphviz_new. |
+| `pm4py.write_bpmn` | `write.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/layout/layouter`, `objects/bpmn/obj` | `ichnos_io::write_bpmn` | `ichnos-io` | ported | Ports the etree variant. Goldens `io/bpmn-write-*` compare pm4py's write-then-read of each fixture with the ichnos one; the two subprocess fixtures fail to write in both. Golden `io/bpmn-options-all_kinds` writes with both of pm4py's export switches off (`BpmnWriteOptions::plane` and `incoming_outgoing`). Uses stored bounds and waypoints, or pm4py's default layout; Graphviz auto-layout is not ported, as for `write_pnml`. See ichnos-io Behaviour changes. |
 | `pm4py.write_ocel` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. |
 | `pm4py.write_ocel_csv` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
 | `pm4py.write_ocel_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard. |
@@ -1268,7 +1268,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.OCEL` | `objects/ocel/obj.py` → `objects/ocel/constants` | `ichnos::ocel::OCEL` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.OCEL` | `objects/ocel/obj.py` → `objects/ocel/constants` | `ichnos_ocel::Ocel` | `ichnos-ocel` | ported | `Ocel` with `is_ocel20`, `summary` (pm4py's `get_summary` text through `Display`) and `extended_table`; default column names and JSON keys in `ichnos_ocel::constants`. Goldens `ocel/model-*` (6 fixtures and the empty log) compare each against pm4py. The goldens leave `globals` empty; the ichnos-io OCEL readers fill it and test it. See the ichnos-ocel Behaviour changes. |
 
 ## objects.bpmn.obj
 
@@ -1327,6 +1327,16 @@ Lanes record each deliberate change from pm4py here.
 - **Decomposed alignments of an empty trace have a fitness and a best worst cost.** pm4py leaves both out for an empty trace. When the denominator is 0, ichnos gives fitness 0.
 - **Errors replace exceptions and `None` results.** Nets with reset or inhibitor arcs, unknown marking places and invalid settings return an `Error`.
 
+### ichnos-ocel
+
+- **Tables are typed rows, not data frames.** pm4py's `OCEL` holds pandas data frames whose column names are constructor parameters. `Ocel` holds lists of events, objects, relations, object-to-object and event-to-event relations and object changes. Column names matter only to the readers and writers.
+- **Relations keep ids only.** pm4py's `relations` table repeats each event's activity and timestamp and each object's type. `EventObject` keeps the event id, the object id and the qualifier. `summary` and `extended_table` look up the rest, and leave out a relation whose event or object is not in the log.
+  - pm4py uses the relation's own activity and type columns, so it keeps such a relation. Two effects follow. First, the summary's `events-objects relationships` count includes every relation, but its `Unique activities per object type` line counts only relations whose event and object are both in the log. Second, a type that appears only on relations to missing objects has no extended-table column and is missing from that line.
+- **Repeated event or object ids resolve to the first.** `event_index` and `object_index` map a repeated id to its first event or object. With repeated event ids, pm4py's `get_extended_table` raises and gives no table. `extended_table` gives the first such event all the objects related to that id, and the later events empty lists.
+- **The extended table is typed.** `get_extended_table` returns a data frame with one `ocel:type:<type>` column per object type, holding a list or a missing value. `extended_table` returns the object types and, for each event, one list per type, empty where pandas has a missing value.
+- **`OcelSummary` is a struct.** Its `Display` gives pm4py's `get_summary` text. `Ocel`'s `Display` gives the same text, as pm4py's `OCEL.__str__` and `__repr__` do.
+- **No column-name parameters, `__hash__` or copy methods.** `Ocel` derives `Clone` and `PartialEq`.
+
 ### ichnos-io
 
 - PNML preserves alternative final markings; pm4py merges them into one marking on import. `PnmlWriteOptions::include_alternative_final_markings = false` exports only the primary marking for pm4py consumers. Writer goldens read exact ichnos-generated PNML/PTML/DFG bytes with pm4py, including a PNML with two final markings.
@@ -1341,6 +1351,9 @@ Lanes record each deliberate change from pm4py here.
 - PTML preserves edge declaration order and clones shared referenced subtrees. It keeps a non-silent three-child loop exit in its original sequence position (pm4py can move it to the end of the parent, or omit a root exit). Identical repeated node declarations are accepted; cycles, conflicting declarations and unreachable nodes error. Export rejects interleaving and loops with more than two model children.
 - DFG output retains explicit empty boundary maps by default; inference is opt-in. Duplicate activity declarations, negative counts, invalid indexes and labels that cannot round-trip in the line format error. Unreferenced declarations have no representation in the core DFG.
 - Model-I/O goldens compare counts and behavioural footprints, not generated ids. SampleNet is excluded from generation and its footprints are unavailable; import/round-trip still runs. The seven inhibitor/reset fixtures have unbounded counters and record null footprints with status `unbounded`. Petri footprint exploration otherwise caps at 10,000 markings; a42 records null with status `state_space_limit`. Finite ordinary nets use pm4py's ClassicSemantics; imported special arc kinds are checked separately and retain the core's inhibitor/reset firing rules.
+- BPMN import keeps edge waypoints; pm4py drops them. Nodes and flows keep document order; pm4py stores them in sets. A diagram without a `process` element gets process id `""`, and so do elements outside any process, where pm4py uses a random UUID. Repeated element ids, flows that name an unknown node and non-numeric bounds are errors; pm4py raises `AttributeError` on an unknown node.
+- BPMN export uses the stored bounds and waypoints, else pm4py's default layout (bounds 0, 0, 100, 100 and two waypoints at the origin). There is no Graphviz auto-layout, and the diagram and plane ids are fixed (`id_diagram`, `id_plane`). Several processes need a collaboration node, as in pm4py, but ichnos returns an error where pm4py raises `UnboundLocalError`. Text annotations get no `incoming` or `outgoing` children; pm4py appends them to the node written before the annotation.
+- BPMN export writes numbers in Rust's shortest form: a width of 100.0 is written `100`, and 1e20 as `100000000000000000000`, where pm4py writes `100.0` and `1e+20`. The bytes differ from pm4py's; the values read back the same.
 
 ### ichnos-discovery (DFG)
 
