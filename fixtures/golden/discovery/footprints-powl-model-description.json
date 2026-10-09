@@ -1,0 +1,166 @@
+{
+  "expected": {
+    "frequent": {
+      "activities": [
+        "NODE1",
+        "NODE2",
+        "NODE3",
+        "NODE4",
+        "NODE5"
+      ],
+      "activities_always_happening": [
+        "NODE1",
+        "NODE2",
+        "NODE3"
+      ],
+      "end_activities": [
+        "NODE3",
+        "NODE4",
+        "NODE5"
+      ],
+      "min_trace_length": 4,
+      "parallel": [
+        [
+          "NODE1",
+          "NODE3"
+        ],
+        [
+          "NODE2",
+          "NODE3"
+        ],
+        [
+          "NODE3",
+          "NODE1"
+        ],
+        [
+          "NODE3",
+          "NODE2"
+        ],
+        [
+          "NODE3",
+          "NODE4"
+        ],
+        [
+          "NODE3",
+          "NODE5"
+        ],
+        [
+          "NODE4",
+          "NODE3"
+        ],
+        [
+          "NODE5",
+          "NODE3"
+        ]
+      ],
+      "sequence": [
+        [
+          "NODE1",
+          "NODE2"
+        ],
+        [
+          "NODE2",
+          "NODE4"
+        ],
+        [
+          "NODE2",
+          "NODE5"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "NODE1",
+        "NODE3"
+      ]
+    },
+    "powl": {
+      "activities": [
+        "NODE1",
+        "NODE2",
+        "NODE3",
+        "NODE4",
+        "NODE5"
+      ],
+      "activities_always_happening": [
+        "NODE1",
+        "NODE2",
+        "NODE3"
+      ],
+      "end_activities": [
+        "NODE3",
+        "NODE4",
+        "NODE5"
+      ],
+      "min_trace_length": 4,
+      "parallel": [
+        [
+          "NODE1",
+          "NODE3"
+        ],
+        [
+          "NODE2",
+          "NODE3"
+        ],
+        [
+          "NODE3",
+          "NODE1"
+        ],
+        [
+          "NODE3",
+          "NODE2"
+        ],
+        [
+          "NODE3",
+          "NODE4"
+        ],
+        [
+          "NODE3",
+          "NODE5"
+        ],
+        [
+          "NODE4",
+          "NODE3"
+        ],
+        [
+          "NODE5",
+          "NODE3"
+        ]
+      ],
+      "sequence": [
+        [
+          "NODE1",
+          "NODE2"
+        ],
+        [
+          "NODE2",
+          "NODE4"
+        ],
+        [
+          "NODE2",
+          "NODE5"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "NODE1",
+        "NODE3"
+      ]
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "footprints-powl-model-description",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.discover_footprints",
+      "pm4py.objects.powl.obj.POWL.simplify_using_frequent_transitions"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "PO=(nodes={ NODE1, NODE2, NODE3, X ( NODE4, NODE5 ) }, order={ NODE1-->NODE2, NODE1-->X ( NODE4, NODE5 ), NODE2-->X ( NODE4, NODE5 ) })"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

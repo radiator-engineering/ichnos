@@ -78,7 +78,7 @@ impl StreamingFootprintsConformance {
         &self.cases
     }
 
-    /// Diagnostics for an open case; None means it has no accepted input.
+    /// Diagnostics for an open case; None means no open case is tracked. Unknown-only cases return Some.
     pub fn get_status(&self, case: &str) -> Option<&StreamingFootprintsStatus> {
         self.cases.get(case)
     }
@@ -100,7 +100,9 @@ impl StreamingFootprintsConformance {
         let keys: Vec<_> = self.cases.keys().cloned().collect();
         keys.into_iter()
             .map(|case| {
-                let fit = self.terminate(&case).unwrap();
+                let fit = self
+                    .terminate(&case)
+                    .expect("case came from the open-case map");
                 (case, fit)
             })
             .collect()

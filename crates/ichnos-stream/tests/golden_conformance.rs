@@ -254,7 +254,8 @@ fn check(name: &str) {
         live.stop().unwrap();
         let mut algo = shared.borrow_mut();
         let results = algo.terminate_all();
-        assert_eq!(results.len(), terminated.as_object().unwrap().len());
+        let result_json = Value::Object(results.iter().map(|(case, result)| (case.clone(), json!({"marking":marking(&result.marking,algo.net()),"missing":result.missing,"remaining":result.remaining,"is_fit":result.is_fit}))).collect());
+        compare(&result_json, &terminated);
         after = tbr_state(&algo);
     } else if kind == "footprints" {
         let (fp, ends) = footprints(&expected["model"]);
@@ -371,3 +372,5 @@ fn compact(state: &Value) -> Value {
         .collect();
     json!({"count":rows.len(),"sha256":format!("{:x}",Sha256::digest(serde_json::to_vec(&rows).unwrap())),"samples":indices.into_iter().map(|i|json!([i,rows[i]])).collect::<Vec<_>>()})
 }
+
+cases! { tbr_real_pnml => "tbr-running-example-pnml", tbr_two_silent_paths => "tbr-two-silent-paths", tbr_duplicate_labels => "tbr-duplicate-labels" }

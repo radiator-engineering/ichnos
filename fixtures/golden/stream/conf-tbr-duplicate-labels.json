@@ -1,0 +1,176 @@
+{
+  "expected": {
+    "after_termination": {},
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "first",
+          "first-A",
+          false,
+          1
+        ],
+        [
+          "second",
+          "first-A",
+          true,
+          1
+        ],
+        [
+          "second",
+          "second-A",
+          false,
+          1
+        ],
+        [
+          "done",
+          "second-A",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "done": 1
+      },
+      "initial": {
+        "first": 1
+      },
+      "places": [
+        "first",
+        "second",
+        "done"
+      ],
+      "transitions": [
+        [
+          "first-A",
+          "A"
+        ],
+        [
+          "second-A",
+          "A"
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {
+          "c": {
+            "is_fit": true,
+            "marking": {
+              "second": 1
+            },
+            "missing": 0
+          }
+        }
+      },
+      {
+        "at": 2,
+        "state": {
+          "c": {
+            "is_fit": true,
+            "marking": {
+              "done": 1
+            },
+            "missing": 0
+          }
+        }
+      }
+    ],
+    "terminated": {
+      "c": {
+        "is_fit": true,
+        "marking": {
+          "done": 1
+        },
+        "missing": 0,
+        "remaining": 0
+      }
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-duplicate-labels",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {},
+    "params": {
+      "events": [
+        {
+          "case:concept:name": "c",
+          "concept:name": "A"
+        },
+        {
+          "case:concept:name": "c",
+          "concept:name": "A"
+        }
+      ],
+      "kind": "tbr",
+      "model": {
+        "arcs": [
+          [
+            "first",
+            "first-A",
+            false,
+            1
+          ],
+          [
+            "second",
+            "first-A",
+            true,
+            1
+          ],
+          [
+            "second",
+            "second-A",
+            false,
+            1
+          ],
+          [
+            "done",
+            "second-A",
+            true,
+            1
+          ]
+        ],
+        "final": {
+          "done": 1
+        },
+        "initial": {
+          "first": 1
+        },
+        "places": [
+          "first",
+          "second",
+          "done"
+        ],
+        "transitions": [
+          [
+            "first-A",
+            "A"
+          ],
+          [
+            "second-A",
+            "A"
+          ]
+        ]
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

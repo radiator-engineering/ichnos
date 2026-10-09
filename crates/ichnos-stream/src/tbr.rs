@@ -155,6 +155,9 @@ impl StreamingTbrConformance {
     /// Consume an event, trying shortest silent paths before inserting tokens.
     /// If a selected silent path fails, fallback uses the original marking
     /// rather than the native null-marking exception; no partial path is committed.
+    /// All fallback shortfalls use the original marking, including after a
+    /// capped partial silent search; native tests the explored marking but
+    /// fires from the original, which can undercount or subtract missing tokens.
     pub fn push(&mut self, event: &Event) -> Result<()> {
         let Some((case, activity)) = self.input.fields(event, &[])? else {
             return Ok(());
@@ -280,7 +283,9 @@ impl StreamingTbrConformance {
         let keys: Vec<_> = self.cases.keys().cloned().collect();
         keys.into_iter()
             .map(|case| {
-                let result = self.terminate(&case).unwrap();
+                let result = self
+                    .terminate(&case)
+                    .expect("case came from the open-case map");
                 (case, result)
             })
             .collect()

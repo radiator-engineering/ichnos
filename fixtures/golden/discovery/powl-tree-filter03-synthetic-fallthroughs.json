@@ -1,0 +1,101 @@
+{
+  "expected": {
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "kind": "activity",
+                              "label": "d"
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "loop"
+                        },
+                        {
+                          "kind": "activity",
+                          "label": "c"
+                        }
+                      ],
+                      "kind": "po",
+                      "order": []
+                    },
+                    {
+                      "kind": "silent"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "kind": "activity",
+                  "label": "b"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "kind": "activity",
+          "label": "a"
+        }
+      ],
+      "kind": "po",
+      "order": []
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "powl-tree-filter03-synthetic-fallthroughs",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_powl"
+    ],
+    "loaders": {},
+    "params": {
+      "traces": [
+        [
+          "a",
+          "b",
+          "d",
+          "c",
+          "d"
+        ],
+        [
+          "b",
+          "a"
+        ],
+        [
+          "b",
+          "d",
+          "c",
+          "b",
+          "a"
+        ]
+      ],
+      "variant": "tree-filter03"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

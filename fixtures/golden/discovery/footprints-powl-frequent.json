@@ -1,0 +1,102 @@
+{
+  "expected": {
+    "frequent": null,
+    "powl": {
+      "activities": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "activities_always_happening": [
+        "a",
+        "b"
+      ],
+      "end_activities": [
+        "b",
+        "c",
+        "d"
+      ],
+      "min_trace_length": 1,
+      "parallel": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "a",
+          "d"
+        ],
+        [
+          "b",
+          "b"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "a"
+        ],
+        [
+          "c",
+          "b"
+        ],
+        [
+          "c",
+          "c"
+        ],
+        [
+          "c",
+          "d"
+        ],
+        [
+          "d",
+          "a"
+        ],
+        [
+          "d",
+          "b"
+        ],
+        [
+          "d",
+          "c"
+        ]
+      ],
+      "sequence": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "footprints-powl-frequent",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.discover_footprints",
+      "pm4py.objects.powl.obj.POWL.simplify_using_frequent_transitions"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "PO=(nodes={ X ( a, tau ), * ( b, tau ), * ( tau, c ), X ( tau, d ), X ( tau, tau ) }, order={ X ( a, tau )-->* ( b, tau ) })"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

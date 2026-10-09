@@ -190,3 +190,125 @@ fn gzip_streams_reopen_and_decode_the_same_items() {
     drop(reader);
     std::fs::remove_file(path).unwrap();
 }
+
+fn case_stream(rows: Vec<(ichnos_core::AttributeValue, &str)>) -> ichnos_core::EventStream {
+    use ichnos_core::{
+        Event,
+        chrono::{TimeZone, Utc},
+    };
+    ichnos_core::EventStream {
+        events: rows
+            .into_iter()
+            .map(|(case, activity)| {
+                let mut event = Event::new();
+                event.insert("case:concept:name", case);
+                event.insert("concept:name", activity);
+                event.insert("time:timestamp", Utc.timestamp_opt(0, 0).unwrap());
+                event
+            })
+            .collect(),
+        ..Default::default()
+    }
+}
+
+#[test]
+fn typed_case_identity_does_not_merge_display_collisions() {
+    use ichnos_core::AttributeValue as V;
+    let stream = case_stream(vec![
+        (V::from("1"), "text"),
+        (V::from(1_i64), "integer"),
+        (V::from(1.0), "float"),
+        (V::from(true), "boolean"),
+        (V::from(1.5), "fraction"),
+        (V::from(2_i64), "two"),
+        (V::from(1_i64), "integer-again"),
+    ]);
+    let traces = ichnos_stream::TraceIterator::from_event_stream(&stream, &Default::default())
+        .unwrap()
+        .collect::<Vec<_>>();
+    let activities = traces
+        .iter()
+        .map(|t| t.events[0].get("concept:name").unwrap().as_str().unwrap())
+        .collect::<Vec<_>>();
+    assert_eq!(
+        activities,
+        vec!["boolean", "integer", "float", "fraction", "two", "text"]
+    );
+    assert_eq!(traces[1].events.len(), 2);
+    assert_eq!(
+        traces[1].attributes.get("concept:name"),
+        Some(&V::from(1_i64))
+    );
+    assert_eq!(
+        traces[5].attributes.get("concept:name"),
+        Some(&V::from("1"))
+    );
+}
+
+#[test]
+fn numeric_case_order_preserves_large_integer_precision_and_float_boundaries() {
+    use ichnos_core::AttributeValue as V;
+    let stream = case_stream(vec![
+        (V::from(f64::NAN), "nan"),
+        (V::from(f64::INFINITY), "infinity"),
+        (V::from(i64::MAX as f64), "float-upper"),
+        (V::from(i64::MAX), "integer-max"),
+        (V::from(9007199254740993_i64), "large-integer"),
+        (V::from(9007199254740992.0), "large-float"),
+        (V::from(9007199254740992_i64), "smaller-integer"),
+        (V::from(0_i64), "zero"),
+        (V::from(-0.5), "negative-fraction"),
+        (V::from(i64::MIN as f64), "float-lower"),
+        (V::from(i64::MIN), "integer-min"),
+        (V::from(f64::NEG_INFINITY), "negative-infinity"),
+    ]);
+    let traces = ichnos_stream::TraceIterator::from_event_stream(&stream, &Default::default())
+        .unwrap()
+        .collect::<Vec<_>>();
+    let activities = traces
+        .iter()
+        .map(|t| t.events[0].get("concept:name").unwrap().as_str().unwrap())
+        .collect::<Vec<_>>();
+    assert_eq!(
+        activities,
+        vec![
+            "negative-infinity",
+            "integer-min",
+            "float-lower",
+            "negative-fraction",
+            "zero",
+            "smaller-integer",
+            "large-float",
+            "large-integer",
+            "integer-max",
+            "float-upper",
+            "infinity",
+            "nan"
+        ]
+    );
+}
+
+#[test]
+fn float_case_identity_groups_nan_and_signed_zero_like_unique() {
+    use ichnos_core::AttributeValue as V;
+    let stream = case_stream(vec![
+        (V::from(f64::NAN), "nan-first"),
+        (V::from(-0.0), "zero-first"),
+        (V::from(0.0), "zero-second"),
+        (V::from(-f64::NAN), "nan-second"),
+    ]);
+    let traces = ichnos_stream::TraceIterator::from_event_stream(&stream, &Default::default())
+        .unwrap()
+        .collect::<Vec<_>>();
+    assert_eq!(traces.len(), 2);
+    assert_eq!(traces[0].events.len(), 2);
+    assert_eq!(traces[1].events.len(), 2);
+    assert_eq!(
+        traces[0].events[0].get("concept:name").unwrap().as_str(),
+        Some("zero-first")
+    );
+    assert_eq!(
+        traces[1].events[0].get("concept:name").unwrap().as_str(),
+        Some("nan-first")
+    );
+}

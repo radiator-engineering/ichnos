@@ -1,0 +1,466 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "n1",
+          "n10",
+          false,
+          1
+        ],
+        [
+          "n2",
+          "n18",
+          true,
+          1
+        ],
+        [
+          "n2",
+          "n19",
+          true,
+          1
+        ],
+        [
+          "n3",
+          "n10",
+          true,
+          1
+        ],
+        [
+          "n3",
+          "n11",
+          false,
+          1
+        ],
+        [
+          "n3",
+          "n16",
+          true,
+          1
+        ],
+        [
+          "n4",
+          "n17",
+          true,
+          1
+        ],
+        [
+          "n4",
+          "n18",
+          false,
+          1
+        ],
+        [
+          "n4",
+          "n19",
+          false,
+          1
+        ],
+        [
+          "n5",
+          "n15",
+          true,
+          1
+        ],
+        [
+          "n5",
+          "n16",
+          false,
+          1
+        ],
+        [
+          "n5",
+          "n17",
+          false,
+          1
+        ],
+        [
+          "n6",
+          "n11",
+          true,
+          1
+        ],
+        [
+          "n6",
+          "n12",
+          false,
+          1
+        ],
+        [
+          "n7",
+          "n12",
+          true,
+          1
+        ],
+        [
+          "n7",
+          "n15",
+          false,
+          1
+        ],
+        [
+          "n8",
+          "n11",
+          true,
+          1
+        ],
+        [
+          "n8",
+          "n13",
+          false,
+          1
+        ],
+        [
+          "n8",
+          "n14",
+          false,
+          1
+        ],
+        [
+          "n9",
+          "n13",
+          true,
+          1
+        ],
+        [
+          "n9",
+          "n14",
+          true,
+          1
+        ],
+        [
+          "n9",
+          "n15",
+          false,
+          1
+        ]
+      ],
+      "final": {
+        "n2": 1
+      },
+      "initial": {
+        "n1": 1
+      },
+      "places": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6",
+        "n7",
+        "n8",
+        "n9"
+      ],
+      "transitions": [
+        [
+          "n10",
+          "register request"
+        ],
+        [
+          "n11",
+          null
+        ],
+        [
+          "n12",
+          "check ticket"
+        ],
+        [
+          "n13",
+          "examine casually"
+        ],
+        [
+          "n14",
+          "examine thoroughly"
+        ],
+        [
+          "n15",
+          "decide"
+        ],
+        [
+          "n16",
+          "reinitiate request"
+        ],
+        [
+          "n17",
+          null
+        ],
+        [
+          "n18",
+          "pay compensation"
+        ],
+        [
+          "n19",
+          "reject request"
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "3",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n3": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ]
+          ],
+          "sha256": "5ef6f291a38169472db4ad15a64aaa5daeb7331e42dab54e54a542b6adb418ed"
+        }
+      },
+      {
+        "at": 21,
+        "state": {
+          "count": 4,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ],
+            [
+              3,
+              [
+                "6",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n6": 1,
+                    "n9": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ]
+          ],
+          "sha256": "09523bce78cfa38043242b8e5cd64abf2c852839afa947caade664b45a139270"
+        }
+      },
+      {
+        "at": 41,
+        "state": {
+          "count": 6,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ],
+            [
+              5,
+              [
+                "6",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ]
+          ],
+          "sha256": "06611b23cc8939324163381ea6418e12630196c142b7499c66f0a262c283f565"
+        }
+      },
+      {
+        "at": 42,
+        "state": {
+          "count": 6,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ],
+            [
+              5,
+              [
+                "6",
+                {
+                  "is_fit": true,
+                  "marking": {
+                    "n2": 1
+                  },
+                  "missing": 0
+                }
+              ]
+            ]
+          ],
+          "sha256": "0a773c748eca1366eef29a1018450be526a69c1d021ca9a73e843037b8aecc66"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 6,
+      "samples": [
+        [
+          0,
+          [
+            "1",
+            {
+              "is_fit": true,
+              "marking": {
+                "n2": 1
+              },
+              "missing": 0,
+              "remaining": 0
+            }
+          ]
+        ],
+        [
+          1,
+          [
+            "2",
+            {
+              "is_fit": true,
+              "marking": {
+                "n2": 1
+              },
+              "missing": 0,
+              "remaining": 0
+            }
+          ]
+        ],
+        [
+          5,
+          [
+            "6",
+            {
+              "is_fit": true,
+              "marking": {
+                "n2": 1
+              },
+              "missing": 0,
+              "remaining": 0
+            }
+          ]
+        ]
+      ],
+      "sha256": "c2e199a7febf6139782f4c6b9e860945d584c9273085cd21a8a94172a72c63cd"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-running-example-pnml",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes",
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "kind": "tbr"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

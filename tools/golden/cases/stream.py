@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+import numpy as np
 import pandas as pd
 from harness import case
 from pm4py.objects.log.obj import Event
@@ -25,6 +26,8 @@ from pm4py.streaming.util.live_to_static_stream import LiveToStaticStream
 
 
 def _value(value):
+    if isinstance(value, np.generic):
+        value = value.item()
     if isinstance(value, datetime):
         return {"date": value.astimezone(timezone.utc).isoformat(timespec="microseconds")}
     if isinstance(value, dict) and "value" in value and "children" in value:
@@ -217,7 +220,12 @@ def dataframe_traces(fixtures, rows=None, custom=False, interleaved=False):
     collector = LiveToStaticStream()
     stream = LiveTraceStream(parameters={"thread_pool_size": 1})
     stream.register(collector)
+    stream.register(collector)
+    if traces:
+        stream.append(reader.read_trace())
+    inactive = stream.state.name.lower()
     stream.start()
+    active = stream.state.name.lower()
     reader.to_trace_stream(stream)
     stream.stop()
     projected = [_trace(t) for t in traces]
@@ -227,6 +235,7 @@ def dataframe_traces(fixtures, rows=None, custom=False, interleaved=False):
         "raw": _summary(raw),
         "forwarded": _summary([_trace(t) for t in collector.get()]),
         "grouped_input": interleaved,
+        "states": [inactive, active, stream.state.name.lower()],
     }
 
 
@@ -454,7 +463,7 @@ def streaming_conformance(
     activities = sorted({str(e[activity_key]) for e in rows if activity_key in e})
     if model is None:
         if kind == "tbr":
-            model = _chain(activities)
+            model = _pnml_spec(fixtures["model"]) if "model" in fixtures else _chain(activities)
         elif kind == "footprints":
             log = pm4py.read_xes(str(fixtures["log"]), return_legacy_log_object=True)
             from pm4py.algo.discovery.footprints import algorithm as fp_discovery
@@ -703,4 +712,90 @@ case(
     "conf-temporal-empty",
     functions=_CONF_FUNCTIONS["temporal"],
     params={"kind": "temporal", "events": [], "model": []},
+)(streaming_conformance)
+
+
+for _name, _ids in [
+    ("numeric-integers", [10, 2]),
+    ("numeric-floats", [10.5, 2.5]),
+    ("large-integers", [9007199254740993, 9007199254740992]),
+]:
+    case(
+        "dataframe-" + _name,
+        functions=["pm4py.streaming.conversion.from_pandas.apply"],
+        params={"rows": [[c, a, "2024-01-01T00:00:00+00:00"] for c in _ids for a in ["a", "b"]]},
+    )(dataframe_traces)
+
+
+def _pnml_spec(path):
+    import pm4py
+
+    net, initial, final = pm4py.read_pnml(str(path))
+    arcs = []
+    for arc in net.arcs:
+        output = isinstance(arc.source, PetriNet.Transition)
+        place, transition = (arc.target, arc.source) if output else (arc.source, arc.target)
+        arcs.append([place.name, transition.name, output, arc.weight])
+    return {
+        "places": sorted(p.name for p in net.places),
+        "transitions": sorted([[t.name, t.label] for t in net.transitions]),
+        "arcs": sorted(arcs),
+        "initial": _marking(initial),
+        "final": _marking(final),
+    }
+
+
+case(
+    "conf-tbr-running-example-pnml",
+    fixtures={"log": "running-example.xes", "model": "running-example.pnml"},
+    functions=_CONF_FUNCTIONS["tbr"],
+    params={"kind": "tbr"},
+)(streaming_conformance)
+
+_TWO_PATHS = {
+    "places": ["short", "long", "middle", "ready", "done"],
+    "transitions": [["short-tau", None], ["long-tau-1", None], ["long-tau-2", None], ["A", "A"]],
+    "arcs": [
+        ["short", "short-tau", False, 1],
+        ["ready", "short-tau", True, 1],
+        ["long", "long-tau-1", False, 1],
+        ["middle", "long-tau-1", True, 1],
+        ["middle", "long-tau-2", False, 1],
+        ["ready", "long-tau-2", True, 1],
+        ["ready", "A", False, 1],
+        ["done", "A", True, 1],
+    ],
+    "initial": {"short": 1, "long": 1},
+    "final": {"done": 1, "long": 1},
+}
+case(
+    "conf-tbr-two-silent-paths",
+    functions=_CONF_FUNCTIONS["tbr"],
+    params={
+        "kind": "tbr",
+        "model": _TWO_PATHS,
+        "events": [{"case:concept:name": "c", "concept:name": "A"}],
+    },
+)(streaming_conformance)
+
+_DUPLICATE_LABELS = {
+    "places": ["first", "second", "done"],
+    "transitions": [["first-A", "A"], ["second-A", "A"]],
+    "arcs": [
+        ["first", "first-A", False, 1],
+        ["second", "first-A", True, 1],
+        ["second", "second-A", False, 1],
+        ["done", "second-A", True, 1],
+    ],
+    "initial": {"first": 1},
+    "final": {"done": 1},
+}
+case(
+    "conf-tbr-duplicate-labels",
+    functions=_CONF_FUNCTIONS["tbr"],
+    params={
+        "kind": "tbr",
+        "model": _DUPLICATE_LABELS,
+        "events": [{"case:concept:name": "c", "concept:name": "A"}] * 2,
+    },
 )(streaming_conformance)

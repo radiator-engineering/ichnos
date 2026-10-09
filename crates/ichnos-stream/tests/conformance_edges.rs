@@ -237,3 +237,34 @@ fn model_validation_and_deterministic_duplicate_labels() {
             .is_err()
     );
 }
+
+#[test]
+fn capped_partial_silent_path_counts_original_marking_shortfall() {
+    let mut net = PetriNet::new("partial silent path");
+    let p0 = net.add_place("p0");
+    let p1 = net.add_place("p1");
+    let p2 = net.add_place("p2");
+    let tau = net.add_transition("tau", None::<&str>);
+    let a = net.add_transition("A", Some("A"));
+    net.add_input_arc(p1, tau).unwrap();
+    net.add_output_arc(tau, p0).unwrap();
+    net.add_arc(ArcEnds::PlaceToTransition(p0, a), 2, ArcKind::Normal)
+        .unwrap();
+    net.add_output_arc(a, p2).unwrap();
+    let mut algo = StreamingTbrConformance::new(
+        net,
+        [(p0, 1), (p1, 1)].into(),
+        [(p2, 1)].into(),
+        StreamingTbrOptions {
+            maximum_iterations_invisibles: 1,
+            ..Default::default()
+        },
+    )
+    .unwrap();
+    algo.push(&event("c", "A")).unwrap();
+    let status = algo.get_status("c").unwrap();
+    // pm4py tests the two tokens after tau but fires from the original one-
+    // token marking, reporting missing=0. Rust inserts the actual shortfall.
+    assert_eq!(status.missing, 1);
+    assert_eq!(status.marking, [(p1, 1), (p2, 1)].into());
+}

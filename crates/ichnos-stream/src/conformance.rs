@@ -42,8 +42,14 @@ impl Input {
             }
         }
         Ok(Some((
-            event.get(&self.options.keys.case_id).unwrap().to_string(),
-            event.get(&self.options.keys.activity).unwrap().to_string(),
+            event
+                .get(&self.options.keys.case_id)
+                .expect("required field checked above")
+                .to_string(),
+            event
+                .get(&self.options.keys.activity)
+                .expect("required field checked above")
+                .to_string(),
         )))
     }
 }
