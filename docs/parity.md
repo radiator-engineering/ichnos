@@ -1291,10 +1291,10 @@ Lanes record each deliberate change from pm4py here.
 
 ### ichnos-discovery (temporal profile)
 
-- **One implementation for both pm4py variants.** pm4py has a log variant (Python `statistics`) and a dataframe variant (a pandas self-join). They give the same profile on every golden, and ichnos matches both.
+- **One implementation for both pm4py variants.** pm4py has a log variant (Python `statistics`) and a dataframe variant (a pandas self-join). They give the same profile on every golden, and ichnos matches both. ichnos and the log variant pair events in log order. The dataframe variant first sorts each case by start and completion timestamp, so on a log whose events are not in time order the two pm4py variants can disagree; the goldens use sorted logs.
 - **The start timestamp is an explicit option.** pm4py's log variant reads starts from the completion timestamp unless the caller names a start key. Its dataframe variant reads a `start_timestamp` column whenever the dataframe has one. So `pm4py.discover_temporal_profile` on a dataframe with that column measures from completion to start, and on the same log as an `EventLog` it measures from completion to completion. ichnos reads starts from `EventKeys::start_timestamp` only when `use_start_timestamp` is true.
 - **Business hours use `ichnos_stats::time::BusinessHours`.** Its `non_working_dates` replace pm4py's `workcalendar`, as in ichnos-stats.
-- **A missing or non-date timestamp is an error.** pm4py's log variant raises `KeyError` on a missing start key.
+- **A missing or non-date timestamp is an error.** pm4py's log variant raises `KeyError` on a missing start key. Only a trace's first event may lack a start timestamp, since no pair uses it; pm4py's log variant reads starts from the second event on too. Discovery and conformance share this time measure: `ichnos_stats::time::for_each_event_pair`.
 
 ### ichnos-model
 

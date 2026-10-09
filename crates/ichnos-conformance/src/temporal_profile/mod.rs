@@ -8,43 +8,29 @@
 //! Rinderle-Ma, "Temporal Conformance Checking at Runtime based on
 //! Time-infused Process Models" (2020).
 
-use std::collections::BTreeMap;
-
-use ichnos_core::chrono::{DateTime, FixedOffset};
-use ichnos_core::{ActivityId, EventKeys, EventLog, Position, Trace};
-use ichnos_stats::time::BusinessHours;
+use ichnos_core::{ActivityId, EventKeys, EventLog};
+use ichnos_stats::time::for_each_event_pair;
+pub use ichnos_stats::time::{TemporalProfile, TemporalProfileOptions};
 use rustc_hash::FxHashMap;
 
 use crate::Result;
 
-/// The mean and the standard deviation, in seconds, of the time between each
-/// ordered pair of activities, keyed by `(from, to)`.
-///
-/// This is the type that `ichnos_discovery::discover_temporal_profile`
-/// returns.
-pub type TemporalProfile = BTreeMap<(String, String), (f64, f64)>;
-
 /// Options for [`conformance_temporal_profile`].
 #[derive(Clone, Debug)]
-pub struct TemporalProfileOptions {
+pub struct TemporalConformanceOptions {
     /// How many standard deviations a time may lie from the mean before it
     /// deviates. Default 1, as in `pm4py.conformance_temporal_profile`.
     pub zeta: f64,
-    /// Read the start of the later event from `EventKeys::start_timestamp`.
-    /// When false, the completion timestamp is also the start, as in pm4py's
-    /// log variant.
-    pub use_start_timestamp: bool,
-    /// Measure only the time inside this weekly schedule. `None` measures
-    /// elapsed time. Use the schedule the profile was discovered with.
-    pub business_hours: Option<BusinessHours>,
+    /// How to measure the time between two events. Use the options the
+    /// profile was discovered with.
+    pub time: TemporalProfileOptions,
 }
 
-impl Default for TemporalProfileOptions {
+impl Default for TemporalConformanceOptions {
     fn default() -> Self {
         Self {
             zeta: 1.0,
-            use_start_timestamp: false,
-            business_hours: None,
+            time: TemporalProfileOptions::default(),
         }
     }
 }
@@ -69,8 +55,9 @@ pub struct TemporalDeviation {
 /// For each trace and each pair of events `i < j` where event `j` starts no
 /// earlier than event `i` completes, and the profile has their activity
 /// pair, the pair deviates when its time is below `mean - zeta * stdev` or
-/// above `mean + zeta * stdev`. Returns the deviations of each trace, in log
-/// order, ordered by `i` and then `j`.
+/// above `mean + zeta * stdev` (see
+/// [`ichnos_stats::time::for_each_event_pair`]). Returns the deviations of
+/// each trace, in log order, ordered by `i` and then `j`.
 ///
 /// Fails if an event has no activity, or lacks a timestamp that the options
 /// read, or if the business schedule is invalid. The first event of a trace
@@ -79,99 +66,43 @@ pub fn conformance_temporal_profile(
     log: &EventLog,
     keys: &EventKeys,
     profile: &TemporalProfile,
-    options: &TemporalProfileOptions,
+    options: &TemporalConformanceOptions,
 ) -> Result<Vec<Vec<TemporalDeviation>>> {
     let sequences = log.activity_sequences(keys)?;
-    let start_key = if options.use_start_timestamp {
-        &keys.start_timestamp
-    } else {
-        &keys.timestamp
-    };
-    let zeta = options.zeta;
     // The profile by activity id, so that the pair loop does not allocate.
-    let profile: FxHashMap<(ActivityId, ActivityId), (f64, f64)> = profile
+    let bounds: FxHashMap<(ActivityId, ActivityId), (f64, f64)> = profile
         .iter()
         .filter_map(|((from, to), &bounds)| {
             let id = |name: &str| sequences.activities.get(name);
             Some(((id(from)?, id(to)?), bounds))
         })
         .collect();
-    log.traces
-        .iter()
-        .zip(&sequences.traces)
-        .enumerate()
-        .map(|(t, (trace, activities))| {
-            let completes = dates(trace, &keys.timestamp, t, 0)?;
-            let starts = if start_key == &keys.timestamp {
-                completes.clone()
-            } else {
-                // Only later events' starts count, so the first event need
-                // not have one, as in pm4py.
-                let mut starts = completes.first().copied().into_iter().collect::<Vec<_>>();
-                starts.extend(dates(trace, start_key, t, 1)?);
-                starts
-            };
-            let mut deviations = Vec::new();
-            for (i, &complete) in completes.iter().enumerate() {
-                for (j, &start) in starts.iter().enumerate().skip(i + 1) {
-                    if start < complete {
-                        continue;
-                    }
-                    let Some(&(mean, stdev)) = profile.get(&(activities[i], activities[j])) else {
-                        continue;
-                    };
-                    let seconds = match &options.business_hours {
-                        Some(hours) => hours.seconds_between(complete, start)?,
-                        None => {
-                            let delta = start - complete;
-                            delta.num_seconds() as f64 + f64::from(delta.subsec_nanos()) / 1e9
-                        }
-                    };
-                    if seconds < mean - zeta * stdev || seconds > mean + zeta * stdev {
-                        deviations.push(TemporalDeviation {
-                            from: sequences.activities.name(activities[i]).to_owned(),
-                            to: sequences.activities.name(activities[j]).to_owned(),
-                            seconds,
-                            zeta: if stdev > 0.0 {
-                                (seconds - mean).abs() / stdev
-                            } else {
-                                f64::INFINITY
-                            },
-                        });
-                    }
-                }
+    let zeta = options.zeta;
+    let mut out = vec![Vec::new(); log.traces.len()];
+    for_each_event_pair(
+        log,
+        keys,
+        &sequences,
+        &options.time,
+        |from, to| bounds.contains_key(&(from, to)),
+        |pair| {
+            let (mean, stdev) = bounds[&(pair.from, pair.to)];
+            let seconds = pair.seconds;
+            if seconds < mean - zeta * stdev || seconds > mean + zeta * stdev {
+                out[pair.trace].push(TemporalDeviation {
+                    from: sequences.activities.name(pair.from).to_owned(),
+                    to: sequences.activities.name(pair.to).to_owned(),
+                    seconds,
+                    zeta: if stdev > 0.0 {
+                        (seconds - mean).abs() / stdev
+                    } else {
+                        f64::INFINITY
+                    },
+                });
             }
-            Ok(deviations)
-        })
-        .collect()
-}
-
-/// The value of the date attribute `key` of each event of `trace` from
-/// index `first` on.
-fn dates(trace: &Trace, key: &str, t: usize, first: usize) -> Result<Vec<DateTime<FixedOffset>>> {
-    trace
-        .events
-        .iter()
-        .enumerate()
-        .skip(first)
-        .map(|(e, event)| {
-            let position = Position::Event { trace: t, event: e };
-            let value = event
-                .get(key)
-                .ok_or_else(|| ichnos_core::Error::MissingAttribute {
-                    key: key.to_owned(),
-                    position,
-                })?;
-            Ok(value
-                .as_date()
-                .ok_or_else(|| ichnos_core::Error::AttributeType {
-                    key: key.to_owned(),
-                    position,
-                    expected: "date",
-                    found: value.type_name(),
-                })?)
-        })
-        .collect()
+        },
+    )?;
+    Ok(out)
 }
 
 #[cfg(test)]
@@ -208,9 +139,12 @@ mod tests {
         let mut log = EventLog::new();
         log.traces.push(trace);
         let profile: TemporalProfile = [(("a".into(), "b".into()), (100.0, 10.0))].into();
-        let options = TemporalProfileOptions {
-            use_start_timestamp: true,
-            ..TemporalProfileOptions::default()
+        let options = TemporalConformanceOptions {
+            time: TemporalProfileOptions {
+                use_start_timestamp: true,
+                business_hours: None,
+            },
+            ..TemporalConformanceOptions::default()
         };
         let result = conformance_temporal_profile(&log, &keys, &profile, &options).unwrap();
         assert_eq!(
