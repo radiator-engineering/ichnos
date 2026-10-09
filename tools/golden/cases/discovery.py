@@ -728,12 +728,6 @@ for _name,(_rows,_interval) in BATCHES_CORRELATION_SYNTHETIC.items():
     _params={"traces":_batches_correlation_rows(_rows),"interval":_interval,"activity_key":"task" if _name=="custom-key" else "concept:name"}
     case("batches-correlation-"+_name,functions=BATCHES_CORRELATION_FUNCTIONS,params=_params)(batches_correlation)
 
-if __name__ == "__main__":
-    # One seeded run for _inductive_seeds: prints the result as one JSON line.
-    from harness import canonical
-
-    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
-
 
 # miners-classic view-based transition-system discovery cases.
 def transition_system_case(fixtures,traces=None,activity_key="concept:name"):
@@ -775,3 +769,9 @@ for fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes","
     case("transition-system-"+fixture.replace("/","-").replace(".","-"),fixture=fixture,functions=TRANSITION_FUNCTIONS)(transition_system_case)
 for name,traces in {"empty":[],"empty-traces":[[],[]],"views":[[],["a","b","a","c"],["a","a","b"],["b","a"],["a","b","a","c"]],"single":[["a"],["a"]],"custom-key":[["λ","","終"],["終","λ","λ"]]}.items():
     case("transition-system-"+name,functions=TRANSITION_FUNCTIONS,params={"traces":traces,"activity_key":"work" if name=="custom-key" else "concept:name"})(transition_system_case)
+
+if __name__ == "__main__":
+    # One seeded run for _inductive_seeds: prints the result as one JSON line.
+    from harness import canonical
+
+    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
