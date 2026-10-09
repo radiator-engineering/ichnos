@@ -30,6 +30,7 @@ pub mod heuristics;
 pub mod ilp;
 pub mod inductive;
 pub mod log_skeleton;
+pub mod split_miner;
 pub mod temporal_profile;
 
 pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha_plus};
@@ -44,6 +45,10 @@ pub use dfg::{
     eventually_follows_graph, performance_dfg,
 };
 pub use error::{Error, Result};
+pub use genetic::{
+    GeneticMatrix, GeneticOptions, GeneticResult, discover_genetic, genetic_matrix_fitness,
+    petri_net_genetic,
+};
 pub use heuristics::{HeuristicsOptions, heuristics_net, petri_net_heuristics};
 pub use ilp::{IlpActivity, IlpOptions, petri_net_ilp};
 pub use inductive::{
@@ -51,9 +56,7 @@ pub use inductive::{
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
-pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
-
-pub use genetic::{
-    GeneticMatrix, GeneticOptions, GeneticResult, discover_genetic, genetic_matrix_fitness,
-    petri_net_genetic,
+pub use split_miner::{
+    SplitMinerOptions, SplitMinerResult, SplitMinerVariant, bpmn_split_miner, discover_split_miner,
 };
+pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
