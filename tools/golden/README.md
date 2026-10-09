@@ -78,6 +78,11 @@ Mappings in the result must have string keys. Convert results keyed by tuples
 (a DFG, variants) into lists of records, sorted, as `cases/log.py` does. The
 generator raises an error that names the key otherwise.
 
+That sorted order is the generator's, not pm4py's. pm4py returns variants in
+first-appearance order, and so may ichnos. Compare variant lists and DFG
+edges as multisets, for example with `ichnos_golden::assert_multiset_eq` or
+`LogSummary::variant_counts()` and `dfg_counts()`, never as ordered lists.
+
 ## File format
 
 ```json
@@ -126,6 +131,18 @@ files:
   needs `pyarrow` or `fastparquet` in the Python environment; pm4py does not
   install either.
 - Models: `pm4py.read_pnml`, `pm4py.read_ptml`, `pm4py.read_bpmn`.
+
+`format_dataframe` changes the table before any case sees it. An ichnos CSV
+or Parquet reader must give the same result to match these goldens.
+`format_dataframe` does four things:
+
+- It tries to parse every text column as a UTC datetime and keeps each
+  column that parses.
+- It drops rows with no case ID, activity or timestamp.
+- It casts the case ID and the activity to strings.
+- It sorts events by (case ID as a string, timestamp, original row
+  position). Case IDs therefore sort as text, so `"10"` comes before `"2"`.
+  Events with equal timestamps keep their file order.
 
 ## Models: emit behaviour, not structure
 
