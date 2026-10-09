@@ -1,0 +1,291 @@
+{
+  "expected": {
+    "case_ids": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "features": {
+      "@@case_index": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ],
+      "@@index": [
+        4.0,
+        9.0,
+        18.0,
+        23.0,
+        36.0,
+        41.0
+      ],
+      "Activity_check ticket": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0
+      ],
+      "Activity_decide": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0
+      ],
+      "Activity_examine casually": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        3.0,
+        1.0
+      ],
+      "Activity_examine thoroughly": [
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Activity_pay compensation": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Activity_register request": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Activity_reinitiate request": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0,
+        0.0
+      ],
+      "Activity_reject request": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "Costs": [
+        200.0,
+        200.0,
+        200.0,
+        200.0,
+        200.0,
+        200.0
+      ],
+      "Resource_Ellen": [
+        0.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0
+      ],
+      "Resource_Mike": [
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "Resource_Pete": [
+        2.0,
+        0.0,
+        2.0,
+        1.0,
+        2.0,
+        0.0
+      ],
+      "Resource_Sara": [
+        1.0,
+        1.0,
+        3.0,
+        1.0,
+        5.0,
+        1.0
+      ],
+      "Resource_Sean": [
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Resource_Sue": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "Unnamed: 0": [
+        18.0,
+        13.0,
+        8.0,
+        41.0,
+        36.0,
+        23.0
+      ],
+      "concept:name_check ticket": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0
+      ],
+      "concept:name_decide": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0
+      ],
+      "concept:name_examine casually": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        3.0,
+        1.0
+      ],
+      "concept:name_examine thoroughly": [
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "concept:name_pay compensation": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "concept:name_register request": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "concept:name_reinitiate request": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0,
+        0.0
+      ],
+      "concept:name_reject request": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "org:resource_Ellen": [
+        0.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0
+      ],
+      "org:resource_Mike": [
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "org:resource_Pete": [
+        2.0,
+        0.0,
+        2.0,
+        1.0,
+        2.0,
+        0.0
+      ],
+      "org:resource_Sara": [
+        1.0,
+        1.0,
+        3.0,
+        1.0,
+        5.0,
+        1.0
+      ],
+      "org:resource_Sean": [
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "org:resource_Sue": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "meta": {
+    "area": "ml",
+    "case": "features-df-running-example-count",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.extract_features_dataframe"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "count_occurrences": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

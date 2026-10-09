@@ -1,0 +1,230 @@
+{
+  "expected": {
+    "features": {
+      "@@event_num_po_quantity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_attr_value_is_blocked_No": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@object_cobirth": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_codeath": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@object_degree_centrality": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "@@object_general_descendants_graph_ascendants": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "@@object_general_descendants_graph_descendants": [
+        1.0,
+        1.0,
+        2.0
+      ],
+      "@@object_general_inheritance_graph_ascendants": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "@@object_general_inheritance_graph_descendants": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@object_general_interaction_graph": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "@@object_interaction_graph_Invoice": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_interaction_graph_Payment": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@object_interaction_graph_Purchase Order": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@object_interaction_graph_Purchase Requisition": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_lifecycle_duration": [
+        1422000.0,
+        1335600.0,
+        2296800.0
+      ],
+      "@@object_lifecycle_end_timestamp": [
+        1643580000.0,
+        1643662800.0,
+        1646085600.0
+      ],
+      "@@object_lifecycle_length": [
+        2.0,
+        2.0,
+        5.0
+      ],
+      "@@object_lifecycle_start_timestamp": [
+        1642158000.0,
+        1642327200.0,
+        1643788800.0
+      ],
+      "@@object_lifecycle_unq_act": [
+        2.0,
+        2.0,
+        5.0
+      ],
+      "@@object_wip": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "@@ocel_lif_activity_Approve Purchase Requisition": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Change PO Quantity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Create Purchase Order": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Create Purchase Requisition": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Insert Invoice": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Insert Payment": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Remove Payment Block": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Set Payment Block": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_path_Approve Purchase Requisition##Create Purchase Order": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Change PO Quantity##Insert Invoice": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Create Purchase Order##Change PO Quantity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Create Purchase Order##Set Payment Block": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_path_Create Purchase Requisition##Approve Purchase Requisition": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Insert Invoice##Create Purchase Order": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_path_Insert Invoice##Insert Invoice": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Insert Invoice##Insert Payment": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Remove Payment Block##Insert Payment": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_path_Set Payment Block##Remove Payment Block": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "object_ids": [
+      "R1",
+      "R2",
+      "R3"
+    ]
+  },
+  "meta": {
+    "area": "ml",
+    "case": "ocel-ocel20-example-invoice",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.extract_ocel_features"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "enable_object_work_in_progress": true,
+      "obj_type": "Invoice",
+      "object_num_attributes": [
+        "po_quantity"
+      ],
+      "object_str_attributes": [
+        "is_blocked"
+      ],
+      "version": 2
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 94; ported: 350; dropped: 182; total: 626.
+todo: 81; ported: 363; dropped: 182; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -255,24 +255,24 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.split_train_test` | `ml.py` → `objects/log/obj`, `objects/log/util/split_train_test` | `ichnos::ml::split_train_test` (planned) | `ichnos-ml` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_prefixes_from_log` | `ml.py` → `objects/log/obj`, `objects/log/util/get_prefixes` | `ichnos::ml::get_prefixes_from_log` (planned) | `ichnos-ml` | todo | Single entry point; preserve source defaults. |
-| `pm4py.extract_outcome_enriched_dataframe` | `ml.py` → `algo/transformation/trace_encodings/algorithm`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::ml::extract_outcome_enriched_dataframe` (planned) | `ichnos-ml` | todo | Variants: alignments, bert, cases_transformers, count2vec, doc2vec, event_based, events_transformers, n_grams, one_hot, temporal, temporal_lazy, tf_idf, to_data_frame, to_event_log, to_event_stream, to_nx, token_replay, trace_based, word2vec. |
-| `pm4py.extract_features_dataframe` | `ml.py` → `algo/transformation/trace_encodings/algorithm`, `objects/log/obj` | `ichnos::ml::extract_features_dataframe` (planned) | `ichnos-ml` | todo | Variants: alignments, bert, cases_transformers, count2vec, doc2vec, event_based, events_transformers, n_grams, one_hot, temporal, temporal_lazy, tf_idf, token_replay, trace_based, word2vec. |
-| `pm4py.extract_ocel_features` | `ml.py` → `algo/transformation/ocel/features/objects/algorithm`, `objects/ocel/obj` | `ichnos::ml::extract_ocel_features` (planned) | `ichnos-ml` | todo | Single entry point; preserve source defaults. |
-| `pm4py.extract_temporal_features_dataframe` | `ml.py` → `algo/transformation/trace_encodings/variants/temporal`, `algo/transformation/trace_encodings/variants/temporal_lazy`, `objects/log/obj` | `ichnos::ml::extract_temporal_features_dataframe` (planned) | `ichnos-ml` | todo | Single entry point; preserve source defaults. |
-| `pm4py.extract_target_vector` | `ml.py` → `algo/transformation/log_to_target/algorithm`, `objects/log/obj` | `ichnos::ml::extract_target_vector` (planned) | `ichnos-ml` | todo | Variants: next_activity, next_time, remaining_time. |
+| `pm4py.split_train_test` | `ml.py` → `objects/log/obj`, `objects/log/util/split_train_test` | `ichnos_ml::split_train_test` | `ichnos-ml` | ported | Goldens `ml/split-*` on running-example and receipt replay pm4py's seeded random draws and check the train and test case IDs. Ports the `EventLog` path, with the random draws passed in; the data-frame path is not ported. See ichnos-ml Behaviour changes. |
+| `pm4py.get_prefixes_from_log` | `ml.py` → `objects/log/obj`, `objects/log/util/get_prefixes` | `ichnos_ml::get_prefixes_from_log` | `ichnos-ml` | ported | Goldens `ml/prefixes-*` on running-example (lengths 1 and 3) and receipt (length 3). Ports the `EventLog` path; the data-frame path is not ported. |
+| `pm4py.extract_outcome_enriched_dataframe` | `ml.py` → `algo/transformation/trace_encodings/algorithm`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_ml::extract_outcome_enriched_dataframe` | `ichnos-ml` | ported | Goldens `ml/outcome-*` on running-example and roadtraffic100traces check the six `@@` timing columns and the case features. See ichnos-ml Behaviour changes. |
+| `pm4py.extract_features_dataframe` | `ml.py` → `algo/transformation/trace_encodings/algorithm`, `objects/log/obj` | `ichnos_ml::extract_features_dataframe`, `ichnos_ml::trace_features` | `ichnos-ml` | ported | Goldens `ml/features-*`: the data-frame branch on running-example (automatic attribute selection, occurrence counts, numeric statistics, custom aggregations, named attributes) and roadtraffic100traces; the `EventLog` branch with every extra feature on running-example and part of interval_event_log. Ports the trace_based variant; the other variants and polars are not ported. See ichnos-ml Behaviour changes. |
+| `pm4py.extract_ocel_features` | `ml.py` → `algo/transformation/ocel/features/objects/algorithm`, `objects/ocel/obj` | `ichnos_ml::extract_ocel_features` | `ichnos-ml` | ported | Goldens `ml/ocel-*` on example_log (three object types; work in progress and object attributes; defaults; without lifecycle paths; an unknown type) and ocel20_example (two object types). Ports the features that `pm4py.extract_ocel_features` can turn on; related events, related activities and object graph features are not ported. See ichnos-ml Behaviour changes. |
+| `pm4py.extract_temporal_features_dataframe` | `ml.py` → `algo/transformation/trace_encodings/variants/temporal`, `algo/transformation/trace_encodings/variants/temporal_lazy`, `objects/log/obj` | `ichnos_ml::extract_temporal_features_dataframe` | `ichnos-ml` | ported | Goldens `ml/temporal-*` on running-example with the frequencies W, D, 2D, 3h, MS, ME, YS and YE, and on receipt with W. Ports the temporal variant with frequencies of n hours, n days, W, MS, ME, YS and YE; other pandas frequencies and temporal_lazy are not ported. See ichnos-ml Behaviour changes. |
+| `pm4py.extract_target_vector` | `ml.py` → `algo/transformation/log_to_target/algorithm`, `objects/log/obj` | `ichnos_ml::extract_target_vector` | `ichnos-ml` | ported | Goldens `ml/target-*` on running-example and roadtraffic100traces for next_activity, next_time and remaining_time. See ichnos-ml Behaviour changes. |
 
 ## org
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.discover_handover_of_work_network` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos::org::discover_handover_of_work_network` (planned) | `ichnos-org` | todo | Variants: handover_log, handover_pandas, jointactivities_log, jointactivities_pandas, subcontracting_log, subcontracting_pandas, working_together_log, working_together_pandas. |
-| `pm4py.discover_working_together_network` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos::org::discover_working_together_network` (planned) | `ichnos-org` | todo | Variants: handover_log, handover_pandas, jointactivities_log, jointactivities_pandas, subcontracting_log, subcontracting_pandas, working_together_log, working_together_pandas. |
-| `pm4py.discover_activity_based_resource_similarity` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos::org::discover_activity_based_resource_similarity` (planned) | `ichnos-org` | todo | Variants: handover_log, handover_pandas, jointactivities_log, jointactivities_pandas, subcontracting_log, subcontracting_pandas, working_together_log, working_together_pandas. |
-| `pm4py.discover_subcontracting_network` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos::org::discover_subcontracting_network` (planned) | `ichnos-org` | todo | Variants: handover_log, handover_pandas, jointactivities_log, jointactivities_pandas, subcontracting_log, subcontracting_pandas, working_together_log, working_together_pandas. |
-| `pm4py.discover_organizational_roles` | `org.py` → `algo/organizational_mining/roles/algorithm`, `objects/log/obj`, `objects/org/roles/obj` | `ichnos::org::discover_organizational_roles` (planned) | `ichnos-org` | todo | Variants: log, pandas. |
-| `pm4py.discover_network_analysis` | `org.py` → `algo/organizational_mining/network_analysis/algorithm`, `algo/organizational_mining/network_analysis/variants/dataframe`, `objects/log/obj` | `ichnos::org::discover_network_analysis` (planned) | `ichnos-org` | todo | Variants: dataframe. |
+| `pm4py.discover_handover_of_work_network` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos_org::discover_handover_of_work_network` | `ichnos-org` | ported | Goldens `org/handover-*` on running-example, receipt and reviewing, and with `beta` 0.5 (running-example) and 1 (receipt). Ports the handover_log variant; handover_pandas is not ported. See ichnos-org Behaviour changes. |
+| `pm4py.discover_working_together_network` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos_org::discover_working_together_network` | `ichnos-org` | ported | Goldens `org/working-together-*` on running-example, receipt and reviewing. Ports the working_together_log variant; working_together_pandas is not ported. See ichnos-org Behaviour changes. |
+| `pm4py.discover_activity_based_resource_similarity` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos_org::discover_activity_based_resource_similarity` | `ichnos-org` | ported | Goldens `org/similarity-*` on running-example and reviewing; receipt is left out because its 2,256 pairs make a 250 KB file. Ports the jointactivities_log variant; jointactivities_pandas is not ported. See ichnos-org Behaviour changes. |
+| `pm4py.discover_subcontracting_network` | `org.py` → `algo/organizational_mining/sna/algorithm`, `objects/log/obj`, `objects/org/sna/obj` | `ichnos_org::discover_subcontracting_network` | `ichnos-org` | ported | Goldens `org/subcontracting-*` on running-example, receipt and reviewing, and with `n` 3 (running-example, receipt). Ports the subcontracting_log variant; subcontracting_pandas is not ported. See ichnos-org Behaviour changes. |
+| `pm4py.discover_organizational_roles` | `org.py` → `algo/organizational_mining/roles/algorithm`, `objects/log/obj`, `objects/org/roles/obj` | `ichnos_org::discover_organizational_roles` | `ichnos-org` | ported | Goldens `org/roles-*` on running-example, receipt and reviewing check the roles in order. Ports the log variant; the pandas variant is not ported. See ichnos-org Behaviour changes. |
+| `pm4py.discover_network_analysis` | `org.py` → `algo/organizational_mining/network_analysis/algorithm`, `algo/organizational_mining/network_analysis/variants/dataframe`, `objects/log/obj` | `ichnos_org::discover_network_analysis`, `ichnos_org::discover_network_analysis_performance` | `ichnos-org` | ported | Goldens `org/network-analysis-*` on running-example (counts; durations; edges named by the target event; events linked by resource, with activities as nodes and cases as edges) and receipt (counts). Ports the dataframe variant on an `EventLog`. See ichnos-org Behaviour changes. |
 
 ## ocel
 
@@ -1539,6 +1539,32 @@ Rows cite these as `core-N`.
   - pm4py regroups the filtered events by case id, so traces that share a case id merge; ichnos keeps the traces of the log. An event without an activity or timestamp is left out; pm4py fails.
   - Dates are written in UTC; pm4py writes them in the machine's local time zone. The goldens run pm4py in UTC.
   - pm4py fails on a spectrum without runs, on runs that all start and end at one instant, and on steps that all take as long. ichnos draws the activities alone, puts every point at the left, or colours every step grey.
+
+### ichnos-ml (features)
+
+- `split_train_test` takes the random draws as `rand_below(k)`, so a caller can reproduce pm4py's split from Python's `random._randbelow`. A `train_percentage` outside 0 to 1, or NaN, is an error; pm4py accepts any value.
+- pm4py orders the feature columns of a data frame by Python's set order, which changes with the hash seed. ichnos puts numeric columns first, then string columns, each sorted by name. Values are rounded to 32-bit floats, as pm4py stores them.
+- pm4py orders the per-activity `@@max_concurrent_activities_like_*` features, and the OCEL string-attribute features, by set order; ichnos sorts them.
+- pm4py's one feature entry point is split in two: `extract_features_dataframe` for the data-frame branch and `trace_features` for the `EventLog` branch.
+- The outcome-enriched result keeps the case features apart from the event attributes. pm4py merges them into one frame, so a feature that shares a name with an event column, such as `Costs`, becomes `Costs_y` and the column `Costs_x`.
+- Temporal features are binned in UTC. An empty log gives no bins, and a log without the resource attribute counts zero resources; pm4py fails on both.
+- `extract_target_vector` returns empty targets for an empty log; pm4py fails.
+- OCEL features: numeric object attributes stored as text are parsed as Python's `float()` parses them. An event without related objects is an error, as in pm4py.
+
+### ichnos-org (organizational mining)
+
+- The social networks and roles port pm4py's `*_log` variants, which `pm4py.discover_*` takes for an `EventLog`; the goldens pass one. For a data frame pm4py takes its pandas variants instead. Those differ: the pandas working-together network divides by the number of events, not the number of traces.
+- Resources, activities and the other attributes are compared and reported in their Python `str` form. An event without the resource or activity attribute is an error; pm4py raises `KeyError`.
+- When no pair of resources is linked, pm4py raises `ValueError`, because it takes the largest value of an empty network; ichnos returns an empty network. `discover_subcontracting_network` with `n` 0 is an error, where pm4py raises the same `ValueError`.
+- Subcontracting: pm4py counts only the first subcontracting window of each resource, in the first trace variant that opens one; later windows of the same resource are skipped. This is kept.
+- Resource similarity: the Pearson correlation is NaN when a resource's activity profile is constant, as in pm4py, and when the log has fewer than two activities, where pm4py fails.
+- Roles: the merge threshold is pm4py's default, 0.65, which `discover_organizational_roles` does not expose.
+- Network analysis:
+  - pm4py's `discover_network_analysis` accepts an `EventLog` in its signature but fails on one; ichnos takes an `EventLog`. A column that starts with `case:` reads the trace attribute.
+  - pm4py sorts the events with pandas' default sort, which is not stable, so events with equal timestamps can link in any order. ichnos keeps them in log order. The goldens use logs where the order of ties does not change the result.
+  - An event without the sent or received attribute links to nothing; pandas matches missing values with each other. A link without both timestamps has a NaN duration.
+  - Durations are listed in the order of the source events; pm4py's order follows its table merges.
+  - pm4py's business-hours parameters are not reachable from `discover_network_analysis` and are not ported.
 
 ### ichnos-stream (live streams and DFG)
 
