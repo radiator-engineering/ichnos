@@ -1,0 +1,234 @@
+{
+  "expected": {
+    "after_termination": {},
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "short",
+          "short-tau",
+          false,
+          1
+        ],
+        [
+          "ready",
+          "short-tau",
+          true,
+          1
+        ],
+        [
+          "long",
+          "long-tau-1",
+          false,
+          1
+        ],
+        [
+          "middle",
+          "long-tau-1",
+          true,
+          1
+        ],
+        [
+          "middle",
+          "long-tau-2",
+          false,
+          1
+        ],
+        [
+          "ready",
+          "long-tau-2",
+          true,
+          1
+        ],
+        [
+          "ready",
+          "A",
+          false,
+          1
+        ],
+        [
+          "done",
+          "A",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "done": 1,
+        "long": 1
+      },
+      "initial": {
+        "long": 1,
+        "short": 1
+      },
+      "places": [
+        "short",
+        "long",
+        "middle",
+        "ready",
+        "done"
+      ],
+      "transitions": [
+        [
+          "short-tau",
+          null
+        ],
+        [
+          "long-tau-1",
+          null
+        ],
+        [
+          "long-tau-2",
+          null
+        ],
+        [
+          "A",
+          "A"
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {
+          "c": {
+            "is_fit": true,
+            "marking": {
+              "done": 1,
+              "long": 1
+            },
+            "missing": 0
+          }
+        }
+      }
+    ],
+    "terminated": {
+      "c": {
+        "is_fit": true,
+        "marking": {
+          "done": 1,
+          "long": 1
+        },
+        "missing": 0,
+        "remaining": 0
+      }
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-two-silent-paths",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {},
+    "params": {
+      "events": [
+        {
+          "case:concept:name": "c",
+          "concept:name": "A"
+        }
+      ],
+      "kind": "tbr",
+      "model": {
+        "arcs": [
+          [
+            "short",
+            "short-tau",
+            false,
+            1
+          ],
+          [
+            "ready",
+            "short-tau",
+            true,
+            1
+          ],
+          [
+            "long",
+            "long-tau-1",
+            false,
+            1
+          ],
+          [
+            "middle",
+            "long-tau-1",
+            true,
+            1
+          ],
+          [
+            "middle",
+            "long-tau-2",
+            false,
+            1
+          ],
+          [
+            "ready",
+            "long-tau-2",
+            true,
+            1
+          ],
+          [
+            "ready",
+            "A",
+            false,
+            1
+          ],
+          [
+            "done",
+            "A",
+            true,
+            1
+          ]
+        ],
+        "final": {
+          "done": 1,
+          "long": 1
+        },
+        "initial": {
+          "long": 1,
+          "short": 1
+        },
+        "places": [
+          "short",
+          "long",
+          "middle",
+          "ready",
+          "done"
+        ],
+        "transitions": [
+          [
+            "short-tau",
+            null
+          ],
+          [
+            "long-tau-1",
+            null
+          ],
+          [
+            "long-tau-2",
+            null
+          ],
+          [
+            "A",
+            "A"
+          ]
+        ]
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

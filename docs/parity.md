@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 217; ported: 250; dropped: 159; total: 626.
+todo: 175; ported: 272; dropped: 179; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -980,73 +980,73 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.footprints.algorithm.apply` | `streaming/algo/conformance/footprints/algorithm.py` | `ichnos::stream::algo::conformance::footprints::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.footprints.algorithm.apply` | `streaming/algo/conformance/footprints/algorithm.py` | `ichnos_stream::StreamingFootprintsConformance::new` | `ichnos-stream` | ported | `stream/conf-footprints-running-example` constructs the checker from discovered entire-log footprints. |
 
 ## streaming.algo.conformance.footprints.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance` | `streaming/algo/conformance/footprints/variants/classic.py` → `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.build_dictionaries` | `streaming/algo/conformance/footprints/variants/classic.py` → `streaming/util/dictio/generator` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::build_dictionaries` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.encode_str` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::encode_str` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::verify_footprints` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::verify_intra_case` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::verify_start_case` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::get_status` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::terminate` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::terminate_all` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_or_activity_not_in_event` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::message_case_or_activity_not_in_event` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_activity_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::message_activity_not_possible` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_footprints_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::message_footprints_not_possible` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_start_activity_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::message_start_activity_not_possible` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_end_activity_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::message_end_activity_not_possible` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_not_in_dictionary` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::FootprintsStreamingConformance::message_case_not_in_dictionary` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.footprints.variants.classic.apply` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos::stream::algo::conformance::footprints::variants::classic::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance` | `streaming/algo/conformance/footprints/variants/classic.py` → `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos_stream::StreamingFootprintsConformance::new` | `ichnos-stream` | ported | `stream/conf-footprints-running-example` constructs the checker from discovered entire-log footprints. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.build_dictionaries` | `streaming/algo/conformance/footprints/variants/classic.py` → `streaming/util/dictio/generator` | — | `ichnos-stream` | dropped | Internal dictionary encoding replaced by typed case maps and Marking; no string tuples or eval. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.encode_str` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Internal dictionary encoding replaced by typed case maps and Marking; no string tuples or eval. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::push` | `ichnos-stream` | ported | `stream/conf-footprints-interleaved` compares interleaved cases, unknown activities and incomplete events. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::push` | `ichnos-stream` | ported | `stream/conf-footprints-interleaved` checks sequence/parallel union; `stream/conf-footprints-deviating-running-example` checks invalid pairs. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::push` | `ichnos-stream` | ported | `stream/conf-footprints-deviating-running-example` checks all-invalid starts; `stream/conf-footprints-interleaved` mixes valid/invalid starts. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::get_status` | `ichnos-stream` | ported | `stream/conf-footprints-interleaved` compares prefix fitness; conformance_edges::unknown_first_footprints_deviations_survive_and_cases_restart covers unknown-only status. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::terminate` | `ichnos-stream` | ported | `stream/conf-footprints-interleaved` checks end-aware fitness and removal; `stream/conf-footprints-deviating-running-example` covers invalid ends. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::terminate_all` | `ichnos-stream` | ported | `stream/conf-footprints-running-example` compares all restarted live cases and the empty after_termination snapshot. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_or_activity_not_in_event` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_activity_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_footprints_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_start_activity_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_end_activity_not_possible` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.message_case_not_in_dictionary` | `streaming/algo/conformance/footprints/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.footprints.variants.classic.apply` | `streaming/algo/conformance/footprints/variants/classic.py` | `ichnos_stream::StreamingFootprintsConformance::new` | `ichnos-stream` | ported | `stream/conf-footprints-running-example` constructs the checker from discovered entire-log footprints. |
 
 ## streaming.algo.conformance.tbr.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.tbr.algorithm.apply` | `streaming/algo/conformance/tbr/algorithm.py` | `ichnos::stream::algo::conformance::tbr::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.tbr.algorithm.apply` | `streaming/algo/conformance/tbr/algorithm.py` | `ichnos_stream::StreamingTbrConformance::new` | `ichnos-stream` | ported | `stream/conf-tbr-running-example-pnml` constructs the checker over a real model containing silent transitions. |
 
 ## streaming.algo.conformance.tbr.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/obj`, `objects/petri_net/semantics`, `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.build_dictionaries` | `streaming/algo/conformance/tbr/variants/classic.py` → `streaming/util/dictio/generator` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::build_dictionaries` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/obj` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::get_paths_net` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_str` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::encode_str` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_marking` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::encode_marking` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.decode_marking` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/obj` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::decode_marking` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/semantics` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::verify_tbr` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/semantics` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::enable_trans_with_invisibles` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::get_status` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::terminate` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::terminate_all` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.reach_fm_with_invisibles` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/semantics` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::reach_fm_with_invisibles` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_or_activity_not_in_event` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::message_case_or_activity_not_in_event` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_activity_not_possible` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::message_activity_not_possible` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_missing_tokens` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::message_missing_tokens` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_not_in_dictionary` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::message_case_not_in_dictionary` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_final_marking_not_reached` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::TbrStreamingConformance::message_final_marking_not_reached` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.tbr.variants.classic.apply` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos::stream::algo::conformance::tbr::variants::classic::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/obj`, `objects/petri_net/semantics`, `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos_stream::StreamingTbrConformance::new` | `ichnos-stream` | ported | `stream/conf-tbr-running-example-pnml` constructs the checker over a real model containing silent transitions. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.build_dictionaries` | `streaming/algo/conformance/tbr/variants/classic.py` → `streaming/util/dictio/generator` | — | `ichnos-stream` | dropped | Internal dictionary encoding replaced by typed case maps and Marking; no string tuples or eval. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/obj` | `ichnos_stream::StreamingTbrConformance::new` | `ichnos-stream` | ported | `stream/conf-tbr-two-silent-paths` compares unequal shortest silent paths; `stream/conf-tbr-running-example-pnml` covers a real model. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_str` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Internal dictionary encoding replaced by typed case maps and Marking; no string tuples or eval. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.encode_marking` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Internal dictionary encoding replaced by typed case maps and Marking; no string tuples or eval. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.decode_marking` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/obj` | — | `ichnos-stream` | dropped | Internal dictionary encoding replaced by typed case maps and Marking; no string tuples or eval. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/semantics` | `ichnos_stream::StreamingTbrConformance::push` | `ichnos-stream` | ported | `stream/conf-tbr-weighted` checks insertion counts; `stream/conf-tbr-duplicate-labels` checks enabled-label selection. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/semantics` | `ichnos_stream::StreamingTbrConformance::push` | `ichnos-stream` | ported | `stream/conf-tbr-two-silent-paths` checks the shorter path; `stream/conf-tbr-silent-0`, `-1`, `-2` and `-10` check the iteration cap. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos_stream::StreamingTbrConformance::get_status` | `ichnos-stream` | ported | `stream/conf-tbr-duplicate-labels` compares open-case markings and missing counts at each prefix. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos_stream::StreamingTbrConformance::terminate` | `ichnos-stream` | ported | `stream/conf-tbr-weighted` compares signed final differences; `stream/conf-tbr-silent-10` confirms no final silent walk. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos_stream::StreamingTbrConformance::terminate_all` | `ichnos-stream` | ported | `stream/conf-tbr-running-example-pnml` compares restarted live replay and the empty after_termination snapshot. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.reach_fm_with_invisibles` | `streaming/algo/conformance/tbr/variants/classic.py` → `objects/petri_net/semantics` | — | `ichnos-stream` | dropped | Native terminate passes an encoded string to this place-keyed helper and cannot follow final paths; terminate preserves the observed signed final diagnostics. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_or_activity_not_in_event` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_activity_not_possible` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_missing_tokens` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_case_not_in_dictionary` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.message_final_marking_not_reached` | `streaming/algo/conformance/tbr/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.tbr.variants.classic.apply` | `streaming/algo/conformance/tbr/variants/classic.py` | `ichnos_stream::StreamingTbrConformance::new` | `ichnos-stream` | ported | `stream/conf-tbr-running-example-pnml` constructs the checker over a real model containing silent transitions. |
 
 ## streaming.algo.conformance.temporal.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.temporal.algorithm.apply` | `streaming/algo/conformance/temporal/algorithm.py` | `ichnos::stream::algo::conformance::temporal::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.temporal.algorithm.apply` | `streaming/algo/conformance/temporal/algorithm.py` | `ichnos_stream::StreamingTemporalConformance::new` | `ichnos-stream` | ported | `stream/conf-temporal-running-example` constructs a checker from a discovered profile; `stream/conf-temporal-empty` covers an empty profile. |
 
 ## streaming.algo.conformance.temporal.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance` | `streaming/algo/conformance/temporal/variants/classic.py` → `objects/log/obj`, `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos::stream::algo::conformance::temporal::variants::classic::TemporalProfileStreamingConformance` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.check_conformance` | `streaming/algo/conformance/temporal/variants/classic.py` | `ichnos::stream::algo::conformance::temporal::variants::classic::TemporalProfileStreamingConformance::check_conformance` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_event_is_not_complete` | `streaming/algo/conformance/temporal/variants/classic.py` → `objects/log/obj` | `ichnos::stream::algo::conformance::temporal::variants::classic::TemporalProfileStreamingConformance::message_event_is_not_complete` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_deviation` | `streaming/algo/conformance/temporal/variants/classic.py` | `ichnos::stream::algo::conformance::temporal::variants::classic::TemporalProfileStreamingConformance::message_deviation` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.temporal.variants.classic.apply` | `streaming/algo/conformance/temporal/variants/classic.py` | `ichnos::stream::algo::conformance::temporal::variants::classic::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance` | `streaming/algo/conformance/temporal/variants/classic.py` → `objects/log/obj`, `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos_stream::StreamingTemporalConformance::new` | `ichnos-stream` | ported | `stream/conf-temporal-running-example` constructs a checker from a discovered profile; `stream/conf-temporal-empty` covers an empty profile. |
+| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.check_conformance` | `streaming/algo/conformance/temporal/variants/classic.py` | `ichnos_stream::StreamingTemporalConformance::push` | `ichnos-stream` | ported | `stream/conf-temporal-interval-0`, `-1` and `-6` compare overlaps, arrival order and zero variance; `stream/conf-temporal-receipt` covers discovered real bounds. |
+| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_event_is_not_complete` | `streaming/algo/conformance/temporal/variants/classic.py` → `objects/log/obj` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.message_deviation` | `streaming/algo/conformance/temporal/variants/classic.py` | — | `ichnos-stream` | dropped | Logging hook; callers inspect typed diagnostics/errors and use application sinks. |
+| `pm4py.streaming.algo.conformance.temporal.variants.classic.apply` | `streaming/algo/conformance/temporal/variants/classic.py` | `ichnos_stream::StreamingTemporalConformance::new` | `ichnos-stream` | ported | `stream/conf-temporal-running-example` constructs a checker from a discovered profile; `stream/conf-temporal-empty` covers an empty profile. |
 
 ## streaming.algo.discovery.dfg.algorithm
 
@@ -1541,6 +1541,78 @@ Rows cite these as `core-N`.
 - Native dictionary, Redis and thread helpers are dropped in favor of typed maps.
 - Platform click/key connectors are dropped because applications supply canonical events.
 - Python stdout observers are dropped in favor of application sinks.
+
+### ichnos-stream (streaming conformance)
+
+- The three conformance consumers implement StreamSink over canonical events.
+- Typed snapshots replace pandas diagnostics.
+- Case snapshots are ordered lexically by displayed case ID.
+- Missing fields default to counted skip.
+- MissingEventPolicy::Reject returns an indexed error without changing case state.
+- Case/activity keys use core display rather than Python str.
+- TBR displays activity values before matching, whereas native TBR preserves their original types.
+- Typed case maps replace dictionary backends and eval-based encoding.
+- Application sinks replace native logging hooks.
+- TBR retains one Marking per case and reuses merged PetriNet firing rules.
+- TBR rejects inhibitor and reset arcs because native classic handling is ambiguous.
+- TBR validates marking membership.
+- TBR resolves transition and shortest-path ties by node name then ID rather than Python set/object-address order.
+- The default ten-iteration silent limit includes the visible-firing attempt.
+- A zero silent limit skips exploration.
+- All TBR fallback token shortfalls are computed against the original marking.
+- Native fallback tests the explored marking but inserts into the original marking, which can undercount or subtract missing tokens after partial silent moves.
+- The capped partial-path regression pins missing=1 where native reports 0 for p0:1, p1:1, tau p1→p0, A consuming two p0 tokens and a one-iteration limit.
+- A failed silent path falls back without committing partial moves, fixing native null-marking failures.
+- Typed place IDs avoid native place-name encoding collisions.
+- Unknown TBR activities are counted and ignored without creating a case.
+- TBR termination does not implicitly fire final silent transitions.
+- TBR termination returns the last replay marking.
+- TBR retains native signed final-place missing differences, including negative values for final-place surplus.
+- TBR retains native signed remaining differences across all places.
+- TBR final fitness requires both signed counts to equal zero.
+- These streaming termination diagnostics are distinct from batch replay fitness.
+- The native final-path helper is dropped because terminate passes it an encoded string rather than a marking.
+- TBR and footprints terminate_all return diagnostics instead of discarding them.
+- Nonexistent cases return None instead of logging.
+- Completed case IDs can restart with fresh state.
+- Footprints uses the merged Footprints type with a separate end-activity set.
+- Footprints checks start activities when the first modeled activity arrives.
+- Footprints checks subsequent pairs against the sequence/parallel union.
+- Footprints defers end checks until termination.
+- Unknown footprints activities do not advance the last modeled activity.
+- Unknown-first footprints deviations are retained rather than reset by subsequent events.
+- Unknown-only footprints cases are visible and unfit rather than omitted.
+- Footprints get_status returns None only when no open case is tracked.
+- Footprints helper checks are consolidated into push.
+- Temporal conformance reuses merged TemporalProfile and TemporalDeviation types.
+- The streaming temporal default zeta is six.
+- The default temporal start key equals the completion key.
+- Each temporal arrival compares with every prior case completion no later than its start.
+- Temporal deviations retain arrival-major, then prior-event order.
+- Temporal checks require both timestamps even on the first event.
+- Overlapping temporal pairs are excluded.
+- Temporal histories retain all prior events rather than only adjacent ones.
+- Temporal bounds are inclusive.
+- Absent temporal profile pairs are ignored.
+- Epoch seconds follow the native microsecond calculation plus representable submicrosecond core precision.
+- Non-date timestamp values return typed errors rather than logged/swallowed exceptions.
+- Nonfinite or negative zeta values are rejected rather than accepted unchecked.
+- Profile means must be finite.
+- Profile standard deviations must be finite and nonnegative.
+- Zero-variance deviation zeta is infinity instead of sys.maxsize.
+- Temporal get omits cases without deviations.
+- Explicit temporal terminate releases history and deviations, an extension absent from native temporal streaming.
+- Thirty conformance goldens compare up to five prefix snapshots.
+- The three original real-log TBR cases use native-constructed activity chains.
+- The running-example PNML TBR case feeds every real event through a model with two silent transitions.
+- Unequal-length silent paths and duplicate labels enabled in different markings have separate deterministic TBR goldens.
+- Real footprints cases use entire-log discovery and deliberately empty constraints.
+- Real temporal cases use discovered profiles.
+- Synthetic goldens cover interleaving, unknown/missing fields, custom keys, empty input, weighted arcs, silent limits, intervals and zero variance.
+- Complete ordered digests with samples compact integer real-log snapshots and termination.
+- Synthetic states and temporal deviations remain explicit.
+- Round-trip JSON float parsing prevents artificial zero-variance deviations from one-ULP profile-mean changes.
+- Native algorithm implementations are not patched.
 
 ## Proposed lanes
 

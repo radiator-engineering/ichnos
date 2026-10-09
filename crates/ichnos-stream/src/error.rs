@@ -3,6 +3,17 @@
 /// An error from a reader, conversion or stream observer.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
+    /// Invalid conformance settings or unsupported model structure.
+    #[error("invalid streaming conformance setting: {0}")]
+    InvalidConformanceOption(&'static str),
+    /// A timestamp field has a non-date type.
+    #[error("event {event} has a non-date {key:?} attribute")]
+    TimestampType {
+        /// Timestamp key.
+        key: String,
+        /// Zero-based input event index.
+        event: usize,
+    },
     /// A canonical log or Arrow conversion error.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),

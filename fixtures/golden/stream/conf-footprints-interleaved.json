@@ -1,0 +1,173 @@
+{
+  "expected": {
+    "after_termination": {},
+    "kind": "footprints",
+    "model": {
+      "activities": [
+        "a",
+        "b"
+      ],
+      "end_activities": [
+        "b"
+      ],
+      "parallel": [
+        [
+          "b",
+          "a"
+        ]
+      ],
+      "sequence": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "start_activities": [
+        "a"
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {
+          "x": {
+            "deviations": 0,
+            "is_fit": true,
+            "last": "a"
+          }
+        }
+      },
+      {
+        "at": 4,
+        "state": {
+          "x": {
+            "deviations": 1,
+            "is_fit": false,
+            "last": "b"
+          },
+          "y": {
+            "deviations": 1,
+            "is_fit": false,
+            "last": "b"
+          }
+        }
+      },
+      {
+        "at": 7,
+        "state": {
+          "x": {
+            "deviations": 1,
+            "is_fit": false,
+            "last": "a"
+          },
+          "y": {
+            "deviations": 1,
+            "is_fit": false,
+            "last": "a"
+          }
+        }
+      },
+      {
+        "at": 8,
+        "state": {
+          "x": {
+            "deviations": 1,
+            "is_fit": false,
+            "last": "a"
+          },
+          "y": {
+            "deviations": 1,
+            "is_fit": false,
+            "last": "a"
+          }
+        }
+      }
+    ],
+    "terminated": {
+      "x": false,
+      "y": false
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-footprints-interleaved",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.footprints.algorithm.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all"
+    ],
+    "loaders": {},
+    "params": {
+      "events": [
+        {
+          "case:concept:name": "x",
+          "concept:name": "a"
+        },
+        {
+          "case:concept:name": "y",
+          "concept:name": "b"
+        },
+        {
+          "case:concept:name": "x",
+          "concept:name": "unknown"
+        },
+        {
+          "case:concept:name": "x",
+          "concept:name": "b"
+        },
+        {
+          "case:concept:name": "y",
+          "concept:name": "a"
+        },
+        {
+          "case:concept:name": "x",
+          "concept:name": "a"
+        },
+        {
+          "concept:name": "missing-case"
+        },
+        {
+          "case:concept:name": "missing-activity"
+        }
+      ],
+      "kind": "footprints",
+      "model": {
+        "activities": [
+          "a",
+          "b"
+        ],
+        "end_activities": [
+          "b"
+        ],
+        "parallel": [
+          [
+            "b",
+            "a"
+          ]
+        ],
+        "sequence": [
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "start_activities": [
+          "a"
+        ]
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

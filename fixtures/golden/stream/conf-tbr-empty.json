@@ -1,0 +1,134 @@
+{
+  "expected": {
+    "after_termination": {},
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "p000",
+          "t000",
+          false,
+          1
+        ],
+        [
+          "p001",
+          "t000",
+          true,
+          1
+        ],
+        [
+          "p001",
+          "t001",
+          false,
+          1
+        ],
+        [
+          "p002",
+          "t001",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "p002": 1
+      },
+      "initial": {
+        "p000": 1
+      },
+      "places": [
+        "p000",
+        "p001",
+        "p002"
+      ],
+      "transitions": [
+        [
+          "t000",
+          "a"
+        ],
+        [
+          "t001",
+          "b"
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      }
+    ],
+    "terminated": {}
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-empty",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {},
+    "params": {
+      "events": [],
+      "kind": "tbr",
+      "model": {
+        "arcs": [
+          [
+            "p000",
+            "t000",
+            false,
+            1
+          ],
+          [
+            "p001",
+            "t000",
+            true,
+            1
+          ],
+          [
+            "p001",
+            "t001",
+            false,
+            1
+          ],
+          [
+            "p002",
+            "t001",
+            true,
+            1
+          ]
+        ],
+        "final": {
+          "p002": 1
+        },
+        "initial": {
+          "p000": 1
+        },
+        "places": [
+          "p000",
+          "p001",
+          "p002"
+        ],
+        "transitions": [
+          [
+            "t000",
+            "a"
+          ],
+          [
+            "t001",
+            "b"
+          ]
+        ]
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
