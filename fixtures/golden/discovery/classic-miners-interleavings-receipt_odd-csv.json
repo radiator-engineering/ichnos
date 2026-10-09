@@ -1,0 +1,4927 @@
+{
+  "expected": {
+    "activity_key": "concept:name",
+    "alpha_plus_error": null,
+    "alpha_plus_runs": null,
+    "heuristics": [
+      {
+        "net": {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication",
+            "T12 Check document X request unlicensed",
+            "T15 Print document X request unlicensed",
+            "T17 Check report Y to stop indication",
+            "T20 Print report Y to stop indication"
+          ],
+          "activities_occurrences": {
+            "T02 Check confirmation of receipt": 1368,
+            "T05 Print and send confirmation of receipt": 1300,
+            "T07-1 Draft intern advice aspect 1": 45,
+            "T09-1 Process or receive external advice from party 1": 7,
+            "T09-4 Process or receive external advice from party 4": 5,
+            "T10 Determine necessity to stop indication": 1283,
+            "T12 Check document X request unlicensed": 41,
+            "T15 Print document X request unlicensed": 39,
+            "T17 Check report Y to stop indication": 26,
+            "T20 Print report Y to stop indication": 20
+          },
+          "dependency_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              0.9990512333965844
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              0.7692307692307693
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              0.0
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              0.19851116625310175
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              0.5454545454545454
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              0.6666666666666666
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              0.6666666666666666
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              0.5602901178603807
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              0.9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              0.5
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              -0.7692307692307693
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              -0.5454545454545454
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              0.9375
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              0.8
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              -0.25
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              0.9523809523809523
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              0.0
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              0.5
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              0.8333333333333334
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              0.25
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              0.75
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              -0.19851116625310175
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              -0.5602901178603807
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              0.9696969696969697
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              0.95
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T02 Check confirmation of receipt",
+              0.6666666666666666
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              0.9743589743589743
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              0.8571428571428571
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              0.9523809523809523
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              0.75
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              0.6666666666666666
+            ]
+          ],
+          "dfg": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              1053
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              241
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              860
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              15
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              4
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              20
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              2
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              3
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              161
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              242
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              32
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              19
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              38
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              6
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              20
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              1053
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              241
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              860
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              15
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              4
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              20
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              2
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              3
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              161
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              242
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              32
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              19
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              38
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              6
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              20
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              19
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              261
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              869
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              4
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              3
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              4
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              28
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T15 Print document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              14
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T20 Print report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              6
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              9
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              12
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T12 Check document X request unlicensed",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1",
+              1
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              1
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              17
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              143
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              6
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T15 Print document X request unlicensed",
+              29
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              2
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T20 Print report Y to stop indication",
+              17
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              1
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              4
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              2
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "end_activities": [
+            {
+              "T02 Check confirmation of receipt": 16,
+              "T05 Print and send confirmation of receipt": 417,
+              "T07-1 Draft intern advice aspect 1": 2,
+              "T10 Determine necessity to stop indication": 829,
+              "T15 Print document X request unlicensed": 39,
+              "T20 Print report Y to stop indication": 15
+            }
+          ],
+          "freq_triples_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              6
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              1
+            ]
+          ],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 241,
+                  "target": "T10 Determine necessity to stop indication"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T12 Check document X request unlicensed"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "T20 Print report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {
+                "T10 Determine necessity to stop indication": 241
+              },
+              "name": "T02 Check confirmation of receipt",
+              "occurrences": 1368,
+              "outputs": [
+                {
+                  "dependency": 0.9990512333965844,
+                  "frequency": 1053,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.7692307692307693,
+                  "frequency": 11,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0,
+                  "frequency": 241,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9990512333965844,
+                  "frequency": 1053,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T20 Print report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T05 Print and send confirmation of receipt",
+              "occurrences": 1300,
+              "outputs": [
+                {
+                  "dependency": 0.5454545454545454,
+                  "frequency": 8,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T09-4 Process or receive external advice from party 4"
+                },
+                {
+                  "dependency": 0.5602901178603807,
+                  "frequency": 860,
+                  "target": "T10 Determine necessity to stop indication"
+                },
+                {
+                  "dependency": 0.9,
+                  "frequency": 9,
+                  "target": "T12 Check document X request unlicensed"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T02 Check confirmation of receipt",
+                  "T05 Print and send confirmation of receipt",
+                  52.65
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.7692307692307693,
+                  "frequency": 11,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.5454545454545454,
+                  "frequency": 8,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9375,
+                  "frequency": 15,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                }
+              ],
+              "loop_length_two": {
+                "T05 Print and send confirmation of receipt": 2
+              },
+              "name": "T07-1 Draft intern advice aspect 1",
+              "occurrences": 45,
+              "outputs": [
+                {
+                  "dependency": 0.9375,
+                  "frequency": 15,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.8,
+                  "frequency": 4,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T05 Print and send confirmation of receipt",
+                  "T07-1 Draft intern advice aspect 1",
+                  1.4285714285714286
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.8,
+                  "frequency": 4,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T09-1 Process or receive external advice from party 1",
+              "occurrences": 7,
+              "outputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "T09-4 Process or receive external advice from party 4"
+                },
+                {
+                  "dependency": 0.8333333333333334,
+                  "frequency": 5,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T09-4 Process or receive external advice from party 4",
+              "occurrences": 5,
+              "outputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 161,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.5602901178603807,
+                  "frequency": 860,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.8333333333333334,
+                  "frequency": 5,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "T09-4 Process or receive external advice from party 4"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T10 Determine necessity to stop indication",
+              "occurrences": 1283,
+              "outputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 161,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9696969696969697,
+                  "frequency": 32,
+                  "target": "T12 Check document X request unlicensed"
+                },
+                {
+                  "dependency": 0.95,
+                  "frequency": 19,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T05 Print and send confirmation of receipt",
+                  "T10 Determine necessity to stop indication",
+                  26.238095238095237
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9,
+                  "frequency": 9,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9696969696969697,
+                  "frequency": 32,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T12 Check document X request unlicensed",
+              "occurrences": 41,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9743589743589743,
+                  "frequency": 38,
+                  "target": "T15 Print document X request unlicensed"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9743589743589743,
+                  "frequency": 38,
+                  "target": "T12 Check document X request unlicensed"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T15 Print document X request unlicensed",
+              "occurrences": 39,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T05 Print and send confirmation of receipt",
+                  "T10 Determine necessity to stop indication",
+                  52.476190476190474
+                ],
+                [
+                  "T10 Determine necessity to stop indication",
+                  "T17 Check report Y to stop indication",
+                  0.7307692307692307
+                ]
+              ],
+              "and_measures_out": [
+                [
+                  "T17 Check report Y to stop indication",
+                  "T20 Print report Y to stop indication",
+                  0.7407407407407407
+                ]
+              ],
+              "inputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.95,
+                  "frequency": 19,
+                  "target": "T10 Determine necessity to stop indication"
+                },
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T17 Check report Y to stop indication",
+              "occurrences": 26,
+              "outputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "T17 Check report Y to stop indication"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T20 Print report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "T02 Check confirmation of receipt",
+                  "T05 Print and send confirmation of receipt",
+                  175.5
+                ]
+              ],
+              "inputs": [
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T20 Print report Y to stop indication",
+              "occurrences": 20,
+              "outputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                }
+              ]
+            }
+          ],
+          "start_activities": [
+            {
+              "T02 Check confirmation of receipt": 1154,
+              "T07-1 Draft intern advice aspect 1": 9,
+              "T09-4 Process or receive external advice from party 4": 1,
+              "T10 Determine necessity to stop indication": 154
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "net": {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication",
+            "T12 Check document X request unlicensed",
+            "T15 Print document X request unlicensed",
+            "T17 Check report Y to stop indication",
+            "T20 Print report Y to stop indication"
+          ],
+          "activities_occurrences": {
+            "T02 Check confirmation of receipt": 1368,
+            "T05 Print and send confirmation of receipt": 1300,
+            "T07-1 Draft intern advice aspect 1": 45,
+            "T09-1 Process or receive external advice from party 1": 7,
+            "T09-4 Process or receive external advice from party 4": 5,
+            "T10 Determine necessity to stop indication": 1283,
+            "T12 Check document X request unlicensed": 41,
+            "T15 Print document X request unlicensed": 39,
+            "T17 Check report Y to stop indication": 26,
+            "T20 Print report Y to stop indication": 20
+          },
+          "dependency_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              0.9990512333965844
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              0.7692307692307693
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              0.0
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              0.19851116625310175
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              0.5454545454545454
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              0.6666666666666666
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              0.6666666666666666
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              0.5602901178603807
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              0.9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              0.5
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              -0.7692307692307693
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              -0.5454545454545454
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              0.9375
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              0.8
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              -0.25
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              0.9523809523809523
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              0.0
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              0.5
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              0.8333333333333334
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              0.25
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              0.75
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              -0.19851116625310175
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              -0.5602901178603807
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              0.9696969696969697
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              0.95
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T02 Check confirmation of receipt",
+              0.6666666666666666
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              0.9743589743589743
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              0.8571428571428571
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              0.9523809523809523
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              0.75
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              0.6666666666666666
+            ]
+          ],
+          "dfg": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              1053
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              241
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              860
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              15
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              4
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              20
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              2
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              3
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              161
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              242
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              32
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              19
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              38
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              6
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              20
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              1053
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              241
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              860
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              15
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              4
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              20
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              2
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              3
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              161
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              242
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              32
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              19
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              38
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              6
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              20
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              19
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              261
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              869
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              4
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              3
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              4
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              28
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T15 Print document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              14
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T20 Print report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              6
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              9
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              12
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T12 Check document X request unlicensed",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1",
+              1
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              1
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              17
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              143
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              6
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T15 Print document X request unlicensed",
+              29
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              2
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T20 Print report Y to stop indication",
+              17
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              1
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              4
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              2
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "end_activities": [
+            {
+              "T02 Check confirmation of receipt": 16,
+              "T05 Print and send confirmation of receipt": 417,
+              "T07-1 Draft intern advice aspect 1": 2,
+              "T10 Determine necessity to stop indication": 829,
+              "T15 Print document X request unlicensed": 39,
+              "T20 Print report Y to stop indication": 15
+            }
+          ],
+          "freq_triples_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              6
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              1
+            ]
+          ],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 241,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ],
+              "loop_length_two": {
+                "T10 Determine necessity to stop indication": 241
+              },
+              "name": "T02 Check confirmation of receipt",
+              "occurrences": 1368,
+              "outputs": [
+                {
+                  "dependency": 0.9990512333965844,
+                  "frequency": 1053,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0,
+                  "frequency": 241,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9990512333965844,
+                  "frequency": 1053,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0,
+                  "frequency": 8,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T05 Print and send confirmation of receipt",
+              "occurrences": 1300,
+              "outputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 8,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.9,
+                  "frequency": 9,
+                  "target": "T12 Check document X request unlicensed"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "T07-1 Draft intern advice aspect 1",
+                  "T10 Determine necessity to stop indication",
+                  0.5555555555555556
+                ]
+              ],
+              "inputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9375,
+                  "frequency": 15,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                }
+              ],
+              "loop_length_two": {
+                "T05 Print and send confirmation of receipt": 2
+              },
+              "name": "T07-1 Draft intern advice aspect 1",
+              "occurrences": 45,
+              "outputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9375,
+                  "frequency": 15,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.8,
+                  "frequency": 4,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.8,
+                  "frequency": 4,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T09-1 Process or receive external advice from party 1",
+              "occurrences": 7,
+              "outputs": [
+                {
+                  "dependency": 0.8333333333333334,
+                  "frequency": 5,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 161,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.8333333333333334,
+                  "frequency": 5,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T10 Determine necessity to stop indication",
+              "occurrences": 1283,
+              "outputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 161,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9696969696969697,
+                  "frequency": 32,
+                  "target": "T12 Check document X request unlicensed"
+                },
+                {
+                  "dependency": 0.95,
+                  "frequency": 19,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T05 Print and send confirmation of receipt",
+                  "T10 Determine necessity to stop indication",
+                  26.238095238095237
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9,
+                  "frequency": 9,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9696969696969697,
+                  "frequency": 32,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T12 Check document X request unlicensed",
+              "occurrences": 41,
+              "outputs": [
+                {
+                  "dependency": 0.9743589743589743,
+                  "frequency": 38,
+                  "target": "T15 Print document X request unlicensed"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9743589743589743,
+                  "frequency": 38,
+                  "target": "T12 Check document X request unlicensed"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T15 Print document X request unlicensed",
+              "occurrences": 39,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T10 Determine necessity to stop indication",
+                  "T17 Check report Y to stop indication",
+                  0.7307692307692307
+                ]
+              ],
+              "and_measures_out": [
+                [
+                  "T17 Check report Y to stop indication",
+                  "T20 Print report Y to stop indication",
+                  0.7407407407407407
+                ]
+              ],
+              "inputs": [
+                {
+                  "dependency": 0.95,
+                  "frequency": 19,
+                  "target": "T10 Determine necessity to stop indication"
+                },
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T17 Check report Y to stop indication",
+              "occurrences": 26,
+              "outputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "T17 Check report Y to stop indication"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T20 Print report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T20 Print report Y to stop indication",
+              "occurrences": 20,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "T02 Check confirmation of receipt": 1154,
+              "T07-1 Draft intern advice aspect 1": 9,
+              "T09-4 Process or receive external advice from party 4": 1,
+              "T10 Determine necessity to stop indication": 154
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 0.5,
+          "dependency_thresh": 0.8
+        }
+      },
+      {
+        "net": {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication",
+            "T12 Check document X request unlicensed",
+            "T15 Print document X request unlicensed",
+            "T17 Check report Y to stop indication",
+            "T20 Print report Y to stop indication"
+          ],
+          "activities_occurrences": {
+            "T02 Check confirmation of receipt": 1368,
+            "T05 Print and send confirmation of receipt": 1300,
+            "T07-1 Draft intern advice aspect 1": 45,
+            "T09-1 Process or receive external advice from party 1": 7,
+            "T09-4 Process or receive external advice from party 4": 5,
+            "T10 Determine necessity to stop indication": 1283,
+            "T12 Check document X request unlicensed": 41,
+            "T15 Print document X request unlicensed": 39,
+            "T17 Check report Y to stop indication": 26,
+            "T20 Print report Y to stop indication": 20
+          },
+          "dependency_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              0.9990512333965844
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              0.9166666666666666
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              0.0
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              0.9958677685950413
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              0.8888888888888888
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              0.6666666666666666
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              0.6666666666666666
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              0.5602901178603807
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              0.9
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              0.9375
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              0.8
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              -0.25
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              0.9523809523809523
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              0.0
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              0.5
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              0.8333333333333334
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              0.25
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              0.75
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              -0.5602901178603807
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              0.9696969696969697
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              0.95
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              0.9743589743589743
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              0.8571428571428571
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              0.9523809523809523
+            ]
+          ],
+          "dfg": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              1053
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              241
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              860
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              9
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              15
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              4
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              20
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              2
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              3
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              242
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              32
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              19
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              38
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              6
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              20
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              1053
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              241
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              860
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              9
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              15
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              4
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              20
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              2
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              3
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              242
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              32
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              19
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              38
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              6
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              20
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              19
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              261
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              11
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              2
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              869
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              4
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              3
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              4
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              1
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4",
+              2
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              5
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T12 Check document X request unlicensed",
+              28
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T15 Print document X request unlicensed",
+              9
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              14
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T20 Print report Y to stop indication",
+              1
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              6
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              9
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              8
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              12
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T12 Check document X request unlicensed",
+              1
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              2
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1",
+              1
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              1
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              17
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt",
+              143
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              6
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T15 Print document X request unlicensed",
+              29
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              2
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T20 Print report Y to stop indication",
+              17
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              1
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              3
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              4
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              2
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              1
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              2
+            ]
+          ],
+          "end_activities": [
+            {
+              "T02 Check confirmation of receipt": 16,
+              "T05 Print and send confirmation of receipt": 417,
+              "T07-1 Draft intern advice aspect 1": 2,
+              "T10 Determine necessity to stop indication": 829,
+              "T15 Print document X request unlicensed": 39,
+              "T20 Print report Y to stop indication": 15
+            }
+          ],
+          "freq_triples_matrix": [
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              6
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              1
+            ]
+          ],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "T02 Check confirmation of receipt",
+              "occurrences": 1368,
+              "outputs": [
+                {
+                  "dependency": 0.9990512333965844,
+                  "frequency": 1053,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9166666666666666,
+                  "frequency": 11,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.9958677685950413,
+                  "frequency": 241,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9990512333965844,
+                  "frequency": 1053,
+                  "target": "T02 Check confirmation of receipt"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T05 Print and send confirmation of receipt",
+              "occurrences": 1300,
+              "outputs": [
+                {
+                  "dependency": 0.8888888888888888,
+                  "frequency": 8,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T09-4 Process or receive external advice from party 4"
+                },
+                {
+                  "dependency": 0.5602901178603807,
+                  "frequency": 860,
+                  "target": "T10 Determine necessity to stop indication"
+                },
+                {
+                  "dependency": 0.9,
+                  "frequency": 9,
+                  "target": "T12 Check document X request unlicensed"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T02 Check confirmation of receipt",
+                  "T05 Print and send confirmation of receipt",
+                  52.65
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9166666666666666,
+                  "frequency": 11,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.8888888888888888,
+                  "frequency": 8,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9375,
+                  "frequency": 15,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.25,
+                  "frequency": 2,
+                  "target": "T09-4 Process or receive external advice from party 4"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T07-1 Draft intern advice aspect 1",
+              "occurrences": 45,
+              "outputs": [
+                {
+                  "dependency": 0.9375,
+                  "frequency": 15,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.8,
+                  "frequency": 4,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T05 Print and send confirmation of receipt",
+                  "T07-1 Draft intern advice aspect 1",
+                  1.1428571428571428
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.8,
+                  "frequency": 4,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T09-1 Process or receive external advice from party 1",
+              "occurrences": 7,
+              "outputs": [
+                {
+                  "dependency": 0.8333333333333334,
+                  "frequency": 5,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "T07-1 Draft intern advice aspect 1",
+                  "T10 Determine necessity to stop indication",
+                  3.3333333333333335
+                ]
+              ],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "T05 Print and send confirmation of receipt"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T09-4 Process or receive external advice from party 4",
+              "occurrences": 5,
+              "outputs": [
+                {
+                  "dependency": 0.25,
+                  "frequency": 2,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9958677685950413,
+                  "frequency": 241,
+                  "target": "T02 Check confirmation of receipt"
+                },
+                {
+                  "dependency": 0.5602901178603807,
+                  "frequency": 860,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T07-1 Draft intern advice aspect 1"
+                },
+                {
+                  "dependency": 0.8333333333333334,
+                  "frequency": 5,
+                  "target": "T09-1 Process or receive external advice from party 1"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "T09-4 Process or receive external advice from party 4"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T10 Determine necessity to stop indication",
+              "occurrences": 1283,
+              "outputs": [
+                {
+                  "dependency": 0.9696969696969697,
+                  "frequency": 32,
+                  "target": "T12 Check document X request unlicensed"
+                },
+                {
+                  "dependency": 0.95,
+                  "frequency": 19,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "T05 Print and send confirmation of receipt",
+                  "T10 Determine necessity to stop indication",
+                  26.238095238095237
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9,
+                  "frequency": 9,
+                  "target": "T05 Print and send confirmation of receipt"
+                },
+                {
+                  "dependency": 0.9696969696969697,
+                  "frequency": 32,
+                  "target": "T10 Determine necessity to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T12 Check document X request unlicensed",
+              "occurrences": 41,
+              "outputs": [
+                {
+                  "dependency": 0.9743589743589743,
+                  "frequency": 38,
+                  "target": "T15 Print document X request unlicensed"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9743589743589743,
+                  "frequency": 38,
+                  "target": "T12 Check document X request unlicensed"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T15 Print document X request unlicensed",
+              "occurrences": 39,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.95,
+                  "frequency": 19,
+                  "target": "T10 Determine necessity to stop indication"
+                },
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T17 Check report Y to stop indication",
+              "occurrences": 26,
+              "outputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "T17 Check report Y to stop indication"
+                },
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T20 Print report Y to stop indication"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.9523809523809523,
+                  "frequency": 20,
+                  "target": "T17 Check report Y to stop indication"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "T20 Print report Y to stop indication",
+              "occurrences": 20,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "T02 Check confirmation of receipt": 1154,
+              "T07-1 Draft intern advice aspect 1": 9,
+              "T09-4 Process or receive external advice from party 4": 1,
+              "T10 Determine necessity to stop indication": 154
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 1.0,
+          "dependency_thresh": 0.0,
+          "dfg_pre_cleaning_noise_thresh": 0.2,
+          "loop_length_two_thresh": 0.9,
+          "min_act_count": 2,
+          "min_dfg_occurrences": 2
+        }
+      }
+    ],
+    "models": {
+      "alpha": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ]
+          ]
+        }
+      },
+      "alpha_plus": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            "parallel": [
+              [
+                "T02 Check confirmation of receipt",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T12 Check document X request unlicensed"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T20 Print report Y to stop indication"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T05 Print and send confirmation of receipt"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T12 Check document X request unlicensed"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T20 Print report Y to stop indication"
+              ],
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T05 Print and send confirmation of receipt"
+              ],
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T12 Check document X request unlicensed",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T12 Check document X request unlicensed",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T20 Print report Y to stop indication",
+                "T02 Check confirmation of receipt"
+              ],
+              [
+                "T20 Print report Y to stop indication",
+                "T07-1 Draft intern advice aspect 1"
+              ]
+            ],
+            "sequence": [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T12 Check document X request unlicensed"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T20 Print report Y to stop indication"
+              ]
+            ],
+            "start_activities": [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ]
+          ]
+        }
+      },
+      "alpha_plus_remove_unconnected": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            "parallel": [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T05 Print and send confirmation of receipt"
+              ]
+            ],
+            "sequence": [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T12 Check document X request unlicensed"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T20 Print report Y to stop indication"
+              ]
+            ],
+            "start_activities": [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4"
+            ]
+          ]
+        }
+      },
+      "heuristics_0": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            "parallel": [
+              [
+                "T02 Check confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ]
+            ],
+            "sequence": [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ]
+            ],
+            "start_activities": [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ]
+          ]
+        }
+      },
+      "heuristics_1": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ]
+          ]
+        }
+      },
+      "heuristics_2": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            "parallel": [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T17 Check report Y to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T20 Print report Y to stop indication"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T17 Check report Y to stop indication"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T20 Print report Y to stop indication"
+              ],
+              [
+                "T17 Check report Y to stop indication",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T17 Check report Y to stop indication",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T17 Check report Y to stop indication",
+                "T17 Check report Y to stop indication"
+              ],
+              [
+                "T17 Check report Y to stop indication",
+                "T20 Print report Y to stop indication"
+              ],
+              [
+                "T20 Print report Y to stop indication",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T20 Print report Y to stop indication",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T20 Print report Y to stop indication",
+                "T17 Check report Y to stop indication"
+              ],
+              [
+                "T20 Print report Y to stop indication",
+                "T20 Print report Y to stop indication"
+              ]
+            ],
+            "sequence": [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              [
+                "T02 Check confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ]
+            ],
+            "start_activities": [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              "T17 Check report Y to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ]
+          ]
+        }
+      },
+      "heuristics_public": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T12 Check document X request unlicensed",
+              "T15 Print document X request unlicensed",
+              "T17 Check report Y to stop indication",
+              "T20 Print report Y to stop indication"
+            ],
+            "parallel": [
+              [
+                "T02 Check confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ]
+            ],
+            "sequence": [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              [
+                "T05 Print and send confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ]
+            ],
+            "start_activities": [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1",
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ]
+          ]
+        }
+      }
+    },
+    "traces": null
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "classic-miners-interleavings-receipt_odd-csv",
+    "fixtures": {
+      "log": "fixtures/logs/interleavings/receipt_odd.csv"
+    },
+    "functions": [
+      "pm4py.discover_petri_net_alpha",
+      "pm4py.discover_petri_net_alpha_plus",
+      "pm4py.discover_heuristics_net",
+      "pm4py.discover_petri_net_heuristics",
+      "pm4py.algo.discovery.alpha.variants.plus.apply",
+      "pm4py.algo.discovery.heuristics.variants.classic.apply_heu",
+      "pm4py.convert_to_petri_net",
+      "pm4py.discover_footprints",
+      "pm4py.objects.petri_net.semantics.enabled_transitions",
+      "pm4py.objects.petri_net.semantics.execute"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
