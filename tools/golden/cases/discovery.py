@@ -525,3 +525,92 @@ for _id, _traces in {
 
 
 case("classic-miners-cleaned-loop",functions=CLASSIC_MINER_FUNCTIONS,params={"traces":[["a","c","b"]]*20+[["a","b","a","c","b"]],"variants":[{"min_dfg_occurrences":0}]})(classic_miners)
+
+
+# miners-classic log-skeleton and DECLARE discovery cases.
+SKELETON_DECLARE_FUNCTIONS = [
+    "pm4py.discover_log_skeleton", "pm4py.discover_declare",
+    "pm4py.algo.discovery.declare.variants.classic.apply",
+]
+
+
+def skeleton_declare(fixtures, traces=None, activity_key="concept:name", declare_options=None):
+    """Lossless label-index encoding of public skeleton/DECLARE outputs."""
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.algo.discovery.declare.variants import classic as declare_classic
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in t]) for t in traces])
+    options = declare_options or [
+        {},
+        {"min_support_ratio": 0.75, "min_confidence_ratio": 0.95},
+        {"min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    ]
+    labels = sorted({e[activity_key] for t in log for e in t} |
+                    {a for opts in options for a in opts.get("considered_activities", [])})
+    index = {a: i for i, a in enumerate(labels)}
+    skeletons = []
+    for noise in [0.0, 0.2, 0.5, 0.9, 1.0]:
+        model = pm4py.discover_log_skeleton(log, noise_threshold=noise, activity_key=activity_key)
+        encoded = {name: sorted([index[a], index[b]] for a,b in value)
+                   for name,value in model.items() if name != "activ_freq"}
+        encoded["activ_freq"] = sorted([index[a], sorted(freqs)] for a,freqs in model["activ_freq"].items())
+        skeletons.append({"noise": noise, "model": encoded})
+    models = []
+    for opts in options:
+        kwargs = dict(opts)
+        for key in ["allowed_templates", "considered_activities"]:
+            if key in kwargs:
+                kwargs[key] = set(kwargs[key])
+        if "auto_selection_multiplier" in kwargs:
+            model = declare_classic.apply(log, parameters={"pm4py:param:activity_key": activity_key, **kwargs})
+        else:
+            model = pm4py.discover_declare(log, activity_key=activity_key, **kwargs)
+        encoded = {template: sorted([
+            [*[index[a] for a in (args if isinstance(args, tuple) else (args,))],
+             values["support"], values["confidence"]]
+            for args,values in rules.items()]) for template,rules in model.items()}
+        models.append({"options": opts, "model": encoded})
+    return {"labels": labels, "skeleton": skeletons, "declare": models}
+
+
+for _id, _fixture in {
+    "running-example-xes": "running-example.xes",
+    "receipt-xes": "receipt.xes",
+    "roadtraffic100traces-xes": "roadtraffic100traces.xes",
+    "interleavings-receipt_even-csv": "interleavings/receipt_even.csv",
+    "interleavings-receipt_odd-csv": "interleavings/receipt_odd.csv",
+}.items():
+    case(f"skeleton-declare-{_id}", fixture=_fixture, functions=SKELETON_DECLARE_FUNCTIONS)(skeleton_declare)
+
+SKELETON_DECLARE_SYNTHETIC_OPTIONS = [
+    {},
+    {"min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"min_support_ratio": 1.0, "min_confidence_ratio": 1.0},
+    {"min_support_ratio": 0.5},
+    {"min_confidence_ratio": 0.5},
+    {"auto_selection_multiplier": 0.0},
+    {"auto_selection_multiplier": 1.0},
+    {"considered_activities": ["a", "b", "ghost"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"considered_activities": []},
+    {"allowed_templates": []},
+    {"allowed_templates": ["absence", "succession", "coexistence", "noncoexistence", "altsuccession", "chainsuccession", "nonsuccession", "nonchainsuccession"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"allowed_templates": ["response", "precedence", "succession", "nonsuccession"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"allowed_templates": ["altresponse", "altprecedence", "altsuccession", "chainresponse", "chainprecedence", "chainsuccession", "nonchainsuccession"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"allowed_templates": ["responded_existence", "coexistence", "noncoexistence", "existence", "absence"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+]
+
+for _id, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "repeated": [["a", "b", "a", "b"], ["a", "a", "b"], ["b", "a", "b", "b"], ["a"], ["b"], []],
+    "weighted": [["a", "b"]] * 4 + [["a"]] * 2 + [["b"]] * 3 + [[]],
+    "projection": [["a", "x", "b", "a", "b"], ["x", "b", "x", "a"], ["x"], []],
+    "frequency-ties": [["a"], []],
+    "frequency-ties-reversed": [[], ["a"]],
+    "custom-key": [["α", "β", "α", "β"], ["β", "α"], []],
+}.items():
+    case(f"skeleton-declare-{_id}", functions=SKELETON_DECLARE_FUNCTIONS,
+         params={"traces": _traces, "activity_key": "task" if _id == "custom-key" else "concept:name",
+                 "declare_options": SKELETON_DECLARE_SYNTHETIC_OPTIONS})(skeleton_declare)
