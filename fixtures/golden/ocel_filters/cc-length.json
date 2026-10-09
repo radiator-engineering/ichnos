@@ -1,0 +1,371 @@
+{
+  "expected": {
+    "components": null,
+    "input": {
+      "e2e": [
+        {
+          "qualifier": "next",
+          "source": "e0",
+          "target": "e1"
+        },
+        {
+          "qualifier": "next",
+          "source": "e1",
+          "target": "e2"
+        }
+      ],
+      "events": [
+        {
+          "activity": "orphan",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-01T00:00:00.000000+00:00"
+            ],
+            "score": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "e0",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "create",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-01T00:00:00.000000+00:00"
+            ],
+            "score": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2020-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "finish",
+          "attributes": {
+            "score": [
+              "float",
+              3.0
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "create",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-04T00:00:00.000000+00:00"
+            ],
+            "score": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2020-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "single",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-01T00:00:00.000000+00:00"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "link",
+          "source": "a",
+          "target": "b"
+        },
+        {
+          "qualifier": "link",
+          "source": "orphan",
+          "target": "isolated"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "size",
+          "object": "a",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "int",
+            4
+          ]
+        },
+        {
+          "field": "size",
+          "object": "orphan",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "int",
+            5
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "size": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "a",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "size": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "b",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "size": [
+              "float",
+              3.0
+            ]
+          },
+          "id": "c",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "size": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "d",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "size": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "isolated",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "orphan",
+          "type": "order"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "create",
+          "event": "e1",
+          "object": "a",
+          "qualifier": "",
+          "timestamp": "2020-01-03T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "create",
+          "event": "e1",
+          "object": "b",
+          "qualifier": "primary",
+          "timestamp": "2020-01-03T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "create",
+          "event": "e1",
+          "object": "b",
+          "qualifier": "",
+          "timestamp": "2020-01-03T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "b",
+          "qualifier": "primary",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "c",
+          "qualifier": "",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "create",
+          "event": "e3",
+          "object": "c",
+          "qualifier": "primary",
+          "timestamp": "2020-01-02T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "create",
+          "event": "e3",
+          "object": "d",
+          "qualifier": "",
+          "timestamp": "2020-01-02T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "single",
+          "event": "e4",
+          "object": "isolated",
+          "qualifier": "primary",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00",
+          "type": "item"
+        }
+      ]
+    },
+    "results": [
+      {
+        "args": [
+          1,
+          1
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          2,
+          20
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [
+            1
+          ],
+          "events": [
+            1,
+            2,
+            3
+          ],
+          "o2o": [
+            0
+          ],
+          "object_changes": [
+            0
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "args": [
+          1,
+          100000
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [
+            1
+          ],
+          "events": [
+            1,
+            2,
+            3
+          ],
+          "o2o": [
+            0
+          ],
+          "object_changes": [
+            0
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "args": [
+          20,
+          2
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "ocel_filters",
+    "case": "cc-length",
+    "fixtures": {},
+    "functions": [
+      "pm4py.filter_ocel_cc_length"
+    ],
+    "loaders": {},
+    "params": {
+      "only": "filter_ocel_cc_length"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
