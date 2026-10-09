@@ -14,12 +14,13 @@ workspace = true
 good_lp = { workspace = true }
 ichnos-core = { workspace = true }
 ichnos-model = { workspace = true }
+ichnos-ocel = { workspace = true }
 indexmap = { workspace = true }
 thiserror = { workspace = true }
 
 [dev-dependencies]
 arrow = { workspace = true, features = ["csv"] }
 ichnos-golden = { workspace = true }
-serde = { workspace = true }
+serde = { workspace = true, features = ["rc"] }
 serde_json = { workspace = true }
 sha2 = { workspace = true }
