@@ -68,7 +68,7 @@ pub(crate) mod net;
 mod precision;
 mod replay;
 
-pub use fitting::{check_is_fitting, check_is_fitting_tree};
+pub use fitting::{FittingChecker, check_is_fitting, check_is_fitting_tree};
 pub use precision::precision_token_based_replay;
 
 use std::collections::{BTreeSet, HashMap};

@@ -172,6 +172,13 @@ impl ModelFootprints {
     /// which can miss activities reachable only through silent
     /// transitions. Fails with [`crate::Error::UnknownPlace`] if the
     /// marking puts tokens on a place that is not in the net.
+    ///
+    /// Fails with [`crate::Error::Reachability`] when the reachable
+    /// markings, or the markings one eventually-enabled search visits,
+    /// exceed that limit. pm4py has no bound on markings: it stops after
+    /// 86400 seconds and returns the footprints found so far, and its
+    /// eventually-enabled search can loop forever on a silent cycle that
+    /// produces tokens.
     pub fn of_net(net: &PetriNet, initial_marking: &Marking) -> Result<Self> {
         Ok(net::net_footprints(net, initial_marking)?.into())
     }

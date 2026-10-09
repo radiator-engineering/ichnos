@@ -16,7 +16,7 @@ use ichnos_conformance::footprints::{
     conformance_diagnostics_footprints_log, fitness_footprints, fitness_footprints_log,
     footprint_violations, precision_footprints,
 };
-use ichnos_conformance::token_replay::{check_is_fitting, check_is_fitting_tree};
+use ichnos_conformance::token_replay::{FittingChecker, check_is_fitting, check_is_fitting_tree};
 use ichnos_core::{EventKeys, EventLog};
 use ichnos_golden::{Golden, Tolerance, as_f64, cases, compare_close, golden};
 use ichnos_model::footprints::LabelPair;
@@ -275,8 +275,15 @@ fn footprints_match_pm4py() {
 
         let (net, im, fm) = build_net(g.expected_at("/model"));
         let model = ModelFootprints::of_net(&net, &im).expect("net footprints");
+        let checker = FittingChecker::new(&net, &im, &fm).expect("fitting checker");
         check_model_kind(&g, &log, &model, "net", |trace| {
-            check_is_fitting(trace, &net, &im, &fm).expect("check_is_fitting")
+            let fits = check_is_fitting(trace, &net, &im, &fm).expect("check_is_fitting");
+            assert_eq!(
+                checker.check(trace).expect("check"),
+                fits,
+                "{id}: {trace:?}"
+            );
+            fits
         });
 
         if let Some(tree) = g.expected.get("tree") {
