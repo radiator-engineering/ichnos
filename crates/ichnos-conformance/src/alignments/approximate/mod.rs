@@ -414,19 +414,17 @@ impl ApproximateAligner {
         let max_expansions = self.options.max_expansions;
         Ok(match &self.options.method {
             Approximation::TandemRepeats => {
-                tandem::align(&self.net, labels, log_costs, max_expansions, deadline).map(|o| {
-                    Run {
-                        cost: o.steps.iter().map(|s| s.cost).sum(),
-                        steps: o.steps,
-                        stats: o.stats,
-                        lp_solved: 0,
-                        report: ApproximationReport::TandemRepeats {
-                            reduced_trace_length: o.reduced_trace_length,
-                            tandem_repeats: o.tandem_repeats,
-                            removed_events: o.removed_events,
-                            model_loop_expansions: o.model_loop_expansions,
-                        },
-                    }
+                tandem::align(&self.net, labels, log_costs, max_expansions, deadline).map(|o| Run {
+                    cost: o.steps.iter().map(|s| s.cost).sum(),
+                    steps: o.steps,
+                    stats: o.stats,
+                    lp_solved: 0,
+                    report: ApproximationReport::TandemRepeats {
+                        reduced_trace_length: o.reduced_trace_length,
+                        tandem_repeats: o.tandem_repeats,
+                        removed_events: o.removed_events,
+                        model_loop_expansions: o.model_loop_expansions,
+                    },
                 })
             }
             Approximation::SlidingWindow(w) => {

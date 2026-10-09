@@ -136,7 +136,12 @@ impl DecomposedAligner {
             }
         }
         // pm4py's `get_best_worst_cost`: the cheapest run, or 0 without one.
-        let model = ModelPart::new(net, initial_marking, final_marking, &ModelCosts::standard(net))?;
+        let model = ModelPart::new(
+            net,
+            initial_marking,
+            final_marking,
+            &ModelCosts::standard(net),
+        )?;
         let empty = SyncProduct::new::<&str>(&model, &[], &[], MoveSet::All);
         let best_worst = search(&empty, Heuristic::StateEquation, None)?
             .map_or(0, |f| f.cost / STD_LOG_MOVE_COST);
@@ -429,7 +434,12 @@ fn activity_cache(cons: &[Component]) -> HashMap<String, Vec<usize>> {
 fn visible_labels(net: &PetriNet, transitions: &BTreeSet<TransitionId>) -> Vec<String> {
     let mut labels: Vec<String> = transitions
         .iter()
-        .filter_map(|&t| net.transition(t).label.as_ref().map(|l| l.as_str().to_owned()))
+        .filter_map(|&t| {
+            net.transition(t)
+                .label
+                .as_ref()
+                .map(|l| l.as_str().to_owned())
+        })
         .collect();
     labels.sort();
     labels
@@ -469,7 +479,9 @@ fn recompose<'m>(
         )
     };
     let key = |m: &DMove| -> MoveKey<'_> { (m.event.map(|(p, e)| (p, trace[e])), m.transition) };
-    let valid: Vec<usize> = (0..results.len()).filter(|&i| results[i].is_some()).collect();
+    let valid: Vec<usize> = (0..results.len())
+        .filter(|&i| results[i].is_some())
+        .collect();
     let moves = |i: usize| results[i].as_deref().expect("a valid node");
     // Successors in pm4py's edge order: by source, then by target.
     let mut successors: Vec<Vec<usize>> = vec![Vec::new(); results.len()];

@@ -6,7 +6,9 @@ use std::collections::HashSet;
 use ichnos_model::petri::ArcEnds;
 use ichnos_model::{Marking, PetriNet, TransitionId};
 
-use super::super::costs::{ModelCosts, STD_LOG_MOVE_COST, STD_MODEL_MOVE_COST, STD_SILENT_MOVE_COST};
+use super::super::costs::{
+    ModelCosts, STD_LOG_MOVE_COST, STD_MODEL_MOVE_COST, STD_SILENT_MOVE_COST,
+};
 use super::super::marking::{Packed, apply_delta, pack, place, tokens};
 use crate::error::{Error, Result};
 
@@ -73,7 +75,9 @@ impl Net {
                 for &a in tr.in_arcs().iter().chain(tr.out_arcs()) {
                     let arc = net.arc(a);
                     match arc.ends {
-                        ArcEnds::PlaceToTransition(p, _) => pre.push((dense[p.index()], arc.weight)),
+                        ArcEnds::PlaceToTransition(p, _) => {
+                            pre.push((dense[p.index()], arc.weight))
+                        }
                         ArcEnds::TransitionToPlace(_, p) => {
                             post.push((dense[p.index()], arc.weight));
                         }
@@ -83,7 +87,10 @@ impl Net {
                 let post = merge(post);
                 let delta = delta(&pre, &post);
                 let label = tr.label.as_ref().map(|l| Box::from(l.as_str()));
-                let key = tr.label.as_ref().map_or("None".to_owned(), |l| l.as_str().to_owned());
+                let key = tr
+                    .label
+                    .as_ref()
+                    .map_or("None".to_owned(), |l| l.as_str().to_owned());
                 let t = NetTransition {
                     id,
                     label,
@@ -165,7 +172,7 @@ impl Net {
 
     /// pm4py's `weak_execute`: tokens are taken without checking that they
     /// exist, and a place never goes below zero.
-    pub(super) fn weak_fire(&self, t: u32, m: &mut Vec<i64>) {
+    pub(super) fn weak_fire(&self, t: u32, m: &mut [i64]) {
         let tr = &self.transitions[t as usize];
         for &(p, w) in &tr.pre {
             let v = &mut m[p as usize];

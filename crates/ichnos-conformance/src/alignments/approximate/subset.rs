@@ -14,7 +14,9 @@ use std::time::{Duration, Instant};
 use ichnos_core::{EventKeys, EventLog};
 use ichnos_model::{Label, Marking, PetriNet};
 
-use super::super::costs::{ModelCosts, STD_LOG_MOVE_COST, STD_MODEL_MOVE_COST, STD_SILENT_MOVE_COST};
+use super::super::costs::{
+    ModelCosts, STD_LOG_MOVE_COST, STD_MODEL_MOVE_COST, STD_SILENT_MOVE_COST,
+};
 use super::super::result::{LogAlignment, Move, TraceAlignment};
 use super::net::{Net, Step};
 use super::search::{Query, Stats, search};
@@ -225,13 +227,20 @@ pub fn align_log_subset(
         SubsetSize::Count(n) => n,
         SubsetSize::Fraction(f) => {
             if !(f > 0.0 && f <= 1.0) {
-                return Err(Error::InvalidApproximation("the subset fraction must be in (0, 1]"));
+                return Err(Error::InvalidApproximation(
+                    "the subset fraction must be in (0, 1]",
+                ));
             }
             (traces.len() as f64 * f).ceil() as usize
         }
     }
     .clamp(1, traces.len());
-    let model = Net::new(net, initial_marking, final_marking, &ModelCosts::standard(net))?;
+    let model = Net::new(
+        net,
+        initial_marking,
+        final_marking,
+        &ModelCosts::standard(net),
+    )?;
     let deadline = options.time_limit.map(|d| Instant::now() + d);
 
     let extra: Vec<Vec<&str>>;
@@ -264,7 +273,11 @@ pub fn align_log_subset(
             break;
         }
         let costs = vec![STD_LOG_MOVE_COST; trace.len()];
-        let (found, stats) = search(&model, &exact_query(&model, trace, &costs, options, deadline), None);
+        let (found, stats) = search(
+            &model,
+            &exact_query(&model, trace, &costs, options, deadline),
+            None,
+        );
         if let Some(f) = found.into_iter().next() {
             let transitions: Vec<u32> = f.steps.iter().filter_map(|s| s.transition).collect();
             representatives.push(Representative {
@@ -280,7 +293,11 @@ pub fn align_log_subset(
         return Err(Error::NoRepresentative);
     }
 
-    let (shortest, _) = search(&model, &exact_query(&model, &[], &[], options, deadline), None);
+    let (shortest, _) = search(
+        &model,
+        &exact_query(&model, &[], &[], options, deadline),
+        None,
+    );
     let guaranteed = !shortest.is_empty();
     let shortest_visible = match shortest.first() {
         Some(f) => f
@@ -311,7 +328,15 @@ pub fn align_log_subset(
                     (r, materialize(&model, trace, &r.transitions, &ops))
                 }
             };
-            Some(finish(&model, trace, rep, steps, exact.is_some(), shortest_visible, guaranteed))
+            Some(finish(
+                &model,
+                trace,
+                rep,
+                steps,
+                exact.is_some(),
+                shortest_visible,
+                guaranteed,
+            ))
         })
         .collect();
     Ok(SubsetAlignment {
@@ -541,8 +566,8 @@ fn edit_operations(left: &[&str], right: &[&str]) -> Vec<Op> {
     for (i, row) in c.iter_mut().enumerate() {
         row[0] = i;
     }
-    for j in 0..cols {
-        c[0][j] = j;
+    for (j, cell) in c[0].iter_mut().enumerate() {
+        *cell = j;
     }
     for i in 1..rows {
         for j in 1..cols {

@@ -221,7 +221,9 @@ fn move_order(sp: &SyncProduct, labels: &[&str], names: &[&str]) -> Vec<u32> {
                     (trace_name(event), names[transition.index()].to_owned())
                 }
                 Move::Log { event } => (trace_name(event), ">>".to_owned()),
-                Move::Model { transition } => (">>".to_owned(), names[transition.index()].to_owned()),
+                Move::Model { transition } => {
+                    (">>".to_owned(), names[transition.index()].to_owned())
+                }
             };
             (sp.cost[m], format!("({}, {})", py_repr(&a), py_repr(&b)))
         })
@@ -233,7 +235,11 @@ fn move_order(sp: &SyncProduct, labels: &[&str], names: &[&str]) -> Vec<u32> {
 
 /// Python's `repr` of a string.
 fn py_repr(s: &str) -> String {
-    let quote = if s.contains('\'') && !s.contains('"') { '"' } else { '\'' };
+    let quote = if s.contains('\'') && !s.contains('"') {
+        '"'
+    } else {
+        '\''
+    };
     let mut out = String::with_capacity(s.len() + 2);
     out.push(quote);
     for c in s.chars() {
@@ -264,6 +270,10 @@ struct Entry {
 
 const ROOT: u32 = u32::MAX;
 
+/// Heap key of the prefix search: pm4py's tuple `(cost, -progress, depth,
+/// counter)`, then the entry.
+type HeapKey = Reverse<(u64, Reverse<usize>, usize, u64, u32)>;
+
 /// pm4py's `_solve_prefix`: a cheapest-first enumeration of the product's
 /// runs of at most `horizon` moves. Each popped run that reaches the final
 /// marking, or moves on at least `min_progress` events, is a candidate,
@@ -285,8 +295,7 @@ fn solve_prefix(
         node: ROOT,
     }];
     let mut nodes: Vec<(u32, u32)> = Vec::new();
-    // pm4py's tuple `(cost, -progress, depth, counter)`.
-    let mut heap: BinaryHeap<Reverse<(u64, Reverse<usize>, usize, u64, u32)>> = BinaryHeap::new();
+    let mut heap: BinaryHeap<HeapKey> = BinaryHeap::new();
     heap.push(Reverse((0, Reverse(0), 0, 0, 0)));
     let mut best: FxHashMap<(Vec<Packed>, usize), u64> = FxHashMap::default();
     best.insert((start.to_vec(), 0), 0);
@@ -301,7 +310,7 @@ fn solve_prefix(
     let mut counter = 0u64;
     let mut next = Vec::new();
 
-    while stats.visited < max_states && !deadline.is_some_and(|d| Instant::now() > d) {
+    while stats.visited < max_states && deadline.is_none_or(|d| Instant::now() <= d) {
         let Some(Reverse((cost, _, depth, _, e))) = heap.pop() else {
             break;
         };
@@ -358,7 +367,8 @@ fn solve_prefix(
             stats.traversed += 1;
             apply_delta(&marking, sp.delta(m as usize), &mut next);
             let new_cost = cost + sp.cost[m as usize];
-            let new_progress = progress + usize::from(!matches!(sp.moves[m as usize], Move::Model { .. }));
+            let new_progress =
+                progress + usize::from(!matches!(sp.moves[m as usize], Move::Model { .. }));
             let key = (next.clone(), depth + 1);
             if best.get(&key).is_some_and(|&b| new_cost >= b) {
                 continue;
@@ -372,7 +382,13 @@ fn solve_prefix(
                 progress: new_progress,
                 node: u32::try_from(nodes.len() - 1).expect("prefix search fits u32 states"),
             });
-            heap.push(Reverse((new_cost, Reverse(new_progress), depth + 1, counter, id)));
+            heap.push(Reverse((
+                new_cost,
+                Reverse(new_progress),
+                depth + 1,
+                counter,
+                id,
+            )));
             stats.queued += 1;
         }
     }

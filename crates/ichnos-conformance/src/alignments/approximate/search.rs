@@ -80,12 +80,15 @@ const ROOT: u32 = u32::MAX;
 /// counter is unique, so the order is total and pops are deterministic.
 type Key = Reverse<(u64, Reverse<usize>, usize, u64, u32)>;
 
+/// A cost estimate of the rest of an alignment from a marking.
+type Estimate<'a> = &'a mut dyn FnMut(&[Packed]) -> u64;
+
 /// Runs the search. `future` is the cost estimate of a marking, used to
 /// rank states only when `to_final` is `false`.
 pub(super) fn search<'l>(
     net: &Net,
     q: &Query<'_, 'l>,
-    future: Option<&mut dyn FnMut(&[Packed]) -> u64>,
+    future: Option<Estimate<'_>>,
 ) -> (Vec<Found<'l>>, Stats) {
     let mut zero = |_: &[Packed]| 0;
     let future: &mut dyn FnMut(&[Packed]) -> u64 = match future {
@@ -177,7 +180,13 @@ pub(super) fn search<'l>(
                 node: u32::try_from(nodes.len() - 1).expect("search fits u32 states"),
                 post_model_moves,
             });
-            heap.push(Reverse((cost + h, Reverse(index), path_len + 1, counter, id)));
+            heap.push(Reverse((
+                cost + h,
+                Reverse(index),
+                path_len + 1,
+                counter,
+                id,
+            )));
             stats.queued += 1;
         };
 
@@ -194,7 +203,15 @@ pub(super) fn search<'l>(
                         transition: Some(t),
                         cost: sync,
                     };
-                    push(index + 1, net.fire(t, &marking), cost + sync, step, 0, counter, &mut stats);
+                    push(
+                        index + 1,
+                        net.fire(t, &marking),
+                        cost + sync,
+                        step,
+                        0,
+                        counter,
+                        &mut stats,
+                    );
                 }
             }
             stats.traversed += 1;
@@ -206,7 +223,15 @@ pub(super) fn search<'l>(
                 transition: None,
                 cost: log_cost,
             };
-            push(index + 1, marking.clone(), cost + log_cost, step, 0, counter, &mut stats);
+            push(
+                index + 1,
+                marking.clone(),
+                cost + log_cost,
+                step,
+                0,
+                counter,
+                &mut stats,
+            );
         }
 
         if !consumed || q.to_final || post_model_moves < q.max_post_model_moves {
@@ -221,7 +246,15 @@ pub(super) fn search<'l>(
                     cost: move_cost,
                 };
                 let post = if consumed { post_model_moves + 1 } else { 0 };
-                push(index, net.fire(t, &marking), cost + move_cost, step, post, counter, &mut stats);
+                push(
+                    index,
+                    net.fire(t, &marking),
+                    cost + move_cost,
+                    step,
+                    post,
+                    counter,
+                    &mut stats,
+                );
             }
         }
     }

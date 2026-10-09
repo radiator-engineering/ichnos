@@ -25,8 +25,12 @@ pub(super) struct TandemRepeat<'l> {
 /// Whether `block` is not a power of a shorter block.
 fn is_primitive(block: &[&str]) -> bool {
     let size = block.len();
-    (1..size).all(|p| size % p != 0 || block.chunks(p).any(|c| c != &block[..p]))
+    (1..size).all(|p| !size.is_multiple_of(p) || block.chunks(p).any(|c| c != &block[..p]))
 }
+
+/// A run found by [`reduce`]: pm4py's key, the length of the period and
+/// the number of copies.
+type Candidate = ((usize, usize, Reverse<usize>), usize, usize);
 
 /// pm4py's `reduce_tandem_repeats`: greedily, from left to right, the run
 /// that removes the most events (then the longest run, then the shortest
@@ -39,7 +43,7 @@ pub(super) fn reduce<'l>(labels: &[&'l str]) -> (Vec<&'l str>, Vec<usize>, Vec<T
     let mut index = 0;
     while index < labels.len() {
         // pm4py's key: events removed, run length, `-len`.
-        let mut best: Option<((usize, usize, Reverse<usize>), usize, usize)> = None;
+        let mut best: Option<Candidate> = None;
         for len in 1..=(labels.len() - index) / 3 {
             let period = &labels[index..index + len];
             if !is_primitive(period) {
@@ -166,7 +170,8 @@ fn expand<'l>(
                         inserted.push(*s);
                         continue;
                     }
-                    let offset = s.log_index.expect("an event of the reduced trace") - r.reduced_start;
+                    let offset =
+                        s.log_index.expect("an event of the reduced trace") - r.reduced_start;
                     let cost = match s.transition {
                         Some(t) => net.transitions[t as usize].sync_cost,
                         None => log_costs[copy_start + offset],

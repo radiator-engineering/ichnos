@@ -147,9 +147,10 @@ Decomposed alignments (lane ``alignments``), cases
 ``alignments-decomposed-<log>-<model>``: pm4py's ``recompos_maximal``
 variant of ``algo/conformance/alignments/decomposed`` on the same logs and
 nets. Its component order, component alignments and merges depend on
-object-id hashes, so :func:`_seeded_hashes` replaces those hashes with
+object-id hashes, so :func:`seeded_node_hashes` replaces those hashes with
 :data:`DECOMPOSED_SEEDS` seeded random orders and the net is rebuilt under
-each. Per variant, in order of first trace up to
+each. Each seed runs in its own process with ``PYTHONHASHSEED`` set to the
+seed, because pm4py also iterates sets of label strings. Per variant, in order of first trace up to
 :data:`ALIGNMENT_VARIANT_LIMIT`, ``cost_choices`` lists the
 distinct costs, sorted, and ``alignment_choices`` the distinct alignments
 (label pairs, with null for ``>>`` and for a silent label), and ``bwc`` the
@@ -161,7 +162,10 @@ from __future__ import annotations
 import difflib
 import hashlib
 import json
+import os
 import random
+import subprocess
+import sys
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
@@ -1158,46 +1162,32 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
 DECOMPOSED_SEEDS = 32
 
 
-@contextmanager
-def _seeded_hashes(seed: int):
-    """Hash places, transitions and arcs by numbers from a seeded generator.
-
-    pm4py hashes them by object id, so the iteration order of their sets,
-    and with it the order of its searches and decompositions, changes
-    between runs. Each node gets the next number from ``random.Random(seed)``
-    the first time it is hashed. Nets must be built inside the block.
-    """
-    from pm4py.objects.petri_net.obj import PetriNet
-
-    rng = random.Random(seed)
-
-    def node_hash(self: Any) -> int:
-        h = self.__dict__.get("_golden_hash")
-        if h is None:
-            h = rng.getrandbits(61)
-            self.__dict__["_golden_hash"] = h
-        return h
-
-    classes = (PetriNet.Place, PetriNet.Transition, PetriNet.Arc)
-    saved = [c.__hash__ for c in classes]
-    for c in classes:
-        c.__hash__ = node_hash
-    try:
-        yield
-    finally:
-        for c, h in zip(classes, saved):
-            c.__hash__ = h
-
-
 def _label_pair(move: Any) -> list[Any]:
     return [None if x == ">>" else x for x in move]
 
 
-def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
-    """Decomposed alignments of each variant under seeded hash orders."""
+def _decomposed_run(model: dict[str, Any], variants: list[list[str]], seed: int) -> list[dict[str, Any]]:
+    """One seeded run of ``recompos_maximal``: cost, label pairs and bwc per variant."""
     from pm4py.algo.conformance.alignments.decomposed.variants import recompos_maximal
-    from pm4py.objects.log.obj import Event, EventLog, Trace
+    from pm4py.objects.log.obj import EventLog
 
+    with seeded_node_hashes(seed):
+        net, im, fm = net_from_description(model)
+        variant_log = EventLog([Trace([Event({"concept:name": a}) for a in v]) for v in variants])
+        results = recompos_maximal.apply(variant_log, net, im, fm, parameters={"show_progress_bar": False})
+    return [
+        {"cost": r["cost"], "alignment": [_label_pair(m) for m in r["alignment"]], "bwc": r.get("bwc")}
+        for r in results
+    ]
+
+
+def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Decomposed alignments of each variant under seeded hash orders.
+
+    pm4py also iterates sets of label strings, whose order depends on
+    ``PYTHONHASHSEED``. So each seed runs :func:`_decomposed_run` in its own
+    process, with ``PYTHONHASHSEED`` set to the seed.
+    """
     log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
     if "model" in fixtures:
         net, im, fm = load_model(fixtures["model"])
@@ -1208,16 +1198,23 @@ def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
     costs: list[set[int]] = [set() for _ in variants]
     alignments: list[dict[str, Any]] = [{} for _ in variants]
     bwcs: list[set[int]] = [set() for _ in variants]
+    golden_tools = str(Path(__file__).resolve().parents[1])
+    request = json.dumps({"model": model, "variants": [list(v) for v in variants]})
     for seed in range(DECOMPOSED_SEEDS):
-        with _seeded_hashes(seed):
-            net, im, fm = net_from_description(model)
-            variant_log = EventLog([Trace([Event({"concept:name": a}) for a in v]) for v in variants])
-            results = recompos_maximal.apply(variant_log, net, im, fm, parameters={"show_progress_bar": False})
-        for i, r in enumerate(results):
+        env = dict(os.environ, PYTHONHASHSEED=str(seed))
+        env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
+        out = subprocess.run(
+            [sys.executable, __file__, "decomposed", str(seed)],
+            input=request,
+            env=env,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout
+        for i, r in enumerate(json.loads(out.strip().splitlines()[-1])):
             costs[i].add(r["cost"])
-            pairs = [_label_pair(m) for m in r["alignment"]]
-            alignments[i][json.dumps(pairs)] = pairs
-            if "bwc" in r:
+            alignments[i][json.dumps(r["alignment"])] = r["alignment"]
+            if r["bwc"] is not None:
                 bwcs[i].add(r["bwc"])
     records = []
     for v, c, a, b in zip(variants, costs, alignments, bwcs):
@@ -1251,3 +1248,10 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
             fixtures={"log": _log, "model": _net},
             functions=DECOMPOSED_FUNCTIONS,
         )(alignments_decomposed)
+
+
+if __name__ == "__main__":
+    # One seeded run for alignments_decomposed: reads the model and variants
+    # as JSON on stdin and prints the results as one JSON line.
+    _request = json.load(sys.stdin)
+    print(json.dumps(_decomposed_run(_request["model"], _request["variants"], int(sys.argv[2]))))

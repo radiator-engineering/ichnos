@@ -62,9 +62,9 @@ fn moves(net: &PetriNet, a: &ApproximateAlignment) -> Value {
             .iter()
             .map(|m| {
                 let event = m.event().map_or(Value::Null, Value::from);
-                let name = m
-                    .transition()
-                    .map_or(Value::Null, |t| Value::from(net.transition(t).name.as_str()));
+                let name = m.transition().map_or(Value::Null, |t| {
+                    Value::from(net.transition(t).name.as_str())
+                });
                 Value::Array(vec![event, name])
             })
             .collect(),
@@ -80,12 +80,28 @@ fn check(net: &PetriNet, a: &ApproximateAlignment, e: &Value, what: &str) {
         e["standard_cost"].as_u64().expect("standard cost"),
         "{what}: standard cost"
     );
-    assert_eq!(t.best_worst_cost, e["bwc"].as_u64().expect("bwc"), "{what}: bwc");
-    assert_eq!(t.fitness, e["fitness"].as_f64().expect("fitness"), "{what}: fitness");
-    assert_eq!(a.is_valid, e["is_valid"].as_bool().expect("is_valid"), "{what}: is_valid");
+    assert_eq!(
+        t.best_worst_cost,
+        e["bwc"].as_u64().expect("bwc"),
+        "{what}: bwc"
+    );
+    assert_eq!(
+        t.fitness,
+        e["fitness"].as_f64().expect("fitness"),
+        "{what}: fitness"
+    );
+    assert_eq!(
+        a.is_valid,
+        e["is_valid"].as_bool().expect("is_valid"),
+        "{what}: is_valid"
+    );
     assert_eq!(t.visited_states, usize_at(e, "visited"), "{what}: visited");
     assert_eq!(t.queued_states, usize_at(e, "queued"), "{what}: queued");
-    assert_eq!(t.traversed_arcs, usize_at(e, "traversed"), "{what}: traversed");
+    assert_eq!(
+        t.traversed_arcs,
+        usize_at(e, "traversed"),
+        "{what}: traversed"
+    );
     match &a.report {
         ApproximationReport::TandemRepeats {
             reduced_trace_length,
@@ -93,10 +109,18 @@ fn check(net: &PetriNet, a: &ApproximateAlignment, e: &Value, what: &str) {
             removed_events,
             model_loop_expansions,
         } => {
-            assert_eq!(*reduced_trace_length, usize_at(e, "reduced_trace_length"), "{what}");
+            assert_eq!(
+                *reduced_trace_length,
+                usize_at(e, "reduced_trace_length"),
+                "{what}"
+            );
             assert_eq!(*tandem_repeats, usize_at(e, "tandem_repeats"), "{what}");
             assert_eq!(*removed_events, usize_at(e, "removed_events"), "{what}");
-            assert_eq!(*model_loop_expansions, usize_at(e, "model_loop_expansions"), "{what}");
+            assert_eq!(
+                *model_loop_expansions,
+                usize_at(e, "model_loop_expansions"),
+                "{what}"
+            );
         }
         ApproximationReport::SlidingWindow {
             window_count,
@@ -143,7 +167,12 @@ fn approximate_alignments_match_pm4py() {
         for (run, params) in runs {
             let options = ApproximateOptions::new(method(run, params));
             let aligner = ApproximateAligner::new(&net, &im, &fm, options).expect("aligner");
-            for (v, e) in g.expected["variants"].as_array().expect("variants").iter().enumerate() {
+            for (v, e) in g.expected["variants"]
+                .as_array()
+                .expect("variants")
+                .iter()
+                .enumerate()
+            {
                 let trace: Vec<&str> = e["trace"]
                     .as_array()
                     .expect("trace")
@@ -160,14 +189,24 @@ fn approximate_alignments_match_pm4py() {
             }
         }
     }
-    assert_eq!(ids.len(), 8, "expected 8 approximate alignment goldens, found {ids:?}");
+    assert_eq!(
+        ids.len(),
+        8,
+        "expected 8 approximate alignment goldens, found {ids:?}"
+    );
 }
 
 #[test]
 fn moves_are_valid_runs() {
     let g = golden("conformance", "alignments-approx-running-example-im");
     let (net, im, fm) = build_net(&g.expected["model"]);
-    let trace = ["register request", "decide", "decide", "decide", "pay compensation"];
+    let trace = [
+        "register request",
+        "decide",
+        "decide",
+        "decide",
+        "pay compensation",
+    ];
     for method in [
         Approximation::TandemRepeats,
         Approximation::SlidingWindow(SlidingWindow {
@@ -176,8 +215,8 @@ fn moves_are_valid_runs() {
         }),
         Approximation::FixedHorizon(FixedHorizon::default()),
     ] {
-        let aligner =
-            ApproximateAligner::new(&net, &im, &fm, ApproximateOptions::new(method)).expect("aligner");
+        let aligner = ApproximateAligner::new(&net, &im, &fm, ApproximateOptions::new(method))
+            .expect("aligner");
         let a = aligner.align(&trace).expect("align").expect("no limits");
         assert!(a.is_valid);
         let events: Vec<usize> = a.alignment.moves.iter().filter_map(Move::event).collect();
