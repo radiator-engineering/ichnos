@@ -1,0 +1,279 @@
+{
+  "expected": {
+    "dot": {
+      "directed": true,
+      "edges": [
+        [
+          "n0",
+          "n10",
+          {}
+        ],
+        [
+          "n10",
+          "n3",
+          {}
+        ],
+        [
+          "n4",
+          "n1",
+          {}
+        ],
+        [
+          "n5",
+          "n1",
+          {}
+        ],
+        [
+          "n6",
+          "n2",
+          {}
+        ],
+        [
+          "n7",
+          "n2",
+          {}
+        ],
+        [
+          "n8",
+          "n2",
+          {}
+        ],
+        [
+          "n9",
+          "n3",
+          {}
+        ]
+      ],
+      "graph": {
+        "bgcolor": "white",
+        "label": "<<FONT POINT-SIZE=\"20\">Descendants</FONT>>",
+        "labelloc": "top",
+        "rankdir": "TB"
+      },
+      "nodes": [
+        {
+          "attrs": {
+            "color": "#70A17F",
+            "fixedsize": "false",
+            "fontcolor": "#70A17F",
+            "label": "o3",
+            "shape": "ellipse"
+          },
+          "key": "n0"
+        },
+        {
+          "attrs": {
+            "color": "#710853",
+            "fixedsize": "false",
+            "fontcolor": "#710853",
+            "label": "d1",
+            "shape": "ellipse"
+          },
+          "key": "n1"
+        },
+        {
+          "attrs": {
+            "color": "#710853",
+            "fixedsize": "false",
+            "fontcolor": "#710853",
+            "label": "d2",
+            "shape": "ellipse"
+          },
+          "key": "n2"
+        },
+        {
+          "attrs": {
+            "color": "#710853",
+            "fixedsize": "false",
+            "fontcolor": "#710853",
+            "label": "d3",
+            "shape": "ellipse"
+          },
+          "key": "n3"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i1",
+            "shape": "ellipse"
+          },
+          "key": "n4"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i2",
+            "shape": "ellipse"
+          },
+          "key": "n5"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i3",
+            "shape": "ellipse"
+          },
+          "key": "n6"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i4",
+            "shape": "ellipse"
+          },
+          "key": "n7"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i7",
+            "shape": "ellipse"
+          },
+          "key": "n8"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i8",
+            "shape": "ellipse"
+          },
+          "key": "n9"
+        },
+        {
+          "attrs": {
+            "color": "#8E2DCF",
+            "fixedsize": "false",
+            "fontcolor": "#8E2DCF",
+            "label": "i9",
+            "shape": "ellipse"
+          },
+          "key": "n10"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "colors": {
+        "delivery": "#710853",
+        "element": "#8E2DCF",
+        "order": "#70A17F"
+      },
+      "graph": [
+        [
+          "i1",
+          "d1"
+        ],
+        [
+          "i2",
+          "d1"
+        ],
+        [
+          "i3",
+          "d2"
+        ],
+        [
+          "i4",
+          "d2"
+        ],
+        [
+          "i7",
+          "d2"
+        ],
+        [
+          "i8",
+          "d3"
+        ],
+        [
+          "i9",
+          "d3"
+        ],
+        [
+          "o3",
+          "i9"
+        ]
+      ],
+      "objects": [
+        [
+          "d1",
+          "delivery"
+        ],
+        [
+          "d2",
+          "delivery"
+        ],
+        [
+          "d3",
+          "delivery"
+        ],
+        [
+          "i1",
+          "element"
+        ],
+        [
+          "i2",
+          "element"
+        ],
+        [
+          "i3",
+          "element"
+        ],
+        [
+          "i4",
+          "element"
+        ],
+        [
+          "i7",
+          "element"
+        ],
+        [
+          "i8",
+          "element"
+        ],
+        [
+          "i9",
+          "element"
+        ],
+        [
+          "o3",
+          "order"
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "object-graph-example_log-descendants",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_objects_graph",
+      "pm4py.save_vis_object_graph"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "graph_title": "Descendants",
+      "graph_type": "object_descendants",
+      "rankdir": "TB"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

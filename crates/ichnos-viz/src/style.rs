@@ -1,6 +1,7 @@
 //! Number formats, colours and pen widths from pm4py's `util/vis_utils.py`,
 //! with Python's arithmetic and string forms.
 
+use chrono::{DateTime, FixedOffset, Timelike as _};
 use ichnos_discovery::dfg::BusinessHours;
 
 const SECONDS_PER_DAY: f64 = 86400.0;
@@ -24,6 +25,25 @@ pub(crate) fn py_float(x: f64) -> String {
     }
     let s = x.to_string();
     if s.contains('.') { s } else { s + ".0" }
+}
+
+/// Python's `str` of an aware `datetime`: `2011-01-01 00:00:00+00:00`,
+/// with `.ffffff` when the microseconds are not zero. Python keeps
+/// microseconds, so finer digits are dropped.
+pub(crate) fn py_datetime(dt: &DateTime<FixedOffset>) -> String {
+    let mut out = dt.format("%Y-%m-%d %H:%M:%S").to_string();
+    let micros = dt.nanosecond() % 1_000_000_000 / 1000;
+    if micros != 0 {
+        out.push_str(&format!(".{micros:06}"));
+    }
+    let offset = dt.offset().local_minus_utc();
+    let sign = if offset < 0 { '-' } else { '+' };
+    let a = offset.unsigned_abs();
+    out.push_str(&format!("{sign}{:02}:{:02}", a / 3600, a % 3600 / 60));
+    if !a.is_multiple_of(60) {
+        out.push_str(&format!(":{:02}", a % 60));
+    }
+    out
 }
 
 /// Python's `a // b` on floats.
@@ -188,6 +208,23 @@ mod tests {
         assert_eq!(py_float(1.5e16), "1.5e+16");
         assert_eq!(py_float(1e15), "1000000000000000.0");
         assert_eq!(py_float(0.0001), "0.0001");
+    }
+
+    #[test]
+    fn datetimes_print_as_python_str() {
+        let dt = |s: &str| DateTime::parse_from_rfc3339(s).unwrap();
+        assert_eq!(
+            py_datetime(&dt("2011-01-01T00:00:00Z")),
+            "2011-01-01 00:00:00+00:00"
+        );
+        assert_eq!(
+            py_datetime(&dt("2011-01-01T10:30:00.5+01:00")),
+            "2011-01-01 10:30:00.500000+01:00"
+        );
+        assert_eq!(
+            py_datetime(&dt("2011-01-01T10:30:00-05:30")),
+            "2011-01-01 10:30:00-05:30"
+        );
     }
 
     #[test]
