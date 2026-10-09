@@ -1,0 +1,694 @@
+{
+  "expected": {
+    "cases": {
+      "directory-entries": {
+        "archive": {
+          "base64": "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"
+        },
+        "name": "bundle.ocel.zip",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
+      "entry-absolute": {
+        "archive": {
+          "base64": "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"
+        },
+        "error": "ValueError",
+        "message": "Archive entry name must contain no root, '.' or '..' component.",
+        "name": "bundle.ocel.zip"
+      },
+      "entry-dotdot": {
+        "archive": {
+          "base64": "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"
+        },
+        "error": "ValueError",
+        "message": "Archive entry name must contain no root, '.' or '..' component.",
+        "name": "bundle.ocel.zip"
+      },
+      "entry-repeated": {
+        "archive": {
+          "base64": "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"
+        },
+        "error": "ValueError",
+        "message": "OCEL bundle archives cannot contain duplicate entry names.",
+        "name": "bundle.ocel.zip"
+      },
+      "meta-in-folder": {
+        "archive": {
+          "base64": "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"
+        },
+        "error": "ValueError",
+        "message": "OCEL bundle is missing root ocel-meta.json.",
+        "name": "bundle.ocel.zip"
+      },
+      "no-meta": {
+        "archive": {
+          "base64": "UEsDBBQAAAAIAAAAIQAkL+O1bgAAAJQAAAAfAAAAZXZlbnRzL2V2ZW50X2NyZWF0ZSUyMG9yZGVyLmNzdk3MywqDMBCF4b3gO8hsewIzqSL4HK7cFC9TFLQBE9/fpBYsDGc2H78bdX0tE1z6YdkUo/MB++FnTIfi44LmmQos29KwGLatcMPpHt9FhbBHeQEbTcs/0IF6FEQDEcXI847IX0RSxNR496tXIM9OUEsDBBQAAAAIAAAAIQAc+1tpPwAAAFIAAAAcAAAAZXZlbnRzL2V2ZW50X3BheSUyRm9yZGVyLmNzdstPTs2Jz0zRyQfRJZm5qTqJufmleSW8XKlGOkYGRia6BoZAFGJgaWVgAERROoZGeqZAWROErHEIWAosy8sFAFBLAwQUAAAACAAAACEAf/Zn5igAAAAoAAAAGQAAAG9iamVjdHMvb2JqZWN0X29yZGVycy5jc3bLT07Nic9M0UnMzS/NK9EpLkksKS3m5co31DE00MlLLQcyjXR0eLkAUEsDBBQAAAAIAAAAIQBQ5H3SWQAAAH4AAAAoAAAAb2JqZWN0X2NoYW5nZXMvb2JqZWN0X2NoYW5nZXNfb3JkZXJzLmNzdstPTs2Jz0zRyQfRJZm5qRBWckZiXnpqSnxaZmpOik5ibn5pXolOcUliSWkxL1e+oY6RgZGJroGhroFRiKGhlYEBEEXBlBka6aCqMURSAzFDR6cgMTOFlwsAUEsDBBQAAAAIAAAAIQBjXA1yEgAAABAAAAAhAAAAb2JqZWN0cy9vYmplY3Rfc2FsZXMlMjBwZXJzb24uY3N2y09OzYnPTOHlcszJTE7l5QIAUEsDBBQAAAAIAAAAIQDLp+b5IQAAACYAAAAwAAAAb2JqZWN0X2NoYW5nZXMvb2JqZWN0X2NoYW5nZXNfc2FsZXMlMjBwZXJzb24uY3N2y09OzYnPTNHJB9ElmbmpEFZyRmJeempKfFpmak4KLxcAUEsDBBQAAAAIAAAAIQBW1cLMSwAAAGQAAAARAAAAcmVsYXRpb25zL2Uyby5jc3bLT07NiU8tS80ric9M0ckH8fKTslKTEdzC0sSczLTM1CJerlRDnXxDneSi1MSS1GIg1wjEBdLGOvlGSMKGOo45mcmpOsWpOTkgbQBQSwMEFAAAAAgAAAAhAFD9H3g4AAAAQAAAABEAAAByZWxhdGlvbnMvbzJvLmNzdstPTs2JL84vLUpOjc9M0ckHcUsSi9JTS+DcwtLEnMy0zNQiXq58Qx3HnMzkVJ3i/JwUhaRKXi4AUEsBAhQDFAAAAAgAAAAhACQv47VuAAAAlAAAAB8AAAAAAAAAAAAAAIABAAAAAGV2ZW50cy9ldmVudF9jcmVhdGUlMjBvcmRlci5jc3ZQSwECFAMUAAAACAAAACEAHPtbaT8AAABSAAAAHAAAAAAAAAAAAAAAgAGrAAAAZXZlbnRzL2V2ZW50X3BheSUyRm9yZGVyLmNzdlBLAQIUAxQAAAAIAAAAIQB/9mfmKAAAACgAAAAZAAAAAAAAAAAAAACAASQBAABvYmplY3RzL29iamVjdF9vcmRlcnMuY3N2UEsBAhQDFAAAAAgAAAAhAFDkfdJZAAAAfgAAACgAAAAAAAAAAAAAAIABgwEAAG9iamVjdF9jaGFuZ2VzL29iamVjdF9jaGFuZ2VzX29yZGVycy5jc3ZQSwECFAMUAAAACAAAACEAY1wNchIAAAAQAAAAIQAAAAAAAAAAAAAAgAEiAgAAb2JqZWN0cy9vYmplY3Rfc2FsZXMlMjBwZXJzb24uY3N2UEsBAhQDFAAAAAgAAAAhAMun5vkhAAAAJgAAADAAAAAAAAAAAAAAAIABcwIAAG9iamVjdF9jaGFuZ2VzL29iamVjdF9jaGFuZ2VzX3NhbGVzJTIwcGVyc29uLmNzdlBLAQIUAxQAAAAIAAAAIQBW1cLMSwAAAGQAAAARAAAAAAAAAAAAAACAAeICAAByZWxhdGlvbnMvZTJvLmNzdlBLAQIUAxQAAAAIAAAAIQBQ/R94OAAAAEAAAAARAAAAAAAAAAAAAACAAVwDAAByZWxhdGlvbnMvbzJvLmNzdlBLBQYAAAAACAAIAF8CAADDAwAAAAA="
+        },
+        "error": "ValueError",
+        "message": "OCEL bundle is missing root ocel-meta.json.",
+        "name": "bundle.ocel.zip"
+      },
+      "not-zip": {
+        "archive": {
+          "base64": "bm90IGEgemlwIGFyY2hpdmU="
+        },
+        "error": "BadZipFile",
+        "name": "bundle.ocel.zip"
+      },
+      "ok": {
+        "archive": {
+          "base64": "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"
+        },
+        "name": "bundle.ocel.zip",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
+      "plain-zip-name": {
+        "archive": {
+          "base64": "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"
+        },
+        "error": "ValueError",
+        "message": "Bundled OCEL archives use the '.ocel.zip' extension.",
+        "name": "bundle.zip"
+      },
+      "stored": {
+        "archive": {
+          "base64": "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"
+        },
+        "name": "bundle.ocel.zip",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
+      "upper-case-name": {
+        "archive": {
+          "base64": "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"
+        },
+        "name": "BUNDLE.OCEL.ZIP",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "read-bundle-archives",
+    "fixtures": {},
+    "functions": [
+      "pm4py.read_ocel2_bundle",
+      "pm4py.read_ocel2"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -10,6 +10,100 @@
       "relations": []
     },
     "writers": {
+      "bundle-csv": {
+        "files": {
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {},\n  \"objectTypes\": {},\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [],
+            "relations": []
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgNb2NlbF9ldmVudF9pZCUATBwAAAAVDCUAGA5vY2VsX29iamVjdF9pZCUATBwAAAAVDCUAGA5vY2VsX3F1YWxpZmllciUATBwAAAAWABkcGTwmABwVDBklAAYZGA1vY2VsX2V2ZW50X2lkFQIWABYcFh4mACYIKRwVBBUAFQIAAAAmABwVDBklAAYZGA5vY2VsX29iamVjdF9pZBUCFgAWHBYeJgAmJikcFQQVABUCAAAAJgAcFQwZJQAGGRgOb2NlbF9xdWFsaWZpZXIVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYuAIvLy8vLytBQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUI4QUFBQU9BQUFBQVFBQUFDZy8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjl4ZFdGc2FXWnBaWElBQUpELy8vL1EvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5dlltcGxZM1JmYVdRQUFNRC8vLzhRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQURRQUFBRzlqWld4ZlpYWmxiblJmYVdRQUFBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAHwCAABQQVIx"
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgOb2NlbF9zb3VyY2VfaWQlAEwcAAAAFQwlABgOb2NlbF90YXJnZXRfaWQlAEwcAAAAFQwlABgOb2NlbF9xdWFsaWZpZXIlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgOb2NlbF9zb3VyY2VfaWQVAhYAFhwWHiYAJggpHBUEFQAVAgAAACYAHBUMGSUABhkYDm9jZWxfdGFyZ2V0X2lkFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGA5vY2VsX3F1YWxpZmllchUCFgAWHBYeJgAmRCkcFQQVABUCAAAAFlQWACYIFloAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjkwWVhKblpYUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRGdBQUFHOWpaV3hmYzI5MWNtTmxYMmxrQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAfgIAAFBBUjE="
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {},\n  \"objectTypes\": {},\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [],
+            "relations": []
+          }
+        },
+        "tables": {
+          "relations/e2o.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type\n",
         "text": "ocel:eid,ocel:activity,ocel:timestamp\n"
@@ -120,7 +214,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {},
     "params": {},

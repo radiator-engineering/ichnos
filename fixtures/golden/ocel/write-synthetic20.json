@@ -316,6 +316,14 @@
       ]
     },
     "writers": {
+      "bundle-csv": {
+        "error": "ValueError",
+        "message": "Object change for 'i<1>' has no value for 'g_price'."
+      },
+      "bundle-parquet": {
+        "error": "ValueError",
+        "message": "Object change for 'i<1>' has no value for 'g_price'."
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type,g_price,h_since,i_label\no1,order,12.0,2021-12-31 23:00:00+00:00,big\ni<1>,it€m,,,\"a\"\"b\"\ni2,it€m,0.1,,\n",
         "text": "ocel:eid,ocel:activity,ocel:timestamp,a_float,b_int,c_text,d_date,e_mixed,f_bool,ocel:type:order,ocel:type:it€m\ne1,place order,2022-01-01 10:00:00.250000+00:00,1e+16,3,\"Ünïcödé & <tag> \"\"q\"\" 's'\n\ttab\r\",2022-01-02 03:04:05.500000+00:00,x,True,['o1'],\"['i<1>', 'i2']\"\ne2,pick,2022-01-01 11:00:00+00:00,1.5e-07,-4,日本 😀  ,,2.5,False,,['i<1>']\ne3,pick,2022-01-02 00:00:00+00:00,0.0001,5,,2022-01-03 00:00:00+00:00,7,True,,['i2']\ne4,ship & <go>,2022-01-03 00:00:00+00:00,123456789.125,0,,,,False,['o1'],\n"
@@ -1732,7 +1740,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {},
     "params": {},

@@ -1,0 +1,529 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "typed event",
+          "attributes": {
+            "active": [
+              "boolean",
+              true
+            ],
+            "count": [
+              "int",
+              5
+            ],
+            "label": [
+              "string",
+              "001"
+            ],
+            "observed": [
+              "date",
+              "2024-01-01T10:00:00.000000+00:00"
+            ],
+            "ratio": [
+              "float",
+              1.25
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [
+        {
+          "field": "active",
+          "object": "o1",
+          "timestamp": "2024-01-02T10:00:00.000000+00:00",
+          "type": "typed object",
+          "value": [
+            "boolean",
+            true
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "active": [
+              "boolean",
+              false
+            ],
+            "count": [
+              "int",
+              7
+            ],
+            "label": [
+              "string",
+              "base"
+            ],
+            "observed": [
+              "date",
+              "2024-01-01T10:00:00.000000+00:00"
+            ],
+            "ratio": [
+              "float",
+              2.5
+            ]
+          },
+          "id": "o1",
+          "type": "typed object"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "typed event",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "typed object"
+        }
+      ]
+    },
+    "writers": {
+      "bundle-csv": {
+        "files": {
+          "events/event_typed%20event.csv": "ocel_id,ocel_time,label,count,ratio,active,observed\r\ne1,2024-01-01T10:00:00+00:00,001,5,1.25,true,2024-01-01T10:00:00+00:00\r\n",
+          "object_changes/object_changes_typed%20object.csv": "ocel_id,ocel_time,ocel_changed_field,label,count,ratio,active,observed\r\no1,2024-01-02T10:00:00+00:00,active,,,,true,\r\n",
+          "objects/object_typed%20object.csv": "ocel_id,label,count,ratio,active,observed\r\no1,base,7,2.5,false,2024-01-01T10:00:00+00:00\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"typed event\": {\n      \"file\": \"events/event_typed%20event.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"count\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"ratio\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"active\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"observed\",\n          \"type\": \"time\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"typed object\": {\n      \"file\": \"objects/object_typed%20object.csv\",\n      \"changesFile\": \"object_changes/object_changes_typed%20object.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"count\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"ratio\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"active\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"observed\",\n          \"type\": \"time\"\n        }\n      ]\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "typed event",
+                "attributes": {
+                  "active": [
+                    "boolean",
+                    true
+                  ],
+                  "count": [
+                    "int",
+                    5
+                  ],
+                  "label": [
+                    "string",
+                    "001"
+                  ],
+                  "observed": [
+                    "date",
+                    "2024-01-01T10:00:00.000000+00:00"
+                  ],
+                  "ratio": [
+                    "float",
+                    1.25
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [
+              {
+                "field": "active",
+                "object": "o1",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00",
+                "type": "typed object",
+                "value": [
+                  "boolean",
+                  true
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "active": [
+                    "boolean",
+                    false
+                  ],
+                  "count": [
+                    "int",
+                    7
+                  ],
+                  "label": [
+                    "string",
+                    "base"
+                  ],
+                  "observed": [
+                    "date",
+                    "2024-01-01T10:00:00.000000+00:00"
+                  ],
+                  "ratio": [
+                    "float",
+                    2.5
+                  ]
+                },
+                "id": "o1",
+                "type": "typed object"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "typed event",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "typed object"
+              }
+            ]
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "events/event_typed%20event.parquet",
+            8
+          ],
+          [
+            "objects/object_typed%20object.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_typed%20object.parquet",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "events/event_typed%20event.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTEVABUGFQosFQIVEBUGFQYcNgAoAmUxGAJlMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUGFQosFQIVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAADCAECABUEFQ4VEkwVAhUAEgAABxgDAAAAMDAxFQAVEhUWLBUCFRAVBhUGHDYAKAMwMDEYAzAwMRERAAAACSACAAAAAgEBAgAVBBUQFRRMFQIVABIAAAgcBQAAAAAAAAAVABUSFRYsFQIVEBUGFQYcGAgFAAAAAAAAABgIBQAAAAAAAAAWACgIBQAAAAAAAAAYCAUAAAAAAAAAEREAAAAJIAIAAAACAQECABUEFRAVFEwVAhUAEgAACBwAAAAAAAD0PxUAFRIVFiwVAhUQFQYVBhwYCAAAAAAAAPQ/GAgAAAAAAAD0PxYAKAgAAAAAAAD0PxgIAAAAAAAA9D8REQAAAAkgAgAAAAIBAQIAFQAVDhUSLBUCFQAVBhUGHBgBARgBARYAKAEBGAEBEREAAAAHGAIAAAACAQEVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUSFRYsFQIVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAAJIAIAAAACAQECABUEGYw1ABgGc2NoZW1hFQ4AFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUCGAVsYWJlbCUATBwAAAAVBCUCGAVjb3VudAAVCiUCGAVyYXRpbwAVACUCGAZhY3RpdmUAFQQlAhgIb2JzZXJ2ZWQlFEyMERwsAAAAAAAWAhkcGXwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTEYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAIjlcd8NBgAYCACI5XHfDQYAFgAoCACI5XHfDQYAGAgAiOVx3w0GABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGAVsYWJlbBUCFgIWfhaGASbiAia0Ahw2ACgDMDAxGAMwMDEREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZJgACAAAAJgAcFQQZNQAGEBkYBWNvdW50FQIWAha8ARbEASbqAya6AxwYCAUAAAAAAAAAGAgFAAAAAAAAABYAKAgFAAAAAAAAABgIBQAAAAAAAAAREQAZLBUEFQAVAgAVABUQFQIAPCkGGSYAAgAAACYAHBUKGTUABhAZGAVyYXRpbxUCFgIWvAEWxAEmrgUm/gQcGAgAAAAAAAD0PxgIAAAAAAAA9D8WACgIAAAAAAAA9D8YCAAAAAAAAPQ/EREAGSwVBBUAFQIAFQAVEBUCADwpBhkmAAIAAAAmABwVABklBgAZGAZhY3RpdmUVAhYCFlQWWCbCBjwYAQEYAQEWACgBARgBARERABkcFQAVABUCADwpBhkmAAIAAAAmABwVBBk1AAYQGRgIb2JzZXJ2ZWQVAhYCFrwBFsQBJsoHJpoHHBgIAIjlcd8NBgAYCACI5XHfDQYAFgAoCACI5XHfDQYAGAgAiOVx3w0GABERABksFQQVABUCABUAFRAVAgA8KQYZJgACAAAAFqIIFgImCBbWCAAZHBgMQVJST1c6c2NoZW1hGPgELy8vLy85QUJBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQWNBQUFCMEFRQUFIQUVBQVBBQUFBQ2tBQUFBY0FBQUFFUUFBQUFFQUFBQU5QLy8vd0FBQVFvUUFBQUFIQUFBQUFRQUFBQUFBQUFBQ0FBQUFHOWljMlZ5ZG1Wa0FBQUFBUHorLy84QUFBSUFCQUFBQUFNQUFBQlZWRU1BY1AvLy93QUFBUVlRQUFBQUdBQUFBQVFBQUFBQUFBQUFCZ0FBQUdGamRHbDJaUUFBNVA3Ly81ai8vLzhBQUFFREVBQUFBQndBQUFBRUFBQUFBQUFBQUFVQUFBQnlZWFJwYndBR0FBZ0FCZ0FHQUFBQUFBQUNBTWovLy84QUFBRUNFQUFBQUNBQUFBQUVBQUFBQUFBQUFBVUFBQUJqYjNWdWRBQUFBQWdBREFBSUFBY0FDQUFBQUFBQUFBRkFBQUFBRUFBVUFBZ0FCZ0FIQUF3QUFBQVFBQkFBQUFBQUFBRUZFQUFBQUJnQUFBQUVBQUFBQUFBQUFBVUFBQUJzWVdKbGJBQUFBSVQvLy8rOC8vLy9BQUFBQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFKQUFBQWIyTmxiRjkwYVcxbEFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRl8HAAAHAAAHAAAHAAAHAAAHAAAHAAAAOUFAABQQVIx"
+          },
+          "object_changes/object_changes_typed%20object.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAbzEVABUGFQosFQIVEBUGFQYcNgAoAm8xGAJvMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOi8j/MNBgAVABUGFQosFQIVEBUGFQYcGAgA6LyP8w0GABgIAOi8j/MNBgAWACgIAOi8j/MNBgAYCADovI/zDQYAEREAAAADCAECABUEFRQVGEwVAhUAEgAACiQGAAAAYWN0aXZlFQAVBhUKLBUCFRAVBhUGHDYAKAZhY3RpdmUYBmFjdGl2ZRERAAAAAwgBAgAVBBUAFQJMFQAVABIAAAAVABUOFRIsFQIVEBUGFQYcNgIAAAAHGAIAAAACAAAVBBUAFQJMFQAVABIAAAAVABUOFRIsFQIVEBUGFQYcNgIAAAAHGAIAAAACAAAVBBUAFQJMFQAVABIAAAAVABUOFRIsFQIVEBUGFQYcNgIAAAAHGAIAAAACAAAVABUOFRIsFQIVABUGFQYcGAEBGAEBFgAoAQEYAQEREQAAAAcYAgAAAAIBARUEFQAVAkwVABUAEgAAABUAFQ4VEiwVAhUQFQYVBhw2AgAAAAcYAgAAAAIAABUEGZw1ABgGc2NoZW1hFRAAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFQwlAhgFbGFiZWwlAEwcAAAAFQQlAhgFY291bnQAFQolAhgFcmF0aW8AFQAlAhgGYWN0aXZlABUEJQIYCG9ic2VydmVkJRRMjBEcLAAAAAAAFgIZHBmMJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAm8xGAJvMRERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmrAEmfBwYCADovI/zDQYAGAgA6LyP8w0GABYAKAgA6LyP8w0GABgIAOi8j/MNBgAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVDBk1AAYQGRgSb2NlbF9jaGFuZ2VkX2ZpZWxkFQIWAhaEARaMASboAia0Ahw2ACgGYWN0aXZlGAZhY3RpdmUREQAZLBUEFQAVAgAVABUQFQIAPBYMGQYZBgAAACYAHBUMGTUABhAZGAVsYWJlbBUCFgIWVBZaJt4DJsADHDYCABksFQQVABUCABUAFRAVAgA8FgAZBhkmAgAAAAAmABwVBBk1AAYQGRgFY291bnQVAhYCFlQWWia4BCaaBBw2AgAZLBUEFQAVAgAVABUQFQIAPCkGGSYCAAAAACYAHBUKGTUABhAZGAVyYXRpbxUCFgIWVBZaJpIFJvQEHDYCABksFQQVABUCABUAFRAVAgA8KQYZJgIAAAAAJgAcFQAZJQYAGRgGYWN0aXZlFQIWAhZUFlgmzgU8GAEBGAEBFgAoAQEYAQEREQAZHBUAFQAVAgA8KQYZJgACAAAAJgAcFQQZNQAGEBkYCG9ic2VydmVkFQIWAhZUFlomxAYmpgYcNgIAGSwVBBUAFQIAFQAVEBUCADwpBhkmAgAAAAAWxAYWAiYIFvgGABkcGAxBUlJPVzpzY2hlbWEYwAUvLy8vL3dnQ0FBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBZ0FBQUNzQVFBQVZBRUFBQndCQUFEd0FBQUFwQUFBQUhBQUFBQkVBQUFBQkFBQUFEVC8vLzhBQUFFS0VBQUFBQndBQUFBRUFBQUFBQUFBQUFnQUFBQnZZbk5sY25abFpBQUFBQURJL3YvL0FBQUNBQVFBQUFBREFBQUFWVlJEQUhELy8vOEFBQUVHRUFBQUFCZ0FBQUFFQUFBQUFBQUFBQVlBQUFCaFkzUnBkbVVBQUxEKy8vK1kvLy8vQUFBQkF4QUFBQUFjQUFBQUJBQUFBQUFBQUFBRkFBQUFjbUYwYVc4QUJnQUlBQVlBQmdBQUFBQUFBZ0RJLy8vL0FBQUJBaEFBQUFBZ0FBQUFCQUFBQUFBQUFBQUZBQUFBWTI5MWJuUUFBQUFJQUF3QUNBQUhBQWdBQUFBQUFBQUJRQUFBQUJBQUZBQUlBQVlBQndBTUFBQUFFQUFRQUFBQUFBQUJCUkFBQUFBWUFBQUFCQUFBQUFBQUFBQUZBQUFBYkdGaVpXd0FBQUJRLy8vL2lQLy8vd0FBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRWdBQUFHOWpaV3hmWTJoaGJtZGxaRjltYVdWc1pBQUFoUC8vLzd6Ly8vOEFBQUFLRUFBQUFDUUFBQUFFQUFBQUFBQUFBQWtBQUFCdlkyVnNYM1JwYldVQUFBQUlBQXdBQmdBSUFBZ0FBQUFBQUFJQUJBQUFBQU1BQUFCVlZFTUFFQUFVQUFnQUFBQUhBQXdBQUFBUUFCQUFBQUFBQUFBRkVBQUFBQndBQUFBRUFBQUFBQUFBQUFjQUFBQnZZMlZzWDJsa0FBUUFCQUFFQUFBQQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGYwcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAAHQYAAFBBUjE="
+          },
+          "objects/object_typed%20object.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAbzEVABUGFQosFQIVEBUGFQYcNgAoAm8xGAJvMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcBAAAAGJhc2UVABUSFRYsFQIVEBUGFQYcNgAoBGJhc2UYBGJhc2UREQAAAAkgAgAAAAIBAQIAFQQVEBUUTBUCFQASAAAIHAcAAAAAAAAAFQAVEhUWLBUCFRAVBhUGHBgIBwAAAAAAAAAYCAcAAAAAAAAAFgAoCAcAAAAAAAAAGAgHAAAAAAAAABERAAAACSACAAAAAgEBAgAVBBUQFRRMFQIVABIAAAgcAAAAAAAABEAVABUSFRYsFQIVEBUGFQYcGAgAAAAAAAAEQBgIAAAAAAAABEAWACgIAAAAAAAABEAYCAAAAAAAAARAEREAAAAJIAIAAAACAQECABUAFQ4VEiwVAhUAFQYVBhwYAQAYAQAWACgBABgBABERAAAABxgCAAAAAgEAFQQVEBUUTBUCFQASAAAIHACI5XHfDQYAFQAVEhUWLBUCFRAVBhUGHBgIAIjlcd8NBgAYCACI5XHfDQYAFgAoCACI5XHfDQYAGAgAiOVx3w0GABERAAAACSACAAAAAgEBAgAVBBl8NQAYBnNjaGVtYRUMABUMJQAYB29jZWxfaWQlAEwcAAAAFQwlAhgFbGFiZWwlAEwcAAAAFQQlAhgFY291bnQAFQolAhgFcmF0aW8AFQAlAhgGYWN0aXZlABUEJQIYCG9ic2VydmVkJRRMjBEcLAAAAAAAFgIZHBlsJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAm8xGAJvMRERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQwZNQAGEBkYBWxhYmVsFQIWAhaEARaMASasASZ8HDYAKARiYXNlGARiYXNlEREAGSwVBBUAFQIAFQAVEBUCADwWCBkGGSYAAgAAACYAHBUEGTUABhAZGAVjb3VudBUCFgIWvAEWxAEmuAImiAIcGAgHAAAAAAAAABgIBwAAAAAAAAAWACgIBwAAAAAAAAAYCAcAAAAAAAAAEREAGSwVBBUAFQIAFQAVEBUCADwpBhkmAAIAAAAmABwVChk1AAYQGRgFcmF0aW8VAhYCFrwBFsQBJvwDJswDHBgIAAAAAAAABEAYCAAAAAAAAARAFgAoCAAAAAAAAARAGAgAAAAAAAAEQBERABksFQQVABUCABUAFRAVAgA8KQYZJgACAAAAJgAcFQAZJQYAGRgGYWN0aXZlFQIWAhZUFlgmkAU8GAEAGAEAFgAoAQAYAQAREQAZHBUAFQAVAgA8KQYZJgACAAAAJgAcFQQZNQAGEBkYCG9ic2VydmVkFQIWAha8ARbEASaYBiboBRwYCACI5XHfDQYAGAgAiOVx3w0GABYAKAgAiOVx3w0GABgIAIjlcd8NBgAREQAZLBUEFQAVAgAVABUQFQIAPCkGGSYAAgAAABb4BhYCJggWpAcAGRwYDEFSUk9XOnNjaGVtYRigBC8vLy8vNUFCQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFZQUFBQTBBUUFBK0FBQUFLd0FBQUI0QUFBQVRBQUFBQVFBQUFBcy8vLy9BQUFCQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFJQUFBQWIySnpaWEoyWldRQUFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBSEQvLy84QUFBRUdFQUFBQUJnQUFBQUVBQUFBQUFBQUFBWUFBQUJoWTNScGRtVUFBQ2ovLy8rWS8vLy9BQUFCQXhBQUFBQWNBQUFBQkFBQUFBQUFBQUFGQUFBQWNtRjBhVzhBQmdBSUFBWUFCZ0FBQUFBQUFnREkvLy8vQUFBQkFoQUFBQUFnQUFBQUJBQUFBQUFBQUFBRkFBQUFZMjkxYm5RQUFBQUlBQXdBQ0FBSEFBZ0FBQUFBQUFBQlFBQUFBQkFBRkFBSUFBWUFCd0FNQUFBQUVBQVFBQUFBQUFBQkJSQUFBQUFZQUFBQUJBQUFBQUFBQUFBRkFBQUFiR0ZpWld3QUFBREkvLy8vRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRlsHAAAHAAAHAAAHAAAHAAAHAAAAAwFAABQQVIx"
+          },
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTEVABUGFQosFQIVEBUGFQYcNgAoAmUxGAJlMRERAAAAAwgBAgAVBBUMFRBMFQIVABIAAAYUAgAAAG8xFQAVBhUKLBUCFRAVBhUGHDYAKAJvMRgCbzEREQAAAAMIAQIAFQQVCBUMTBUCFQASAAAEDAAAAAAVABUGFQosFQIVEBUGFQYcNgAoABgAEREAAAADCAECABUEGUw1ABgGc2NoZW1hFQYAFQwlABgNb2NlbF9ldmVudF9pZCUATBwAAAAVDCUAGA5vY2VsX29iamVjdF9pZCUATBwAAAAVDCUAGA5vY2VsX3F1YWxpZmllciUATBwAAAAWAhkcGTwmABwVDBk1AAYQGRgNb2NlbF9ldmVudF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTEYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF9vYmplY3RfaWQVAhYCFmwWdCaoASZ8HDYAKAJvMRgCbzEREQAZLBUEFQAVAgAVABUQFQIAPBYEGQYZBgAAACYAHBUMGTUABhAZGA5vY2VsX3F1YWxpZmllchUCFgIWYBZoJpgCJvABHDYAKAAYABERABksFQQVABUCABUAFRAVAgA8FgAZBhkGAAAAFrgCFgImCBbQAgAZHBgMQVJST1c6c2NoZW1hGLgCLy8vLy8rQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFCOEFBQUFPQUFBQUFRQUFBQ2cvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5eGRXRnNhV1pwWlhJQUFKRC8vLy9RLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXZZbXBsWTNSZmFXUUFBTUQvLy84UUFCUUFDQUFBQUFjQURBQUFBQkFBRUFBQUFBQUFBQVVRQUFBQUpBQUFBQVFBQUFBQUFBQUFEUUFBQUc5alpXeGZaWFpsYm5SZmFXUUFBQUFFQUFRQUJBQUFBQT09ABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZPBwAABwAABwAAADXAgAAUEFSMQ=="
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgOb2NlbF9zb3VyY2VfaWQlAEwcAAAAFQwlABgOb2NlbF90YXJnZXRfaWQlAEwcAAAAFQwlABgOb2NlbF9xdWFsaWZpZXIlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgOb2NlbF9zb3VyY2VfaWQVAhYAFhwWHiYAJggpHBUEFQAVAgAAACYAHBUMGSUABhkYDm9jZWxfdGFyZ2V0X2lkFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGA5vY2VsX3F1YWxpZmllchUCFgAWHBYeJgAmRCkcFQQVABUCAAAAFlQWACYIFloAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjkwWVhKblpYUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRGdBQUFHOWpaV3hmYzI5MWNtTmxYMmxrQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAfgIAAFBBUjE="
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {\n    \"typed event\": {\n      \"file\": \"events/event_typed%20event.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"count\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"ratio\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"active\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"observed\",\n          \"type\": \"time\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"typed object\": {\n      \"file\": \"objects/object_typed%20object.parquet\",\n      \"changesFile\": \"object_changes/object_changes_typed%20object.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"count\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"ratio\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"active\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"observed\",\n          \"type\": \"time\"\n        }\n      ]\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "typed event",
+                "attributes": {
+                  "active": [
+                    "boolean",
+                    true
+                  ],
+                  "count": [
+                    "int",
+                    5
+                  ],
+                  "label": [
+                    "string",
+                    "001"
+                  ],
+                  "observed": [
+                    "date",
+                    "2024-01-01T10:00:00.000000+00:00"
+                  ],
+                  "ratio": [
+                    "float",
+                    1.25
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [
+              {
+                "field": "active",
+                "object": "o1",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00",
+                "type": "typed object",
+                "value": [
+                  "boolean",
+                  true
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "active": [
+                    "boolean",
+                    false
+                  ],
+                  "count": [
+                    "int",
+                    7
+                  ],
+                  "label": [
+                    "string",
+                    "base"
+                  ],
+                  "observed": [
+                    "date",
+                    "2024-01-01T10:00:00.000000+00:00"
+                  ],
+                  "ratio": [
+                    "float",
+                    2.5
+                  ]
+                },
+                "id": "o1",
+                "type": "typed object"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "typed event",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "typed object"
+              }
+            ]
+          }
+        },
+        "tables": {
+          "events/event_typed%20event.parquet": {
+            "rows": [
+              [
+                "e1",
+                "2024-01-01T10:00:00+00:00",
+                "001",
+                5,
+                1.25,
+                true,
+                "2024-01-01T10:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "label",
+                "string",
+                true
+              ],
+              [
+                "count",
+                "int64",
+                true
+              ],
+              [
+                "ratio",
+                "double",
+                true
+              ],
+              [
+                "active",
+                "bool",
+                true
+              ],
+              [
+                "observed",
+                "timestamp[us, tz=UTC]",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_typed%20object.parquet": {
+            "rows": [
+              [
+                "o1",
+                "2024-01-02T10:00:00+00:00",
+                "active",
+                null,
+                null,
+                null,
+                true,
+                null
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ],
+              [
+                "label",
+                "string",
+                true
+              ],
+              [
+                "count",
+                "int64",
+                true
+              ],
+              [
+                "ratio",
+                "double",
+                true
+              ],
+              [
+                "active",
+                "bool",
+                true
+              ],
+              [
+                "observed",
+                "timestamp[us, tz=UTC]",
+                true
+              ]
+            ]
+          },
+          "objects/object_typed%20object.parquet": {
+            "rows": [
+              [
+                "o1",
+                "base",
+                7,
+                2.5,
+                false,
+                "2024-01-01T10:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "label",
+                "string",
+                true
+              ],
+              [
+                "count",
+                "int64",
+                true
+              ],
+              [
+                "ratio",
+                "double",
+                true
+              ],
+              [
+                "active",
+                "bool",
+                true
+              ],
+              [
+                "observed",
+                "timestamp[us, tz=UTC]",
+                true
+              ]
+            ]
+          },
+          "relations/e2o.parquet": {
+            "rows": [
+              [
+                "e1",
+                "o1",
+                ""
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "bundle-write-typed",
+    "fixtures": {},
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

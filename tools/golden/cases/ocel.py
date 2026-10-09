@@ -668,9 +668,82 @@ _SQLITE_WRITERS = {
     "sqlite2": ("pm4py.write_ocel2_sqlite", pm4py.write_ocel2_sqlite, pm4py.read_ocel2_sqlite),
 }
 
+_BUNDLE_FUNCTIONS = ["pm4py.write_ocel2_bundle", "pm4py.write_ocel2", "pm4py.read_ocel2_bundle"]
+
 _WRITER_FUNCTIONS = ([w[0] for w in _WRITERS.values()] + ["pm4py.write_ocel_csv"]
                      + [w[0] for w in _SQLITE_WRITERS.values()]
-                     + ["pm4py.read_ocel_sqlite", "pm4py.read_ocel2_sqlite"])
+                     + ["pm4py.read_ocel_sqlite", "pm4py.read_ocel2_sqlite"] + _BUNDLE_FUNCTIONS)
+
+
+def _b64(data):
+    import base64
+
+    return {"base64": base64.b64encode(data).decode("ascii")}
+
+
+def _bundle_files(root):
+    """Each file under the bundle directory ``root``, by relative path."""
+    return {p.relative_to(root).as_posix(): p.read_bytes()
+            for p in sorted(Path(root).rglob("*")) if p.is_file()}
+
+
+def _arrow_cell(value):
+    if isinstance(value, datetime):
+        return pd.Timestamp(value).isoformat()
+    return value
+
+
+def parquet_table(data):
+    """A Parquet file as pyarrow reads it: its columns as ``[name, arrow
+    type, nullable]`` and its rows."""
+    import io
+
+    import pyarrow.parquet as pq
+
+    table = pq.read_table(io.BytesIO(data))
+    return {"schema": [[f.name, str(f.type), f.nullable] for f in table.schema],
+            "rows": [[_arrow_cell(v) for v in row.values()] for row in table.to_pylist()]}
+
+
+def _write_error(e):
+    """A writer failure: its type, and its message for a ``ValueError``
+    (other messages can hold the temporary path)."""
+    if isinstance(e, ValueError):
+        return {"error": type(e).__name__, "message": str(e)}
+    return {"error": type(e).__name__}
+
+
+def _write_bundles(ocel, tmp, out):
+    """pm4py's bundle writer, with CSV tables in a directory and with
+    Parquet tables in a ``.ocel.zip`` archive (``write_ocel2``'s default for
+    that name). Records the files, the archive's entries and what pm4py
+    reads back."""
+    import copy
+    import zipfile
+
+    root = Path(tmp) / "bundle"
+    try:
+        pm4py.write_ocel2_bundle(copy.deepcopy(ocel), str(root), storage_format="csv")
+        out["bundle-csv"] = {
+            "files": {k: v.decode("utf-8") for k, v in _bundle_files(root).items()},
+            "reread": _reread(pm4py.read_ocel2_bundle, root)}
+    except Exception as e:
+        out["bundle-csv"] = _write_error(e)
+    path = Path(tmp) / "bundle.ocel.zip"
+    try:
+        pm4py.write_ocel2(copy.deepcopy(ocel), str(path))
+    except Exception as e:
+        out["bundle-parquet"] = _write_error(e)
+        return
+    with zipfile.ZipFile(path) as archive:
+        infos = archive.infolist()
+        files = {i.filename: archive.read(i) for i in infos}
+    out["bundle-parquet"] = {
+        "entries": [[i.filename, i.compress_type] for i in infos],
+        "meta": files["ocel-meta.json"].decode("utf-8"),
+        "tables": {k: parquet_table(v) for k, v in files.items() if k.endswith(".parquet")},
+        "files": {k: _b64(v) for k, v in files.items() if k.endswith(".parquet")},
+        "reread": _reread(pm4py.read_ocel2_bundle, path)}
 
 
 def _cell(value):
@@ -749,6 +822,7 @@ def write_all(ocel):
                 out[name] = {"error": type(e).__name__}
                 continue
             out[name] = {"tables": dump_sqlite(path), "reread": _reread(read, path)}
+        _write_bundles(ocel, tmp, out)
     result = {"input": tables, "globals": ocel.globals, "writers": out}
     times = ocel.events[ocel.event_timestamp]
     if len(times) and getattr(times.dt, "tz", None) is None:
@@ -877,6 +951,551 @@ def _write_synthetic20_linked(fixtures):
     # Without relations to unknown objects, which pm4py's OCEL 2.0 CSV
     # writer refuses.
     return write_all(_synthetic(True, ghosts=False))
+
+
+def _write_bundles_only(ocel):
+    """``write_all`` for the bundle writers alone."""
+    import tempfile
+
+    tables = _tables(ocel)
+    out = {}
+    with tempfile.TemporaryDirectory() as tmp:
+        _write_bundles(ocel, tmp, out)
+    result = {"input": tables, "globals": ocel.globals, "writers": out}
+    times = ocel.events[ocel.event_timestamp]
+    if len(times) and getattr(times.dt, "tz", None) is None:
+        result["naive_times"] = True
+    return result
+
+
+def _bundle_log(events, objects, relations, changes=None, o2o=None):
+    """A log from row dicts, with the relations' activity, time and type
+    filled in from the events and objects."""
+    ev = {e["ocel:eid"]: e for e in events}
+    ob = {o["ocel:oid"]: o for o in objects}
+    rel = [{"ocel:eid": e, "ocel:activity": ev[e]["ocel:activity"] if e in ev else "x",
+            "ocel:timestamp": ev[e]["ocel:timestamp"] if e in ev else pd.Timestamp(0, tz="UTC"),
+            "ocel:oid": o, "ocel:type": ob[o]["ocel:type"] if o in ob else "x", "ocel:qualifier": q}
+           for e, o, q in relations]
+    kwargs = {}
+    if changes is not None:
+        kwargs["object_changes"] = pd.DataFrame(changes)
+    if o2o is not None:
+        kwargs["o2o"] = pd.DataFrame(o2o, columns=["ocel:oid", "ocel:oid_2", "ocel:qualifier"])
+    return pm4py.OCEL(events=pd.DataFrame(events), objects=pd.DataFrame(objects),
+                      relations=pd.DataFrame(rel), **kwargs)
+
+
+def _ts(text):
+    return pd.Timestamp(text, tz="UTC")
+
+
+_T1, _T2, _EPOCH = _ts("2024-01-01T10:00:00"), _ts("2024-01-02T10:00:00"), _ts("1970-01-01")
+
+
+def _bundle_writes():
+    """Logs that test the bundle writer's own rules."""
+    typed = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "typed event", "ocel:timestamp": _T1, "label": "001",
+          "count": 5, "ratio": 1.25, "active": True, "observed": _T1}],
+        [{"ocel:oid": "o1", "ocel:type": "typed object", "label": "base", "count": 7, "ratio": 2.5,
+          "active": False, "observed": _T1}],
+        [("e1", "o1", "")],
+        [{"ocel:oid": "o1", "ocel:type": "typed object", "ocel:timestamp": _T2,
+          "ocel:field": "active", "active": True}])
+    time0 = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "act", "ocel:timestamp": _T1}],
+        [{"ocel:oid": "o1", "ocel:type": "orders", "amount": 10}],
+        [("e1", "o1", "")],
+        [{"ocel:oid": "o1", "ocel:type": "orders", "ocel:timestamp": _EPOCH, "ocel:field": "amount", "amount": 10},
+         {"ocel:oid": "o1", "ocel:type": "orders", "ocel:timestamp": _EPOCH, "ocel:field": "status", "status": "new"},
+         {"ocel:oid": "o1", "ocel:type": "orders", "ocel:timestamp": _T2, "ocel:field": "amount", "amount": 12}])
+    time0_conflict = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "act", "ocel:timestamp": _T1}],
+        [{"ocel:oid": "o1", "ocel:type": "orders", "amount": 10}],
+        [("e1", "o1", "")],
+        [{"ocel:oid": "o1", "ocel:type": "orders", "ocel:timestamp": _EPOCH, "ocel:field": "amount", "amount": 11}])
+    names = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "pay/order é 100%", "ocel:timestamp": _T1, "x y": "a,b"},
+         {"ocel:eid": "e2", "ocel:activity": "Zeta", "ocel:timestamp": _T1, "x y": 'q"r\nlines'},
+         {"ocel:eid": "e3", "ocel:activity": "alpha", "ocel:timestamp": _ts("2024-01-01T10:00:00.123456789")}],
+        [{"ocel:oid": "o 1", "ocel:type": "Bücher/日本"}, {"ocel:oid": "o2", "ocel:type": "a.b-c_d"}],
+        [("e1", "o 1", None), ("e2", "o2", "q"), ("e3", "o2", "")],
+        o2o=[("o 1", "o2", None)])
+    numbers_ = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "a", "ocel:timestamp": _T1, "f": float("inf"), "g": 1e16, "h": 1},
+         {"ocel:eid": "e2", "ocel:activity": "a", "ocel:timestamp": _T2, "f": 1.5, "g": 2.0, "h": None},
+         {"ocel:eid": "e3", "ocel:activity": "b", "ocel:timestamp": _T2, "f": None, "g": None, "h": True}],
+        [{"ocel:oid": "o1", "ocel:type": "t"}],
+        [("e1", "o1", None), ("e2", "o1", None), ("e3", "o1", None)])
+    naive = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "a", "ocel:timestamp": pd.Timestamp("2024-01-01T10:00:00"),
+          "when": pd.Timestamp("2024-01-01T11:00:00+01:00")}],
+        [{"ocel:oid": "o1", "ocel:type": "t"}],
+        [("e1", "o1", None)])
+    mixed = _bundle_log(
+        [{"ocel:eid": "e1", "ocel:activity": "a", "ocel:timestamp": _T1, "m": "x"},
+         {"ocel:eid": "e2", "ocel:activity": "b", "ocel:timestamp": _T1, "m": 2.5},
+         {"ocel:eid": "e3", "ocel:activity": "b", "ocel:timestamp": _T1, "m": 7},
+         {"ocel:eid": "e4", "ocel:activity": "c", "ocel:timestamp": _T1, "m": True},
+         {"ocel:eid": "e5", "ocel:activity": "d", "ocel:timestamp": _T1, "m": _T2},
+         {"ocel:eid": "e6", "ocel:activity": "e", "ocel:timestamp": _T1, "m": False},
+         {"ocel:eid": "e7", "ocel:activity": "e", "ocel:timestamp": _T1, "m": 3}],
+        [{"ocel:oid": "o1", "ocel:type": "t"}],
+        [(f"e{i}", "o1", None) for i in range(1, 8)])
+    base = ([{"ocel:eid": "e1", "ocel:activity": "a", "ocel:timestamp": _T1}],
+            [{"ocel:oid": "o1", "ocel:type": "t"}, {"ocel:oid": "o2", "ocel:type": "t"}])
+    return {
+        "typed": typed,
+        "time0": time0,
+        "time0-conflict": time0_conflict,
+        "names": names,
+        "numbers": numbers_,
+        "naive": naive,
+        "mixed": mixed,
+        "unrelated": _bundle_log(*base, [("e1", "o1", None)]),
+        "unknown-object": _bundle_log(*base, [("e1", "o9", None)]),
+        "unknown-event": _bundle_log(*base, [("e1", "o1", None), ("e9", "o1", None)]),
+        "duplicate-relation": _bundle_log(*base, [("e1", "o1", "q"), ("e1", "o1", "q")]),
+        "duplicate-o2o": _bundle_log(*base, [("e1", "o1", None)], o2o=[("o1", "o2", None), ("o1", "o2", "")]),
+        "unknown-o2o": _bundle_log(*base, [("e1", "o1", None)], o2o=[("o1", "o9", None)]),
+        "repeated-event": _bundle_log(base[0] * 2, base[1], [("e1", "o1", None)]),
+        "repeated-object": _bundle_log(base[0], [base[1][0]] * 2, [("e1", "o1", None)]),
+        "empty-id": _bundle_log([{"ocel:eid": "", "ocel:activity": "a", "ocel:timestamp": _T1}], base[1],
+                                [("", "o1", None)]),
+        "reserved-name": _bundle_log([dict(base[0][0], ocel_time=1)], base[1], [("e1", "o1", None)]),
+        "list-value": _bundle_log([dict(base[0][0], l=["x"])], base[1], [("e1", "o1", None)]),
+        "change-unknown-object": _bundle_log(*base, [("e1", "o1", None)], [
+            {"ocel:oid": "o9", "ocel:type": "t", "ocel:timestamp": _T2, "ocel:field": "a", "a": 1}]),
+        "change-other-type": _bundle_log(*base, [("e1", "o1", None)], [
+            {"ocel:oid": "o1", "ocel:type": "u", "ocel:timestamp": _T2, "ocel:field": "a", "a": 1}]),
+        "change-no-value": _bundle_log(*base, [("e1", "o1", None)], [
+            {"ocel:oid": "o1", "ocel:type": "t", "ocel:timestamp": _T2, "ocel:field": "a", "a": None},
+            {"ocel:oid": "o1", "ocel:type": "t", "ocel:timestamp": _T1, "ocel:field": "b", "b": 1}]),
+        "change-repeated": _bundle_log(*base, [("e1", "o1", None)], [
+            {"ocel:oid": "o1", "ocel:type": "t", "ocel:timestamp": _T2, "ocel:field": "a", "a": 1},
+            {"ocel:oid": "o1", "ocel:type": "t", "ocel:timestamp": _T2, "ocel:field": "a", "a": 1}]),
+        "changes-typed": _bundle_log(*base, [("e1", "o1", None)], [
+            {"ocel:oid": "o1", "ocel:type": "t", "ocel:timestamp": _T2, "ocel:field": "a", "a": 1},
+            {"ocel:oid": "o2", "ocel:type": "t", "ocel:timestamp": _T1, "ocel:field": "b", "b": "x"},
+            {"ocel:oid": "o2", "ocel:type": "t", "ocel:timestamp": _T2, "ocel:field": "a", "a": 2}]),
+    }
+
+
+for _name in _bundle_writes():
+    def _run_bundle_write(fixtures, _name=_name):
+        return _write_bundles_only(_bundle_writes()[_name])
+
+    case("bundle-write-" + _name, functions=["pm4py.OCEL"] + _BUNDLE_FUNCTIONS)(_run_bundle_write)
+
+
+# A small CSV bundle written by hand: two event types, listed out of name
+# order, two object types, object changes and both relation tables. Each
+# reader case edits a copy of it.
+_EV_C = "events/event_create%20order.csv"
+_EV_P = "events/event_pay%2Forder.csv"
+_OB_O = "objects/object_orders.csv"
+_CH_O = "object_changes/object_changes_orders.csv"
+_OB_S = "objects/object_sales%20person.csv"
+_CH_S = "object_changes/object_changes_sales%20person.csv"
+_E2O = "relations/e2o.csv"
+_O2O = "relations/o2o.csv"
+
+_BUNDLE_META = {
+    "ocelVersion": "2.0",
+    "bundleFormatVersion": "1.0",
+    "storageFormat": "csv",
+    "eventTypes": {
+        "pay/order": {"file": _EV_P, "attributes": [{"name": "amount", "type": "float"}]},
+        "create order": {"file": _EV_C, "attributes": [
+            {"name": "cost", "type": "integer"}, {"name": "rush", "type": "boolean"},
+            {"name": "due", "type": "time"}, {"name": "note", "type": "string"}]},
+    },
+    "objectTypes": {
+        "orders": {"file": _OB_O, "changesFile": _CH_O, "attributes": [
+            {"name": "amount", "type": "integer"}, {"name": "status", "type": "string"}]},
+        "sales person": {"file": _OB_S, "changesFile": _CH_S, "attributes": []},
+    },
+    "relations": {"e2o": _E2O, "o2o": _O2O},
+}
+
+
+def _crlf(*lines):
+    return "".join(line + "\r\n" for line in lines)
+
+
+_BUNDLE_FILES = {
+    "ocel-meta.json": json.dumps(_BUNDLE_META, indent=2),
+    _EV_C: _crlf("ocel_id,ocel_time,cost,rush,due,note",
+                 'e1,2024-01-02T10:00:00+00:00,5,true,2024-02-01T00:00:00Z,"a, ""b"""',
+                 "e3,2024-01-01T10:00:00+01:00,-7,false,,"),
+    _EV_P: _crlf("ocel_id,ocel_time,amount", "e2,2024-01-01T09:00:00Z,12.5", "e4,2024-01-03T00:00:00Z,"),
+    _OB_O: _crlf("ocel_id,amount,status", "o1,10,new", "o2,,"),
+    _CH_O: _crlf("ocel_id,ocel_time,ocel_changed_field,amount,status",
+                 "o1,2024-01-02T11:00:00Z,amount,12,", "o1,2024-01-01T11:00:00Z,status,,paid"),
+    _OB_S: _crlf("ocel_id", "Alice"),
+    _CH_S: _crlf("ocel_id,ocel_time,ocel_changed_field"),
+    _E2O: _crlf("ocel_event_id,ocel_object_id,ocel_qualifier",
+                "e1,o1,creates", "e2,o1,", "e3,o2,creates", "e1,Alice,seller"),
+    _O2O: _crlf("ocel_source_id,ocel_target_id,ocel_qualifier", "o1,Alice,sold by"),
+}
+
+
+def _meta(edit):
+    def apply(files):
+        meta = json.loads(files["ocel-meta.json"])
+        edit(meta)
+        files["ocel-meta.json"] = json.dumps(meta, indent=2)
+    return apply
+
+
+def _sub(path, old, new):
+    def apply(files):
+        assert old in files[path], (path, old)
+        files[path] = files[path].replace(old, new, 1)
+    return apply
+
+
+def _put(path, content):
+    def apply(files):
+        files[path] = content
+    return apply
+
+
+def _drop(path):
+    def apply(files):
+        del files[path]
+    return apply
+
+
+def _all_lf(files):
+    for k, v in files.items():
+        if k.endswith(".csv"):
+            files[k] = v.replace("\r\n", "\n")
+
+
+def _rename_orders(files):
+    name = "Beställung/日 #1"
+    enc = "Best%C3%A4llung%2F%E6%97%A5%20%231"
+    meta = json.loads(files["ocel-meta.json"])
+    meta["objectTypes"] = {name: {"file": f"objects/object_{enc}.csv",
+                                  "changesFile": f"object_changes/object_changes_{enc}.csv",
+                                  "attributes": meta["objectTypes"]["orders"]["attributes"]},
+                           "sales person": meta["objectTypes"]["sales person"]}
+    files["ocel-meta.json"] = json.dumps(meta, indent=2)
+    files[f"objects/object_{enc}.csv"] = files.pop(_OB_O)
+    files[f"object_changes/object_changes_{enc}.csv"] = files.pop(_CH_O)
+
+
+def _empty_bundle(files):
+    files.clear()
+    meta = dict(_BUNDLE_META, eventTypes={}, objectTypes={})
+    files["ocel-meta.json"] = json.dumps(meta)
+    files[_E2O] = _crlf("ocel_event_id,ocel_object_id,ocel_qualifier")
+    files[_O2O] = _crlf("ocel_source_id,ocel_target_id,ocel_qualifier")
+
+
+def _attrs(where, name, attributes):
+    def edit(meta):
+        meta[where][name]["attributes"] = attributes
+    return _meta(edit)
+
+
+_BUNDLE_EDITS = {
+    "ok": [],
+    "lf-lines": [_all_lf],
+    "meta-array": [_put("ocel-meta.json", "[]")],
+    "meta-invalid-json": [_put("ocel-meta.json", "{")],
+    "meta-missing": [_drop("ocel-meta.json")],
+    "meta-duplicate-key": [_sub("ocel-meta.json", '"storageFormat": "csv"',
+                                '"storageFormat": "parquet", "storageFormat": "csv"')],
+    "ocel-version": [_meta(lambda m: m.update(ocelVersion="1.0"))],
+    "ocel-version-number": [_meta(lambda m: m.update(ocelVersion=2.0))],
+    "bundle-version": [_meta(lambda m: m.update(bundleFormatVersion="1.1"))],
+    "storage-format": [_meta(lambda m: m.update(storageFormat="xlsx"))],
+    "storage-format-parquet": [_meta(lambda m: m.update(storageFormat="parquet"))],
+    "event-types-array": [_meta(lambda m: m.update(eventTypes=[]))],
+    "relations-missing": [_meta(lambda m: m.pop("relations"))],
+    "event-descriptor-number": [_meta(lambda m: m["eventTypes"].update(x=1))],
+    "event-path-unencoded": [_meta(lambda m: m["eventTypes"]["pay/order"].update(file="events/event_pay/order.csv"))],
+    "event-path-dotdot": [_meta(lambda m: m["eventTypes"]["pay/order"].update(file="events/../event_pay%2Forder.csv"))],
+    "event-path-backslash": [_meta(lambda m: m["eventTypes"]["pay/order"].update(file="events\\event_pay%2Forder.csv"))],
+    "event-path-missing": [_meta(lambda m: m["eventTypes"]["pay/order"].pop("file"))],
+    "attributes-missing": [_meta(lambda m: m["eventTypes"]["pay/order"].pop("attributes"))],
+    "attributes-object": [_attrs("eventTypes", "pay/order", {"amount": "float"})],
+    "attribute-string": [_attrs("eventTypes", "pay/order", ["amount"])],
+    "attribute-empty-name": [_attrs("eventTypes", "pay/order", [{"name": "", "type": "float"}])],
+    "attribute-repeated": [_attrs("eventTypes", "pay/order", [{"name": "amount", "type": "float"}] * 2)],
+    "attribute-reserved": [_attrs("eventTypes", "pay/order", [{"name": "ocel_time", "type": "time"}])],
+    "attribute-reserved-object": [_attrs("objectTypes", "sales person", [{"name": "ocel_changed_field", "type": "string"}])],
+    "attribute-type": [_attrs("eventTypes", "pay/order", [{"name": "amount", "type": "date"}])],
+    "changes-path-wrong": [_meta(lambda m: m["objectTypes"]["orders"].update(changesFile="object_changes/orders.csv"))],
+    "relations-path-wrong": [_meta(lambda m: m["relations"].update(o2o="relations/O2O.csv"))],
+    "table-missing": [_drop(_O2O)],
+    "mixed-storage": [_put("relations/unused.parquet", "x")],
+    "mixed-storage-case": [_put("notes/README.PARQUET", "x")],
+    "extra-files": [_put("notes.txt", "x"), _put("events/event_other.csv", "ocel_id\r\n")],
+    "csv-empty": [_put(_O2O, "")],
+    "csv-columns-repeated": [_sub(_O2O, "ocel_qualifier", "ocel_source_id")],
+    "csv-columns-differ": [_put(_EV_P, _crlf("ocel_id,amount", "e2,12.5", "e4,"))],
+    "csv-column-order": [_put(_EV_P, _crlf("amount,ocel_id,ocel_time", "12.5,e2,2024-01-01T09:00:00Z",
+                                          ",e4,2024-01-03T00:00:00Z"))],
+    "csv-row-short": [_sub(_EV_P, "e4,2024-01-03T00:00:00Z,", "e4,2024-01-03T00:00:00Z")],
+    "csv-row-long": [_sub(_EV_P, "e4,2024-01-03T00:00:00Z,", "e4,2024-01-03T00:00:00Z,,")],
+    "csv-blank-line": [_sub(_EV_P, "e2,", "\r\ne2,")],
+    "csv-quote-then-text": [_sub(_EV_P, "12.5", '"12"5')],
+    "csv-unclosed-quote": [_sub(_EV_P, "12.5", '"12.5')],
+    "csv-bom": [_sub(_EV_P, "ocel_id", "﻿ocel_id")],
+    "csv-not-utf8": [lambda f: f.update({_EV_P: f[_EV_P].encode("utf-8").replace(b"12.5", b"\xff")})],
+    "integer-forms": [_sub(_EV_C, ",5,", ",+5,"), _sub(_EV_C, ",-7,", ",-0,")],
+    "integer-float-text": [_sub(_EV_C, ",5,", ",5.0,")],
+    "integer-spaces": [_sub(_EV_C, ",5,", ", 5,")],
+    "float-forms": [_sub(_EV_P, "12.5", ".5"), _sub(_EV_P, "00Z,\r\n", "00Z,5.\r\n")],
+    "float-exponent": [_sub(_EV_P, "12.5", "1E3")],
+    "float-overflow": [_sub(_EV_P, "12.5", "1e999")],
+    "float-nan": [_sub(_EV_P, "12.5", "nan")],
+    "float-integer-text": [_sub(_EV_P, "12.5", "12")],
+    "boolean-capital": [_sub(_EV_C, "true", "True")],
+    "time-forms": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01 00:00:00.5+0130"),
+                   _sub(_EV_C, "false,,", "false,2024-02-01T00:00-05:00,")],
+    "time-no-zone": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01T00:00:00")],
+    "time-lower-z": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01T00:00:00z")],
+    "time-invalid": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-30T00:00:00Z")],
+    "time-final-newline": [_sub(_EV_C, "2024-02-01T00:00:00Z", '"2024-02-01T00:00:00Z\n"')],
+    "integer-final-newline": [_sub(_EV_C, ",5,", ',"5\n",')],
+    "integer-two-newlines": [_sub(_EV_C, ",5,", ',"5\n\n",')],
+    "integer-unicode-digit": [_sub(_EV_C, ",5,", ",\u0665,")],
+    "integer-too-large": [_sub(_EV_C, ",5,", ",99999999999999999999,")],
+    "float-final-newline": [_sub(_EV_P, "12.5", '"12.5\n"')],
+    "name-ocel-activity": [_attrs("eventTypes", "pay/order", [{"name": "ocel:activity", "type": "float"}]),
+                           _sub(_EV_P, "ocel_time,amount", "ocel_time,ocel:activity")],
+    "name-ocel-type": [_attrs("objectTypes", "orders", [{"name": "amount", "type": "integer"},
+                                                        {"name": "ocel:type", "type": "string"}]),
+                       _sub(_OB_O, "amount,status", "amount,ocel:type"),
+                       _sub(_CH_O, "amount,status", "amount,ocel:type"),
+                       _sub(_CH_O, "status,,paid", "ocel:type,,paid")],
+    "time-text": [_sub(_EV_C, "2024-02-01T00:00:00Z", "soon Z")],
+    "time-date-only": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01Z")],
+    "event-time-empty": [_sub(_EV_P, "2024-01-01T09:00:00Z", "")],
+    "event-id-empty": [_sub(_EV_P, "e2,", ",")],
+    "object-id-empty": [_sub(_OB_O, "o2,", ",")],
+    "e2o-object-empty": [_sub(_E2O, "e2,o1,", "e2,,")],
+    "event-id-repeated": [_sub(_EV_P, "e2,", "e1,"), _sub(_E2O, "e2,o1,", "e1,o1,")],
+    "event-id-repeated-table": [_sub(_EV_P, "e4,", "e2,")],
+    "object-id-repeated": [_sub(_OB_S, "Alice", "o1")],
+    "change-undeclared": [_sub(_CH_O, "status,,paid", "colour,,paid")],
+    "change-epoch": [_sub(_CH_O, "2024-01-01T11:00:00Z", "1970-01-01T00:00:00Z")],
+    "change-epoch-offset": [_sub(_CH_O, "2024-01-01T11:00:00Z", "1970-01-01T01:00:00+01:00")],
+    "change-no-value": [_sub(_CH_O, "amount,12,", "amount,,")],
+    "change-two-values": [_sub(_CH_O, "amount,12,", "amount,12,x")],
+    "change-repeated": [_sub(_CH_O, "amount,12,\r\n", "amount,12,\r\no1,2024-01-02T11:00:00Z,amount,13,\r\n")],
+    "change-unknown-object": [_sub(_CH_O, "o1,2024-01-02", "o9,2024-01-02")],
+    "change-other-type": [_sub(_CH_O, "o1,2024-01-02", "Alice,2024-01-02")],
+    "e2o-repeated": [_sub(_E2O, "e2,o1,\r\n", "e2,o1,\r\ne2,o1,\r\n")],
+    "e2o-unknown-event": [_sub(_E2O, "e2,o1,", "e9,o1,")],
+    "e2o-unknown-object": [_sub(_E2O, "e2,o1,", "e2,o9,")],
+    "o2o-unknown-source": [_sub(_O2O, "o1,Alice", "o9,Alice")],
+    "o2o-unknown-target": [_sub(_O2O, "o1,Alice", "o1,Bob")],
+    "o2o-repeated": [_sub(_O2O, "sold by\r\n", "sold by\r\no1,Alice,sold by\r\n")],
+    "type-names-encoded": [_rename_orders],
+    "empty": [_empty_bundle],
+}
+
+
+def _bundle_text_files(edits):
+    files = dict(_BUNDLE_FILES)
+    for edit in edits:
+        edit(files)
+    return files
+
+
+def _stored(files):
+    """Files for the golden: text as text, other bytes as base64."""
+    return {k: v if isinstance(v, str) else _b64(v) for k, v in files.items()}
+
+
+def _read_bundle(path):
+    try:
+        return {"ocel": _tables(pm4py.read_ocel2_bundle(str(path)))}
+    except Exception as e:
+        # Other errors' messages can hold the temporary path.
+        message = {"message": str(e)} if type(e) is ValueError else {}
+        return {"error": type(e).__name__} | message
+
+
+def _bundle_directory(tmp, files):
+    root = Path(tmp) / "bundle"
+    for name, content in files.items():
+        path = root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(content.encode("utf-8") if isinstance(content, str) else content)
+    root.mkdir(exist_ok=True)
+    return root
+
+
+@case("read-bundle-directories", functions=["pm4py.read_ocel2_bundle", "pm4py.read_ocel2"])
+def _bundle_directories(fixtures):
+    import tempfile
+
+    cases = {}
+    for name, edits in _BUNDLE_EDITS.items():
+        files = _bundle_text_files(edits)
+        with tempfile.TemporaryDirectory() as tmp:
+            result = _read_bundle(_bundle_directory(tmp, files))
+        cases[name] = {"files": _stored(files)} | result
+    return {"cases": cases}
+
+
+def _archive(entries, compression=None):
+    """A ZIP archive of ``(name, content)`` entries with a fixed date, so
+    that its bytes do not change between runs."""
+    import io
+    import warnings
+    import zipfile
+
+    buffer = io.BytesIO()
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        with zipfile.ZipFile(buffer, "w", compression or zipfile.ZIP_DEFLATED) as archive:
+            for name, content in entries:
+                info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+                info.compress_type = compression or zipfile.ZIP_DEFLATED
+                archive.writestr(info, content)
+    return buffer.getvalue()
+
+
+def _bundle_archives():
+    import zipfile
+
+    files = list(_BUNDLE_FILES.items())
+    without_meta = [(k, v) for k, v in files if k != "ocel-meta.json"]
+    return {
+        "ok": ("bundle.ocel.zip", _archive(files)),
+        "upper-case-name": ("BUNDLE.OCEL.ZIP", _archive(files)),
+        "stored": ("bundle.ocel.zip", _archive(files, zipfile.ZIP_STORED)),
+        "directory-entries": ("bundle.ocel.zip", _archive(
+            [("events/", ""), ("relations/", "")] + files)),
+        "plain-zip-name": ("bundle.zip", _archive(files)),
+        "no-meta": ("bundle.ocel.zip", _archive(without_meta)),
+        "meta-in-folder": ("bundle.ocel.zip", _archive([("x/ocel-meta.json", _BUNDLE_FILES["ocel-meta.json"])]
+                                                       + without_meta)),
+        "entry-dotdot": ("bundle.ocel.zip", _archive(files + [("events/../x.txt", "x")])),
+        "entry-absolute": ("bundle.ocel.zip", _archive(files + [("/x.txt", "x")])),
+        "entry-repeated": ("bundle.ocel.zip", _archive(files + [(_O2O, _BUNDLE_FILES[_O2O])])),
+        "not-zip": ("bundle.ocel.zip", b"not a zip archive"),
+    }
+
+
+@case("read-bundle-archives", functions=["pm4py.read_ocel2_bundle", "pm4py.read_ocel2"])
+def _bundle_archive_cases(fixtures):
+    import tempfile
+
+    cases = {}
+    for name, (file_name, data) in _bundle_archives().items():
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / file_name
+            path.write_bytes(data)
+            result = _read_bundle(path)
+        cases[name] = {"name": file_name, "archive": _b64(data)} | result
+    return {"cases": cases}
+
+
+def _parquet_bundle(overrides=None, store_schema=True):
+    """The hand-written bundle with each CSV table rewritten as Parquet, in
+    the types its metadata declares. ``overrides`` maps ``(table, column)``
+    to a function that takes and returns ``(arrow type, nullable,
+    values)``; returning ``None`` drops the column."""
+    import csv as pycsv
+    import io
+
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+
+    arrow = {"string": pa.string(), "integer": pa.int64(), "float": pa.float64(),
+             "boolean": pa.bool_(), "time": pa.timestamp("us", tz="UTC")}
+
+    def typed(text, kind, fixed):
+        if text == "" and not (fixed and kind == "string"):
+            return None
+        return {"string": str, "integer": int, "float": float, "boolean": lambda t: t == "true",
+                "time": lambda t: pd.Timestamp(t).tz_convert("UTC")}[kind](text)
+
+    meta = json.loads(_BUNDLE_FILES["ocel-meta.json"])
+    meta["storageFormat"] = "parquet"
+    tables = []
+    for d in meta["eventTypes"].values():
+        tables.append((d, "file", [("ocel_id", "string"), ("ocel_time", "time")], d["attributes"]))
+    for d in meta["objectTypes"].values():
+        tables.append((d, "file", [("ocel_id", "string")], d["attributes"]))
+        tables.append((d, "changesFile", [("ocel_id", "string"), ("ocel_time", "time"),
+                                          ("ocel_changed_field", "string")], d["attributes"]))
+    for key, ends in (("e2o", ("ocel_event_id", "ocel_object_id")), ("o2o", ("ocel_source_id", "ocel_target_id"))):
+        tables.append((meta["relations"], key, [(ends[0], "string"), (ends[1], "string"),
+                                                ("ocel_qualifier", "string")], []))
+    out = {}
+    for holder, key, fixed, attributes in tables:
+        rows = list(pycsv.reader(io.StringIO(_BUNDLE_FILES[holder[key]], newline="")))
+        header, body = rows[0], rows[1:]
+        path = holder[key][:-len(".csv")] + ".parquet"
+        holder[key] = path
+        fields, arrays = [], []
+        spec = [(n, k, False) for n, k in fixed] + [(a["name"], a["type"], True) for a in attributes]
+        for name, kind, nullable in spec:
+            column = (arrow[kind], nullable, [typed(r[header.index(name)], kind, not nullable) for r in body])
+            change = (overrides or {}).get((path, name))
+            if change is not None:
+                column = change(*column)
+                if column is None:
+                    continue
+            fields.append(pa.field(name, column[0], nullable=column[1]))
+            arrays.append(pa.array(column[2], type=column[0]))
+        buffer = io.BytesIO()
+        pq.write_table(pa.Table.from_arrays(arrays, schema=pa.schema(fields)), buffer,
+                       store_schema=store_schema)
+        out[path] = buffer.getvalue()
+    return {"ocel-meta.json": json.dumps(meta, indent=2)} | out
+
+
+def _parquet_cases():
+    import pyarrow as pa
+
+    ev_c, ev_p = _EV_C.replace(".csv", ".parquet"), _EV_P.replace(".csv", ".parquet")
+    e2o = _E2O.replace(".csv", ".parquet")
+    corrupt = _parquet_bundle()
+    corrupt[ev_p] = b"not parquet"
+    return {
+        "ok": _parquet_bundle(),
+        "no-arrow-schema": _parquet_bundle(store_schema=False),
+        "int32": _parquet_bundle({(ev_c, "cost"): lambda t, n, v: (pa.int32(), n, v)}),
+        "large-string": _parquet_bundle({(ev_c, "note"): lambda t, n, v: (pa.large_string(), n, v)}),
+        "fixed-optional": _parquet_bundle({(e2o, "ocel_qualifier"): lambda t, n, v: (t, True, v)}),
+        "attribute-required": _parquet_bundle({(ev_c, "cost"): lambda t, n, v: (t, False, v)}),
+        "float-nan": _parquet_bundle({(ev_p, "amount"): lambda t, n, v: (t, n, [float("nan"), 1.0])}),
+        "int-null": _parquet_bundle({(ev_c, "cost"): lambda t, n, v: (t, n, [5, None])}),
+        "timestamp-ms": _parquet_bundle({(ev_p, "ocel_time"): lambda t, n, v: (pa.timestamp("ms", tz="UTC"), n, v)}),
+        "timestamp-ns": _parquet_bundle({(ev_p, "ocel_time"): lambda t, n, v: (pa.timestamp("ns", tz="UTC"), n, v)}),
+        "timestamp-offset-zone": _parquet_bundle(
+            {(ev_p, "ocel_time"): lambda t, n, v: (pa.timestamp("us", tz="+00:00"), n, v)}),
+        "timestamp-naive": _parquet_bundle(
+            {(ev_p, "ocel_time"): lambda t, n, v: (pa.timestamp("us"), n, [x.tz_localize(None) for x in v])}),
+        "column-missing": _parquet_bundle({(ev_c, "note"): lambda t, n, v: None}),
+        "timestamp-out-of-range": _parquet_bundle(
+            {(ev_p, "ocel_time"): lambda t, n, v: (t, n, [9_000_000_000_000_000_000, v[1].value // 1000])}),
+        "id-empty": _parquet_bundle({(ev_p, "ocel_id"): lambda t, n, v: (t, n, ["", "e4"])}),
+        "corrupt": corrupt,
+    }
+
+
+@case("read-bundle-parquet", functions=["pm4py.read_ocel2_bundle", "pm4py.read_ocel2"])
+def _bundle_parquet_cases(fixtures):
+    import tempfile
+
+    cases = {}
+    for name, files in _parquet_cases().items():
+        with tempfile.TemporaryDirectory() as tmp:
+            result = _read_bundle(_bundle_directory(tmp, files))
+        cases[name] = {"files": _stored(files)} | result
+    return {"cases": cases}
 
 
 if __name__ == "__main__":

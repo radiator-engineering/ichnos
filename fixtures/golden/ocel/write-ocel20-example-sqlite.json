@@ -470,6 +470,14 @@
       ]
     },
     "writers": {
+      "bundle-csv": {
+        "error": "ValueError",
+        "message": "An object-change row must assign exactly its changed field."
+      },
+      "bundle-parquet": {
+        "error": "ValueError",
+        "message": "An object-change row must assign exactly its changed field."
+      },
       "csv": {
         "objects": "ocel:oid,is_blocked,po_product,po_quantity,pr_product,pr_quantity,ocel:type\nR1,No,,,,,Invoice\nR2,No,,,,,Invoice\nR3,No,,,,,Invoice\nP1,,,,,,Payment\nP2,,,,,,Payment\nP3,,,,,,Payment\nPO1,,Cows,500,,,Purchase Order\nPO2,,Notebooks,1,,,Purchase Order\nPR1,,,,Cows,500,Purchase Requisition\n",
         "text": "ocel:eid,ocel:timestamp,pr_approver,po_editor,po_creator,pr_creator,invoice_inserter,payment_inserter,invoice_block_rem,invoice_blocker,ocel:activity,ocel:type:Purchase Requisition,ocel:type:Purchase Order,ocel:type:Invoice,ocel:type:Payment\ne1,2022-01-09 15:00:00+00:00,,,,Mike,,,,,Create Purchase Requisition,['PR1'],,,\ne2,2022-01-09 16:30:00+00:00,Tania,,,,,,,,Approve Purchase Requisition,['PR1'],,,\ne3,2022-01-10 09:15:00+00:00,,,Mike,,,,,,Create Purchase Order,['PR1'],['PO1'],,\ne4,2022-01-13 12:00:00+00:00,,Mike,,,,,,,Change PO Quantity,,['PO1'],,\ne5,2022-01-14 12:00:00+00:00,,,,,Luke,,,,Insert Invoice,,['PO1'],['R1'],\ne6,2022-01-16 11:00:00+00:00,,,,,Luke,,,,Insert Invoice,,['PO1'],['R2'],\ne7,2022-01-30 23:00:00+00:00,,,,,,Robot,,,Insert Payment,,,['R1'],['P1']\ne8,2022-01-31 22:00:00+00:00,,,,,,Robot,,,Insert Payment,,,['R2'],['P2']\ne9,2022-02-02 09:00:00+00:00,,,,,Mario,,,,Insert Invoice,,,['R3'],\ne10,2022-02-02 17:00:00+00:00,,,Mario,,,,,,Create Purchase Order,,['PO2'],['R3'],\ne11,2022-02-03 07:30:00+00:00,,,,,,,,Mario,Set Payment Block,,,['R3'],\ne12,2022-02-03 23:30:00+00:00,,,,,,,Mario,,Remove Payment Block,,,['R3'],\ne13,2022-02-28 23:00:00+00:00,,,,,,Robot,,,Insert Payment,,,['R3'],['P3']\n"
@@ -3667,7 +3675,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {
       "log": {

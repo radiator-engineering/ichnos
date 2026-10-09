@@ -474,6 +474,1749 @@
       ]
     },
     "writers": {
+      "bundle-csv": {
+        "files": {
+          "events/event_Approve%20Purchase%20Requisition.csv": "ocel_id,ocel_time,pr_approver\r\ne2,2022-01-09T15:30:00+00:00,Tania\r\n",
+          "events/event_Change%20PO%20Quantity.csv": "ocel_id,ocel_time,po_editor\r\ne4,2022-01-13T11:00:00+00:00,Mike\r\n",
+          "events/event_Create%20Purchase%20Order.csv": "ocel_id,ocel_time,po_creator\r\ne3,2022-01-10T08:15:00+00:00,Mike\r\ne10,2022-02-02T16:00:00+00:00,Mario\r\n",
+          "events/event_Create%20Purchase%20Requisition.csv": "ocel_id,ocel_time,pr_creator\r\ne1,2022-01-09T14:00:00+00:00,Mike\r\n",
+          "events/event_Insert%20Invoice.csv": "ocel_id,ocel_time,invoice_inserter\r\ne5,2022-01-14T11:00:00+00:00,Luke\r\ne6,2022-01-16T10:00:00+00:00,Luke\r\ne9,2022-02-02T08:00:00+00:00,Mario\r\n",
+          "events/event_Insert%20Payment.csv": "ocel_id,ocel_time,payment_inserter\r\ne7,2022-01-30T22:00:00+00:00,Robot\r\ne8,2022-01-31T21:00:00+00:00,Robot\r\ne13,2022-02-28T22:00:00+00:00,Robot\r\n",
+          "events/event_Remove%20Payment%20Block.csv": "ocel_id,ocel_time,invoice_block_rem\r\ne12,2022-02-03T22:30:00+00:00,Mario\r\n",
+          "events/event_Set%20Payment%20Block.csv": "ocel_id,ocel_time,invoice_blocker\r\ne11,2022-02-03T06:30:00+00:00,Mario\r\n",
+          "object_changes/object_changes_Invoice.csv": "ocel_id,ocel_time,ocel_changed_field,is_blocked\r\nR3,2022-02-03T06:30:00+00:00,is_blocked,Yes\r\nR3,2022-02-03T22:30:00+00:00,is_blocked,No\r\n",
+          "object_changes/object_changes_Payment.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "object_changes/object_changes_Purchase%20Order.csv": "ocel_id,ocel_time,ocel_changed_field,po_product,po_quantity\r\nPO1,2022-01-13T11:00:00+00:00,po_quantity,,600\r\n",
+          "object_changes/object_changes_Purchase%20Requisition.csv": "ocel_id,ocel_time,ocel_changed_field,pr_product,pr_quantity\r\n",
+          "objects/object_Invoice.csv": "ocel_id,is_blocked\r\nR1,No\r\nR2,No\r\nR3,No\r\n",
+          "objects/object_Payment.csv": "ocel_id\r\nP1\r\nP2\r\nP3\r\n",
+          "objects/object_Purchase%20Order.csv": "ocel_id,po_product,po_quantity\r\nPO1,Cows,500\r\nPO2,Notebooks,1\r\n",
+          "objects/object_Purchase%20Requisition.csv": "ocel_id,pr_product,pr_quantity\r\nPR1,Cows,500\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"Approve Purchase Requisition\": {\n      \"file\": \"events/event_Approve%20Purchase%20Requisition.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_approver\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Change PO Quantity\": {\n      \"file\": \"events/event_Change%20PO%20Quantity.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"po_editor\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Create Purchase Order\": {\n      \"file\": \"events/event_Create%20Purchase%20Order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Create Purchase Requisition\": {\n      \"file\": \"events/event_Create%20Purchase%20Requisition.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Insert Invoice\": {\n      \"file\": \"events/event_Insert%20Invoice.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Insert Payment\": {\n      \"file\": \"events/event_Insert%20Payment.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Remove Payment Block\": {\n      \"file\": \"events/event_Remove%20Payment%20Block.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_block_rem\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Set Payment Block\": {\n      \"file\": \"events/event_Set%20Payment%20Block.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_blocker\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"Invoice\": {\n      \"file\": \"objects/object_Invoice.csv\",\n      \"changesFile\": \"object_changes/object_changes_Invoice.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Payment\": {\n      \"file\": \"objects/object_Payment.csv\",\n      \"changesFile\": \"object_changes/object_changes_Payment.csv\",\n      \"attributes\": []\n    },\n    \"Purchase Order\": {\n      \"file\": \"objects/object_Purchase%20Order.csv\",\n      \"changesFile\": \"object_changes/object_changes_Purchase%20Order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Purchase Requisition\": {\n      \"file\": \"objects/object_Purchase%20Requisition.csv\",\n      \"changesFile\": \"object_changes/object_changes_Purchase%20Requisition.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"pr_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,PR1,Regular placement of PR\r\ne2,PR1,Regular approval of PR\r\ne3,PO1,Created order with identifier\r\ne3,PR1,Created order from PR\r\ne4,PO1,Change of quantity\r\ne5,PO1,Invoice created starting from the PO\r\ne5,R1,Invoice created with identifier\r\ne6,PO1,Invoice created starting from the PO\r\ne6,R2,Invoice created with identifier\r\ne7,P1,Payment inserted with identifier\r\ne7,R1,Payment for the invoice\r\ne8,R2,Payment for the invoice\r\ne8,P2,Payment created with identifier\r\ne9,R3,Invoice created with identifier\r\ne10,PO2,Purhcase order created with identifier\r\ne10,R3,Purchase order created with maverick buying from\r\ne11,R3,Payment block due to unethical maverick buying\r\ne12,R3,Payment block removed ...\r\ne13,R3,Payment for the invoice\r\ne13,P3,Payment inserted with identifier\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\nR1,P1,Payment from invoice\r\nR2,P2,Payment from invoice\r\nR3,P3,Payment from invoice\r\nPO1,R1,Invoice from PO\r\nPO1,R2,Invoice from PO\r\nPO2,R3,Maverick buying\r\nPR1,PO1,PO from PR\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "Create Purchase Requisition",
+                "attributes": {
+                  "pr_creator": [
+                    "string",
+                    "Mike"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+              },
+              {
+                "activity": "Approve Purchase Requisition",
+                "attributes": {
+                  "pr_approver": [
+                    "string",
+                    "Tania"
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "attributes": {
+                  "po_creator": [
+                    "string",
+                    "Mike"
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-10T08:15:00.000000+00:00"
+              },
+              {
+                "activity": "Change PO Quantity",
+                "attributes": {
+                  "po_editor": [
+                    "string",
+                    "Mike"
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2022-01-13T11:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Invoice",
+                "attributes": {
+                  "invoice_inserter": [
+                    "string",
+                    "Luke"
+                  ]
+                },
+                "id": "e5",
+                "timestamp": "2022-01-14T11:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Invoice",
+                "attributes": {
+                  "invoice_inserter": [
+                    "string",
+                    "Luke"
+                  ]
+                },
+                "id": "e6",
+                "timestamp": "2022-01-16T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Payment",
+                "attributes": {
+                  "payment_inserter": [
+                    "string",
+                    "Robot"
+                  ]
+                },
+                "id": "e7",
+                "timestamp": "2022-01-30T22:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Payment",
+                "attributes": {
+                  "payment_inserter": [
+                    "string",
+                    "Robot"
+                  ]
+                },
+                "id": "e8",
+                "timestamp": "2022-01-31T21:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Invoice",
+                "attributes": {
+                  "invoice_inserter": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e9",
+                "timestamp": "2022-02-02T08:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "attributes": {
+                  "po_creator": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e10",
+                "timestamp": "2022-02-02T16:00:00.000000+00:00"
+              },
+              {
+                "activity": "Set Payment Block",
+                "attributes": {
+                  "invoice_blocker": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e11",
+                "timestamp": "2022-02-03T06:30:00.000000+00:00"
+              },
+              {
+                "activity": "Remove Payment Block",
+                "attributes": {
+                  "invoice_block_rem": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e12",
+                "timestamp": "2022-02-03T22:30:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Payment",
+                "attributes": {
+                  "payment_inserter": [
+                    "string",
+                    "Robot"
+                  ]
+                },
+                "id": "e13",
+                "timestamp": "2022-02-28T22:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R1",
+                "target": "P1"
+              },
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R2",
+                "target": "P2"
+              },
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R3",
+                "target": "P3"
+              },
+              {
+                "qualifier": "Invoice from PO",
+                "source": "PO1",
+                "target": "R1"
+              },
+              {
+                "qualifier": "Invoice from PO",
+                "source": "PO1",
+                "target": "R2"
+              },
+              {
+                "qualifier": "Maverick buying",
+                "source": "PO2",
+                "target": "R3"
+              },
+              {
+                "qualifier": "PO from PR",
+                "source": "PR1",
+                "target": "PO1"
+              }
+            ],
+            "object_changes": [
+              {
+                "field": "po_quantity",
+                "object": "PO1",
+                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "type": "Purchase Order",
+                "value": [
+                  "string",
+                  "600"
+                ]
+              },
+              {
+                "field": "is_blocked",
+                "object": "R3",
+                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "type": "Invoice",
+                "value": [
+                  "string",
+                  "Yes"
+                ]
+              },
+              {
+                "field": "is_blocked",
+                "object": "R3",
+                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "type": "Invoice",
+                "value": [
+                  "string",
+                  "No"
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "is_blocked": [
+                    "string",
+                    "No"
+                  ]
+                },
+                "id": "R1",
+                "type": "Invoice"
+              },
+              {
+                "attributes": {
+                  "is_blocked": [
+                    "string",
+                    "No"
+                  ]
+                },
+                "id": "R2",
+                "type": "Invoice"
+              },
+              {
+                "attributes": {
+                  "is_blocked": [
+                    "string",
+                    "No"
+                  ]
+                },
+                "id": "R3",
+                "type": "Invoice"
+              },
+              {
+                "attributes": {},
+                "id": "P1",
+                "type": "Payment"
+              },
+              {
+                "attributes": {},
+                "id": "P2",
+                "type": "Payment"
+              },
+              {
+                "attributes": {},
+                "id": "P3",
+                "type": "Payment"
+              },
+              {
+                "attributes": {
+                  "po_product": [
+                    "string",
+                    "Cows"
+                  ],
+                  "po_quantity": [
+                    "string",
+                    "500"
+                  ]
+                },
+                "id": "PO1",
+                "type": "Purchase Order"
+              },
+              {
+                "attributes": {
+                  "po_product": [
+                    "string",
+                    "Notebooks"
+                  ],
+                  "po_quantity": [
+                    "string",
+                    "1"
+                  ]
+                },
+                "id": "PO2",
+                "type": "Purchase Order"
+              },
+              {
+                "attributes": {
+                  "pr_product": [
+                    "string",
+                    "Cows"
+                  ],
+                  "pr_quantity": [
+                    "string",
+                    "500"
+                  ]
+                },
+                "id": "PR1",
+                "type": "Purchase Requisition"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "Create Purchase Requisition",
+                "event": "e1",
+                "object": "PR1",
+                "qualifier": "Regular placement of PR",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Approve Purchase Requisition",
+                "event": "e2",
+                "object": "PR1",
+                "qualifier": "Regular approval of PR",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e3",
+                "object": "PO1",
+                "qualifier": "Created order with identifier",
+                "timestamp": "2022-01-10T08:15:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e3",
+                "object": "PR1",
+                "qualifier": "Created order from PR",
+                "timestamp": "2022-01-10T08:15:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Change PO Quantity",
+                "event": "e4",
+                "object": "PO1",
+                "qualifier": "Change of quantity",
+                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e5",
+                "object": "PO1",
+                "qualifier": "Invoice created starting from the PO",
+                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e5",
+                "object": "R1",
+                "qualifier": "Invoice created with identifier",
+                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e6",
+                "object": "PO1",
+                "qualifier": "Invoice created starting from the PO",
+                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e6",
+                "object": "R2",
+                "qualifier": "Invoice created with identifier",
+                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e7",
+                "object": "P1",
+                "qualifier": "Payment inserted with identifier",
+                "timestamp": "2022-01-30T22:00:00.000000+00:00",
+                "type": "Payment"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e7",
+                "object": "R1",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-01-30T22:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e8",
+                "object": "R2",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e8",
+                "object": "P2",
+                "qualifier": "Payment created with identifier",
+                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "type": "Payment"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e9",
+                "object": "R3",
+                "qualifier": "Invoice created with identifier",
+                "timestamp": "2022-02-02T08:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e10",
+                "object": "PO2",
+                "qualifier": "Purhcase order created with identifier",
+                "timestamp": "2022-02-02T16:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e10",
+                "object": "R3",
+                "qualifier": "Purchase order created with maverick buying from",
+                "timestamp": "2022-02-02T16:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Set Payment Block",
+                "event": "e11",
+                "object": "R3",
+                "qualifier": "Payment block due to unethical maverick buying",
+                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Remove Payment Block",
+                "event": "e12",
+                "object": "R3",
+                "qualifier": "Payment block removed ...",
+                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e13",
+                "object": "R3",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e13",
+                "object": "P3",
+                "qualifier": "Payment inserted with identifier",
+                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "type": "Payment"
+              }
+            ]
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "events/event_Approve%20Purchase%20Requisition.parquet",
+            8
+          ],
+          [
+            "events/event_Change%20PO%20Quantity.parquet",
+            8
+          ],
+          [
+            "events/event_Create%20Purchase%20Order.parquet",
+            8
+          ],
+          [
+            "events/event_Create%20Purchase%20Requisition.parquet",
+            8
+          ],
+          [
+            "events/event_Insert%20Invoice.parquet",
+            8
+          ],
+          [
+            "events/event_Insert%20Payment.parquet",
+            8
+          ],
+          [
+            "events/event_Remove%20Payment%20Block.parquet",
+            8
+          ],
+          [
+            "events/event_Set%20Payment%20Block.parquet",
+            8
+          ],
+          [
+            "objects/object_Invoice.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_Invoice.parquet",
+            8
+          ],
+          [
+            "objects/object_Payment.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_Payment.parquet",
+            8
+          ],
+          [
+            "objects/object_Purchase%20Order.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_Purchase%20Order.parquet",
+            8
+          ],
+          [
+            "objects/object_Purchase%20Requisition.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_Purchase%20Requisition.parquet",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "events/event_Approve%20Purchase%20Requisition.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTIVABUGFQosFQIVEBUGFQYcNgAoAmUyGAJlMhERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAM6k5CfVBQAVABUGFQosFQIVEBUGFQYcGAgAzqTkJ9UFABgIAM6k5CfVBQAWACgIAM6k5CfVBQAYCADOpOQn1QUAEREAAAADCAECABUEFRIVFkwVAhUAEgAACSAFAAAAVGFuaWEVABUSFRYsFQIVEBUGFQYcNgAoBVRhbmlhGAVUYW5pYRERAAAACSACAAAAAgEBAgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgLcHJfYXBwcm92ZXIlAEwcAAAAFgIZHBk8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAmUyGAJlMhERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmrAEmfBwYCADOpOQn1QUAGAgAzqTkJ9UFABYAKAgAzqTkJ9UFABgIAM6k5CfVBQAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVDBk1AAYQGRgLcHJfYXBwcm92ZXIVAhYCFooBFpIBJuYCJrQCHDYAKAVUYW5pYRgFVGFuaWEREQAZLBUEFQAVAgAVABUQFQIAPBYKGQYZJgACAAAAFqYDFgImCBa+AwAZHBgMQVJST1c6c2NoZW1hGNgCLy8vLy8vZ0FBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDY0FBQUFSQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQ3dBQUFIQnlYMkZ3Y0hKdmRtVnlBSVQvLy8rOC8vLy9BQUFBQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFKQUFBQWIyTmxiRjkwYVcxbEFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAAgDAABQQVIx"
+          },
+          "events/event_Change%20PO%20Quantity.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTQVABUGFQosFQIVEBUGFQYcNgAoAmU0GAJlNBERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOxplnTVBQAVABUGFQosFQIVEBUGFQYcGAgA7GmWdNUFABgIAOxplnTVBQAWACgIAOxplnTVBQAYCADsaZZ01QUAEREAAAADCAECABUEFRAVFEwVAhUAEgAACBwEAAAATWlrZRUAFRIVFiwVAhUQFQYVBhw2ACgETWlrZRgETWlrZRERAAAACSACAAAAAgEBAgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgJcG9fZWRpdG9yJQBMHAAAABYCGRwZPCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWAhZsFnQmNCYIHDYAKAJlNBgCZTQREQAZLBUEFQAVAgAVABUQFQIAPBYEGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYCFrABFrgBJqwBJnwcGAgA7GmWdNUFABgIAOxplnTVBQAWACgIAOxplnTVBQAYCADsaZZ01QUAEREAGSwVBBUAFQIAFQAVEBUCAAAAJgAcFQwZNQAGEBkYCXBvX2VkaXRvchUCFgIWhAEWjAEm5AImtAIcNgAoBE1pa2UYBE1pa2UREQAZLBUEFQAVAgAVABUQFQIAPBYIGQYZJgACAAAAFqADFgImCBa4AwAZHBgMQVJST1c6c2NoZW1hGNgCLy8vLy8vZ0FBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDY0FBQUFSQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQ1FBQUFIQnZYMlZrYVhSdmNnQUFBSVQvLy8rOC8vLy9BQUFBQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFKQUFBQWIyTmxiRjkwYVcxbEFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAAIDAABQQVIx"
+          },
+          "events/event_Create%20Purchase%20Order.parquet": {
+            "base64": "UEFSMRUEFRoVHkwVBBUAEgAADTACAAAAZTMDAAAAZTEwFQAVBhUKLBUEFRAVBhUGHDYAKAJlMxgDZTEwEREAAAADCAEDAhUEFSAVJEwVBBUAEgAAEDwAyc3uNdUFAACgHxwL1wUAFQAVBhUKLBUEFRAVBhUGHBgIAKAfHAvXBQAYCADJze411QUAFgAoCACgHxwL1wUAGAgAyc3uNdUFABERAAAAAwgBAwIVBBUiFSZMFQQVABIAABFABAAAAE1pa2UFAAAATWFyaW8VABUSFRYsFQQVEBUGFQYcNgAoBE1pa2UYBU1hcmlvEREAAAAJIAIAAAAEAQEDAhUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUCGApwb19jcmVhdG9yJQBMHAAAABYEGRwZPCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBBZ8FoQBJkImCBw2ACgCZTMYA2UxMBERABksFQQVABUCABUAFRAVAgA8FgoZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgQWwAEWyAEmzAEmjAEcGAgAoB8cC9cFABgIAMnN7jXVBQAWACgIAKAfHAvXBQAYCADJze411QUAEREAGSwVBBUAFQIAFQAVEBUCAAAAJgAcFQwZNQAGEBkYCnBvX2NyZWF0b3IVAhYEFpgBFqABJpYDJtQCHDYAKARNaWtlGAVNYXJpbxERABksFQQVABUCABUAFRAVAgA8FhIZBhkmAAQAAAAW1AMWBCYIFuwDABkcGAxBUlJPVzpzY2hlbWEY2AIvLy8vLy9nQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNjQUFBQVJBQUFBQlFBQUFBUUFCUUFDQUFHQUFjQURBQUFBQkFBRUFBQUFBQUFBUVVRQUFBQUhBQUFBQVFBQUFBQUFBQUFDZ0FBQUhCdlgyTnlaV0YwYjNJQUFJVC8vLys4Ly8vL0FBQUFDaEFBQUFBa0FBQUFCQUFBQUFBQUFBQUpBQUFBYjJObGJGOTBhVzFsQUFBQUNBQU1BQVlBQ0FBSUFBQUFBQUFDQUFRQUFBQURBQUFBVlZSREFCQUFGQUFJQUFBQUJ3QU1BQUFBRUFBUUFBQUFBQUFBQlJBQUFBQWNBQUFBQkFBQUFBQUFBQUFIQUFBQWIyTmxiRjlwWkFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAACAMAAFBBUjE="
+          },
+          "events/event_Create%20Purchase%20Requisition.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTEVABUGFQosFQIVEBUGFQYcNgAoAmUxGAJlMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAFjHoibVBQAVABUGFQosFQIVEBUGFQYcGAgAWMeiJtUFABgIAFjHoibVBQAWACgIAFjHoibVBQAYCABYx6Im1QUAEREAAAADCAECABUEFRAVFEwVAhUAEgAACBwEAAAATWlrZRUAFRIVFiwVAhUQFQYVBhw2ACgETWlrZRgETWlrZRERAAAACSACAAAAAgEBAgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgKcHJfY3JlYXRvciUATBwAAAAWAhkcGTwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTEYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAFjHoibVBQAYCABYx6Im1QUAFgAoCABYx6Im1QUAGAgAWMeiJtUFABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGApwcl9jcmVhdG9yFQIWAhaEARaMASbkAia0Ahw2ACgETWlrZRgETWlrZRERABksFQQVABUCABUAFRAVAgA8FggZBhkmAAIAAAAWoAMWAiYIFrgDABkcGAxBUlJPVzpzY2hlbWEY2AIvLy8vLy9nQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNjQUFBQVJBQUFBQlFBQUFBUUFCUUFDQUFHQUFjQURBQUFBQkFBRUFBQUFBQUFBUVVRQUFBQUhBQUFBQVFBQUFBQUFBQUFDZ0FBQUhCeVgyTnlaV0YwYjNJQUFJVC8vLys4Ly8vL0FBQUFDaEFBQUFBa0FBQUFCQUFBQUFBQUFBQUpBQUFBYjJObGJGOTBhVzFsQUFBQUNBQU1BQVlBQ0FBSUFBQUFBQUFDQUFRQUFBQURBQUFBVlZSREFCQUFGQUFJQUFBQUJ3QU1BQUFBRUFBUUFBQUFBQUFBQlJBQUFBQWNBQUFBQkFBQUFBQUFBQUFIQUFBQWIyTmxiRjlwWkFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAABAMAAFBBUjE="
+          },
+          "events/event_Insert%20Invoice.parquet": {
+            "base64": "UEFSMRUEFSQVKEwVBhUAEgAAEkQCAAAAZTUCAAAAZTYCAAAAZTkVABUIFQwsFQYVEBUGFQYcNgAoAmU5GAJlNRERAAAABAwCAyQAFQQVMBU0TBUGFQASAAAYXABMQbSI1QUAAGhcGbDVBQAAgIJnBNcFABUAFQgVDCwVBhUQFQYVBhwYCACAgmcE1wUAGAgATEG0iNUFABYAKAgAgIJnBNcFABgIAExBtIjVBQAREQAAAAQMAgMkABUEFSIVJkwVBBUAEgAAEUAEAAAATHVrZQUAAABNYXJpbxUAFRIVFiwVBhUQFQYVBhw2ACgFTWFyaW8YBEx1a2UREQAAAAkgAgAAAAYBAQMEFQQZTDUAGAZzY2hlbWEVBgAVDCUAGAdvY2VsX2lkJQBMHAAAABUEJQAYCW9jZWxfdGltZSUUTIwRHCwAAAAAABUMJQIYEGludm9pY2VfaW5zZXJ0ZXIlAEwcAAAAFgYZHBk8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYGFoYBFo4BJkwmCBw2ACgCZTkYAmU1EREAGSwVBBUAFQIAFQAVEBUCADwWDBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBhbSARbaASbmASaWARwYCACAgmcE1wUAGAgATEG0iNUFABYAKAgAgIJnBNcFABgIAExBtIjVBQAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVDBk1AAYQGRgQaW52b2ljZV9pbnNlcnRlchUCFgYWmAEWoAEmsgMm8AIcNgAoBU1hcmlvGARMdWtlEREAGSwVBBUAFQIAFQAVEBUCADwWGhkGGSYABgAAABbwAxYGJggWiAQAGRwYDEFSUk9XOnNjaGVtYRjgAi8vLy8vd0FCQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQ2tBQUFBVEFBQUFCUUFBQUFRQUJRQUNBQUdBQWNBREFBQUFCQUFFQUFBQUFBQUFRVVFBQUFBSkFBQUFBUUFBQUFBQUFBQUVBQUFBR2x1ZG05cFkyVmZhVzV6WlhKMFpYSUFBQUFBaFAvLy83ei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAABwDAABQQVIx"
+          },
+          "events/event_Insert%20Payment.parquet": {
+            "base64": "UEFSMRUEFSYVKkwVBhUAEgAAE0gCAAAAZTcCAAAAZTgDAAAAZTEzFQAVCBUMLBUGFRAVBhUGHDYAKAJlOBgDZTEzEREAAAAEDAIDJAAVBBUwFTRMFQYVABIAABhcAFgPytPWBQAAFFMR59YFAAA4dSsb2QUAFQAVCBUMLBUGFRAVBhUGHBgIADh1KxvZBQAYCABYD8rT1gUAFgAoCAA4dSsb2QUAGAgAWA/K09YFABERAAAABAwCAyQAFQQVEhUWTBUCFQASAAAJIAUAAABSb2JvdBUAFRIVFiwVBhUQFQYVBhw2ACgFUm9ib3QYBVJvYm90EREAAAAJIAIAAAAGAQEGABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUCGBBwYXltZW50X2luc2VydGVyJQBMHAAAABYGGRwZPCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBhaKARaSASZOJggcNgAoAmU4GANlMTMREQAZLBUEFQAVAgAVABUQFQIAPBYOGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYGFtIBFtoBJuoBJpoBHBgIADh1KxvZBQAYCABYD8rT1gUAFgAoCAA4dSsb2QUAGAgAWA/K09YFABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGBBwYXltZW50X2luc2VydGVyFQIWBhaKARaSASamAyb0Ahw2ACgFUm9ib3QYBVJvYm90EREAGSwVBBUAFQIAFQAVEBUCADwWHhkGGSYABgAAABbmAxYGJggW/gMAGRwYDEFSUk9XOnNjaGVtYRjgAi8vLy8vd0FCQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQ2tBQUFBVEFBQUFCUUFBQUFRQUJRQUNBQUdBQWNBREFBQUFCQUFFQUFBQUFBQUFRVVFBQUFBSkFBQUFBUUFBQUFBQUFBQUVBQUFBSEJoZVcxbGJuUmZhVzV6WlhKMFpYSUFBQUFBaFAvLy83ei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAB4DAABQQVIx"
+          },
+          "events/event_Remove%20Payment%20Block.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTEyFQAVBhUKLBUCFRAVBhUGHDYAKANlMTIYA2UxMhERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAKq2rCTXBQAVABUGFQosFQIVEBUGFQYcGAgAqrasJNcFABgIAKq2rCTXBQAWACgIAKq2rCTXBQAYCACqtqwk1wUAEREAAAADCAECABUEFRIVFkwVAhUAEgAACSAFAAAATWFyaW8VABUSFRYsFQIVEBUGFQYcNgAoBU1hcmlvGAVNYXJpbxERAAAACSACAAAAAgEBAgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgRaW52b2ljZV9ibG9ja19yZW0lAEwcAAAAFgIZHBk8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFnIWeiY2JggcNgAoA2UxMhgDZTEyEREAGSwVBBUAFQIAFQAVEBUCADwWBhkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASayASaCARwYCACqtqwk1wUAGAgAqrasJNcFABYAKAgAqrasJNcFABgIAKq2rCTXBQAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVDBk1AAYQGRgRaW52b2ljZV9ibG9ja19yZW0VAhYCFooBFpIBJuwCJroCHDYAKAVNYXJpbxgFTWFyaW8REQAZLBUEFQAVAgAVABUQFQIAPBYKGQYZJgACAAAAFqwDFgImCBbEAwAZHBgMQVJST1c6c2NoZW1hGOACLy8vLy93QUJBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDa0FBQUFUQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRVFBQUFHbHVkbTlwWTJWZllteHZZMnRmY21WdEFBQUFoUC8vLzd6Ly8vOEFBQUFLRUFBQUFDUUFBQUFFQUFBQUFBQUFBQWtBQUFCdlkyVnNYM1JwYldVQUFBQUlBQXdBQmdBSUFBZ0FBQUFBQUFJQUJBQUFBQU1BQUFCVlZFTUFFQUFVQUFnQUFBQUhBQXdBQUFBUUFCQUFBQUFBQUFBRkVBQUFBQndBQUFBRUFBQUFBQUFBQUFjQUFBQnZZMlZzWDJsa0FBUUFCQUFFQUFBQQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAHwMAAFBBUjE="
+          },
+          "events/event_Set%20Payment%20Block.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTExFQAVBhUKLBUCFRAVBhUGHDYAKANlMTEYA2UxMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAGp8QxfXBQAVABUGFQosFQIVEBUGFQYcGAgAanxDF9cFABgIAGp8QxfXBQAWACgIAGp8QxfXBQAYCABqfEMX1wUAEREAAAADCAECABUEFRIVFkwVAhUAEgAACSAFAAAATWFyaW8VABUSFRYsFQIVEBUGFQYcNgAoBU1hcmlvGAVNYXJpbxERAAAACSACAAAAAgEBAgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgPaW52b2ljZV9ibG9ja2VyJQBMHAAAABYCGRwZPCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWAhZyFnomNiYIHDYAKANlMTEYA2UxMRERABksFQQVABUCABUAFRAVAgA8FgYZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmsgEmggEcGAgAanxDF9cFABgIAGp8QxfXBQAWACgIAGp8QxfXBQAYCABqfEMX1wUAEREAGSwVBBUAFQIAFQAVEBUCAAAAJgAcFQwZNQAGEBkYD2ludm9pY2VfYmxvY2tlchUCFgIWigEWkgEm7AImugIcNgAoBU1hcmlvGAVNYXJpbxERABksFQQVABUCABUAFRAVAgA8FgoZBhkmAAIAAAAWrAMWAiYIFsQDABkcGAxBUlJPVzpzY2hlbWEY4AIvLy8vL3dBQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNnQUFBQVNBQUFBQlFBQUFBUUFCUUFDQUFHQUFjQURBQUFBQkFBRUFBQUFBQUFBUVVRQUFBQUlBQUFBQVFBQUFBQUFBQUFEd0FBQUdsdWRtOXBZMlZmWW14dlkydGxjZ0NFLy8vL3ZQLy8vd0FBQUFvUUFBQUFKQUFBQUFRQUFBQUFBQUFBQ1FBQUFHOWpaV3hmZEdsdFpRQUFBQWdBREFBR0FBZ0FDQUFBQUFBQUFnQUVBQUFBQXdBQUFGVlVRd0FRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSEFBQUFBUUFBQUFBQUFBQUJ3QUFBRzlqWld4ZmFXUUFCQUFFQUFRQUFBQUFBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZPBwAABwAABwAAAAbAwAAUEFSMQ=="
+          },
+          "object_changes/object_changes_Invoice.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAUjMVABUGFQosFQQVEBUGFQYcNgAoAlIzGAJSMxERAAAAAwgBBAAVBBUgFSRMFQQVABIAABA8AGp8QxfXBQAAqrasJNcFABUAFQYVCiwVBBUQFQYVBhwYCACqtqwk1wUAGAgAanxDF9cFABYAKAgAqrasJNcFABgIAGp8QxfXBQAREQAAAAMIAQMCFQQVHBUgTBUCFQASAAAONAoAAABpc19ibG9ja2VkFQAVBhUKLBUEFRAVBhUGHDYAKAppc19ibG9ja2VkGAppc19ibG9ja2VkEREAAAADCAEEABUEFRoVHkwVBBUAEgAADTADAAAAWWVzAgAAAE5vFQAVEhUWLBUEFRAVBhUGHDYAKANZZXMYAk5vEREAAAAJIAIAAAAEAQEDAhUEGVw1ABgGc2NoZW1hFQgAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFQwlAhgKaXNfYmxvY2tlZCUATBwAAAAWBBkcGUwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgQWbBZ0JjQmCBw2ACgCUjMYAlIzEREAGSwVBBUAFQIAFQAVEBUCADwWCBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBBbAARbIASa8ASZ8HBgIAKq2rCTXBQAYCABqfEMX1wUAFgAoCACqtqwk1wUAGAgAanxDF9cFABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYEFpwBFqQBJoADJsQCHDYAKAppc19ibG9ja2VkGAppc19ibG9ja2VkEREAGSwVBBUAFQIAFQAVEBUCADwWKBkGGQYAAAAmABwVDBk1AAYQGRgKaXNfYmxvY2tlZBUCFgQWiAEWkAEmogQm6AMcNgAoA1llcxgCTm8REQAZLBUEFQAVAgAVABUQFQIAPBYKGQYZJgAEAAAAFtAEFgQmCBbwBAAZHBgMQVJST1c6c2NoZW1hGKADLy8vLy96QUJBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQVFBQUFEVUFBQUFmQUFBQUVRQUFBQVVBQUFBRUFBVUFBZ0FCZ0FIQUF3QUFBQVFBQkFBQUFBQUFBRUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBb0FBQUJwYzE5aWJHOWphMlZrQUFCUS8vLy9pUC8vL3dBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQUVnQUFBRzlqWld4ZlkyaGhibWRsWkY5bWFXVnNaQUFBaFAvLy83ei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRlMHAAAHAAAHAAAHAAAANIDAABQQVIx"
+          },
+          "object_changes/object_changes_Payment.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgHb2NlbF9pZBUCFgAWHBYeJgAmCCkcFQQVABUCAAAAJgAcFQQZJQAGGRgJb2NlbF90aW1lFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYzAIvLy8vLy9BQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNVQUFBQVBBQUFBQVFBQUFDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAhwIAAFBBUjE="
+          },
+          "object_changes/object_changes_Purchase%20Order.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAUE8xFQAVBhUKLBUCFRAVBhUGHDYAKANQTzEYA1BPMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOxplnTVBQAVABUGFQosFQIVEBUGFQYcGAgA7GmWdNUFABgIAOxplnTVBQAWACgIAOxplnTVBQAYCADsaZZ01QUAEREAAAADCAECABUEFR4VIkwVAhUAEgAADzgLAAAAcG9fcXVhbnRpdHkVABUGFQosFQIVEBUGFQYcNgAoC3BvX3F1YW50aXR5GAtwb19xdWFudGl0eRERAAAAAwgBAgAVBBUAFQJMFQAVABIAAAAVABUOFRIsFQIVEBUGFQYcNgIAAAAHGAIAAAACAAAVBBUOFRJMFQIVABIAAAcYAwAAADYwMBUAFRIVFiwVAhUQFQYVBhw2ACgDNjAwGAM2MDAREQAAAAkgAgAAAAIBAQIAFQQZbDUAGAZzY2hlbWEVCgAVDCUAGAdvY2VsX2lkJQBMHAAAABUEJQAYCW9jZWxfdGltZSUUTIwRHCwAAAAAABUMJQAYEm9jZWxfY2hhbmdlZF9maWVsZCUATBwAAAAVDCUCGApwb19wcm9kdWN0JQBMHAAAABUMJQIYC3BvX3F1YW50aXR5JQBMHAAAABYCGRwZXCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWAhZyFnomNiYIHDYAKANQTzEYA1BPMRERABksFQQVABUCABUAFRAVAgA8FgYZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmsgEmggEcGAgA7GmWdNUFABgIAOxplnTVBQAWACgIAOxplnTVBQAYCADsaZZ01QUAEREAGSwVBBUAFQIAFQAVEBUCAAAAJgAcFQwZNQAGEBkYEm9jZWxfY2hhbmdlZF9maWVsZBUCFgIWogEWqgEm+AImugIcNgAoC3BvX3F1YW50aXR5GAtwb19xdWFudGl0eRERABksFQQVABUCABUAFRAVAgA8FhYZBhkGAAAAJgAcFQwZNQAGEBkYCnBvX3Byb2R1Y3QVAhYCFlQWWiaCBCbkAxw2AgAZLBUEFQAVAgAVABUQFQIAPBYAGQYZJgIAAAAAJgAcFQwZNQAGEBkYC3BvX3F1YW50aXR5FQIWAhZ+FoYBJuwEJr4EHDYAKAM2MDAYAzYwMBERABksFQQVABUCABUAFRAVAgA8FgYZBhkmAAIAAAAWlgUWAiYIFrwFABkcGAxBUlJPVzpzY2hlbWEY4AMvLy8vLzJBQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBVUFBQUFFQVFBQXJBQUFBSFFBQUFCRUFBQUFCQUFBQU5ULy8vOEFBQUVGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQXNBQUFCd2IxOXhkV0Z1ZEdsMGVRQVUvLy8vRUFBVUFBZ0FCZ0FIQUF3QUFBQVFBQkFBQUFBQUFBRUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBb0FBQUJ3YjE5d2NtOWtkV04wQUFCUS8vLy9pUC8vL3dBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQUVnQUFBRzlqWld4ZlkyaGhibWRsWkY5bWFXVnNaQUFBaFAvLy83ei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRlcHAAAHAAAHAAAHAAAHAAAAHgEAABQQVIx"
+          },
+          "object_changes/object_changes_Purchase%20Requisition.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGWw1ABgGc2NoZW1hFQoAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFQwlAhgKcHJfcHJvZHVjdCUATBwAAAAVDCUCGAtwcl9xdWFudGl0eSUATBwAAAAWABkcGVwmABwVDBklAAYZGAdvY2VsX2lkFQIWABYcFh4mACYIKRwVBBUAFQIAAAAmABwVBBklAAYZGAlvY2VsX3RpbWUVAhYAFhwWHiYAJiYpHBUEFQAVAgAAACYAHBUMGSUABhkYEm9jZWxfY2hhbmdlZF9maWVsZBUCFgAWHBYeJgAmRCkcFQQVABUCAAAAJgAcFQwZJQAGGRgKcHJfcHJvZHVjdBUCFgAWHBYeJgAmYikcFQQVABUCAAAAJgAcFQwZJQAGGRgLcHJfcXVhbnRpdHkVAhYAFhwWHiYAJoABKRwVBBUAFQIAAAAWjAEWACYIFpYBABkcGAxBUlJPVzpzY2hlbWEY4AMvLy8vLzJBQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBVUFBQUFFQVFBQXJBQUFBSFFBQUFCRUFBQUFCQUFBQU5ULy8vOEFBQUVGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQXNBQUFCd2NsOXhkV0Z1ZEdsMGVRQVUvLy8vRUFBVUFBZ0FCZ0FIQUF3QUFBQVFBQkFBQUFBQUFBRUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBb0FBQUJ3Y2w5d2NtOWtkV04wQUFCUS8vLy9pUC8vL3dBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQUVnQUFBRzlqWld4ZlkyaGhibWRsWkY5bWFXVnNaQUFBaFAvLy83ei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRlcHAAAHAAAHAAAHAAAHAAAAK4DAABQQVIx"
+          },
+          "objects/object_Invoice.parquet": {
+            "base64": "UEFSMRUEFSQVKEwVBhUAEgAAEkQCAAAAUjECAAAAUjICAAAAUjMVABUIFQwsFQYVEBUGFQYcNgAoAlIzGAJSMRERAAAABAwCAyQAFQQVDBUQTBUCFQASAAAGFAIAAABObxUAFRIVFiwVBhUQFQYVBhw2ACgCTm8YAk5vEREAAAAJIAIAAAAGAQEGABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVDCUCGAppc19ibG9ja2VkJQBMHAAAABYGGRwZLCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBhaGARaOASZMJggcNgAoAlIzGAJSMRERABksFQQVABUCABUAFRAVAgA8FgwZBhkGAAAAJgAcFQwZNQAGEBkYCmlzX2Jsb2NrZWQVAhYGFngWgAEmwgEmlgEcNgAoAk5vGAJObxERABksFQQVABUCABUAFRAVAgA8FgwZBhkmAAYAAAAW/gEWBiYIFo4CABkcGAxBUlJPVzpzY2hlbWEY+AEvLy8vLzdBQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBSUFBQUJVQUFBQUZBQUFBQkFBRkFBSUFBWUFCd0FNQUFBQUVBQVFBQUFBQUFBQkJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBS0FBQUFhWE5mWW14dlkydGxaQUFBeVAvLy94QUFGQUFJQUFBQUJ3QU1BQUFBRUFBUUFBQUFBQUFBQlJBQUFBQWNBQUFBQkFBQUFBQUFBQUFIQUFBQWIyTmxiRjlwWkFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGSwcAAAcAAAAHgIAAFBBUjE="
+          },
+          "objects/object_Payment.parquet": {
+            "base64": "UEFSMRUEFSQVKEwVBhUAEgAAEkQCAAAAUDECAAAAUDICAAAAUDMVABUIFQwsFQYVEBUGFQYcNgAoAlAzGAJQMRERAAAABAwCAyQAFQQZLDUAGAZzY2hlbWEVAgAVDCUAGAdvY2VsX2lkJQBMHAAAABYGGRwZHCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBhaGARaOASZMJggcNgAoAlAzGAJQMRERABksFQQVABUCABUAFRAVAgA8FgwZBhkGAAAAFoYBFgYmCBaOAQAZHBgMQVJST1c6c2NoZW1hGKABLy8vLy8zQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQUVBQUFBVUFBQUFFQUFVQUFnQUFBQUhBQXdBQUFBUUFCQUFBQUFBQUFBRkVBQUFBQndBQUFBRUFBQUFBQUFBQUFjQUFBQnZZMlZzWDJsa0FBUUFCQUFFQUFBQQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGRwcAAAAXAEAAFBBUjE="
+          },
+          "objects/object_Purchase%20Order.parquet": {
+            "base64": "UEFSMRUEFRwVIEwVBBUAEgAADjQDAAAAUE8xAwAAAFBPMhUAFQYVCiwVBBUQFQYVBhw2ACgDUE8yGANQTzEREQAAAAMIAQMCFQQVKhUuTBUEFQASAAAVUAQAAABDb3dzCQAAAE5vdGVib29rcxUAFRIVFiwVBBUQFQYVBhw2ACgJTm90ZWJvb2tzGARDb3dzEREAAAAJIAIAAAAEAQEDAhUEFRgVHEwVBBUAEgAADCwDAAAANTAwAQAAADEVABUSFRYsFQQVEBUGFQYcNgAoAzUwMBgBMRERAAAACSACAAAABAEBAwIVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQwlAhgKcG9fcHJvZHVjdCUATBwAAAAVDCUCGAtwb19xdWFudGl0eSUATBwAAAAWBBkcGTwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgQWgAEWiAEmRCYIHDYAKANQTzIYA1BPMRERABksFQQVABUCABUAFRAVAgA8FgwZBhkGAAAAJgAcFQwZNQAGEBkYCnBvX3Byb2R1Y3QVAhYEFqgBFrABJtoBJpABHDYAKAlOb3RlYm9va3MYBENvd3MREQAZLBUEFQAVAgAVABUQFQIAPBYaGQYZJgAEAAAAJgAcFQwZNQAGEBkYC3BvX3F1YW50aXR5FQIWBBaEARaMASb4AibAAhw2ACgDNTAwGAExEREAGSwVBBUAFQIAFQAVEBUCADwWCBkGGSYABAAAABasAxYEJggWxAMAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQ0VBQUFBUkFBQUFBUUFBQURVLy8vL0FBQUJCUkFBQUFBY0FBQUFCQUFBQUFBQUFBQUxBQUFBY0c5ZmNYVmhiblJwZEhrQWpQLy8veEFBRkFBSUFBWUFCd0FNQUFBQUVBQVFBQUFBQUFBQkJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBS0FBQUFjRzlmY0hKdlpIVmpkQUFBeVAvLy94QUFGQUFJQUFBQUJ3QU1BQUFBRUFBUUFBQUFBQUFBQlJBQUFBQWNBQUFBQkFBQUFBQUFBQUFIQUFBQWIyTmxiRjlwWkFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAA1wIAAFBBUjE="
+          },
+          "objects/object_Purchase%20Requisition.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAUFIxFQAVBhUKLBUCFRAVBhUGHDYAKANQUjEYA1BSMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcBAAAAENvd3MVABUSFRYsFQIVEBUGFQYcNgAoBENvd3MYBENvd3MREQAAAAkgAgAAAAIBAQIAFQQVDhUSTBUCFQASAAAHGAMAAAA1MDAVABUSFRYsFQIVEBUGFQYcNgAoAzUwMBgDNTAwEREAAAAJIAIAAAACAQECABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVDCUCGApwcl9wcm9kdWN0JQBMHAAAABUMJQIYC3ByX3F1YW50aXR5JQBMHAAAABYCGRwZPCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWAhZyFnomNiYIHDYAKANQUjEYA1BSMRERABksFQQVABUCABUAFRAVAgA8FgYZBhkGAAAAJgAcFQwZNQAGEBkYCnByX3Byb2R1Y3QVAhYCFoQBFowBJrIBJoIBHDYAKARDb3dzGARDb3dzEREAGSwVBBUAFQIAFQAVEBUCADwWCBkGGSYAAgAAACYAHBUMGTUABhAZGAtwcl9xdWFudGl0eRUCFgIWfhaGASa8AiaOAhw2ACgDNTAwGAM1MDAREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZJgACAAAAFvQCFgImCBaMAwAZHBgMQVJST1c6c2NoZW1hGLgCLy8vLy8rQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDRUFBQUFSQUFBQUFRQUFBRFUvLy8vQUFBQkJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBTEFBQUFjSEpmY1hWaGJuUnBkSGtBalAvLy94QUFGQUFJQUFZQUJ3QU1BQUFBRUFBUUFBQUFBQUFCQlJBQUFBQWNBQUFBQkFBQUFBQUFBQUFLQUFBQWNISmZjSEp2WkhWamRBQUF5UC8vL3hBQUZBQUlBQUFBQndBTUFBQUFFQUFRQUFBQUFBQUFCUkFBQUFBY0FBQUFCQUFBQUFBQUFBQUhBQUFBYjJObGJGOXBaQUFFQUFRQUJBQUFBQT09ABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZPBwAABwAABwAAADRAgAAUEFSMQ=="
+          },
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFaQBFYIBTBUaFQASAABSFAIAAABlMQUGADIFBgAzBQYANAUGBDUCAR4ANgUGADcFBgA4BQYEOQMBGAQxMAkHODEDAAAAZTEyAwAAAGUxMxUAFRwVICwVKBUQFQYVBhw2ACgCZTkYAmUxEREAAAAONAQHECJDVGV2h5m6zAAAFQQVchViTBUSFQASAAA5GAMAAABQUjEFBxhPMQIAAABSCQYAMgEMAFAFDABQBQw4UjMDAAAAUE8yAgAAAFAzFQAVHBUgLBUoFRAVBhUGHDYAKAJSMxgCUDEREQAAAA40BAcAARESQzJlZ2aGAAAVBBW+BxXCBEwVHBUAEgAA3wNsFwAAAFJlZ3VsYXIgcGxhY2VtZW50IG9mIFBSFh0bHGFwcHJvdmFsCRqIHQAAAENyZWF0ZWQgb3JkZXIgd2l0aCBpZGVudGlmaWVyFQA+IQAcZnJvbSBQUhIBOhBoYW5nZQFKUHF1YW50aXR5JAAAAEludm9pY2UgYw1YHHN0YXJ0aW5nCToYdGhlIFBPH0ooADp6ABggAAAAUGF5BcYQaW5zZXIBpDokAAH0ESQMZm9yIAFdAGkJfwAfHT8Rijo+AAAmASMcdXJoY2FzZSAJ/loqAAAwCSoEY2haKgAwbWF2ZXJpY2sgYnV5aQ3qAC4BNA3AVGJsb2NrIGR1ZSB0byB1bmV0aGljYWw+NwAAGUIyAChyZW1vdmVkIC4uLhUAFRwVICwVKBUQFQYVBhw2ACgXUmVndWxhciBwbGFjZW1lbnQgb2YgUFIYEkNoYW5nZSBvZiBxdWFudGl0eRERAAAADjQEBxAyVFZ2iGm63HgAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgNb2NlbF9ldmVudF9pZCUATBwAAAAVDCUAGA5vY2VsX29iamVjdF9pZCUATBwAAAAVDCUAGA5vY2VsX3F1YWxpZmllciUATBwAAAAWKBkcGTwmABwVDBk1AAYQGRgNb2NlbF9ldmVudF9pZBUCFigWngIWgAImqgEmCBw2ACgCZTkYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWXBkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF9vYmplY3RfaWQVAhYoFugBFtwBJoYDJogCHDYAKAJSMxgCUDEREQAZLBUEFQAVAgAVABUQFQIAPBZgGQYZBgAAACYAHBUMGTUABhAZGA5vY2VsX3F1YWxpZmllchUCFigWggkWigYmxggm5AMcNgAoF1JlZ3VsYXIgcGxhY2VtZW50IG9mIFBSGBJDaGFuZ2Ugb2YgcXVhbnRpdHkREQAZLBUEFQAVAgAVABUQFQIAPBauCRkGGQYAAAAWiA0WKCYIFuYJABkcGAxBUlJPVzpzY2hlbWEYuAIvLy8vLytBQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUI4QUFBQU9BQUFBQVFBQUFDZy8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjl4ZFdGc2FXWnBaWElBQUpELy8vL1EvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5dlltcGxZM1JmYVdRQUFNRC8vLzhRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQURRQUFBRzlqWld4ZlpYWmxiblJmYVdRQUFBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAAkDAABQQVIx"
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFU4VSkwVDBUAEgAAJxQCAAAAUjEFBgAyBQZUMwMAAABQTzEDAAAAUE8yAwAAAFBSMRUAFQoVDiwVDhUQFQYVBhw2ACgCUjMYA1BPMRERAAAABRADA4g2FhUEFVYVTEwVDhUAEgAAKxQCAAAAUDEFBgAyBQYAMwEGAFIFEjhSMgIAAABSMwMAAABQTzEVABUKFQ4sFQ4VEBUGFQYcNgAoAlIzGAJQMRERAAAABRADA4jGGhUEFZgBFYwBTBUIFQASAABMcBQAAABQYXltZW50IGZyb20gaW52b2ljZQ8AAABJCQsJGARQTwETcE1hdmVyaWNrIGJ1eWluZwoAAABQTyBmcm9tIFBSFQAVCBUMLBUOFRAVBhUGHDYAKBRQYXltZW50IGZyb20gaW52b2ljZRgPSW52b2ljZSBmcm9tIFBPEREAAAAEDAIDQDkVBBlMNQAYBnNjaGVtYRUGABUMJQAYDm9jZWxfc291cmNlX2lkJQBMHAAAABUMJQAYDm9jZWxfdGFyZ2V0X2lkJQBMHAAAABUMJQAYDm9jZWxfcXVhbGlmaWVyJQBMHAAAABYOGRwZPCYAHBUMGTUABhAZGA5vY2VsX3NvdXJjZV9pZBUCFg4WtAEWtAEmbiYIHDYAKAJSMxgDUE8xEREAGSwVBBUAFQIAFQAVEBUCADwWJBkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF90YXJnZXRfaWQVAhYOFroBFrQBJqQCJrwBHDYAKAJSMxgCUDEREQAZLBUEFQAVAgAVABUQFQIAPBYeGQYZBgAAACYAHBUMGTUABhAZGA5vY2VsX3F1YWxpZmllchUCFg4WvAIWtAImnAQm8AIcNgAoFFBheW1lbnQgZnJvbSBpbnZvaWNlGA9JbnZvaWNlIGZyb20gUE8REQAZLBUEFQAVAgAVABUQFQIAPBbmARkGGQYAAAAWqgUWDiYIFpwFABkcGAxBUlJPVzpzY2hlbWEYuAIvLy8vLytBQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUI4QUFBQU9BQUFBQVFBQUFDZy8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjl4ZFdGc2FXWnBaWElBQUpELy8vL1EvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5MFlYSm5aWFJmYVdRQUFNRC8vLzhRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQURnQUFBRzlqWld4ZmMyOTFjbU5sWDJsa0FBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAAUDAABQQVIx"
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {\n    \"Approve Purchase Requisition\": {\n      \"file\": \"events/event_Approve%20Purchase%20Requisition.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_approver\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Change PO Quantity\": {\n      \"file\": \"events/event_Change%20PO%20Quantity.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"po_editor\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Create Purchase Order\": {\n      \"file\": \"events/event_Create%20Purchase%20Order.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Create Purchase Requisition\": {\n      \"file\": \"events/event_Create%20Purchase%20Requisition.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Insert Invoice\": {\n      \"file\": \"events/event_Insert%20Invoice.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Insert Payment\": {\n      \"file\": \"events/event_Insert%20Payment.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Remove Payment Block\": {\n      \"file\": \"events/event_Remove%20Payment%20Block.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_block_rem\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Set Payment Block\": {\n      \"file\": \"events/event_Set%20Payment%20Block.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_blocker\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"Invoice\": {\n      \"file\": \"objects/object_Invoice.parquet\",\n      \"changesFile\": \"object_changes/object_changes_Invoice.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Payment\": {\n      \"file\": \"objects/object_Payment.parquet\",\n      \"changesFile\": \"object_changes/object_changes_Payment.parquet\",\n      \"attributes\": []\n    },\n    \"Purchase Order\": {\n      \"file\": \"objects/object_Purchase%20Order.parquet\",\n      \"changesFile\": \"object_changes/object_changes_Purchase%20Order.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"Purchase Requisition\": {\n      \"file\": \"objects/object_Purchase%20Requisition.parquet\",\n      \"changesFile\": \"object_changes/object_changes_Purchase%20Requisition.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"pr_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "Create Purchase Requisition",
+                "attributes": {
+                  "pr_creator": [
+                    "string",
+                    "Mike"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+              },
+              {
+                "activity": "Approve Purchase Requisition",
+                "attributes": {
+                  "pr_approver": [
+                    "string",
+                    "Tania"
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "attributes": {
+                  "po_creator": [
+                    "string",
+                    "Mike"
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-10T08:15:00.000000+00:00"
+              },
+              {
+                "activity": "Change PO Quantity",
+                "attributes": {
+                  "po_editor": [
+                    "string",
+                    "Mike"
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2022-01-13T11:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Invoice",
+                "attributes": {
+                  "invoice_inserter": [
+                    "string",
+                    "Luke"
+                  ]
+                },
+                "id": "e5",
+                "timestamp": "2022-01-14T11:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Invoice",
+                "attributes": {
+                  "invoice_inserter": [
+                    "string",
+                    "Luke"
+                  ]
+                },
+                "id": "e6",
+                "timestamp": "2022-01-16T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Payment",
+                "attributes": {
+                  "payment_inserter": [
+                    "string",
+                    "Robot"
+                  ]
+                },
+                "id": "e7",
+                "timestamp": "2022-01-30T22:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Payment",
+                "attributes": {
+                  "payment_inserter": [
+                    "string",
+                    "Robot"
+                  ]
+                },
+                "id": "e8",
+                "timestamp": "2022-01-31T21:00:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Invoice",
+                "attributes": {
+                  "invoice_inserter": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e9",
+                "timestamp": "2022-02-02T08:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "attributes": {
+                  "po_creator": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e10",
+                "timestamp": "2022-02-02T16:00:00.000000+00:00"
+              },
+              {
+                "activity": "Set Payment Block",
+                "attributes": {
+                  "invoice_blocker": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e11",
+                "timestamp": "2022-02-03T06:30:00.000000+00:00"
+              },
+              {
+                "activity": "Remove Payment Block",
+                "attributes": {
+                  "invoice_block_rem": [
+                    "string",
+                    "Mario"
+                  ]
+                },
+                "id": "e12",
+                "timestamp": "2022-02-03T22:30:00.000000+00:00"
+              },
+              {
+                "activity": "Insert Payment",
+                "attributes": {
+                  "payment_inserter": [
+                    "string",
+                    "Robot"
+                  ]
+                },
+                "id": "e13",
+                "timestamp": "2022-02-28T22:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R1",
+                "target": "P1"
+              },
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R2",
+                "target": "P2"
+              },
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R3",
+                "target": "P3"
+              },
+              {
+                "qualifier": "Invoice from PO",
+                "source": "PO1",
+                "target": "R1"
+              },
+              {
+                "qualifier": "Invoice from PO",
+                "source": "PO1",
+                "target": "R2"
+              },
+              {
+                "qualifier": "Maverick buying",
+                "source": "PO2",
+                "target": "R3"
+              },
+              {
+                "qualifier": "PO from PR",
+                "source": "PR1",
+                "target": "PO1"
+              }
+            ],
+            "object_changes": [
+              {
+                "field": "po_quantity",
+                "object": "PO1",
+                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "type": "Purchase Order",
+                "value": [
+                  "string",
+                  "600"
+                ]
+              },
+              {
+                "field": "is_blocked",
+                "object": "R3",
+                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "type": "Invoice",
+                "value": [
+                  "string",
+                  "Yes"
+                ]
+              },
+              {
+                "field": "is_blocked",
+                "object": "R3",
+                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "type": "Invoice",
+                "value": [
+                  "string",
+                  "No"
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "is_blocked": [
+                    "string",
+                    "No"
+                  ]
+                },
+                "id": "R1",
+                "type": "Invoice"
+              },
+              {
+                "attributes": {
+                  "is_blocked": [
+                    "string",
+                    "No"
+                  ]
+                },
+                "id": "R2",
+                "type": "Invoice"
+              },
+              {
+                "attributes": {
+                  "is_blocked": [
+                    "string",
+                    "No"
+                  ]
+                },
+                "id": "R3",
+                "type": "Invoice"
+              },
+              {
+                "attributes": {},
+                "id": "P1",
+                "type": "Payment"
+              },
+              {
+                "attributes": {},
+                "id": "P2",
+                "type": "Payment"
+              },
+              {
+                "attributes": {},
+                "id": "P3",
+                "type": "Payment"
+              },
+              {
+                "attributes": {
+                  "po_product": [
+                    "string",
+                    "Cows"
+                  ],
+                  "po_quantity": [
+                    "string",
+                    "500"
+                  ]
+                },
+                "id": "PO1",
+                "type": "Purchase Order"
+              },
+              {
+                "attributes": {
+                  "po_product": [
+                    "string",
+                    "Notebooks"
+                  ],
+                  "po_quantity": [
+                    "string",
+                    "1"
+                  ]
+                },
+                "id": "PO2",
+                "type": "Purchase Order"
+              },
+              {
+                "attributes": {
+                  "pr_product": [
+                    "string",
+                    "Cows"
+                  ],
+                  "pr_quantity": [
+                    "string",
+                    "500"
+                  ]
+                },
+                "id": "PR1",
+                "type": "Purchase Requisition"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "Create Purchase Requisition",
+                "event": "e1",
+                "object": "PR1",
+                "qualifier": "Regular placement of PR",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Approve Purchase Requisition",
+                "event": "e2",
+                "object": "PR1",
+                "qualifier": "Regular approval of PR",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e3",
+                "object": "PO1",
+                "qualifier": "Created order with identifier",
+                "timestamp": "2022-01-10T08:15:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e3",
+                "object": "PR1",
+                "qualifier": "Created order from PR",
+                "timestamp": "2022-01-10T08:15:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Change PO Quantity",
+                "event": "e4",
+                "object": "PO1",
+                "qualifier": "Change of quantity",
+                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e5",
+                "object": "PO1",
+                "qualifier": "Invoice created starting from the PO",
+                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e5",
+                "object": "R1",
+                "qualifier": "Invoice created with identifier",
+                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e6",
+                "object": "PO1",
+                "qualifier": "Invoice created starting from the PO",
+                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e6",
+                "object": "R2",
+                "qualifier": "Invoice created with identifier",
+                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e7",
+                "object": "P1",
+                "qualifier": "Payment inserted with identifier",
+                "timestamp": "2022-01-30T22:00:00.000000+00:00",
+                "type": "Payment"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e7",
+                "object": "R1",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-01-30T22:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e8",
+                "object": "R2",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e8",
+                "object": "P2",
+                "qualifier": "Payment created with identifier",
+                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "type": "Payment"
+              },
+              {
+                "activity": "Insert Invoice",
+                "event": "e9",
+                "object": "R3",
+                "qualifier": "Invoice created with identifier",
+                "timestamp": "2022-02-02T08:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e10",
+                "object": "PO2",
+                "qualifier": "Purhcase order created with identifier",
+                "timestamp": "2022-02-02T16:00:00.000000+00:00",
+                "type": "Purchase Order"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e10",
+                "object": "R3",
+                "qualifier": "Purchase order created with maverick buying from",
+                "timestamp": "2022-02-02T16:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Set Payment Block",
+                "event": "e11",
+                "object": "R3",
+                "qualifier": "Payment block due to unethical maverick buying",
+                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Remove Payment Block",
+                "event": "e12",
+                "object": "R3",
+                "qualifier": "Payment block removed ...",
+                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e13",
+                "object": "R3",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e13",
+                "object": "P3",
+                "qualifier": "Payment inserted with identifier",
+                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "type": "Payment"
+              }
+            ]
+          }
+        },
+        "tables": {
+          "events/event_Approve%20Purchase%20Requisition.parquet": {
+            "rows": [
+              [
+                "e2",
+                "2022-01-09T15:30:00+00:00",
+                "Tania"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "pr_approver",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Change%20PO%20Quantity.parquet": {
+            "rows": [
+              [
+                "e4",
+                "2022-01-13T11:00:00+00:00",
+                "Mike"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "po_editor",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Create%20Purchase%20Order.parquet": {
+            "rows": [
+              [
+                "e3",
+                "2022-01-10T08:15:00+00:00",
+                "Mike"
+              ],
+              [
+                "e10",
+                "2022-02-02T16:00:00+00:00",
+                "Mario"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "po_creator",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Create%20Purchase%20Requisition.parquet": {
+            "rows": [
+              [
+                "e1",
+                "2022-01-09T14:00:00+00:00",
+                "Mike"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "pr_creator",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Insert%20Invoice.parquet": {
+            "rows": [
+              [
+                "e5",
+                "2022-01-14T11:00:00+00:00",
+                "Luke"
+              ],
+              [
+                "e6",
+                "2022-01-16T10:00:00+00:00",
+                "Luke"
+              ],
+              [
+                "e9",
+                "2022-02-02T08:00:00+00:00",
+                "Mario"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "invoice_inserter",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Insert%20Payment.parquet": {
+            "rows": [
+              [
+                "e7",
+                "2022-01-30T22:00:00+00:00",
+                "Robot"
+              ],
+              [
+                "e8",
+                "2022-01-31T21:00:00+00:00",
+                "Robot"
+              ],
+              [
+                "e13",
+                "2022-02-28T22:00:00+00:00",
+                "Robot"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "payment_inserter",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Remove%20Payment%20Block.parquet": {
+            "rows": [
+              [
+                "e12",
+                "2022-02-03T22:30:00+00:00",
+                "Mario"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "invoice_block_rem",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_Set%20Payment%20Block.parquet": {
+            "rows": [
+              [
+                "e11",
+                "2022-02-03T06:30:00+00:00",
+                "Mario"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "invoice_blocker",
+                "string",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_Invoice.parquet": {
+            "rows": [
+              [
+                "R3",
+                "2022-02-03T06:30:00+00:00",
+                "is_blocked",
+                "Yes"
+              ],
+              [
+                "R3",
+                "2022-02-03T22:30:00+00:00",
+                "is_blocked",
+                "No"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ],
+              [
+                "is_blocked",
+                "string",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_Payment.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ]
+            ]
+          },
+          "object_changes/object_changes_Purchase%20Order.parquet": {
+            "rows": [
+              [
+                "PO1",
+                "2022-01-13T11:00:00+00:00",
+                "po_quantity",
+                null,
+                "600"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ],
+              [
+                "po_product",
+                "string",
+                true
+              ],
+              [
+                "po_quantity",
+                "string",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_Purchase%20Requisition.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ],
+              [
+                "pr_product",
+                "string",
+                true
+              ],
+              [
+                "pr_quantity",
+                "string",
+                true
+              ]
+            ]
+          },
+          "objects/object_Invoice.parquet": {
+            "rows": [
+              [
+                "R1",
+                "No"
+              ],
+              [
+                "R2",
+                "No"
+              ],
+              [
+                "R3",
+                "No"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "is_blocked",
+                "string",
+                true
+              ]
+            ]
+          },
+          "objects/object_Payment.parquet": {
+            "rows": [
+              [
+                "P1"
+              ],
+              [
+                "P2"
+              ],
+              [
+                "P3"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ]
+            ]
+          },
+          "objects/object_Purchase%20Order.parquet": {
+            "rows": [
+              [
+                "PO1",
+                "Cows",
+                "500"
+              ],
+              [
+                "PO2",
+                "Notebooks",
+                "1"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "po_product",
+                "string",
+                true
+              ],
+              [
+                "po_quantity",
+                "string",
+                true
+              ]
+            ]
+          },
+          "objects/object_Purchase%20Requisition.parquet": {
+            "rows": [
+              [
+                "PR1",
+                "Cows",
+                "500"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "pr_product",
+                "string",
+                true
+              ],
+              [
+                "pr_quantity",
+                "string",
+                true
+              ]
+            ]
+          },
+          "relations/e2o.parquet": {
+            "rows": [
+              [
+                "e1",
+                "PR1",
+                "Regular placement of PR"
+              ],
+              [
+                "e2",
+                "PR1",
+                "Regular approval of PR"
+              ],
+              [
+                "e3",
+                "PO1",
+                "Created order with identifier"
+              ],
+              [
+                "e3",
+                "PR1",
+                "Created order from PR"
+              ],
+              [
+                "e4",
+                "PO1",
+                "Change of quantity"
+              ],
+              [
+                "e5",
+                "PO1",
+                "Invoice created starting from the PO"
+              ],
+              [
+                "e5",
+                "R1",
+                "Invoice created with identifier"
+              ],
+              [
+                "e6",
+                "PO1",
+                "Invoice created starting from the PO"
+              ],
+              [
+                "e6",
+                "R2",
+                "Invoice created with identifier"
+              ],
+              [
+                "e7",
+                "P1",
+                "Payment inserted with identifier"
+              ],
+              [
+                "e7",
+                "R1",
+                "Payment for the invoice"
+              ],
+              [
+                "e8",
+                "R2",
+                "Payment for the invoice"
+              ],
+              [
+                "e8",
+                "P2",
+                "Payment created with identifier"
+              ],
+              [
+                "e9",
+                "R3",
+                "Invoice created with identifier"
+              ],
+              [
+                "e10",
+                "PO2",
+                "Purhcase order created with identifier"
+              ],
+              [
+                "e10",
+                "R3",
+                "Purchase order created with maverick buying from"
+              ],
+              [
+                "e11",
+                "R3",
+                "Payment block due to unethical maverick buying"
+              ],
+              [
+                "e12",
+                "R3",
+                "Payment block removed ..."
+              ],
+              [
+                "e13",
+                "R3",
+                "Payment for the invoice"
+              ],
+              [
+                "e13",
+                "P3",
+                "Payment inserted with identifier"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [
+              [
+                "R1",
+                "P1",
+                "Payment from invoice"
+              ],
+              [
+                "R2",
+                "P2",
+                "Payment from invoice"
+              ],
+              [
+                "R3",
+                "P3",
+                "Payment from invoice"
+              ],
+              [
+                "PO1",
+                "R1",
+                "Invoice from PO"
+              ],
+              [
+                "PO1",
+                "R2",
+                "Invoice from PO"
+              ],
+              [
+                "PO2",
+                "R3",
+                "Maverick buying"
+              ],
+              [
+                "PR1",
+                "PO1",
+                "PO from PR"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type,is_blocked,po_product,po_quantity,pr_product,pr_quantity\nR1,Invoice,No,,,,\nR2,Invoice,No,,,,\nR3,Invoice,No,,,,\nP1,Payment,,,,,\nP2,Payment,,,,,\nP3,Payment,,,,,\nPO1,Purchase Order,,Cows,500,,\nPO2,Purchase Order,,Notebooks,1,,\nPR1,Purchase Requisition,,,,Cows,500\n",
         "text": "ocel:eid,ocel:timestamp,ocel:activity,pr_creator,pr_approver,po_creator,po_editor,invoice_inserter,payment_inserter,invoice_blocker,invoice_block_rem,ocel:type:Purchase Requisition,ocel:type:Purchase Order,ocel:type:Invoice,ocel:type:Payment\ne1,2022-01-09 14:00:00+00:00,Create Purchase Requisition,Mike,,,,,,,,['PR1'],,,\ne2,2022-01-09 15:30:00+00:00,Approve Purchase Requisition,,Tania,,,,,,,['PR1'],,,\ne3,2022-01-10 08:15:00+00:00,Create Purchase Order,,,Mike,,,,,,['PR1'],['PO1'],,\ne4,2022-01-13 11:00:00+00:00,Change PO Quantity,,,,Mike,,,,,,['PO1'],,\ne5,2022-01-14 11:00:00+00:00,Insert Invoice,,,,,Luke,,,,,['PO1'],['R1'],\ne6,2022-01-16 10:00:00+00:00,Insert Invoice,,,,,Luke,,,,,['PO1'],['R2'],\ne7,2022-01-30 22:00:00+00:00,Insert Payment,,,,,,Robot,,,,,['R1'],['P1']\ne8,2022-01-31 21:00:00+00:00,Insert Payment,,,,,,Robot,,,,,['R2'],['P2']\ne9,2022-02-02 08:00:00+00:00,Insert Invoice,,,,,Mario,,,,,,['R3'],\ne10,2022-02-02 16:00:00+00:00,Create Purchase Order,,,Mario,,,,,,,['PO2'],['R3'],\ne11,2022-02-03 06:30:00+00:00,Set Payment Block,,,,,,,Mario,,,,['R3'],\ne12,2022-02-03 22:30:00+00:00,Remove Payment Block,,,,,,,,Mario,,,['R3'],\ne13,2022-02-28 22:00:00+00:00,Insert Payment,,,,,,Robot,,,,,['R3'],['P3']\n"
@@ -3654,7 +5397,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {
       "log": {

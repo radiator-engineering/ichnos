@@ -1,0 +1,76 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "a",
+          "attributes": {},
+          "id": "e1",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": null,
+          "source": "o1",
+          "target": "o2"
+        },
+        {
+          "qualifier": "",
+          "source": "o1",
+          "target": "o2"
+        }
+      ],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "t"
+        },
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "t"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "a",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        }
+      ]
+    },
+    "writers": {
+      "bundle-csv": {
+        "error": "ValueError",
+        "message": "Duplicate O2O relation cannot be exported."
+      },
+      "bundle-parquet": {
+        "error": "ValueError",
+        "message": "Duplicate O2O relation cannot be exported."
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "bundle-write-duplicate-o2o",
+    "fixtures": {},
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

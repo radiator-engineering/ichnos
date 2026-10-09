@@ -218,6 +218,14 @@
     },
     "naive_times": true,
     "writers": {
+      "bundle-csv": {
+        "error": "ValueError",
+        "message": "E2O relation references an unknown event or object."
+      },
+      "bundle-parquet": {
+        "error": "ValueError",
+        "message": "E2O relation references an unknown event or object."
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type,price,since\no1,order,12.5,2022-01-01\ni1,item,,\ni'2,item,,x\n",
         "text": "ocel:eid,ocel:activity,ocel:timestamp,cost,note,ocel:type:order,ocel:type:item\ne1,place order,2022-01-09 14:00:00,10,first,['o1'],\"['i1', \"\"i'2\"\"]\"\ne3,pick,2022-01-09 14:30:00,2.5,,,\"[\"\"i'2\"\"]\"\ne2,pick,2022-01-09 15:30:00,,\"a,b\",,['i1']\ne4,ship,2022-01-10 08:00:00,,,['o1'],\ne10,repeat,2022-01-12 00:00:00,,,['o1'],\ne8,short row,2022-01-12 01:00:00,,,,\n"
@@ -1396,7 +1404,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {
       "log": {
