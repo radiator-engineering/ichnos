@@ -1348,7 +1348,7 @@ fn writing_dot_saves_the_text() {
     assert_eq!(text, ichnos_viz::process_tree_dot(&tree, &options));
     // Rendering needs Graphviz, which may be missing.
     match ichnos_viz::write_process_tree(&tree, &options, dir.join("tree.svg")) {
-        Ok(()) | Err(VizError::DotNotFound(_)) => {}
+        Ok(()) | Err(VizError::DotNotFound { .. }) => {}
         Err(e) => panic!("unexpected error {e}"),
     }
     std::fs::remove_dir_all(&dir).expect("cleanup");

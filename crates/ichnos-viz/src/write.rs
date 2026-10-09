@@ -1,7 +1,7 @@
 //! Saving DOT text, as pm4py's `visualization/common/save.py` does.
 
 use std::collections::BTreeSet;
-use std::io::Write as _;
+use std::io::{ErrorKind, Write as _};
 use std::path::Path;
 use std::process::{Command, Stdio};
 
@@ -36,20 +36,30 @@ pub enum VizError {
         "cannot tell the output format from {0:?}; give the file an extension such as .dot or .svg"
     )]
     UnknownFormat(String),
-    /// The format needs Graphviz, and `dot` (or `neato`, for the drawings
-    /// with fixed positions) is not on the `PATH`.
-    #[error(
-        "writing .{0} needs the Graphviz `dot` and `neato` programs, which are not on the PATH"
-    )]
-    DotNotFound(String),
-    /// `dot` failed.
-    #[error("Graphviz `dot` failed ({status}): {stderr}")]
+    /// The format needs a Graphviz program that is not on the `PATH`:
+    /// `dot`, or `neato` for the drawings with fixed positions.
+    #[error("writing .{format} needs the Graphviz `{program}` program, which is not on the PATH")]
+    DotNotFound {
+        /// The program that was run.
+        program: String,
+        /// The output format.
+        format: String,
+    },
+    /// A Graphviz program failed.
+    #[error("Graphviz `{program}` failed ({status}): {stderr}")]
     Dot {
+        /// The program that was run.
+        program: String,
         /// The exit status.
         status: String,
-        /// What `dot` wrote to standard error.
+        /// What the program wrote to standard error.
         stderr: String,
     },
+    /// Graphviz drew a POWL model without its icons. It needs an SVG image
+    /// loader, such as the rsvg plugin, to put SVG icons into PNG or PDF
+    /// output; without one it warns and still exits with success.
+    #[error("Graphviz drew the POWL model without its icons: {0}")]
+    IconsNotLoaded(String),
     /// Reading or writing a file failed.
     #[error(transparent)]
     Io(#[from] std::io::Error),
@@ -78,7 +88,7 @@ fn write_with(dot: &str, path: &Path, program: &str, args: &[&str]) -> Result<()
         std::fs::write(path, dot)?;
         return Ok(());
     }
-    std::fs::write(path, render(dot, &format, program, args)?)?;
+    std::fs::write(path, render(dot, &format, program, args)?.stdout)?;
     Ok(())
 }
 
@@ -96,14 +106,26 @@ pub(crate) fn format_of(path: &Path) -> Result<String, VizError> {
         .ok_or_else(|| VizError::UnknownFormat(path.display().to_string()))
 }
 
+/// What Graphviz wrote for one run that succeeded.
+pub(crate) struct Rendered {
+    /// The rendered file.
+    pub(crate) stdout: Vec<u8>,
+    /// Warnings.
+    pub(crate) stderr: String,
+}
+
 /// Renders DOT text with `program <args> -T<format>` and returns what it
 /// writes.
+///
+/// The DOT text goes to `program` from a separate thread, so a program that
+/// stops reading early, as `dot` does on a syntax error, still gets its exit
+/// status and standard error read.
 pub(crate) fn render(
     dot: &str,
     format: &str,
     program: &str,
     args: &[&str],
-) -> Result<Vec<u8>, VizError> {
+) -> Result<Rendered, VizError> {
     let mut child = match Command::new(program)
         .args(args)
         .arg(format!("-T{format}"))
@@ -113,24 +135,32 @@ pub(crate) fn render(
         .spawn()
     {
         Ok(child) => child,
-        Err(e) if e.kind() == std::io::ErrorKind::NotFound => {
-            return Err(VizError::DotNotFound(format.to_owned()));
+        Err(e) if e.kind() == ErrorKind::NotFound => {
+            return Err(VizError::DotNotFound {
+                program: program.to_owned(),
+                format: format.to_owned(),
+            });
         }
         Err(e) => return Err(e.into()),
     };
-    child
-        .stdin
-        .take()
-        .expect("stdin is piped")
-        .write_all(dot.as_bytes())?;
+    let mut stdin = child.stdin.take().expect("stdin is piped");
+    let text = dot.as_bytes().to_vec();
+    let writer = std::thread::spawn(move || stdin.write_all(&text));
     let output = child.wait_with_output()?;
+    let written = writer.join().expect("writing stdin does not panic");
+    let stderr = String::from_utf8_lossy(&output.stderr).trim().to_owned();
     if !output.status.success() {
         return Err(VizError::Dot {
+            program: program.to_owned(),
             status: output.status.to_string(),
-            stderr: String::from_utf8_lossy(&output.stderr).trim().to_owned(),
+            stderr,
         });
     }
-    Ok(output.stdout)
+    written?;
+    Ok(Rendered {
+        stdout: output.stdout,
+        stderr,
+    })
 }
 
 /// Saves a Petri net drawing ([`petri_net_dot`]); see [`write_dot`] for the
@@ -335,7 +365,7 @@ pub fn write_performance_spectrum(
 }
 
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
 
     /// A path in the temporary directory. Nothing is written there: the
@@ -350,7 +380,38 @@ mod tests {
         let err = write_with("digraph {}\n", &path, "ichnos-no-such-dot", &[]).unwrap_err();
         assert!(!path.exists());
         assert!(
-            matches!(err, VizError::DotNotFound(ref f) if f == "svg"),
+            matches!(err, VizError::DotNotFound { ref program, ref format }
+                if program == "ichnos-no-such-dot" && format == "svg"),
+            "{err}"
+        );
+    }
+
+    /// An executable shell script in the temporary directory that stands in
+    /// for `dot`.
+    #[cfg(unix)]
+    pub(crate) fn fake_program(name: &str, script: &str) -> std::path::PathBuf {
+        use std::os::unix::fs::PermissionsExt as _;
+        let path = scratch(name);
+        std::fs::write(&path, format!("#!/bin/sh\n{script}\n")).unwrap();
+        std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o755)).unwrap();
+        path
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn a_program_that_stops_reading_keeps_its_error() {
+        // Far more than a pipe buffer, which the program never reads.
+        let dot = format!("digraph {{ {} }}\n", "a -> ; ".repeat(200_000));
+        let program = fake_program(
+            "syntax-error",
+            "echo 'Error: syntax error in line 1' >&2; exit 1",
+        );
+        let err = render(&dot, "svg", program.to_str().unwrap(), &[])
+            .err()
+            .unwrap();
+        let _ = std::fs::remove_file(&program);
+        assert!(
+            matches!(err, VizError::Dot { ref stderr, .. } if stderr.contains("syntax error")),
             "{err}"
         );
     }

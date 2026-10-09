@@ -135,3 +135,62 @@ pub fn alignment_table_dot(rows: &[VariantAlignment], options: &AlignmentsDotOpt
     );
     dot.finish()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ichnos_conformance::alignments::{Aligner, AlignmentOptions};
+    use ichnos_core::{EventKeys, EventLog};
+    use ichnos_model::Marking;
+
+    #[test]
+    fn alignments_become_variant_rows() {
+        // a, then a silent step, then b, then d.
+        let mut net = PetriNet::new("net");
+        let p: Vec<_> = (0..5).map(|i| net.add_place(format!("p{i}"))).collect();
+        let labels = [Some("a"), None, Some("b"), Some("d")];
+        for (i, label) in labels.into_iter().enumerate() {
+            let t = net.add_transition(format!("t{i}"), label);
+            net.add_input_arc(p[i], t).unwrap();
+            net.add_output_arc(t, p[i + 1]).unwrap();
+        }
+        let im = Marking::from([(p[0], 1)]);
+        let fm = Marking::from([(p[4], 1)]);
+        let keys = EventKeys::default();
+        // Each trace has one optimal alignment: x can only be a log move
+        // before a, and d is missing from the last trace.
+        let log = EventLog::from_trace_strings(["x,a,b,d", "a,b", "x,a,b,d"], ",", &keys);
+        let aligner = Aligner::new(&net, &im, &fm, AlignmentOptions::default()).unwrap();
+        let aligned = aligner.align_log(&log, &keys).unwrap();
+
+        let s = |v: &str| v.to_owned();
+        let rows = [
+            VariantAlignment {
+                activities: vec![s("x"), s("a"), s("b"), s("d")],
+                count: 2,
+                steps: Some(vec![
+                    AlignmentStep::Log(s("x")),
+                    AlignmentStep::Sync(s("a")),
+                    AlignmentStep::Model(None),
+                    AlignmentStep::Sync(s("b")),
+                    AlignmentStep::Sync(s("d")),
+                ]),
+            },
+            VariantAlignment {
+                activities: vec![s("a"), s("b")],
+                count: 1,
+                steps: Some(vec![
+                    AlignmentStep::Sync(s("a")),
+                    AlignmentStep::Model(None),
+                    AlignmentStep::Sync(s("b")),
+                    AlignmentStep::Model(Some(s("d"))),
+                ]),
+            },
+        ];
+        let options = AlignmentsDotOptions::default();
+        assert_eq!(
+            alignments_dot(&aligned, &net, &options),
+            alignment_table_dot(&rows, &options)
+        );
+    }
+}

@@ -322,6 +322,14 @@ fn parse_color(color: &str) -> Option<[f64; 3]> {
 /// icons in a temporary directory, so they need `dot` on the `PATH`
 /// ([`VizError::DotNotFound`]). In `.svg` output the icons are inlined, as
 /// pm4py does, so the file stands alone.
+///
+/// pm4py renders SVG and converts it to PNG or PDF with `cairosvg`, and
+/// accepts no other format. ichnos runs `dot -T<format>` for every format
+/// except `.dot` and `.gv`. Graphviz needs an SVG image loader, such as the
+/// rsvg plugin, to put the icons into PNG, PDF and other bitmap or vector
+/// formats. Without one it warns and draws the graph without the icons;
+/// `write_powl` then fails with [`VizError::IconsNotLoaded`] and writes
+/// nothing.
 pub fn write_powl(
     powl: &Powl,
     options: &PowlDotOptions,
@@ -358,7 +366,14 @@ fn write_powl_with(
             render(&powl_dot(powl, &options), &format, program, &[])
         });
     let _ = std::fs::remove_dir_all(&dir);
-    let mut output = rendered?;
+    let rendered = rendered?;
+    if ["No or improper image", "No loadimage plugin"]
+        .iter()
+        .any(|w| rendered.stderr.contains(w))
+    {
+        return Err(VizError::IconsNotLoaded(rendered.stderr));
+    }
+    let mut output = rendered.stdout;
     if format == "svg" {
         output = inline_icons(&String::from_utf8_lossy(&output)).into_bytes();
     }
@@ -470,6 +485,63 @@ mod tests {
         assert!(out.ends_with("</g></g><image xlink:href=\"other.png\" width=\"1px\"/></svg>"));
     }
 
+    fn xor() -> Powl {
+        Powl::xor([Powl::activity("a"), Powl::activity("b")])
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn svg_output_inlines_every_icon() {
+        // Stands in for `dot -Tsvg`: one <image> per image attribute.
+        let program = crate::write::tests::fake_program(
+            "powl-svg",
+            r#"printf '<svg>'
+sed -n 's/.*image="\([^"]*\)".*/\1/p' | while read -r p; do
+  printf '<image xlink:href="%s" width="20px" height="20px" x="1" y="2"/>' "$p"
+done
+printf '</svg>'"#,
+        );
+        let path =
+            std::env::temp_dir().join(format!("ichnos-viz-powl-{}-xor.svg", std::process::id()));
+        write_powl_with(
+            &xor(),
+            &PowlDotOptions::default(),
+            &path,
+            program.to_str().unwrap(),
+        )
+        .unwrap();
+        let svg = std::fs::read_to_string(&path).unwrap();
+        let _ = std::fs::remove_file(&path);
+        let _ = std::fs::remove_file(&program);
+        assert!(svg.starts_with("<svg><g"), "{svg}");
+        assert!(!svg.contains("<image"), "{svg}");
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn missing_icons_are_an_error() {
+        // Graphviz without an SVG image loader warns and exits with success.
+        let program = crate::write::tests::fake_program(
+            "powl-png",
+            "cat >/dev/null; printf 'PNG'; echo 'Warning: No or improper image file=\"xor.svg\"' >&2",
+        );
+        let path =
+            std::env::temp_dir().join(format!("ichnos-viz-powl-{}-xor.png", std::process::id()));
+        let err = write_powl_with(
+            &xor(),
+            &PowlDotOptions::default(),
+            &path,
+            program.to_str().unwrap(),
+        )
+        .unwrap_err();
+        let _ = std::fs::remove_file(&program);
+        assert!(!path.exists());
+        assert!(
+            matches!(err, VizError::IconsNotLoaded(ref s) if s.contains("xor.svg")),
+            "{err}"
+        );
+    }
+
     #[test]
     fn rendering_without_dot_is_a_typed_error() {
         let path = std::env::temp_dir().join(format!("ichnos-viz-powl-{}.svg", std::process::id()));
@@ -481,7 +553,8 @@ mod tests {
         )
         .unwrap_err();
         assert!(
-            matches!(err, VizError::DotNotFound(ref f) if f == "svg"),
+            matches!(err, VizError::DotNotFound { ref program, ref format }
+                if program == "ichnos-no-such-dot" && format == "svg"),
             "{err}"
         );
     }
