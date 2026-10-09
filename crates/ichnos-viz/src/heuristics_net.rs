@@ -15,9 +15,10 @@ pub struct HeuristicsNetDotOptions {
     pub bgcolor: String,
     /// A title above the graph. `None` or an empty title draws none.
     pub graph_title: Option<String>,
-    /// Start and end arcs need at least this frequency (pm4py's
-    /// `min_dfg_occurrences`, which discovery stores on the net). Default 1,
-    /// as in discovery.
+    /// Start and end arcs need at least this frequency. pm4py reads
+    /// `min_dfg_occurrences` from the net, where discovery stores it;
+    /// `HeuristicsNet` does not keep it, so pass the value discovery used.
+    /// Default 1, discovery's default.
     pub min_dfg_occurrences: u64,
 }
 

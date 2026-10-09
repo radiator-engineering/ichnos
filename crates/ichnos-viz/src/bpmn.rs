@@ -226,11 +226,27 @@ fn add_node(dot: &mut Dot, id: &str, n: &Node, font_size: &str, options: &BpmnDo
 /// from the start events.
 ///
 /// The search does not enter end events. Nodes it does not reach, end
-/// events among them, come last. Ties keep id order.
+/// events among them, come last. Ties keep the order of pm4py's networkx
+/// graph: nodes in id order, and flows by source node, then by target in
+/// the order of the first flow between the two.
 fn sorted_nodes_edges(bpmn: &Bpmn) -> (Vec<NodeId>, Vec<(NodeId, NodeId)>) {
+    let mut targets: BTreeMap<NodeId, Vec<(NodeId, usize)>> = BTreeMap::new();
+    for (_, f) in bpmn.flows() {
+        let out = targets.entry(f.source()).or_default();
+        match out.iter_mut().find(|(t, _)| *t == f.target()) {
+            Some((_, n)) => *n += 1,
+            None => out.push((f.target(), 1)),
+        }
+    }
     let edges: Vec<(NodeId, NodeId)> = bpmn
-        .flows()
-        .map(|(_, f)| (f.source(), f.target()))
+        .node_ids()
+        .flat_map(|s| {
+            targets
+                .get(&s)
+                .into_iter()
+                .flatten()
+                .flat_map(move |&(t, n)| std::iter::repeat_n((s, t), n))
+        })
         .collect();
     let mut level: BTreeMap<NodeId, u32> = bpmn
         .nodes()
@@ -265,4 +281,50 @@ fn sorted_nodes_edges(bpmn: &Bpmn) -> (Vec<NodeId>, Vec<(NodeId, NodeId)>) {
     let mut sorted = edges;
     sorted.sort_by_key(|(s, t)| (level[s], level[t]));
     (nodes, sorted)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ichnos_model::bpmn::GatewayDirection;
+
+    #[test]
+    fn flows_sort_by_level_then_as_networkx_lists_them() {
+        let mut bpmn = Bpmn::new("p");
+        let start = bpmn.add_node(NodeKind::start_event(), "start");
+        let a = bpmn.add_node(NodeKind::task(), "a");
+        let split = bpmn.add_node(
+            NodeKind::gateway(GatewayKind::Exclusive, GatewayDirection::Diverging),
+            "split",
+        );
+        let b = bpmn.add_node(NodeKind::task(), "b");
+        let end = bpmn.add_node(NodeKind::end_event(), "end");
+        for (s, t) in [
+            (start, split),
+            (split, b),
+            (a, end),
+            (split, a),
+            (b, end),
+            (split, b),
+        ] {
+            bpmn.add_flow(s, t).expect("flow");
+        }
+        let (nodes, edges) = sorted_nodes_edges(&bpmn);
+        // Levels: start 0, split 1, a and b 2; the search does not enter
+        // the end event, which comes last.
+        assert_eq!(nodes, [start, split, a, b, end]);
+        // Ties keep networkx's order: by source node, and the two flows
+        // from `split` to `b` together, before `split` to `a`.
+        assert_eq!(
+            edges,
+            [
+                (start, split),
+                (split, b),
+                (split, b),
+                (split, a),
+                (a, end),
+                (b, end)
+            ]
+        );
+    }
 }

@@ -160,15 +160,17 @@ pub fn write_heuristics_net(
 mod tests {
     use super::*;
 
+    /// A path in the temporary directory. Nothing is written there: the
+    /// tests below fail before creating a file.
     fn scratch(name: &str) -> std::path::PathBuf {
-        let dir = std::env::temp_dir().join(format!("ichnos-viz-write-{}", std::process::id()));
-        std::fs::create_dir_all(&dir).expect("temp dir");
-        dir.join(name)
+        std::env::temp_dir().join(format!("ichnos-viz-write-{}-{name}", std::process::id()))
     }
 
     #[test]
     fn a_missing_program_is_a_typed_error() {
-        let err = write_with("digraph {}\n", &scratch("g.svg"), "ichnos-no-such-dot").unwrap_err();
+        let path = scratch("g.svg");
+        let err = write_with("digraph {}\n", &path, "ichnos-no-such-dot").unwrap_err();
+        assert!(!path.exists());
         assert!(
             matches!(err, VizError::DotNotFound(ref f) if f == "svg"),
             "{err}"

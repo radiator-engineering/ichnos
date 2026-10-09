@@ -52,6 +52,10 @@ pub struct PetriNetDotOptions {
     pub debug: bool,
     /// Labels, colours and pen widths that override the defaults.
     pub decorations: PetriNetDecorations,
+    /// Data-net guards by transition, each drawn as a dotted box linked to
+    /// its transition. pm4py reads them from the transitions' properties;
+    /// `ichnos_io::read_pnml` keeps them in `PnmlDocument::transition_data`.
+    pub guards: BTreeMap<TransitionId, String>,
 }
 
 impl Default for PetriNetDotOptions {
@@ -63,6 +67,7 @@ impl Default for PetriNetDotOptions {
             font_size: 12,
             debug: false,
             decorations: PetriNetDecorations::default(),
+            guards: BTreeMap::new(),
         }
     }
 }
@@ -74,8 +79,9 @@ impl Default for PetriNetDotOptions {
 /// of the initial marking shows a dot (one token) or its token count; a
 /// place of the final marking only shows a square. Inhibitor arcs end in a
 /// dot and reset arcs in a `vee`. When any arc has a weight other than 1,
-/// every arc shows its weight. Elements are written in the order of their
-/// distance from the initial marking, which guides the Graphviz layout.
+/// every arc shows its weight. Guards ([`PetriNetDotOptions::guards`]) are
+/// dotted boxes. Elements are written in the order of their distance from
+/// the initial marking, which guides the Graphviz layout.
 pub fn petri_net_dot(
     net: &PetriNet,
     initial: &Marking,
@@ -104,7 +110,8 @@ pub fn petri_net_dot(
     let place_id = |p: PlaceId| format!("p{}", p.index());
     let transition_id = |t: TransitionId| format!("t{}", t.index());
 
-    dot.defaults("node", vec![("shape", Some("box".to_owned()))]);
+    let s = |v: &str| Some(v.to_owned());
+    dot.defaults("node", vec![("shape", s("box"))]);
     for t in transitions {
         let tr = net.transition(t);
         let d = deco.transitions.get(&t);
@@ -140,9 +147,18 @@ pub fn petri_net_dot(
                 ("fontcolor", Some(fontcolor.to_owned())),
             ],
         );
+        if let Some(guard) = options.guards.get(&t) {
+            let guard_id = format!("{}guard", transition_id(t));
+            dot.node(&guard_id, Some(guard), vec![("style", s("dotted"))]);
+            dot.edge(
+                &guard_id,
+                &transition_id(t),
+                None,
+                vec![("arrowhead", s("none")), ("style", s("dotted"))],
+            );
+        }
     }
 
-    let s = |v: &str| Some(v.to_owned());
     for p in places {
         let d = deco.places.get(&p);
         let deco_label = d.and_then(|d| d.label.clone());

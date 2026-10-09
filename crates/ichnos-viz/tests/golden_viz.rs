@@ -4,6 +4,10 @@
 //! describes, with node defaults resolved. Node names differ (pm4py uses
 //! object ids), so graphs are compared up to isomorphism: nodes by their
 //! attributes, edges by theirs. See `tools/golden/cases/viz.py`.
+//!
+//! Where pm4py's statement order does not depend on Python's set order, the
+//! golden also records it, and the test checks that ichnos writes the
+//! nodes and edges in the same order. Graphviz lays out in that order.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -14,7 +18,7 @@ use ichnos_model::heuristics_net::{HeuristicsEdge, HeuristicsNet, Matrix};
 use ichnos_model::petri::{ArcEnds, ArcKind};
 use ichnos_model::{Dfg, Label, Marking, PetriNet, PlaceId, ProcessTree};
 use ichnos_viz::{
-    BpmnDotOptions, DfgDotOptions, HeuristicsNetDotOptions, PerformanceDfgDotOptions,
+    BpmnDotOptions, Decoration, DfgDotOptions, HeuristicsNetDotOptions, PerformanceDfgDotOptions,
     PetriNetDotOptions, ProcessTreeDotOptions, VizError,
 };
 use serde_json::Value;
@@ -456,6 +460,7 @@ fn assert_matches(g: &Golden, dot: &str) {
     );
     let want = expected_graph(expected);
     if isomorphic(&actual, &want) {
+        assert_order(g, expected, &p);
         return;
     }
     let bag = |labels: &[String]| {
@@ -500,6 +505,106 @@ fn assert_matches(g: &Golden, dot: &str) {
         diff.join("\n"),
         ediff.join("\n")
     );
+}
+
+/// Checks the order of the nodes and edges whose labels are unique against
+/// the order the golden records, if it records one.
+fn assert_order(g: &Golden, expected: &Value, p: &Parsed) {
+    let Some(order) = expected.get("order") else {
+        return;
+    };
+    let label: BTreeMap<&str, String> = expected["nodes"]
+        .as_array()
+        .expect("nodes")
+        .iter()
+        .map(|n| (str_field(n, "key"), attrs_key(&attrs_of(&n["attrs"]))))
+        .collect();
+    let golden_edges = expected["edges"].as_array().expect("edges");
+    let want_nodes: Vec<String> = order["nodes"]
+        .as_array()
+        .expect("node order")
+        .iter()
+        .map(|k| label[k.as_str().expect("key")].clone())
+        .collect();
+    let want_edges: Vec<(String, String, String)> = order["edges"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|i| {
+            let e = &golden_edges[usize::try_from(as_u64(i)).expect("index fits")];
+            (
+                label[e[0].as_str().expect("source")].clone(),
+                label[e[1].as_str().expect("target")].clone(),
+                attrs_key(&attrs_of(&e[2])),
+            )
+        })
+        .collect();
+    let node_label: BTreeMap<&str, String> = p
+        .nodes
+        .iter()
+        .map(|(n, a)| (n.as_str(), attrs_key(a)))
+        .collect();
+    let have_nodes: Vec<String> = p.nodes.iter().map(|(_, a)| attrs_key(a)).collect();
+    let have_edges: Vec<(String, String, String)> = p
+        .edges
+        .iter()
+        .map(|(s, t, a)| {
+            (
+                node_label[s.as_str()].clone(),
+                node_label[t.as_str()].clone(),
+                attrs_key(a),
+            )
+        })
+        .collect();
+    fn unique<T: Ord + Clone>(want: &[T], have: &[T]) -> (Vec<T>, Vec<T>) {
+        let mut count: BTreeMap<&T, usize> = BTreeMap::new();
+        for x in want {
+            *count.entry(x).or_default() += 1;
+        }
+        let keep = |v: &[T]| {
+            v.iter()
+                .filter(|x| count.get(x) == Some(&1))
+                .cloned()
+                .collect()
+        };
+        (keep(want), keep(have))
+    }
+    // Shows a node by its label attribute alone, to keep failures short.
+    let short = |key: &str| -> String {
+        serde_json::from_str::<Attrs>(key)
+            .ok()
+            .and_then(|a| a.get("label").cloned())
+            .unwrap_or_else(|| key.to_owned())
+    };
+    let (want, have) = unique(&want_nodes, &have_nodes);
+    assert!(!want.is_empty(), "{}: no node has a unique label", g.case);
+    if have != want {
+        let show = |v: &[String]| v.iter().map(|k| short(k)).collect::<Vec<_>>();
+        panic!(
+            "{}: node order\n ichnos {:?}\n pm4py  {:?}",
+            g.case,
+            show(&have),
+            show(&want)
+        );
+    }
+    if order.get("edges").is_none() {
+        return;
+    }
+    let (want, have) = unique(&want_edges, &have_edges);
+    if have != want {
+        let show = |v: &[(String, String, String)]| {
+            v.iter()
+                .map(|(s, t, e)| format!("{} -> {} [{}]", short(s), short(t), short(e)))
+                .collect::<Vec<_>>()
+        };
+        let first = have.iter().zip(&want).take_while(|(a, b)| a == b).count();
+        panic!(
+            "{}: edge order differs from position {first}\n ichnos {:#?}\n pm4py  {:#?}",
+            g.case,
+            show(&have[first..have.len().min(first + 6)]),
+            show(&want[first..want.len().min(first + 6)])
+        );
+    }
 }
 
 fn str_field<'a>(v: &'a Value, key: &str) -> &'a str {
@@ -571,6 +676,36 @@ fn build_net(model: &Value) -> (PetriNet, Marking, Marking) {
     (net, initial, fin)
 }
 
+fn decoration(d: &Value) -> Decoration {
+    let field = |k: &str| d[k].as_str().map(str::to_owned);
+    Decoration {
+        label: field("label"),
+        color: field("color"),
+        penwidth: field("penwidth"),
+    }
+}
+
+#[test]
+fn guards_come_from_the_pnml_reader() {
+    let g = golden("viz", "petri-net-data_petri_net");
+    let doc = ichnos_io::read_pnml(g.fixture("model"), &ichnos_io::PnmlReadOptions::default())
+        .expect("PNML reads");
+    let net = &doc.model.net;
+    let guards: BTreeMap<String, String> = doc
+        .transition_data
+        .iter()
+        .filter_map(|(&t, d)| Some((net.transition(t).name.clone(), d.guard.clone()?)))
+        .collect();
+    let want: BTreeMap<String, String> = g
+        .expected_at("/model/guards")
+        .as_object()
+        .expect("guards")
+        .iter()
+        .map(|(k, v)| (k.clone(), v.as_str().expect("guard").to_owned()))
+        .collect();
+    assert_eq!(guards, want);
+}
+
 #[test]
 fn petri_nets_match_pm4py() {
     for case in cases("viz").iter().filter(|c| c.starts_with("petri-net-")) {
@@ -585,6 +720,57 @@ fn petri_nets_match_pm4py() {
             options.rankdir = v.to_owned();
         }
         options.graph_title = p["graph_title"].as_str().map(str::to_owned);
+        if let Some(n) = p["font_size"].as_u64() {
+            options.font_size = u32::try_from(n).expect("fits");
+        }
+        options.debug = p["debug"].as_bool().unwrap_or(false);
+        let transition = |name: &str| {
+            net.transition_ids()
+                .find(|&t| net.transition(t).name == name)
+                .unwrap_or_else(|| panic!("no transition {name}"))
+        };
+        let place = |name: &str| {
+            net.place_ids()
+                .find(|&p| net.place(p).name == name)
+                .unwrap_or_else(|| panic!("no place {name}"))
+        };
+        let deco = &p["decorations"];
+        for (name, d) in deco["places"].as_object().into_iter().flatten() {
+            options
+                .decorations
+                .places
+                .insert(place(name), decoration(d));
+        }
+        for (name, d) in deco["transitions"].as_object().into_iter().flatten() {
+            options
+                .decorations
+                .transitions
+                .insert(transition(name), decoration(d));
+        }
+        for a in deco["arcs"].as_array().into_iter().flatten() {
+            let (source, target) = (
+                a[0].as_str().expect("source"),
+                a[1].as_str().expect("target"),
+            );
+            let arc = net
+                .arc_ids()
+                .find(|&id| match net.arc(id).ends {
+                    ArcEnds::PlaceToTransition(p, t) => {
+                        net.place(p).name == source && net.transition(t).name == target
+                    }
+                    ArcEnds::TransitionToPlace(t, p) => {
+                        net.transition(t).name == source && net.place(p).name == target
+                    }
+                })
+                .expect("decorated arc");
+            options.decorations.arcs.insert(arc, decoration(&a[2]));
+        }
+        let model = g.expected_at("/model");
+        for (name, guard) in model["guards"].as_object().into_iter().flatten() {
+            options
+                .guards
+                .insert(transition(name), guard.as_str().expect("guard").to_owned());
+        }
         assert_matches(
             &g,
             &ichnos_viz::petri_net_dot(&net, &initial, &fin, &options),
@@ -608,8 +794,15 @@ fn dfgs_match_pm4py() {
         dfg.start_activities = counts(&model["start"]);
         dfg.end_activities = counts(&model["end"]);
         let mut options = DfgDotOptions::default();
-        if let Some(n) = params(&g)["max_num_edges"].as_u64() {
+        let p = params(&g);
+        if let Some(n) = p["max_num_edges"].as_u64() {
             options.max_num_edges = usize::try_from(n).expect("fits");
+        }
+        if let Some(n) = p["font_size"].as_u64() {
+            options.font_size = u32::try_from(n).expect("fits");
+        }
+        if let Some(c) = model.get("activities_count") {
+            options.activities_count = Some(counts(c));
         }
         assert_matches(&g, &ichnos_viz::dfg_dot(&dfg, &options));
     }
@@ -662,6 +855,16 @@ fn performance_dfgs_match_pm4py() {
         if p["business_hours"].as_bool() == Some(true) {
             options.business_hours = Some(BusinessHours::default());
         }
+        if let Some(times) = model.get("serv_time") {
+            options.serv_time = Some(
+                times
+                    .as_object()
+                    .expect("service times")
+                    .iter()
+                    .map(|(a, v)| (Label::from(a.as_str()), as_f64(v)))
+                    .collect(),
+            );
+        }
         assert_matches(&g, &ichnos_viz::performance_dfg_dot(&dfg, &options));
     }
 }
@@ -674,7 +877,15 @@ fn process_trees_match_pm4py() {
     {
         let g = golden("viz", case);
         let tree = ProcessTree::parse(str_field(g.expected_at("/model"), "tree")).expect("tree");
-        let dot = ichnos_viz::process_tree_dot(&tree, &ProcessTreeDotOptions::default());
+        let p = params(&g);
+        let mut options = ProcessTreeDotOptions::default();
+        if let Some(sort) = p["enable_deepcopy"].as_bool() {
+            options.sort = sort;
+        }
+        if let Some(n) = p["font_size"].as_u64() {
+            options.font_size = u32::try_from(n).expect("fits");
+        }
+        let dot = ichnos_viz::process_tree_dot(&tree, &options);
         assert_matches(&g, &dot);
     }
 }
@@ -685,10 +896,24 @@ fn bpmn_diagrams_match_pm4py() {
         let g = golden("viz", case);
         let doc = ichnos_io::read_bpmn(g.fixture("model"), &ichnos_io::BpmnReadOptions::default())
             .expect("BPMN reads");
-        assert_matches(
-            &g,
-            &ichnos_viz::bpmn_dot(&doc.model, &BpmnDotOptions::default()),
-        );
+        let p = params(&g);
+        let mut options = BpmnDotOptions::default();
+        if let Some(v) = p["enable_swimlanes"].as_bool() {
+            options.enable_swimlanes = v;
+        }
+        if let Some(v) = p["include_name_in_events"].as_bool() {
+            options.include_name_in_events = v;
+        }
+        if let Some(v) = p["endpoints_shape"].as_str() {
+            v.clone_into(&mut options.endpoints_shape);
+        }
+        if let Some(n) = p["swimlanes_margin"].as_u64() {
+            options.swimlanes_margin = u32::try_from(n).expect("fits");
+        }
+        if let Some(n) = p["font_size"].as_u64() {
+            options.font_size = u32::try_from(n).expect("fits");
+        }
+        assert_matches(&g, &ichnos_viz::bpmn_dot(&doc.model, &options));
     }
 }
 
@@ -764,7 +989,11 @@ fn heuristics_nets_match_pm4py() {
     {
         let g = golden("viz", case);
         let net = build_heuristics_net(g.expected_at("/model"));
-        let dot = ichnos_viz::heuristics_net_dot(&net, &HeuristicsNetDotOptions::default());
+        let mut options = HeuristicsNetDotOptions::default();
+        if let Some(n) = params(&g)["min_dfg_occurrences"].as_u64() {
+            options.min_dfg_occurrences = n;
+        }
+        let dot = ichnos_viz::heuristics_net_dot(&net, &options);
         assert_matches(&g, &dot);
     }
 }
