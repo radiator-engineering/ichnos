@@ -26,6 +26,8 @@ mod error;
 pub mod heuristics;
 pub mod inductive;
 pub mod log_skeleton;
+/// Prefix-tree discovery.
+pub mod prefix_tree;
 pub mod temporal_profile;
 
 pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha_plus};
@@ -48,6 +50,4 @@ pub use inductive::{
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
 
-/// Prefix-tree discovery.
-pub mod prefix_tree;
 pub use prefix_tree::{PrefixNode, PrefixTree, PrefixTreeOptions, prefix_tree};
