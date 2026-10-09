@@ -1,0 +1,332 @@
+{
+  "expected": {
+    "extended_table": {
+      "object_types": [
+        "order",
+        "item"
+      ],
+      "rows": [
+        {
+          "event": "e1",
+          "objects": {
+            "item": [
+              "i1",
+              "i'2",
+              "ié",
+              "i4x",
+              "i\\5"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e3",
+          "objects": {
+            "item": [
+              "i'2"
+            ]
+          }
+        },
+        {
+          "event": "e2",
+          "objects": {
+            "item": [
+              "i1"
+            ]
+          }
+        },
+        {
+          "event": "e4",
+          "objects": {
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e5",
+          "objects": {}
+        },
+        {
+          "event": "e7",
+          "objects": {}
+        },
+        {
+          "event": "e10",
+          "objects": {
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e8",
+          "objects": {
+            "order": [
+              "o2"
+            ]
+          }
+        }
+      ]
+    },
+    "is_ocel20": true,
+    "ocel": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "cost": [
+              "string",
+              "10"
+            ],
+            "note": [
+              "string",
+              "first"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00"
+        },
+        {
+          "activity": "pick",
+          "attributes": {
+            "cost": [
+              "string",
+              "2.5"
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "pick",
+          "attributes": {
+            "note": [
+              "string",
+              "a,b"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00"
+        },
+        {
+          "activity": "ship",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00"
+        },
+        {
+          "activity": "lonely",
+          "attributes": {
+            "note": [
+              "string",
+              "x"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2022-01-10T09:00:00.000000+00:00"
+        },
+        {
+          "activity": "not lists",
+          "attributes": {
+            "note": [
+              "string",
+              "multi\nline"
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2022-01-11T01:00:00.000000+00:00"
+        },
+        {
+          "activity": "repeat",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "2022-01-12T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "short row",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "2022-01-12T01:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i'2",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "ié",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i4x",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i\\5",
+          "type": "item"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i'2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "ié",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i4x",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i\\5",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick",
+          "event": "e3",
+          "object": "i'2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "ship",
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "repeat",
+          "event": "e10",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "short row",
+          "event": "e8",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "2022-01-12T01:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "summary": {
+      "activities": 7,
+      "activities_per_object_type": {
+        "item": 2,
+        "order": 4
+      },
+      "activity_counts": {
+        "lonely": 1,
+        "not lists": 1,
+        "pick": 2,
+        "place order": 1,
+        "repeat": 1,
+        "ship": 1,
+        "short row": 1
+      },
+      "events": 8,
+      "object_type_counts": {
+        "item": 5,
+        "order": 2
+      },
+      "object_types": 2,
+      "objects": 7,
+      "relations": 11,
+      "text": "Object-Centric Event Log (number of events: 8, number of objects: 7, number of activities: 7, number of object types: 2, events-objects relationships: 11)\nActivities occurrences: Counter({'pick': 2, 'place order': 1, 'ship': 1, 'lonely': 1, 'not lists': 1, 'repeat': 1, 'short row': 1})\nObject types occurrences (number of objects): Counter({'item': 5, 'order': 2})\nUnique activities per object type: Counter({'order': 4, 'item': 2})\nPlease use <THIS>.get_extended_table() to get a dataframe representation of the events related to the objects."
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "model-typed-csv",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed.csv"
+    },
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.read_ocel_csv"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

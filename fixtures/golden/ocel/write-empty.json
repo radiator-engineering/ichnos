@@ -10,6 +10,13 @@
       "relations": []
     },
     "writers": {
+      "csv": {
+        "objects": "ocel:oid,ocel:type\n",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp\n"
+      },
+      "csv2": {
+        "text": "id,activity,timestamp\r\n"
+      },
       "json": {
         "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [],\n    \"ocel:attribute-names\": [],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {},\n  \"ocel:objects\": {}\n}"
       },
@@ -32,7 +39,9 @@
       "pm4py.write_ocel_json",
       "pm4py.write_ocel_xml",
       "pm4py.write_ocel2_json",
-      "pm4py.write_ocel2_xml"
+      "pm4py.write_ocel2_xml",
+      "pm4py.write_ocel2_csv",
+      "pm4py.write_ocel_csv"
     ],
     "loaders": {},
     "params": {},

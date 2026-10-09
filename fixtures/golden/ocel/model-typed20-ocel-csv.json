@@ -1,0 +1,385 @@
+{
+  "expected": {
+    "extended_table": {
+      "object_types": [
+        "item",
+        "order"
+      ],
+      "rows": [
+        {
+          "event": "e1",
+          "objects": {
+            "item": [
+              "i1",
+              "i/2"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e2",
+          "objects": {
+            "item": [
+              "i1"
+            ]
+          }
+        },
+        {
+          "event": "e3",
+          "objects": {
+            "item": [
+              "i/2"
+            ]
+          }
+        },
+        {
+          "event": "e4",
+          "objects": {
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e5",
+          "objects": {}
+        }
+      ]
+    },
+    "is_ocel20": true,
+    "ocel": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "cost": [
+              "float",
+              10.0
+            ],
+            "count": [
+              "float",
+              7.0
+            ],
+            "note": [
+              "string",
+              "first"
+            ],
+            "rush": [
+              "boolean",
+              true
+            ],
+            "slot": [
+              "date",
+              "2022-01-09T18:00:00.000000+00:00"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "cost": [
+              "float",
+              2.5
+            ],
+            "count": [
+              "float",
+              2.0
+            ],
+            "note": [
+              "string",
+              "a,b"
+            ],
+            "rush": [
+              "boolean",
+              false
+            ],
+            "slot": [
+              "date",
+              "2022-01-09T17:00:00.000000+00:00"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "count": [
+              "float",
+              3.0
+            ],
+            "rush": [
+              "boolean",
+              false
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.500000+00:00"
+        },
+        {
+          "activity": "ship",
+          "attributes": {
+            "cost": [
+              "float",
+              4.0
+            ],
+            "note": [
+              "string",
+              "x \"q\" é"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00"
+        },
+        {
+          "activity": "audit",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "2022-01-11T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i1"
+        },
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i/2"
+        },
+        {
+          "qualifier": "follows",
+          "source": "o1",
+          "target": "o2"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "weight",
+          "object": "i/2",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item",
+          "value": [
+            "float",
+            1.5
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            12.5
+          ]
+        },
+        {
+          "field": "vip",
+          "object": "o1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "boolean",
+            true
+          ]
+        },
+        {
+          "field": "label",
+          "object": "o1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "string",
+            "big"
+          ]
+        },
+        {
+          "field": "weight",
+          "object": "i/2",
+          "timestamp": "2022-01-09T14:30:00.500000+00:00",
+          "type": "item",
+          "value": [
+            "float",
+            1.75
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T17:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            13.0
+          ]
+        },
+        {
+          "field": "label",
+          "object": "o1",
+          "timestamp": "2022-01-09T17:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "string",
+            "bigger"
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T19:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            13.5
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              1.25
+            ]
+          },
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i/2",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "i#3",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "since": [
+              "date",
+              "2022-01-01T00:00:00.000000+00:00"
+            ],
+            "value": [
+              "float",
+              7.0
+            ]
+          },
+          "id": "o2",
+          "type": "order"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "ordered",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i/2",
+          "qualifier": "ordered",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "placer",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "pick item",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "picked",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick item",
+          "event": "e3",
+          "object": "i/2",
+          "qualifier": "picked",
+          "timestamp": "2022-01-09T14:30:00.500000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "ship",
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "shipped",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "summary": {
+      "activities": 4,
+      "activities_per_object_type": {
+        "item": 2,
+        "order": 2
+      },
+      "activity_counts": {
+        "audit": 1,
+        "pick item": 2,
+        "place order": 1,
+        "ship": 1
+      },
+      "events": 5,
+      "object_type_counts": {
+        "item": 3,
+        "order": 2
+      },
+      "object_types": 2,
+      "objects": 5,
+      "relations": 6,
+      "text": "Object-Centric Event Log (number of events: 5, number of objects: 5, number of activities: 4, number of object types: 2, events-objects relationships: 6)\nActivities occurrences: Counter({'pick item': 2, 'place order': 1, 'ship': 1, 'audit': 1})\nObject types occurrences (number of objects): Counter({'item': 3, 'order': 2})\nUnique activities per object type: Counter({'item': 2, 'order': 2})\nPlease use <THIS>.get_extended_table() to get a dataframe representation of the events related to the objects."
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "model-typed20-ocel-csv",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed20.ocel.csv"
+    },
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.read_ocel2_csv"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

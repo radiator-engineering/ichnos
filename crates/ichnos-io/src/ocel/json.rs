@@ -55,7 +55,7 @@ pub fn read_ocel2_json_from_reader(input: impl Read) -> Result<Ocel> {
 
 /// A JSON object read as its entries in file order. A repeated key keeps
 /// its first position and its last value, as in a Python `dict`.
-struct Ordered<T>(Vec<(String, T)>);
+pub(super) struct Ordered<T>(pub(super) Vec<(String, T)>);
 
 impl<T> Default for Ordered<T> {
     fn default() -> Self {

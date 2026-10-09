@@ -1,16 +1,20 @@
-//! The OCEL JSON and XML readers against pm4py's.
+//! The OCEL JSON, XML and CSV readers against pm4py's.
 //!
 //! The `ocel/model-*` goldens hold the tables pm4py's readers give for each
-//! fixture. This test reads the same fixtures and compares every table.
+//! fixture. This test reads the same fixtures and compares every table. The
+//! `ocel/read-csv*` goldens hold the tables, or pm4py's error, for short CSV
+//! texts. Goldens record times to the microsecond, so the test truncates
+//! ichnos' nanoseconds.
 
 use std::path::Path;
 
-use chrono::DateTime;
+use chrono::{DateTime, SubsecRound};
 use ichnos_core::AttributeValue;
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
-    OcelReadOptions, read_ocel, read_ocel_json, read_ocel_json_from_reader, read_ocel_xml,
-    read_ocel2, read_ocel2_json, read_ocel2_xml,
+    OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_csv_from_reader, read_ocel_json,
+    read_ocel_json_from_reader, read_ocel_xml, read_ocel2, read_ocel2_csv,
+    read_ocel2_csv_from_reader, read_ocel2_json, read_ocel2_xml,
 };
 use ichnos_ocel::Ocel;
 use serde_json::Value;
@@ -33,7 +37,7 @@ fn same(ours: &AttributeValue, theirs: &Value, xml: bool, what: &str) -> bool {
         ("float", AttributeValue::Float(f)) => x.as_f64() == Some(*f),
         ("boolean", AttributeValue::Bool(b)) => x.as_bool() == Some(*b),
         ("date", AttributeValue::Date(d)) => {
-            DateTime::parse_from_rfc3339(x.as_str().unwrap()).unwrap() == *d
+            DateTime::parse_from_rfc3339(x.as_str().unwrap()).unwrap() == d.trunc_subsecs(6)
         }
         ("float", AttributeValue::Int(i)) if !xml => x.as_f64() == Some(*i as f64),
         ("string", AttributeValue::Int(i)) if xml => i.to_string() == x.as_str().unwrap(),
@@ -81,7 +85,7 @@ fn check(ocel: &Ocel, want: &Value, id: &str, relations_in_order: bool, xml: boo
         let what = format!("{id}: event {}", e.id);
         assert_eq!(*e.id, *s(&w["id"]), "{what}");
         assert_eq!(*e.activity, *s(&w["activity"]), "{what}");
-        assert_eq!(e.timestamp, ts(&w["timestamp"]), "{what}");
+        assert_eq!(e.timestamp.trunc_subsecs(6), ts(&w["timestamp"]), "{what}");
         check_attributes(&e.attributes, &w["attributes"], xml, &what);
     }
     let objects = want["objects"].as_array().unwrap();
@@ -167,7 +171,7 @@ fn check(ocel: &Ocel, want: &Value, id: &str, relations_in_order: bool, xml: boo
         let what = format!("{id}: change of {}", c.object);
         assert_eq!(*c.object, *s(&w["object"]), "{what}");
         assert_eq!(*c.object_type, *s(&w["type"]), "{what}");
-        assert_eq!(c.timestamp, ts(&w["timestamp"]), "{what}");
+        assert_eq!(c.timestamp.trunc_subsecs(6), ts(&w["timestamp"]), "{what}");
         assert_eq!(*c.field, *s(&w["field"]), "{what}");
         match (&c.value, &w["value"]) {
             (None, Value::Null) => {}
@@ -196,7 +200,15 @@ fn readers_match_pm4py() {
         }
         let path = g.fixture("log");
         let path: &Path = path.as_ref();
-        let (ocel, in_order) = if functions.contains(&"pm4py.read_ocel_json") {
+        let (ocel, in_order) = if functions.contains(&"pm4py.read_ocel_csv") {
+            // pm4py orders the objects by set iteration; the golden keeps
+            // the order under `PYTHONHASHSEED=0`.
+            let ocel =
+                read_ocel_csv(path, None).map(|ocel| ordered_like(ocel, &g.expected["ocel"]));
+            (ocel, true)
+        } else if functions.contains(&"pm4py.read_ocel2_csv") {
+            (read_ocel2_csv(path), true)
+        } else if functions.contains(&"pm4py.read_ocel_json") {
             (read_ocel_json(path), true)
         } else if functions.contains(&"pm4py.read_ocel_xml") {
             (read_ocel_xml(path, &OcelReadOptions::default()), true)
@@ -213,7 +225,77 @@ fn readers_match_pm4py() {
         check(&ocel, &g.expected["ocel"], &id, in_order, xml);
         checked += 1;
     }
-    assert_eq!(checked, 9, "fixtures checked");
+    assert_eq!(checked, 12, "fixtures checked");
+}
+
+/// The log with its objects in the golden's order, where the golden has the
+/// same objects.
+fn ordered_like(mut ocel: Ocel, want: &Value) -> Ocel {
+    let order: Vec<(&str, &str)> = want["objects"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|o| (s(&o["id"]), s(&o["type"])))
+        .collect();
+    ocel.objects.sort_by_key(|o| {
+        order
+            .iter()
+            .position(|(id, t)| *id == &*o.id && *t == &*o.object_type)
+            .unwrap_or(usize::MAX)
+    });
+    ocel
+}
+
+/// Where pm4py reads a CSV text and ichnos refuses it, as listed under
+/// Behaviour changes: a day-first date that pandas guesses, and a `\N{...}`
+/// escape in an object id.
+const CSV_REFUSED: &[&str] = &["ts-day-first", "list-named-escape"];
+
+/// The `read-csv-texts` and `read-csv2-texts` goldens: each text gives
+/// pm4py's tables, with the objects sorted by id and type, or an error.
+#[test]
+fn csv_texts_match_pm4py() {
+    type Read = fn(&[u8]) -> ichnos_io::Result<Ocel>;
+    let readers: [(&str, Read); 2] = [
+        ("read-csv-texts", |b| read_ocel_csv_from_reader(b, None)),
+        ("read-csv2-texts", |b| read_ocel2_csv_from_reader(b)),
+    ];
+    let mut checked = 0;
+    for (id, read) in readers {
+        let g = golden("ocel", id);
+        for (name, case) in g.expected["cases"].as_object().unwrap() {
+            let what = format!("{id} {name}");
+            let result = read(case["text"].as_str().unwrap().as_bytes());
+            if case.get("error").is_some() {
+                assert!(result.is_err(), "{what}: pm4py raises {}", case["error"]);
+            } else if CSV_REFUSED.contains(&name.as_str()) && id == "read-csv-texts" {
+                assert!(result.is_err(), "{what}: refused");
+            } else {
+                let mut ocel = result.unwrap_or_else(|e| panic!("{what}: {e}"));
+                ocel.objects
+                    .sort_by(|a, b| (&a.id, &a.object_type).cmp(&(&b.id, &b.object_type)));
+                check(&ocel, &case["ocel"], &what, true, false);
+            }
+            checked += 1;
+        }
+    }
+    assert!(checked > 100, "{checked} texts");
+}
+
+/// pm4py's OCEL 1.0 CSV reader with an objects table takes the objects, in
+/// file order, from it.
+#[test]
+fn reads_csv_objects_table() {
+    let g = golden("ocel", "read-typed-csv-objects");
+    let objects = g.fixture("objects");
+    let ocel = read_ocel_csv(g.fixture("log"), Some(Path::new(&objects))).unwrap();
+    check(
+        &ocel,
+        &g.expected["ocel"],
+        "read-typed-csv-objects",
+        true,
+        false,
+    );
 }
 
 #[test]
@@ -270,17 +352,30 @@ fn dispatch_follows_pm4py() {
         path
     };
     let want = read_ocel_json(&json).unwrap();
-    // OCEL 1.0: only `jsonocel` and `xmlocel`.
+    // OCEL 1.0: `jsonocel`, `xmlocel` and `csv`.
     assert_eq!(read_ocel(copy("a.JSONOCEL"), &options).unwrap(), want);
     assert!(read_ocel(copy("a.json"), &options).is_err());
-    assert!(read_ocel(copy("a.csv"), &options).is_err());
+    assert!(read_ocel(copy("a.csv"), &options).is_err(), "JSON as CSV");
+    let csv = golden("ocel", "model-typed-csv").fixture("log");
+    let path = dir.join("a.CSV");
+    std::fs::copy(&csv, &path).unwrap();
+    assert_eq!(
+        read_ocel(&path, &options).unwrap(),
+        read_ocel_csv(&csv, None).unwrap()
+    );
     // OCEL 2.0: `json` and `jsonocel`, also before `.gz`.
     let doc = golden("ocel", "model-typed20-jsonocel").fixture("log");
     let want2 = read_ocel2_json(&doc).unwrap();
     let path = dir.join("b.json");
     std::fs::copy(&doc, &path).unwrap();
     assert_eq!(read_ocel2(&path, &options).unwrap(), want2);
-    assert!(read_ocel2(dir.join("b.ocel.csv"), &options).is_err());
+    let csv2 = golden("ocel", "model-typed20-ocel-csv").fixture("log");
+    let path = dir.join("b.OCEL.CSV");
+    std::fs::copy(&csv2, &path).unwrap();
+    assert_eq!(
+        read_ocel2(&path, &options).unwrap(),
+        read_ocel2_csv(&csv2).unwrap()
+    );
     assert!(read_ocel2(dir.join("b.txt"), &options).is_err());
     std::fs::remove_dir_all(&dir).unwrap();
 }
