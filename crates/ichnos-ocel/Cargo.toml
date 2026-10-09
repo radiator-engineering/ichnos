@@ -14,6 +14,11 @@ workspace = true
 chrono = { workspace = true }
 ichnos-core = { workspace = true }
 
+rand = { workspace = true }
+thiserror = { workspace = true }
+
 [dev-dependencies]
+rand_chacha = { workspace = true }
 ichnos-golden = { workspace = true }
 serde_json = { workspace = true }
+serde = { workspace = true, features = ["rc"] }

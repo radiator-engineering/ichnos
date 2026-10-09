@@ -1,0 +1,2136 @@
+{
+  "expected": {
+    "input": {
+      "e2e": [
+        {
+          "qualifier": "next",
+          "source": "e1",
+          "target": "e2"
+        }
+      ],
+      "events": [
+        {
+          "activity": "create",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-01T00:00:00.000000+00:00"
+            ],
+            "score": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2020-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "finish",
+          "attributes": {
+            "score": [
+              "float",
+              3.0
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "create",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-04T00:00:00.000000+00:00"
+            ],
+            "score": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2020-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "single",
+          "attributes": {
+            "alternate": [
+              "date",
+              "2020-01-01T00:00:00.000000+00:00"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "single",
+          "attributes": {
+            "score": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "link",
+          "source": "a",
+          "target": "b"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "size",
+          "object": "a",
+          "timestamp": "2020-01-01T00:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "int",
+            4
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "category": [
+              "string",
+              "north"
+            ],
+            "size": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "a",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "category": [
+              "string",
+              ""
+            ],
+            "size": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "b",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "size": [
+              "float",
+              3.0
+            ]
+          },
+          "id": "c",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "category": [
+              "string",
+              "south"
+            ],
+            "size": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "d",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "category": [
+              "string",
+              "single"
+            ],
+            "size": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "isolated",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "category": [
+              "string",
+              "west"
+            ]
+          },
+          "id": "x",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "category": [
+              "string",
+              "west"
+            ]
+          },
+          "id": "y",
+          "type": "item"
+        }
+      ],
+      "relations": [
+        {
+          "event": "e1",
+          "object": "a",
+          "qualifier": ""
+        },
+        {
+          "event": "e1",
+          "object": "b",
+          "qualifier": "primary"
+        },
+        {
+          "event": "e1",
+          "object": "b",
+          "qualifier": ""
+        },
+        {
+          "event": "e2",
+          "object": "b",
+          "qualifier": "primary"
+        },
+        {
+          "event": "e2",
+          "object": "c",
+          "qualifier": ""
+        },
+        {
+          "event": "e3",
+          "object": "c",
+          "qualifier": "primary"
+        },
+        {
+          "event": "e3",
+          "object": "d",
+          "qualifier": ""
+        },
+        {
+          "event": "e4",
+          "object": "isolated",
+          "qualifier": "primary"
+        },
+        {
+          "event": "e5",
+          "object": "x",
+          "qualifier": null
+        },
+        {
+          "event": "e5",
+          "object": "y",
+          "qualifier": null
+        }
+      ]
+    },
+    "results": [
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": null
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_cobirth_graph",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "b",
+              "target": "a"
+            },
+            {
+              "qualifier": "object_descendants_graph",
+              "source": "b",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_inheritance_graph",
+              "source": "b",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "b",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "c",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_codeath_graph",
+              "source": "c",
+              "target": "d"
+            },
+            {
+              "qualifier": "object_descendants_graph",
+              "source": "c",
+              "target": "d"
+            },
+            {
+              "qualifier": "object_inheritance_graph",
+              "source": "c",
+              "target": "d"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "c",
+              "target": "d"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "d",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_cobirth_graph",
+              "source": "x",
+              "target": "y"
+            },
+            {
+              "qualifier": "object_codeath_graph",
+              "source": "x",
+              "target": "y"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "x",
+              "target": "y"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "y",
+              "target": "x"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      },
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": []
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      },
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": [
+            "object_interaction_graph"
+          ]
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "b",
+              "target": "a"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "b",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "c",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "c",
+              "target": "d"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "d",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "x",
+              "target": "y"
+            },
+            {
+              "qualifier": "object_interaction_graph",
+              "source": "y",
+              "target": "x"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      },
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": [
+            "object_descendants_graph"
+          ]
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_descendants_graph",
+              "source": "b",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_descendants_graph",
+              "source": "c",
+              "target": "d"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      },
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": [
+            "object_inheritance_graph"
+          ]
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_inheritance_graph",
+              "source": "b",
+              "target": "c"
+            },
+            {
+              "qualifier": "object_inheritance_graph",
+              "source": "c",
+              "target": "d"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      },
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": [
+            "object_cobirth_graph"
+          ]
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_cobirth_graph",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_cobirth_graph",
+              "source": "x",
+              "target": "y"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      },
+      {
+        "args": [],
+        "function": "ocel_o2o_enrichment",
+        "kwargs": {
+          "included_graphs": [
+            "object_codeath_graph"
+          ]
+        },
+        "output": {
+          "e2e": [
+            {
+              "qualifier": "next",
+              "source": "e1",
+              "target": "e2"
+            }
+          ],
+          "events": [
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "finish",
+              "attributes": {
+                "score": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "create",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-04T00:00:00.000000+00:00"
+                ],
+                "score": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2020-01-03T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "alternate": [
+                  "date",
+                  "2020-01-01T00:00:00.000000+00:00"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "single",
+              "attributes": {
+                "score": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "e5",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "link",
+              "source": "a",
+              "target": "b"
+            },
+            {
+              "qualifier": "object_codeath_graph",
+              "source": "c",
+              "target": "d"
+            },
+            {
+              "qualifier": "object_codeath_graph",
+              "source": "x",
+              "target": "y"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "size",
+              "object": "a",
+              "timestamp": "2020-01-01T00:00:00.000000+00:00",
+              "type": "order",
+              "value": [
+                "int",
+                4
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "north"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "a",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  ""
+                ],
+                "size": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "b",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "size": [
+                  "float",
+                  3.0
+                ]
+              },
+              "id": "c",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "south"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "d",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "single"
+                ],
+                "size": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "isolated",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "x",
+              "type": "order"
+            },
+            {
+              "attributes": {
+                "category": [
+                  "string",
+                  "west"
+                ]
+              },
+              "id": "y",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "event": "e1",
+              "object": "a",
+              "qualifier": ""
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e1",
+              "object": "b",
+              "qualifier": ""
+            },
+            {
+              "event": "e2",
+              "object": "b",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e2",
+              "object": "c",
+              "qualifier": ""
+            },
+            {
+              "event": "e3",
+              "object": "c",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e3",
+              "object": "d",
+              "qualifier": ""
+            },
+            {
+              "event": "e4",
+              "object": "isolated",
+              "qualifier": "primary"
+            },
+            {
+              "event": "e5",
+              "object": "x",
+              "qualifier": null
+            },
+            {
+              "event": "e5",
+              "object": "y",
+              "qualifier": null
+            }
+          ]
+        },
+        "prep": null
+      }
+    ],
+    "variants": [
+      {
+        "input": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "results": [
+          {
+            "args": [],
+            "function": "ocel_o2o_enrichment",
+            "kwargs": {},
+            "output": {
+              "e2e": [],
+              "events": [],
+              "o2o": [],
+              "object_changes": [],
+              "objects": [],
+              "relations": []
+            },
+            "prep": null
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "area": "ocel_transformations",
+    "case": "ocel-o2o-enrichment",
+    "fixtures": {},
+    "functions": [
+      "pm4py.ocel_o2o_enrichment"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
