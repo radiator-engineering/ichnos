@@ -1,0 +1,2729 @@
+{
+  "expected": {
+    "components": [
+      [
+        "P1",
+        "P2",
+        "PO1",
+        "PR1",
+        "R1",
+        "R2"
+      ],
+      [
+        "P3",
+        "PO2",
+        "R3"
+      ]
+    ],
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Purchase Requisition",
+          "attributes": {
+            "pr_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "attributes": {
+            "pr_approver": [
+              "string",
+              "Tania"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-10T08:15:00.000000+00:00"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "attributes": {
+            "po_editor": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2022-01-14T11:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e6",
+          "timestamp": "2022-01-16T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2022-01-30T22:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e8",
+          "timestamp": "2022-01-31T21:00:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e9",
+          "timestamp": "2022-02-02T08:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e10",
+          "timestamp": "2022-02-02T16:00:00.000000+00:00"
+        },
+        {
+          "activity": "Set Payment Block",
+          "attributes": {
+            "invoice_blocker": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e11",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "attributes": {
+            "invoice_block_rem": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e12",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e13",
+          "timestamp": "2022-02-28T22:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R1",
+          "target": "P1"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R2",
+          "target": "P2"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R3",
+          "target": "P3"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R1"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R2"
+        },
+        {
+          "qualifier": "Maverick buying",
+          "source": "PO2",
+          "target": "R3"
+        },
+        {
+          "qualifier": "PO from PR",
+          "source": "PR1",
+          "target": "PO1"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "Yes"
+          ]
+        },
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "No"
+          ]
+        },
+        {
+          "field": "po_quantity",
+          "object": "PO1",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00",
+          "type": "Purchase Order",
+          "value": [
+            "string",
+            "600"
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R1",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R2",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R3",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {},
+          "id": "P1",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P2",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P3",
+          "type": "Payment"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Cows"
+            ],
+            "po_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PO1",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Notebooks"
+            ],
+            "po_quantity": [
+              "string",
+              "1"
+            ]
+          },
+          "id": "PO2",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "pr_product": [
+              "string",
+              "Cows"
+            ],
+            "pr_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PR1",
+          "type": "Purchase Requisition"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Purchase Requisition",
+          "event": "e1",
+          "object": "PR1",
+          "qualifier": "Regular placement of PR",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "event": "e2",
+          "object": "PR1",
+          "qualifier": "Regular approval of PR",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PO1",
+          "qualifier": "Created order with identifier",
+          "timestamp": "2022-01-10T08:15:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PR1",
+          "qualifier": "Created order from PR",
+          "timestamp": "2022-01-10T08:15:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "event": "e4",
+          "object": "PO1",
+          "qualifier": "Change of quantity",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e5",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO",
+          "timestamp": "2022-01-14T11:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e5",
+          "object": "R1",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-01-14T11:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e6",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO",
+          "timestamp": "2022-01-16T10:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e6",
+          "object": "R2",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-01-16T10:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "P1",
+          "qualifier": "Payment inserted with identifier",
+          "timestamp": "2022-01-30T22:00:00.000000+00:00",
+          "type": "Payment"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "R1",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-30T22:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e8",
+          "object": "R2",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-31T21:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e8",
+          "object": "P2",
+          "qualifier": "Payment created with identifier",
+          "timestamp": "2022-01-31T21:00:00.000000+00:00",
+          "type": "Payment"
+        },
+        {
+          "activity": "Insert Invoice",
+          "event": "e9",
+          "object": "R3",
+          "qualifier": "Invoice created with identifier",
+          "timestamp": "2022-02-02T08:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "PO2",
+          "qualifier": "Purhcase order created with identifier",
+          "timestamp": "2022-02-02T16:00:00.000000+00:00",
+          "type": "Purchase Order"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "R3",
+          "qualifier": "Purchase order created with maverick buying from",
+          "timestamp": "2022-02-02T16:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Set Payment Block",
+          "event": "e11",
+          "object": "R3",
+          "qualifier": "Payment block due to unethical maverick buying",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "event": "e12",
+          "object": "R3",
+          "qualifier": "Payment block removed ...",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e13",
+          "object": "R3",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-02-28T22:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e13",
+          "object": "P3",
+          "qualifier": "Payment inserted with identifier",
+          "timestamp": "2022-02-28T22:00:00.000000+00:00",
+          "type": "Payment"
+        }
+      ]
+    },
+    "results": [
+      {
+        "args": [
+          "ocel:activity",
+          [
+            "Approve Purchase Requisition"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            1
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            8
+          ],
+          "relations": [
+            1
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:eid",
+          [
+            "e1"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            8
+          ],
+          "relations": [
+            0
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:type",
+          [
+            "Invoice"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [],
+          "object_changes": [
+            0,
+            1
+          ],
+          "objects": [
+            0,
+            1,
+            2
+          ],
+          "relations": [
+            6,
+            8,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:oid",
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            6
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0
+          ],
+          "relations": [
+            6,
+            10
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "Invoice"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [],
+          "object_changes": [
+            0,
+            1
+          ],
+          "objects": [
+            0,
+            1,
+            2
+          ],
+          "relations": [
+            6,
+            8,
+            10,
+            11,
+            13,
+            15,
+            16,
+            17,
+            18
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "e1",
+            "e2"
+          ]
+        ],
+        "function": "filter_ocel_events",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            8
+          ],
+          "relations": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "args": [
+          "Invoice"
+        ],
+        "function": "filter_ocel_cc_otype",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 0,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            6
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0
+          ],
+          "relations": [
+            6,
+            10
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 1,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            6
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0
+          ],
+          "relations": [
+            6,
+            10
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 2,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "o2o": [
+            0,
+            3
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            0,
+            3,
+            6
+          ],
+          "relations": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 3,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "o2o": [
+            0,
+            3,
+            4,
+            6
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            3,
+            6,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 20,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "o2o": [
+            0,
+            1,
+            3,
+            4,
+            6
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "Invoice"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "level": 2,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "relations": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:activity",
+          [
+            "Approve Purchase Requisition"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:eid",
+          [
+            "e1"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:type",
+          [
+            "Invoice"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            12
+          ],
+          "o2o": [
+            6
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            9,
+            12,
+            14,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:oid",
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "Invoice"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            12
+          ],
+          "o2o": [
+            6
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            9,
+            12,
+            14,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "e1",
+            "e2"
+          ]
+        ],
+        "function": "filter_ocel_events",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "Invoice"
+        ],
+        "function": "filter_ocel_cc_otype",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 0,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 1,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 2,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            1,
+            2,
+            5
+          ],
+          "object_changes": [
+            0,
+            1
+          ],
+          "objects": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            3,
+            8,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 3,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            2,
+            5
+          ],
+          "object_changes": [
+            0,
+            1
+          ],
+          "objects": [
+            2,
+            4,
+            5,
+            7
+          ],
+          "relations": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "R1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 20,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            2,
+            5
+          ],
+          "object_changes": [
+            0,
+            1
+          ],
+          "objects": [
+            2,
+            5,
+            7
+          ],
+          "relations": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "Invoice"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "level": 2,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            3
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:activity",
+          []
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "ocel:type",
+          []
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {
+            "Invoice": [
+              "Approve Purchase Requisition",
+              "Change PO Quantity"
+            ]
+          }
+        ],
+        "function": "filter_ocel_object_types_allowed_activities",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "function": "filter_ocel_object_types_allowed_activities",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {
+            "Invoice": 2
+          }
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {
+            "Invoice": 0
+          }
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "relations": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          {
+            "missing": 0
+          }
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "Invoice"
+        ],
+        "function": "filter_ocel_start_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            4,
+            5,
+            8
+          ],
+          "o2o": [
+            3,
+            4
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            6
+          ],
+          "relations": [
+            5,
+            6,
+            7,
+            8,
+            13
+          ]
+        }
+      },
+      {
+        "args": [
+          "Invoice"
+        ],
+        "function": "filter_ocel_end_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            6,
+            7,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2
+          ],
+          "object_changes": [
+            0,
+            1
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "relations": [
+            9,
+            10,
+            11,
+            12,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "Invoice"
+        ],
+        "function": "filter_ocel_activities_connected_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_start_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_end_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_activities_connected_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "2022-01-09T14:00:00+00:00",
+          "2022-02-28T22:00:00+00:00"
+        ],
+        "function": "filter_ocel_events_timestamp",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          "2022-01-09T14:00:00+00:00",
+          "2022-01-09T14:00:00+00:00"
+        ],
+        "function": "filter_ocel_events_timestamp",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            8
+          ],
+          "relations": [
+            0
+          ]
+        }
+      },
+      {
+        "args": [
+          "2022-02-28T22:00:00+00:00",
+          "2022-01-09T14:00:00+00:00"
+        ],
+        "function": "filter_ocel_events_timestamp",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "R1"
+        ],
+        "function": "filter_ocel_cc_object",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "o2o": [
+            0,
+            1,
+            3,
+            4,
+            6
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_cc_object",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          1,
+          1
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          2,
+          20
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          1,
+          100000
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "o2o": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "object_changes": [
+            0,
+            1,
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      {
+        "args": [
+          20,
+          2
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "Approve Purchase Requisition"
+        ],
+        "function": "filter_ocel_cc_activity",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "o2o": [
+            0,
+            1,
+            3,
+            4,
+            6
+          ],
+          "object_changes": [
+            2
+          ],
+          "objects": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            8
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_cc_activity",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "ocel_filters",
+    "case": "all-ocel20-example-jsonocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.read_ocel2_json",
+      "pm4py.filter_ocel_event_attribute",
+      "pm4py.filter_ocel_object_attribute",
+      "pm4py.filter_ocel_object_types_allowed_activities",
+      "pm4py.filter_ocel_object_per_type_count",
+      "pm4py.filter_ocel_start_events_per_object_type",
+      "pm4py.filter_ocel_end_events_per_object_type",
+      "pm4py.filter_ocel_events_timestamp",
+      "pm4py.filter_ocel_object_types",
+      "pm4py.filter_ocel_objects",
+      "pm4py.filter_ocel_events",
+      "pm4py.filter_ocel_activities_connected_object_type",
+      "pm4py.filter_ocel_cc_object",
+      "pm4py.filter_ocel_cc_length",
+      "pm4py.filter_ocel_cc_otype",
+      "pm4py.filter_ocel_cc_activity"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
