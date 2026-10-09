@@ -354,7 +354,7 @@ def batches_correlation(fixtures, traces=None, activity_key="concept:name", inte
                 original_apply = scipy_solver.apply
                 def highs_apply(*args, **kwargs):
                     return original_apply(*args, parameters={"method":"highs"})
-                with patch.object(solver,"DEFAULT_LP_SOLVER_VARIANT",solver.SCIPY), patch.object(scipy_solver,"apply",highs_apply):
+                with patch.object(solver,"DEFAULT_LP_SOLVER_VARIANT",solver.SCIPY), patch.dict(solver.VERSIONS_APPLY,{solver.SCIPY:highs_apply}):
                     freq,perf = classic.apply(log,parameters=options)
             uniform_cost = bool((cost == cost[0,0]).all())
             selected_freq = {(a,a):counts[a] for a in activities} if uniform_cost else freq
