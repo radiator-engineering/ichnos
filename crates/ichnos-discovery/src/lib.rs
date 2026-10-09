@@ -23,3 +23,10 @@ pub use inductive::{
     InductiveOptions, InductiveVariant, petri_net_inductive, petri_net_inductive_dfg,
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
+
+/// Batch detection by activity and resource.
+pub mod batches;
+/// Classic case-independent correlation mining.
+pub mod correlation;
+pub use batches::{Batch, BatchEvent, BatchGroup, BatchOptions, BatchType, discover_batches};
+pub use correlation::{CorrelationEdge, CorrelationOptions, CorrelationResult, correlation_miner};
