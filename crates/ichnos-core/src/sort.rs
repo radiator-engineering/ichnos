@@ -39,21 +39,16 @@ fn reorder(events: &mut Vec<Event>, stamps: Vec<DateTime<FixedOffset>>, order: S
     events.extend(keyed.into_iter().map(|(_, e)| e));
 }
 
-fn trace_stamps(trace: &Trace, key: &str, index: usize) -> Result<Vec<DateTime<FixedOffset>>> {
+fn trace_stamps(
+    trace: &Trace,
+    key: &str,
+    position: impl Fn(usize) -> Position,
+) -> Result<Vec<DateTime<FixedOffset>>> {
     trace
         .events
         .iter()
         .enumerate()
-        .map(|(e, event)| {
-            timestamp(
-                event,
-                key,
-                Position::Event {
-                    trace: index,
-                    event: e,
-                },
-            )
-        })
+        .map(|(e, event)| timestamp(event, key, position(e)))
         .collect()
 }
 
@@ -61,7 +56,7 @@ impl Trace {
     /// Sorts the events stably by the date attribute `key`. Fails without
     /// changing the trace if an event lacks a date under `key`.
     pub fn sort_by_timestamp(&mut self, key: &str, order: SortOrder) -> Result<()> {
-        let stamps = trace_stamps(self, key, 0)?;
+        let stamps = trace_stamps(self, key, Position::TraceEvent)?;
         reorder(&mut self.events, stamps, order);
         Ok(())
     }
@@ -79,7 +74,7 @@ impl EventLog {
             .traces
             .iter()
             .enumerate()
-            .map(|(t, trace)| trace_stamps(trace, key, t))
+            .map(|(t, trace)| trace_stamps(trace, key, |e| Position::Event { trace: t, event: e }))
             .collect::<Result<_>>()?;
         for (trace, stamps) in self.traces.iter_mut().zip(stamps) {
             reorder(&mut trace.events, stamps, order);
@@ -204,5 +199,27 @@ mod tests {
             }
         ));
         assert_eq!(stream, before);
+    }
+
+    #[test]
+    fn trace_sort_error_names_the_event_only() {
+        let mut trace = Trace {
+            events: vec![event("a", 1), Event::from_iter([("concept:name", "b")])],
+            ..Trace::default()
+        };
+        let err = trace
+            .sort_by_timestamp("time:timestamp", SortOrder::Ascending)
+            .unwrap_err();
+        assert!(matches!(
+            err,
+            Error::MissingAttribute {
+                position: Position::TraceEvent(1),
+                ..
+            }
+        ));
+        assert_eq!(
+            err.to_string(),
+            "event 1 of the trace has no attribute `time:timestamp`"
+        );
     }
 }

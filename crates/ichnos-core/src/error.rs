@@ -74,6 +74,8 @@ pub enum Position {
     },
     /// Event `index` of an [`EventStream`](crate::EventStream).
     StreamEvent(usize),
+    /// Event `index` of a [`Trace`](crate::Trace) that is not part of a log.
+    TraceEvent(usize),
 }
 
 impl fmt::Display for Position {
@@ -81,6 +83,7 @@ impl fmt::Display for Position {
         match self {
             Self::Event { trace, event } => write!(f, "event {event} of trace {trace}"),
             Self::StreamEvent(index) => write!(f, "stream event {index}"),
+            Self::TraceEvent(index) => write!(f, "event {index} of the trace"),
         }
     }
 }
