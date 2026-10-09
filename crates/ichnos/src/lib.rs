@@ -1,4 +1,4 @@
-//! Process mining in Rust, at parity with pm4py. Re-exports the public API of every ichnos crate.
+//! Process mining in Rust. Re-exports the public API of every ichnos crate.
 
 /// Process discovery: the inductive miner family. See [`ichnos_discovery`].
 pub use ichnos_discovery as discovery;
