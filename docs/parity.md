@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 146; ported: 299; dropped: 181; total: 626.
+todo: 143; ported: 302; dropped: 181; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -967,14 +967,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos::stream::algo::conformance::declare::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-running-example`, `declare-receipt`, `declare-roadtraffic100traces` construct pm4py-discovered Declare models, feed every event and compare up to five prefix snapshots plus live delivery. |
 
 ## streaming.algo.conformance.declare.variants.automata
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos::stream::algo::conformance::declare::variants::automata::DeclareStreamingConformance` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos::stream::algo::conformance::declare::variants::automata::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos_stream::StreamingDeclareConformance` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-pending`, `declare-interleaved`, `declare-missing`, `declare-timestamps`, `declare-empty`, `declare-special-labels` check state names, absorbing/immediate deviations, event counts, per-event time fallback and typed constraint identities. Real-log cases compare complete ordered state/history digests and samples. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-self-pairs`, `declare-empty-model` check typed model preparation, all eighteen monitor templates, equal binary labels and ignored count metadata. |
 
 ## streaming.algo.conformance.footprints.algorithm
 
@@ -1639,9 +1639,27 @@ Rows cite these as `core-N`.
 - Round-trip JSON float parsing prevents artificial zero-variance deviations from one-ULP profile-mean changes.
 - Native algorithm implementations are not patched.
 
+### ichnos-stream (streaming Declare)
+
+The Declare model types are reused from `ichnos-discovery`; moving them to `ichnos-model` is deferred.
+
+- Typed model constraints replace Python template-name and activity-tuple dictionaries.
+- Typed automaton states replace serialized tuple keys and state strings.
+- Incorrect unary/binary rule arity returns a typed error before monitoring starts.
+- Unknown template strings cannot enter the typed model; pm4py uses a dummy monitor for them.
+- Ignore and Reject policies extend pm4py's default handling of incomplete events.
+- Configurable case/activity/timestamp keys extend pm4py's hardcoded streaming Declare keys.
+- Core display strings replace raw Python case/activity identity, so values with the same display text can share a case or label match.
+- `remove_case` releases monitor state without end-of-case validation or changing historical totals.
+- A removed case ID can be reused as a fresh case; pm4py has no case-removal API.
+- `clear_history` releases event-level deviation records while retaining monitors and totals; pm4py has no history-clearing API.
+- Typed snapshots and history replace pm4py's logging of violated template names.
+- The shared synchronous `StreamSink` contract replaces pm4py's worker locking.
+
 ## Proposed lanes
 
 Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.
+
 
 ### ichnos-stream (IWS alignments and OCEL distribution)
 
