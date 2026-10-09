@@ -2,9 +2,9 @@
 //!
 //! It is A* over the markings of the synchronous product. With
 //! [`Heuristic::None`] the estimate is always zero and the search is
-//! Dijkstra's algorithm (pm4py's `dijkstra_no_heuristics` and
-//! `dijkstra_less_memory`). With [`Heuristic::StateEquation`] the estimate
-//! comes from the marking equation (pm4py's `state_equation_a_star`).
+//! Dijkstra's algorithm (pm4py's `dijkstra_no_heuristics`). With
+//! [`Heuristic::StateEquation`] the estimate comes from the marking
+//! equation (pm4py's `state_equation_a_star`).
 //!
 //! The search follows pm4py's A*: a child reuses its parent's LP solution
 //! minus the move just taken. If that vector is still non-negative, the

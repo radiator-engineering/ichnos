@@ -23,6 +23,8 @@ const PIVOT_TOL: f64 = 1e-9;
 const REFACTOR_EVERY: usize = 100;
 /// Largest residual `|A x - b|` accepted before refactoring and solving again.
 const RESIDUAL_TOL: f64 = 1e-6;
+/// Most negative reduced cost accepted on a non-basic column at the optimum.
+const DUAL_TOL: f64 = 1e-9;
 
 /// An optimal solution.
 #[derive(Debug, Clone)]
@@ -350,9 +352,13 @@ impl DualSimplex {
         let limit = 50 * (self.m + self.n) + 1000;
         self.load(b);
         let mut outcome = self.iterate(false, limit);
+        // Accept a basis only if it is primal and dual feasible. The ratio
+        // test clamps negative reduced costs, so drift could otherwise hide
+        // a basis that is not optimal and overestimate the heuristic.
         let solution_ok = |s: &Self| {
+            let dual_ok = (0..s.n).all(|j| s.row_of[j] != usize::MAX || s.d[j] >= -DUAL_TOL);
             let sol = s.solution();
-            (s.residual(&sol.x, b) <= RESIDUAL_TOL).then_some(sol)
+            (dual_ok && s.residual(&sol.x, b) <= RESIDUAL_TOL).then_some(sol)
         };
         if outcome.is_ok() {
             if let Some(sol) = solution_ok(self) {
@@ -400,6 +406,18 @@ mod tests {
         assert_eq!(s.solve(&[-1.0, 0.0]).unwrap_err(), LpFailure::Infeasible);
         let sol = s.solve(&[0.0, 0.0]).unwrap();
         assert!(sol.objective.abs() < 1e-9);
+    }
+
+    #[test]
+    fn rejects_a_basis_that_is_not_optimal() {
+        // x0 + x1 = 1; costs 1, 2. Force x1 into the basis: it is primal
+        // feasible with cost 2, but x0 has reduced cost -1.
+        let mut s = DualSimplex::new(1, 2, vec![1.0, 1.0], vec![1.0, 2.0]);
+        s.load(&[1.0]);
+        s.pivot(0, 1);
+        assert!(s.d[0] < 0.0);
+        let sol = s.solve(&[1.0]).unwrap();
+        assert!((sol.objective - 1.0).abs() < 1e-9);
     }
 
     #[test]

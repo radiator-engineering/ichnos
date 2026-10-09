@@ -22,7 +22,9 @@ pub enum Heuristic {
     #[default]
     StateEquation,
     /// No estimate: Dijkstra's algorithm, as pm4py's
-    /// `VERSION_DIJKSTRA_NO_HEURISTICS` and `VERSION_DIJKSTRA_LESS_MEMORY`.
+    /// `VERSION_DIJKSTRA_NO_HEURISTICS`. pm4py's
+    /// `VERSION_DIJKSTRA_LESS_MEMORY` gives other costs and fitness; ichnos
+    /// does not reproduce it.
     None,
 }
 

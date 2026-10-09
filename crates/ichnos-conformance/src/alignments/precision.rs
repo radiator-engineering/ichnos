@@ -27,7 +27,7 @@ use crate::error::Result;
 ///
 /// The prefix replays use pm4py's standard costs, whatever costs an
 /// [`Aligner`](super::Aligner) would use. Fails with
-/// [`Error::FinalMarkingUnreachable`] when the net is not easy sound, as
+/// [`Error::FinalMarkingUnreachable`](crate::Error::FinalMarkingUnreachable) when the net is not easy sound, as
 /// pm4py does.
 pub fn precision_alignments(
     log: &EventLog,
