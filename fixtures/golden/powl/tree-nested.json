@@ -1,0 +1,383 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "c"
+                },
+                {
+                  "kind": "activity",
+                  "label": "d"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "activity": "f",
+              "kind": "frequent",
+              "label": "f\n[1,-]",
+              "selfloop": true,
+              "skippable": false
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "kind": "activity",
+          "label": "g"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_14",
+        "p_20",
+        "p_21",
+        "p_27",
+        "p_28",
+        "p_8",
+        "p_9",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": null,
+          "postset": [
+            "p_8"
+          ],
+          "preset": [
+            "source"
+          ]
+        },
+        {
+          "label": "b",
+          "name": null,
+          "postset": [
+            "p_9"
+          ],
+          "preset": [
+            "p_8"
+          ]
+        },
+        {
+          "label": "c",
+          "name": null,
+          "postset": [
+            "p_14"
+          ],
+          "preset": [
+            "p_8"
+          ]
+        },
+        {
+          "label": "d",
+          "name": null,
+          "postset": [
+            "p_9"
+          ],
+          "preset": [
+            "p_14"
+          ]
+        },
+        {
+          "label": "e",
+          "name": null,
+          "postset": [
+            "p_20"
+          ],
+          "preset": [
+            "p_21"
+          ]
+        },
+        {
+          "label": "f",
+          "name": null,
+          "postset": [
+            "p_28"
+          ],
+          "preset": [
+            "p_27"
+          ]
+        },
+        {
+          "label": "g",
+          "name": null,
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_20",
+            "p_28"
+          ]
+        },
+        {
+          "label": null,
+          "name": "final_par_8",
+          "postset": [
+            "p_21",
+            "p_27"
+          ],
+          "preset": [
+            "p_9"
+          ]
+        },
+        {
+          "label": null,
+          "name": "skip_15",
+          "postset": [
+            "p_9"
+          ],
+          "preset": [
+            "p_8"
+          ]
+        },
+        {
+          "label": null,
+          "name": "skip_26",
+          "postset": [
+            "p_27"
+          ],
+          "preset": [
+            "p_28"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "c"
+                },
+                {
+                  "kind": "activity",
+                  "label": "d"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "f"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "loop"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "kind": "activity",
+          "label": "g"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "precise": true,
+    "repr": null,
+    "simplified": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "c"
+                },
+                {
+                  "kind": "activity",
+                  "label": "d"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "f"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "loop"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "kind": "activity",
+          "label": "g"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "tree": "->( 'a', X( 'b', ->( 'c', 'd' ), tau ), +( 'e', *( 'f', tau ) ), 'g' )",
+    "tree_in": "->( 'a', X( 'b', ->( 'c', 'd' ), tau ), +( 'e', *( 'f', tau ) ), 'g' )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "tree-nested",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_powl",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "tree": "->( 'a', X( 'b', ->( 'c', 'd' ), tau ), +( 'e', *( 'f', tau ) ), 'g' )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

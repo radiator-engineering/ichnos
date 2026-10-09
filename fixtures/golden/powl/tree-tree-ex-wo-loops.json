@@ -1,0 +1,370 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "a"
+            },
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "c"
+                },
+                {
+                  "kind": "activity",
+                  "label": "d"
+                }
+              ],
+              "kind": "xor"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "d"
+            },
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "f"
+                },
+                {
+                  "kind": "activity",
+                  "label": "g"
+                }
+              ],
+              "kind": "po",
+              "order": []
+            }
+          ],
+          "kind": "po",
+          "order": []
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_10",
+        "p_13",
+        "p_14",
+        "p_18",
+        "p_19",
+        "p_24",
+        "p_25",
+        "p_28",
+        "p_29",
+        "p_36",
+        "p_37",
+        "p_40",
+        "p_41",
+        "p_9",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": null,
+          "postset": [
+            "p_9"
+          ],
+          "preset": [
+            "p_10"
+          ]
+        },
+        {
+          "label": "b",
+          "name": null,
+          "postset": [
+            "p_13"
+          ],
+          "preset": [
+            "p_14"
+          ]
+        },
+        {
+          "label": "c",
+          "name": null,
+          "postset": [
+            "p_19"
+          ],
+          "preset": [
+            "p_18"
+          ]
+        },
+        {
+          "label": "d",
+          "name": null,
+          "postset": [
+            "p_19"
+          ],
+          "preset": [
+            "p_18"
+          ]
+        },
+        {
+          "label": "d",
+          "name": null,
+          "postset": [
+            "p_24"
+          ],
+          "preset": [
+            "p_25"
+          ]
+        },
+        {
+          "label": "e",
+          "name": null,
+          "postset": [
+            "p_28"
+          ],
+          "preset": [
+            "p_29"
+          ]
+        },
+        {
+          "label": "f",
+          "name": null,
+          "postset": [
+            "p_36"
+          ],
+          "preset": [
+            "p_37"
+          ]
+        },
+        {
+          "label": "g",
+          "name": null,
+          "postset": [
+            "p_40"
+          ],
+          "preset": [
+            "p_41"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tauJoin_18",
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_24",
+            "p_28",
+            "p_36",
+            "p_40"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tauJoin_8",
+          "postset": [
+            "p_25",
+            "p_29",
+            "p_37",
+            "p_41"
+          ],
+          "preset": [
+            "p_13",
+            "p_19",
+            "p_9"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tau_1",
+          "postset": [
+            "p_10",
+            "p_14",
+            "p_18"
+          ],
+          "preset": [
+            "source"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "a"
+            },
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "c"
+                },
+                {
+                  "kind": "activity",
+                  "label": "d"
+                }
+              ],
+              "kind": "xor"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "d"
+            },
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "f"
+                },
+                {
+                  "kind": "activity",
+                  "label": "g"
+                }
+              ],
+              "kind": "po",
+              "order": []
+            }
+          ],
+          "kind": "po",
+          "order": []
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "precise": true,
+    "repr": null,
+    "simplified": {
+      "children": [
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "a"
+            },
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "c"
+                },
+                {
+                  "kind": "activity",
+                  "label": "d"
+                }
+              ],
+              "kind": "xor"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "d"
+            },
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "kind": "activity",
+              "label": "f"
+            },
+            {
+              "kind": "activity",
+              "label": "g"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "tree": "->( +( 'a', 'b', X( 'c', 'd' ) ), +( 'd', 'e', +( 'f', 'g' ) ) )",
+    "tree_in": "->( +( 'a', 'b', X( 'c', 'd' ) ), +( 'd', 'e', +( 'f', 'g' ) ) )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "tree-tree-ex-wo-loops",
+    "fixtures": {
+      "model": "fixtures/logs/tree_ex_wo_loops.ptml"
+    },
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_powl",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

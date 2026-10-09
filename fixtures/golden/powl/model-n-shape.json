@@ -1,0 +1,214 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        },
+        {
+          "kind": "activity",
+          "label": "c"
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_11",
+        "p_14",
+        "p_15",
+        "p_17",
+        "p_18",
+        "p_6",
+        "p_9",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": null,
+          "postset": [
+            "p_17"
+          ],
+          "preset": [
+            "p_6"
+          ]
+        },
+        {
+          "label": "b",
+          "name": null,
+          "postset": [
+            "p_15",
+            "p_18"
+          ],
+          "preset": [
+            "p_9"
+          ]
+        },
+        {
+          "label": "c",
+          "name": null,
+          "postset": [
+            "p_11"
+          ],
+          "preset": [
+            "p_17",
+            "p_18"
+          ]
+        },
+        {
+          "label": "d",
+          "name": null,
+          "postset": [
+            "p_14"
+          ],
+          "preset": [
+            "p_15"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tauJoin_4",
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_11",
+            "p_14"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tau_1",
+          "postset": [
+            "p_6",
+            "p_9"
+          ],
+          "preset": [
+            "source"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        },
+        {
+          "kind": "activity",
+          "label": "c"
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "precise": false,
+    "repr": "PO=(nodes={a, b, c, d}, order={a-->c, b-->c, b-->d})",
+    "simplified": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        },
+        {
+          "kind": "activity",
+          "label": "c"
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "text": "PO=(nodes={ a, b, c, d }, order={ a-->c, b-->c, b-->d })",
+    "tree": "->( +( 'a', 'b' ), +( 'c', 'd' ) )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-n-shape",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "PO=(nodes={ a, b, c, d }, order={ a-->c, b-->c, b-->d })"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

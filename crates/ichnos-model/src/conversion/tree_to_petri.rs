@@ -8,12 +8,14 @@ use crate::process_tree::{Operator, ProcessTree};
 /// Where a subtree attaches: an existing place, or a transition that needs a
 /// new place in between.
 #[derive(Debug, Clone, Copy)]
-enum Entity {
+pub(super) enum Entity {
     Place(PlaceId),
     Transition(TransitionId),
 }
 
-struct Builder {
+/// Builds a net with pm4py's counter-based names, as pm4py's process tree
+/// and POWL converters do.
+pub(super) struct Builder {
     net: PetriNet,
     num_places: usize,
     num_hidden: usize,
@@ -21,33 +23,48 @@ struct Builder {
 }
 
 impl Builder {
-    fn new_place(&mut self) -> PlaceId {
+    /// A net named `name` with its `source` and `sink` places, which pm4py
+    /// counts as the first two places.
+    pub(super) fn new(name: &str) -> (Self, PlaceId, PlaceId) {
+        let mut b = Builder {
+            net: PetriNet::new(name),
+            num_places: 2,
+            num_hidden: 0,
+            num_visible: 0,
+        };
+        let source = b.net.add_place("source");
+        let sink = b.net.add_place("sink");
+        (b, source, sink)
+    }
+
+    pub(super) fn new_place(&mut self) -> PlaceId {
         self.num_places += 1;
         self.net.add_place(format!("p_{}", self.num_places))
     }
 
-    fn new_hidden(&mut self, kind: &str) -> TransitionId {
+    pub(super) fn new_hidden(&mut self, kind: &str) -> TransitionId {
         self.num_hidden += 1;
         self.net
             .add_transition(format!("{kind}_{}", self.num_hidden), None::<Label>)
     }
 
-    fn new_visible(&mut self, label: &Label) -> TransitionId {
+    pub(super) fn new_visible(&mut self, label: &Label) -> TransitionId {
         self.num_visible += 1;
         self.net
             .add_transition(format!("t_{}", self.num_visible), Some(label.clone()))
     }
 
-    fn pt(&mut self, p: PlaceId, t: TransitionId) {
+    pub(super) fn pt(&mut self, p: PlaceId, t: TransitionId) {
         self.net.add_input_arc(p, t).expect("builder ids are live");
     }
 
-    fn tp(&mut self, t: TransitionId, p: PlaceId) {
+    pub(super) fn tp(&mut self, t: TransitionId, p: PlaceId) {
         self.net.add_output_arc(t, p).expect("builder ids are live");
     }
 
-    /// pm4py's `recursively_add_tree`. Returns the final place of the subtree.
-    fn add(&mut self, tree: &ProcessTree, initial: Entity, fin: Option<Entity>) -> PlaceId {
+    /// The initial and final places of a subtree that attaches to
+    /// `initial` and `fin`, as pm4py's `recursively_add_tree` makes them.
+    pub(super) fn attach(&mut self, initial: Entity, fin: Option<Entity>) -> (PlaceId, PlaceId) {
         let initial_place = match initial {
             Entity::Place(p) => p,
             Entity::Transition(t) => {
@@ -66,6 +83,35 @@ impl Builder {
                 p
             }
         };
+        (initial_place, final_place)
+    }
+
+    /// Reduces the net and removes dangling places, as pm4py's converters
+    /// finish.
+    pub(super) fn finish(self, source: PlaceId, sink: PlaceId) -> AcceptingPetriNet {
+        let mut net = self.net;
+        net.apply_simple_reduction();
+        let dangling: Vec<PlaceId> = net
+            .places()
+            .filter(|&(id, p)| {
+                (p.out_arcs().is_empty() && id != sink) || (p.in_arcs().is_empty() && id != source)
+            })
+            .map(|(id, _)| id)
+            .collect();
+        for p in dangling {
+            net.remove_place(p);
+        }
+        let map = net.compact();
+        AcceptingPetriNet::new(
+            net,
+            map.marking(&Marking::from([(source, 1)])),
+            map.marking(&Marking::from([(sink, 1)])),
+        )
+    }
+
+    /// pm4py's `recursively_add_tree`. Returns the final place of the subtree.
+    fn add(&mut self, tree: &ProcessTree, initial: Entity, fin: Option<Entity>) -> PlaceId {
+        let (initial_place, final_place) = self.attach(initial, fin);
         let (op, children) = match tree {
             ProcessTree::Tau | ProcessTree::Activity(_) => {
                 let t = match tree.label() {
@@ -254,16 +300,7 @@ impl ProcessTree {
     /// named `t_1`, `t_2`, ... where pm4py uses random UUIDs. The net is named
     /// `process_tree_net`; pm4py names it `imdf_net_<timestamp>`.
     pub fn to_petri_net(&self) -> AcceptingPetriNet {
-        let mut b = Builder {
-            net: PetriNet::new("process_tree_net"),
-            num_places: 0,
-            num_hidden: 0,
-            num_visible: 0,
-        };
-        b.num_places += 1;
-        let source = b.net.add_place("source");
-        b.num_places += 1;
-        let sink = b.net.add_place("sink");
+        let (mut b, source, sink) = Builder::new("process_tree_net");
 
         let initial_mandatory = initial_loop(self)
             || loop_along(self, <[ProcessTree]>::first)
@@ -295,24 +332,6 @@ impl ProcessTree {
             Entity::Place(initial_place),
             Some(Entity::Place(final_place)),
         );
-
-        let mut net = b.net;
-        net.apply_simple_reduction();
-        let dangling: Vec<PlaceId> = net
-            .places()
-            .filter(|&(id, p)| {
-                (p.out_arcs().is_empty() && id != sink) || (p.in_arcs().is_empty() && id != source)
-            })
-            .map(|(id, _)| id)
-            .collect();
-        for p in dangling {
-            net.remove_place(p);
-        }
-        let map = net.compact();
-        AcceptingPetriNet::new(
-            net,
-            map.marking(&Marking::from([(source, 1)])),
-            map.marking(&Marking::from([(sink, 1)])),
-        )
+        b.finish(source, sink)
     }
 }

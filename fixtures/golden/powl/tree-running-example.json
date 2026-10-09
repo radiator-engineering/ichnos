@@ -1,0 +1,401 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "register request"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "check ticket"
+                    },
+                    {
+                      "children": [
+                        {
+                          "kind": "activity",
+                          "label": "examine thoroughly"
+                        },
+                        {
+                          "kind": "activity",
+                          "label": "examine casually"
+                        }
+                      ],
+                      "kind": "xor"
+                    }
+                  ],
+                  "kind": "po",
+                  "order": []
+                },
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "activity",
+              "label": "reinitiate request"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "reject request"
+            },
+            {
+              "kind": "activity",
+              "label": "pay compensation"
+            }
+          ],
+          "kind": "xor"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_10",
+        "p_11",
+        "p_16",
+        "p_17",
+        "p_21",
+        "p_22",
+        "p_29",
+        "p_30",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": null,
+          "postset": [
+            "p_16"
+          ],
+          "preset": [
+            "p_17"
+          ]
+        },
+        {
+          "label": "decide",
+          "name": null,
+          "postset": [
+            "p_11"
+          ],
+          "preset": [
+            "p_16",
+            "p_22"
+          ]
+        },
+        {
+          "label": "examine casually",
+          "name": null,
+          "postset": [
+            "p_22"
+          ],
+          "preset": [
+            "p_21"
+          ]
+        },
+        {
+          "label": "examine thoroughly",
+          "name": null,
+          "postset": [
+            "p_22"
+          ],
+          "preset": [
+            "p_21"
+          ]
+        },
+        {
+          "label": "pay compensation",
+          "name": null,
+          "postset": [
+            "p_30"
+          ],
+          "preset": [
+            "p_29"
+          ]
+        },
+        {
+          "label": "register request",
+          "name": null,
+          "postset": [
+            "p_10"
+          ],
+          "preset": [
+            "source"
+          ]
+        },
+        {
+          "label": "reinitiate request",
+          "name": null,
+          "postset": [
+            "p_10"
+          ],
+          "preset": [
+            "p_11"
+          ]
+        },
+        {
+          "label": "reject request",
+          "name": null,
+          "postset": [
+            "p_30"
+          ],
+          "preset": [
+            "p_29"
+          ]
+        },
+        {
+          "label": null,
+          "name": "final_par_25",
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_30"
+          ]
+        },
+        {
+          "label": null,
+          "name": "skip_23",
+          "postset": [
+            "p_29"
+          ],
+          "preset": [
+            "p_11"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tauSplit_11",
+          "postset": [
+            "p_17",
+            "p_21"
+          ],
+          "preset": [
+            "p_10"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "register request"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "check ticket"
+                    },
+                    {
+                      "children": [
+                        {
+                          "kind": "activity",
+                          "label": "examine thoroughly"
+                        },
+                        {
+                          "kind": "activity",
+                          "label": "examine casually"
+                        }
+                      ],
+                      "kind": "xor"
+                    }
+                  ],
+                  "kind": "po",
+                  "order": []
+                },
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "activity",
+              "label": "reinitiate request"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "reject request"
+            },
+            {
+              "kind": "activity",
+              "label": "pay compensation"
+            }
+          ],
+          "kind": "xor"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "precise": true,
+    "repr": null,
+    "simplified": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "register request"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "check ticket"
+                    },
+                    {
+                      "children": [
+                        {
+                          "kind": "activity",
+                          "label": "examine thoroughly"
+                        },
+                        {
+                          "kind": "activity",
+                          "label": "examine casually"
+                        }
+                      ],
+                      "kind": "xor"
+                    }
+                  ],
+                  "kind": "po",
+                  "order": []
+                },
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "activity",
+              "label": "reinitiate request"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "reject request"
+            },
+            {
+              "kind": "activity",
+              "label": "pay compensation"
+            }
+          ],
+          "kind": "xor"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )",
+    "tree_in": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "tree-running-example",
+    "fixtures": {
+      "model": "fixtures/logs/running-example.ptml"
+    },
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_powl",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

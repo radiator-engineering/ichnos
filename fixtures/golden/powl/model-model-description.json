@@ -1,0 +1,248 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "NODE1"
+        },
+        {
+          "kind": "activity",
+          "label": "NODE2"
+        },
+        {
+          "kind": "activity",
+          "label": "NODE3"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "NODE4"
+            },
+            {
+              "kind": "activity",
+              "label": "NODE5"
+            }
+          ],
+          "kind": "xor"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_11",
+        "p_12",
+        "p_15",
+        "p_16",
+        "p_6",
+        "p_8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "NODE1",
+          "name": null,
+          "postset": [
+            "p_8"
+          ],
+          "preset": [
+            "p_6"
+          ]
+        },
+        {
+          "label": "NODE2",
+          "name": null,
+          "postset": [
+            "p_15"
+          ],
+          "preset": [
+            "p_8"
+          ]
+        },
+        {
+          "label": "NODE3",
+          "name": null,
+          "postset": [
+            "p_11"
+          ],
+          "preset": [
+            "p_12"
+          ]
+        },
+        {
+          "label": "NODE4",
+          "name": null,
+          "postset": [
+            "p_16"
+          ],
+          "preset": [
+            "p_15"
+          ]
+        },
+        {
+          "label": "NODE5",
+          "name": null,
+          "postset": [
+            "p_16"
+          ],
+          "preset": [
+            "p_15"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tauJoin_4",
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_11",
+            "p_16"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tau_1",
+          "postset": [
+            "p_12",
+            "p_6"
+          ],
+          "preset": [
+            "source"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "NODE1"
+        },
+        {
+          "kind": "activity",
+          "label": "NODE2"
+        },
+        {
+          "kind": "activity",
+          "label": "NODE3"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "NODE4"
+            },
+            {
+              "kind": "activity",
+              "label": "NODE5"
+            }
+          ],
+          "kind": "xor"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "precise": true,
+    "repr": null,
+    "simplified": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "NODE1"
+        },
+        {
+          "kind": "activity",
+          "label": "NODE2"
+        },
+        {
+          "kind": "activity",
+          "label": "NODE3"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "NODE4"
+            },
+            {
+              "kind": "activity",
+              "label": "NODE5"
+            }
+          ],
+          "kind": "xor"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "text": "PO=(nodes={ NODE1, NODE2, NODE3, X ( NODE4, NODE5 ) }, order={ NODE1-->NODE2, NODE1-->X ( NODE4, NODE5 ), NODE2-->X ( NODE4, NODE5 ) })",
+    "tree": "+( ->( 'NODE1', 'NODE2', X( 'NODE4', 'NODE5' ) ), 'NODE3' )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-model-description",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "PO=(nodes={ NODE1, NODE2, NODE3, X ( NODE4, NODE5 ) }, order={ NODE1-->NODE2, NODE1-->X ( NODE4, NODE5 ), NODE2-->X ( NODE4, NODE5 ) })"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

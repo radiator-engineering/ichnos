@@ -1,0 +1,159 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "silent"
+        },
+        {
+          "activity": "e",
+          "kind": "frequent",
+          "label": "e\n[1,-]",
+          "selfloop": true,
+          "skippable": false
+        }
+      ],
+      "kind": "xor"
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_3",
+        "p_4",
+        "p_5",
+        "p_6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "e",
+          "name": null,
+          "postset": [
+            "p_6"
+          ],
+          "preset": [
+            "p_5"
+          ]
+        },
+        {
+          "label": null,
+          "name": "init_loop_4",
+          "postset": [
+            "p_5"
+          ],
+          "preset": [
+            "p_3"
+          ]
+        },
+        {
+          "label": null,
+          "name": "skip_3",
+          "postset": [
+            "p_4"
+          ],
+          "preset": [
+            "p_3"
+          ]
+        },
+        {
+          "label": null,
+          "name": "skip_6",
+          "postset": [
+            "p_5"
+          ],
+          "preset": [
+            "p_6"
+          ]
+        },
+        {
+          "label": null,
+          "name": "skip_7",
+          "postset": [
+            "p_4"
+          ],
+          "preset": [
+            "p_6"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tau_1",
+          "postset": [
+            "p_3"
+          ],
+          "preset": [
+            "source"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tau_2",
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_4"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "silent"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "e"
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "loop"
+        }
+      ],
+      "kind": "xor"
+    },
+    "precise": true,
+    "repr": "X( tau, *( 'e', tau ) )",
+    "simplified": {
+      "children": [
+        {
+          "kind": "silent"
+        },
+        {
+          "kind": "activity",
+          "label": "e"
+        }
+      ],
+      "kind": "loop"
+    },
+    "text": "X ( tau, * ( e, tau ) )",
+    "tree": "X( tau, *( 'e', tau ) )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-simplify-merge",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "X ( tau, * ( e, tau ) )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
