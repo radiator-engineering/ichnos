@@ -16,6 +16,23 @@ Each ``im`` and ``imd`` case emits:
 - ``petri_net_behaviour``: the same for ``pm4py.discover_petri_net_inductive``
   with the same arguments.
 
+Cases ``inductive-im-<option>-<log>`` run IM with one option set, through
+``pm4py.algo.discovery.inductive.algorithm.apply``, because
+``disable_strict_sequence_cut`` is not a ``pm4py.discover_*`` argument. The
+net is ``pm4py.convert_to_petri_net`` of the tree, as in
+``pm4py.discover_petri_net_inductive``:
+
+- ``nofallthrough``: ``disable_fallthroughs=True``, so only the empty-traces
+  and flower-model fall-throughs run.
+- ``plainsequence``: ``disable_strict_sequence_cut=True``.
+
+The six logs reach the activity-concurrent, strict tau loop and tau loop
+fall-throughs, but never activity once per trace. The case
+``inductive-im-fallthroughs-synthetic`` runs IM on a small log, given as
+trace strings in ``params`` and read with ``pm4py.parse_event_log_string``.
+It reaches activity once per trace, strict tau loop and tau loop. These cases
+emit the same three fields as ``im``.
+
 pm4py's IMf result can depend on Python's hash seed: the order of its
 exclusive-choice groups follows set order, and IMf breaks ties by that order.
 So each ``imf`` case mines the log once per seed in ``IMF_SEEDS``, each in a
@@ -65,6 +82,21 @@ INDUCTIVE_VARIANTS = {
 }
 
 
+# Option name -> (algorithm.apply parameters, log id), for IM.
+INDUCTIVE_OPTIONS = {
+    "nofallthrough": ({"disable_fallthroughs": True}, "receipt-csv"),
+    "plainsequence": ({"disable_strict_sequence_cut": True}, "receipt-csv"),
+}
+
+# A small log that reaches the activity-once-per-trace fall-through.
+INDUCTIVE_SYNTHETIC_TRACES = ["a,b,d,c,d", "b,a", "b,d,c,b,a"]
+
+INDUCTIVE_OPTION_FUNCTIONS = [
+    "pm4py.algo.discovery.inductive.algorithm.apply",
+    "pm4py.convert_to_petri_net",
+    *BEHAVIOUR_FUNCTIONS,
+]
+
 # Hash seeds for the IMf runs.
 IMF_SEEDS = list(range(8))
 
@@ -109,6 +141,27 @@ def _inductive_seeds(path: Path, variant: str) -> dict[str, Any]:
     return {"runs": [runs[tree] for tree in sorted(runs)]}
 
 
+def inductive_options(
+    fixtures: dict[str, Path],
+    parameters: dict[str, Any] | None = None,
+    traces: list[str] | None = None,
+) -> dict[str, Any]:
+    """Runs IM with ``parameters`` on the log in ``fixtures``, or on ``traces``."""
+    from pm4py.algo.discovery.inductive import algorithm as inductive_miner
+
+    log = load_log(fixtures["log"]) if traces is None else pm4py.parse_event_log_string(traces, ",")
+    tree = inductive_miner.apply(
+        log,
+        variant=inductive_miner.Variants.IM,
+        parameters={"noise_threshold": 0.0, **(parameters or {})},
+    )
+    return {
+        "tree": str(tree),
+        "tree_behaviour": model_behaviour(log, tree),
+        "petri_net_behaviour": model_behaviour(log, pm4py.convert_to_petri_net(tree)),
+    }
+
+
 def _register_inductive() -> None:
     for variant in INDUCTIVE_VARIANTS:
         for log_id, rel in INDUCTIVE_LOGS.items():
@@ -118,6 +171,18 @@ def _register_inductive() -> None:
                 functions=INDUCTIVE_FUNCTIONS,
                 params={"variant": variant},
             )(inductive)
+    for option, (parameters, log_id) in INDUCTIVE_OPTIONS.items():
+        case(
+            f"inductive-im-{option}-{log_id}",
+            fixture=INDUCTIVE_LOGS[log_id],
+            functions=INDUCTIVE_OPTION_FUNCTIONS,
+            params={"parameters": parameters},
+        )(inductive_options)
+    case(
+        "inductive-im-fallthroughs-synthetic",
+        functions=["pm4py.parse_event_log_string", *INDUCTIVE_OPTION_FUNCTIONS],
+        params={"traces": INDUCTIVE_SYNTHETIC_TRACES},
+    )(inductive_options)
 
 
 _register_inductive()
