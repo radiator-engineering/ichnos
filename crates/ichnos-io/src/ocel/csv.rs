@@ -57,14 +57,18 @@ pub fn read_ocel_csv(path: impl AsRef<Path>, objects: Option<&Path>) -> Result<O
 ///   an ISO 8601 date, optionally with a time to the hour, minute, second or
 ///   fraction of a second, after `T` or a space, and optionally with an
 ///   offset. Every timestamp must have that same form and offset. A
-///   timestamp without an offset is read as UTC.
+///   timestamp without an offset is read as UTC, and the log's
+///   [`Ocel::naive_times`] is set, so that the writers write it without an
+///   offset where pm4py does.
 /// - A cell of an `ocel:type:` column that starts with `[` and is a Python
 ///   list literal gives one relation per item, in order: each item must be
 ///   a string, a UTF-8 byte string or `None`, which is skipped. Any other
 ///   cell gives no relations. An event with relations must have an id and
 ///   an activity.
 /// - Without an objects table, the objects are those of the relations, per
-///   column in order of first appearance.
+///   column in order of first appearance. An objects table needs
+///   `ocel:oid`; without `ocel:type`, its objects have the empty type, and
+///   only those with an empty id are dropped.
 ///
 /// The events and relations are then sorted by timestamp, keeping file
 /// order for ties, and [`Ocel::make_consistent`] runs. Unlike the other
@@ -102,11 +106,12 @@ pub fn read_ocel_csv_from_reader(table: impl Read, objects: Option<&mut dyn Read
         })
         .map(|(i, name)| (i, Arc::from(name.as_str())))
         .collect();
-    let times = timestamps(&frame, ts)?;
+    let (times, naive) = timestamps(&frame, ts)?;
 
     let text =
         |row: &[Option<String>], i: usize| -> Arc<str> { row[i].as_deref().unwrap_or("").into() };
     let mut ocel = Ocel::new();
+    ocel.naive_times = naive;
     let mut relations: Vec<(DateTime<FixedOffset>, EventObject)> = Vec::new();
     // Per object type column, the objects in first-appearance order. A byte
     // string and a string with the same text are two objects, as in
@@ -180,8 +185,19 @@ pub fn read_ocel_csv_from_reader(table: impl Read, objects: Option<&mut dyn Read
             }
         }
     }
+    // pm4py's consistency step checks only the columns a table has, so
+    // objects from a table without `ocel:type` keep their empty type.
+    let mut untyped = Vec::new();
     ocel.objects = match objects {
-        Some(input) => read_objects(frame::read(input)?)?,
+        Some(input) => {
+            let (objects, typed) = read_objects(frame::read(input)?)?;
+            if typed {
+                objects
+            } else {
+                untyped = objects;
+                Vec::new()
+            }
+        }
         None => types
             .iter()
             .zip(found)
@@ -198,36 +214,42 @@ pub fn read_ocel_csv_from_reader(table: impl Read, objects: Option<&mut dyn Read
     relations.sort_by_key(|(t, _)| *t);
     ocel.relations = relations.into_iter().map(|(_, r)| r).collect();
     ocel.make_consistent();
+    untyped.retain(|o| !o.id.is_empty());
+    if !untyped.is_empty() {
+        ocel.objects = untyped;
+    }
     Ok(ocel)
 }
 
-/// The objects table: `ocel:oid`, `ocel:type` and attribute columns, kept as
-/// strings.
-fn read_objects(frame: Frame) -> Result<Vec<OcelObject>> {
-    let column = |name: &str| {
-        frame
-            .column(name)
-            .ok_or_else(|| error(format!("the objects CSV file has no {name} column")))
-    };
-    let (oid, object_type) = (column(OBJECT_ID)?, column(OBJECT_TYPE)?);
-    Ok(frame
+/// The objects table: `ocel:oid`, optionally `ocel:type`, and attribute
+/// columns, kept as strings. Tells whether the table has `ocel:type`.
+fn read_objects(frame: Frame) -> Result<(Vec<OcelObject>, bool)> {
+    let oid = frame
+        .column(OBJECT_ID)
+        .ok_or_else(|| error(format!("the objects CSV file has no {OBJECT_ID} column")))?;
+    let object_type = frame.column(OBJECT_TYPE);
+    let objects = frame
         .rows
         .iter()
         .map(|row| OcelObject {
             id: row[oid].as_deref().unwrap_or("").into(),
-            object_type: row[object_type].as_deref().unwrap_or("").into(),
+            object_type: object_type
+                .and_then(|t| row[t].as_deref())
+                .unwrap_or("")
+                .into(),
             attributes: frame
                 .columns
                 .iter()
                 .enumerate()
-                .filter(|(i, _)| *i != oid && *i != object_type)
+                .filter(|(i, _)| *i != oid && Some(*i) != object_type)
                 .filter_map(|(i, name)| {
                     let value = row[i].as_deref()?;
                     Some((name.as_str(), AttributeValue::String(value.into())))
                 })
                 .collect(),
         })
-        .collect())
+        .collect();
+    Ok((objects, object_type.is_some()))
 }
 
 /// The form of a timestamp: what pandas' format guess fixes.
@@ -243,10 +265,11 @@ pub(super) struct Form {
     pub(super) offset: Option<i32>,
 }
 
-/// Parses each row's timestamp, which must all have the first one's form.
-fn timestamps(frame: &Frame, ts: usize) -> Result<Vec<DateTime<FixedOffset>>> {
+/// Parses each row's timestamp, which must all have the first one's form,
+/// and tells whether that form has no offset.
+fn timestamps(frame: &Frame, ts: usize) -> Result<(Vec<DateTime<FixedOffset>>, bool)> {
     let mut first: Option<Form> = None;
-    frame
+    let times = frame
         .rows
         .iter()
         .enumerate()
@@ -272,7 +295,8 @@ fn timestamps(frame: &Frame, ts: usize) -> Result<Vec<DateTime<FixedOffset>>> {
                 .single()
                 .ok_or_else(|| error(format!("cannot read the timestamp {text:?}")))
         })
-        .collect()
+        .collect::<Result<Vec<_>>>()?;
+    Ok((times, first.is_some_and(|f| f.offset.is_none())))
 }
 
 /// `YYYY-MM-DD[{T| }HH[:MM[:SS[.f]]]][Z|±HH:MM|±HHMM]`, with up to nine
@@ -425,7 +449,7 @@ fn write_table(p: &Prepared, out: &mut dyn Write) -> Result<()> {
         let mut fields = vec![
             e.id.to_string(),
             e.activity.to_string(),
-            timestamp_str(&e.timestamp),
+            timestamp_str(&e.timestamp, p.ocel.naive_times),
         ];
         fields.extend(values(&e.attributes, &p.events));
         fields.extend(row.objects.iter().map(|ids| {
@@ -467,7 +491,7 @@ fn values<'a>(row: &'a Attributes, columns: &'a Columns) -> impl Iterator<Item =
             return AttributeValue::Float(f).to_string();
         }
         match value.plain() {
-            AttributeValue::Date(d) => timestamp_str(d),
+            AttributeValue::Date(d) => timestamp_str(d, false),
             other => other.to_string(),
         }
     })
@@ -475,8 +499,8 @@ fn values<'a>(row: &'a Attributes, columns: &'a Columns) -> impl Iterator<Item =
 
 /// A time as pandas' `str(Timestamp)` writes it, in the time's own offset:
 /// a fraction of the second only when there is one, with nine digits when
-/// the time has nanoseconds.
-fn timestamp_str(d: &DateTime<FixedOffset>) -> String {
+/// the time has nanoseconds. A `naive` time has no offset.
+fn timestamp_str(d: &DateTime<FixedOffset>, naive: bool) -> String {
     let nanos = d.nanosecond() % 1_000_000_000;
     let fraction = if !nanos.is_multiple_of(1_000) {
         format!(".{nanos:09}")
@@ -485,11 +509,12 @@ fn timestamp_str(d: &DateTime<FixedOffset>) -> String {
     } else {
         String::new()
     };
-    format!(
-        "{}{fraction}{}",
-        d.format("%Y-%m-%d %H:%M:%S"),
-        d.format("%:z")
-    )
+    let offset = if naive {
+        String::new()
+    } else {
+        d.format("%:z").to_string()
+    };
+    format!("{}{fraction}{offset}", d.format("%Y-%m-%d %H:%M:%S"))
 }
 
 /// Writes one record as Python's `csv.writer` does with `QUOTE_MINIMAL`: a

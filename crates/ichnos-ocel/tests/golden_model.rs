@@ -107,6 +107,7 @@ fn build(v: &Value) -> Ocel {
             })
             .collect(),
         globals: Attributes::default(),
+        naive_times: false,
     }
 }
 

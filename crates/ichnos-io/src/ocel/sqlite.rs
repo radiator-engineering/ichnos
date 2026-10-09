@@ -790,6 +790,16 @@ fn py_datetime(d: &DateTime<FixedOffset>) -> String {
     isoformat(&d.trunc_subsecs(6)).replacen('T', " ", 1)
 }
 
+/// An event time as pandas writes it: as [`py_datetime`], without the
+/// offset when the log's times are naive.
+fn event_time(d: &DateTime<FixedOffset>, naive: bool) -> String {
+    let text = py_datetime(d);
+    match text.strip_suffix("+00:00") {
+        Some(local) if naive => local.to_string(),
+        _ => text,
+    }
+}
+
 /// A value as Python's `sqlite3` binds it from an `object` column.
 fn bind(value: &AttributeValue) -> Result<Value> {
     Ok(match value.plain() {
@@ -952,7 +962,7 @@ pub fn write_ocel_sqlite(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     let times = log
         .events
         .iter()
-        .map(|e| Value::Text(py_datetime(&e.timestamp)))
+        .map(|e| Value::Text(event_time(&e.timestamp, log.naive_times)))
         .collect();
     events.push(EVENT_TIMESTAMP, ("TIMESTAMP", times));
     events.push_text(EVENT_ACTIVITY, log.events.iter().map(|e| &*e.activity));
@@ -977,7 +987,7 @@ pub fn write_ocel_sqlite(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     );
     let times = rel
         .iter()
-        .map(|r| Value::Text(py_datetime(&by_id[&*r.event].timestamp)))
+        .map(|r| Value::Text(event_time(&by_id[&*r.event].timestamp, log.naive_times)))
         .collect();
     relations.push(EVENT_TIMESTAMP, ("TIMESTAMP", times));
     relations.push_text(OBJECT_ID, rel.iter().map(|r| &*r.object));
@@ -1119,7 +1129,7 @@ pub fn write_ocel2_sqlite(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
         table.push_text("ocel_id", rows.iter().map(|e| &*e.id));
         let times = rows
             .iter()
-            .map(|e| Value::Text(py_datetime(&e.timestamp)))
+            .map(|e| Value::Text(event_time(&e.timestamp, log.naive_times)))
             .collect();
         table.push("ocel_time", ("TIMESTAMP", times));
         table.push_text(EVENT_ACTIVITY, rows.iter().map(|e| &*e.activity));

@@ -108,6 +108,11 @@ pub struct Ocel {
     pub object_changes: Vec<ObjectChange>,
     /// Log-level metadata, such as OCEL 1.0's `ocel:global-log`.
     pub globals: Attributes,
+    /// Whether the event times had no offset in the source file. pm4py
+    /// keeps such times naive. Here they are UTC, and the writers that
+    /// pm4py lets write a naive time without an offset do the same: the
+    /// OCEL 1.0 CSV, OCEL 2.0 XML and SQLite writers.
+    pub naive_times: bool,
 }
 
 /// The events with their related objects, grouped by object type (pm4py's
