@@ -27,7 +27,6 @@ pub mod heuristics;
 pub mod inductive;
 pub mod log_skeleton;
 pub mod temporal_profile;
-/// View-based transition-system discovery.
 pub mod transition_system;
 
 pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha_plus};
@@ -49,7 +48,6 @@ pub use inductive::{
 };
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
-
 pub use transition_system::{
     TransitionAbstraction, TransitionDirection, TransitionDiscovery, TransitionEvent,
     TransitionStateData, TransitionSystemOptions, TransitionView, discover_transition_system,

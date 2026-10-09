@@ -1,3 +1,5 @@
+//! Complete view graphs, event positions and direct pm4py state annotations.
+
 use ichnos_core::{Event, EventKeys, EventLog, Trace};
 use ichnos_discovery::{
     Error, TransitionAbstraction, TransitionDirection, TransitionDiscovery,
@@ -5,6 +7,7 @@ use ichnos_discovery::{
 };
 use ichnos_golden::{JsonCompare, assert_json_eq, golden};
 use serde_json::{Value, json};
+
 fn view(value: &TransitionView) -> Value {
     match value {
         TransitionView::Sequence(labels) => {
@@ -21,6 +24,7 @@ fn view(value: &TransitionView) -> Value {
         ),
     }
 }
+
 fn describe(result: &TransitionDiscovery) -> Value {
     let positions = |values: &[ichnos_discovery::TransitionEvent]| {
         values
@@ -48,6 +52,7 @@ fn describe(result: &TransitionDiscovery) -> Value {
     });
     json!({"states":states,"edges":edges})
 }
+
 fn check(name: &str) {
     let g = golden("discovery", &format!("transition-system-{name}"));
     let keys = EventKeys::default().with_activity(
@@ -97,7 +102,17 @@ fn check(name: &str) {
             include_data: option["include_data"].as_bool().unwrap(),
         };
         let result = discover_transition_system(&log, &keys, &options).unwrap();
-        assert_json_eq(&describe(&result), &run["graph"], &JsonCompare::default());
+        let observed = describe(&result);
+        assert_json_eq(&observed, &run["graph"], &JsonCompare::default());
+        for native in run["native_state_data"].as_array().unwrap() {
+            let state = observed["states"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|state| state["view"] == native["view"])
+                .unwrap();
+            assert_json_eq(state, native, &JsonCompare::default());
+        }
         assert_eq!(
             transition_system(&log, &keys, &options).unwrap(),
             result.system
@@ -114,6 +129,7 @@ fn check(name: &str) {
     }
     assert_eq!(log, before);
 }
+
 macro_rules! cases { ($($test:ident=>$name:literal),*)=>{$(#[test]fn $test(){check($name);})*}; }
 cases!(running_example=>"running-example-xes",receipt=>"receipt-xes",roadtraffic=>"roadtraffic100traces-xes",even=>"interleavings-receipt_even-csv",odd=>"interleavings-receipt_odd-csv",empty=>"empty",empty_traces=>"empty-traces",views=>"views",single=>"single",custom_key=>"custom-key");
 #[test]
@@ -141,4 +157,47 @@ fn positional_errors_and_extreme_window() {
         assert_eq!(result.system.state_count(), 2);
         assert_eq!(result.system.edge_count(), 1);
     }
+}
+
+#[test]
+fn stable_state_names_and_escaping() {
+    let mut trace = Trace::new();
+    for value in ["a", "b"] {
+        let mut event = Event::new();
+        event.attributes.insert("concept:name", value);
+        trace.events.push(event);
+    }
+    let log = EventLog {
+        traces: vec![trace],
+        ..Default::default()
+    };
+    for (view, expected) in [
+        (
+            TransitionAbstraction::Sequence,
+            ["['a', 'b']", "['b']", "[]"],
+        ),
+        (TransitionAbstraction::Set, ["{'a', 'b'}", "{'b'}", "set()"]),
+        (
+            TransitionAbstraction::Multiset,
+            [
+                "Counter({'a': 1, 'b': 1})",
+                "Counter({'b': 1})",
+                "Counter()",
+            ],
+        ),
+    ] {
+        let options = TransitionSystemOptions {
+            view,
+            ..Default::default()
+        };
+        let result = discover_transition_system(&log, &Default::default(), &options).unwrap();
+        let names: Vec<_> = result
+            .system
+            .states()
+            .map(|(_, state)| state.name.to_string())
+            .collect();
+        assert_eq!(names, expected);
+    }
+    let quoted = TransitionView::Sequence(vec!["a'\\\n\tλ".into(), "\u{1}".into()]);
+    assert_eq!(quoted.to_string(), "['a\\'\\\\\\n\\tλ', '\\x01']");
 }
