@@ -65,6 +65,27 @@ pub enum Error {
     /// its limits. pm4py raises an exception in the same case.
     #[error("no picked variant could be aligned against the model")]
     NoRepresentative,
+    /// An object-centric event log relation names an event that is not in
+    /// the events table.
+    #[error("an OCEL relation names event {0:?}, which is not in the events table")]
+    UnknownOcelEvent(String),
+    /// An object-centric event log relation names an object that is not in
+    /// the objects table. pm4py raises `KeyError`.
+    #[error("an OCEL relation names object {0:?}, which is not in the objects table")]
+    UnknownOcelObject(String),
+    /// The normative graph and the weights give a normalisation constant of
+    /// 0, so the fitness is undefined. pm4py raises `ZeroDivisionError`.
+    #[error("the normative graph and the weights give a normalisation constant of 0")]
+    ZeroNormalization,
+    /// An ET-OT edge that both graphs share has frequency 0 in the normative
+    /// graph. pm4py raises `ZeroDivisionError`.
+    #[error("the normative ET-OT edge ({activity}, {object_type}) has frequency 0")]
+    ZeroEdgeFrequency {
+        /// The activity of the edge.
+        activity: String,
+        /// The object type of the edge.
+        object_type: String,
+    },
     /// The linear program of the state-equation heuristic failed in a way
     /// other than infeasibility.
     #[error("the state-equation linear program failed: {0}")]

@@ -1,0 +1,137 @@
+{
+  "expected": {
+    "activities": [
+      "Add Item to Order",
+      "Cancel Order",
+      "Confirm Order",
+      "Create Delivery",
+      "Create Order",
+      "Delivery Failed",
+      "Delivery Successful",
+      "Invoice Sent",
+      "Item back in Stock",
+      "Item out of Stock",
+      "Pay Order",
+      "Payment Reminder",
+      "Remove Item",
+      "Retry Delivery",
+      "Send for Credit Collection"
+    ],
+    "edges": [
+      {
+        "activity": "Add Item to Order",
+        "count": 1,
+        "object_type": "element"
+      },
+      {
+        "activity": "Add Item to Order",
+        "count": 1,
+        "object_type": "order"
+      },
+      {
+        "activity": "Cancel Order",
+        "count": 1,
+        "object_type": "order"
+      },
+      {
+        "activity": "Confirm Order",
+        "count": 1,
+        "object_type": "order"
+      },
+      {
+        "activity": "Create Delivery",
+        "count": 3,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Create Delivery",
+        "count": 7,
+        "object_type": "element"
+      },
+      {
+        "activity": "Create Order",
+        "count": 8,
+        "object_type": "element"
+      },
+      {
+        "activity": "Create Order",
+        "count": 3,
+        "object_type": "order"
+      },
+      {
+        "activity": "Delivery Failed",
+        "count": 1,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Delivery Successful",
+        "count": 3,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Invoice Sent",
+        "count": 2,
+        "object_type": "order"
+      },
+      {
+        "activity": "Item back in Stock",
+        "count": 1,
+        "object_type": "element"
+      },
+      {
+        "activity": "Item out of Stock",
+        "count": 1,
+        "object_type": "element"
+      },
+      {
+        "activity": "Pay Order",
+        "count": 1,
+        "object_type": "order"
+      },
+      {
+        "activity": "Payment Reminder",
+        "count": 2,
+        "object_type": "order"
+      },
+      {
+        "activity": "Remove Item",
+        "count": 1,
+        "object_type": "element"
+      },
+      {
+        "activity": "Retry Delivery",
+        "count": 1,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Send for Credit Collection",
+        "count": 1,
+        "object_type": "order"
+      }
+    ],
+    "object_types": [
+      "delivery",
+      "element",
+      "order"
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "etot-example-log",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_etot"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
