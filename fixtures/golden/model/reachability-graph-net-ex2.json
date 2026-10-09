@@ -1,0 +1,302 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "c11",
+        "(B, 'Register as Low-Value Claim')",
+        "c21c51"
+      ],
+      [
+        "c11",
+        "(C, 'Register as High-Value Claim')",
+        "c21c61"
+      ],
+      [
+        "c21c51",
+        "(D, 'Check Policy')",
+        "c31c51"
+      ],
+      [
+        "c21c61",
+        "(D, 'Check Policy')",
+        "c31c61"
+      ],
+      [
+        "c21c61",
+        "(G, 'Consult Expert')",
+        "c21c71"
+      ],
+      [
+        "c21c71",
+        "(D, 'Check Policy')",
+        "c31c71"
+      ],
+      [
+        "c21c71",
+        "(H, 'Check Liability')",
+        "c21c81"
+      ],
+      [
+        "c21c81",
+        "(D, 'Check Policy')",
+        "c31c81"
+      ],
+      [
+        "c31c51",
+        "(E, 'Compute Low-value Claim')",
+        "c41"
+      ],
+      [
+        "c31c61",
+        "(G, 'Consult Expert')",
+        "c31c71"
+      ],
+      [
+        "c31c71",
+        "(H, 'Check Liability')",
+        "c31c81"
+      ],
+      [
+        "c31c81",
+        "(F, 'Compute High-value Claim')",
+        "c41"
+      ],
+      [
+        "c41",
+        "(I, 'Set Checkpoint')",
+        "sink1"
+      ],
+      [
+        "source1",
+        "(A, 'Set Checkpoint')",
+        "c11"
+      ]
+    ],
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "c1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "c3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "F",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "G",
+          "target": "c7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "H",
+          "target": "c8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "I",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c2",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c4",
+          "target": "I",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c6",
+          "target": "G",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c7",
+          "target": "H",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c8",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Set Checkpoint",
+          "name": "A"
+        },
+        {
+          "label": "Register as Low-Value Claim",
+          "name": "B"
+        },
+        {
+          "label": "Register as High-Value Claim",
+          "name": "C"
+        },
+        {
+          "label": "Check Policy",
+          "name": "D"
+        },
+        {
+          "label": "Compute Low-value Claim",
+          "name": "E"
+        },
+        {
+          "label": "Compute High-value Claim",
+          "name": "F"
+        },
+        {
+          "label": "Consult Expert",
+          "name": "G"
+        },
+        {
+          "label": "Check Liability",
+          "name": "H"
+        },
+        {
+          "label": "Set Checkpoint",
+          "name": "I"
+        }
+      ]
+    },
+    "states": [
+      "c11",
+      "c21c51",
+      "c21c61",
+      "c21c71",
+      "c21c81",
+      "c31c51",
+      "c31c61",
+      "c31c71",
+      "c31c81",
+      "c41",
+      "sink1",
+      "source1"
+    ]
+  },
+  "meta": {
+    "area": "model",
+    "case": "reachability-graph-net-ex2",
+    "fixtures": {
+      "model": "fixtures/logs/ex2.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_reachability_graph"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

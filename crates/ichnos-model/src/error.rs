@@ -3,6 +3,7 @@
 use crate::dfg::DfgError;
 use crate::petri::{NotEnabled, PetriNetError, ReachabilityError};
 use crate::process_tree::{ParseError, TreeError};
+use crate::transition_system::TsError;
 
 /// Any error raised by this crate.
 ///
@@ -29,4 +30,7 @@ pub enum Error {
     /// A DFG operation named an activity the graph does not have.
     #[error(transparent)]
     Dfg(#[from] DfgError),
+    /// A transition system operation failed.
+    #[error(transparent)]
+    TransitionSystem(#[from] TsError),
 }

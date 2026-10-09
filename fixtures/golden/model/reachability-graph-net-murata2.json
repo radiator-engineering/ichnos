@@ -1,0 +1,216 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "p_131p_181",
+        "(5b9db842-5285-4229-b6fb-c55952ac4e73, 'c')",
+        "p_141p_181"
+      ],
+      [
+        "p_141p_181",
+        "(cadc2077-836f-4c05-acf5-7eb1dea15b3b, 'd')",
+        "p_131p_181"
+      ],
+      [
+        "p_141p_181",
+        "(t_0, None)",
+        "p_171p_181"
+      ],
+      [
+        "p_161",
+        "(b63da257-4fe5-4cde-ad4f-523ad3d5eb56, 'End')",
+        "sink1"
+      ],
+      [
+        "p_171p_181",
+        "(22ce2b93-c130-4cd3-8a70-3f1a604712f7, 'e')",
+        "p_161"
+      ],
+      [
+        "p_31",
+        "(b795b444-8c55-4b30-b6b7-b4d1f88ea547, 'a')",
+        "p_131p_181"
+      ],
+      [
+        "source1",
+        "(4e6e5b14-8a25-40a8-962b-649de2917762, 'Start')",
+        "p_31"
+      ]
+    ],
+    "model": {
+      "arcs": [
+        {
+          "source": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "target": "p_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "target": "p_14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_18",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_13",
+          "target": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "t_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_16",
+          "target": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_17",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_18",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_0",
+          "target": "p_17",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_13",
+        "p_14",
+        "p_16",
+        "p_17",
+        "p_18",
+        "p_3",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "e",
+          "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+        },
+        {
+          "label": "Start",
+          "name": "4e6e5b14-8a25-40a8-962b-649de2917762"
+        },
+        {
+          "label": "c",
+          "name": "5b9db842-5285-4229-b6fb-c55952ac4e73"
+        },
+        {
+          "label": "End",
+          "name": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56"
+        },
+        {
+          "label": "a",
+          "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+        },
+        {
+          "label": "d",
+          "name": "cadc2077-836f-4c05-acf5-7eb1dea15b3b"
+        },
+        {
+          "label": null,
+          "name": "t_0"
+        }
+      ]
+    },
+    "states": [
+      "p_131p_181",
+      "p_141p_181",
+      "p_161",
+      "p_171p_181",
+      "p_31",
+      "sink1",
+      "source1"
+    ]
+  },
+  "meta": {
+    "area": "model",
+    "case": "reachability-graph-net-murata2",
+    "fixtures": {
+      "model": "fixtures/logs/murata2.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_reachability_graph"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "p11p21",
+        "(B, 'B')",
+        "p21p31p41"
+      ],
+      [
+        "p11p21",
+        "(C, 'C')",
+        "p11p61"
+      ],
+      [
+        "p11p61",
+        "(B, 'B')",
+        "p31p41p61"
+      ],
+      [
+        "p21p31p41",
+        "(C, 'C')",
+        "p31p41p61"
+      ],
+      [
+        "p31p41p61",
+        "(D, 'D')",
+        "p31p51"
+      ],
+      [
+        "p31p51",
+        "(E, 'E')",
+        "sink1"
+      ],
+      [
+        "source1",
+        "(A, 'A')",
+        "p11p21"
+      ]
+    ],
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "A",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "A",
+          "name": "A"
+        },
+        {
+          "label": "B",
+          "name": "B"
+        },
+        {
+          "label": "C",
+          "name": "C"
+        },
+        {
+          "label": "D",
+          "name": "D"
+        },
+        {
+          "label": "E",
+          "name": "E"
+        }
+      ]
+    },
+    "states": [
+      "p11p21",
+      "p11p61",
+      "p21p31p41",
+      "p31p41p61",
+      "p31p51",
+      "sink1",
+      "source1"
+    ]
+  },
+  "meta": {
+    "area": "model",
+    "case": "reachability-graph-net-ex1",
+    "fixtures": {
+      "model": "fixtures/logs/ex1.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_reachability_graph"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

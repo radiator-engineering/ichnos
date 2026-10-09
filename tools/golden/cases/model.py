@@ -11,9 +11,15 @@ model in a form a Rust test can build directly:
 - Process tree: ``{"kind": "process_tree", "tree": str(tree)}``, pm4py's
   ``to_string`` form.
 
-Expected value: ``{"model": ..., "footprints": pm4py.discover_footprints(...)}``.
-Footprint relations are sorted lists of ``[a, b]`` pairs. A net's footprints
-have no end activities, as in pm4py.
+Cases:
+
+- ``footprints-*``: ``{"model": ..., "footprints": pm4py.discover_footprints(...)}``.
+  Footprint relations are sorted lists of ``[a, b]`` pairs. A net's footprints
+  have no end activities, as in pm4py.
+- ``reachability-graph-net-*``: ``{"model": ..., "states": [...], "edges":
+  [[from, name, to], ...]}`` from ``pm4py.convert_to_reachability_graph``.
+  pm4py states are equal when their names are, so both lists are sorted sets
+  of names. Edge names are pm4py's transition ``repr``.
 """
 
 from __future__ import annotations
@@ -27,6 +33,7 @@ from harness import case
 from harness.fixtures import load_model
 
 FUNCTIONS = ["pm4py.discover_footprints"]
+RG_FUNCTIONS = ["pm4py.convert_to_reachability_graph"]
 
 
 def _node_name(node: Any) -> str:
@@ -79,6 +86,16 @@ def tree_footprints(fixtures: dict[str, Path]) -> dict[str, Any]:
     }
 
 
+def net_reachability_graph(fixtures: dict[str, Path]) -> dict[str, Any]:
+    net, im, fm = load_model(fixtures["model"])
+    ts = pm4py.convert_to_reachability_graph(net, im, fm)
+    return {
+        "model": describe_net(net, im, fm),
+        "states": sorted({s.name for s in ts.states}),
+        "edges": sorted({(t.from_state.name, t.name, t.to_state.name) for t in ts.transitions}),
+    }
+
+
 NETS = [
     "big_wf_net",
     "data_petri_net",
@@ -101,3 +118,8 @@ for name in NETS:
 for name in TREES:
     case_id = "footprints-tree-" + name.lower().replace("_", "-")
     case(case_id, fixtures={"model": f"{name}.ptml"}, functions=FUNCTIONS)(tree_footprints)
+
+# roadtraffic is left out: its reachability graph golden is over 3 MB.
+for name in [n for n in NETS if n != "roadtraffic"]:
+    case_id = "reachability-graph-net-" + name.lower().replace("_", "-")
+    case(case_id, fixtures={"model": f"{name}.pnml"}, functions=RG_FUNCTIONS)(net_reachability_graph)
