@@ -17,3 +17,6 @@ pub use ichnos_model as model;
 /// Conformance checking: alignments, fitness and precision. See
 /// [`ichnos_conformance`].
 pub use ichnos_conformance as conformance;
+
+/// Object-centric event logs. See [`ichnos_ocel`].
+pub use ichnos_ocel as ocel;

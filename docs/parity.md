@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 310; ported: 187; dropped: 129; total: 626.
+todo: 309; ported: 188; dropped: 129; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -1268,7 +1268,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.OCEL` | `objects/ocel/obj.py` → `objects/ocel/constants` | `ichnos::ocel::OCEL` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.OCEL` | `objects/ocel/obj.py` → `objects/ocel/constants` | `ichnos::ocel::Ocel` | `ichnos-ocel` | ported | `Ocel` with `is_ocel20`, `summary` (pm4py's `get_summary` text through `Display`) and `extended_table`; default column names and JSON keys in `ichnos_ocel::constants`. Goldens `ocel/model-*` (6 fixtures and the empty log) compare each against pm4py. See the ichnos-ocel Behaviour changes. |
 
 ## objects.bpmn.obj
 
@@ -1320,6 +1320,14 @@ Lanes record each deliberate change from pm4py here.
 - **Decomposed components keep arc weights.** pm4py's `decompose` builds each component with weight-1 arcs.
 - **Decomposed alignments of an empty trace have a fitness and a best worst cost.** pm4py leaves both out for an empty trace. When the denominator is 0, ichnos gives fitness 0.
 - **Errors replace exceptions and `None` results.** Nets with reset or inhibitor arcs, unknown marking places and invalid settings return an `Error`.
+
+### ichnos-ocel
+
+- **Tables are typed rows, not data frames.** pm4py's `OCEL` holds pandas data frames whose column names are constructor parameters. `Ocel` holds lists of events, objects, relations, object-to-object and event-to-event relations and object changes. Column names matter only to the readers and writers.
+- **Relations keep ids only.** pm4py's `relations` table repeats each event's activity and timestamp and each object's type. `EventObject` keeps the event id, the object id and the qualifier. `summary` and `extended_table` look up the rest, and leave out a relation whose event or object is not in the log.
+- **The extended table is typed.** `get_extended_table` returns a data frame with one `ocel:type:<type>` column per object type, holding a list or a missing value. `extended_table` returns the object types and, for each event, one list per type, empty where pandas has a missing value.
+- **`OcelSummary` is a struct.** Its `Display` gives pm4py's `get_summary` text.
+- **No column-name parameters, `__hash__` or copy methods.** `Ocel` derives `Clone` and `PartialEq`.
 
 ### ichnos-io
 
