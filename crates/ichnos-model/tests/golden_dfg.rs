@@ -1,7 +1,9 @@
-//! DFG filters against pm4py's (`fixtures/golden/dfg`).
+//! DFG filters and the DFG to Petri net conversion against pm4py's
+//! (`fixtures/golden/dfg`).
 //!
-//! Each golden file holds the DFG of a log and the result of every filter
-//! over a parameter grid; see `tools/golden/cases/dfg.py`.
+//! Each golden file holds the DFG of a log, the result of every filter
+//! over a parameter grid and the converted net; see
+//! `tools/golden/cases/dfg.py`.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -9,6 +11,8 @@ use ichnos_golden::{cases, golden};
 use ichnos_model::Label;
 use ichnos_model::dfg::{ActivityCounts, Dfg};
 use serde_json::{Map, Value, json};
+
+mod common;
 
 fn counts(v: &Value) -> BTreeMap<Label, u64> {
     v.as_object()
@@ -90,5 +94,45 @@ fn dfg_filters_match_pm4py() {
             let context = format!("{id}: {filter}({param}, keep_all={keep_all})");
             assert_eq!(actual, r["output"], "{context}");
         }
+    }
+}
+
+/// A net as sorted lines, with each transition named by its label and the
+/// places around it. pm4py numbers the transitions in edge order.
+fn shape(apn: &ichnos_model::AcceptingPetriNet) -> Vec<String> {
+    let net = &apn.net;
+    let mut out: Vec<String> = net
+        .places()
+        .map(|(_, p)| format!("place {}", p.name))
+        .collect();
+    for (id, t) in net.transitions() {
+        let mut pre: Vec<&str> = net.preset(id).map(|p| net.place(p).name.as_str()).collect();
+        let mut post: Vec<&str> = net
+            .postset(id)
+            .map(|p| net.place(p).name.as_str())
+            .collect();
+        pre.sort_unstable();
+        post.sort_unstable();
+        out.push(format!("transition {:?} {pre:?} -> {post:?}", t.label));
+    }
+    for (key, m) in [
+        ("initial", &apn.initial_marking),
+        ("final", &apn.final_marking),
+    ] {
+        for (p, n) in m.iter() {
+            out.push(format!("{key} {} {n}", net.place(p).name));
+        }
+    }
+    out.sort();
+    out
+}
+
+#[test]
+fn dfgs_convert_to_the_nets_pm4py_builds() {
+    for id in cases("dfg") {
+        let g = golden("dfg", &id);
+        let (dfg, _) = read_dfg(g.expected_at("/input"));
+        let theirs = common::build_accepting(g.expected_at("/petri_net"));
+        assert_eq!(shape(&dfg.to_petri_net()), shape(&theirs), "{id}");
     }
 }

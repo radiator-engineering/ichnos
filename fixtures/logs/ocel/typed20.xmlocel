@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<log>
+  <object-types>
+    <object-type name="order">
+      <attributes>
+        <attribute name="value" type="float"/>
+        <attribute name="priority" type="integer"/>
+        <attribute name="express" type="boolean"/>
+        <attribute name="due" type="time"/>
+        <attribute name="label" type="string"/>
+      </attributes>
+    </object-type>
+    <object-type name="item">
+      <attributes>
+        <attribute name="weight" type="float"/>
+      </attributes>
+    </object-type>
+  </object-types>
+  <event-types>
+    <event-type name="place order">
+      <attributes>
+        <attribute name="cost" type="float"/>
+        <attribute name="count" type="integer"/>
+        <attribute name="rush" type="boolean"/>
+        <attribute name="slot" type="time"/>
+        <attribute name="note" type="string"/>
+      </attributes>
+    </event-type>
+    <event-type name="pick item">
+      <attributes>
+        <attribute name="cost" type="float"/>
+      </attributes>
+    </event-type>
+    <event-type name="ship">
+      <attributes/>
+    </event-type>
+  </event-types>
+  <objects>
+    <object id="o1" type="order">
+      <attributes>
+        <attribute name="value" time="1970-01-01T00:00:00Z">120.5</attribute>
+        <attribute name="priority" time="1970-01-01T00:00:00Z">2</attribute>
+        <attribute name="express" time="1970-01-01T00:00:00Z">false</attribute>
+        <attribute name="due" time="1970-01-01T00:00:00Z">2022-01-12T00:00:00+01:00</attribute>
+        <attribute name="label" time="0">rush order</attribute>
+        <attribute name="value" time="2022-01-09T17:00:00.5Z">130</attribute>
+      </attributes>
+      <objects>
+        <relationship object-id="i1" qualifier="contains"/>
+        <relationship object-id="i2" qualifier="contains"/>
+      </objects>
+    </object>
+    <object id="i1" type="item">
+      <attributes>
+        <attribute name="weight" time="1970-01-01T00:00:00Z">1.5</attribute>
+        <attribute name="weight" time="1970-01-01T00:00:00Z">1.25</attribute>
+      </attributes>
+    </object>
+    <object id="i2" type="item">
+      <attributes/>
+    </object>
+  </objects>
+  <events>
+    <event id="e1" type="place order" time="2022-01-09T14:00:00.1234567Z">
+      <attributes>
+        <attribute name="cost">10</attribute>
+        <attribute name="count">7</attribute>
+        <attribute name="rush">true</attribute>
+        <attribute name="slot">2022-01-09T18:00:00Z</attribute>
+        <attribute name="note">first</attribute>
+      </attributes>
+      <objects>
+        <relationship object-id="o1" qualifier="placer"/>
+        <relationship object-id="i1" qualifier="ordered"/>
+        <relationship object-id="i1" qualifier="reordered"/>
+        <relationship object-id="ghost" qualifier="lost"/>
+      </objects>
+    </event>
+    <event id="e2" type="pick item" time="2022-01-09T15:30:00+01:00">
+      <attributes>
+        <attribute name="cost">null</attribute>
+      </attributes>
+      <objects>
+        <relationship object-id="i1" qualifier="picked"/>
+      </objects>
+    </event>
+    <event id="e3" type="pick item" time="2022-01-09T14:30:00">
+      <attributes>
+        <attribute name="cost">2.5</attribute>
+      </attributes>
+      <objects>
+        <relationship object-id="i2" qualifier="picked"/>
+      </objects>
+    </event>
+    <event id="e4" type="ship" time="2022-01-10T08:00:00Z">
+      <objects>
+        <relationship object-id="o1" qualifier="shipped"/>
+      </objects>
+    </event>
+  </events>
+</log>

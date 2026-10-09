@@ -37,6 +37,335 @@
         "register request": 6
       }
     },
+    "petri_net": {
+      "arcs": [
+        {
+          "source": "check ticket",
+          "target": "decide_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check ticket",
+          "target": "examine casually_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check ticket",
+          "target": "examine thoroughly_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check ticket_10",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check ticket_12",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check ticket_14",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check ticket_17",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide",
+          "target": "pay compensation_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide",
+          "target": "reinitiate request_8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide",
+          "target": "reject request_9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide_11",
+          "target": "decide",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide_13",
+          "target": "decide",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide_4",
+          "target": "decide",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually",
+          "target": "check ticket_10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually",
+          "target": "decide_11",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually_15",
+          "target": "examine casually",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually_18",
+          "target": "examine casually",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually_5",
+          "target": "examine casually",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly",
+          "target": "check ticket_12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly",
+          "target": "decide_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly_16",
+          "target": "examine thoroughly",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly_19",
+          "target": "examine thoroughly",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly_6",
+          "target": "examine thoroughly",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "pay compensation",
+          "target": "pay compensation_2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "pay compensation_2",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "pay compensation_7",
+          "target": "pay compensation",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request",
+          "target": "check ticket_14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request",
+          "target": "examine casually_15",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request",
+          "target": "examine thoroughly_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request_1",
+          "target": "register request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request",
+          "target": "check ticket_17",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request",
+          "target": "examine casually_18",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request",
+          "target": "examine thoroughly_19",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request_8",
+          "target": "reinitiate request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reject request",
+          "target": "reject request_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reject request_3",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reject request_9",
+          "target": "reject request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "register request_1",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "check ticket",
+        "decide",
+        "examine casually",
+        "examine thoroughly",
+        "pay compensation",
+        "register request",
+        "reinitiate request",
+        "reject request",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": "check ticket_10"
+        },
+        {
+          "label": "check ticket",
+          "name": "check ticket_12"
+        },
+        {
+          "label": "check ticket",
+          "name": "check ticket_14"
+        },
+        {
+          "label": "check ticket",
+          "name": "check ticket_17"
+        },
+        {
+          "label": "decide",
+          "name": "decide_11"
+        },
+        {
+          "label": "decide",
+          "name": "decide_13"
+        },
+        {
+          "label": "decide",
+          "name": "decide_4"
+        },
+        {
+          "label": "examine casually",
+          "name": "examine casually_15"
+        },
+        {
+          "label": "examine casually",
+          "name": "examine casually_18"
+        },
+        {
+          "label": "examine casually",
+          "name": "examine casually_5"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "examine thoroughly_16"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "examine thoroughly_19"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "examine thoroughly_6"
+        },
+        {
+          "label": null,
+          "name": "pay compensation_2"
+        },
+        {
+          "label": "pay compensation",
+          "name": "pay compensation_7"
+        },
+        {
+          "label": "register request",
+          "name": "register request_1"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "reinitiate request_8"
+        },
+        {
+          "label": null,
+          "name": "reject request_3"
+        },
+        {
+          "label": "reject request",
+          "name": "reject request_9"
+        }
+      ]
+    },
     "results": [
       {
         "filter": "activities_percentage",
@@ -2067,7 +2396,8 @@
       "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_to_activity",
       "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_from_activity",
       "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_contain_activity",
-      "pm4py.algo.filtering.dfg.dfg_filtering.clean_dfg_based_on_noise_thresh"
+      "pm4py.algo.filtering.dfg.dfg_filtering.clean_dfg_based_on_noise_thresh",
+      "pm4py.convert_to_petri_net"
     ],
     "loaders": {
       "log": {

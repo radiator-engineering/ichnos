@@ -33,6 +33,12 @@ pub enum Error {
     /// Invalid XES structure or typed value.
     #[error("invalid XES: {0}")]
     Xes(String),
+    /// Invalid OCEL structure or value.
+    #[error("invalid OCEL: {0}")]
+    Ocel(String),
+    /// The JSON document is malformed or does not have the expected shape.
+    #[error(transparent)]
+    Json(#[from] serde_json::Error),
     /// A core log conversion failed.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),

@@ -9,6 +9,11 @@ under AGPL-3.0.
 
 The files are vendored so that CI can read them without a pm4py checkout.
 
+Four files are not from pm4py: `ocel/typed.jsonocel`, `ocel/typed.xmlocel`,
+`ocel/typed20.jsonocel` and `ocel/typed20.xmlocel` are small synthetic logs
+written for ichnos. They cover typed attributes, object changes, qualifiers,
+repeated relations and references to unknown objects in each OCEL layout.
+
 ## `golden/`
 
 pm4py's outputs on these logs, one JSON file per case at

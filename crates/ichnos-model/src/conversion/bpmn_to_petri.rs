@@ -3,9 +3,10 @@
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
-use crate::Label;
+use super::{WfNetToPowlError, WfNetToTreeError};
 use crate::bpmn::{Bpmn, FlowId, FlowKind, GatewayKind, NodeId, NodeKind};
 use crate::petri::{AcceptingPetriNet, Marking, PetriNet, PlaceId, TransitionId};
+use crate::{Label, Powl, ProcessTree};
 
 /// Options for [`Bpmn::to_petri_net`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -295,5 +296,27 @@ fn add_inclusive_skips(net: &mut PetriNet, exits: &BTreeSet<String>, entries: &B
         let t = net.add_transition(format!("{from}_skip"), None::<Label>);
         net.add_input_arc(p, t).expect("live ids");
         net.add_output_arc(t, q).expect("live ids");
+    }
+}
+
+impl Bpmn {
+    /// Converts the diagram to a process tree through its Petri net, as
+    /// `pm4py.convert_to_process_tree` does for a BPMN: [`Bpmn::to_petri_net`]
+    /// with the default options, then
+    /// [`AcceptingPetriNet::to_process_tree`](crate::AcceptingPetriNet::to_process_tree).
+    pub fn to_process_tree(&self) -> Result<ProcessTree, WfNetToTreeError> {
+        self.to_petri_net(BpmnToPetriOptions::default())
+            .net
+            .to_process_tree()
+    }
+
+    /// Converts the diagram to POWL through its Petri net, as
+    /// `pm4py.convert_to_powl` does for a BPMN: [`Bpmn::to_petri_net`] with
+    /// the default options, then [`PetriNet::to_powl`].
+    pub fn to_powl(&self) -> Result<Powl, WfNetToPowlError> {
+        self.to_petri_net(BpmnToPetriOptions::default())
+            .net
+            .net
+            .to_powl()
     }
 }
