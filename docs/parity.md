@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 63; ported: 373; dropped: 190; total: 626.
+todo: 56; ported: 376; dropped: 194; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -720,25 +720,25 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.pandas.algorithm.apply` | `statistics/process_cube/pandas/algorithm.py` | `ichnos::stats::process_cube::pandas::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.pandas.algorithm.apply` | `statistics/process_cube/pandas/algorithm.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Consolidated into the ported `pm4py.get_process_cube` row; this backend dispatcher/classic implementation adds no separate Rust API. Existing goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}`, `cube-real-{running-example,receipt,roadtraffic100traces}` and `cube-top-edge` exercise its pandas semantics. See process-cube Behaviour changes. |
 
 ## statistics.process_cube.pandas.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.pandas.variants.classic.apply` | `statistics/process_cube/pandas/variants/classic.py` | `ichnos::stats::process_cube::pandas::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.pandas.variants.classic.apply` | `statistics/process_cube/pandas/variants/classic.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Consolidated into the ported `pm4py.get_process_cube` row; this backend dispatcher/classic implementation adds no separate Rust API. Existing goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}`, `cube-real-{running-example,receipt,roadtraffic100traces}` and `cube-top-edge` exercise its pandas semantics. See process-cube Behaviour changes. |
 
 ## statistics.process_cube.polars.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.polars.algorithm.apply` | `statistics/process_cube/polars/algorithm.py` | `ichnos::stats::process_cube::polars::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.polars.algorithm.apply` | `statistics/process_cube/polars/algorithm.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Backend entry point consolidated into `pm4py.get_process_cube`, using the canonical pandas semantics and its existing `simulation/cube-*` goldens. Polars composite/categorical axes and median/first/last/count aggregation are not supported; bin closure and case-id join semantics also differ. These gaps are recorded under process-cube Behaviour changes, rather than claiming the Polars implementation is ported. |
 
 ## statistics.process_cube.polars.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.polars.variants.classic.apply` | `statistics/process_cube/polars/variants/classic.py` | `ichnos::stats::process_cube::polars::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.polars.variants.classic.apply` | `statistics/process_cube/polars/variants/classic.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Backend entry point consolidated into `pm4py.get_process_cube`, using the canonical pandas semantics and its existing `simulation/cube-*` goldens. Polars composite/categorical axes and median/first/last/count aggregation are not supported; bin closure and case-id join semantics also differ. These gaps are recorded under process-cube Behaviour changes, rather than claiming the Polars implementation is ported. |
 
 ## statistics.rework.cases.log.get
 
@@ -1255,14 +1255,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.PetriNet` | `objects/petri_net/obj.py` → `objects/petri_net/utils/petri_utils` | `ichnos::model::PetriNet` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.Marking` | `objects/petri_net/obj.py` | `ichnos::model::Marking` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.PetriNet` | `objects/petri_net/obj.py` → `objects/petri_net/utils/petri_utils` | `ichnos_model::PetriNet` | `ichnos-model` | ported | Arena-backed typed places/transitions and weighted normal/inhibitor/reset arcs. Existing goldens `model/footprints-net-*`, `model/networkx-net-*`, `wfnet/tree-*` and PNML `io/model-*`; see model object Behaviour changes for identity and metadata gaps. |
+| `pm4py.Marking` | `objects/petri_net/obj.py` | `ichnos_model::Marking` | `ichnos-model` | ported | PlaceId-to-u32 token counts; get/set/add/remove, addition and `is_covered_by` for componentwise coverage. Existing goldens `model/reachability-graph-net-*` and `wfnet/tree-*` compare reachable state names and initial/final markings. See model object Behaviour changes for zero/negative counts and ordering. |
 
 ## objects.process_tree.obj
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.ProcessTree` | `objects/process_tree/obj.py` | `ichnos::model::ProcessTree` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.ProcessTree` | `objects/process_tree/obj.py` | `ichnos_model::ProcessTree` | `ichnos-model` | ported | Owned Tau/Activity/Node enum with six typed operators; constructors, parse, validation, folding and conversions. Existing goldens `model/footprints-tree-*`, `wfnet/tree-*` and PTML `io/model-*`. See model object Behaviour changes for parent links, properties and loop arity. |
 
 ## objects.ocel.obj
 
@@ -1455,6 +1455,17 @@ Rows cite these as `core-N`.
 28. **`project` gives `None` for a missing attribute.** pm4py raises `KeyError`.
 29. **`set_classifier` is two methods**: `insert_classifier_attribute` takes attribute keys and `insert_named_classifier_attribute` takes a log classifier name. Neither records the activity key on the log (see core-4).
 30. **`serialize` and `deserialize` are not ported.** The `ichnos-io` readers and writers give and take the bytes for each format.
+
+### ichnos-model (model objects)
+
+- `PetriNet` uses net-local arena ids and stable insertion order in place of Python object identities and sets.
+- Petri net names and transition labels are strings; arbitrary Python objects are not accepted.
+- Arbitrary Python property dictionaries on nets, places, transitions, arcs and process-tree nodes are not model fields. PNML metadata that the readers preserve belongs to the I/O document.
+- `Marking` stores nonzero `u32` counts. Python's Counter-based marking can retain explicit zeros, negative counts and larger integers; those states are not represented here.
+- `Marking::remove` saturates at zero; Python marking subtraction can produce negative counts.
+- `Marking::is_covered_by` implements componentwise coverage. Rust's derived ordering sorts markings lexicographically and does not replace pm4py's componentwise `<=` operator.
+- `ProcessTree` owns its children without mutable parent links or shared/cyclic Python nodes.
+- Process-tree loops are validated as two children (do/redo), and the parser rejects other loop arities. Algorithms that consume manually constructed trees handle one or more than two children as described in the type documentation.
 
 ### ichnos-model (BPMN)
 
@@ -1743,6 +1754,13 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - An all-NaN numeric cube axis yields an empty cube; pm4py raises a non-increasing-bins error.
 - Aggregations are the typed choices mean, sum, min and max. Arbitrary pandas aggregation strings/callables are not exposed.
 - Constant numeric columns get a single half-unit interval. Manual boundaries are sorted and deduplicated; invalid boundaries return a typed error.
+- Separate pandas and Polars cube entry points are consolidated into `get_process_cube`; existing cube goldens validate the canonical pandas behavior.
+- Polars composite dimensions (tuples of attributes) are not exposed.
+- Polars categorical string axes are not exposed; the typed feature table carries numeric and one-hot columns.
+- Polars median, first, last and count/len aggregations are not exposed.
+- Numeric bins follow pandas' right-closed intervals with an inclusive lowest edge. Polars uses left-closed bins and an inclusive maximum with a near-maximum tolerance.
+- Cube values are aggregated row by row. Polars joins dimensions and values by case id, which can multiply observations for repeated ids.
+- Auto-binning uses exact equality for constant columns and requires 1..=10000 divisions. Polars treats near-equal extrema as constant and clamps divisions to at least one.
 
 ### SaCoFa and PRIPEL entry point (`ichnos-privacy`)
 
