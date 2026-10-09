@@ -8,7 +8,9 @@
 //! - [`process_tree`]: process trees, pm4py's string syntax, simplification
 //!   and random playout.
 //! - [`footprints`]: behavioural footprints of nets and trees.
+//! - [`conversion`]: conversions between model types.
 
+pub mod conversion;
 pub mod footprints;
 mod label;
 pub mod petri;
