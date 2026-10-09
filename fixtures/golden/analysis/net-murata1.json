@@ -1,0 +1,814 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "End",
+            "target": "p9",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "end_tau",
+            "target": "sink",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p9",
+            "target": "end_tau",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "sink": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p9",
+          "sink"
+        ],
+        "transitions": [
+          {
+            "label": "End",
+            "name": "End"
+          },
+          {
+            "label": null,
+            "name": "end_tau"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "Start",
+            "target": "p5",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p5",
+            "target": "a",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p5"
+        ],
+        "transitions": [
+          {
+            "label": "Start",
+            "name": "Start"
+          },
+          {
+            "label": "a",
+            "name": "a"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "a",
+            "target": "p3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p3",
+            "target": "e",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p3"
+        ],
+        "transitions": [
+          {
+            "label": "a",
+            "name": "a"
+          },
+          {
+            "label": "e",
+            "name": "e"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "a",
+            "target": "p4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "d",
+            "target": "p4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p4",
+            "target": "c",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p4"
+        ],
+        "transitions": [
+          {
+            "label": "a",
+            "name": "a"
+          },
+          {
+            "label": "c",
+            "name": "c"
+          },
+          {
+            "label": "d",
+            "name": "d"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "c",
+            "target": "p1",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p0",
+            "target": "e",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p1",
+            "target": "d",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p1",
+            "target": "tau_0",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "tau_0",
+            "target": "p0",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p0",
+          "p1"
+        ],
+        "transitions": [
+          {
+            "label": "c",
+            "name": "c"
+          },
+          {
+            "label": "d",
+            "name": "d"
+          },
+          {
+            "label": "e",
+            "name": "e"
+          },
+          {
+            "label": null,
+            "name": "tau_0"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "e",
+            "target": "p2",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p2",
+            "target": "End",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p2"
+        ],
+        "transitions": [
+          {
+            "label": "End",
+            "name": "End"
+          },
+          {
+            "label": "e",
+            "name": "e"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "p8",
+            "target": "Start",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "source",
+            "target": "start_tau",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "start_tau",
+            "target": "p8",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "source": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "p8",
+          "source"
+        ],
+        "transitions": [
+          {
+            "label": "Start",
+            "name": "Start"
+          },
+          {
+            "label": null,
+            "name": "start_tau"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "start_tau"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "End",
+          "target": "p9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "Start",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "d",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "e",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "end_tau",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "d",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "tau_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "End",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "c",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "Start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p9",
+          "target": "end_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start_tau",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_0",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p4",
+        "p5",
+        "p8",
+        "p9",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "End",
+          "name": "End"
+        },
+        {
+          "label": "Start",
+          "name": "Start"
+        },
+        {
+          "label": "a",
+          "name": "a"
+        },
+        {
+          "label": "c",
+          "name": "c"
+        },
+        {
+          "label": "d",
+          "name": "d"
+        },
+        {
+          "label": "e",
+          "name": "e"
+        },
+        {
+          "label": null,
+          "name": "end_tau"
+        },
+        {
+          "label": null,
+          "name": "start_tau"
+        },
+        {
+          "label": null,
+          "name": "tau_0"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "End",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "Start",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "d",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "e",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "d",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "End",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "c",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "Start",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "End",
+          "name": "End"
+        },
+        {
+          "label": "Start",
+          "name": "Start"
+        },
+        {
+          "label": "a",
+          "name": "a"
+        },
+        {
+          "label": "c",
+          "name": "c"
+        },
+        {
+          "label": "d",
+          "name": "d"
+        },
+        {
+          "label": "e",
+          "name": "e"
+        }
+      ]
+    },
+    "is_sound": true,
+    "marking_equation": 8,
+    "model": {
+      "arcs": [
+        {
+          "source": "End",
+          "target": "p9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "Start",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "d",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "e",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "end_tau",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "d",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "tau_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "End",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "c",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "Start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p9",
+          "target": "end_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start_tau",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_0",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p8",
+        "p9",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "End",
+          "name": "End"
+        },
+        {
+          "label": "Start",
+          "name": "Start"
+        },
+        {
+          "label": "a",
+          "name": "a"
+        },
+        {
+          "label": "c",
+          "name": "c"
+        },
+        {
+          "label": "d",
+          "name": "d"
+        },
+        {
+          "label": "e",
+          "name": "e"
+        },
+        {
+          "label": null,
+          "name": "end_tau"
+        },
+        {
+          "label": null,
+          "name": "start_tau"
+        },
+        {
+          "label": null,
+          "name": "tau_0"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 0.9047619047619049,
+      "extended_cardoso": 10,
+      "extended_cyclomatic": 9
+    },
+    "soundness": {
+      "messages": [
+        "Input is ok.",
+        "Petri Net is a workflow net.",
+        "Every place is covered by s-components.",
+        "There are no dead tasks.",
+        "All tasks are live."
+      ],
+      "sound": true
+    },
+    "workflow_net": true
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-murata1",
+    "fixtures": {
+      "model": "fixtures/logs/murata1.pnml"
+    },
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "name": "murata1"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
