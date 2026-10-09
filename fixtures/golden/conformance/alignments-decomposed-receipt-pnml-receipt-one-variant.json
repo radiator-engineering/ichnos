@@ -1,0 +1,5011 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p5": 1
+      },
+      "initial_marking": {
+        "p2": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "transitions": [
+        {
+          "label": "T02 Check confirmation of receipt",
+          "name": "t0"
+        },
+        {
+          "label": "T04 Determine confirmation of receipt",
+          "name": "t1"
+        },
+        {
+          "label": "Confirmation of receipt",
+          "name": "t2"
+        },
+        {
+          "label": "T06 Determine necessity of stop advice",
+          "name": "t3"
+        },
+        {
+          "label": "T05 Print and send confirmation of receipt",
+          "name": "t4"
+        }
+      ]
+    },
+    "variants": [
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ]
+          ]
+        ],
+        "bwc": 90000,
+        "cost_choices": [
+          10000,
+          20000
+        ],
+        "fitness_choices": [
+          0.7777777777777778,
+          0.8888888888888888
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ]
+          ]
+        ],
+        "bwc": 140000,
+        "cost_choices": [
+          20000,
+          30000
+        ],
+        "fitness_choices": [
+          0.7857142857142857,
+          0.8571428571428572
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T10 Determine necessity to stop indication",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T16 Report reasons to hold request",
+          "T17 Check report Y to stop indication",
+          "T19 Determine report Y to stop indication",
+          "T20 Print report Y to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T02 Check confirmation of receipt"
+            ]
+          ]
+        ],
+        "bwc": 60000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.8333333333333334
+        ],
+        "trace": [
+          "Confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T10 Determine necessity to stop indication",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T11 Create document X request unlicensed",
+          "T12 Check document X request unlicensed",
+          "T14 Determine document X request unlicensed",
+          "T15 Print document X request unlicensed"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9333333333333333
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T07-1 Draft intern advice aspect 1",
+          "T08 Draft and send request for advice",
+          "T09-1 Process or receive external advice from party 1",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 120000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T11 Create document X request unlicensed"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000,
+          20000
+        ],
+        "fitness_choices": [
+          0.8181818181818181,
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 100000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 90000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.8888888888888888
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T04 Determine confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ]
+        ],
+        "bwc": 100000,
+        "cost_choices": [
+          10000,
+          20000
+        ],
+        "fitness_choices": [
+          0.8,
+          0.9
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 80000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.875
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T07-1 Draft intern advice aspect 1"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 90000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.8888888888888888
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 80000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.875
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T10 Determine necessity to stop indication",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9333333333333333
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T16 Report reasons to hold request",
+          "T17 Check report Y to stop indication",
+          "T19 Determine report Y to stop indication",
+          "T20 Print report Y to stop indication",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000,
+          20000
+        ],
+        "fitness_choices": [
+          0.8181818181818181,
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T05 Print and send confirmation of receipt",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 110000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9090909090909091
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          10000,
+          20000
+        ],
+        "fitness_choices": [
+          0.8666666666666667,
+          0.9333333333333333
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T16 Report reasons to hold request",
+          "T17 Check report Y to stop indication",
+          "T19 Determine report Y to stop indication",
+          "T20 Print report Y to stop indication",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9333333333333333
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T10 Determine necessity to stop indication",
+          "T16 Report reasons to hold request",
+          "T17 Check report Y to stop indication",
+          "T19 Determine report Y to stop indication",
+          "T20 Print report Y to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          []
+        ],
+        "bwc": 130000,
+        "cost_choices": [
+          0,
+          20000
+        ],
+        "fitness_choices": [
+          0.8461538461538461,
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T07-1 Draft intern advice aspect 1",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 130000,
+        "cost_choices": [
+          20000
+        ],
+        "fitness_choices": [
+          0.8461538461538461
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          []
+        ],
+        "bwc": 190000,
+        "cost_choices": [
+          0,
+          40000,
+          50000
+        ],
+        "fitness_choices": [
+          0.736842105263158,
+          0.7894736842105263,
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T07-5 Draft intern advice aspect 5",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T08 Draft and send request for advice",
+          "T07-5 Draft intern advice aspect 5",
+          "T09-4 Process or receive external advice from party 4",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          30000
+        ],
+        "fitness_choices": [
+          0.8
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          []
+        ],
+        "bwc": 130000,
+        "cost_choices": [
+          0,
+          20000
+        ],
+        "fitness_choices": [
+          0.8461538461538461,
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T07-3 Draft intern advice hold for aspect 3",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              null
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 130000,
+        "cost_choices": [
+          20000,
+          30000
+        ],
+        "fitness_choices": [
+          0.7692307692307692,
+          0.8461538461538461
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 190000,
+        "cost_choices": [
+          0
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T07-5 Draft intern advice aspect 5",
+          "T07-1 Draft intern advice aspect 1",
+          "T08 Draft and send request for advice",
+          "T09-1 Process or receive external advice from party 1",
+          "T07-3 Draft intern advice hold for aspect 3",
+          "T07-4 Draft internal advice to hold for type 4",
+          "T07-2 Draft intern advice aspect 2",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 140000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9285714285714286
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T11 Create document X request unlicensed",
+          "T12 Check document X request unlicensed",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T13 Adjust document X request unlicensed"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          30000
+        ],
+        "fitness_choices": [
+          0.8
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ]
+          ]
+        ],
+        "bwc": 130000,
+        "cost_choices": [
+          10000
+        ],
+        "fitness_choices": [
+          0.9230769230769231
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          30000
+        ],
+        "fitness_choices": [
+          0.8
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T07-5 Draft intern advice aspect 5"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              null
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              null,
+              "Confirmation of receipt"
+            ],
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              null,
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          []
+        ],
+        "bwc": 170000,
+        "cost_choices": [
+          0,
+          40000
+        ],
+        "fitness_choices": [
+          0.7647058823529411,
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T07-5 Draft intern advice aspect 5",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              "T06 Determine necessity of stop advice"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          []
+        ],
+        "bwc": 130000,
+        "cost_choices": [
+          0,
+          20000
+        ],
+        "fitness_choices": [
+          0.8461538461538461,
+          1.0
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T07-1 Draft intern advice aspect 1",
+          "T06 Determine necessity of stop advice",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt",
+          "T10 Determine necessity to stop indication"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ],
+          [
+            [
+              "Confirmation of receipt",
+              "Confirmation of receipt"
+            ],
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T06 Determine necessity of stop advice",
+              null
+            ],
+            [
+              "T04 Determine confirmation of receipt",
+              "T04 Determine confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              null,
+              "T06 Determine necessity of stop advice"
+            ]
+          ]
+        ],
+        "bwc": 150000,
+        "cost_choices": [
+          40000
+        ],
+        "fitness_choices": [
+          0.7333333333333334
+        ],
+        "trace": [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T06 Determine necessity of stop advice",
+          "T06 Determine necessity of stop advice",
+          "T07-4 Draft internal advice to hold for type 4",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-decomposed-receipt-pnml-receipt-one-variant",
+    "fixtures": {
+      "log": "fixtures/logs/receipt.csv",
+      "model": "fixtures/logs/receipt_one_variant.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.algo.conformance.alignments.decomposed.variants.recompos_maximal.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

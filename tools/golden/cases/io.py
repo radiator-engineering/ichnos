@@ -325,7 +325,7 @@ def bpmn_read(fixtures):
     return describe_bpmn_io(b)
 
 
-def bpmn_write(fixtures):
+def bpmn_write(fixtures, plane=True, incoming_outgoing=True):
     from pm4py.objects.bpmn.exporter.variants import etree
     from pm4py.objects.bpmn.importer.variants import lxml
 
@@ -334,7 +334,10 @@ def bpmn_write(fixtures):
     except Exception as e:
         return {"error": type(e).__name__, "stage": "read"}
     try:
-        xml = etree.get_xml_string(b)
+        xml = etree.get_xml_string(b, parameters={
+            etree.Parameters.ENABLE_BPMN_PLANE_EXPORTING: plane,
+            etree.Parameters.ENABLE_INCOMING_OUTGOING_EXPORTING: incoming_outgoing,
+        })
     except Exception as e:
         return {"error": type(e).__name__, "stage": "write"}
     return describe_bpmn_io(lxml.import_from_string(xml), with_process_id=False)
@@ -363,3 +366,8 @@ for rel in BPMN_FIXTURES:
     case(f"bpmn-write-{stem}", fixtures={"model": rel}, functions=BPMN_WRITE_FUNCTIONS)(bpmn_write)
 case("bpmn-writer-special", fixtures={"model": "writer-output/special.bpmn"},
      functions=["pm4py.read_bpmn"])(bpmn_read)
+# ``bpmn-options-*`` writes with both of pm4py's export switches off: no
+# diagram plane and no ``incoming``/``outgoing`` children.
+case("bpmn-options-all_kinds", fixtures={"model": "synthetic-bpmn/all_kinds.bpmn"},
+     functions=BPMN_WRITE_FUNCTIONS,
+     params={"plane": False, "incoming_outgoing": False})(bpmn_write)

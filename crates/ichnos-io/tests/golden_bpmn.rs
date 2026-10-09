@@ -2,7 +2,9 @@
 //! see `tools/golden/cases/io.py`.
 
 use ichnos_golden::{cases, golden};
-use ichnos_io::{Bounds, BpmnDocument, read_bpmn, read_bpmn_from_reader, write_bpmn_to_writer};
+use ichnos_io::{
+    Bounds, BpmnDocument, BpmnWriteOptions, read_bpmn, read_bpmn_from_reader, write_bpmn_to_writer,
+};
 use ichnos_model::Bpmn;
 use ichnos_model::bpmn::{FlowKind, GatewayDirection, GatewayKind, NodeKind};
 use serde_json::{Value, json};
@@ -110,8 +112,12 @@ fn ids(prefix: &str) -> Vec<String> {
 }
 
 fn write(document: &BpmnDocument) -> ichnos_io::Result<Vec<u8>> {
+    write_with(document, &Default::default())
+}
+
+fn write_with(document: &BpmnDocument, options: &BpmnWriteOptions) -> ichnos_io::Result<Vec<u8>> {
     let mut xml = Vec::new();
-    write_bpmn_to_writer(document, &mut xml, &Default::default())?;
+    write_bpmn_to_writer(document, &mut xml, options)?;
     Ok(xml)
 }
 
@@ -157,6 +163,57 @@ fn bpmn_writing_matches_pm4py() {
             }
         }
     }
+}
+
+/// pm4py's two export switches, `enble_bpmn_plane_exporting` and
+/// `enable_incoming_outgoing_exporting`, map to `plane` and
+/// `incoming_outgoing`.
+#[test]
+fn bpmn_write_options_match_pm4py() {
+    for id in ids("bpmn-options-") {
+        let g = golden("io", &id);
+        let expected: Value = g.expected_as();
+        let params = &g.meta().params;
+        let options = BpmnWriteOptions {
+            plane: params["plane"].as_bool().unwrap(),
+            incoming_outgoing: params["incoming_outgoing"].as_bool().unwrap(),
+            ..Default::default()
+        };
+        let document = read_bpmn(g.fixture("model"), &Default::default())
+            .unwrap_or_else(|e| panic!("{id}: {e}"));
+        let xml = write_with(&document, &options).unwrap_or_else(|e| panic!("{id}: {e}"));
+        let text = String::from_utf8(xml.clone()).unwrap();
+        assert_eq!(text.contains("BPMNPlane"), options.plane, "{id}: plane");
+        assert_eq!(
+            text.contains("<incoming>") || text.contains(":incoming>"),
+            options.incoming_outgoing,
+            "{id}: incoming"
+        );
+        let back = read_bpmn_from_reader(xml.as_slice(), &Default::default())
+            .unwrap_or_else(|e| panic!("{id}: reading the written XML: {e}"));
+        assert_same(&describe(&back, false), &expected, &id);
+    }
+}
+
+#[test]
+fn unindented_output_reads_back_the_same() {
+    let g = golden("io", "bpmn-read-all_kinds");
+    let document = read_bpmn(g.fixture("model"), &Default::default()).unwrap();
+    let indented = write(&document).unwrap();
+    let flat = write_with(
+        &document,
+        &BpmnWriteOptions {
+            indent: false,
+            ..Default::default()
+        },
+    )
+    .unwrap();
+    assert_ne!(indented, flat);
+    let read = |xml: &[u8]| read_bpmn_from_reader(xml, &Default::default()).unwrap();
+    assert_eq!(
+        describe(&read(&flat), true),
+        describe(&read(&indented), true)
+    );
 }
 
 /// The diagram in `fixtures/logs/writer-output/special.bpmn`, which the

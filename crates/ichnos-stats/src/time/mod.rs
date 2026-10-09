@@ -31,6 +31,18 @@ pub(crate) fn date(event: &Event, key: &str, position: Position) -> Result<DateT
             found: value.type_name(),
         })?)
 }
+/// Floating epoch seconds with Python `datetime.timestamp()` microsecond precision.
+///
+/// Submicrosecond digits are truncated, as when constructing a Python datetime.
+/// The integer microsecond total is converted once before division, avoiding
+/// separately rounded seconds and fractions. Existing nanosecond duration APIs
+/// retain their full precision.
+pub fn datetime_timestamp(date: DateTime<FixedOffset>) -> f64 {
+    let micros = i128::from(date.timestamp()) * 1_000_000
+        + i128::from(date.timestamp_subsec_nanos() / 1_000);
+    micros as f64 / 1e6
+}
+
 pub(crate) fn seconds(d: DateTime<FixedOffset>) -> f64 {
     d.timestamp() as f64 + d.timestamp_subsec_nanos() as f64 / 1e9
 }

@@ -9,3 +9,5 @@ declarations, and two alternative final markings; pm4py merges the markings.
 `special.bpmn` comes from ichnos's BPMN writer.
 `crates/ichnos-io/tests/golden_bpmn.rs` builds its diagram and checks the
 exact bytes, and the `bpmn-writer-special` io golden reads it with pm4py.
+The file is the writer's exact output and ends without a newline. Do not
+reformat it or let an editor add a final newline, or that test fails.
