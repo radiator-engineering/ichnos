@@ -1,0 +1,540 @@
+{
+  "expected": {
+    "expected": {
+      "activities": [
+        "finish",
+        "middle",
+        "start",
+        "unrelated"
+      ],
+      "activities_indep": {
+        "finish": {
+          "events": [
+            "e2",
+            "e3"
+          ],
+          "total_objects": [
+            [
+              "e2",
+              "a"
+            ],
+            [
+              "e2",
+              "item"
+            ],
+            [
+              "e2",
+              "z"
+            ],
+            [
+              "e3",
+              "a"
+            ],
+            [
+              "e3",
+              "item"
+            ],
+            [
+              "e3",
+              "z"
+            ]
+          ],
+          "unique_objects": [
+            "a",
+            "item",
+            "z"
+          ]
+        },
+        "middle": {
+          "events": [
+            "e4"
+          ],
+          "total_objects": [
+            [
+              "e4",
+              "a"
+            ]
+          ],
+          "unique_objects": [
+            "a"
+          ]
+        },
+        "start": {
+          "events": [
+            "e1"
+          ],
+          "total_objects": [
+            [
+              "e1",
+              "a"
+            ],
+            [
+              "e1",
+              "z"
+            ]
+          ],
+          "unique_objects": [
+            "a",
+            "z"
+          ]
+        }
+      },
+      "activities_ot": {
+        "item": {
+          "finish": {
+            "events": [
+              "e2",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "item"
+              ],
+              [
+                "e3",
+                "item"
+              ]
+            ],
+            "unique_objects": [
+              "item"
+            ]
+          }
+        },
+        "order": {
+          "finish": {
+            "events": [
+              "e2",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "a"
+              ],
+              [
+                "e2",
+                "z"
+              ],
+              [
+                "e3",
+                "a"
+              ],
+              [
+                "e3",
+                "z"
+              ]
+            ],
+            "unique_objects": [
+              "a",
+              "z"
+            ]
+          },
+          "middle": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "a"
+              ]
+            ],
+            "unique_objects": [
+              "a"
+            ]
+          },
+          "start": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "a"
+              ],
+              [
+                "e1",
+                "z"
+              ]
+            ],
+            "unique_objects": [
+              "a",
+              "z"
+            ]
+          }
+        }
+      },
+      "edges": {
+        "item": [
+          [
+            "finish",
+            "finish",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e2"
+                ]
+              ],
+              "event_couples_durations": [
+                0.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e2",
+                  "item"
+                ]
+              ],
+              "total_objects_durations": [
+                0.0
+              ],
+              "unique_objects": [
+                "item"
+              ]
+            }
+          ]
+        ],
+        "order": [
+          [
+            "finish",
+            "start",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e1"
+                ]
+              ],
+              "event_couples_durations": [
+                0.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e1",
+                  "a"
+                ],
+                [
+                  "e3",
+                  "e1",
+                  "z"
+                ]
+              ],
+              "total_objects_durations": [
+                0.0,
+                0.0
+              ],
+              "unique_objects": [
+                "a",
+                "z"
+              ]
+            }
+          ],
+          [
+            "middle",
+            "finish",
+            {
+              "event_couples": [
+                [
+                  "e4",
+                  "e2"
+                ]
+              ],
+              "event_couples_durations": [
+                0.0
+              ],
+              "total_objects": [
+                [
+                  "e4",
+                  "e2",
+                  "a"
+                ]
+              ],
+              "total_objects_durations": [
+                0.0
+              ],
+              "unique_objects": [
+                "a"
+              ]
+            }
+          ],
+          [
+            "start",
+            "finish",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e2"
+                ]
+              ],
+              "event_couples_durations": [
+                1800.0
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e2",
+                  "z"
+                ]
+              ],
+              "total_objects_durations": [
+                1800.0
+              ],
+              "unique_objects": [
+                "z"
+              ]
+            }
+          ],
+          [
+            "start",
+            "middle",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                1800.0
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e4",
+                  "a"
+                ]
+              ],
+              "total_objects_durations": [
+                1800.0
+              ],
+              "unique_objects": [
+                "a"
+              ]
+            }
+          ]
+        ]
+      },
+      "end_activities": {
+        "item": {
+          "finish": {
+            "events": [
+              "e2"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "item"
+              ]
+            ],
+            "unique_objects": [
+              "item"
+            ]
+          }
+        },
+        "order": {
+          "finish": {
+            "events": [
+              "e2"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "a"
+              ],
+              [
+                "e2",
+                "z"
+              ]
+            ],
+            "unique_objects": [
+              "a",
+              "z"
+            ]
+          }
+        }
+      },
+      "object_types": [
+        "item",
+        "order",
+        "unrelated"
+      ],
+      "start_activities": {
+        "item": {
+          "finish": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "item"
+              ]
+            ],
+            "unique_objects": [
+              "item"
+            ]
+          }
+        },
+        "order": {
+          "middle": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "a"
+              ]
+            ],
+            "unique_objects": [
+              "a"
+            ]
+          },
+          "start": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "z"
+              ]
+            ],
+            "unique_objects": [
+              "z"
+            ]
+          }
+        }
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "finish",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "2024-01-08T08:00:00.250000+00:00"
+        },
+        {
+          "activity": "start",
+          "attributes": {},
+          "id": "e1",
+          "timestamp": "2024-01-05T16:30:00+00:00"
+        },
+        {
+          "activity": "middle",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "2024-01-08T07:00:00+00:00"
+        },
+        {
+          "activity": "finish",
+          "attributes": {},
+          "id": "e2",
+          "timestamp": "2024-01-08T19:00:00.500000+00:00"
+        },
+        {
+          "activity": "unrelated",
+          "attributes": {},
+          "id": "unused",
+          "timestamp": "2024-01-10T00:00:00+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "z",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "a",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "item",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "lonely",
+          "type": "unrelated"
+        }
+      ],
+      "relations": [
+        {
+          "event": "e4",
+          "object": "a",
+          "qualifier": "first"
+        },
+        {
+          "event": "e1",
+          "object": "z",
+          "qualifier": null
+        },
+        {
+          "event": "e3",
+          "object": "item",
+          "qualifier": "i"
+        },
+        {
+          "event": "e1",
+          "object": "a",
+          "qualifier": "a"
+        },
+        {
+          "event": "e3",
+          "object": "z",
+          "qualifier": null
+        },
+        {
+          "event": "e4",
+          "object": "a",
+          "qualifier": "second"
+        },
+        {
+          "event": "e2",
+          "object": "item",
+          "qualifier": null
+        },
+        {
+          "event": "e3",
+          "object": "a",
+          "qualifier": null
+        },
+        {
+          "event": "e2",
+          "object": "a",
+          "qualifier": null
+        },
+        {
+          "event": "e2",
+          "object": "z",
+          "qualifier": null
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_discovery",
+    "case": "ocdfg-synthetic-holiday",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_ocdfg"
+    ],
+    "loaders": {},
+    "params": {
+      "business_hours": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

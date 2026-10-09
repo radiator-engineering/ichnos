@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 2; ported: 430; dropped: 194; total: 626.
+todo: 1; ported: 431; dropped: 194; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -286,7 +286,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.ocel_temporal_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::temporal_summary` | `ichnos-ocel` | ported | One row per timestamp, earliest first, with the activities and objects of its relations. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
 | `pm4py.ocel_objects_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::objects_summary` | `ichnos-ocel` | ported | One row per related object, by id: activities, start, end, duration in seconds and interacting objects. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
 | `pm4py.ocel_objects_interactions_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::objects_interactions_summary` | `ichnos-ocel` | ported | One row per event and ordered pair of distinct related objects. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
-| `pm4py.discover_ocdfg` | `ocel.py` → `algo/discovery/ocel/ocdfg/algorithm`, `objects/ocel/constants`, `objects/ocel/obj` | `ichnos::ocel::discover_ocdfg` (planned) | `ichnos-ocel` | todo | Variants: classic. |
+| `pm4py.discover_ocdfg` | `ocel.py` → `algo/discovery/ocel/ocdfg/algorithm`, `objects/ocel/constants`, `objects/ocel/obj` | `ichnos_ocel::discover_ocdfg` | `ichnos-ocel` | ported | Returns `Ocdfg`. `OcdfgOptions::durations` gives elapsed edge durations, durations from a caller's function (business hours through `ichnos_stats::time::BusinessHours`), or none. Goldens `ocel_discovery/ocdfg-*`: ten OCEL fixtures read with the JSON, XML and CSV readers, an empty log, and a synthetic log with reversed and fractional times, repeated ids, no edge performance, and business hours with default slots, other slots and a holiday. See the ichnos-ocel (OC-DFG discovery) Behaviour changes. Variants: classic. |
 | `pm4py.discover_oc_petri_net` | `ocel.py` → `algo/discovery/ocel/ocpn/algorithm`, `objects/ocel/obj`, `objects/ocpn/obj` | `ichnos::ocel::discover_oc_petri_net` (planned) | `ichnos-ocel` | todo | Variants: classic, wo_annotation. |
 | `pm4py.discover_objects_graph` | `ocel.py` → `algo/transformation/ocel/graphs/object_cobirth_graph`, `algo/transformation/ocel/graphs/object_codeath_graph`, `algo/transformation/ocel/graphs/object_descendants_graph`, `algo/transformation/ocel/graphs/object_inheritance_graph`, `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj` | `ichnos_ocel::discover_objects_graph` | `ichnos-ocel` | ported | All five graph types (`ObjectGraphKind`). Goldens `convert/objects-graph-{example-log,ocel20-example}-object-{interaction,descendants,inheritance,cobirth,codeath}`: pairs equal. See the ichnos-ocel (conversions and object graphs) Behaviour changes. |
 | `pm4py.ocel_o2o_enrichment` | `ocel.py` → `algo/transformation/ocel/graphs/ocel20_computation`, `objects/ocel/obj` | `ichnos_ocel::ocel_o2o_enrichment` | `ichnos-ocel` | ported | Appends qualified graph edges to existing O2O rows; defaults to all five graphs. Golden: `ocel_transformations/ocel-o2o-enrichment`. See OCEL transformations below. |
@@ -1379,6 +1379,14 @@ Lanes record each deliberate change from pm4py here.
 - **A change node holds only its own field.** pm4py's object-change row holds a column for every changed field, `NaN` except its own. The change node of `convert_ocel_to_networkx` holds only the changed field's value.
 - **`ocel_features_to_nx` adds pairs in id order.** pm4py adds each object graph's pairs in the iteration order of a Python set, so its node order depends on string hashing. ichnos adds them in id order. The edges and their types are the same.
 - **An event without related objects relates none.** pm4py's descendants, inheritance, cobirth and codeath graphs raise `KeyError` on an event without relations. `discover_objects_graph` treats it as relating no objects.
+
+### ichnos-ocel (OC-DFG discovery)
+
+- **The result is a typed `Ocdfg`.** pm4py returns a dictionary keyed by metric first, then by object type and activity or edge. `Ocdfg` keys each part by object type and activity or `(source, target)` edge, and each entry holds all its metrics: `OcdfgActivity` (events, unique objects, total objects) and `OcdfgEdge` (event couples, unique objects, total objects and their sorted durations). Sets are sorted; pm4py's sets have no fixed order.
+- **One option replaces four parameters.** `OcdfgDurations` replaces `compute_edges_performance`, `business_hours`, `business_hour_slots` and `workcalendar`. `Elapsed` (the default) gives elapsed seconds, `Skip` gives none, and `Custom` takes a function of the two timestamps. ichnos-stats depends on ichnos-ocel, so business hours come from `ichnos_stats::time::BusinessHours::seconds_between` passed as `Custom`. The function gets the timestamps as they are; ichnos-stats' own edge performance first drops their sub-microsecond part. With `Skip`, each edge's duration lists are empty, where pm4py's `edges_performance` holds empty maps.
+- **No column-name parameters.** `discover_ocdfg` reads the fields of `Ocel`, so it takes no `event_id`, `event_activity`, `event_timestamp`, `object_id` or `object_type`.
+- **Activities and types come from the events and objects tables.** pm4py reads a relation's activity and object type from the relations table. ichnos looks them up by id, and a repeated id resolves to its first row, as pm4py does for edges and timestamps.
+- **A relation to an unknown event or object is an error.** `discover_ocdfg` returns `OcdfgError::UnknownEvent` or `OcdfgError::UnknownObject`. pm4py counts such a relation from the relations table's own columns, and raises `KeyError` when an unknown object has an edge.
 
 ### ichnos-perf (time intervals)
 

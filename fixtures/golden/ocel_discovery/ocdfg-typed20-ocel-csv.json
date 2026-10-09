@@ -1,0 +1,594 @@
+{
+  "expected": {
+    "expected": {
+      "activities": [
+        "audit",
+        "pick item",
+        "place order",
+        "ship"
+      ],
+      "activities_indep": {
+        "pick item": {
+          "events": [
+            "e2",
+            "e3"
+          ],
+          "total_objects": [
+            [
+              "e2",
+              "i1"
+            ],
+            [
+              "e3",
+              "i/2"
+            ]
+          ],
+          "unique_objects": [
+            "i/2",
+            "i1"
+          ]
+        },
+        "place order": {
+          "events": [
+            "e1"
+          ],
+          "total_objects": [
+            [
+              "e1",
+              "i/2"
+            ],
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "i/2",
+            "i1",
+            "o1"
+          ]
+        },
+        "ship": {
+          "events": [
+            "e4"
+          ],
+          "total_objects": [
+            [
+              "e4",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "o1"
+          ]
+        }
+      },
+      "activities_ot": {
+        "item": {
+          "pick item": {
+            "events": [
+              "e2",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "i1"
+              ],
+              [
+                "e3",
+                "i/2"
+              ]
+            ],
+            "unique_objects": [
+              "i/2",
+              "i1"
+            ]
+          },
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "i/2"
+              ],
+              [
+                "e1",
+                "i1"
+              ]
+            ],
+            "unique_objects": [
+              "i/2",
+              "i1"
+            ]
+          }
+        },
+        "order": {
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          },
+          "ship": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          }
+        }
+      },
+      "edges": {
+        "item": [
+          [
+            "place order",
+            "pick item",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e2"
+                ],
+                [
+                  "e1",
+                  "e3"
+                ]
+              ],
+              "event_couples_durations": [
+                1800.0,
+                1800.5
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e2",
+                  "i1"
+                ],
+                [
+                  "e1",
+                  "e3",
+                  "i/2"
+                ]
+              ],
+              "total_objects_durations": [
+                1800.0,
+                1800.5
+              ],
+              "unique_objects": [
+                "i/2",
+                "i1"
+              ]
+            }
+          ]
+        ],
+        "order": [
+          [
+            "place order",
+            "ship",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                64800.0
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e4",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                64800.0
+              ],
+              "unique_objects": [
+                "o1"
+              ]
+            }
+          ]
+        ]
+      },
+      "end_activities": {
+        "item": {
+          "pick item": {
+            "events": [
+              "e2",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "i1"
+              ],
+              [
+                "e3",
+                "i/2"
+              ]
+            ],
+            "unique_objects": [
+              "i/2",
+              "i1"
+            ]
+          }
+        },
+        "order": {
+          "ship": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          }
+        }
+      },
+      "object_types": [
+        "item",
+        "order"
+      ],
+      "start_activities": {
+        "item": {
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "i/2"
+              ],
+              [
+                "e1",
+                "i1"
+              ]
+            ],
+            "unique_objects": [
+              "i/2",
+              "i1"
+            ]
+          }
+        },
+        "order": {
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          }
+        }
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "cost": [
+              "float",
+              10.0
+            ],
+            "count": [
+              "float",
+              7.0
+            ],
+            "note": [
+              "string",
+              "first"
+            ],
+            "rush": [
+              "boolean",
+              true
+            ],
+            "slot": [
+              "date",
+              "2022-01-09T18:00:00.000000+00:00"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "cost": [
+              "float",
+              2.5
+            ],
+            "count": [
+              "float",
+              2.0
+            ],
+            "note": [
+              "string",
+              "a,b"
+            ],
+            "rush": [
+              "boolean",
+              false
+            ],
+            "slot": [
+              "date",
+              "2022-01-09T17:00:00.000000+00:00"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T14:30:00+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "count": [
+              "float",
+              3.0
+            ],
+            "rush": [
+              "boolean",
+              false
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.500000+00:00"
+        },
+        {
+          "activity": "ship",
+          "attributes": {
+            "cost": [
+              "float",
+              4.0
+            ],
+            "note": [
+              "string",
+              "x \"q\" é"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2022-01-10T08:00:00+00:00"
+        },
+        {
+          "activity": "audit",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "2022-01-11T00:00:00+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i1"
+        },
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i/2"
+        },
+        {
+          "qualifier": "follows",
+          "source": "o1",
+          "target": "o2"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "weight",
+          "object": "i/2",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item",
+          "value": [
+            "float",
+            1.5
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            12.5
+          ]
+        },
+        {
+          "field": "vip",
+          "object": "o1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "boolean",
+            true
+          ]
+        },
+        {
+          "field": "label",
+          "object": "o1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "string",
+            "big"
+          ]
+        },
+        {
+          "field": "weight",
+          "object": "i/2",
+          "timestamp": "2022-01-09T14:30:00.500000+00:00",
+          "type": "item",
+          "value": [
+            "float",
+            1.75
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T17:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            13.0
+          ]
+        },
+        {
+          "field": "label",
+          "object": "o1",
+          "timestamp": "2022-01-09T17:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "string",
+            "bigger"
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T19:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            13.5
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              1.25
+            ]
+          },
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i/2",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "i#3",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "since": [
+              "date",
+              "2022-01-01T00:00:00.000000+00:00"
+            ],
+            "value": [
+              "float",
+              7.0
+            ]
+          },
+          "id": "o2",
+          "type": "order"
+        }
+      ],
+      "relations": [
+        {
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "ordered"
+        },
+        {
+          "event": "e1",
+          "object": "i/2",
+          "qualifier": "ordered"
+        },
+        {
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "placer"
+        },
+        {
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "picked"
+        },
+        {
+          "event": "e3",
+          "object": "i/2",
+          "qualifier": "picked"
+        },
+        {
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "shipped"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_discovery",
+    "case": "ocdfg-typed20-ocel-csv",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed20.ocel.csv"
+    },
+    "functions": [
+      "pm4py.read_ocel2_csv",
+      "pm4py.discover_ocdfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
