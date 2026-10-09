@@ -26,7 +26,7 @@ fn oracle_discover_otg() {
         let actual = json!({
             "object_types": otg.object_types,
             "edges": otg.edges.iter().map(|(e, n)| json!({
-                "source": e.source, "relation": e.relation.as_str(), "target": e.target, "count": n,
+                "source": e.source, "relation": e.relation.name(), "target": e.target, "count": n,
             })).collect::<Vec<_>>(),
         });
         let expected: Value = g.expected_as();

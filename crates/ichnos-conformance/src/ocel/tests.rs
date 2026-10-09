@@ -49,7 +49,7 @@ fn small() -> Ocel {
     )
 }
 
-fn edge(source: &str, relation: ObjectRelation, target: &str) -> OtgEdge {
+fn edge(source: &str, relation: ObjectGraphKind, target: &str) -> OtgEdge {
     OtgEdge {
         source: source.to_owned(),
         relation,
@@ -67,7 +67,7 @@ fn pair(a: &str, b: &str) -> (String, String) {
 
 #[test]
 fn object_type_graph_by_hand() {
-    use ObjectRelation::*;
+    use ObjectGraphKind::*;
     let otg = discover_otg(&small()).unwrap();
     assert_eq!(otg.object_types, set(&["A", "B"]));
     let expected: BTreeMap<OtgEdge, u64> = [
@@ -86,10 +86,10 @@ fn object_type_graph_by_hand() {
 
 #[test]
 fn inheritance_drops_pairs_that_go_both_ways() {
-    use ObjectRelation::*;
+    use ObjectGraphKind::*;
     let log = ocel(&[("e1", "a", &["x", "y"])], &[("x", "T"), ("y", "T")]);
     let otg = discover_otg(&log).unwrap();
-    let relations: Vec<ObjectRelation> = otg.edges.keys().map(|e| e.relation).collect();
+    let relations: Vec<ObjectGraphKind> = otg.edges.keys().map(|e| e.relation).collect();
     assert_eq!(relations, [Interaction, Cobirth, Codeath]);
 }
 

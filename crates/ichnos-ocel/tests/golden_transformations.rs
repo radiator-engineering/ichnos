@@ -193,15 +193,10 @@ fn object_field(s: &str) -> ObjectField<'_> {
         s => ObjectField::Attribute(s),
     }
 }
-fn graph(s: &str) -> EnrichmentGraph {
-    match s {
-        "object_interaction_graph" => EnrichmentGraph::Interaction,
-        "object_descendants_graph" => EnrichmentGraph::Descendants,
-        "object_inheritance_graph" => EnrichmentGraph::Inheritance,
-        "object_cobirth_graph" => EnrichmentGraph::Cobirth,
-        "object_codeath_graph" => EnrichmentGraph::Codeath,
-        s => panic!("{s}"),
-    }
+fn graph(s: &str) -> ObjectGraphKind {
+    s.strip_suffix("_graph")
+        .and_then(ObjectGraphKind::from_name)
+        .unwrap_or_else(|| panic!("{s}"))
 }
 fn result(input: &Ocel, s: &Value) -> Value {
     let mut log = input.clone();

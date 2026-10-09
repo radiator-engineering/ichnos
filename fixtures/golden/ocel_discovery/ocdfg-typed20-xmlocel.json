@@ -1,0 +1,477 @@
+{
+  "expected": {
+    "expected": {
+      "activities": [
+        "pick item",
+        "place order",
+        "ship"
+      ],
+      "activities_indep": {
+        "pick item": {
+          "events": [
+            "e2",
+            "e3"
+          ],
+          "total_objects": [
+            [
+              "e2",
+              "i1"
+            ],
+            [
+              "e3",
+              "i2"
+            ]
+          ],
+          "unique_objects": [
+            "i1",
+            "i2"
+          ]
+        },
+        "place order": {
+          "events": [
+            "e1"
+          ],
+          "total_objects": [
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "i1",
+            "o1"
+          ]
+        },
+        "ship": {
+          "events": [
+            "e4"
+          ],
+          "total_objects": [
+            [
+              "e4",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "o1"
+          ]
+        }
+      },
+      "activities_ot": {
+        "item": {
+          "pick item": {
+            "events": [
+              "e2",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "i1"
+              ],
+              [
+                "e3",
+                "i2"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2"
+            ]
+          },
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "i1"
+              ]
+            ],
+            "unique_objects": [
+              "i1"
+            ]
+          }
+        },
+        "order": {
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          },
+          "ship": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          }
+        }
+      },
+      "edges": {
+        "item": [
+          [
+            "place order",
+            "pick item",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e2"
+                ]
+              ],
+              "event_couples_durations": [
+                1799.876544
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e2",
+                  "i1"
+                ]
+              ],
+              "total_objects_durations": [
+                1799.876544
+              ],
+              "unique_objects": [
+                "i1"
+              ]
+            }
+          ]
+        ],
+        "order": [
+          [
+            "place order",
+            "ship",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                64799.876544
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e4",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                64799.876544
+              ],
+              "unique_objects": [
+                "o1"
+              ]
+            }
+          ]
+        ]
+      },
+      "end_activities": {
+        "item": {
+          "pick item": {
+            "events": [
+              "e2",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "i1"
+              ],
+              [
+                "e3",
+                "i2"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2"
+            ]
+          }
+        },
+        "order": {
+          "ship": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          }
+        }
+      },
+      "object_types": [
+        "item",
+        "order"
+      ],
+      "start_activities": {
+        "item": {
+          "pick item": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "i2"
+              ]
+            ],
+            "unique_objects": [
+              "i2"
+            ]
+          },
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "i1"
+              ]
+            ],
+            "unique_objects": [
+              "i1"
+            ]
+          }
+        },
+        "order": {
+          "place order": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          }
+        }
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "cost": [
+              "float",
+              10.0
+            ],
+            "count": [
+              "string",
+              "7"
+            ],
+            "note": [
+              "string",
+              "first"
+            ],
+            "rush": [
+              "string",
+              "true"
+            ],
+            "slot": [
+              "string",
+              "2022-01-09T18:00:00Z"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "cost": [
+              "float",
+              0.0
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T14:30:00+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "cost": [
+              "float",
+              2.5
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00+00:00"
+        },
+        {
+          "activity": "ship",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "2022-01-10T08:00:00+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i1"
+        },
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i2"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T17:00:00.500000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            130.0
+          ]
+        },
+        {
+          "field": "weight",
+          "object": "i1",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "item",
+          "value": [
+            "float",
+            1.25
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "due": [
+              "string",
+              "2022-01-12T00:00:00+01:00"
+            ],
+            "express": [
+              "string",
+              "false"
+            ],
+            "label": [
+              "string",
+              "rush order"
+            ],
+            "priority": [
+              "string",
+              "2"
+            ],
+            "value": [
+              "float",
+              120.5
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              1.5
+            ]
+          },
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "item"
+        }
+      ],
+      "relations": [
+        {
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "placer"
+        },
+        {
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "ordered"
+        },
+        {
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "reordered"
+        },
+        {
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "picked"
+        },
+        {
+          "event": "e3",
+          "object": "i2",
+          "qualifier": "picked"
+        },
+        {
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "shipped"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_discovery",
+    "case": "ocdfg-typed20-xmlocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed20.xmlocel"
+    },
+    "functions": [
+      "pm4py.read_ocel2_xml",
+      "pm4py.discover_ocdfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

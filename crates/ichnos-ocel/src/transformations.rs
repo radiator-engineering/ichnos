@@ -1,5 +1,9 @@
 //! OCEL enrichment, sampling, duplicate handling and event ordering.
-use crate::{EventField, ObjectFilterOptions, ObjectObject, Ocel, OcelEvent, filter_ocel_objects};
+use crate::graphs::interaction_neighbours;
+use crate::{
+    EventField, ObjectFilterOptions, ObjectGraphKind, ObjectObject, Ocel, OcelEvent,
+    discover_objects_graph, filter_ocel_objects,
+};
 use chrono::TimeDelta;
 use ichnos_core::AttributeValue;
 use rand::{Rng, seq::SliceRandom};
@@ -37,117 +41,35 @@ pub enum TransformationError {
 }
 
 pub(crate) type Id = Arc<str>;
-pub(crate) type Edges = BTreeSet<(Id, Id)>;
-pub(crate) fn related(log: &Ocel) -> BTreeMap<Id, Vec<Id>> {
-    let mut result = BTreeMap::<Id, Vec<Id>>::new();
-    for r in &log.relations {
-        result
-            .entry(r.event.clone())
-            .or_default()
-            .push(r.object.clone());
-    }
-    result
-}
-pub(crate) fn interaction(log: &Ocel) -> Edges {
-    let mut edges = Edges::new();
-    for objects in related(log).values() {
-        for a in objects {
-            for b in objects {
-                if a < b {
-                    edges.insert((a.clone(), b.clone()));
-                }
-            }
-        }
-    }
-    edges
-}
 
-/// Graph information appended to the object-to-object table.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-pub enum EnrichmentGraph {
-    /// Both orientations of every co-occurring object pair.
-    Interaction,
-    /// Previously seen objects connected to newly seen objects.
-    Descendants,
-    /// Matches pm4py's enrichment entry point, which reuses descendants.
-    Inheritance,
-    /// Lexically oriented pairs first seen in the same event.
-    Cobirth,
-    /// Lexically oriented pairs last seen in the same event.
-    Codeath,
-}
-impl EnrichmentGraph {
-    fn qualifier(self) -> &'static str {
-        match self {
-            Self::Interaction => "object_interaction_graph",
-            Self::Descendants => "object_descendants_graph",
-            Self::Inheritance => "object_inheritance_graph",
-            Self::Cobirth => "object_cobirth_graph",
-            Self::Codeath => "object_codeath_graph",
-        }
-    }
-}
-/// Appends graph-qualified O2O rows. `None` includes all five graphs.
+/// Appends graph-qualified O2O rows. `None` includes all five graphs. The
+/// qualifier is the graph's pm4py name with `_graph` appended.
+/// Interaction rows hold both orientations of each pair. As in pm4py's
+/// enrichment entry point, [`ObjectGraphKind::Inheritance`] reuses the
+/// descendants graph, unlike [`discover_objects_graph`].
 /// Existing rows are retained, including duplicates. New rows are sorted.
 /// Events without relations are harmless, whereas pm4py's graph lookup raises.
-pub fn ocel_o2o_enrichment(log: &Ocel, graphs: Option<&[EnrichmentGraph]>) -> Ocel {
-    let all = [
-        EnrichmentGraph::Interaction,
-        EnrichmentGraph::Descendants,
-        EnrichmentGraph::Inheritance,
-        EnrichmentGraph::Cobirth,
-        EnrichmentGraph::Codeath,
-    ];
-    let rel = related(log);
+pub fn ocel_o2o_enrichment(log: &Ocel, graphs: Option<&[ObjectGraphKind]>) -> Ocel {
     let mut rows = BTreeSet::new();
-    for &graph in graphs.unwrap_or(&all) {
-        let mut edges = Edges::new();
-        if graph == EnrichmentGraph::Interaction {
-            for (a, b) in interaction(log) {
-                edges.insert((a.clone(), b.clone()));
-                edges.insert((b, a));
+    for &kind in graphs.unwrap_or(&ObjectGraphKind::ALL) {
+        let source = match kind {
+            ObjectGraphKind::Inheritance => ObjectGraphKind::Descendants,
+            kind => kind,
+        };
+        let qualifier = format!("{}_graph", kind.name());
+        for (a, b) in discover_objects_graph(log, source) {
+            if kind == ObjectGraphKind::Interaction {
+                rows.insert((b.clone(), a.clone(), qualifier.clone()));
             }
-        } else {
-            let mut seen = BTreeSet::new();
-            let events: Vec<_> = if graph == EnrichmentGraph::Codeath {
-                log.events.iter().rev().collect()
-            } else {
-                log.events.iter().collect()
-            };
-            for e in events {
-                let objects: BTreeSet<_> = rel.get(&e.id).into_iter().flatten().cloned().collect();
-                let new: BTreeSet<_> = objects.difference(&seen).cloned().collect();
-                if matches!(
-                    graph,
-                    EnrichmentGraph::Descendants | EnrichmentGraph::Inheritance
-                ) {
-                    for a in objects.intersection(&seen) {
-                        for b in &new {
-                            edges.insert((a.clone(), b.clone()));
-                        }
-                    }
-                } else {
-                    for a in &new {
-                        for b in &new {
-                            if a < b {
-                                edges.insert((a.clone(), b.clone()));
-                            }
-                        }
-                    }
-                }
-                seen.extend(new);
-            }
-        }
-        for (a, b) in edges {
-            rows.insert((a, b, graph.qualifier()));
+            rows.insert((a, b, qualifier.clone()));
         }
     }
     let mut result = log.clone();
     result
         .o2o
         .extend(rows.into_iter().map(|(source, target, q)| ObjectObject {
-            source,
-            target,
+            source: source.into(),
+            target: target.into(),
             qualifier: Some(q.into()),
         }));
     result
@@ -223,11 +145,7 @@ impl Default for ComponentSampleOptions {
     }
 }
 fn components(log: &Ocel) -> Vec<BTreeSet<Id>> {
-    let mut graph = BTreeMap::<Id, BTreeSet<Id>>::new();
-    for (a, b) in interaction(log) {
-        graph.entry(a.clone()).or_default().insert(b.clone());
-        graph.entry(b).or_default().insert(a);
-    }
+    let graph = interaction_neighbours(log);
     let mut seen = BTreeSet::new();
     let mut result = Vec::new();
     for node in graph.keys() {

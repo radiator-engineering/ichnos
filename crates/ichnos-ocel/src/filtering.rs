@@ -8,6 +8,7 @@ use std::sync::Arc;
 use chrono::{DateTime, FixedOffset};
 use ichnos_core::AttributeValue;
 
+use crate::graphs::interaction_neighbours;
 use crate::{Ocel, OcelEvent, OcelObject};
 
 /// Whether matching rows are kept or removed.
@@ -305,32 +306,11 @@ pub fn filter_ocel_events_timestamp(
     propagate_events(result)
 }
 
-fn interaction_graph(log: &Ocel) -> BTreeMap<Arc<str>, BTreeSet<Arc<str>>> {
-    let mut event_objects: HashMap<&str, BTreeSet<Arc<str>>> = HashMap::new();
-    for r in &log.relations {
-        event_objects
-            .entry(&r.event)
-            .or_default()
-            .insert(r.object.clone());
-    }
-    let mut graph: BTreeMap<Arc<str>, BTreeSet<Arc<str>>> = BTreeMap::new();
-    for objects in event_objects.values() {
-        for a in objects {
-            for b in objects {
-                if a != b {
-                    graph.entry(a.clone()).or_default().insert(b.clone());
-                }
-            }
-        }
-    }
-    graph
-}
-
 /// Object interaction components, sorted by object id and component minimum.
 /// Only objects that share an event with another object are included, matching
 /// pm4py's edge-built graph. Isolated objects are omitted.
 pub fn object_connected_components(log: &Ocel) -> Vec<BTreeSet<Arc<str>>> {
-    let graph = interaction_graph(log);
+    let graph = interaction_neighbours(log);
     let mut visited = BTreeSet::new();
     let mut components = Vec::new();
     for start in graph.keys() {
@@ -357,7 +337,7 @@ pub fn object_connected_components(log: &Ocel) -> Vec<BTreeSet<Arc<str>>> {
 pub fn filter_ocel_objects(log: &Ocel, ids: &[&str], options: ObjectFilterOptions) -> Ocel {
     let mut selected: BTreeSet<Arc<str>> = ids.iter().map(|id| Arc::from(*id)).collect();
     if options.level > 1 {
-        let graph = interaction_graph(log);
+        let graph = interaction_neighbours(log);
         for _ in 1..options.level {
             let before = selected.len();
             let neighbors: Vec<_> = selected
