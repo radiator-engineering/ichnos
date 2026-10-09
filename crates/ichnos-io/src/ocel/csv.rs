@@ -23,6 +23,10 @@ use super::open;
 use super::write::{Columns, Kind, Prepared, as_float, missing, to_path};
 use crate::error::{Error, Result};
 
+/// One type column's objects in first-appearance order, and the set of
+/// `(is bytes, text)` pairs already seen.
+type Found = (Vec<Arc<str>>, HashSet<(bool, Arc<str>)>);
+
 fn error(detail: impl Into<String>) -> Error {
     Error::Ocel(detail.into())
 }
@@ -107,7 +111,7 @@ pub fn read_ocel_csv_from_reader(table: impl Read, objects: Option<&mut dyn Read
     // Per object type column, the objects in first-appearance order. A byte
     // string and a string with the same text are two objects, as in
     // pm4py's set.
-    let mut found: Vec<(Vec<Arc<str>>, HashSet<(bool, Arc<str>)>)> =
+    let mut found: Vec<Found> =
         vec![Default::default(); types.len()];
     for (r, row) in frame.rows.iter().enumerate() {
         ocel.events.push(OcelEvent {
@@ -316,12 +320,12 @@ pub(super) fn parse_timestamp(text: &str) -> Option<(NaiveDateTime, Form)> {
         form.separator = Some(c);
         hms[0] = number(2, &mut pos)?;
         form.parts = 1;
-        for part in 1..3 {
+        for part in hms.iter_mut().skip(1) {
             if s.get(pos) != Some(&b':') {
                 break;
             }
             pos += 1;
-            hms[part] = number(2, &mut pos)?;
+            *part = number(2, &mut pos)?;
             form.parts += 1;
         }
         if form.parts == 3 && s.get(pos) == Some(&b'.') {

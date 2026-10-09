@@ -33,6 +33,13 @@ const O2O: &str = "o2o";
 /// Python's `csv.field_size_limit()` default, in characters.
 const FIELD_LIMIT: usize = 131_072;
 
+/// An object id and an attribute name.
+type ObjectAttribute = (Arc<str>, Arc<str>);
+/// An attribute change: object, time, attribute and value.
+type Change = (Arc<str>, DateTime<FixedOffset>, Arc<str>, Raw);
+/// A parsed reference: object id, qualifier and attribute values.
+type Reference = (Arc<str>, Option<Arc<str>>, Vec<(Arc<str>, Raw)>);
+
 fn error(detail: impl Into<String>) -> Error {
     Error::Ocel(detail.into())
 }
@@ -207,8 +214,8 @@ struct Reader {
     /// Objects referenced in a row before the current one.
     declared: HashSet<Arc<str>>,
     /// Assignments per object and attribute, in order of first assignment.
-    assignments: Vec<((Arc<str>, Arc<str>), Vec<Assignment>)>,
-    assignment_index: HashMap<(Arc<str>, Arc<str>), usize>,
+    assignments: Vec<(ObjectAttribute, Vec<Assignment>)>,
+    assignment_index: HashMap<ObjectAttribute, usize>,
     event_ids: HashSet<Arc<str>>,
     relation_keys: HashSet<(Arc<str>, Arc<str>, Arc<str>)>,
     o2o_keys: HashSet<(Arc<str>, Arc<str>, Arc<str>)>,
@@ -385,7 +392,7 @@ impl Reader {
         // The objects' initial values and the changes, as pm4py's two
         // tables hold them before typing.
         let mut initial: HashMap<Arc<str>, Vec<(Arc<str>, Raw)>> = HashMap::new();
-        let mut changes: Vec<(Arc<str>, DateTime<FixedOffset>, Arc<str>, Raw)> = Vec::new();
+        let mut changes: Vec<Change> = Vec::new();
         for ((object, name), mut values) in self.assignments {
             values.sort_by_key(|(_, at, _)| (at.is_some(), *at));
             let mut seen: Vec<(DateTime<FixedOffset>, Raw)> = Vec::new();
@@ -809,7 +816,7 @@ fn unescape(text: &str, what: &str) -> Result<String> {
 }
 
 /// pm4py's `_split_reference`: object id, qualifier and JSON values.
-fn split_reference(entry: &str) -> Result<(Arc<str>, Option<Arc<str>>, Vec<(Arc<str>, Raw)>)> {
+fn split_reference(entry: &str) -> Result<Reference> {
     let mut text = py_strip(entry);
     let mut attributes = Vec::new();
     if let Some(start) = find_unescaped(text, '{') {

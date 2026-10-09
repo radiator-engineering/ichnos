@@ -595,7 +595,7 @@ fn compare_csv(what: &str, ours: &[u8], theirs: &Value, failures: &mut Vec<Strin
     let theirs = theirs.as_str().expect("text");
     assert_eq!(
         canon_csv(theirs).lines().count() + 1,
-        theirs.lines().count(),
+        csv_records(theirs).len(),
         "{what}: one canonical line per record"
     );
     if ours.lines().next() == theirs.lines().next()
