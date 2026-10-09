@@ -1,0 +1,578 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e1",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Confirm Order",
+          "attributes": {},
+          "id": "e2",
+          "timestamp": "1980-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item out of Stock",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "1980-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item back in Stock",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "1980-01-05T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Failed",
+          "attributes": {},
+          "id": "e6",
+          "timestamp": "1980-01-08T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Retry Delivery",
+          "attributes": {},
+          "id": "e7",
+          "timestamp": "1980-01-09T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "1980-01-10T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Invoice Sent",
+          "attributes": {},
+          "id": "e9",
+          "timestamp": "1980-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Pay Order",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "1980-01-12T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e11",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Remove Item",
+          "attributes": {},
+          "id": "e12",
+          "timestamp": "1981-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Cancel Order",
+          "attributes": {},
+          "id": "e13",
+          "timestamp": "1981-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e14",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Add Item to Order",
+          "attributes": {},
+          "id": "e15",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e16",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e17",
+          "timestamp": "1981-01-07T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e18",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e19",
+          "timestamp": "1981-01-09T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Invoice Sent",
+          "attributes": {},
+          "id": "e20",
+          "timestamp": "1981-01-10T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment Reminder",
+          "attributes": {},
+          "id": "e21",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment Reminder",
+          "attributes": {},
+          "id": "e22",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Send for Credit Collection",
+          "attributes": {},
+          "id": "e23",
+          "timestamp": "1981-01-12T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i1",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i3",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i4",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "d1",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i5",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i6",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "o3",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i7",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i8",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i9",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "d2",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "d3",
+          "type": "delivery"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Confirm Order",
+          "event": "e2",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-02T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Item out of Stock",
+          "event": "e3",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-03T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Item back in Stock",
+          "event": "e5",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-05T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Failed",
+          "event": "e6",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-08T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Retry Delivery",
+          "event": "e7",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-09T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e8",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-10T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "event": "e9",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Pay Order",
+          "event": "e10",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "i6",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Remove Item",
+          "event": "e12",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1981-01-02T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Cancel Order",
+          "event": "e13",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1981-01-03T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "i8",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "i7",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Add Item to Order",
+          "event": "e15",
+          "object": "i9",
+          "qualifier": "",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Add Item to Order",
+          "event": "e15",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i7",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e17",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1981-01-07T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "d3",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "i8",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "i9",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e19",
+          "object": "d3",
+          "qualifier": "",
+          "timestamp": "1981-01-09T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "event": "e20",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-10T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Payment Reminder",
+          "event": "e21",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Payment Reminder",
+          "event": "e22",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Send for Credit Collection",
+          "event": "e23",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "writers": {
+      "json": {
+        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"order\",\n      \"element\",\n      \"delivery\"\n    ],\n    \"ocel:attribute-names\": [],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:activity\": \"Create Order\",\n      \"ocel:timestamp\": \"1980-01-01T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i4\",\n        \"i1\",\n        \"o1\",\n        \"i3\",\n        \"i2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:activity\": \"Confirm Order\",\n      \"ocel:timestamp\": \"1980-01-02T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:activity\": \"Item out of Stock\",\n      \"ocel:timestamp\": \"1980-01-03T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e4\": {\n      \"ocel:activity\": \"Create Delivery\",\n      \"ocel:timestamp\": \"1980-01-04T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d1\",\n        \"i2\",\n        \"i1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e5\": {\n      \"ocel:activity\": \"Item back in Stock\",\n      \"ocel:timestamp\": \"1980-01-05T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e6\": {\n      \"ocel:activity\": \"Delivery Failed\",\n      \"ocel:timestamp\": \"1980-01-08T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e7\": {\n      \"ocel:activity\": \"Retry Delivery\",\n      \"ocel:timestamp\": \"1980-01-09T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e8\": {\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:timestamp\": \"1980-01-10T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e9\": {\n      \"ocel:activity\": \"Invoice Sent\",\n      \"ocel:timestamp\": \"1980-01-11T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e10\": {\n      \"ocel:activity\": \"Pay Order\",\n      \"ocel:timestamp\": \"1980-01-12T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e11\": {\n      \"ocel:activity\": \"Create Order\",\n      \"ocel:timestamp\": \"1981-01-01T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i6\",\n        \"o2\",\n        \"i5\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i6\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e12\": {\n      \"ocel:activity\": \"Remove Item\",\n      \"ocel:timestamp\": \"1981-01-02T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i5\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i5\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e13\": {\n      \"ocel:activity\": \"Cancel Order\",\n      \"ocel:timestamp\": \"1981-01-03T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e14\": {\n      \"ocel:activity\": \"Create Order\",\n      \"ocel:timestamp\": \"1981-01-04T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i8\",\n        \"o3\",\n        \"i7\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i8\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"o3\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i7\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e15\": {\n      \"ocel:activity\": \"Add Item to Order\",\n      \"ocel:timestamp\": \"1981-01-05T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i9\",\n        \"o3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i9\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"o3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e16\": {\n      \"ocel:activity\": \"Create Delivery\",\n      \"ocel:timestamp\": \"1981-01-06T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i3\",\n        \"d2\",\n        \"i4\",\n        \"i7\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i3\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"d2\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i4\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i7\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e17\": {\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:timestamp\": \"1981-01-07T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e18\": {\n      \"ocel:activity\": \"Create Delivery\",\n      \"ocel:timestamp\": \"1981-01-08T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d3\",\n        \"i8\",\n        \"i9\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d3\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i8\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i9\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e19\": {\n      \"ocel:activity\": \"Delivery Successful\",\n      \"ocel:timestamp\": \"1981-01-09T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"d3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"d3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e20\": {\n      \"ocel:activity\": \"Invoice Sent\",\n      \"ocel:timestamp\": \"1981-01-10T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e21\": {\n      \"ocel:activity\": \"Payment Reminder\",\n      \"ocel:timestamp\": \"1981-01-11T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e22\": {\n      \"ocel:activity\": \"Payment Reminder\",\n      \"ocel:timestamp\": \"1981-01-11T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e23\": {\n      \"ocel:activity\": \"Send for Credit Collection\",\n      \"ocel:timestamp\": \"1981-01-12T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o3\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"o1\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i1\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"i2\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"i3\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"i4\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"d1\": {\n      \"ocel:type\": \"delivery\",\n      \"ocel:ovmap\": {}\n    },\n    \"o2\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i5\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"i6\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"o3\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {}\n    },\n    \"i7\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"i8\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"i9\": {\n      \"ocel:type\": \"element\",\n      \"ocel:ovmap\": {}\n    },\n    \"d2\": {\n      \"ocel:type\": \"delivery\",\n      \"ocel:ovmap\": {}\n    },\n    \"d3\": {\n      \"ocel:type\": \"delivery\",\n      \"ocel:ovmap\": {}\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"Add Item to Order\": {},\n    \"Cancel Order\": {},\n    \"Confirm Order\": {},\n    \"Create Delivery\": {},\n    \"Create Order\": {},\n    \"Delivery Failed\": {},\n    \"Delivery Successful\": {},\n    \"Invoice Sent\": {},\n    \"Item back in Stock\": {},\n    \"Item out of Stock\": {},\n    \"Pay Order\": {},\n    \"Payment Reminder\": {},\n    \"Remove Item\": {},\n    \"Retry Delivery\": {},\n    \"Send for Credit Collection\": {}\n  },\n  \"ocel:objectTypes\": {\n    \"delivery\": {},\n    \"element\": {},\n    \"order\": {}\n  },\n  \"ocel:objectChanges\": []\n}"
+      },
+      "json2": {
+        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"delivery\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"element\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": []\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"Add Item to Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Cancel Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Confirm Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Create Delivery\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Create Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Delivery Failed\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Delivery Successful\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Invoice Sent\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Item back in Stock\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Item out of Stock\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Pay Order\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Payment Reminder\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Remove Item\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Retry Delivery\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Send for Credit Collection\",\n      \"attributes\": []\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\"\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"i2\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"i3\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"i4\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"d1\",\n      \"type\": \"delivery\"\n    },\n    {\n      \"id\": \"o2\",\n      \"type\": \"order\"\n    },\n    {\n      \"id\": \"i5\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"i6\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"o3\",\n      \"type\": \"order\"\n    },\n    {\n      \"id\": \"i7\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"i8\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"i9\",\n      \"type\": \"element\"\n    },\n    {\n      \"id\": \"d2\",\n      \"type\": \"delivery\"\n    },\n    {\n      \"id\": \"d3\",\n      \"type\": \"delivery\"\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"Create Order\",\n      \"time\": \"1980-01-01T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"Confirm Order\",\n      \"time\": \"1980-01-02T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"Item out of Stock\",\n      \"time\": \"1980-01-03T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"Create Delivery\",\n      \"time\": \"1980-01-04T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e5\",\n      \"type\": \"Item back in Stock\",\n      \"time\": \"1980-01-05T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e6\",\n      \"type\": \"Delivery Failed\",\n      \"time\": \"1980-01-08T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e7\",\n      \"type\": \"Retry Delivery\",\n      \"time\": \"1980-01-09T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1980-01-10T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e9\",\n      \"type\": \"Invoice Sent\",\n      \"time\": \"1980-01-11T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"Pay Order\",\n      \"time\": \"1980-01-12T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e11\",\n      \"type\": \"Create Order\",\n      \"time\": \"1981-01-01T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i6\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e12\",\n      \"type\": \"Remove Item\",\n      \"time\": \"1981-01-02T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i5\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e13\",\n      \"type\": \"Cancel Order\",\n      \"time\": \"1981-01-03T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e14\",\n      \"type\": \"Create Order\",\n      \"time\": \"1981-01-04T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i8\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"o3\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i7\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e15\",\n      \"type\": \"Add Item to Order\",\n      \"time\": \"1981-01-05T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i9\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"o3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e16\",\n      \"type\": \"Create Delivery\",\n      \"time\": \"1981-01-06T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i3\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"d2\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i4\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i7\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e17\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1981-01-07T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e18\",\n      \"type\": \"Create Delivery\",\n      \"time\": \"1981-01-08T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d3\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i8\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i9\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e19\",\n      \"type\": \"Delivery Successful\",\n      \"time\": \"1981-01-09T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"d3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e20\",\n      \"type\": \"Invoice Sent\",\n      \"time\": \"1981-01-10T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e21\",\n      \"type\": \"Payment Reminder\",\n      \"time\": \"1981-01-11T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e22\",\n      \"type\": \"Payment Reminder\",\n      \"time\": \"1981-01-11T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e23\",\n      \"type\": \"Send for Credit Collection\",\n      \"time\": \"1981-01-12T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o3\",\n          \"qualifier\": \"\"\n        }\n      ]\n    }\n  ]\n}"
+      },
+      "xml": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\"/>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"element\"/>\n      <string key=\"object-type\" value=\"delivery\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <string key=\"activity\" value=\"Create Order\"/>\n      <date key=\"timestamp\" value=\"1980-01-01T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i3\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <string key=\"activity\" value=\"Confirm Order\"/>\n      <date key=\"timestamp\" value=\"1980-01-02T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <string key=\"activity\" value=\"Item out of Stock\"/>\n      <date key=\"timestamp\" value=\"1980-01-03T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <string key=\"activity\" value=\"Create Delivery\"/>\n      <date key=\"timestamp\" value=\"1980-01-04T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e5\"/>\n      <string key=\"activity\" value=\"Item back in Stock\"/>\n      <date key=\"timestamp\" value=\"1980-01-05T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e6\"/>\n      <string key=\"activity\" value=\"Delivery Failed\"/>\n      <date key=\"timestamp\" value=\"1980-01-08T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e7\"/>\n      <string key=\"activity\" value=\"Retry Delivery\"/>\n      <date key=\"timestamp\" value=\"1980-01-09T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <date key=\"timestamp\" value=\"1980-01-10T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e9\"/>\n      <string key=\"activity\" value=\"Invoice Sent\"/>\n      <date key=\"timestamp\" value=\"1980-01-11T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <string key=\"activity\" value=\"Pay Order\"/>\n      <date key=\"timestamp\" value=\"1980-01-12T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e11\"/>\n      <string key=\"activity\" value=\"Create Order\"/>\n      <date key=\"timestamp\" value=\"1981-01-01T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i6\"/>\n        <string key=\"object-id\" value=\"o2\"/>\n        <string key=\"object-id\" value=\"i5\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e12\"/>\n      <string key=\"activity\" value=\"Remove Item\"/>\n      <date key=\"timestamp\" value=\"1981-01-02T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i5\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e13\"/>\n      <string key=\"activity\" value=\"Cancel Order\"/>\n      <date key=\"timestamp\" value=\"1981-01-03T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e14\"/>\n      <string key=\"activity\" value=\"Create Order\"/>\n      <date key=\"timestamp\" value=\"1981-01-04T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i8\"/>\n        <string key=\"object-id\" value=\"o3\"/>\n        <string key=\"object-id\" value=\"i7\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e15\"/>\n      <string key=\"activity\" value=\"Add Item to Order\"/>\n      <date key=\"timestamp\" value=\"1981-01-05T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i9\"/>\n        <string key=\"object-id\" value=\"o3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e16\"/>\n      <string key=\"activity\" value=\"Create Delivery\"/>\n      <date key=\"timestamp\" value=\"1981-01-06T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i3\"/>\n        <string key=\"object-id\" value=\"d2\"/>\n        <string key=\"object-id\" value=\"i4\"/>\n        <string key=\"object-id\" value=\"i7\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e17\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <date key=\"timestamp\" value=\"1981-01-07T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e18\"/>\n      <string key=\"activity\" value=\"Create Delivery\"/>\n      <date key=\"timestamp\" value=\"1981-01-08T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d3\"/>\n        <string key=\"object-id\" value=\"i8\"/>\n        <string key=\"object-id\" value=\"i9\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e19\"/>\n      <string key=\"activity\" value=\"Delivery Successful\"/>\n      <date key=\"timestamp\" value=\"1981-01-09T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"d3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e20\"/>\n      <string key=\"activity\" value=\"Invoice Sent\"/>\n      <date key=\"timestamp\" value=\"1981-01-10T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e21\"/>\n      <string key=\"activity\" value=\"Payment Reminder\"/>\n      <date key=\"timestamp\" value=\"1981-01-11T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e22\"/>\n      <string key=\"activity\" value=\"Payment Reminder\"/>\n      <date key=\"timestamp\" value=\"1981-01-11T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e23\"/>\n      <string key=\"activity\" value=\"Send for Credit Collection\"/>\n      <date key=\"timestamp\" value=\"1981-01-12T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o3\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i2\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i3\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i4\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d1\"/>\n      <string key=\"type\" value=\"delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"o2\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i5\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i6\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"o3\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i7\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i8\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i9\"/>\n      <string key=\"type\" value=\"element\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d2\"/>\n      <string key=\"type\" value=\"delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"d3\"/>\n      <string key=\"type\" value=\"delivery\"/>\n      <list key=\"ovmap\"/>\n    </object>\n  </objects>\n</log>\n"
+      },
+      "xml2": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"delivery\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"element\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"order\">\n      <attributes/>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"Add Item to Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Cancel Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Confirm Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Create Delivery\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Create Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Delivery Failed\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Delivery Successful\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Invoice Sent\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Item back in Stock\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Item out of Stock\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Pay Order\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Payment Reminder\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Remove Item\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Retry Delivery\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"Send for Credit Collection\">\n      <attributes/>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"o1\" type=\"order\">\n      <attributes/>\n    </object>\n    <object id=\"i1\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"i2\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"i3\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"i4\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"d1\" type=\"delivery\">\n      <attributes/>\n    </object>\n    <object id=\"o2\" type=\"order\">\n      <attributes/>\n    </object>\n    <object id=\"i5\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"i6\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"o3\" type=\"order\">\n      <attributes/>\n    </object>\n    <object id=\"i7\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"i8\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"i9\" type=\"element\">\n      <attributes/>\n    </object>\n    <object id=\"d2\" type=\"delivery\">\n      <attributes/>\n    </object>\n    <object id=\"d3\" type=\"delivery\">\n      <attributes/>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"Create Order\" time=\"1980-01-01T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"Confirm Order\" time=\"1980-01-02T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"Item out of Stock\" time=\"1980-01-03T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e4\" type=\"Create Delivery\" time=\"1980-01-04T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e5\" type=\"Item back in Stock\" time=\"1980-01-05T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e6\" type=\"Delivery Failed\" time=\"1980-01-08T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e7\" type=\"Retry Delivery\" time=\"1980-01-09T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e8\" type=\"Delivery Successful\" time=\"1980-01-10T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e9\" type=\"Invoice Sent\" time=\"1980-01-11T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e10\" type=\"Pay Order\" time=\"1980-01-12T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e11\" type=\"Create Order\" time=\"1981-01-01T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i6\" qualifier=\"\"/>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e12\" type=\"Remove Item\" time=\"1981-01-02T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i5\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e13\" type=\"Cancel Order\" time=\"1981-01-03T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e14\" type=\"Create Order\" time=\"1981-01-04T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i8\" qualifier=\"\"/>\n        <relationship object-id=\"o3\" qualifier=\"\"/>\n        <relationship object-id=\"i7\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e15\" type=\"Add Item to Order\" time=\"1981-01-05T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i9\" qualifier=\"\"/>\n        <relationship object-id=\"o3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e16\" type=\"Create Delivery\" time=\"1981-01-06T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i3\" qualifier=\"\"/>\n        <relationship object-id=\"d2\" qualifier=\"\"/>\n        <relationship object-id=\"i4\" qualifier=\"\"/>\n        <relationship object-id=\"i7\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e17\" type=\"Delivery Successful\" time=\"1981-01-07T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e18\" type=\"Create Delivery\" time=\"1981-01-08T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d3\" qualifier=\"\"/>\n        <relationship object-id=\"i8\" qualifier=\"\"/>\n        <relationship object-id=\"i9\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e19\" type=\"Delivery Successful\" time=\"1981-01-09T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"d3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e20\" type=\"Invoice Sent\" time=\"1981-01-10T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e21\" type=\"Payment Reminder\" time=\"1981-01-11T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e22\" type=\"Payment Reminder\" time=\"1981-01-11T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o3\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e23\" type=\"Send for Credit Collection\" time=\"1981-01-12T00:00:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o3\" qualifier=\"\"/>\n      </objects>\n    </event>\n  </events>\n</log>\n"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "write-example-log-xmlocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.xmlocel"
+    },
+    "functions": [
+      "pm4py.read_ocel_xml",
+      "pm4py.write_ocel_json",
+      "pm4py.write_ocel_xml",
+      "pm4py.write_ocel2_json",
+      "pm4py.write_ocel2_xml"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
