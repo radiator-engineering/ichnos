@@ -1,0 +1,223 @@
+{
+  "expected": {
+    "connections": [
+      {
+        "from": "Resource01",
+        "to": "Resource01",
+        "value": 0.200836820083682
+      },
+      {
+        "from": "Resource02",
+        "to": "Resource02",
+        "value": 0.07252440725244072
+      },
+      {
+        "from": "Resource03",
+        "to": "Resource03",
+        "value": 0.09623430962343096
+      },
+      {
+        "from": "Resource04",
+        "to": "Resource04",
+        "value": 0.08228730822873083
+      },
+      {
+        "from": "Resource05",
+        "to": "Resource05",
+        "value": 0.0599721059972106
+      },
+      {
+        "from": "Resource06",
+        "to": "Resource06",
+        "value": 0.07391910739191074
+      },
+      {
+        "from": "Resource07",
+        "to": "Resource07",
+        "value": 0.02510460251046025
+      },
+      {
+        "from": "Resource08",
+        "to": "Resource08",
+        "value": 0.022315202231520222
+      },
+      {
+        "from": "Resource09",
+        "to": "Resource09",
+        "value": 0.04602510460251046
+      },
+      {
+        "from": "Resource11",
+        "to": "Resource11",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource12",
+        "to": "Resource12",
+        "value": 0.00697350069735007
+      },
+      {
+        "from": "Resource13",
+        "to": "Resource13",
+        "value": 0.044630404463040445
+      },
+      {
+        "from": "Resource14",
+        "to": "Resource14",
+        "value": 0.0502092050209205
+      },
+      {
+        "from": "Resource15",
+        "to": "Resource15",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource15",
+        "to": "admin1",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource16",
+        "to": "Resource16",
+        "value": 0.04881450488145049
+      },
+      {
+        "from": "Resource17",
+        "to": "Resource04",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource17",
+        "to": "Resource17",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource18",
+        "to": "Resource18",
+        "value": 0.019525801952580194
+      },
+      {
+        "from": "Resource19",
+        "to": "Resource11",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource20",
+        "to": "Resource20",
+        "value": 0.023709902370990237
+      },
+      {
+        "from": "Resource21",
+        "to": "Resource10",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource21",
+        "to": "Resource21",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource22",
+        "to": "Resource22",
+        "value": 0.012552301255230125
+      },
+      {
+        "from": "Resource23",
+        "to": "Resource23",
+        "value": 0.012552301255230125
+      },
+      {
+        "from": "Resource25",
+        "to": "Resource25",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource26",
+        "to": "Resource24",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource26",
+        "to": "Resource40",
+        "value": 0.000697350069735007
+      },
+      {
+        "from": "Resource28",
+        "to": "Resource28",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource29",
+        "to": "Resource29",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource30",
+        "to": "Resource30",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource31",
+        "to": "Resource31",
+        "value": 0.002789400278940028
+      },
+      {
+        "from": "Resource33",
+        "to": "Resource33",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource34",
+        "to": "Resource34",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource35",
+        "to": "Resource35",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource36",
+        "to": "Resource36",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "Resource37",
+        "to": "Resource37",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "admin1",
+        "to": "admin1",
+        "value": 0.001394700139470014
+      },
+      {
+        "from": "test",
+        "to": "test",
+        "value": 0.001394700139470014
+      }
+    ],
+    "directed": true
+  },
+  "meta": {
+    "area": "org",
+    "case": "subcontracting-receipt-n3",
+    "fixtures": {
+      "log": "fixtures/logs/receipt.csv"
+    },
+    "functions": [
+      "pm4py.discover_subcontracting_network"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "n": 3
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

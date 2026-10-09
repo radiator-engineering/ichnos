@@ -1,0 +1,191 @@
+{
+  "expected": {
+    "features": {
+      "@@event_num_po_quantity": [
+        500.0,
+        1.0
+      ],
+      "@@object_attr_value_is_blocked_No": [
+        0.0,
+        0.0
+      ],
+      "@@object_cobirth": [
+        0.0,
+        0.0
+      ],
+      "@@object_codeath": [
+        0.0,
+        0.0
+      ],
+      "@@object_degree_centrality": [
+        0.375,
+        0.125
+      ],
+      "@@object_general_descendants_graph_ascendants": [
+        1.0,
+        1.0
+      ],
+      "@@object_general_descendants_graph_descendants": [
+        2.0,
+        0.0
+      ],
+      "@@object_general_inheritance_graph_ascendants": [
+        1.0,
+        0.0
+      ],
+      "@@object_general_inheritance_graph_descendants": [
+        1.0,
+        0.0
+      ],
+      "@@object_general_interaction_graph": [
+        3.0,
+        1.0
+      ],
+      "@@object_interaction_graph_Invoice": [
+        2.0,
+        1.0
+      ],
+      "@@object_interaction_graph_Payment": [
+        0.0,
+        0.0
+      ],
+      "@@object_interaction_graph_Purchase Order": [
+        0.0,
+        0.0
+      ],
+      "@@object_interaction_graph_Purchase Requisition": [
+        1.0,
+        0.0
+      ],
+      "@@object_lifecycle_duration": [
+        524700.0,
+        0.0
+      ],
+      "@@object_lifecycle_end_timestamp": [
+        1642327200.0,
+        1643817600.0
+      ],
+      "@@object_lifecycle_length": [
+        4.0,
+        1.0
+      ],
+      "@@object_lifecycle_start_timestamp": [
+        1641802500.0,
+        1643817600.0
+      ],
+      "@@object_lifecycle_unq_act": [
+        3.0,
+        1.0
+      ],
+      "@@object_wip": [
+        3.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Approve Purchase Requisition": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Change PO Quantity": [
+        1.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Create Purchase Order": [
+        1.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Create Purchase Requisition": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Insert Invoice": [
+        2.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Insert Payment": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Remove Payment Block": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Set Payment Block": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Approve Purchase Requisition##Create Purchase Order": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Change PO Quantity##Insert Invoice": [
+        1.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Create Purchase Order##Change PO Quantity": [
+        1.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Create Purchase Order##Set Payment Block": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Create Purchase Requisition##Approve Purchase Requisition": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Insert Invoice##Create Purchase Order": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Insert Invoice##Insert Invoice": [
+        1.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Insert Invoice##Insert Payment": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Remove Payment Block##Insert Payment": [
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_path_Set Payment Block##Remove Payment Block": [
+        0.0,
+        0.0
+      ]
+    },
+    "object_ids": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  "meta": {
+    "area": "ml",
+    "case": "ocel-ocel20-example-purchase-order",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.extract_ocel_features"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "enable_object_work_in_progress": true,
+      "obj_type": "Purchase Order",
+      "object_num_attributes": [
+        "po_quantity"
+      ],
+      "object_str_attributes": [
+        "is_blocked"
+      ],
+      "version": 2
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "expected": [
+    {
+      "activities": [
+        "accept",
+        "collect reviews",
+        "invite additional reviewer",
+        "invite reviewers",
+        "reject"
+      ],
+      "originator_importance": {
+        "Anne": 850,
+        "Mike": 802
+      }
+    },
+    {
+      "activities": [
+        "get review 1",
+        "get review 2",
+        "get review 3",
+        "get review X"
+      ],
+      "originator_importance": {
+        "Carol": 52,
+        "John": 63,
+        "Mary": 58,
+        "Pam": 63,
+        "Pete": 66,
+        "Sam": 48,
+        "Sara": 53
+      }
+    },
+    {
+      "activities": [
+        "time-out 1",
+        "time-out 2",
+        "time-out 3",
+        "time-out X"
+      ],
+      "originator_importance": {
+        "__INVALID__": 423
+      }
+    },
+    {
+      "activities": [
+        "decide"
+      ],
+      "originator_importance": {
+        "Wil": 1252
+      }
+    }
+  ],
+  "meta": {
+    "area": "org",
+    "case": "roles-reviewing",
+    "fixtures": {
+      "log": "fixtures/logs/reviewing.csv"
+    },
+    "functions": [
+      "pm4py.discover_organizational_roles"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
