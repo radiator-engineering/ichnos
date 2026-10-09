@@ -1,5 +1,6 @@
 //! The crate-wide error type.
 
+use crate::analysis::AnalysisError;
 use crate::bpmn::{BpmnError, NodeNotEnabled};
 use crate::conversion::{UnsupportedOperator, WfNetToTreeError};
 use crate::dfg::DfgError;
@@ -15,6 +16,9 @@ use crate::transition_system::TsError;
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    /// A Petri net analysis failed.
+    #[error(transparent)]
+    Analysis(#[from] AnalysisError),
     /// Building or editing a Petri net failed.
     #[error(transparent)]
     PetriNet(#[from] PetriNetError),

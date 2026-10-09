@@ -1,0 +1,964 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "A",
+            "target": "c1",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c1",
+            "target": "B",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c1",
+            "target": "C",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c1"
+        ],
+        "transitions": [
+          {
+            "label": "Set Checkpoint",
+            "name": "A"
+          },
+          {
+            "label": "Register as Low-Value Claim",
+            "name": "B"
+          },
+          {
+            "label": "Register as High-Value Claim",
+            "name": "C"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "B",
+            "target": "c2",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "C",
+            "target": "c2",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c2",
+            "target": "D",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c2"
+        ],
+        "transitions": [
+          {
+            "label": "Register as Low-Value Claim",
+            "name": "B"
+          },
+          {
+            "label": "Register as High-Value Claim",
+            "name": "C"
+          },
+          {
+            "label": "Check Policy",
+            "name": "D"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "B",
+            "target": "c5",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c5",
+            "target": "E",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c5"
+        ],
+        "transitions": [
+          {
+            "label": "Register as Low-Value Claim",
+            "name": "B"
+          },
+          {
+            "label": "Compute Low-value Claim",
+            "name": "E"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "C",
+            "target": "c6",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c6",
+            "target": "G",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c6"
+        ],
+        "transitions": [
+          {
+            "label": "Register as High-Value Claim",
+            "name": "C"
+          },
+          {
+            "label": "Consult Expert",
+            "name": "G"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "D",
+            "target": "c3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c3",
+            "target": "E",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c3",
+            "target": "F",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c3"
+        ],
+        "transitions": [
+          {
+            "label": "Check Policy",
+            "name": "D"
+          },
+          {
+            "label": "Compute Low-value Claim",
+            "name": "E"
+          },
+          {
+            "label": "Compute High-value Claim",
+            "name": "F"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "E",
+            "target": "c4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "F",
+            "target": "c4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "I",
+            "target": "sink",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c4",
+            "target": "I",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "sink": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c4",
+          "sink"
+        ],
+        "transitions": [
+          {
+            "label": "Compute Low-value Claim",
+            "name": "E"
+          },
+          {
+            "label": "Compute High-value Claim",
+            "name": "F"
+          },
+          {
+            "label": "Set Checkpoint",
+            "name": "I"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "G",
+            "target": "c7",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c7",
+            "target": "H",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c7"
+        ],
+        "transitions": [
+          {
+            "label": "Consult Expert",
+            "name": "G"
+          },
+          {
+            "label": "Check Liability",
+            "name": "H"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "H",
+            "target": "c8",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "c8",
+            "target": "F",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "c8"
+        ],
+        "transitions": [
+          {
+            "label": "Compute High-value Claim",
+            "name": "F"
+          },
+          {
+            "label": "Check Liability",
+            "name": "H"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "source",
+            "target": "A",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "source": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "source"
+        ],
+        "transitions": [
+          {
+            "label": "Set Checkpoint",
+            "name": "A"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "A"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "c1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "c3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "F",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "G",
+          "target": "c7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "H",
+          "target": "c8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "I",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c2",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c4",
+          "target": "I",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c6",
+          "target": "G",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c7",
+          "target": "H",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c8",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Set Checkpoint",
+          "name": "A"
+        },
+        {
+          "label": "Register as Low-Value Claim",
+          "name": "B"
+        },
+        {
+          "label": "Register as High-Value Claim",
+          "name": "C"
+        },
+        {
+          "label": "Check Policy",
+          "name": "D"
+        },
+        {
+          "label": "Compute Low-value Claim",
+          "name": "E"
+        },
+        {
+          "label": "Compute High-value Claim",
+          "name": "F"
+        },
+        {
+          "label": "Consult Expert",
+          "name": "G"
+        },
+        {
+          "label": "Check Liability",
+          "name": "H"
+        },
+        {
+          "label": "Set Checkpoint",
+          "name": "I"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "c1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "c3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "F",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "G",
+          "target": "c7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "H",
+          "target": "c8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "I",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c2",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c4",
+          "target": "I",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c6",
+          "target": "G",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c7",
+          "target": "H",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c8",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Set Checkpoint",
+          "name": "A"
+        },
+        {
+          "label": "Register as Low-Value Claim",
+          "name": "B"
+        },
+        {
+          "label": "Register as High-Value Claim",
+          "name": "C"
+        },
+        {
+          "label": "Check Policy",
+          "name": "D"
+        },
+        {
+          "label": "Compute Low-value Claim",
+          "name": "E"
+        },
+        {
+          "label": "Compute High-value Claim",
+          "name": "F"
+        },
+        {
+          "label": "Consult Expert",
+          "name": "G"
+        },
+        {
+          "label": "Check Liability",
+          "name": "H"
+        },
+        {
+          "label": "Set Checkpoint",
+          "name": "I"
+        }
+      ]
+    },
+    "is_sound": true,
+    "marking_equation": 5,
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "c1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "c3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "F",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "G",
+          "target": "c7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "H",
+          "target": "c8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "I",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c2",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c4",
+          "target": "I",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c6",
+          "target": "G",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c7",
+          "target": "H",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c8",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Set Checkpoint",
+          "name": "A"
+        },
+        {
+          "label": "Register as Low-Value Claim",
+          "name": "B"
+        },
+        {
+          "label": "Register as High-Value Claim",
+          "name": "C"
+        },
+        {
+          "label": "Check Policy",
+          "name": "D"
+        },
+        {
+          "label": "Compute Low-value Claim",
+          "name": "E"
+        },
+        {
+          "label": "Compute High-value Claim",
+          "name": "F"
+        },
+        {
+          "label": "Consult Expert",
+          "name": "G"
+        },
+        {
+          "label": "Check Liability",
+          "name": "H"
+        },
+        {
+          "label": "Set Checkpoint",
+          "name": "I"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 0.7599999999999999,
+      "extended_cardoso": 10,
+      "extended_cyclomatic": 14
+    },
+    "soundness": {
+      "messages": [
+        "Input is ok.",
+        "Petri Net is a workflow net.",
+        "Every place is covered by s-components.",
+        "There are no dead tasks.",
+        "All tasks are live."
+      ],
+      "sound": true
+    },
+    "workflow_net": true
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-ex2",
+    "fixtures": {
+      "model": "fixtures/logs/ex2.pnml"
+    },
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "name": "ex2"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
