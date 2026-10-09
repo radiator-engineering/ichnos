@@ -301,7 +301,7 @@ impl Clusterer for KMeans {
                         .min_by(|(i, a), (j, b)| {
                             distance(r, a).total_cmp(&distance(r, b)).then(i.cmp(j))
                         })
-                        .unwrap()
+                        .expect("validated cluster count is positive")
                         .0
                 })
                 .collect()
@@ -353,7 +353,12 @@ impl Clusterer for KMeans {
                     }
                 }
             }
-            let largest = counts.iter().enumerate().max_by_key(|(_, n)| *n).unwrap().0;
+            let largest = counts
+                .iter()
+                .enumerate()
+                .max_by_key(|(_, n)| *n)
+                .expect("validated cluster count is positive")
+                .0;
             for c in 0..self.clusters {
                 if counts[c] > 0 {
                     for x in &mut sums[c] {
@@ -383,6 +388,12 @@ impl Clusterer for KMeans {
     }
 }
 /// Partition traces in input order. Cluster logs retain source metadata.
+///
+/// With [`ProfileOptions::infer`] and [`KMeans::default`], the partition can
+/// differ from pm4py's default `cluster_log`: attributes are selected from the
+/// complete log, and centers use farthest-point seeding. pm4py samples up to
+/// 50 traces and uses sklearn's seed-0 K-means++ initialization. Supply explicit
+/// feature options and centers to compare the same Lloyd optimization.
 pub fn cluster_log(
     log: &EventLog,
     o: &ProfileOptions,

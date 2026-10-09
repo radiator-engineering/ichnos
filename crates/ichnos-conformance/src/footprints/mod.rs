@@ -544,6 +544,7 @@ mod tests;
 
 /// Compare two typed models by their sequence and parallel footprints.
 /// Petri nets reuse the conformance extractor, including silent routing.
+/// DFG inputs return a model-comparison error, as pm4py does.
 pub fn behavioral_similarity(
     a: &ichnos_model::comparison::Model,
     b: &ichnos_model::comparison::Model,
@@ -554,7 +555,12 @@ pub fn behavioral_similarity(
             Model::Tree(t) => t.footprints().footprints,
             Model::Petri(n) => net::net_footprints(&n.net, &n.initial_marking)?,
             Model::Powl(p) => p.footprints().footprints,
-            _ => {
+            Model::Dfg(_) => {
+                return Err(crate::Error::ModelComparison(
+                    "behavioral similarity does not support DFG models".into(),
+                ));
+            }
+            Model::Bpmn(_) => {
                 m.to_petri_net()
                     .map_err(|e| crate::Error::ModelComparison(e.to_string()))?
                     .net

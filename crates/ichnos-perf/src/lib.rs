@@ -86,7 +86,7 @@ fn times(log: &EventLog, o: &CaseTimeOptions) -> Result<CaseTimes, Error> {
         };
         let mut ds = Vec::new();
         for (ei, event) in trace.events.iter().enumerate() {
-            let timestamp = |key: &str| -> Result<f64, Error> {
+            let timestamp = |key: &str| -> Result<_, Error> {
                 let date = event
                     .get(key)
                     .and_then(AttributeValue::as_date)
@@ -95,20 +95,20 @@ fn times(log: &EventLog, o: &CaseTimeOptions) -> Result<CaseTimes, Error> {
                         event: ei,
                         key: key.into(),
                     })?;
-                Ok(date.timestamp() as f64 + f64::from(date.timestamp_subsec_micros()) / 1e6)
+                Ok(date)
             };
-            let start = timestamp(&o.start_timestamp)?;
-            let end = timestamp(&o.timestamp)?;
-            // Timedelta conversion precedes epoch conversion in the reference.
-            let duration = (event
-                .get(&o.timestamp)
-                .unwrap()
-                .as_date()
-                .unwrap()
-                .signed_duration_since(event.get(&o.start_timestamp).unwrap().as_date().unwrap()))
-            .num_microseconds()
-            .map(|n| n as f64 / 1e6)
-            .unwrap_or(end - start);
+            let start_date = timestamp(&o.start_timestamp)?;
+            let end_date = timestamp(&o.timestamp)?;
+            let start = start_date.timestamp() as f64
+                + f64::from(start_date.timestamp_subsec_micros()) / 1e6;
+            let end =
+                end_date.timestamp() as f64 + f64::from(end_date.timestamp_subsec_micros()) / 1e6;
+            // Convert the checked dates to a duration before epoch arithmetic.
+            let duration = end_date
+                .signed_duration_since(start_date)
+                .num_microseconds()
+                .map(|n| n as f64 / 1e6)
+                .unwrap_or(end - start);
             let case = cases.entry(id.clone()).or_insert(Case {
                 start,
                 end,

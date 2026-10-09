@@ -160,3 +160,43 @@ fn custom_assignments_keep_empty_indices_and_metadata() {
             .is_err()
     );
 }
+
+#[test]
+fn default_partition_gap_is_reported_against_pm4py() {
+    let g = golden("analysis_remaining", "clusters-default-running-example");
+    let log =
+        ichnos_io::xes::read_xes(fixture_path("running-example.xes"), &Default::default()).unwrap();
+    let clusters = profiles::cluster_log(
+        &log,
+        &ProfileOptions::infer(&log, "concept:name"),
+        &KMeans::default(),
+    )
+    .unwrap();
+    let mut groups: Vec<Vec<String>> = clusters
+        .iter()
+        .map(|l| {
+            l.traces
+                .iter()
+                .map(|t| t.case_id().unwrap().as_str().unwrap().to_string())
+                .collect()
+        })
+        .collect();
+    let mut reference: Vec<Vec<String>> =
+        serde_json::from_value(g.expected["groups"].clone()).unwrap();
+    for group in &mut groups {
+        group.sort();
+    }
+    for group in &mut reference {
+        group.sort();
+    }
+    groups.sort();
+    reference.sort();
+    assert_eq!(
+        groups.iter().map(Vec::len).sum::<usize>(),
+        g.expected["rows"].as_u64().unwrap() as usize
+    );
+    println!(
+        "pm4py default partition: {reference:?}; Rust infer/default partition: {groups:?}; equal: {}",
+        groups == reference
+    );
+}

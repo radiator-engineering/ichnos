@@ -12,7 +12,7 @@ pub enum EmdError {
     /// Mass must be finite and nonnegative.
     #[error("language masses must be finite and nonnegative")]
     InvalidMass,
-    /// Both languages must carry the same total mass.
+    /// Total masses must be close within NumPy isclose tolerances.
     #[error("language masses differ: {0} and {1}")]
     UnequalMass(f64, f64),
     /// The solver could not find a transport plan.
@@ -43,8 +43,11 @@ pub fn normalized_trace_distance(a: &[Label], b: &[Label]) -> f64 {
 
 /// Minimum transport cost using normalized activity-sequence edit distance.
 ///
-/// Mass is preserved, rather than silently normalizing unequal distributions.
-/// Zero-total languages have distance zero. Zero-mass support is ignored.
+/// Totals must satisfy `abs(a - b) <= 1e-8 + 1e-5 * abs(b)`, matching
+/// NumPy's default `isclose`. A close positive second total is scaled to the
+/// first total before solving, keeping the equality constraints feasible.
+/// If either accepted total is zero, the distance is zero. Zero-mass support
+/// is ignored. Larger mass differences return [`EmdError::UnequalMass`].
 pub fn compute_emd(a: &StochasticLanguage, b: &StochasticLanguage) -> Result<f64, EmdError> {
     let mass = |x: &StochasticLanguage| -> Result<f64, EmdError> {
         if x.values().any(|v| !v.is_finite() || *v < 0.0) {
@@ -58,12 +61,13 @@ pub fn compute_emd(a: &StochasticLanguage, b: &StochasticLanguage) -> Result<f64
     };
     let ma = mass(a)?;
     let mb = mass(b)?;
-    if (ma - mb).abs() > 1e-10 * ma.max(mb).max(1.0) {
+    if (ma - mb).abs() > 1e-8 + 1e-5 * mb.abs() {
         return Err(EmdError::UnequalMass(ma, mb));
     }
-    if ma == 0.0 && mb == 0.0 {
+    if ma == 0.0 || mb == 0.0 {
         return Ok(0.0);
     }
+    let scale = ma / mb;
     let a: Vec<_> = a.iter().filter(|(_, v)| **v > 0.0).collect();
     let b: Vec<_> = b.iter().filter(|(_, v)| **v > 0.0).collect();
     let mut variables = ProblemVariables::new();
@@ -90,7 +94,13 @@ pub fn compute_emd(a: &StochasticLanguage, b: &StochasticLanguage) -> Result<f64
         problem = problem.with(flows[i].iter().copied().sum::<Expression>().eq(**m));
     }
     for (j, (_, m)) in b.iter().enumerate() {
-        problem = problem.with(flows.iter().map(|r| r[j]).sum::<Expression>().eq(**m));
+        problem = problem.with(
+            flows
+                .iter()
+                .map(|r| r[j])
+                .sum::<Expression>()
+                .eq(**m * scale),
+        );
     }
     let solution = problem
         .solve()

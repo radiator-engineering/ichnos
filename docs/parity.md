@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 142; ported: 302; dropped: 182; total: 626.
+todo: 135; ported: 309; dropped: 182; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -40,17 +40,17 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.write_ptml` | `write.py` → `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos_io::write_ptml` | `ichnos-io` | ported | Deterministic node ids; emits a silent third loop child for ProM by default. Seven fixture round trips. Interleaving and loops with more than two model children return errors. |
 | `pm4py.write_dfg` | `write.py` → `objects/dfg/exporter/exporter` | `ichnos_io::write_dfg` | `ichnos-io` | ported | Deterministic lexical activity indexes, explicit start/end frequencies; optional inferred boundaries. Empty graphs and boundary-only activities round-trip. Unrepresentable whitespace/newline labels error. |
 | `pm4py.write_bpmn` | `write.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/layout/layouter`, `objects/bpmn/obj` | `ichnos_io::write_bpmn` | `ichnos-io` | ported | Ports the etree variant. Goldens `io/bpmn-write-*` compare pm4py's write-then-read of each fixture with the ichnos one; the two subprocess fixtures fail to write in both. Golden `io/bpmn-options-all_kinds` writes with both of pm4py's export switches off (`BpmnWriteOptions::plane` and `incoming_outgoing`). Uses stored bounds and waypoints, or pm4py's default layout; Graphviz auto-layout is not ported, as for `write_pnml`. See ichnos-io Behaviour changes. |
-| `pm4py.write_ocel` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. |
+| `pm4py.write_ocel` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel` | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. `ichnos_io::write_ocel` writes names ending in `jsonocel` or `xmlocel`; CSV and SQLite return an error until they are ported. |
 | `pm4py.write_ocel_csv` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
-| `pm4py.write_ocel_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard. |
-| `pm4py.write_ocel_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_xml` (planned) | `ichnos-io` | todo | Variants: classic, ocel20. |
+| `pm4py.write_ocel_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel_json` | `ichnos-io` | ported | `write_ocel_json` writes pm4py's `classic` layout, or the `ocel20` layout when the log has OCEL 2.0 features (qualifiers, o2o relations or object changes), as pm4py's `is_ocel20` test decides. Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
+| `pm4py.write_ocel_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel_xml` | `ichnos-io` | ported | `write_ocel_xml` writes the OCEL 1.0 XML layout (pm4py's `classic` variant). Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
 | `pm4py.write_ocel_sqlite` | `write.py` → `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_sqlite` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas_exporter. |
-| `pm4py.write_ocel2` | `write.py` → `objects/ocel/exporter/bundled/exporter`, `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. |
+| `pm4py.write_ocel2` | `write.py` → `objects/ocel/exporter/bundled/exporter`, `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel2` | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. `ichnos_io::write_ocel2` writes names ending in `xml`, `xmlocel`, `json` or `jsonocel`, each optionally followed by `.gz`; CSV, SQLite and the bundle return an error until they are ported. |
 | `pm4py.write_ocel2_bundle` | `write.py` → `objects/ocel/exporter/bundled/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_bundle` (planned) | `ichnos-io` | todo | Variants: ocel20. |
 | `pm4py.write_ocel2_csv` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
-| `pm4py.write_ocel2_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard. |
+| `pm4py.write_ocel2_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel2_json` | `ichnos-io` | ported | `write_ocel2_json` writes the OCEL 2.0 JSON layout (pm4py's `ocel20_standard` variant). Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
 | `pm4py.write_ocel2_sqlite` | `write.py` → `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_sqlite` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas_exporter. |
-| `pm4py.write_ocel2_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_xml` (planned) | `ichnos-io` | todo | Variants: classic, ocel20. |
+| `pm4py.write_ocel2_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel2_xml` | `ichnos-io` | ported | `write_ocel2_xml` writes the OCEL 2.0 XML layout (pm4py's `ocel20` variant). Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
 
 ## discovery
 
@@ -333,15 +333,15 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.construct_synchronous_product_net` | `analysis.py` → `objects/log/obj`, `objects/petri_net/obj`, `objects/petri_net/utils/align_utils`, `objects/petri_net/utils/petri_utils`, `objects/petri_net/utils/synchronous_product` | `ichnos_model::analysis::SynchronousProduct::new` | `ichnos-model` | ported | Goldens `analysis/sync-*`: 6 running-example and 3 receipt variants against their nets. Product nodes are named with the strings `"(x, y)"`, not Python tuples; `SynchronousProduct::move_of` and `standard_cost` give each transition's move and pm4py's standard cost. See the ichnos-model (petri-analysis) Behaviour changes. |
-| `pm4py.compute_emd` | `analysis.py` → `algo/evaluation/earth_mover_distance/algorithm` | `ichnos_stats::emd::compute_emd` | `ichnos-stats` | ported | Goldens `analysis_remaining/emd` and `emd-{running-example,receipt,roadtraffic100traces}`: balanced transport with normalized trace edit distance; real-log supports use the first 16 lexical variants. Pure-Rust microlp; equal finite nonnegative mass required. |
+| `pm4py.compute_emd` | `analysis.py` → `algo/evaluation/earth_mover_distance/algorithm` | `ichnos_stats::emd::compute_emd` | `ichnos-stats` | ported | Goldens `analysis_remaining/emd` and `emd-{running-example,receipt,roadtraffic100traces}` compare normalized trace edit distance and transport cost. Both real-log languages use every variant: 6, 116 and 10 respectively. The second language reweights those variants. Masses use NumPy isclose tolerances; a close positive second total is rescaled before solving. Uses microlp. |
 | `pm4py.solve_marking_equation` | `analysis.py` → `algo/analysis/marking_equation/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::solve_marking_equation` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets, unit costs). Linear program solved with `microlp`; each arc counts once, as in pm4py. Variants: classic. |
 | `pm4py.solve_extended_marking_equation` | `analysis.py` → `algo/analysis/extended_marking_equation/algorithm`, `objects/log/obj`, `objects/petri_net/obj` | `ichnos_model::analysis::SynchronousProduct::solve_extended_marking_equation` | `ichnos-model` | ported | Goldens `analysis/sync-*`, default split points and `split_points=[1]`. One known difference: pm4py truncates GLPK's 3.9999999999963 to 3 on `sync-running-example-3`, where ichnos gives 4. Variants: classic. |
-| `pm4py.analysis.check_is_sound` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::is_sound` | `ichnos-model` | ported | POWL conversion first, then Woflan. Existing `analysis/net-*` soundness goldens, including and-split-xor-join and murata3, pass without the previous verdict exemptions. |
+| `pm4py.analysis.check_is_sound` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::is_sound` | `ichnos-model` | ported | Goldens `analysis/net-*` compare pm4py POWL-first results. Successful POWL conversion returns true even for Woflan-unsound nets, including `net-and-split-xor-join` and `net-murata3`. Use `AcceptingPetriNet::check_soundness` for the Woflan verdict. |
 | `pm4py.check_soundness` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::check_soundness` | `ichnos-model` | ported | Woflan with pm4py's early stop; returns `SoundnessReport` with pm4py's diagnostic messages. Goldens `analysis/net-*` (21 nets; roadtraffic skipped because pm4py takes minutes). On `big_wf_net` the uncovered places differ because the solvers pick different optimal invariants; the verdict matches. |
-| `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos_ml::profiles::{cluster_log, ProfileOptions, KMeans, Clusterer}` | `ichnos-ml` | ported | Goldens `analysis_remaining/clusters-{running-example,receipt,roadtraffic100traces}` compare complete-log activity-only profiles and explicit-center sklearn Lloyd partitions through the top-level source wrapper; `profiles-numeric` covers inferred categorical attributes and last numeric values. Deterministic farthest-point defaults replace seeded K-means++; see behavior changes. |
+| `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos_ml::profiles::{cluster_log, ProfileOptions, KMeans, Clusterer}` | `ichnos-ml` | ported | Goldens `analysis_remaining/clusters-{running-example,receipt,roadtraffic100traces}` compare complete-log activity profiles and explicit-center Lloyd partitions with pm4py. `profiles-numeric` covers categorical and numeric attributes. `clusters-default-running-example` records pm4py default groups; its Rust test reports the partition comparison. Rust defaults can differ because feature selection and center initialization differ. See Behaviour changes. |
 | `pm4py.insert_artificial_start_end` | `analysis.py` → `objects/log/obj`, `objects/log/util/artificial`, `objects/log/util/dataframe_utils` | `ichnos::EventLog::insert_artificial_start_end` | `ichnos-core` | ported | Golden `core/artificial-start-end-running-example-csv`. Change core-26. |
-| `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_perf::insert_case_service_waiting_time` | `ichnos-perf` | ported | Goldens `analysis_remaining/times-{running-example,receipt,roadtraffic100traces}` and `times-intervals`: case duration sums, sojourn, and waiting repeated on each event, including overlapping and negative intervals. |
-| `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_perf::insert_case_arrival_finish_rate` | `ichnos-perf` | ported | Goldens `analysis_remaining/times-{running-example,receipt,roadtraffic100traces}` and `times-intervals`: preceding start/finish gaps, first zero, numeric ties, repeated case identifiers. |
+| `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_perf::insert_case_service_waiting_time` | `ichnos-perf` | ported | Goldens `analysis_remaining/times-{running-example,receipt,roadtraffic100traces}` and `times-intervals` cover service, sojourn and waiting values. The interval case includes overlap and negative durations. Returns an enriched EventLog copy. |
+| `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_perf::insert_case_arrival_finish_rate` | `ichnos-perf` | ported | Goldens `analysis_remaining/times-{running-example,receipt,roadtraffic100traces}` and `times-intervals` cover arrival and finish gaps. Ties use typed case identifiers. Uses the preceding finish, following pm4py implementation. |
 | `pm4py.check_is_workflow_net` | `analysis.py` → `algo/analysis/workflow_net/algorithm`, `objects/petri_net/obj` | `ichnos_model::PetriNet::is_workflow_net` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). Variants: petri_net. |
 | `pm4py.maximal_decomposition` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/decomposition` | `ichnos_model::AcceptingPetriNet::maximal_decomposition` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). For a duplicated label pm4py keeps the joining transition by memory-address order, which changes from run to run; ichnos keeps the one whose name sorts last, and `maximal_decomposition_with` takes the pick as a function. The goldens iterate pm4py's transitions in name order, so its pick is the same. |
 | `pm4py.simplicity_petri_net` | `analysis.py` → `algo/evaluation/simplicity/variants/arc_degree`, `algo/evaluation/simplicity/variants/extended_cardoso`, `algo/evaluation/simplicity/variants/extended_cyclomatic`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::simplicity` | `ichnos-model` | ported | Goldens `analysis/net-*`: arc_degree and extended_cardoso on 22 nets, extended_cyclomatic on the 16 bounded ones. extended_cyclomatic follows pm4py's graph, which counts (state, transition name) pairs. Variants: arc_degree, extended_cardoso, extended_cyclomatic. |
@@ -349,13 +349,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.reduce_petri_net_invisibles` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/reduction` | `ichnos_model::PetriNet::apply_simple_reduction` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). |
 | `pm4py.reduce_petri_net_implicit_places` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/murata` | `ichnos_model::AcceptingPetriNet::reduce_implicit_places` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). Integer programs solved with `microlp`; pm4py uses scipy or PuLP. |
 | `pm4py.get_enabled_transitions` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/semantics` | `ichnos_model::PetriNet::enabled_transitions` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets, initial marking). |
-| `pm4py.get_activity_labels` | `analysis.py` → `objects/log/obj` | `ichnos_model::comparison::Model::activity_labels; ichnos_ml::profiles::activity_labels` | `ichnos-model / ichnos-ml` | ported | Golden `analysis_remaining/models` covers tree, net, POWL and BPMN visible labels; `times-{running-example,receipt,roadtraffic100traces}` covers complete-log labels. Sorted unique output. |
-| `pm4py.replace_activity_labels` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/obj`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/obj`, `objects/process_tree/utils/label_replacing` | `ichnos_model::comparison::Model::replace_activity_labels` | `ichnos-model` | ported | Golden `analysis_remaining/models` covers tree, net, POWL and BPMN renamed copies. DFG relabeling returns an error, as the source dispatcher does not support it. |
-| `pm4py.behavioral_similarity` | `analysis.py` → `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos_conformance::footprints::behavioral_similarity; ichnos_model::comparison::behavioral_similarity` | `ichnos-conformance / ichnos-model` | ported | Golden `analysis_remaining/models`: tree, net and POWL relation comparisons including silent routing. Typed model dispatcher reuses conformance net footprints; separate sequence/parallel Jaccard, empty denominator gives zero. |
-| `pm4py.structural_similarity` | `analysis.py` → `objects/process_tree/utils/struct_similarity` | `ichnos_model::comparison::{structural_similarity, structural_features}` | `ichnos-model` | ported | Golden `analysis_remaining/models`: all pairwise tree comparisons and converted nets, POWL-first conversion, ten normalized features. |
+| `pm4py.get_activity_labels` | `analysis.py` → `objects/log/obj` | `ichnos_model::comparison::Model::activity_labels; ichnos_ml::profiles::activity_labels` | `ichnos-model / ichnos-ml` | ported | Goldens `analysis_remaining/models` and `times-{running-example,receipt,roadtraffic100traces}` cover models and event logs. Returns sorted distinct visible labels after model conversion. |
+| `pm4py.replace_activity_labels` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/obj`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/obj`, `objects/process_tree/utils/label_replacing` | `ichnos_model::comparison::Model::replace_activity_labels` | `ichnos-model` | ported | Golden `analysis_remaining/models` covers tree, accepting net, POWL and BPMN relabeling. Returns an owned copy. Direct DFG relabeling returns a typed error. |
+| `pm4py.behavioral_similarity` | `analysis.py` → `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos_conformance::footprints::behavioral_similarity; ichnos_model::comparison::behavioral_similarity` | `ichnos-conformance / ichnos-model` | ported | Golden `analysis_remaining/models` compares trees, accepting nets, POWL and BPMN, including BPMN pairs. Sequence and parallel relations have separate Jaccard terms. An empty denominator gives zero. DFG inputs are rejected, as in pm4py. |
+| `pm4py.structural_similarity` | `analysis.py` → `objects/process_tree/utils/struct_similarity` | `ichnos_model::comparison::{structural_similarity, structural_features}` | `ichnos-model` | ported | Golden `analysis_remaining/models` compares ten structural features for trees, accepting nets and POWL. Preserves pm4py comparison-specific POWL conversion behavior. See Behaviour changes. |
 | `pm4py.embeddings_similarity` | `analysis.py` → `objects/petri_net/utils/embeddings_similarity` | — | `ichnos-ml` | dropped | External Gensim Word2Vec training adapter: independently trained random-walk vectors depend on Python/Gensim internals and net set iteration. No built-in Rust training backend is provided; cosine of arbitrary vectors would not implement this function. |
-| `pm4py.label_sets_similarity` | `analysis.py` | `ichnos_model::comparison::{label_sets_similarity, Model::label_sets_similarity}` | `ichnos-model` | ported | Golden `analysis_remaining/labels`: Unicode SequenceMatcher ratios, autojunk boundary, fuzzy greedy matches. Sorted inputs and lexical tie resolution; finite threshold in [0,1]. |
-| `pm4py.map_labels_from_second_model` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/utils/label_replacing` | `ichnos_model::comparison::Model::map_labels_from_second_model` | `ichnos-model` | ported | Golden `analysis_remaining/labels` covers the greedy mapping; model tests apply it to a copied source tree. Unmatched source labels remain intact; exact matches take priority. |
+| `pm4py.label_sets_similarity` | `analysis.py` | `ichnos_model::comparison::{label_sets_similarity, Model::label_sets_similarity}` | `ichnos-model` | ported | Goldens `analysis_remaining/labels` and `models` compare greedy Unicode label matching. Thresholds are typed and validated. See Behaviour changes for lexical ties and zero-score candidates. |
+| `pm4py.map_labels_from_second_model` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/utils/label_replacing` | `ichnos_model::comparison::Model::map_labels_from_second_model` | `ichnos-model` | ported | Goldens `analysis_remaining/labels` and `models` compare one-to-one label mapping and renamed models. Matching uses pm4py SequenceMatcher ratios with lexical tie handling. |
 
 ## hof
 
@@ -967,14 +967,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos::stream::algo::conformance::declare::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-running-example`, `declare-receipt`, `declare-roadtraffic100traces` construct pm4py-discovered Declare models, feed every event and compare up to five prefix snapshots plus live delivery. |
 
 ## streaming.algo.conformance.declare.variants.automata
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos::stream::algo::conformance::declare::variants::automata::DeclareStreamingConformance` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos::stream::algo::conformance::declare::variants::automata::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos_stream::StreamingDeclareConformance` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-pending`, `declare-interleaved`, `declare-missing`, `declare-timestamps`, `declare-empty`, `declare-special-labels` check state names, absorbing/immediate deviations, event counts, per-event time fallback and typed constraint identities. Real-log cases compare complete ordered state/history digests and samples. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-self-pairs`, `declare-empty-model` check typed model preparation, all eighteen monitor templates, equal binary labels and ignored count metadata. |
 
 ## streaming.algo.conformance.footprints.algorithm
 
@@ -1384,6 +1384,14 @@ Lanes record each deliberate change from pm4py here.
 - **Missing data.** An object change without a time, which pm4py records with a missing timestamp, is left out of OCEL 2.0 JSON. A repeated OCEL XML object attribute without a time is an error, where pm4py fails to parse it. An XML relation to an unknown object is left out, where pm4py's OCEL 1.0 reader raises `KeyError`. Timestamps that do not parse are errors.
 - **Globals.** OCEL 1.0 JSON globals become nested attribute containers, with list items keyed by the empty string.
 - **Repeated ids.** OCEL 1.0 JSON keys events and objects by id. A repeated id keeps its first position and its last value, as pm4py's `dict` does. The other layouts list events and objects, and keep every row with a repeated id, as pm4py does. See the ichnos-ocel Behaviour changes for how `Ocel` resolves them.
+- **Writers prepare a copy.** Each writer clones the log and runs `make_consistent` and `retain_related` on the clone, as pm4py's writers do on the log itself. pm4py changes the caller's log; ichnos leaves it unchanged.
+- **Attribute order.** pm4py writes attributes in pandas column order, which depends on the reader that built the log. ichnos writes them in the order they first appear in the rows. The golden tests compare these outputs modulo attribute order, and require the same bytes where the two orders agree.
+- **Attribute types.** pm4py takes each attribute's type from the pandas column dtype. ichnos infers it from the values with pandas' rules: all integers give an integer column, integers with a gap give floats, mixed values give an object column.
+- **Attribute names.** pm4py's OCEL 1.0 layouts list every attribute column in `attribute-names`, including a column with no values. ichnos lists only names that have a value.
+- **File names.** pm4py appends `.jsonocel`, `.xmlocel`, `.json` or `.xml` to a path that lacks the extension. ichnos writes to the path it is given. A path ending in `.gz` is compressed with gzip.
+- **Encoding.** The writers write UTF-8 only; pm4py takes an `encoding` parameter. The XML writers return an error for a control character, U+FFFE or U+FFFF, as lxml does.
+- **Text times.** pm4py's OCEL 2.0 XML reader can leave an object-change time as a string. pm4py's `write_ocel2_xml` then raises `AttributeError`, and its JSON writers copy the text. ichnos parses every time when it reads, so its writers always write a time.
+- **Read, then write.** The `ocel/write-*` goldens of the fixture files hold pm4py's read-then-write output. ichnos gives the same files when it reads the fixture with its own reader, apart from the reader differences above: the typed XML values change the attribute types in `typed.xmlocel` and `typed20.xmlocel`, and the OCEL 2.0 JSON relation order changes the order of each event's relations.
 
 ### ichnos-discovery (DFG)
 
@@ -1624,9 +1632,80 @@ Rows cite these as `core-N`.
 - Round-trip JSON float parsing prevents artificial zero-variance deviations from one-ULP profile-mean changes.
 - Native algorithm implementations are not patched.
 
+### ichnos-stream (streaming Declare)
+
+The Declare model types are reused from `ichnos-discovery`; moving them to `ichnos-model` is deferred.
+
+- Typed model constraints replace Python template-name and activity-tuple dictionaries.
+- Typed automaton states replace serialized tuple keys and state strings.
+- Incorrect unary/binary rule arity returns a typed error before monitoring starts.
+- Unknown template strings cannot enter the typed model; pm4py uses a dummy monitor for them.
+- Ignore and Reject policies extend pm4py's default handling of incomplete events.
+- Configurable case/activity/timestamp keys extend pm4py's hardcoded streaming Declare keys.
+- Core display strings replace raw Python case/activity identity, so values with the same display text can share a case or label match.
+- `remove_case` releases monitor state without end-of-case validation or changing historical totals.
+- A removed case ID can be reused as a fresh case; pm4py has no case-removal API.
+- `clear_history` releases event-level deviation records while retaining monitors and totals; pm4py has no history-clearing API.
+- Typed snapshots and history replace pm4py's logging of violated template names.
+- The shared synchronous `StreamSink` contract replaces pm4py's worker locking.
+
+### Analysis entry points
+
+- Model comparison takes a typed `comparison::Model` instead of heterogeneous positional arguments.
+- Behavioral comparison lives in conformance so Petri nets can reuse its silent-routing footprint implementation.
+- Behavioral similarity rejects DFG models, following pm4py's conversion restriction.
+- Structural comparison preserves pm4py's comparison-specific POWL dispatch: partial-order nodes lose their ordering edges and become parallel.
+- Frequent-transition annotations become literal leaf labels during structural comparison.
+- Direct `Powl::to_process_tree` retains partial orders; the dispatch quirk is confined to comparison.
+- Empty behavioral relations give similarity zero, including self-comparison, as in pm4py.
+- Label matching uses Unicode SequenceMatcher blocks and its popular-character anchor rule.
+- Equal-score label choices use lexical order instead of Python set iteration.
+- Label thresholds must be finite and in [0,1].
+- At threshold zero, zero-score candidates remain unmatched, avoiding pm4py's `remove(None)` failure.
+- DFG label extraction and structural comparison convert through an accepting net.
+- Direct DFG relabeling returns a typed error.
+- `is_sound` preserves pm4py's POWL-first shortcut: a successful conversion returns true even if Woflan finds the net unsound.
+- The `analysis/net-and-split-xor-join` and `analysis/net-murata3` goldens demonstrate that shortcut; `check_soundness` supplies the Woflan verdict.
+- EMD totals use NumPy's isclose rule: absolute tolerance 1e-8 plus relative tolerance 1e-5 times the second total.
+- A close positive second total is rescaled to the first total before constructing transport constraints.
+- If either accepted total is zero, EMD returns zero.
+- Larger mass differences return an error; POT can instead normalize unequal languages depending on installed dependencies.
+- The transport optimizer uses microlp instead of POT or SciPy.
+- Zero-mass support is ignored, and empty-trace self-distance is zero; pm4py can divide by zero for an empty trace.
+- Clustering takes typed feature options and a `Clusterer` trait.
+- Categorical presence, adjacent-value presence and last numeric event values use lexical feature order.
+- Missing categorical values and absent adjacent pairs produce pm4py's `UNDEFINED` feature.
+- `ProfileOptions::infer` scans the complete log instead of sampling up to 50 traces.
+- Inference excludes case identifiers and lifecycle transitions, retains attributes present in every trace and selects strings with at most 12 distinct values.
+- Default K-means uses two clusters, 300 iterations and variance-scaled tolerance 1e-4.
+- Initial centers use the first row and successive farthest points instead of sklearn's seed-0 K-means++.
+- The default partition can differ from pm4py's because feature selection and seeding differ; the running-example default golden records the comparison.
+- Explicit centers reproduce the covered pm4py Lloyd fixtures.
+- K-means assignment ties choose the lowest center index.
+- Empty-cluster relocation chooses the highest row index among equally distant eligible points.
+- Duplicate-only clusters can remain unused.
+- Custom clusterers return typed assignments instead of sklearn objects.
+- Invalid shapes, nonfinite numbers, out-of-range assignments and missing selected numeric values return errors.
+- Cluster logs preserve source metadata; pm4py creates logs with default metadata.
+- Cluster traces stay in input order and intermediate empty cluster indices are retained.
+- The Gensim Word2Vec trainer is dropped; no alternative similarity replaces its independently trained random-walk vectors.
+- Case-time enrichment returns an EventLog copy with aggregate values repeated on events instead of a DataFrame.
+- Enrichment retains log metadata and trace/event order.
+- Case identifiers support string/ID and integer values, with typed ordering for timestamp ties.
+- Other case identifier types return errors.
+- Repeated case identifiers are grouped across traces.
+- Service time sums all individual intervals, including overlaps and negative durations.
+- Waiting time can therefore be negative, as in pm4py.
+- Finish enrichment uses the preceding finish, following pm4py's implementation instead of the top-level docstring's next-finish wording.
+- Empty traces are preserved without enrichment.
+- Empty logs return an empty copy; pm4py's DataFrame arrival helper fails on no cases.
+- Enrichment requires date-valued timestamps.
+- Computed durations use microsecond resolution; submicrosecond detail is not retained in the enrichment values.
+
 ## Proposed lanes
 
 Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.
+
 
 ### ichnos-stream (IWS alignments and OCEL distribution)
 
@@ -2086,28 +2165,3 @@ Port sources: `pm4py/algo/discovery/performance_spectrum/algorithm`, `pm4py/obje
 Crate: `ichnos-viz`. Rows: `pm4py.view_ocdfg`, `pm4py.save_vis_ocdfg`, `pm4py.view_ocpn`, `pm4py.save_vis_ocpn`, `pm4py.view_object_graph`, `pm4py.save_vis_object_graph`.
 
 Port sources: `pm4py/objects/ocel/obj`, `pm4py/objects/ocpn/obj`, `pm4py/vis.py`, `pm4py/visualization/ocel/object_graph/visualizer`, `pm4py/visualization/ocel/ocdfg/visualizer`, `pm4py/visualization/ocel/ocpn/visualizer`.
-
-### Analysis entry points
-
-- Model comparison uses a typed `comparison::Model` instead of heterogeneous positional arguments. Existing conversion errors and restrictions remain visible.
-- Behavioral comparison lives in conformance so Petri nets reuse its silent-routing footprint implementation without a crate dependency cycle. Footprint-only comparison is also available in model.
-- Structural comparison preserves the top-level source dispatcher's POWL subclass quirk: partial-order nodes are reinterpreted as process-tree operators and lose their ordering edges, becoming parallel. Frequent-transition annotations become literal leaf labels. Direct `Powl::to_process_tree` retains partial orders; this quirk is confined to comparison.
-- Empty behavioral relations give similarity zero, including self-comparison, as in the source.
-- Label matching uses Unicode SequenceMatcher matching blocks and its popular-character anchor rule. Greedy equal-score choices use lexical order instead of Python set iteration.
-- Label thresholds must be finite and in [0,1]. At threshold zero, a zero-score candidate is left unmatched; this avoids the source label-set helper's `remove(None)` failure.
-- DFG label extraction and structural comparison convert through an accepting net. Direct DFG relabeling returns a typed error.
-- Transport requires equal finite nonnegative total mass; it does not follow POT's dependency-specific normalization of unequal languages. The optimizer uses microlp instead of POT/SciPy.
-- Transport ignores zero-mass support and defines empty-trace self-distance and zero-total language distance as zero; the reference can divide by zero for an empty trace.
-- Clustering takes typed feature options and a `Clusterer` trait. Categorical presence, adjacent-value presence, and the last numeric event value are encoded in lexical feature order. Missing categorical values and absent adjacent pairs produce the source's `UNDEFINED` feature.
-- `ProfileOptions::infer` scans the complete log instead of sampling up to 50 traces. It excludes case identifiers and lifecycle transitions, retains attributes present in each trace, and selects strings with at most 12 distinct values.
-- Default K-means uses two clusters, 300 iterations and variance-scaled tolerance 1e-4. Initial centers use the first row and successive farthest points instead of NumPy seed-0 K-means++; explicit centers reproduce the covered sklearn Lloyd fixtures.
-- K-means assignment ties choose the lowest center index. Empty-cluster relocation chooses the highest row index among equally distant eligible points; duplicate-only clusters can remain unused.
-- Custom clusterers return typed assignments rather than sklearn objects. Invalid shapes, nonfinite numbers, out-of-range assignments, and missing selected numeric values return errors.
-- Cluster logs preserve source metadata; pm4py creates new logs with default metadata. Traces remain in input order and intermediate empty cluster indices are retained.
-- The Gensim Word2Vec embedding trainer is dropped explicitly. No alternative similarity is substituted for its independently trained random-walk vectors.
-- Case-time enrichment returns an `EventLog` copy with aggregate values repeated on events instead of a DataFrame. Log metadata and original trace/event order are retained.
-- Case identifiers support string/ID and integer attributes, with typed ordering for timestamp ties. Other identifier types return errors. Repeated identifiers are grouped across traces.
-- Case service time sums individual intervals, including overlaps and negative durations. Waiting can therefore be negative, as in the reference.
-- Finish enrichment uses the preceding finish, following the implementation rather than the top-level docstring's next-finish wording.
-- Empty traces are preserved without enrichment and empty logs return an empty copy. The reference's DataFrame arrival helper fails on no cases.
-- Enrichment requires date-valued timestamps. It uses microsecond durations and epoch seconds, matching Python datetime resolution; submicrosecond timestamp detail is not retained in computed durations.
