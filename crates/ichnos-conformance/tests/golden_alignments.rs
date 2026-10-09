@@ -29,7 +29,7 @@ fn alignment_cases() -> Vec<String> {
         .into_iter()
         .filter(|id| {
             id.starts_with("alignments-")
-                && !["dfg", "tree", "edit-distance"]
+                && !["dfg", "tree", "edit-distance", "approx", "subset", "decomposed"]
                     .iter()
                     .any(|kind| id.starts_with(&format!("alignments-{kind}-")))
         })

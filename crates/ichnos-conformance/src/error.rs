@@ -48,6 +48,13 @@ pub enum Error {
     /// A marking puts tokens on a place that is not in the net.
     #[error("the marking puts tokens on {0:?}, which is not a place of the net")]
     UnknownPlace(ichnos_model::PlaceId),
+    /// The settings of an approximate alignment method are out of range.
+    #[error("invalid approximate alignment settings: {0}")]
+    InvalidApproximation(&'static str),
+    /// Subset alignment could not align any of the picked variants within
+    /// its limits. pm4py raises an exception in the same case.
+    #[error("no picked variant could be aligned against the model")]
+    NoRepresentative,
     /// The linear program of the state-equation heuristic failed in a way
     /// other than infeasibility.
     #[error("the state-equation linear program failed: {0}")]

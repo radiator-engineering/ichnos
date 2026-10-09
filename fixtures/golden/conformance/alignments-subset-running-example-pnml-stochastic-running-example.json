@@ -1,0 +1,2047 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "t9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "t8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t11",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t10",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t11",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t12",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t13",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t6",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t7",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t8",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t9",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p5": 1
+      },
+      "initial_marking": {
+        "p4": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": "t0"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "t1"
+        },
+        {
+          "label": "decide",
+          "name": "t10"
+        },
+        {
+          "label": null,
+          "name": "t11"
+        },
+        {
+          "label": null,
+          "name": "t12"
+        },
+        {
+          "label": null,
+          "name": "t13"
+        },
+        {
+          "label": "reject request",
+          "name": "t2"
+        },
+        {
+          "label": "register request",
+          "name": "t3"
+        },
+        {
+          "label": "examine casually",
+          "name": "t4"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "t5"
+        },
+        {
+          "label": null,
+          "name": "t6"
+        },
+        {
+          "label": "pay compensation",
+          "name": "t7"
+        },
+        {
+          "label": null,
+          "name": "t8"
+        },
+        {
+          "label": null,
+          "name": "t9"
+        }
+      ]
+    },
+    "runs": {
+      "frequency": {
+        "params": {},
+        "summary": {
+          "deviation_counts": {
+            "deletions": {
+              "check ticket": 5,
+              "decide": 3,
+              "examine casually": 2,
+              "examine thoroughly": 3,
+              "reinitiate request": 3,
+              "reject request": 3
+            },
+            "insertions": {
+              "check ticket": 2,
+              "examine casually": 2,
+              "pay compensation": 3
+            },
+            "synchronous": {
+              "check ticket": 4,
+              "decide": 6,
+              "examine casually": 4,
+              "pay compensation": 3,
+              "register request": 6
+            }
+          },
+          "fitness_lower_bound": 0.6041666666666666,
+          "fitness_upper_bound": 1.0,
+          "log_fitness": 0.8020833333333334
+        },
+        "variants": [
+          {
+            "approximated_fitness": 0.75,
+            "bwc": 80000,
+            "cost": 40005,
+            "deviation_counts": {
+              "deletions": {
+                "examine thoroughly": 1,
+                "reject request": 1
+              },
+              "insertions": {
+                "examine casually": 1,
+                "pay compensation": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.5,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                null
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                2,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                null,
+                "t4"
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                null,
+                "t7"
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 1,
+            "trace": [
+              "register request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 1.0,
+            "bwc": 80000,
+            "cost": 5,
+            "deviation_counts": {
+              "deletions": {},
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 1.0,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 5,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                1,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                2,
+                "t4"
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 29,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": true,
+            "subset_size": 1,
+            "trace": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 45,
+            "visited": 14
+          },
+          {
+            "approximated_fitness": 0.75,
+            "bwc": 120000,
+            "cost": 60005,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 2,
+                "decide": 1,
+                "examine thoroughly": 1,
+                "reinitiate request": 1
+              },
+              "insertions": {
+                "check ticket": 1
+              },
+              "synchronous": {
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.5,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                null,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                null
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                5,
+                null
+              ],
+              [
+                6,
+                null
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                7,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                8,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 1,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reinitiate request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 0.75,
+            "bwc": 80000,
+            "cost": 40005,
+            "deviation_counts": {
+              "deletions": {
+                "examine thoroughly": 1,
+                "reject request": 1
+              },
+              "insertions": {
+                "examine casually": 1,
+                "pay compensation": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.5,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                1,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                null,
+                "t4"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                null,
+                "t7"
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 1,
+            "trace": [
+              "register request",
+              "check ticket",
+              "examine thoroughly",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 0.6875,
+            "bwc": 160000,
+            "cost": 100005,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 2,
+                "decide": 2,
+                "examine casually": 2,
+                "reinitiate request": 2,
+                "reject request": 1
+              },
+              "insertions": {
+                "pay compensation": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.375,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                null
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                null
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                5,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                6,
+                "t4"
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                7,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                null,
+                "t7"
+              ],
+              [
+                8,
+                null
+              ],
+              [
+                9,
+                null
+              ],
+              [
+                10,
+                null
+              ],
+              [
+                11,
+                null
+              ],
+              [
+                12,
+                null
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 1,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reinitiate request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "reinitiate request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 0.875,
+            "bwc": 80000,
+            "cost": 20005,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 1
+              },
+              "insertions": {
+                "check ticket": 1
+              },
+              "synchronous": {
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.75,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                null,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 1,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 0,
+            "visited": 0
+          }
+        ]
+      },
+      "frequency_3": {
+        "params": {
+          "subset_size": 3
+        },
+        "summary": {
+          "deviation_counts": {
+            "deletions": {
+              "check ticket": 4,
+              "decide": 3,
+              "examine casually": 2,
+              "examine thoroughly": 1,
+              "reinitiate request": 3,
+              "reject request": 1
+            },
+            "insertions": {
+              "check ticket": 1,
+              "pay compensation": 1
+            },
+            "synchronous": {
+              "check ticket": 5,
+              "decide": 6,
+              "examine casually": 4,
+              "examine thoroughly": 2,
+              "pay compensation": 3,
+              "register request": 6,
+              "reject request": 2
+            }
+          },
+          "fitness_lower_bound": 0.7986111111111112,
+          "fitness_upper_bound": 1.0,
+          "log_fitness": 0.8993055555555555
+        },
+        "variants": [
+          {
+            "approximated_fitness": 0.875,
+            "bwc": 80000,
+            "cost": 20005,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 1
+              },
+              "insertions": {
+                "check ticket": 1
+              },
+              "synchronous": {
+                "decide": 1,
+                "examine thoroughly": 1,
+                "register request": 1,
+                "reject request": 1
+              }
+            },
+            "fitness": 0.75,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                null,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                1,
+                "t1"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t2"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine thoroughly",
+              "decide",
+              "reject request"
+            ],
+            "selected_exact": false,
+            "subset_size": 3,
+            "trace": [
+              "register request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 1.0,
+            "bwc": 80000,
+            "cost": 5,
+            "deviation_counts": {
+              "deletions": {},
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 1.0,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 5,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                1,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                2,
+                "t4"
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 29,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": true,
+            "subset_size": 3,
+            "trace": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 45,
+            "visited": 14
+          },
+          {
+            "approximated_fitness": 0.8333333333333334,
+            "bwc": 120000,
+            "cost": 40002,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine thoroughly": 1,
+                "reinitiate request": 1
+              },
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.6666666666666667,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                null
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                5,
+                null
+              ],
+              [
+                6,
+                "t0"
+              ],
+              [
+                7,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                8,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 3,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reinitiate request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 1.0,
+            "bwc": 80000,
+            "cost": 5,
+            "deviation_counts": {
+              "deletions": {},
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine thoroughly": 1,
+                "register request": 1,
+                "reject request": 1
+              }
+            },
+            "fitness": 1.0,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 5,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                1,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                2,
+                "t1"
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t2"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 29,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine thoroughly",
+              "decide",
+              "reject request"
+            ],
+            "selected_exact": true,
+            "subset_size": 3,
+            "trace": [
+              "register request",
+              "check ticket",
+              "examine thoroughly",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 45,
+            "visited": 14
+          },
+          {
+            "approximated_fitness": 0.6875,
+            "bwc": 160000,
+            "cost": 100005,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 2,
+                "decide": 2,
+                "examine casually": 2,
+                "reinitiate request": 2,
+                "reject request": 1
+              },
+              "insertions": {
+                "pay compensation": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.375,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                null
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                null
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                null,
+                "t6"
+              ],
+              [
+                5,
+                "t0"
+              ],
+              [
+                null,
+                "t9"
+              ],
+              [
+                6,
+                "t4"
+              ],
+              [
+                null,
+                "t13"
+              ],
+              [
+                7,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                null,
+                "t7"
+              ],
+              [
+                8,
+                null
+              ],
+              [
+                9,
+                null
+              ],
+              [
+                10,
+                null
+              ],
+              [
+                11,
+                null
+              ],
+              [
+                12,
+                null
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 3,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reinitiate request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "reinitiate request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 1.0,
+            "bwc": 80000,
+            "cost": 2,
+            "deviation_counts": {
+              "deletions": {},
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 1.0,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 2,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                "t0"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 25,
+            "representative": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": true,
+            "subset_size": 3,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 35,
+            "visited": 11
+          }
+        ]
+      },
+      "k_medoids": {
+        "params": {
+          "selection_method": "k_medoids",
+          "subset_fraction": 0.2
+        },
+        "summary": {
+          "deviation_counts": {
+            "deletions": {
+              "check ticket": 3,
+              "decide": 3,
+              "examine casually": 3,
+              "examine thoroughly": 2,
+              "reinitiate request": 3,
+              "reject request": 1
+            },
+            "insertions": {
+              "examine casually": 1,
+              "examine thoroughly": 1,
+              "pay compensation": 1
+            },
+            "synchronous": {
+              "check ticket": 6,
+              "decide": 6,
+              "examine casually": 3,
+              "examine thoroughly": 1,
+              "pay compensation": 3,
+              "register request": 6,
+              "reject request": 2
+            }
+          },
+          "fitness_lower_bound": 0.7569444444444445,
+          "fitness_upper_bound": 1.0,
+          "log_fitness": 0.8784722222222222
+        },
+        "variants": [
+          {
+            "approximated_fitness": 1.0,
+            "bwc": 80000,
+            "cost": 2,
+            "deviation_counts": {
+              "deletions": {},
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine thoroughly": 1,
+                "register request": 1,
+                "reject request": 1
+              }
+            },
+            "fitness": 1.0,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 2,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                "t1"
+              ],
+              [
+                2,
+                "t0"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t2"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 25,
+            "representative": [
+              "register request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "selected_exact": true,
+            "subset_size": 2,
+            "trace": [
+              "register request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 35,
+            "visited": 11
+          },
+          {
+            "approximated_fitness": 0.875,
+            "bwc": 80000,
+            "cost": 20002,
+            "deviation_counts": {
+              "deletions": {
+                "examine casually": 1
+              },
+              "insertions": {
+                "examine casually": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.75,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t4"
+              ],
+              [
+                1,
+                "t0"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 2,
+            "trace": [
+              "register request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 0.8333333333333334,
+            "bwc": 120000,
+            "cost": 40002,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine thoroughly": 1,
+                "reinitiate request": 1
+              },
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.6666666666666667,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                null
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                5,
+                null
+              ],
+              [
+                6,
+                "t0"
+              ],
+              [
+                7,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                8,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 2,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reinitiate request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 0.875,
+            "bwc": 80000,
+            "cost": 20002,
+            "deviation_counts": {
+              "deletions": {
+                "examine thoroughly": 1
+              },
+              "insertions": {
+                "examine thoroughly": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "register request": 1,
+                "reject request": 1
+              }
+            },
+            "fitness": 0.75,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                null,
+                "t1"
+              ],
+              [
+                1,
+                "t0"
+              ],
+              [
+                2,
+                null
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t2"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "examine thoroughly",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "selected_exact": false,
+            "subset_size": 2,
+            "trace": [
+              "register request",
+              "check ticket",
+              "examine thoroughly",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 0.6875,
+            "bwc": 160000,
+            "cost": 100002,
+            "deviation_counts": {
+              "deletions": {
+                "check ticket": 2,
+                "decide": 2,
+                "examine casually": 2,
+                "reinitiate request": 2,
+                "reject request": 1
+              },
+              "insertions": {
+                "pay compensation": 1
+              },
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 0.375,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 0,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                "t0"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                null,
+                "t7"
+              ],
+              [
+                4,
+                null
+              ],
+              [
+                5,
+                null
+              ],
+              [
+                6,
+                null
+              ],
+              [
+                7,
+                null
+              ],
+              [
+                8,
+                null
+              ],
+              [
+                9,
+                null
+              ],
+              [
+                10,
+                null
+              ],
+              [
+                11,
+                null
+              ],
+              [
+                12,
+                null
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 0,
+            "representative": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": false,
+            "subset_size": 2,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reinitiate request",
+              "check ticket",
+              "examine casually",
+              "decide",
+              "reinitiate request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "reject request"
+            ],
+            "traversed": 0,
+            "visited": 0
+          },
+          {
+            "approximated_fitness": 1.0,
+            "bwc": 80000,
+            "cost": 2,
+            "deviation_counts": {
+              "deletions": {},
+              "insertions": {},
+              "synchronous": {
+                "check ticket": 1,
+                "decide": 1,
+                "examine casually": 1,
+                "pay compensation": 1,
+                "register request": 1
+              }
+            },
+            "fitness": 1.0,
+            "fitness_bounds_guaranteed": true,
+            "fitness_upper_bound": 1.0,
+            "is_valid": true,
+            "lower_bound_cost": 2,
+            "moves": [
+              [
+                0,
+                "t3"
+              ],
+              [
+                1,
+                "t4"
+              ],
+              [
+                2,
+                "t0"
+              ],
+              [
+                3,
+                "t10"
+              ],
+              [
+                null,
+                "t8"
+              ],
+              [
+                4,
+                "t7"
+              ],
+              [
+                null,
+                "t12"
+              ]
+            ],
+            "queued": 25,
+            "representative": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "selected_exact": true,
+            "subset_size": 2,
+            "trace": [
+              "register request",
+              "examine casually",
+              "check ticket",
+              "decide",
+              "pay compensation"
+            ],
+            "traversed": 35,
+            "visited": 11
+          }
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-subset-running-example-pnml-stochastic-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv",
+      "model": "fixtures/logs/stochastic_running_example.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.algo.conformance.alignments.edit_distance.variants.approx_subset.apply_with_summary"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

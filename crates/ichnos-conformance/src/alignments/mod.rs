@@ -46,6 +46,11 @@
 //! [`align_log`], [`fitness_alignments`] and [`precision_alignments`] are
 //! the log-level entry points of pm4py's simplified interface.
 //!
+//! [`ApproximateAligner`] runs pm4py's approximate methods for long traces:
+//! tandem-repeat reduction, sliding windows and fixed horizon. Their
+//! alignments are valid but not always optimal. [`align_log_subset`]
+//! aligns a few variants exactly and the rest by edit distance to them.
+//!
 //! # Other models
 //!
 //! These follow pm4py's searches step for step, so costs and fitness match
@@ -60,7 +65,9 @@
 //! - [`EditDistanceAligner`] aligns each trace against the closest trace of
 //!   another log, with the standard costs.
 
+mod approximate;
 pub mod costs;
+mod decomposed;
 mod dfg;
 mod edit_distance;
 mod marking;
@@ -74,7 +81,14 @@ mod simplex;
 mod state_equation;
 mod sync_product;
 
+pub use approximate::{
+    ApproximateAligner, ApproximateAlignment, ApproximateOptions, Approximation,
+    ApproximationReport, DeviationCounts, FixedHorizon, FixedHorizonFallback, SlidingWindow,
+    SubsetAlignment, SubsetOptions, SubsetSelection, SubsetSize, SubsetSummary,
+    SubsetTraceAlignment, align_log_subset,
+};
 pub use costs::ModelCosts;
+pub use decomposed::{DecomposedAligner, DecomposedAlignment, DecomposedOptions};
 pub use dfg::{DfgAligner, align_log_dfg};
 pub use edit_distance::{EditDistanceAligner, align_log_edit_distance};
 pub use petri_net::{Aligner, AlignmentOptions, Heuristic, align_log, fitness_alignments};
