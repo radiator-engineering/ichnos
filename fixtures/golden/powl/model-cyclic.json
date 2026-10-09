@@ -1,0 +1,145 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_5",
+        "p_7",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": null,
+          "postset": [
+            "p_7"
+          ],
+          "preset": [
+            "p_5"
+          ]
+        },
+        {
+          "label": "b",
+          "name": null,
+          "postset": [
+            "p_5"
+          ],
+          "preset": [
+            "p_7"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tauJoin_4",
+          "postset": [
+            "sink"
+          ],
+          "preset": []
+        },
+        {
+          "label": null,
+          "name": "tau_1",
+          "postset": [],
+          "preset": [
+            "source"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "precise": true,
+    "repr": "PO=(nodes={a, b}, order={a-->b, b-->a})",
+    "simplified": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "text": "PO=(nodes={ a, b }, order={ a-->b, b-->a })",
+    "tree": null
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-cyclic",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "PO=(nodes={ a, b }, order={ a-->b, b-->a })"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

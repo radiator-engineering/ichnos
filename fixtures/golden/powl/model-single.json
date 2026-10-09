@@ -1,0 +1,60 @@
+{
+  "expected": {
+    "frequent": {
+      "kind": "activity",
+      "label": "a"
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": null,
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "source"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "kind": "activity",
+      "label": "a"
+    },
+    "precise": true,
+    "repr": "a",
+    "simplified": {
+      "kind": "activity",
+      "label": "a"
+    },
+    "text": "'a'",
+    "tree": "a"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-single",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "'a'"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

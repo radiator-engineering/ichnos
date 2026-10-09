@@ -8,8 +8,11 @@ mod dfg_to_petri;
 mod heuristics_to_petri;
 mod petri_to_bpmn;
 mod petri_to_ts;
+mod powl_to_petri;
+mod powl_to_tree;
 mod tree_to_bpmn;
 mod tree_to_petri;
+mod tree_to_powl;
 
 pub use bpmn_to_petri::{BpmnPetriNet, BpmnToPetriOptions};
 pub use dfg_to_petri::{ARTIFICIAL_END, ARTIFICIAL_START};

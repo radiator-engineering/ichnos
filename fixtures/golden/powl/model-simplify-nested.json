@@ -1,0 +1,212 @@
+{
+  "expected": {
+    "frequent": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "kind": "activity",
+              "label": "c"
+            }
+          ],
+          "kind": "po",
+          "order": [
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "p_11",
+        "p_14",
+        "p_18",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": null,
+          "postset": [
+            "p_11"
+          ],
+          "preset": [
+            "source"
+          ]
+        },
+        {
+          "label": "b",
+          "name": null,
+          "postset": [
+            "p_14"
+          ],
+          "preset": [
+            "p_11"
+          ]
+        },
+        {
+          "label": "c",
+          "name": null,
+          "postset": [
+            "p_18"
+          ],
+          "preset": [
+            "p_14"
+          ]
+        },
+        {
+          "label": "d",
+          "name": null,
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "p_18"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "kind": "activity",
+              "label": "c"
+            }
+          ],
+          "kind": "po",
+          "order": [
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "precise": true,
+    "repr": null,
+    "simplified": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        },
+        {
+          "kind": "activity",
+          "label": "b"
+        },
+        {
+          "kind": "activity",
+          "label": "c"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "text": "PO=(nodes={ a, PO=(nodes={ b, c }, order={ b-->c }), d }, order={ a-->PO=(nodes={ b, c }, order={ b-->c }), PO=(nodes={ b, c }, order={ b-->c })-->d, a-->d })",
+    "tree": "->( 'a', ->( 'b', 'c' ), 'd' )"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-simplify-nested",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "PO=(nodes={ a, PO=(nodes={ b, c }, order={ b-->c }), d }, order={ a-->PO=(nodes={ b, c }, order={ b-->c }), PO=(nodes={ b, c }, order={ b-->c })-->d, a-->d })"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

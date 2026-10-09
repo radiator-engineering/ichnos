@@ -1,0 +1,57 @@
+{
+  "expected": {
+    "frequent": {
+      "kind": "silent"
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "name": "tau_1",
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "source"
+          ]
+        }
+      ]
+    },
+    "powl": {
+      "kind": "silent"
+    },
+    "precise": true,
+    "repr": "tau",
+    "simplified": {
+      "kind": "silent"
+    },
+    "text": "tau",
+    "tree": "tau"
+  },
+  "meta": {
+    "area": "powl",
+    "case": "model-silent",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_powl_model_string",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "text": "tau"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

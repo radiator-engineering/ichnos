@@ -4,6 +4,7 @@ use crate::bpmn::{BpmnError, NodeNotEnabled};
 use crate::conversion::UnsupportedOperator;
 use crate::dfg::DfgError;
 use crate::petri::{NotEnabled, PetriNetError, ReachabilityError};
+use crate::powl::{PowlError, PowlParseError};
 use crate::process_tree::{ParseError, TreeError};
 use crate::transition_system::TsError;
 
@@ -44,4 +45,10 @@ pub enum Error {
     /// A conversion met an operator it does not support.
     #[error(transparent)]
     UnsupportedOperator(#[from] UnsupportedOperator),
+    /// A POWL model is malformed or cannot be converted.
+    #[error(transparent)]
+    Powl(#[from] PowlError),
+    /// A POWL string could not be parsed.
+    #[error(transparent)]
+    PowlParse(#[from] PowlParseError),
 }
