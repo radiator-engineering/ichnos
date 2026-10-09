@@ -160,11 +160,11 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.get_trace_attributes` | `stats.py` → `objects/log/obj`, `statistics/attributes/log/get` | `ichnos_stats::attributes::get_trace_attributes` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_event_attribute_values` | `stats.py` → `objects/log/obj`, `statistics/attributes/log/get` | `ichnos_stats::attributes::get_event_attribute_values` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_trace_attribute_values` | `stats.py` → `objects/log/obj`, `statistics/attributes/log/get` | `ichnos_stats::attributes::get_trace_attribute_values` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
-| `pm4py.get_variants` | `stats.py` → `objects/log/obj`, `statistics/variants/log/get` | `ichnos::stats::get_variants` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_variants_as_tuples` | `stats.py` → `objects/log/obj`, `statistics/variants/log/get` | `ichnos::stats::get_variants_as_tuples` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.split_by_process_variant` | `stats.py` → `objects/log/obj`, `objects/log/util/pandas_numpy_variants` | `ichnos::stats::split_by_process_variant` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_variants_paths_duration` | `stats.py` → `objects/log/obj`, `objects/log/util/pandas_numpy_variants` | `ichnos::stats::get_variants_paths_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_stochastic_language` | `stats.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/petri_net/obj`, `objects/process_tree/obj`, `statistics/variants/log/get` | `ichnos::stats::get_stochastic_language` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.get_variants` | `stats.py` → `objects/log/obj`, `statistics/variants/log/get` | `ichnos_stats::variants::get_variants` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Typed sequence/count map also represents the backend count/set helpers. |
+| `pm4py.get_variants_as_tuples` | `stats.py` → `objects/log/obj`, `statistics/variants/log/get` | `ichnos_stats::variants::get_variants_as_tuples` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.split_by_process_variant` | `stats.py` → `objects/log/obj`, `objects/log/util/pandas_numpy_variants` | `ichnos_stats::variants::split_by_process_variant` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Returns metadata-preserving EventLogs rather than DataFrames with utility columns. |
+| `pm4py.get_variants_paths_duration` | `stats.py` → `objects/log/obj`, `objects/log/util/pandas_numpy_variants` | `ichnos_stats::variants::get_variants_paths_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.get_stochastic_language` | `stats.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/petri_net/obj`, `objects/process_tree/obj`, `statistics/variants/log/get` | `ichnos_stats::variants::get_stochastic_language` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_minimum_self_distances` | `stats.py` → `algo/discovery/minimum_self_distance/algorithm`, `objects/log/obj` | `ichnos::stats::get_minimum_self_distances` (planned) | `ichnos-stats` | todo | Variants: log, pandas, polars. |
 | `pm4py.get_minimum_self_distance_witnesses` | `stats.py` → `algo/discovery/minimum_self_distance/algorithm`, `algo/discovery/minimum_self_distance/utils`, `objects/log/obj` | `ichnos::stats::get_minimum_self_distance_witnesses` (planned) | `ichnos-stats` | todo | Variants: log, pandas, polars. |
 | `pm4py.get_case_arrival_average` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_arrival` | `ichnos::stats::get_case_arrival_average` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
@@ -174,7 +174,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.get_service_time` | `stats.py` → `objects/log/obj`, `statistics/service_time/log/get` | `ichnos::stats::get_service_time` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
 | `pm4py.get_all_case_durations` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos::stats::get_all_case_durations` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
 | `pm4py.get_case_duration` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos::stats::get_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_frequent_trace_segments` | `stats.py` → `objects/log/obj` | `ichnos::stats::get_frequent_trace_segments` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.get_frequent_trace_segments` | `stats.py` → `objects/log/obj` | `ichnos_stats::variants::get_frequent_trace_segments` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_activity_position_summary` | `stats.py` → `objects/log/obj` | `ichnos::stats::get_activity_position_summary` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
 | `pm4py.get_process_cube` | `stats.py` → `statistics/process_cube/pandas/algorithm`, `statistics/process_cube/polars/algorithm` | `ichnos::stats::get_process_cube` (planned) | `ichnos-stats` | todo | Variants: classic. |
 
@@ -482,15 +482,15 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.chaotic_activities.algorithm.apply` | `statistics/chaotic_activities/algorithm.py` → `objects/log/obj` | `ichnos::stats::chaotic_activities::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.chaotic_activities.algorithm.apply` | `statistics/chaotic_activities/algorithm.py` → `objects/log/obj` | `ichnos_stats::variants::get_chaotic_activities` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 
 ## statistics.chaotic_activities.variants.niek_sidorova
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.chaotic_activities.variants.niek_sidorova.apply` | `statistics/chaotic_activities/variants/niek_sidorova.py` → `objects/log/obj` | `ichnos::stats::chaotic_activities::variants::niek_sidorova::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.chaotic_activities.variants.niek_sidorova.chaotic_metrics` | `statistics/chaotic_activities/variants/niek_sidorova.py` | `ichnos::stats::chaotic_activities::variants::niek_sidorova::chaotic_metrics` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.chaotic_activities.variants.niek_sidorova.total_entropy` | `statistics/chaotic_activities/variants/niek_sidorova.py` | `ichnos::stats::chaotic_activities::variants::niek_sidorova::total_entropy` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.chaotic_activities.variants.niek_sidorova.apply` | `statistics/chaotic_activities/variants/niek_sidorova.py` → `objects/log/obj` | `ichnos_stats::variants::get_chaotic_activities` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.chaotic_activities.variants.niek_sidorova.chaotic_metrics` | `statistics/chaotic_activities/variants/niek_sidorova.py` | `ichnos_stats::variants::chaotic_metrics` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.chaotic_activities.variants.niek_sidorova.total_entropy` | `statistics/chaotic_activities/variants/niek_sidorova.py` | `ichnos_stats::variants::total_entropy` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 
 ## statistics.concurrent_activities.log.get
 
@@ -744,7 +744,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.rework.cases.log.get.apply` | `statistics/rework/cases/log/get.py` → `objects/log/obj` | `ichnos::stats::rework::cases::log::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.rework.cases.log.get.apply` | `statistics/rework/cases/log/get.py` → `objects/log/obj` | `ichnos_stats::variants::get_rework_cases` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 
 ## statistics.rework.cases.pandas.get
 
@@ -762,7 +762,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.rework.log.get.apply` | `statistics/rework/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::rework::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.rework.log.get.apply` | `statistics/rework/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::variants::get_rework` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 
 ## statistics.rework.pandas.get
 
@@ -925,27 +925,27 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.variants.log.get.get_language` | `statistics/variants/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::variants::log::get::get_language` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.variants.log.get.get_variants` | `statistics/variants/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::variants::log::get::get_variants` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.variants.log.get.get_variants_along_with_case_durations` | `statistics/variants/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::variants::log::get::get_variants_along_with_case_durations` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.variants.log.get.get_variants_from_log_trace_idx` | `statistics/variants/log/get.py` → `objects/conversion/log/converter` | `ichnos::stats::variants::log::get::get_variants_from_log_trace_idx` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.variants.log.get.get_variants_sorted_by_count` | `statistics/variants/log/get.py` | `ichnos::stats::variants::log::get::get_variants_sorted_by_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.variants.log.get.convert_variants_trace_idx_to_trace_obj` | `statistics/variants/log/get.py` → `objects/conversion/log/converter` | `ichnos::stats::variants::log::get::convert_variants_trace_idx_to_trace_obj` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.variants.log.get.get_language` | `statistics/variants/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::variants::get_language` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.variants.log.get.get_variants` | `statistics/variants/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::variants::get_variant_traces` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Typed sequence/count map also represents the backend count/set helpers. |
+| `pm4py.statistics.variants.log.get.get_variants_along_with_case_durations` | `statistics/variants/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::variants::get_variants_along_with_case_durations` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.variants.log.get.get_variants_from_log_trace_idx` | `statistics/variants/log/get.py` → `objects/conversion/log/converter` | `ichnos_stats::variants::get_variants_from_log_trace_idx` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.variants.log.get.get_variants_sorted_by_count` | `statistics/variants/log/get.py` | `ichnos_stats::variants::get_variants_sorted_by_count` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.variants.log.get.convert_variants_trace_idx_to_trace_obj` | `statistics/variants/log/get.py` → `objects/conversion/log/converter` | `ichnos_stats::variants::convert_variants_trace_idx_to_trace_obj` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 
 ## statistics.variants.pandas.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.variants.pandas.get.get_variants_count` | `statistics/variants/pandas/get.py` → `objects/log/util/pandas_numpy_variants` | `ichnos::stats::variants::pandas::get::get_variants_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
-| `pm4py.statistics.variants.pandas.get.get_variants_set` | `statistics/variants/pandas/get.py` | `ichnos::stats::variants::pandas::get::get_variants_set` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.variants.pandas.get.get_variants_count` | `statistics/variants/pandas/get.py` → `objects/log/util/pandas_numpy_variants` | `ichnos_stats::variants::get_variants_count` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Typed sequence/count map also represents the backend count/set helpers. |
+| `pm4py.statistics.variants.pandas.get.get_variants_set` | `statistics/variants/pandas/get.py` | `ichnos_stats::variants::get_variants_set` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Typed sequence/count map also represents the backend count/set helpers. |
 
 ## statistics.variants.polars.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.variants.polars.get.pandas_numpy_variants_apply_polars` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::pandas_numpy_variants_apply_polars` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
-| `pm4py.statistics.variants.polars.get.get_variants_count` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::get_variants_count` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
-| `pm4py.statistics.variants.polars.get.get_variants_set` | `statistics/variants/polars/get.py` | `ichnos::stats::variants::polars::get::get_variants_set` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.variants.polars.get.pandas_numpy_variants_apply_polars` | `statistics/variants/polars/get.py` | `ichnos_stats::variants::get_variants_from_log_trace_idx` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
+| `pm4py.statistics.variants.polars.get.get_variants_count` | `statistics/variants/polars/get.py` | `ichnos_stats::variants::get_variants_count` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Typed sequence/count map also represents the backend count/set helpers. |
+| `pm4py.statistics.variants.polars.get.get_variants_set` | `statistics/variants/polars/get.py` | `ichnos_stats::variants::get_variants_set` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Typed sequence/count map also represents the backend count/set helpers. |
 
 ## streaming.algo.conformance.alignments.algorithm
 
