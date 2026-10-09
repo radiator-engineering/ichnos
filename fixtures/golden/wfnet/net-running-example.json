@@ -1,0 +1,220 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "n1",
+          "target": "n10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n10",
+          "target": "n3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n11",
+          "target": "n6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n11",
+          "target": "n8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n12",
+          "target": "n7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n13",
+          "target": "n9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n14",
+          "target": "n9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n15",
+          "target": "n5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n16",
+          "target": "n3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n17",
+          "target": "n4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n18",
+          "target": "n2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n19",
+          "target": "n2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n3",
+          "target": "n11",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n4",
+          "target": "n18",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n4",
+          "target": "n19",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n5",
+          "target": "n16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n5",
+          "target": "n17",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n6",
+          "target": "n12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n7",
+          "target": "n15",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n8",
+          "target": "n13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n8",
+          "target": "n14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n9",
+          "target": "n15",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "n2": 1
+      },
+      "initial_marking": {
+        "n1": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6",
+        "n7",
+        "n8",
+        "n9"
+      ],
+      "transitions": [
+        {
+          "label": "register request",
+          "name": "n10"
+        },
+        {
+          "label": null,
+          "name": "n11"
+        },
+        {
+          "label": "check ticket",
+          "name": "n12"
+        },
+        {
+          "label": "examine casually",
+          "name": "n13"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "n14"
+        },
+        {
+          "label": "decide",
+          "name": "n15"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "n16"
+        },
+        {
+          "label": null,
+          "name": "n17"
+        },
+        {
+          "label": "pay compensation",
+          "name": "n18"
+        },
+        {
+          "label": "reject request",
+          "name": "n19"
+        }
+      ]
+    },
+    "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )"
+  },
+  "meta": {
+    "area": "wfnet",
+    "case": "net-running-example",
+    "fixtures": {
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

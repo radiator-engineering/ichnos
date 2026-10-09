@@ -1,0 +1,244 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "p_10",
+          "target": "t_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_11",
+          "target": "tauJoin_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_12",
+          "target": "t_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_13",
+          "target": "tauJoin_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_16",
+          "target": "t_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_17",
+          "target": "t_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_17",
+          "target": "tauJoin_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "t_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "t_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "t_2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "tauJoin_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "t_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "tau_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_0",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_1",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_2",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_3",
+          "target": "p_10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_3",
+          "target": "p_12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_4",
+          "target": "p_11",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_5",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_6",
+          "target": "p_17",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_7",
+          "target": "p_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tauJoin_4",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "p_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_10",
+        "p_11",
+        "p_12",
+        "p_13",
+        "p_16",
+        "p_17",
+        "p_5",
+        "p_6",
+        "p_7",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": "t_0"
+        },
+        {
+          "label": "b",
+          "name": "t_1"
+        },
+        {
+          "label": "c",
+          "name": "t_2"
+        },
+        {
+          "label": "d",
+          "name": "t_3"
+        },
+        {
+          "label": "e",
+          "name": "t_4"
+        },
+        {
+          "label": "f",
+          "name": "t_5"
+        },
+        {
+          "label": "g",
+          "name": "t_6"
+        },
+        {
+          "label": "h",
+          "name": "t_7"
+        },
+        {
+          "label": null,
+          "name": "tauJoin_4"
+        },
+        {
+          "label": null,
+          "name": "tau_1"
+        }
+      ]
+    },
+    "tree": "+( *( 'g', 'h' ), X( 'a', 'c', 'b' ), ->( 'd', +( 'f', 'e' ) ) )",
+    "tree_in": "+( X( 'a', 'b', 'c' ), ->( 'd', +( 'e', 'f' ) ), *( 'g', 'h' ) )"
+  },
+  "meta": {
+    "area": "wfnet",
+    "case": "tree-parallel-choices",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "tree": "+( X( 'a', 'b', 'c' ), ->( 'd', +( 'e', 'f' ) ), *( 'g', 'h' ) )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

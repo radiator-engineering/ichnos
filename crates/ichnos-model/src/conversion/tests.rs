@@ -317,3 +317,75 @@ fn dfg_to_petri_net_infers_missing_start_and_end() {
     let abc: Trace = ["a", "b", "c"].map(Label::from).to_vec();
     assert_eq!(net_language(&apn, 5), Language::from([abc]));
 }
+
+mod wf_net_to_tree {
+    use crate::conversion::WfNetToTreeError;
+    use crate::{AcceptingPetriNet, Marking, PetriNet, ProcessTree};
+
+    fn round_trip(text: &str) -> ProcessTree {
+        let tree = ProcessTree::parse(text).expect("tree parses");
+        tree.to_petri_net()
+            .to_process_tree()
+            .expect("block structured")
+    }
+
+    #[test]
+    fn recovers_trees_from_their_nets() {
+        assert_eq!(
+            round_trip("->( 'a', X( 'c', 'b' ), +( 'e', 'd' ) )").to_string(),
+            "->( 'a', X( 'b', 'c' ), +( 'd', 'e' ) )"
+        );
+        assert_eq!(round_trip("*( 'a', 'b' )").to_string(), "*( 'a', 'b' )");
+    }
+
+    #[test]
+    fn keeps_quotes_in_labels() {
+        let tree =
+            ProcessTree::sequence([ProcessTree::activity("it's"), ProcessTree::activity("b")]);
+        assert_eq!(tree.to_petri_net().to_process_tree(), Ok(tree));
+    }
+
+    #[test]
+    fn rejects_nets_with_two_sources() {
+        let mut net = PetriNet::new("n");
+        let (p1, p2, p3) = (
+            net.add_place("p1"),
+            net.add_place("p2"),
+            net.add_place("p3"),
+        );
+        let t = net.add_transition("t", Some("a"));
+        net.add_input_arc(p1, t).expect("arc");
+        net.add_input_arc(p2, t).expect("arc");
+        net.add_output_arc(t, p3).expect("arc");
+        let apn = AcceptingPetriNet::new(net, Marking::new(), Marking::new());
+        assert_eq!(apn.to_process_tree(), Err(WfNetToTreeError::NotWorkflowNet));
+    }
+
+    #[test]
+    fn rejects_nets_that_are_not_block_structured() {
+        // Two transitions that overlap on one input place: neither a choice
+        // nor a parallel block.
+        let mut net = PetriNet::new("n");
+        let places: Vec<_> = (0..5).map(|i| net.add_place(format!("p{i}"))).collect();
+        let arcs: [(&str, &[usize], &[usize]); 4] = [
+            ("a", &[0], &[1, 2]),
+            ("b", &[1], &[3]),
+            ("c", &[1, 2], &[3]),
+            ("d", &[3], &[4]),
+        ];
+        for (label, pre, post) in arcs {
+            let t = net.add_transition(label, Some(label));
+            for &p in pre {
+                net.add_input_arc(places[p], t).expect("arc");
+            }
+            for &p in post {
+                net.add_output_arc(t, places[p]).expect("arc");
+            }
+        }
+        let apn = AcceptingPetriNet::new(net, Marking::new(), Marking::new());
+        assert_eq!(
+            apn.to_process_tree(),
+            Err(WfNetToTreeError::NotBlockStructured)
+        );
+    }
+}

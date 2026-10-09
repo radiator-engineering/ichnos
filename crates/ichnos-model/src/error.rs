@@ -1,7 +1,7 @@
 //! The crate-wide error type.
 
 use crate::bpmn::{BpmnError, NodeNotEnabled};
-use crate::conversion::UnsupportedOperator;
+use crate::conversion::{UnsupportedOperator, WfNetToTreeError};
 use crate::dfg::DfgError;
 use crate::petri::{NotEnabled, PetriNetError, ReachabilityError};
 use crate::powl::{PowlError, PowlParseError};
@@ -51,4 +51,7 @@ pub enum Error {
     /// A POWL string could not be parsed.
     #[error(transparent)]
     PowlParse(#[from] PowlParseError),
+    /// A workflow net could not be converted to a process tree.
+    #[error(transparent)]
+    WfNetToTree(#[from] WfNetToTreeError),
 }

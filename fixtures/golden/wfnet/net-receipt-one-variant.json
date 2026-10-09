@@ -1,0 +1,125 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "Confirmation of receipt",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T02 Check confirmation of receipt",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T04 Determine confirmation of receipt",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T05 Print and send confirmation of receipt",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T06 Determine necessity of stop advice",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "T02 Check confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "T04 Determine confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "T05 Print and send confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "T06 Determine necessity of stop advice",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "Confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Confirmation of receipt",
+          "name": "Confirmation of receipt"
+        },
+        {
+          "label": "T02 Check confirmation of receipt",
+          "name": "T02 Check confirmation of receipt"
+        },
+        {
+          "label": "T04 Determine confirmation of receipt",
+          "name": "T04 Determine confirmation of receipt"
+        },
+        {
+          "label": "T05 Print and send confirmation of receipt",
+          "name": "T05 Print and send confirmation of receipt"
+        },
+        {
+          "label": "T06 Determine necessity of stop advice",
+          "name": "T06 Determine necessity of stop advice"
+        }
+      ]
+    },
+    "tree": "->( 'Confirmation of receipt', 'T02 Check confirmation of receipt', 'T04 Determine confirmation of receipt', 'T05 Print and send confirmation of receipt', 'T06 Determine necessity of stop advice' )"
+  },
+  "meta": {
+    "area": "wfnet",
+    "case": "net-receipt-one-variant",
+    "fixtures": {
+      "model": "fixtures/logs/receipt_one_variant.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

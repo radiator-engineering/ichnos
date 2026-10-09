@@ -1,0 +1,171 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "loop_4",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "t_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "skip_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "t_2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "t_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "skip_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "t_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "loop_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_5",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_7",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "tau_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_0",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_1",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_2",
+          "target": "p_8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_3",
+          "target": "p_8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_5",
+        "p_6",
+        "p_7",
+        "p_8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "name": "loop_4"
+        },
+        {
+          "label": null,
+          "name": "skip_5"
+        },
+        {
+          "label": null,
+          "name": "skip_7"
+        },
+        {
+          "label": "a",
+          "name": "t_0"
+        },
+        {
+          "label": "b",
+          "name": "t_1"
+        },
+        {
+          "label": "c",
+          "name": "t_2"
+        },
+        {
+          "label": "d",
+          "name": "t_3"
+        },
+        {
+          "label": null,
+          "name": "tau_1"
+        }
+      ]
+    },
+    "tree": "*( ->( 'a', X( tau, 'b' ) ), X( 'c', 'd' ) )",
+    "tree_in": "*( ->( 'a', X( 'b', tau ) ), X( 'c', ->( tau, 'd' ) ) )"
+  },
+  "meta": {
+    "area": "wfnet",
+    "case": "tree-loops",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "tree": "*( ->( 'a', X( 'b', tau ) ), X( 'c', ->( tau, 'd' ) ) )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
