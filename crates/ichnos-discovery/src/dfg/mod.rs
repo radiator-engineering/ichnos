@@ -82,6 +82,7 @@ pub fn directly_follows_graph(
 /// Minimum intervening-event count for each activity repeated within a trace.
 /// Activities without a within-trace repetition are omitted, rather than
 /// assigned infinity. Adjacent repetitions have distance zero.
+/// Retains the shared statistics API's string keys and `usize` distances.
 pub fn derive_minimum_self_distance(
     log: &EventLog,
     keys: &EventKeys,

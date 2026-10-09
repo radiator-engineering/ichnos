@@ -231,3 +231,36 @@ fn discovery_dfg_matches_reference() {
         assert_eq!(log, before, "{name}: input mutated");
     }
 }
+
+#[test]
+fn invalid_business_schedule_fails_without_observations() {
+    let instant = DateTime::parse_from_rfc3339("2024-01-01T00:00:00Z").unwrap();
+    for slots in [vec![(2, 1)], vec![(0, 604801)]] {
+        let schedule = BusinessHours {
+            slots,
+            ..Default::default()
+        };
+        assert!(matches!(
+            schedule.validate(),
+            Err(ichnos_stats::Error::InvalidOption(_))
+        ));
+        assert!(matches!(
+            schedule.seconds_between(instant, instant),
+            Err(ichnos_stats::Error::InvalidOption(_))
+        ));
+        let options = PerformanceDfgOptions {
+            business_hours: Some(schedule),
+            ..Default::default()
+        };
+        assert!(matches!(
+            performance_dfg(&EventLog::default(), &EventKeys::default(), &options),
+            Err(Error::Stats(ichnos_stats::Error::InvalidOption(_)))
+        ));
+    }
+    BusinessHours {
+        slots: vec![(0, 0), (0, 604800)],
+        ..Default::default()
+    }
+    .validate()
+    .unwrap();
+}

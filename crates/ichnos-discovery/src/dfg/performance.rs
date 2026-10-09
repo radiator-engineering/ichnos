@@ -1,4 +1,4 @@
-use super::{Aggregation, BusinessHours, dfg, stats_error};
+use super::{Aggregation, BusinessHours, stats_error};
 use crate::{Error, Result};
 use ichnos_core::{
     Event, EventKeys, EventLog, Position,
@@ -114,17 +114,22 @@ pub fn performance_dfg(
     keys: &EventKeys,
     options: &PerformanceDfgOptions,
 ) -> Result<PerformanceDfg> {
-    if options
-        .business_hours
-        .as_ref()
-        .is_some_and(|s| s.slots.iter().any(|(a, b)| a > b || *b > 604800))
-    {
-        return Err(Error::InvalidOption(
-            "business slots must lie within a week",
-        ));
+    if let Some(schedule) = &options.business_hours {
+        schedule.validate().map_err(stats_error)?;
     }
-    let frequency = dfg(log, keys, &Default::default())?;
     let sequences = log.activity_sequences(keys)?;
+    let mut start_activities = ActivityCounts::new();
+    let mut end_activities = ActivityCounts::new();
+    for trace in &sequences.traces {
+        if let (Some(&first), Some(&last)) = (trace.first(), trace.last()) {
+            *start_activities
+                .entry(Label::from(sequences.activities.name(first)))
+                .or_default() += 1;
+            *end_activities
+                .entry(Label::from(sequences.activities.name(last)))
+                .or_default() += 1;
+        }
+    }
     let mut observations = BTreeMap::<(Label, Label), Vec<f64>>::new();
     let start_key = if options.use_start_timestamp {
         &keys.start_timestamp
@@ -177,8 +182,8 @@ pub fn performance_dfg(
                 )
             })
             .collect(),
-        start_activities: frequency.start_activities,
-        end_activities: frequency.end_activities,
+        start_activities,
+        end_activities,
         business_hours: options.business_hours.clone(),
     })
 }

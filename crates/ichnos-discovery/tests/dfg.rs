@@ -107,6 +107,6 @@ fn singleton_performance_and_invalid_schedule() {
     };
     assert!(matches!(
         performance_dfg(&EventLog::default(), &Default::default(), &options),
-        Err(Error::InvalidOption(_))
+        Err(Error::Stats(ichnos_stats::Error::InvalidOption(_)))
     ));
 }

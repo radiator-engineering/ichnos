@@ -123,12 +123,6 @@ def _register_inductive() -> None:
 _register_inductive()
 
 
-if __name__ == "__main__":
-    # One seeded run for _inductive_seeds: prints the result as one JSON line.
-    from harness import canonical
-
-    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
-
 # miners-classic DFG discovery cases. EventLog is the canonical oracle path.
 def dfg_mining(fixtures: dict[str, Path], traces=None, activity_key="concept:name",
                timestamp_key="time:timestamp", start_key=None, excluded_dates=None):
