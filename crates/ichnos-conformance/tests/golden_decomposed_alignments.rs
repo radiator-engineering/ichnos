@@ -4,10 +4,10 @@
 //! pm4py orders components and breaks ties in each component's search by
 //! object hashes, so the goldens record every cost and alignment seen over a
 //! set of hash seeds. The ichnos search breaks ties differently, and a tie
-//! can change which components merge. So the test requires ichnos's cost to
-//! be one of pm4py's and its `bwc` and fitness to match. It reports how many
-//! alignments match one of pm4py's exactly, or up to the order of moves,
-//! without requiring either.
+//! can change which components merge. So the test requires ichnos's cost
+//! and fitness to be among pm4py's, and its `bwc` to equal pm4py's. It also
+//! counts how many alignments match one of pm4py's exactly, or up to the
+//! order of moves, and requires at least as many as when it was written.
 
 mod common;
 
@@ -75,13 +75,15 @@ fn decomposed_alignments_match_pm4py() {
             );
             let bwc = e["bwc"].as_u64().expect("bwc");
             assert_eq!(a.best_worst_cost, bwc, "{what}: bwc");
-            let denominator = (bwc / 10000) as f64;
-            let fitness = if denominator == 0.0 {
-                0.0
-            } else {
-                1.0 - (a.cost / 10000) as f64 / denominator
-            };
-            assert_eq!(a.fitness, fitness, "{what}: fitness");
+            // pm4py reports no fitness for an empty trace.
+            let fitnesses = e["fitness_choices"].as_array().expect("fitnesses");
+            if !trace.is_empty() {
+                assert!(
+                    fitnesses.iter().any(|f| f.as_f64() == Some(a.fitness)),
+                    "{what}: fitness {} not in {fitnesses:?}",
+                    a.fitness
+                );
+            }
 
             let moves = Value::Array(a.moves.iter().map(|m| pair(&net, &trace, m)).collect());
             let choices = e["alignment_choices"].as_array().expect("alignments");
@@ -95,6 +97,17 @@ fn decomposed_alignments_match_pm4py() {
         }
     }
     eprintln!("{total} variants: {exact} exact, {multiset} the same moves in any order");
+    // The counts when this test was written. A change to the search or the
+    // recomposition that lowers them fails here.
+    assert_eq!(total, 128, "variants");
+    assert!(
+        exact >= 114,
+        "{exact} exact alignments, expected at least 114"
+    );
+    assert!(
+        multiset >= 126,
+        "{multiset} alignments up to order, expected at least 126"
+    );
     assert_eq!(
         ids.len(),
         8,
