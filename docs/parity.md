@@ -75,7 +75,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.discover_bpmn_split_miner` | `discovery.py` → `algo/discovery/split_miner/algorithm`, `algo/discovery/split_miner/variants/classic`, `algo/discovery/split_miner/variants/sm2`, `objects/bpmn/obj`, `objects/log/obj` | `ichnos::discovery::bpmn_split_miner` (planned) | `ichnos-discovery` | todo | Variants: abc, classic, sm2. |
 | `pm4py.discover_transition_system` | `discovery.py` → `algo/discovery/transition_system/algorithm`, `objects/log/obj`, `objects/transition_system/obj` | `ichnos::discovery::transition_system` (planned) | `ichnos-discovery` | todo | Variants: view_based. |
 | `pm4py.discover_prefix_tree` | `discovery.py` → `algo/transformation/log_to_trie/algorithm`, `objects/log/obj`, `objects/trie/obj` | `ichnos::discovery::prefix_tree` (planned) | `ichnos-discovery` | todo | Single entry point; preserve source defaults. |
-| `pm4py.discover_temporal_profile` | `discovery.py` → `algo/discovery/temporal_profile/algorithm`, `objects/log/obj` | `ichnos::discovery::temporal_profile` (planned) | `ichnos-discovery` | todo | Variants: dataframe, log. |
+| `pm4py.discover_temporal_profile` | `discovery.py` → `algo/discovery/temporal_profile/algorithm`, `objects/log/obj` | `ichnos_discovery::discover_temporal_profile` | `ichnos-discovery` | ported | Golden discovery cases `temporal-profile-*` on running-example, receipt, roadtraffic100traces and interval_event_log CSV, with elapsed time and default business hours. One implementation matches both pm4py variants (log and dataframe). `TemporalProfileOptions::use_start_timestamp` picks the start timestamp explicitly; the interval log case covers it. See the ichnos-discovery (temporal profile) Behaviour changes. |
 | `pm4py.discover_log_skeleton` | `discovery.py` → `algo/discovery/log_skeleton/algorithm`, `objects/log/obj` | `ichnos::discovery::log_skeleton` (planned) | `ichnos-discovery` | todo | Variants: classic. |
 | `pm4py.discover_declare` | `discovery.py` → `algo/discovery/declare/algorithm`, `objects/log/obj` | `ichnos::discovery::declare` (planned) | `ichnos-discovery` | todo | Variants: classic. |
 | `pm4py.discover_powl` | `discovery.py` → `algo/discovery/powl/algorithm`, `algo/discovery/powl/inductive/variants/dynamic_clustering_frequency/dynamic_clustering_frequency_partial_order_cut`, `algo/discovery/powl/inductive/variants/powl_discovery_varaints`, `objects/log/obj`, `objects/powl/obj` | `ichnos::discovery::powl` (planned) | `ichnos-discovery` | todo | Variants: brute_force, dynamic_clustering, maximal, tree. |
@@ -1288,6 +1288,13 @@ Lanes record each deliberate change from pm4py here.
 - **A noise threshold outside [0, 1] is an error.** pm4py accepts any value.
 - **`InductiveVariant::Imf { noise_threshold: 0.0 }` runs IMf, with nothing filtered.** pm4py's `discover_process_tree_inductive` runs IM for a threshold of 0. `InductiveOptions::from_noise_threshold` applies pm4py's rule.
 - **Where pm4py fails, ichnos returns a tree.** A strict sequence cut that merges into one group counts as no cut; pm4py recurses without end. An IMd base case whose only activity is an end activity gives that activity; pm4py raises `IndexError`.
+
+### ichnos-discovery (temporal profile)
+
+- **One implementation for both pm4py variants.** pm4py has a log variant (Python `statistics`) and a dataframe variant (a pandas self-join). They give the same profile on every golden, and ichnos matches both.
+- **The start timestamp is an explicit option.** pm4py's log variant reads starts from the completion timestamp unless the caller names a start key. Its dataframe variant reads a `start_timestamp` column whenever the dataframe has one. So `pm4py.discover_temporal_profile` on a dataframe with that column measures from completion to start, and on the same log as an `EventLog` it measures from completion to completion. ichnos reads starts from `EventKeys::start_timestamp` only when `use_start_timestamp` is true.
+- **Business hours use `ichnos_stats::time::BusinessHours`.** Its `non_working_dates` replace pm4py's `workcalendar`, as in ichnos-stats.
+- **A missing or non-date timestamp is an error.** pm4py's log variant raises `KeyError` on a missing start key.
 
 ### ichnos-model
 
