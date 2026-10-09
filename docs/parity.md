@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 306; ported: 191; dropped: 129; total: 626.
+todo: 305; ported: 192; dropped: 129; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -74,7 +74,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.discover_bpmn_inductive` | `discovery.py` → `algo/discovery/inductive/algorithm`, `objects/bpmn/obj`, `objects/dfg/obj`, `objects/log/obj` | `ichnos::discovery::bpmn_inductive` (planned) | `ichnos-discovery` | todo | Variants: abc, im, imd, imf, instances. |
 | `pm4py.discover_bpmn_split_miner` | `discovery.py` → `algo/discovery/split_miner/algorithm`, `algo/discovery/split_miner/variants/classic`, `algo/discovery/split_miner/variants/sm2`, `objects/bpmn/obj`, `objects/log/obj` | `ichnos_discovery::bpmn_split_miner` | `ichnos-discovery` | ported | Classic and lifecycle-aware SM2 follow pm4py classic.apply and sm2.apply. 33 pm4py goldens compare complete typed graph isomorphism across nine distinct variant settings, including OR-split promotion. See ichnos-discovery (split miner) Behaviour changes. |
 | `pm4py.discover_transition_system` | `discovery.py` → `algo/discovery/transition_system/algorithm`, `objects/log/obj`, `objects/transition_system/obj` | `ichnos::discovery::transition_system` (planned) | `ichnos-discovery` | todo | Variants: view_based. |
-| `pm4py.discover_prefix_tree` | `discovery.py` → `algo/transformation/log_to_trie/algorithm`, `objects/log/obj`, `objects/trie/obj` | `ichnos::discovery::prefix_tree` (planned) | `ichnos-discovery` | todo | Single entry point; preserve source defaults. |
+| `pm4py.discover_prefix_tree` | `discovery.py` → `algo/transformation/log_to_trie/algorithm`, `objects/log/obj`, `objects/trie/obj` | `ichnos_discovery::prefix_tree` | `ichnos-discovery` | ported | Ten pm4py goldens compare every node's path, depth, final flag and children on five real fixtures and synthetic logs, with unlimited, zero, one, two and large limits. See ichnos-discovery (prefix tree) Behaviour changes. |
 | `pm4py.discover_temporal_profile` | `discovery.py` → `algo/discovery/temporal_profile/algorithm`, `objects/log/obj` | `ichnos_discovery::discover_temporal_profile` | `ichnos-discovery` | ported | Golden discovery cases `temporal-profile-*` on running-example, receipt, roadtraffic100traces and interval_event_log CSV, with elapsed time and default business hours. One implementation matches both pm4py variants (log and dataframe). `TemporalProfileOptions::use_start_timestamp` picks the start timestamp explicitly; the interval log case covers it. See the ichnos-discovery (temporal profile) Behaviour changes. |
 | `pm4py.discover_log_skeleton` | `discovery.py` → `algo/discovery/log_skeleton/algorithm`, `objects/log/obj` | `ichnos_discovery::log_skeleton` | `ichnos-discovery` | ported | `LogSkeletonOptions` over ordered EventLog input; typed `LogSkeleton` with all six relation/frequency components. Preserves source occurrence-count denominators, per-trace after/before incidence, positive-only never-together subtraction, event-count frequency-coverage target and first-variant frequency ties. Validates finite noise in [0,1], preserves core label/error rules, needs no timestamps and handles empty input. Thirteen `skeleton-declare-*` goldens cover five noise levels and every returned relation/count; label-index encoding is lossless. |
 | `pm4py.discover_declare` | `discovery.py` → `algo/discovery/declare/algorithm`, `objects/log/obj` | `ichnos_discovery::declare` | `ichnos-discovery` | ported | `DeclareOptions`, eighteen typed `DeclareTemplate` variants and a typed `DeclareModel` of unary/ordered-binary arguments plus support/confidence counts. Preserves projection before evaluation, case-weighted counts, zero/vacuous binary support, unary violations, derived-template prerequisites, source negative-template formulas, automatic 0.8 selection and descending name/activity tie-breaking; a missing single ratio means zero. Validates finite selection fractions in [0,1]; binary empty target labels remain binary instead of the source key collapse. Thirteen `skeleton-declare-*` goldens cover defaults, explicit/partial ratios, multiplier 0/1, projection, absent activities and template subsets; label-index encoding retains every rule/count. |
@@ -1410,6 +1410,13 @@ Rows cite these as `core-N`.
 7. **`extended_cyclomatic` is ported as pm4py computes it.** pm4py's graph joins each state to the name of each transition leaving it, not to the next state, so the metric is the number of distinct (state, transition name) pairs, not the cyclomatic number of the reachability graph.
 8. **Synchronous products keep the model's arc weights and kinds.** pm4py copies every arc as a normal arc of weight 1. Product nodes are named `"(x, y)"` strings, not tuples.
 9. **`marking_from_names` returns `AnalysisError::UnknownPlace`** for a name no place has; pm4py raises `KeyError`.
+
+### ichnos-discovery (prefix tree)
+
+- Canonical EventLog/EventKeys and core positional activity errors replace pm4py's variant extraction. Input event order is retained; timestamps and case identifiers are unnecessary.
+- Optional unsigned path limits express unlimited and nonnegative lengths. Negative limits are unrepresentable: pm4py's negative slice limits drop that many activities from the end.
+- Children use stable lexical label order instead of pm4py variant/set iteration. First-creation arena indices replace cyclic parent objects, allowing long traces without recursive construction or drop.
+- Distinct prefixes retain parent indices, depth and pm4py final flags. Frequencies are absent. Empty traces and zero limits leave the root non-final, as in pm4py's log_to_trie.apply.
 
 ### ichnos-discovery (split miner)
 

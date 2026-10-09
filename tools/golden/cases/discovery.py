@@ -1521,6 +1521,66 @@ case(
     functions=_SPLIT_MINER_FUNCTIONS,
     params={"events": _split_or_promotion_events()},
 )(split_miner)
+# miners-classic prefix-tree discovery cases.
+def prefix_tree_case(fixtures, traces=None, activity_key="concept:name"):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in trace]) for trace in traces])
+    runs = []
+    for limit in [None, 0, 1, 2, 1000000000]:
+        root = pm4py.discover_prefix_tree(log, max_path_length=limit, activity_key=activity_key)
+        rows = []
+        todo = [(root, [])]
+        while todo:
+            node, path = todo.pop()
+            rows.append(
+                {
+                    "path": path,
+                    "depth": node.depth,
+                    "final": node.final,
+                    "children": sorted((child.label for child in node.children)),
+                }
+            )
+            for child in node.children:
+                assert child.parent is node
+                todo.append((child, path + [child.label]))
+        runs.append({"limit": limit, "nodes": sorted(rows, key=lambda row: row["path"])})
+    return {"runs": runs}
+
+
+_PREFIX_TREE_FUNCTIONS = ["pm4py.discover_prefix_tree"]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "prefix-tree-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_PREFIX_TREE_FUNCTIONS,
+    )(prefix_tree_case)
+for _name, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "prefixes": [[], ["a"], ["a", "b"], ["a", "b"], ["a", "c"], ["b"]],
+    "loops": [["a", "b", "a", "a"], ["a", "a"]],
+    "custom-key": [["λ", "", "終"], ["λ", "終"]],
+}.items():
+    case(
+        "prefix-tree-" + _name,
+        functions=_PREFIX_TREE_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "work" if _name == "custom-key" else "concept:name",
+        },
+    )(prefix_tree_case)
+
+
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical

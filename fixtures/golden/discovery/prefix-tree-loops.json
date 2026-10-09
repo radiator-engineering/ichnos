@@ -1,0 +1,240 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "limit": null,
+        "nodes": [
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 0,
+            "final": false,
+            "path": []
+          },
+          {
+            "children": [
+              "a",
+              "b"
+            ],
+            "depth": 1,
+            "final": false,
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "children": [],
+            "depth": 2,
+            "final": true,
+            "path": [
+              "a",
+              "a"
+            ]
+          },
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 2,
+            "final": false,
+            "path": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 3,
+            "final": false,
+            "path": [
+              "a",
+              "b",
+              "a"
+            ]
+          },
+          {
+            "children": [],
+            "depth": 4,
+            "final": true,
+            "path": [
+              "a",
+              "b",
+              "a",
+              "a"
+            ]
+          }
+        ]
+      },
+      {
+        "limit": 0,
+        "nodes": [
+          {
+            "children": [],
+            "depth": 0,
+            "final": false,
+            "path": []
+          }
+        ]
+      },
+      {
+        "limit": 1,
+        "nodes": [
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 0,
+            "final": false,
+            "path": []
+          },
+          {
+            "children": [],
+            "depth": 1,
+            "final": true,
+            "path": [
+              "a"
+            ]
+          }
+        ]
+      },
+      {
+        "limit": 2,
+        "nodes": [
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 0,
+            "final": false,
+            "path": []
+          },
+          {
+            "children": [
+              "a",
+              "b"
+            ],
+            "depth": 1,
+            "final": false,
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "children": [],
+            "depth": 2,
+            "final": true,
+            "path": [
+              "a",
+              "a"
+            ]
+          },
+          {
+            "children": [],
+            "depth": 2,
+            "final": true,
+            "path": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      },
+      {
+        "limit": 1000000000,
+        "nodes": [
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 0,
+            "final": false,
+            "path": []
+          },
+          {
+            "children": [
+              "a",
+              "b"
+            ],
+            "depth": 1,
+            "final": false,
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "children": [],
+            "depth": 2,
+            "final": true,
+            "path": [
+              "a",
+              "a"
+            ]
+          },
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 2,
+            "final": false,
+            "path": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "children": [
+              "a"
+            ],
+            "depth": 3,
+            "final": false,
+            "path": [
+              "a",
+              "b",
+              "a"
+            ]
+          },
+          {
+            "children": [],
+            "depth": 4,
+            "final": true,
+            "path": [
+              "a",
+              "b",
+              "a",
+              "a"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "prefix-tree-loops",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_prefix_tree"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "traces": [
+        [
+          "a",
+          "b",
+          "a",
+          "a"
+        ],
+        [
+          "a",
+          "a"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
