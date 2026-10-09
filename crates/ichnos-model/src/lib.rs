@@ -50,3 +50,5 @@ pub use petri::{AcceptingPetriNet, Marking, PetriNet, PlaceId, TransitionId};
 pub use powl::Powl;
 pub use process_tree::{Operator, ProcessTree};
 pub use transition_system::TransitionSystem;
+
+pub mod comparison;

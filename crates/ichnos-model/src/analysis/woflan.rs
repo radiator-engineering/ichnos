@@ -477,12 +477,15 @@ impl AcceptingPetriNet {
     /// `analysis.check_is_sound`).
     ///
     /// pm4py first tries to convert the net to POWL and answers `true` when
-    /// that works; here woflan always decides.
+    /// that works; otherwise woflan decides.
     ///
     /// # Errors
     ///
     /// As [`AcceptingPetriNet::check_soundness`].
     pub fn is_sound(&self) -> Result<bool, AnalysisError> {
+        if self.net.to_powl().is_ok() {
+            return Ok(true);
+        }
         Ok(self.check_soundness()?.sound)
     }
 }

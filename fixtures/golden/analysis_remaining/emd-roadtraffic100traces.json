@@ -1,0 +1,134 @@
+{
+  "expected": {
+    "a": [
+      [
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        0.22
+      ],
+      [
+        [
+          "Create Fine",
+          "Payment",
+          "Send Fine"
+        ],
+        0.01
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine"
+        ],
+        0.16
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment"
+        ],
+        0.1
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment",
+          "Payment"
+        ],
+        0.05
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        0.36
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        0.01
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Payment",
+          "Add penalty",
+          "Payment"
+        ],
+        0.04
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Payment"
+        ],
+        0.04
+      ],
+      [
+        [
+          "Create Fine",
+          "Send Fine",
+          "Payment",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment"
+        ],
+        0.01
+      ]
+    ],
+    "b": [
+      [
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        1.0
+      ]
+    ],
+    "distance": 0.5191111111111111
+  },
+  "meta": {
+    "area": "analysis_remaining",
+    "case": "emd-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.compute_emd"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
