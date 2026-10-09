@@ -799,3 +799,191 @@ case(
         "events": [{"case:concept:name": "c", "concept:name": "A"}] * 2,
     },
 )(streaming_conformance)
+
+# Group three: proxy-trie online alignments and per-object stream distribution.
+from pm4py.streaming.algo.conformance.alignments import algorithm as _iws_algorithm
+from pm4py.streaming.algo.conformance.alignments.variants import approx_iws as _iws
+from pm4py.streaming.conversion.ocel_flatts_distributor import OcelFlattsDistributor
+from pm4py.objects.log.obj import Trace, EventLog
+
+_IWS_FUNCTIONS = [
+    "pm4py.streaming.algo.conformance.alignments.algorithm.apply",
+    "pm4py.streaming.algo.conformance.alignments.variants.approx_iws.apply",
+    "pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments",
+    "pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments.finish",
+]
+
+
+def _iws_result(result):
+    return {k: v for k, v in result.items() if k not in {
+        "last_event_runtime", "total_runtime", "runtime",
+    }}
+
+
+def streaming_iws(fixtures, events=None, model=None, proxy=None, custom=False,
+                  look_ahead=3, decay_time=10, discount_factor=0.9, max_states=20,
+                  automatic=False):
+    rows = list(xes_importer.apply(str(fixtures["log"]))) if events is None else [Event(e) for e in events]
+    case_key, activity_key = ("case", "task") if custom else ("case:concept:name", "concept:name")
+    if model is None:
+        model = _pnml_spec(fixtures["model"]) if "model" in fixtures else _chain(sorted({str(e[activity_key]) for e in rows}))
+    if proxy is None:
+        if "model" in fixtures:
+            cases = {}
+            for row in rows:
+                cases.setdefault(str(row[case_key]), []).append(row[activity_key])
+            proxy = list(cases.values())
+        else:
+            proxy = [[label for _, label in model["transitions"] if label is not None]]
+    params = {
+        "pm4py:param:case_id_key": case_key,
+        "pm4py:param:activity_key": activity_key,
+        "look_ahead": look_ahead, "decay_time": decay_time,
+        "discount_factor": discount_factor, "max_states": max_states,
+        "ret_tuple_as_trans_desc": True,
+    }
+    if not automatic:
+        params["proxy_log"] = EventLog([Trace([Event({activity_key: a}) for a in trace]) for trace in proxy])
+    net, im, fm = _net(model)
+    sequences = _iws._proxy_transition_sequences(net, im, fm, params)
+    # Record actual native-prepared proxy runs; duplicate-label/model-search
+    # ties are explicit inputs to the Rust replay rather than hidden choices.
+    proxy_sequences = [[t.name for t in s] for s in sequences]
+    algo = _iws_algorithm.apply(net, im, fm, parameters=params)
+    compact = lambda state: _summary([[c, _iws_result(v)] for c, v in sorted(state.items())]) if events is None else {c: _iws_result(v) for c, v in state.items()}
+    points = sorted({0, 1, len(rows) // 2, max(0, len(rows)-1), len(rows)})
+    snapshots = [{"at": 0, "state": compact(algo.get())}]
+    for i, row in enumerate(rows, 1):
+        algo.receive(row)
+        if i in points:
+            snapshots.append({"at": i, "state": compact(algo.get())})
+    finished = {c: _iws_result(algo.finish(c)) for c in sorted(algo.get())}
+    after = compact(algo.get())
+    if events is None:
+        finished = _summary([[c, v] for c, v in sorted(finished.items())])
+    # Native live delivery is also checked against every final prefix.
+    live = _iws_algorithm.apply(*_net(model), parameters=params)
+    stream = LiveEventStream(parameters={"thread_pool_size": 1})
+    stream.register(live)
+    for row in rows[:1]:
+        stream.append(row)
+    stream.start()
+    for row in rows[1:]:
+        stream.append(row)
+    stream.stop()
+    assert compact(live.get()) == snapshots[-1]["state"]
+    return {"model": model, "proxy_sequences": proxy_sequences, "snapshots": snapshots,
+            "finished": finished, "after_finish": after}
+
+
+for _fixture in ["running-example", "receipt", "roadtraffic100traces"]:
+    case("iws-" + _fixture, fixture=_fixture + ".xes", functions=_IWS_FUNCTIONS)(streaming_iws)
+
+_IWS_CHAIN = {
+    "places": ["p0", "p1", "p2", "p3", "p4"],
+    "transitions": [["start", None], ["A", "A"], ["B", "B"], ["end", None]],
+    "arcs": [["p0", "start", False, 1], ["p1", "start", True, 1],
+             ["p1", "A", False, 1], ["p2", "A", True, 1],
+             ["p2", "B", False, 1], ["p3", "B", True, 1],
+             ["p3", "end", False, 1], ["p4", "end", True, 1]],
+    "initial": {"p0": 1}, "final": {"p4": 1},
+}
+_IWS_ROWS = [{"case:concept:name": c, "concept:name": a} for c, a in
+             [("c", "B"), ("d", "A"), ("c", "X"), ("d", "B"), ("c", "A"), ("c", "X")]]
+for _name, _settings in [
+    ("silent-lookahead", {}), ("lookahead-one", {"look_ahead": 1}),
+    ("decay-fallback", {"decay_time": 1, "discount_factor": 0.25}),
+    ("state-cap", {"max_states": 1}),
+    ("automatic-chain", {"automatic": True}),
+]:
+    case("iws-" + _name, functions=_IWS_FUNCTIONS,
+         params={"events": _IWS_ROWS, "model": _IWS_CHAIN, "proxy": [["A", "B"]], **_settings})(streaming_iws)
+case("iws-completion-custom", functions=_IWS_FUNCTIONS,
+     params={"events": [{"case": "c", "task": "A", "@@complete": True},
+                        {"case": "c", "task": "B"}, {"case": "d", "task": "X"}],
+             "model": _IWS_CHAIN, "proxy": [["A", "B"]], "custom": True})(streaming_iws)
+case("iws-empty", functions=_IWS_FUNCTIONS,
+     params={"events": [], "model": _IWS_CHAIN, "proxy": [["A", "B"]]})(streaming_iws)
+case("iws-duplicate-labels", functions=_IWS_FUNCTIONS,
+     params={"events": [{"case:concept:name": "c", "concept:name": "A"}] * 2,
+             "model": _DUPLICATE_LABELS, "proxy": [["A", "A"]]})(streaming_iws)
+
+# Two complete branches share a prefix and have different invisible suffixes.
+_IWS_BRANCH = {
+    "places": ["p0", "p1", "p2", "p3", "end"],
+    "transitions": [["A", "A"], ["B", "B"], ["C", "C"], ["tau", None]],
+    "arcs": [["p0", "A", False, 1], ["p1", "A", True, 1],
+             ["p1", "B", False, 1], ["end", "B", True, 1],
+             ["p1", "C", False, 1], ["p2", "C", True, 1],
+             ["p2", "tau", False, 1], ["end", "tau", True, 1]],
+    "initial": {"p0": 1}, "final": {"end": 1},
+}
+case("iws-branching-proxy", functions=_IWS_FUNCTIONS,
+     params={"events": [{"case:concept:name": "c", "concept:name": "A"},
+                        {"case:concept:name": "d", "concept:name": "C"}],
+             "model": _IWS_BRANCH, "proxy": [["A", "B"], ["A", "C"]]})(streaming_iws)
+
+_OCEL_FUNCTIONS = ["pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor" + s
+                   for s in ["", ".register", ".append"]]
+
+
+def streaming_ocel(fixtures, events=None, types=None, custom=False, duplicate=False):
+    if events is None:
+        source = json.loads(fixtures["log"].read_text())
+        types = sorted({o["ocel:type"] for o in source["ocel:objects"].values()})
+        events = []
+        for identifier, e in source["ocel:events"].items():
+            row = {"ocel:eid": identifier, "ocel:activity": e["ocel:activity"],
+                   "ocel:timestamp": datetime.fromisoformat(e["ocel:timestamp"]).replace(tzinfo=timezone.utc), **e["ocel:vmap"]}
+            for ot in types:
+                row["ocel:type:" + ot] = [oid for oid in e["ocel:omap"] if source["ocel:objects"][oid]["ocel:type"] == ot]
+            events.append(row)
+    else:
+        events = [dict(e) for e in events]
+        for e in events:
+            key = "when" if custom else "ocel:timestamp"
+            if key in e:
+                e[key] = datetime.fromisoformat(e[key])
+    params = {} if not custom else {
+        "pm4py:param:activity_key": "task", "pm4py:param:case_id_key": "case",
+        "pm4py:param:timestamp_key": "end",
+        "param:event:activity": "act", "param:event:timestamp": "when",
+        "param:object:type:prefix:extended": "objects:",
+    }
+    distributor = OcelFlattsDistributor(parameters=params)
+    collectors = {}
+    streams = []
+    for ot in types:
+        stream = LiveEventStream(parameters={"thread_pool_size": 1})
+        collector = LiveToStaticStream()
+        stream.register(collector)
+        distributor.register(ot, stream)
+        if duplicate:
+            distributor.register(ot, stream)
+        stream.start()
+        collectors[ot] = collector
+        streams.append(stream)
+    for e in events:
+        distributor.append(e)
+    for s in streams:
+        s.stop()
+    return {"events": [_attributes(e) for e in events], "types": types,
+            "flattened": {ot: [_attributes(e) for e in collector.get()] for ot, collector in collectors.items()}}
+
+
+case("ocel-example", fixture="ocel/example_log.jsonocel", functions=_OCEL_FUNCTIONS)(streaming_ocel)
+_OCEL_ROWS = [{"ocel:activity": "A", "ocel:timestamp": "2024-01-01T00:00:00+00:00",
+               "payload": 42, "case:concept:name": "overwritten", "ocel:type:order": ["o1", "o1", "o2"],
+               "ocel:type:item": ["i1"], "ocel:type:unregistered": ["u1"]},
+              {"ocel:activity": "B", "ocel:timestamp": "2024-01-02T00:00:00+00:00",
+               "ocel:type:order": [], "ocel:type:item": ["i2"]}]
+case("ocel-duplicates", functions=_OCEL_FUNCTIONS,
+     params={"events": _OCEL_ROWS, "types": ["order", "item", "empty"], "duplicate": True})(streaming_ocel)
+case("ocel-custom", functions=_OCEL_FUNCTIONS,
+     params={"events": [{"act": "A", "when": "2024-01-01T00:00:00+00:00",
+                         "objects:order": ["o1", "o2"], "payload": "kept"}],
+             "types": ["order"], "custom": True})(streaming_ocel)
+case("ocel-empty", functions=_OCEL_FUNCTIONS,
+     params={"events": [], "types": ["order"]})(streaming_ocel)
+
+case("iws-running-example-pnml", fixtures={"log":"running-example.xes","model":"running-example.pnml"}, functions=_IWS_FUNCTIONS)(streaming_iws)

@@ -1,0 +1,830 @@
+{
+  "expected": {
+    "after_finish": {
+      "c": {
+        "active_states": 3,
+        "alignment": [
+          [
+            [
+              "B",
+              ">>"
+            ],
+            [
+              "B",
+              ">>"
+            ]
+          ],
+          [
+            [
+              "X",
+              ">>"
+            ],
+            [
+              "X",
+              ">>"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "start"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ],
+          [
+            [
+              "A",
+              "A"
+            ],
+            [
+              "A",
+              "A"
+            ]
+          ],
+          [
+            [
+              "X",
+              ">>"
+            ],
+            [
+              "X",
+              ">>"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "B"
+            ],
+            [
+              ">>",
+              "B"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "end"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ]
+        ],
+        "approximation_method": "iws",
+        "bound_type": "proxy_alignment_upper_bound",
+        "cost": 40002,
+        "is_complete": true,
+        "is_valid": true,
+        "standard_cost": 40002,
+        "upper_bound": 40002
+      },
+      "d": {
+        "active_states": 3,
+        "alignment": [
+          [
+            [
+              ">>",
+              "start"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ],
+          [
+            [
+              "A",
+              "A"
+            ],
+            [
+              "A",
+              "A"
+            ]
+          ],
+          [
+            [
+              "B",
+              "B"
+            ],
+            [
+              "B",
+              "B"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "end"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ]
+        ],
+        "approximation_method": "iws",
+        "bound_type": "proxy_alignment_upper_bound",
+        "cost": 2,
+        "is_complete": true,
+        "is_valid": true,
+        "standard_cost": 2,
+        "upper_bound": 2
+      }
+    },
+    "finished": {
+      "c": {
+        "active_states": 3,
+        "alignment": [
+          [
+            [
+              "B",
+              ">>"
+            ],
+            [
+              "B",
+              ">>"
+            ]
+          ],
+          [
+            [
+              "X",
+              ">>"
+            ],
+            [
+              "X",
+              ">>"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "start"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ],
+          [
+            [
+              "A",
+              "A"
+            ],
+            [
+              "A",
+              "A"
+            ]
+          ],
+          [
+            [
+              "X",
+              ">>"
+            ],
+            [
+              "X",
+              ">>"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "B"
+            ],
+            [
+              ">>",
+              "B"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "end"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ]
+        ],
+        "approximation_method": "iws",
+        "bound_type": "proxy_alignment_upper_bound",
+        "cost": 40002,
+        "is_complete": true,
+        "is_valid": true,
+        "standard_cost": 40002,
+        "upper_bound": 40002
+      },
+      "d": {
+        "active_states": 3,
+        "alignment": [
+          [
+            [
+              ">>",
+              "start"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ],
+          [
+            [
+              "A",
+              "A"
+            ],
+            [
+              "A",
+              "A"
+            ]
+          ],
+          [
+            [
+              "B",
+              "B"
+            ],
+            [
+              "B",
+              "B"
+            ]
+          ],
+          [
+            [
+              ">>",
+              "end"
+            ],
+            [
+              ">>",
+              null
+            ]
+          ]
+        ],
+        "approximation_method": "iws",
+        "bound_type": "proxy_alignment_upper_bound",
+        "cost": 2,
+        "is_complete": true,
+        "is_valid": true,
+        "standard_cost": 2,
+        "upper_bound": 2
+      }
+    },
+    "model": {
+      "arcs": [
+        [
+          "p0",
+          "start",
+          false,
+          1
+        ],
+        [
+          "p1",
+          "start",
+          true,
+          1
+        ],
+        [
+          "p1",
+          "A",
+          false,
+          1
+        ],
+        [
+          "p2",
+          "A",
+          true,
+          1
+        ],
+        [
+          "p2",
+          "B",
+          false,
+          1
+        ],
+        [
+          "p3",
+          "B",
+          true,
+          1
+        ],
+        [
+          "p3",
+          "end",
+          false,
+          1
+        ],
+        [
+          "p4",
+          "end",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "p4": 1
+      },
+      "initial": {
+        "p0": 1
+      },
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "transitions": [
+        [
+          "start",
+          null
+        ],
+        [
+          "A",
+          "A"
+        ],
+        [
+          "B",
+          "B"
+        ],
+        [
+          "end",
+          null
+        ]
+      ]
+    },
+    "proxy_sequences": [
+      [
+        "start",
+        "A",
+        "B",
+        "end"
+      ]
+    ],
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {
+          "c": {
+            "active_states": 2,
+            "alignment": [
+              [
+                [
+                  "B",
+                  ">>"
+                ],
+                [
+                  "B",
+                  ">>"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 10000,
+            "decay": 9.0,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 1,
+            "standard_cost": 10000,
+            "trie_node": 0,
+            "upper_bound": 10000
+          }
+        }
+      },
+      {
+        "at": 3,
+        "state": {
+          "c": {
+            "active_states": 2,
+            "alignment": [
+              [
+                [
+                  "B",
+                  ">>"
+                ],
+                [
+                  "B",
+                  ">>"
+                ]
+              ],
+              [
+                [
+                  "X",
+                  ">>"
+                ],
+                [
+                  "X",
+                  ">>"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 20000,
+            "decay": 8.0,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 3,
+            "standard_cost": 20000,
+            "trie_node": 0,
+            "upper_bound": 20000
+          },
+          "d": {
+            "active_states": 2,
+            "alignment": [
+              [
+                [
+                  ">>",
+                  "start"
+                ],
+                [
+                  ">>",
+                  null
+                ]
+              ],
+              [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "A",
+                  "A"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 1,
+            "decay": 10.0,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 3,
+            "standard_cost": 1,
+            "trie_node": 1,
+            "upper_bound": 1
+          }
+        }
+      },
+      {
+        "at": 5,
+        "state": {
+          "c": {
+            "active_states": 3,
+            "alignment": [
+              [
+                [
+                  "B",
+                  ">>"
+                ],
+                [
+                  "B",
+                  ">>"
+                ]
+              ],
+              [
+                [
+                  "X",
+                  ">>"
+                ],
+                [
+                  "X",
+                  ">>"
+                ]
+              ],
+              [
+                [
+                  ">>",
+                  "start"
+                ],
+                [
+                  ">>",
+                  null
+                ]
+              ],
+              [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "A",
+                  "A"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 20001,
+            "decay": 10.0,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 5,
+            "standard_cost": 20001,
+            "trie_node": 1,
+            "upper_bound": 20001
+          },
+          "d": {
+            "active_states": 3,
+            "alignment": [
+              [
+                [
+                  ">>",
+                  "start"
+                ],
+                [
+                  ">>",
+                  null
+                ]
+              ],
+              [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "A",
+                  "A"
+                ]
+              ],
+              [
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "B",
+                  "B"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 1,
+            "decay": 10.0,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 5,
+            "standard_cost": 1,
+            "trie_node": 2,
+            "upper_bound": 1
+          }
+        }
+      },
+      {
+        "at": 6,
+        "state": {
+          "c": {
+            "active_states": 3,
+            "alignment": [
+              [
+                [
+                  "B",
+                  ">>"
+                ],
+                [
+                  "B",
+                  ">>"
+                ]
+              ],
+              [
+                [
+                  "X",
+                  ">>"
+                ],
+                [
+                  "X",
+                  ">>"
+                ]
+              ],
+              [
+                [
+                  ">>",
+                  "start"
+                ],
+                [
+                  ">>",
+                  null
+                ]
+              ],
+              [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "A",
+                  "A"
+                ]
+              ],
+              [
+                [
+                  "X",
+                  ">>"
+                ],
+                [
+                  "X",
+                  ">>"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 30001,
+            "decay": 7.290000000000001,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 6,
+            "standard_cost": 30001,
+            "trie_node": 1,
+            "upper_bound": 30001
+          },
+          "d": {
+            "active_states": 3,
+            "alignment": [
+              [
+                [
+                  ">>",
+                  "start"
+                ],
+                [
+                  ">>",
+                  null
+                ]
+              ],
+              [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "A",
+                  "A"
+                ]
+              ],
+              [
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "B",
+                  "B"
+                ]
+              ]
+            ],
+            "approximation_method": "iws",
+            "bound_type": "proxy_alignment_upper_bound",
+            "cost": 1,
+            "decay": 10.0,
+            "is_complete": false,
+            "is_valid": true,
+            "processed_events": 6,
+            "standard_cost": 1,
+            "trie_node": 2,
+            "upper_bound": 1
+          }
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "iws-automatic-chain",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.alignments.algorithm.apply",
+      "pm4py.streaming.algo.conformance.alignments.variants.approx_iws.apply",
+      "pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments",
+      "pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments.finish"
+    ],
+    "loaders": {},
+    "params": {
+      "automatic": true,
+      "events": [
+        {
+          "case:concept:name": "c",
+          "concept:name": "B"
+        },
+        {
+          "case:concept:name": "d",
+          "concept:name": "A"
+        },
+        {
+          "case:concept:name": "c",
+          "concept:name": "X"
+        },
+        {
+          "case:concept:name": "d",
+          "concept:name": "B"
+        },
+        {
+          "case:concept:name": "c",
+          "concept:name": "A"
+        },
+        {
+          "case:concept:name": "c",
+          "concept:name": "X"
+        }
+      ],
+      "model": {
+        "arcs": [
+          [
+            "p0",
+            "start",
+            false,
+            1
+          ],
+          [
+            "p1",
+            "start",
+            true,
+            1
+          ],
+          [
+            "p1",
+            "A",
+            false,
+            1
+          ],
+          [
+            "p2",
+            "A",
+            true,
+            1
+          ],
+          [
+            "p2",
+            "B",
+            false,
+            1
+          ],
+          [
+            "p3",
+            "B",
+            true,
+            1
+          ],
+          [
+            "p3",
+            "end",
+            false,
+            1
+          ],
+          [
+            "p4",
+            "end",
+            true,
+            1
+          ]
+        ],
+        "final": {
+          "p4": 1
+        },
+        "initial": {
+          "p0": 1
+        },
+        "places": [
+          "p0",
+          "p1",
+          "p2",
+          "p3",
+          "p4"
+        ],
+        "transitions": [
+          [
+            "start",
+            null
+          ],
+          [
+            "A",
+            "A"
+          ],
+          [
+            "B",
+            "B"
+          ],
+          [
+            "end",
+            null
+          ]
+        ]
+      },
+      "proxy": [
+        [
+          "A",
+          "B"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
