@@ -209,7 +209,8 @@ pub fn filter_suffixes(
 /// Subcase identifier options for between filtering.
 #[derive(Clone, Debug)]
 pub struct BetweenOptions {
-    /// Trace attribute storing the subcase identifier (default `case:concept:name`).
+    /// Trace attribute storing the subcase identifier (default `concept:name`).
+    /// The default updates core case IDs, following pm4py's DataFrame path.
     pub case_id_attribute: String,
     /// Text separating the source ID from the zero-based subcase number.
     pub separator: String,
@@ -217,12 +218,14 @@ pub struct BetweenOptions {
 impl Default for BetweenOptions {
     fn default() -> Self {
         Self {
-            case_id_attribute: "case:concept:name".into(),
+            case_id_attribute: "concept:name".into(),
             separator: "##@@".into(),
         }
     }
 }
 /// Extract complete, inclusive start-to-end subcases. Equal activity sets share their boundary event.
+/// By default each subcase gets a unique core case ID derived from its source ID.
+/// Use `case:concept:name` explicitly for pm4py's EventLog-path identifiers.
 pub fn filter_between(
     log: &EventLog,
     keys: &EventKeys,

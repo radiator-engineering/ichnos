@@ -4,6 +4,7 @@ use ichnos_core::{AttributeValue, EventKeys, EventLog};
 use ichnos_golden::{assert_multiset_eq, golden};
 use ichnos_stats::{attributes::Scalar, filters::*};
 use serde_json::{Value, json};
+use sha2::{Digest, Sha256};
 
 fn strings(v: &Value) -> Vec<String> {
     serde_json::from_value(v.clone()).unwrap()
@@ -180,7 +181,10 @@ fn apply(
             keys,
             &strings(&p["act1"]),
             &strings(&p["act2"]),
-            &BetweenOptions::default(),
+            &BetweenOptions {
+                case_id_attribute: "case:concept:name".into(),
+                ..BetweenOptions::default()
+            },
         ),
         "filter_time_range" => filter_time_range(
             log,
@@ -243,6 +247,54 @@ fn edge_log() -> EventLog {
     log
 }
 #[test]
+fn between_default_preserves_distinct_case_ids() {
+    let log = edge_log();
+    let keys = EventKeys::default();
+    let result = filter_between(
+        &log,
+        &keys,
+        &["A".into()],
+        &["B".into()],
+        &BetweenOptions::default(),
+    )
+    .unwrap();
+    let ids = result
+        .traces
+        .iter()
+        .map(|t| t.case_id().unwrap().to_string())
+        .collect::<Vec<_>>();
+    assert_eq!(ids, ["s0##@@0", "s0##@@1", "s1##@@0", "s3##@@0"]);
+    let descriptions =
+        ichnos_stats::cases::get_cases_description(&result, &keys, &Default::default()).unwrap();
+    assert_eq!(descriptions.len(), 4);
+    assert_eq!(
+        ichnos_stats::cases::index_log_caseid(&result, "concept:name")
+            .unwrap()
+            .len(),
+        4
+    );
+}
+
+#[test]
+fn relative_occurrence_case_basis_still_filters_events() {
+    let result = filter_log_relative_occurrence_event_attribute(
+        &edge_log(),
+        "concept:name",
+        0.8,
+        FilterLevel::Cases,
+    )
+    .unwrap();
+    assert_eq!(result.traces.len(), 4);
+    assert!(
+        result.traces.iter().flat_map(|t| &t.events).all(|e| e
+            .get("concept:name")
+            .unwrap()
+            .to_string()
+            == "B")
+    );
+}
+
+#[test]
 fn oracle_log_filters() {
     for name in [
         "running-example",
@@ -261,14 +313,33 @@ fn oracle_log_filters() {
             let function = case["function"].as_str().unwrap();
             let actual = apply(&log, &keys, function, &case["params"])
                 .unwrap_or_else(|e| panic!("{name} {function} {}: {e}", case["params"]));
-            let expected = case["result"]
-                .as_array()
-                .unwrap()
-                .iter()
-                .map(Value::to_string)
-                .collect::<Vec<_>>();
-            std::panic::catch_unwind(|| assert_multiset_eq(rows(&actual), expected))
-                .unwrap_or_else(|_| panic!("{name}: {function}: {}", case["params"]));
+            if case["result"].is_object() {
+                let mut actual_rows = rows(&actual);
+                actual_rows.sort();
+                let values = actual_rows
+                    .iter()
+                    .map(|r| serde_json::from_str::<Value>(r).unwrap())
+                    .collect::<Vec<_>>();
+                assert_eq!(
+                    json!({
+                        "case_count": values.len(),
+                        "rows_sha256": format!("{:x}", Sha256::digest(serde_json::to_vec(&values).unwrap())),
+                        "sample": values.iter().take(3).collect::<Vec<_>>()
+                    }),
+                    case["result"],
+                    "{name}: {function}: {}",
+                    case["params"]
+                );
+            } else {
+                let expected = case["result"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .map(Value::to_string)
+                    .collect::<Vec<_>>();
+                std::panic::catch_unwind(|| assert_multiset_eq(rows(&actual), expected))
+                    .unwrap_or_else(|_| panic!("{name}: {function}: {}", case["params"]));
+            }
             assert_eq!(actual.attributes, log.attributes);
             assert_eq!(actual.extensions, log.extensions);
             assert_eq!(actual.globals, log.globals);

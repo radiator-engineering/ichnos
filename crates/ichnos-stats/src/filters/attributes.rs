@@ -86,6 +86,10 @@ pub fn filter_trace_attribute_values(
     })
 }
 /// Retain events whose value occurs in at least the given fraction of cases or events.
+/// `level` selects the counting basis, not the output scope: `Cases` counts each
+/// value once per case and divides by the case count; `Events` counts every
+/// occurrence and divides by the event count. Both modes retain only qualifying
+/// events and drop empty cases, even when `level` is `Cases`.
 pub fn filter_log_relative_occurrence_event_attribute(
     log: &EventLog,
     attribute: &str,

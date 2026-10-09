@@ -13,18 +13,25 @@ from pm4py.statistics.start_activities.common import get as start_common
 from pm4py.statistics.end_activities.common import get as end_common
 
 
-def _filters_rows(log):
-    return [{"id": str(t.attributes.get("concept:name", "")),
+def _filters_rows(log, compact=False):
+    rows = [{"id": str(t.attributes.get("concept:name", "")),
              "subcase": t.attributes.get("case:concept:name"),
              "indices": ",".join(str(int(e["@@index"])) for e in t)} for t in log]
+    if not compact:
+        return rows
+    import hashlib
+    import json
+    rows.sort(key=lambda row: json.dumps(row, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
+    encoded = json.dumps(rows, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
+    return {"case_count": len(rows), "rows_sha256": hashlib.sha256(encoded).hexdigest(), "sample": rows[:3]}
 
 
 def filters_log(fixtures):
     log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
-    return _filters_compute(log)
+    return _filters_compute(log, compact=fixtures["log"].name != "running-example.csv")
 
 
-def _filters_compute(log):
+def _filters_compute(log, compact=False):
     names = sorted({e["concept:name"] for t in log for e in t})
     a, b = names[:2]
     first = [e["concept:name"] for e in log[0]]
@@ -46,7 +53,7 @@ def _filters_compute(log):
             for key in ["dt1", "dt2"]:
                 call_params[key] = datetime.fromisoformat(params[key])
         filtered = getattr(pm4py, function)(log, **call_params)
-        results.append({"function": function, "params": params, "result": _filters_rows(filtered)})
+        results.append({"function": function, "params": params, "result": _filters_rows(filtered, compact)})
 
     for retain in [True, False]:
         for function in ["filter_start_activities", "filter_end_activities"]:
