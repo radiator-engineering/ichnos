@@ -1,0 +1,712 @@
+{
+  "expected": {
+    "activities": [
+      "a",
+      "b",
+      "c"
+    ],
+    "input": [
+      [
+        "a",
+        "b",
+        "a",
+        "c"
+      ],
+      [
+        "a",
+        "c"
+      ],
+      [
+        "b",
+        "a",
+        "c"
+      ]
+    ],
+    "rows": [
+      {
+        "complete": false,
+        "prefix": [
+          "a"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "a"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "a"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "b"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "b"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "a"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "a"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "b"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "b"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "c"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "c"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "a"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "a"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "b"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "b"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "c"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "c"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "a",
+          "a"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "a",
+          "a"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "a",
+          "b"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "a",
+          "b"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "a",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "a",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "b",
+          "a"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "b",
+          "a"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "b",
+          "b"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "b",
+          "b"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "b",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "b",
+          "c"
+        ],
+        "violations": 1
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "c",
+          "a"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "c",
+          "a"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "c",
+          "b"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "c",
+          "b"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "a",
+          "c",
+          "c"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "a",
+          "c",
+          "c"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "a",
+          "a"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "a",
+          "a"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "a",
+          "b"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "a",
+          "b"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "a",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "a",
+          "c"
+        ],
+        "violations": 0
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "b",
+          "a"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "b",
+          "a"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "b",
+          "b"
+        ],
+        "violations": 2
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "b",
+          "b"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "b",
+          "c"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "b",
+          "c"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "c",
+          "a"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "c",
+          "a"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "c",
+          "b"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "c",
+          "b"
+        ],
+        "violations": 6
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "b",
+          "c",
+          "c"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "b",
+          "c",
+          "c"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "a",
+          "a"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "a",
+          "a"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "a",
+          "b"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "a",
+          "b"
+        ],
+        "violations": 8
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "a",
+          "c"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "a",
+          "c"
+        ],
+        "violations": 4
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "b",
+          "a"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "b",
+          "a"
+        ],
+        "violations": 7
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "b",
+          "b"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "b",
+          "b"
+        ],
+        "violations": 7
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "b",
+          "c"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "b",
+          "c"
+        ],
+        "violations": 6
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "c",
+          "a"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "c",
+          "a"
+        ],
+        "violations": 6
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "c",
+          "b"
+        ],
+        "violations": 5
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "c",
+          "b"
+        ],
+        "violations": 7
+      },
+      {
+        "complete": false,
+        "prefix": [
+          "c",
+          "c",
+          "c"
+        ],
+        "violations": 3
+      },
+      {
+        "complete": true,
+        "prefix": [
+          "c",
+          "c",
+          "c"
+        ],
+        "violations": 3
+      }
+    ]
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "privacy-behavioral-relations",
+    "fixtures": {},
+    "functions": [
+      "pm4py.algo.anonymization.trace_variant_query.util.behavioralAppropriateness.getBAViolations"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

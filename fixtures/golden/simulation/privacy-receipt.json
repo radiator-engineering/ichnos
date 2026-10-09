@@ -1,0 +1,266 @@
+{
+  "expected": {
+    "epsilon": 10.0,
+    "input": [
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T03 Adjust confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T06 Determine necessity of stop advice",
+        "T02 Check confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T06 Determine necessity of stop advice",
+        "T10 Determine necessity to stop indication"
+      ],
+      [
+        "Confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T06 Determine necessity of stop advice",
+        "T02 Check confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ]
+    ],
+    "invariants": {
+      "case_ids_unique": true,
+      "categories_in_domain": true,
+      "cost_in_domain": true,
+      "flags_boolean": true,
+      "maximum_length": 3,
+      "private_trace_attribute_removed": true,
+      "timestamps_ordered": true,
+      "traces": 30
+    },
+    "k": 3,
+    "output_variants": [
+      [
+        [
+          "Confirmation of receipt"
+        ],
+        3
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt"
+        ],
+        1
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt"
+        ],
+        23
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt"
+        ],
+        2
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ],
+        1
+      ]
+    ],
+    "p": 2,
+    "query_variants": [
+      [
+        [
+          "Confirmation of receipt"
+        ],
+        3
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T03 Adjust confirmation of receipt"
+        ],
+        1
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt"
+        ],
+        23
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T02 Check confirmation of receipt"
+        ],
+        2
+      ],
+      [
+        [
+          "Confirmation of receipt",
+          "T06 Determine necessity of stop advice",
+          "T10 Determine necessity to stop indication"
+        ],
+        1
+      ]
+    ]
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "privacy-receipt",
+    "fixtures": {
+      "log": "fixtures/logs/receipt.xes"
+    },
+    "functions": [
+      "pm4py.privacy.anonymize_differential_privacy"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "name": "receipt"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

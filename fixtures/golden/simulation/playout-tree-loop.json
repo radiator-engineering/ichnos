@@ -1,0 +1,63 @@
+{
+  "expected": {
+    "case_attributes_empty": true,
+    "event_keys": [
+      "concept:name"
+    ],
+    "mean_length": 2.975,
+    "rates": [
+      [
+        [
+          "a"
+        ],
+        0.5055
+      ],
+      [
+        [
+          "a",
+          "b",
+          "a"
+        ],
+        0.24475
+      ],
+      [
+        [
+          "a",
+          "b",
+          "a",
+          "b",
+          "a"
+        ],
+        0.12625
+      ],
+      [
+        [
+          "a",
+          "b",
+          "a",
+          "b",
+          "a",
+          "b",
+          "a"
+        ],
+        0.06175
+      ]
+    ],
+    "traces": 12000,
+    "tree": "*( 'a', 'b' )"
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "playout-tree-loop",
+    "fixtures": {},
+    "functions": [
+      "pm4py.play_out"
+    ],
+    "loaders": {},
+    "params": {
+      "name": "loop"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

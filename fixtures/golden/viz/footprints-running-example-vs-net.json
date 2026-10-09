@@ -1,0 +1,186 @@
+{
+  "expected": {
+    "dot": {
+      "directed": true,
+      "edges": [],
+      "graph": {},
+      "nodes": [
+        {
+          "attrs": {
+            "label": "<\n<table border='0' cellborder='1' color='blue' cellspacing='0'>\n<tr><td></td><td><b>check ticket</b></td><td><b>decide</b></td><td><b>examine casually</b></td><td><b>examine thoroughly</b></td><td><b>pay compensation</b></td><td><b>register request</b></td><td><b>reinitiate request</b></td><td><b>reject request</b></td></tr>\n<tr><td><b>check ticket</b></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">||</font></td><td><font color=\"black\">||</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n<tr><td><b>decide</b></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#62;</font></td></tr>\n<tr><td><b>examine casually</b></td><td><font color=\"black\">||</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n<tr><td><b>examine thoroughly</b></td><td><font color=\"black\">||</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n<tr><td><b>pay compensation</b></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n<tr><td><b>register request</b></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n<tr><td><b>reinitiate request</b></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#62;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n<tr><td><b>reject request</b></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#60;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td><td><font color=\"black\">&#35;</font></td></tr>\n</table>\n>",
+            "shape": "plaintext"
+          },
+          "key": "n0"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "first": {
+        "parallel": [
+          [
+            "check ticket",
+            "examine casually"
+          ],
+          [
+            "check ticket",
+            "examine thoroughly"
+          ],
+          [
+            "examine casually",
+            "check ticket"
+          ],
+          [
+            "examine thoroughly",
+            "check ticket"
+          ]
+        ],
+        "sequence": [
+          [
+            "check ticket",
+            "decide"
+          ],
+          [
+            "decide",
+            "pay compensation"
+          ],
+          [
+            "decide",
+            "reinitiate request"
+          ],
+          [
+            "decide",
+            "reject request"
+          ],
+          [
+            "examine casually",
+            "decide"
+          ],
+          [
+            "examine thoroughly",
+            "decide"
+          ],
+          [
+            "register request",
+            "check ticket"
+          ],
+          [
+            "register request",
+            "examine casually"
+          ],
+          [
+            "register request",
+            "examine thoroughly"
+          ],
+          [
+            "reinitiate request",
+            "check ticket"
+          ],
+          [
+            "reinitiate request",
+            "examine casually"
+          ],
+          [
+            "reinitiate request",
+            "examine thoroughly"
+          ]
+        ]
+      },
+      "second": {
+        "parallel": [
+          [
+            "check ticket",
+            "examine casually"
+          ],
+          [
+            "check ticket",
+            "examine thoroughly"
+          ],
+          [
+            "examine casually",
+            "check ticket"
+          ],
+          [
+            "examine thoroughly",
+            "check ticket"
+          ]
+        ],
+        "sequence": [
+          [
+            "check ticket",
+            "decide"
+          ],
+          [
+            "decide",
+            "pay compensation"
+          ],
+          [
+            "decide",
+            "reinitiate request"
+          ],
+          [
+            "decide",
+            "reject request"
+          ],
+          [
+            "examine casually",
+            "decide"
+          ],
+          [
+            "examine thoroughly",
+            "decide"
+          ],
+          [
+            "register request",
+            "check ticket"
+          ],
+          [
+            "register request",
+            "examine casually"
+          ],
+          [
+            "register request",
+            "examine thoroughly"
+          ],
+          [
+            "reinitiate request",
+            "check ticket"
+          ],
+          [
+            "reinitiate request",
+            "examine casually"
+          ],
+          [
+            "reinitiate request",
+            "examine thoroughly"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "footprints-running-example-vs-net",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_footprints",
+      "pm4py.discover_petri_net_inductive",
+      "pm4py.save_vis_footprints"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "compare": "net"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

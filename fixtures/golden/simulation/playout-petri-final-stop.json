@@ -1,0 +1,141 @@
+{
+  "expected": [
+    {
+      "leq": false,
+      "rates": [
+        [
+          [],
+          0.5086
+        ],
+        [
+          [
+            "a"
+          ],
+          0.4914
+        ]
+      ],
+      "require_final": false,
+      "tokens": 1,
+      "traces": 5000
+    },
+    {
+      "leq": true,
+      "rates": [
+        [
+          [],
+          0.5086
+        ],
+        [
+          [
+            "a"
+          ],
+          0.4914
+        ]
+      ],
+      "require_final": false,
+      "tokens": 1,
+      "traces": 5000
+    },
+    {
+      "leq": false,
+      "rates": [
+        [
+          [],
+          1.0
+        ]
+      ],
+      "require_final": true,
+      "tokens": 1,
+      "traces": 5000
+    },
+    {
+      "leq": true,
+      "rates": [
+        [
+          [],
+          1.0
+        ]
+      ],
+      "require_final": true,
+      "tokens": 1,
+      "traces": 5000
+    },
+    {
+      "leq": false,
+      "rates": [
+        [
+          [
+            "a",
+            "a"
+          ],
+          1.0
+        ]
+      ],
+      "require_final": false,
+      "tokens": 2,
+      "traces": 5000
+    },
+    {
+      "leq": true,
+      "rates": [
+        [
+          [],
+          0.5082
+        ],
+        [
+          [
+            "a"
+          ],
+          0.246
+        ],
+        [
+          [
+            "a",
+            "a"
+          ],
+          0.2458
+        ]
+      ],
+      "require_final": false,
+      "tokens": 2,
+      "traces": 5000
+    },
+    {
+      "leq": false,
+      "rates": [],
+      "require_final": true,
+      "tokens": 2,
+      "traces": 0
+    },
+    {
+      "leq": true,
+      "rates": [
+        [
+          [],
+          0.6734
+        ],
+        [
+          [
+            "a"
+          ],
+          0.3266
+        ]
+      ],
+      "require_final": true,
+      "tokens": 2,
+      "traces": 5000
+    }
+  ],
+  "meta": {
+    "area": "simulation",
+    "case": "playout-petri-final-stop",
+    "fixtures": {},
+    "functions": [
+      "pm4py.play_out"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "expected": {
+    "aggregation": "mean",
+    "cases": [
+      [
+        [
+          "1",
+          "2",
+          "3",
+          "5"
+        ],
+        [
+          "4"
+        ]
+      ],
+      [
+        [
+          "0"
+        ],
+        []
+      ]
+    ],
+    "data": {
+      "case:concept:name": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "nx": [
+        9.0,
+        5.0,
+        5.0,
+        5.0,
+        13.0,
+        5.0
+      ],
+      "ny": [
+        7.0,
+        5.0,
+        5.0,
+        5.0,
+        6.0,
+        5.0
+      ],
+      "value": [
+        1368780.0,
+        779580.0,
+        703320.0,
+        852300.0,
+        1576440.0,
+        520920.0
+      ]
+    },
+    "shape": [
+      2,
+      2
+    ],
+    "values": [
+      [
+        714030.0,
+        1576440.0
+      ],
+      [
+        1368780.0,
+        null
+      ]
+    ],
+    "x": "nx",
+    "y": "ny"
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "cube-real-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.get_process_cube"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
