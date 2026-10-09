@@ -23,6 +23,8 @@ pub mod correlation;
 pub mod declare;
 pub mod dfg;
 mod error;
+/// Seeded causal-matrix genetic process discovery.
+pub mod genetic;
 pub mod heuristics;
 /// Binary-region ILP process discovery.
 pub mod ilp;
@@ -52,3 +54,8 @@ pub use inductive::{
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
 pub use prefix_tree::{PrefixNode, PrefixTree, PrefixTreeOptions, prefix_tree};
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
+
+pub use genetic::{
+    GeneticMatrix, GeneticOptions, GeneticResult, discover_genetic, genetic_matrix_fitness,
+    petri_net_genetic,
+};

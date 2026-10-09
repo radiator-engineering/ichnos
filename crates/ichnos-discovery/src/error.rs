@@ -7,6 +7,9 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    /// Genetic fitness token replay failed.
+    #[error("genetic replay: {0}")]
+    GeneticReplay(#[source] ichnos_conformance::Error),
     /// ILP region solving or model reduction failed.
     #[error("ILP solver: {0}")]
     IlpSolver(String),
