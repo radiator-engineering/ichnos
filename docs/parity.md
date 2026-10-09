@@ -184,7 +184,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.utils.Shared` | `utils.py` | `ichnos::core::Shared` (planned) | `ichnos-core` | dropped | Python global warning-state holder, not a process-mining API; Rust diagnostics replace it. |
 | `pm4py.utils.is_polars_lazyframe` | `utils.py` | `ichnos::core::is_polars_lazyframe` (planned) | `ichnos-core` | dropped | Python backend type detection; Rust types replace runtime pandas/polars dispatch. |
-| `pm4py.format_dataframe` | `utils.py` → `objects/log/util/dataframe_utils` | `ichnos::format_batch` | `ichnos-core` | ported | Arrow `RecordBatch` form. Golden `log/running-example-csv` loads through it. Changes core-20 to core-22. |
+| `pm4py.format_dataframe` | `utils.py` → `objects/log/util/dataframe_utils` | `ichnos::format_batch` | `ichnos-core` | ported | Arrow `RecordBatch` form. Goldens `core/format-receipt-csv` and `core/format-interval-event-log-csv` check row order; `log/running-example-csv` loads through it. Changes core-20 to core-22. |
 | `pm4py.rebase` | `utils.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/dataframe_utils` | `ichnos::EventLog::rebase`, `ichnos::EventStream::rebase` | `ichnos-core` | ported | Golden `core/rebase-running-example-csv`. |
 | `pm4py.parse_process_tree` | `utils.py` → `objects/process_tree/obj`, `objects/process_tree/utils/generic` | `ichnos::model::parse_process_tree` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.parse_powl_model_string` | `utils.py` → `objects/powl/obj`, `objects/powl/parser` | `ichnos::model::parse_powl_model_string` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
@@ -1304,7 +1304,7 @@ Rows cite these as `core-N`.
 18. **`sample_events` exists only on `EventStream`.** pm4py's `sample_events` on a log samples traces, which `sample_cases` does.
 19. **`to_interval` has no business-hours option.** That belongs with the performance crate.
 20. **`format_batch` parses only the timestamp and start-timestamp columns.** pandas tries every string column.
-21. **An unparseable timestamp is an error** (`Error::UnparseableTimestamp`). pandas leaves the column as strings.
+21. **An unparseable timestamp is an error** (`Error::UnparseableTimestamp`). pandas leaves the column as strings. A numeric timestamp column is also an error (`Error::UnsupportedColumn`); pandas leaves it as numbers.
 22. **No day-first or month-first guessing.** Without `timestamp_format`, only ISO 8601 and RFC 3339 forms parse.
 23. **The lifecycle instance key is fixed to `concept:name`.**
 24. **The `hof` functions take Rust closures.** Filters return a copy with the metadata; sorts work in place, stably, and need an `Ord` key.

@@ -76,7 +76,10 @@ fn parse_timestamp(text: &str, format: Option<&str>) -> Option<i64> {
 }
 
 /// Converts a column to `Timestamp(Nanosecond, "UTC")`. Strings are parsed;
-/// timestamps keep their instant; a naive timestamp is read as UTC.
+/// timestamps keep their instant; a naive timestamp is read as UTC; dates
+/// become midnight UTC. Any other type, numbers included, is an error:
+/// pandas leaves a numeric column unparsed, and a cast would read the numbers
+/// as nanoseconds since 1970.
 fn to_utc_timestamps(name: &str, column: &ArrayRef, format: Option<&str>) -> Result<ArrayRef> {
     let target = DataType::Timestamp(TimeUnit::Nanosecond, Some("UTC".into()));
     let strict = CastOptions {
@@ -116,7 +119,13 @@ fn to_utc_timestamps(name: &str, column: &ArrayRef, format: Option<&str>) -> Res
                     .with_timezone("UTC"),
             ))
         }
-        _ => Ok(cast_with_options(column, &target, &strict)?),
+        DataType::Timestamp(_, Some(_)) | DataType::Date32 | DataType::Date64 => {
+            Ok(cast_with_options(column, &target, &strict)?)
+        }
+        other => Err(Error::UnsupportedColumn {
+            column: name.to_owned(),
+            data_type: other.to_string(),
+        }),
     }
 }
 
@@ -437,6 +446,12 @@ mod tests {
         assert!(matches!(
             format_batch(&raw(), &keys, None),
             Err(Error::UnparseableTimestamp { .. })
+        ));
+        // A numeric timestamp column is refused, not read as nanoseconds.
+        let keys = keys.with_timestamp("case");
+        assert!(matches!(
+            format_batch(&raw(), &keys, None),
+            Err(Error::UnsupportedColumn { column, .. }) if column == "time:timestamp"
         ));
     }
 

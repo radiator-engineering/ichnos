@@ -192,3 +192,74 @@ def sample(fixtures: dict[str, Path]) -> dict[str, Any]:
         "events_10": len(pm4py.sample_events(stream, 10)),
         "events_100": len(pm4py.sample_events(stream, 100)),
     }
+
+
+def format_rows(fixtures: dict[str, Path]) -> list[list[Any]]:
+    """The ordered ``[case, activity, timestamp]`` rows after ``format_dataframe``."""
+    frame = load_log(fixtures["log"])
+    return [
+        [case_id, activity, timestamp]
+        for case_id, activity, timestamp in zip(
+            frame["case:concept:name"], frame["concept:name"], frame["time:timestamp"]
+        )
+    ]
+
+
+for case_id, fixture in [
+    ("format-receipt-csv", "receipt.csv"),
+    ("format-interval-event-log-csv", "interval_event_log.csv"),
+]:
+    case(case_id, fixture=fixture, functions=["pm4py.format_dataframe"])(format_rows)
+
+
+@case(
+    "to-interval-reviewing-csv",
+    fixture="reviewing.csv",
+    functions=["pm4py.objects.log.util.interval_lifecycle.to_interval"],
+)
+def to_interval(fixtures: dict[str, Path]) -> list[dict[str, Any]]:
+    from pm4py.objects.log.util import interval_lifecycle
+
+    log = interval_lifecycle.to_interval(_log(fixtures))
+    return [
+        {
+            "case_id": t.attributes["concept:name"],
+            "events": [
+                [
+                    e["concept:name"],
+                    e["start_timestamp"],
+                    e["time:timestamp"],
+                    e["@@duration"],
+                    e.get("@@startevent_org:resource"),
+                ]
+                for e in t
+            ],
+        }
+        for t in log
+    ]
+
+
+@case(
+    "to-lifecycle-interval-event-log-csv",
+    fixture="interval_event_log.csv",
+    functions=["pm4py.objects.log.util.interval_lifecycle.to_lifecycle"],
+)
+def to_lifecycle(fixtures: dict[str, Path]) -> list[dict[str, Any]]:
+    from pm4py.objects.log.util import interval_lifecycle
+
+    log = interval_lifecycle.to_lifecycle(_log(fixtures))
+    return [
+        {
+            "case_id": t.attributes["concept:name"],
+            "events": [
+                [
+                    e["concept:name"],
+                    e["lifecycle:transition"],
+                    e["time:timestamp"],
+                    e["@@origin_ev_idx"],
+                ]
+                for e in t
+            ],
+        }
+        for t in log
+    ]

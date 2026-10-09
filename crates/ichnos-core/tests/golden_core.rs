@@ -23,7 +23,15 @@ fn to_json(value: &AttributeValue) -> Value {
         AttributeValue::Int(v) => json!(v),
         AttributeValue::Float(v) => json!(v),
         AttributeValue::Bool(v) => json!(v),
-        AttributeValue::Date(d) => json!(d.to_utc().to_rfc3339_opts(SecondsFormat::AutoSi, true)),
+        AttributeValue::Date(d) => {
+            // The harness writes fractions only when non-zero: 6 digits, or 9 with nanoseconds.
+            let format = match d.timestamp_subsec_nanos() {
+                0 => SecondsFormat::Secs,
+                n if n % 1_000 == 0 => SecondsFormat::Micros,
+                _ => SecondsFormat::Nanos,
+            };
+            json!(d.to_utc().to_rfc3339_opts(format, true))
+        }
         other => panic!("no JSON form for {other:?}"),
     }
 }
@@ -256,4 +264,69 @@ fn sample_sizes_match_pm4py() {
         "events_100": stream.sample_events(100, 0).len(),
     });
     assert_eq!(&actual, g.expected_at(""));
+}
+
+fn row(event: &ichnos_core::Event, keys: &[&str]) -> Value {
+    keys.iter()
+        .map(|k| event.get(k).map_or(Value::Null, to_json))
+        .collect()
+}
+
+fn traces_with_events(log: &EventLog, keys: &[&str]) -> Value {
+    log.iter()
+        .map(|t| {
+            let events: Vec<Value> = t.iter().map(|e| row(e, keys)).collect();
+            json!({"case_id": to_json(t.case_id().unwrap()), "events": events})
+        })
+        .collect()
+}
+
+#[test]
+fn format_batch_row_order_matches_pm4py() {
+    for (case, fixture) in [
+        ("format-receipt-csv", "receipt.csv"),
+        ("format-interval-event-log-csv", "interval_event_log.csv"),
+    ] {
+        let g = golden("core", case);
+        let raw = common::read_csv(&ichnos_golden::fixture_path(fixture));
+        let table = ichnos_core::format_batch(&raw, &EventKeys::default(), None).unwrap();
+        let stream = ichnos_core::EventStream::from_arrow(&table).unwrap();
+        let rows: Vec<Value> = stream
+            .events
+            .iter()
+            .map(|e| row(e, &["case:concept:name", "concept:name", "time:timestamp"]))
+            .collect();
+        assert_eq!(&Value::from(rows), g.expected_at(""), "{case}");
+    }
+}
+
+#[test]
+fn to_interval_matches_pm4py() {
+    let g = golden("core", "to-interval-reviewing-csv");
+    let log = common::load_csv_log("reviewing.csv")
+        .to_interval(&EventKeys::default())
+        .unwrap();
+    let keys = [
+        "concept:name",
+        "start_timestamp",
+        "time:timestamp",
+        "@@duration",
+        "@@startevent_org:resource",
+    ];
+    assert_eq!(&traces_with_events(&log, &keys), g.expected_at(""));
+}
+
+#[test]
+fn to_lifecycle_matches_pm4py() {
+    let g = golden("core", "to-lifecycle-interval-event-log-csv");
+    let log = common::load_csv_log("interval_event_log.csv")
+        .to_lifecycle(&EventKeys::default())
+        .unwrap();
+    let keys = [
+        "concept:name",
+        "lifecycle:transition",
+        "time:timestamp",
+        "@@origin_ev_idx",
+    ];
+    assert_eq!(&traces_with_events(&log, &keys), g.expected_at(""));
 }

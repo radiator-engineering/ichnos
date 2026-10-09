@@ -109,9 +109,10 @@ Other ichnos crates follow one pattern. Each crate defines its own `thiserror` `
 
 `format_batch(batch, &keys, timestamp_format)` is the Arrow form of pm4py's `format_dataframe`. It copies the case, activity and timestamp columns to the standard names, converts timestamps to UTC, drops rows without a case ID, activity or timestamp, casts the case ID and activity to strings, sorts by case, timestamp and input order, and adds `@@index` and `@@case_index`. Running `format_batch` before `from_arrow` gives pm4py's trace and event order for a CSV table. `EventLog::rebase` and `EventStream::rebase` flatten, format and regroup, as pm4py's `rebase` does.
 
-Two differences from pandas:
+Three differences from pandas:
 
 - pandas tries to parse every string column as a date. `format_batch` parses only the timestamp and start-timestamp columns, so a column of short numeric strings never turns into dates by accident.
+- pandas leaves a numeric timestamp column as numbers. `format_batch` returns `Error::UnsupportedColumn`, because a cast would read the numbers as nanoseconds since 1970.
 - pandas leaves a column as strings when a value fails to parse. `format_batch` returns `Error::UnparseableTimestamp`. Without an explicit format it accepts ISO 8601 and RFC 3339 forms. Other layouts need `timestamp_format` in chrono syntax, which avoids pandas's day-first and month-first guessing.
 
 ### Closures over traces and events
