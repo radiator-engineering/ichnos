@@ -1,0 +1,176 @@
+{
+  "expected": {
+    "connections": [
+      {
+        "from": "Ellen",
+        "to": "Mike",
+        "value": 0.7246628740606164
+      },
+      {
+        "from": "Ellen",
+        "to": "Pete",
+        "value": 0.48911477042789697
+      },
+      {
+        "from": "Ellen",
+        "to": "Sara",
+        "value": -0.560448538317805
+      },
+      {
+        "from": "Ellen",
+        "to": "Sean",
+        "value": -0.3738782505529829
+      },
+      {
+        "from": "Ellen",
+        "to": "Sue",
+        "value": -0.2773500981126146
+      },
+      {
+        "from": "Mike",
+        "to": "Ellen",
+        "value": 0.7246628740606164
+      },
+      {
+        "from": "Mike",
+        "to": "Pete",
+        "value": 0.6557537616730246
+      },
+      {
+        "from": "Mike",
+        "to": "Sara",
+        "value": -0.48804608017886253
+      },
+      {
+        "from": "Mike",
+        "to": "Sean",
+        "value": -0.14343654049119525
+      },
+      {
+        "from": "Mike",
+        "to": "Sue",
+        "value": 0.05123155195785602
+      },
+      {
+        "from": "Pete",
+        "to": "Ellen",
+        "value": 0.48911477042789697
+      },
+      {
+        "from": "Pete",
+        "to": "Mike",
+        "value": 0.6557537616730246
+      },
+      {
+        "from": "Pete",
+        "to": "Sara",
+        "value": -0.34486524735750257
+      },
+      {
+        "from": "Pete",
+        "to": "Sean",
+        "value": -0.37163776146109606
+      },
+      {
+        "from": "Pete",
+        "to": "Sue",
+        "value": -0.3982160867920021
+      },
+      {
+        "from": "Sara",
+        "to": "Ellen",
+        "value": -0.560448538317805
+      },
+      {
+        "from": "Sara",
+        "to": "Mike",
+        "value": -0.48804608017886253
+      },
+      {
+        "from": "Sara",
+        "to": "Pete",
+        "value": -0.34486524735750257
+      },
+      {
+        "from": "Sara",
+        "to": "Sean",
+        "value": -0.2694079530401623
+      },
+      {
+        "from": "Sara",
+        "to": "Sue",
+        "value": -0.28867513459481287
+      },
+      {
+        "from": "Sean",
+        "to": "Ellen",
+        "value": -0.3738782505529829
+      },
+      {
+        "from": "Sean",
+        "to": "Mike",
+        "value": -0.14343654049119525
+      },
+      {
+        "from": "Sean",
+        "to": "Pete",
+        "value": -0.37163776146109606
+      },
+      {
+        "from": "Sean",
+        "to": "Sara",
+        "value": -0.2694079530401623
+      },
+      {
+        "from": "Sean",
+        "to": "Sue",
+        "value": 0.9332565252573827
+      },
+      {
+        "from": "Sue",
+        "to": "Ellen",
+        "value": -0.2773500981126146
+      },
+      {
+        "from": "Sue",
+        "to": "Mike",
+        "value": 0.05123155195785602
+      },
+      {
+        "from": "Sue",
+        "to": "Pete",
+        "value": -0.3982160867920021
+      },
+      {
+        "from": "Sue",
+        "to": "Sara",
+        "value": -0.28867513459481287
+      },
+      {
+        "from": "Sue",
+        "to": "Sean",
+        "value": 0.9332565252573827
+      }
+    ],
+    "directed": false
+  },
+  "meta": {
+    "area": "org",
+    "case": "similarity-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_activity_based_resource_similarity"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

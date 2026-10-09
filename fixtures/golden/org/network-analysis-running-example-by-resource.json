@@ -1,0 +1,229 @@
+{
+  "expected": [
+    {
+      "edge": "3",
+      "source": "check ticket",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "4",
+      "source": "check ticket",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "check ticket",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "2",
+      "source": "check ticket",
+      "target": "examine casually",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "check ticket",
+      "target": "pay compensation",
+      "value": 1
+    },
+    {
+      "edge": "6",
+      "source": "check ticket",
+      "target": "pay compensation",
+      "value": 1
+    },
+    {
+      "edge": "1",
+      "source": "check ticket",
+      "target": "register request",
+      "value": 1
+    },
+    {
+      "edge": "3",
+      "source": "check ticket",
+      "target": "register request",
+      "value": 1
+    },
+    {
+      "edge": "2",
+      "source": "decide",
+      "target": "decide",
+      "value": 1
+    },
+    {
+      "edge": "3",
+      "source": "decide",
+      "target": "decide",
+      "value": 2
+    },
+    {
+      "edge": "4",
+      "source": "decide",
+      "target": "decide",
+      "value": 1
+    },
+    {
+      "edge": "6",
+      "source": "decide",
+      "target": "decide",
+      "value": 1
+    },
+    {
+      "edge": "1",
+      "source": "decide",
+      "target": "reinitiate request",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "decide",
+      "target": "reinitiate request",
+      "value": 2
+    },
+    {
+      "edge": "3",
+      "source": "examine casually",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "examine casually",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "2",
+      "source": "examine casually",
+      "target": "examine thoroughly",
+      "value": 1
+    },
+    {
+      "edge": "6",
+      "source": "examine casually",
+      "target": "pay compensation",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "examine casually",
+      "target": "reject request",
+      "value": 1
+    },
+    {
+      "edge": "1",
+      "source": "examine thoroughly",
+      "target": "examine casually",
+      "value": 1
+    },
+    {
+      "edge": "3",
+      "source": "examine thoroughly",
+      "target": "examine thoroughly",
+      "value": 1
+    },
+    {
+      "edge": "6",
+      "source": "pay compensation",
+      "target": "examine casually",
+      "value": 1
+    },
+    {
+      "edge": "2",
+      "source": "pay compensation",
+      "target": "reject request",
+      "value": 1
+    },
+    {
+      "edge": "2",
+      "source": "register request",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "register request",
+      "target": "examine casually",
+      "value": 1
+    },
+    {
+      "edge": "6",
+      "source": "register request",
+      "target": "examine casually",
+      "value": 1
+    },
+    {
+      "edge": "1",
+      "source": "register request",
+      "target": "register request",
+      "value": 1
+    },
+    {
+      "edge": "3",
+      "source": "register request",
+      "target": "register request",
+      "value": 1
+    },
+    {
+      "edge": "4",
+      "source": "register request",
+      "target": "reject request",
+      "value": 1
+    },
+    {
+      "edge": "3",
+      "source": "reinitiate request",
+      "target": "decide",
+      "value": 1
+    },
+    {
+      "edge": "5",
+      "source": "reinitiate request",
+      "target": "decide",
+      "value": 2
+    },
+    {
+      "edge": "1",
+      "source": "reject request",
+      "target": "check ticket",
+      "value": 1
+    },
+    {
+      "edge": "4",
+      "source": "reject request",
+      "target": "check ticket",
+      "value": 1
+    }
+  ],
+  "meta": {
+    "area": "org",
+    "case": "network-analysis-running-example-by-resource",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_network_analysis"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "edge_column": "case:concept:name",
+      "edge_reference": "_out",
+      "in_column": "org:resource",
+      "node_column_source": "concept:name",
+      "node_column_target": "concept:name",
+      "out_column": "org:resource",
+      "performance": false
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "expected": [
+    {
+      "activities": [
+        "check ticket",
+        "register request",
+        "reject request"
+      ],
+      "originator_importance": {
+        "Ellen": 4,
+        "Mike": 7,
+        "Pete": 7
+      }
+    },
+    {
+      "activities": [
+        "decide",
+        "reinitiate request"
+      ],
+      "originator_importance": {
+        "Sara": 12
+      }
+    },
+    {
+      "activities": [
+        "examine casually"
+      ],
+      "originator_importance": {
+        "Ellen": 1,
+        "Mike": 3,
+        "Sean": 1,
+        "Sue": 1
+      }
+    },
+    {
+      "activities": [
+        "pay compensation"
+      ],
+      "originator_importance": {
+        "Ellen": 2,
+        "Mike": 1
+      }
+    },
+    {
+      "activities": [
+        "examine thoroughly"
+      ],
+      "originator_importance": {
+        "Sean": 2,
+        "Sue": 1
+      }
+    }
+  ],
+  "meta": {
+    "area": "org",
+    "case": "roles-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_organizational_roles"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

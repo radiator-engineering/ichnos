@@ -1,0 +1,189 @@
+{
+  "expected": {
+    "features": {
+      "@@object_cobirth": [
+        4.0,
+        2.0,
+        2.0
+      ],
+      "@@object_codeath": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_degree_centrality": [
+        0.2857142857142857,
+        0.14285714285714285,
+        0.21428571428571427
+      ],
+      "@@object_general_descendants_graph_ascendants": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_general_descendants_graph_descendants": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@object_general_inheritance_graph_ascendants": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "@@object_general_inheritance_graph_descendants": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_general_interaction_graph": [
+        4.0,
+        2.0,
+        3.0
+      ],
+      "@@object_interaction_graph_delivery": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_interaction_graph_element": [
+        4.0,
+        2.0,
+        3.0
+      ],
+      "@@object_interaction_graph_order": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@object_lifecycle_duration": [
+        950400.0,
+        172800.0,
+        691200.0
+      ],
+      "@@object_lifecycle_end_timestamp": [
+        316483200.0,
+        347328000.0,
+        348105600.0
+      ],
+      "@@object_lifecycle_length": [
+        4.0,
+        2.0,
+        6.0
+      ],
+      "@@object_lifecycle_start_timestamp": [
+        315532800.0,
+        347155200.0,
+        347414400.0
+      ],
+      "@@object_lifecycle_unq_act": [
+        4.0,
+        2.0,
+        5.0
+      ],
+      "@@ocel_lif_activity_Add Item to Order": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Cancel Order": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Confirm Order": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Create Delivery": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Create Order": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Delivery Failed": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Delivery Successful": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Invoice Sent": [
+        1.0,
+        0.0,
+        1.0
+      ],
+      "@@ocel_lif_activity_Item back in Stock": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Item out of Stock": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Pay Order": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Payment Reminder": [
+        0.0,
+        0.0,
+        2.0
+      ],
+      "@@ocel_lif_activity_Remove Item": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Retry Delivery": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "@@ocel_lif_activity_Send for Credit Collection": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "object_ids": [
+      "o1",
+      "o2",
+      "o3"
+    ]
+  },
+  "meta": {
+    "area": "ml",
+    "case": "ocel-example-log-order-defaults",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.extract_ocel_features"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "enable_object_lifecycle_paths": false,
+      "obj_type": "order",
+      "version": 1
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

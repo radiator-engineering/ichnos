@@ -1,0 +1,31 @@
+{
+  "expected": {
+    "connections": [
+      {
+        "from": "Mike",
+        "to": "Ellen",
+        "value": 0.16666666666666666
+      }
+    ],
+    "directed": true
+  },
+  "meta": {
+    "area": "org",
+    "case": "subcontracting-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_subcontracting_network"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
