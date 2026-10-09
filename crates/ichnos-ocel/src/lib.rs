@@ -4,12 +4,14 @@ mod consistency;
 pub mod constants;
 pub mod filtering;
 mod ocel;
+mod summaries;
 mod summary;
 
 pub use ocel::{
     EventEvent, EventObject, ExtendedRow, ExtendedTable, ObjectChange, ObjectObject, Ocel,
     OcelEvent, OcelObject,
 };
+pub use summaries::{InteractionRow, ObjectSummaryRow, TemporalSummaryRow};
 pub use summary::OcelSummary;
 
 pub use filtering::*;
