@@ -201,10 +201,22 @@ fn fmt_python_float(v: f64, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str("nan")
     } else if v.is_infinite() {
         f.write_str(if v > 0.0 { "inf" } else { "-inf" })
-    } else if v.fract() == 0.0 && v.abs() < 1e16 {
-        write!(f, "{v:.1}")
     } else {
-        write!(f, "{v}")
+        // Python's repr: the shortest digits that round-trip, in exponent form
+        // when the decimal exponent is below -4 or at least 16.
+        let sci = format!("{v:e}");
+        let (mantissa, exp) = sci.split_once('e').expect("`{:e}` has an exponent");
+        let exp: i32 = exp.parse().expect("`{:e}` exponent is an integer");
+        if (-4..16).contains(&exp) {
+            if v.fract() == 0.0 {
+                write!(f, "{v:.1}")
+            } else {
+                write!(f, "{v}")
+            }
+        } else {
+            let sign = if exp < 0 { '-' } else { '+' };
+            write!(f, "{mantissa}e{sign}{:02}", exp.abs())
+        }
     }
 }
 
@@ -529,6 +541,15 @@ mod tests {
         assert_eq!(AttributeValue::from(1.0).to_string(), "1.0");
         assert_eq!(AttributeValue::from(0.1).to_string(), "0.1");
         assert_eq!(AttributeValue::from(f64::NAN).to_string(), "nan");
+        assert_eq!(AttributeValue::from(1e16).to_string(), "1e+16");
+        assert_eq!(AttributeValue::from(1e15).to_string(), "1000000000000000.0");
+        assert_eq!(AttributeValue::from(1e-5).to_string(), "1e-05");
+        assert_eq!(AttributeValue::from(1e-4).to_string(), "0.0001");
+        assert_eq!(
+            AttributeValue::from(1.2345678901234568e17).to_string(),
+            "1.2345678901234568e+17"
+        );
+        assert_eq!(AttributeValue::from(-2.5e-300).to_string(), "-2.5e-300");
         assert_eq!(AttributeValue::from(false).to_string(), "False");
         assert_eq!(AttributeValue::from(-4).to_string(), "-4");
     }
