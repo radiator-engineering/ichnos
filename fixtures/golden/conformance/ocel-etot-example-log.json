@@ -1,0 +1,205 @@
+{
+  "expected": {
+    "activities_additional": [
+      "Add Item to Order",
+      "Cancel Order",
+      "Payment Reminder",
+      "Remove Item",
+      "Send for Credit Collection"
+    ],
+    "activities_missing": [],
+    "delta_rel": [
+      {
+        "activity": "Confirm Order",
+        "delta": 0.0,
+        "object_type": "order"
+      },
+      {
+        "activity": "Create Delivery",
+        "delta": 2.0,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Create Delivery",
+        "delta": 2.5,
+        "object_type": "element"
+      },
+      {
+        "activity": "Create Order",
+        "delta": 0.3333333333333333,
+        "object_type": "element"
+      },
+      {
+        "activity": "Create Order",
+        "delta": 0.5,
+        "object_type": "order"
+      },
+      {
+        "activity": "Delivery Failed",
+        "delta": 0.0,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Delivery Successful",
+        "delta": 2.0,
+        "object_type": "delivery"
+      },
+      {
+        "activity": "Invoice Sent",
+        "delta": 1.0,
+        "object_type": "order"
+      },
+      {
+        "activity": "Item back in Stock",
+        "delta": 0.0,
+        "object_type": "element"
+      },
+      {
+        "activity": "Item out of Stock",
+        "delta": 0.0,
+        "object_type": "element"
+      },
+      {
+        "activity": "Pay Order",
+        "delta": 0.0,
+        "object_type": "order"
+      },
+      {
+        "activity": "Retry Delivery",
+        "delta": 0.0,
+        "object_type": "delivery"
+      }
+    ],
+    "edges_additional": [
+      [
+        "Add Item to Order",
+        "element"
+      ],
+      [
+        "Add Item to Order",
+        "order"
+      ],
+      [
+        "Cancel Order",
+        "order"
+      ],
+      [
+        "Payment Reminder",
+        "order"
+      ],
+      [
+        "Remove Item",
+        "element"
+      ],
+      [
+        "Send for Credit Collection",
+        "order"
+      ]
+    ],
+    "edges_missing": [],
+    "fitness": 0.8378378378378378,
+    "model": {
+      "activities": [
+        "Confirm Order",
+        "Create Delivery",
+        "Create Order",
+        "Delivery Failed",
+        "Delivery Successful",
+        "Invoice Sent",
+        "Item back in Stock",
+        "Item out of Stock",
+        "Pay Order",
+        "Retry Delivery"
+      ],
+      "edges": [
+        {
+          "activity": "Confirm Order",
+          "count": 1,
+          "object_type": "order"
+        },
+        {
+          "activity": "Create Delivery",
+          "count": 1,
+          "object_type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "count": 2,
+          "object_type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "count": 6,
+          "object_type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "count": 2,
+          "object_type": "order"
+        },
+        {
+          "activity": "Delivery Failed",
+          "count": 1,
+          "object_type": "delivery"
+        },
+        {
+          "activity": "Delivery Successful",
+          "count": 1,
+          "object_type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "count": 1,
+          "object_type": "order"
+        },
+        {
+          "activity": "Item back in Stock",
+          "count": 1,
+          "object_type": "element"
+        },
+        {
+          "activity": "Item out of Stock",
+          "count": 1,
+          "object_type": "element"
+        },
+        {
+          "activity": "Pay Order",
+          "count": 1,
+          "object_type": "order"
+        },
+        {
+          "activity": "Retry Delivery",
+          "count": 1,
+          "object_type": "delivery"
+        }
+      ],
+      "object_types": [
+        "delivery",
+        "element",
+        "order"
+      ]
+    },
+    "object_types_additional": [],
+    "object_types_missing": []
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "ocel-etot-example-log",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_etot",
+      "pm4py.conformance_etot"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

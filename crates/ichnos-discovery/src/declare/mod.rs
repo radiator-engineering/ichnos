@@ -2,6 +2,10 @@
 //! Trace variants are evaluated once and weighted without constructing a
 //! per-case rules DataFrame.
 
+mod conformance;
+
+pub use conformance::{DeclareDeviation, DeclareTraceConformance, conformance_declare};
+
 use crate::{Error, Result};
 use ichnos_core::{EventKeys, EventLog};
 use ichnos_model::Label;

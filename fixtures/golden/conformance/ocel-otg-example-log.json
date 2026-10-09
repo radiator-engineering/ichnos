@@ -1,0 +1,166 @@
+{
+  "expected": {
+    "additional_edges": [
+      {
+        "relation": "object_descendants",
+        "source": "order",
+        "target": "element"
+      }
+    ],
+    "additional_object_types": [],
+    "fitness": 0.64,
+    "missing_edges": [
+      {
+        "relation": "object_codeath",
+        "source": "element",
+        "target": "order"
+      }
+    ],
+    "missing_object_types": [],
+    "model": {
+      "edges": [
+        {
+          "count": 2,
+          "relation": "object_interaction",
+          "source": "delivery",
+          "target": "element"
+        },
+        {
+          "count": 7,
+          "relation": "object_cobirth",
+          "source": "element",
+          "target": "element"
+        },
+        {
+          "count": 6,
+          "relation": "object_cobirth",
+          "source": "element",
+          "target": "order"
+        },
+        {
+          "count": 2,
+          "relation": "object_codeath",
+          "source": "element",
+          "target": "element"
+        },
+        {
+          "count": 2,
+          "relation": "object_codeath",
+          "source": "element",
+          "target": "order"
+        },
+        {
+          "count": 2,
+          "relation": "object_descendants",
+          "source": "element",
+          "target": "delivery"
+        },
+        {
+          "count": 2,
+          "relation": "object_inheritance",
+          "source": "element",
+          "target": "delivery"
+        },
+        {
+          "count": 3,
+          "relation": "object_inheritance",
+          "source": "element",
+          "target": "element"
+        },
+        {
+          "count": 1,
+          "relation": "object_inheritance",
+          "source": "element",
+          "target": "order"
+        },
+        {
+          "count": 7,
+          "relation": "object_interaction",
+          "source": "element",
+          "target": "element"
+        },
+        {
+          "count": 6,
+          "relation": "object_interaction",
+          "source": "element",
+          "target": "order"
+        }
+      ],
+      "object_types": [
+        "delivery",
+        "element",
+        "order"
+      ]
+    },
+    "non_conforming_edges": [
+      {
+        "delta": 2.5,
+        "relation": "object_interaction",
+        "source": "delivery",
+        "target": "element"
+      },
+      {
+        "delta": 0.3333333333333333,
+        "relation": "object_cobirth",
+        "source": "element",
+        "target": "order"
+      },
+      {
+        "delta": 1.5,
+        "relation": "object_codeath",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "delta": 2.5,
+        "relation": "object_descendants",
+        "source": "element",
+        "target": "delivery"
+      },
+      {
+        "delta": 2.5,
+        "relation": "object_inheritance",
+        "source": "element",
+        "target": "delivery"
+      },
+      {
+        "delta": 0.6666666666666666,
+        "relation": "object_inheritance",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "delta": 0.5714285714285714,
+        "relation": "object_interaction",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "delta": 0.5,
+        "relation": "object_interaction",
+        "source": "element",
+        "target": "order"
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "ocel-otg-example-log",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_otg",
+      "pm4py.conformance_otg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

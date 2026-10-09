@@ -1,0 +1,122 @@
+{
+  "expected": {
+    "additional_edges": [
+      {
+        "relation": "object_descendants",
+        "source": "Invoice",
+        "target": "Payment"
+      },
+      {
+        "relation": "object_descendants",
+        "source": "Invoice",
+        "target": "Purchase Order"
+      },
+      {
+        "relation": "object_inheritance",
+        "source": "Invoice",
+        "target": "Payment"
+      },
+      {
+        "relation": "object_codeath",
+        "source": "Payment",
+        "target": "Invoice"
+      },
+      {
+        "relation": "object_interaction",
+        "source": "Payment",
+        "target": "Invoice"
+      }
+    ],
+    "additional_object_types": [
+      "Payment"
+    ],
+    "fitness": 0.8823529411764706,
+    "missing_edges": [
+      {
+        "relation": "object_codeath",
+        "source": "Purchase Order",
+        "target": "Invoice"
+      }
+    ],
+    "missing_object_types": [],
+    "model": {
+      "edges": [
+        {
+          "count": 1,
+          "relation": "object_codeath",
+          "source": "Purchase Order",
+          "target": "Invoice"
+        },
+        {
+          "count": 2,
+          "relation": "object_descendants",
+          "source": "Purchase Order",
+          "target": "Invoice"
+        },
+        {
+          "count": 1,
+          "relation": "object_inheritance",
+          "source": "Purchase Order",
+          "target": "Invoice"
+        },
+        {
+          "count": 2,
+          "relation": "object_interaction",
+          "source": "Purchase Order",
+          "target": "Invoice"
+        },
+        {
+          "count": 1,
+          "relation": "object_interaction",
+          "source": "Purchase Order",
+          "target": "Purchase Requisition"
+        },
+        {
+          "count": 1,
+          "relation": "object_descendants",
+          "source": "Purchase Requisition",
+          "target": "Purchase Order"
+        },
+        {
+          "count": 1,
+          "relation": "object_inheritance",
+          "source": "Purchase Requisition",
+          "target": "Purchase Order"
+        }
+      ],
+      "object_types": [
+        "Invoice",
+        "Purchase Order",
+        "Purchase Requisition"
+      ]
+    },
+    "non_conforming_edges": [
+      {
+        "delta": 0.5,
+        "relation": "object_interaction",
+        "source": "Purchase Order",
+        "target": "Invoice"
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "ocel-otg-ocel20-example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_otg",
+      "pm4py.conformance_otg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

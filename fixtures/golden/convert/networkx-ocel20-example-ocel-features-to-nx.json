@@ -1,0 +1,150 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "P1",
+        "R1",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "P2",
+        "R2",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "P3",
+        "R3",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "PO1",
+        "PR1",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "PO1",
+        "R1",
+        {
+          "type": "DESCENDANTS"
+        }
+      ],
+      [
+        "PO1",
+        "R2",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "PO2",
+        "R3",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "PR1",
+        "PO1",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "R1",
+        "P1",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "R2",
+        "P2",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "R3",
+        "P3",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "R3",
+        "PO2",
+        {
+          "type": "DESCENDANTS"
+        }
+      ]
+    ],
+    "multigraph": false,
+    "nodes": [
+      [
+        "P1",
+        {}
+      ],
+      [
+        "P2",
+        {}
+      ],
+      [
+        "P3",
+        {}
+      ],
+      [
+        "PO1",
+        {}
+      ],
+      [
+        "PO2",
+        {}
+      ],
+      [
+        "PR1",
+        {}
+      ],
+      [
+        "R1",
+        {}
+      ],
+      [
+        "R2",
+        {}
+      ],
+      [
+        "R3",
+        {}
+      ]
+    ]
+  },
+  "meta": {
+    "area": "convert",
+    "case": "networkx-ocel20-example-ocel-features-to-nx",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.convert_ocel_to_networkx"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "ocel_features_to_nx"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
