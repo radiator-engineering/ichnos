@@ -1,11 +1,13 @@
-//! Footprints of the fixture models against pm4py's (`fixtures/golden/model`).
+//! Footprints and reachability graphs of the fixture models against pm4py's
+//! (`fixtures/golden/model`).
 //!
 //! There is no PNML or PTML reader yet, so each golden file also describes
 //! its input model; see `tools/golden/cases/model.py`.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 use ichnos_golden::{Golden, JsonCompare, assert_json_eq, cases, golden};
+use ichnos_model::conversion::EdgeNaming;
 use ichnos_model::petri::{ArcEnds, ArcKind, ReachabilityOptions};
 use ichnos_model::{Footprints, Label, Marking, PetriNet, ProcessTree, TreeFootprints};
 use serde_json::Value;
@@ -95,5 +97,43 @@ fn footprints_match_pm4py() {
     );
     for id in ids {
         check(&golden("model", &id));
+    }
+}
+
+#[test]
+fn reachability_graphs_match_pm4py() {
+    let ids: Vec<String> = cases("model")
+        .into_iter()
+        .filter(|id| id.starts_with("reachability-graph-"))
+        .collect();
+    assert_eq!(
+        ids.len(),
+        10,
+        "expected 10 reachability goldens, found {ids:?}"
+    );
+    for id in ids {
+        let g = golden("model", &id);
+        let (net, im) = build_net(g.expected_at("/model"));
+        let ts = net
+            .to_transition_system(&im, ReachabilityOptions::default(), EdgeNaming::Repr)
+            .expect("bounded net");
+        // pm4py states are equal when their names are, so compare name sets.
+        let states: BTreeSet<&str> = ts.states().map(|(_, s)| s.name.as_str()).collect();
+        let edges: BTreeSet<[&str; 3]> = ts
+            .edges()
+            .map(|(_, e)| {
+                [
+                    ts.state(e.from()).name.as_str(),
+                    e.name.as_str(),
+                    ts.state(e.to()).name.as_str(),
+                ]
+            })
+            .collect();
+        let actual = serde_json::json!({ "states": states, "edges": edges });
+        let expected = serde_json::json!({
+            "states": g.expected_at("/states"),
+            "edges": g.expected_at("/edges"),
+        });
+        assert_json_eq(&actual, &expected, &JsonCompare::default());
     }
 }

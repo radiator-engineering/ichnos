@@ -1,0 +1,401 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "p01",
+        "(a, 'a')",
+        "p11p141"
+      ],
+      [
+        "p111",
+        "(Start, 'Start')",
+        "p01"
+      ],
+      [
+        "p11p131",
+        "(b, 'b')",
+        "p131p71"
+      ],
+      [
+        "p11p141",
+        "(b, 'b')",
+        "p141p71"
+      ],
+      [
+        "p11p141",
+        "(e, 'e')",
+        "p11p131"
+      ],
+      [
+        "p121",
+        "(end_tau, None)",
+        "sink1"
+      ],
+      [
+        "p131p21p51",
+        "(d, 'd')",
+        "p131p51p61"
+      ],
+      [
+        "p131p21p51",
+        "(f, 'f')",
+        "p21p81"
+      ],
+      [
+        "p131p51p61",
+        "(f, 'f')",
+        "p61p81"
+      ],
+      [
+        "p131p71",
+        "(c, 'c')",
+        "p131p21p51"
+      ],
+      [
+        "p141p21p51",
+        "(d, 'd')",
+        "p141p51p61"
+      ],
+      [
+        "p141p21p51",
+        "(e, 'e')",
+        "p131p21p51"
+      ],
+      [
+        "p141p51p61",
+        "(e, 'e')",
+        "p131p51p61"
+      ],
+      [
+        "p141p71",
+        "(c, 'c')",
+        "p141p21p51"
+      ],
+      [
+        "p141p71",
+        "(e, 'e')",
+        "p131p71"
+      ],
+      [
+        "p21p31",
+        "(d, 'd')",
+        "p31p61"
+      ],
+      [
+        "p21p81",
+        "(d, 'd')",
+        "p61p81"
+      ],
+      [
+        "p21p81",
+        "(g, 'g')",
+        "p21p31"
+      ],
+      [
+        "p31p61",
+        "(h, 'h')",
+        "p41"
+      ],
+      [
+        "p41",
+        "(End, 'End')",
+        "p121"
+      ],
+      [
+        "p61p81",
+        "(g, 'g')",
+        "p31p61"
+      ],
+      [
+        "source1",
+        "(start_tau, None)",
+        "p111"
+      ]
+    ],
+    "model": {
+      "arcs": [
+        {
+          "source": "End",
+          "target": "p12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "Start",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "d",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "e",
+          "target": "p13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "end_tau",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "f",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "g",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "h",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "b",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p11",
+          "target": "Start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p12",
+          "target": "end_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p13",
+          "target": "f",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p14",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "d",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "h",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "End",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "f",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "h",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "c",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "g",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start_tau",
+          "target": "p11",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p11",
+        "p12",
+        "p13",
+        "p14",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "End",
+          "name": "End"
+        },
+        {
+          "label": "Start",
+          "name": "Start"
+        },
+        {
+          "label": "a",
+          "name": "a"
+        },
+        {
+          "label": "b",
+          "name": "b"
+        },
+        {
+          "label": "c",
+          "name": "c"
+        },
+        {
+          "label": "d",
+          "name": "d"
+        },
+        {
+          "label": "e",
+          "name": "e"
+        },
+        {
+          "label": null,
+          "name": "end_tau"
+        },
+        {
+          "label": "f",
+          "name": "f"
+        },
+        {
+          "label": "g",
+          "name": "g"
+        },
+        {
+          "label": "h",
+          "name": "h"
+        },
+        {
+          "label": null,
+          "name": "start_tau"
+        }
+      ]
+    },
+    "states": [
+      "p01",
+      "p111",
+      "p11p131",
+      "p11p141",
+      "p121",
+      "p131p21p51",
+      "p131p51p61",
+      "p131p71",
+      "p141p21p51",
+      "p141p51p61",
+      "p141p71",
+      "p21p31",
+      "p21p81",
+      "p31p61",
+      "p41",
+      "p61p81",
+      "sink1",
+      "source1"
+    ]
+  },
+  "meta": {
+    "area": "model",
+    "case": "reachability-graph-net-murata3",
+    "fixtures": {
+      "model": "fixtures/logs/murata3.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_reachability_graph"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

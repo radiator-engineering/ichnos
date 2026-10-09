@@ -8,6 +8,8 @@
 //! - [`process_tree`]: process trees, pm4py's string syntax, simplification
 //!   and random playout.
 //! - [`dfg`]: directly-follows graphs and their filters.
+//! - [`transition_system`]: transition systems and reachability graphs as
+//!   transition systems.
 //! - [`footprints`]: behavioural footprints of nets and trees.
 //! - [`conversion`]: conversions between model types.
 //!
@@ -26,6 +28,7 @@ pub mod footprints;
 mod label;
 pub mod petri;
 pub mod process_tree;
+pub mod transition_system;
 
 pub use dfg::Dfg;
 pub use error::Error;
@@ -33,3 +36,4 @@ pub use footprints::{Footprints, TreeFootprints};
 pub use label::Label;
 pub use petri::{AcceptingPetriNet, Marking, PetriNet, PlaceId, TransitionId};
 pub use process_tree::{Operator, ProcessTree};
+pub use transition_system::TransitionSystem;
