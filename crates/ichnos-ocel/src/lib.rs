@@ -1,5 +1,6 @@
 //! Object-centric event logs: model, flattening, discovery and filtering.
 
+mod consistency;
 pub mod constants;
 mod ocel;
 mod summary;
