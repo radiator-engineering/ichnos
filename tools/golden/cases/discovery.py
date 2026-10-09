@@ -47,6 +47,13 @@ Cases ``bpmn-inductive-<variant>-<log>`` run
 test compares up to isomorphism. The ``imf`` cases emit ``runs`` over
 ``IMF_SEEDS``, grouped by tree, as above.
 
+Cases ``powl-<variant>-<log>`` run ``pm4py.discover_powl`` with one entry of
+``POWL_VARIANTS`` on the ``inductive`` logs, or on a log given as ``traces``
+in ``params`` (lists of activities, so traces can be empty). The brute-force
+variant runs on the logs where pm4py finishes in seconds. Each case emits
+``powl``: :func:`cases.powl.describe_powl` of the model, made independent of
+child order by :func:`canonical_powl`.
+
 Logs are CSV only until ichnos can read XES in the discovery tests.
 
 Temporal profile (lane ``miner-temporal-profile``), cases
@@ -380,6 +387,117 @@ def _register_bpmn_inductive() -> None:
 
 
 _register_bpmn_inductive()
+
+
+# Variant name -> (POWLDiscoveryVariant member, discover_powl keyword arguments).
+POWL_VARIANTS = {
+    "tree": ("TREE", {}),
+    "maximal": ("MAXIMAL", {}),
+    "bruteforce": ("BRUTE_FORCE", {}),
+    "dynamic": ("DYNAMIC_CLUSTERING", {}),
+    "dynamic-ratio08": ("DYNAMIC_CLUSTERING", {"order_graph_filtering_threshold": 0.8}),
+    "maximal-filter03": ("MAXIMAL", {"filtering_weight_factor": 0.3}),
+    "tree-filter03": ("TREE", {"filtering_weight_factor": 0.3}),
+}
+
+# Logs the brute-force variant runs on; pm4py takes too long on the others.
+POWL_BRUTE_FORCE_LOGS = [
+    "running-example-csv",
+    "roadtraffic100traces-csv",
+    "interleavings-receipt_odd-csv",
+    "reviewing-csv",
+]
+
+# Small logs, by name, for the cases the six logs miss.
+POWL_SYNTHETIC_LOGS = {
+    "fallthroughs": [list(t.split(",")) for t in INDUCTIVE_SYNTHETIC_TRACES],
+    "emptytraces": [[], ["a", "b"], ["b", "a"], ["a"], []],
+    "allempty": [[], []],
+}
+
+
+def powl(
+    fixtures: dict[str, Path], variant: str, traces: list[list[str]] | None = None
+) -> dict[str, Any]:
+    """Runs ``pm4py.discover_powl`` with one variant on the log in
+    ``fixtures``, or on ``traces``."""
+    from pm4py.algo.discovery.powl.inductive.variants.powl_discovery_varaints import (
+        POWLDiscoveryVariant,
+    )
+    from pm4py.objects.log.obj import Event, EventLog, Trace
+
+    from cases.powl import describe_powl
+
+    if traces is None:
+        log = load_log(fixtures["log"])
+    else:
+        log = EventLog()
+        for i, activities in enumerate(traces):
+            trace = Trace(attributes={"concept:name": str(i)})
+            for a in activities:
+                trace.append(Event({"concept:name": a}))
+            log.append(trace)
+    member, kwargs = POWL_VARIANTS[variant]
+    model = pm4py.discover_powl(log, variant=POWLDiscoveryVariant[member], **kwargs)
+    return {"powl": canonical_powl(describe_powl(model))}
+
+
+def canonical_powl(d: dict[str, Any]) -> dict[str, Any]:
+    """A described POWL model with XOR children sorted, every order closed
+    under transitivity, and partial-order children sorted by their own form
+    and the forms of their predecessors and successors."""
+    if "children" not in d:
+        return d
+    children = [canonical_powl(c) for c in d["children"]]
+    key = lambda c: json.dumps(c, sort_keys=True)  # noqa: E731
+    if d["kind"] == "loop":
+        return {**d, "children": children}
+    if d["kind"] == "xor":
+        return {**d, "children": sorted(children, key=key)}
+    n = len(children)
+    order = {(i, j) for i, j in d["order"]}
+    while True:
+        more = {(i, k) for i, j in order for j2, k in order if j == j2} - order
+        if not more:
+            break
+        order |= more
+    keys = [key(c) for c in children]
+    rank = sorted(
+        range(n),
+        key=lambda i: (
+            keys[i],
+            sorted(keys[p] for p in range(n) if (p, i) in order),
+            sorted(keys[q] for q in range(n) if (i, q) in order),
+        ),
+    )
+    at = {old: new for new, old in enumerate(rank)}
+    return {
+        **d,
+        "children": [children[i] for i in rank],
+        "order": sorted([at[i], at[j]] for i, j in order),
+    }
+
+
+def _register_powl() -> None:
+    for variant in POWL_VARIANTS:
+        for log_id, rel in INDUCTIVE_LOGS.items():
+            if variant == "bruteforce" and log_id not in POWL_BRUTE_FORCE_LOGS:
+                continue
+            case(
+                f"powl-{variant}-{log_id}",
+                fixture=rel,
+                functions=["pm4py.discover_powl"],
+                params={"variant": variant},
+            )(powl)
+        for name, traces in POWL_SYNTHETIC_LOGS.items():
+            case(
+                f"powl-{variant}-synthetic-{name}",
+                functions=["pm4py.discover_powl"],
+                params={"variant": variant, "traces": traces},
+            )(powl)
+
+
+_register_powl()
 
 # What one seeded run of _inductive_seeds computes, by kind.
 SEEDED_RUNS = {"tree": _inductive_run, "bpmn": _bpmn_inductive_run}

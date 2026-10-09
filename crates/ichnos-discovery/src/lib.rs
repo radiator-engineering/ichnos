@@ -1,7 +1,7 @@
 //! Process discovery: alpha, inductive, heuristics, ILP and DFG miners.
 //!
 //! - [`inductive`]: the inductive miner family (IM, IMf, IMd), producing
-//!   process trees, Petri nets and BPMN diagrams.
+//!   process trees, Petri nets and BPMN diagrams, and the POWL miner.
 //! - [`mod@dfg`]: frequency and performance DFGs, minimum self-distances and
 //!   eventually-follows counts.
 //! - [`temporal_profile`]: the temporal profile, the mean and standard
@@ -23,8 +23,9 @@ pub use dfg::{
 };
 pub use error::{Error, Result};
 pub use inductive::{
-    InductiveOptions, InductiveVariant, bpmn_inductive, bpmn_inductive_dfg, petri_net_inductive,
-    petri_net_inductive_dfg, process_tree_inductive, process_tree_inductive_dfg,
+    InductiveOptions, InductiveVariant, PowlOptions, PowlVariant, bpmn_inductive,
+    bpmn_inductive_dfg, petri_net_inductive, petri_net_inductive_dfg, powl_inductive,
+    powl_inductive_variants, process_tree_inductive, process_tree_inductive_dfg,
     process_tree_inductive_variants,
 };
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
