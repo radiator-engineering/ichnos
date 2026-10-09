@@ -21,6 +21,17 @@ impl Default for BusinessHours {
     }
 }
 impl BusinessHours {
+    /// Validate that every working slot is ordered and lies within one week.
+    /// Overlapping slots and zero-length intervals are valid.
+    pub fn validate(&self) -> Result<()> {
+        if self.slots.iter().any(|(a, b)| a > b || *b > 604800) {
+            return Err(Error::InvalidOption(
+                "business slots must lie within a week",
+            ));
+        }
+        Ok(())
+    }
+
     /// Scheduled wall-clock seconds between two instants, stripping their offsets as pm4py does.
     pub fn seconds_between(
         &self,
@@ -29,11 +40,7 @@ impl BusinessHours {
     ) -> Result<f64> {
         let start = start.naive_local();
         let end = end.naive_local();
-        if self.slots.iter().any(|(a, b)| a > b || *b > 604800) {
-            return Err(Error::InvalidOption(
-                "business slots must lie within a week",
-            ));
-        }
+        self.validate()?;
         if end <= start {
             return Ok(0.0);
         }

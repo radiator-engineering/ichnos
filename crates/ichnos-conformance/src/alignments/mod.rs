@@ -46,6 +46,10 @@
 //! [`align_log`], [`fitness_alignments`] and [`precision_alignments`] are
 //! the log-level entry points of pm4py's simplified interface.
 //!
+//! [`Aligner::align_discounted`] runs pm4py's discounted variant, where a
+//! deviation after `l` moves costs `exponent^-l`. Unlike the searches
+//! above it is not exact; see [`DiscountedAlignment`].
+//!
 //! # Other models
 //!
 //! These follow pm4py's searches step for step, so costs and fitness match
@@ -62,6 +66,7 @@
 
 pub mod costs;
 mod dfg;
+mod discounted;
 mod edit_distance;
 mod marking;
 mod petri_net;
@@ -76,6 +81,7 @@ mod sync_product;
 
 pub use costs::ModelCosts;
 pub use dfg::{DfgAligner, align_log_dfg};
+pub use discounted::{DEFAULT_DISCOUNT_EXPONENT, DiscountedAlignment};
 pub use edit_distance::{EditDistanceAligner, align_log_edit_distance};
 pub use petri_net::{Aligner, AlignmentOptions, Heuristic, align_log, fitness_alignments};
 pub use precision::precision_alignments;

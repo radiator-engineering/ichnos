@@ -1,0 +1,944 @@
+{
+  "expected": {
+    "extended_marking_equation": 3,
+    "extended_marking_equation_split": 3,
+    "model": {
+      "arcs": [
+        {
+          "source": "n1",
+          "target": "n10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n10",
+          "target": "n3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n11",
+          "target": "n6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n11",
+          "target": "n8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n12",
+          "target": "n7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n13",
+          "target": "n9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n14",
+          "target": "n9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n15",
+          "target": "n5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n16",
+          "target": "n3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n17",
+          "target": "n4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n18",
+          "target": "n2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n19",
+          "target": "n2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n3",
+          "target": "n11",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n4",
+          "target": "n18",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n4",
+          "target": "n19",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n5",
+          "target": "n16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n5",
+          "target": "n17",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n6",
+          "target": "n12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n7",
+          "target": "n15",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n8",
+          "target": "n13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n8",
+          "target": "n14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "n9",
+          "target": "n15",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "n2": 1
+      },
+      "initial_marking": {
+        "n1": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6",
+        "n7",
+        "n8",
+        "n9"
+      ],
+      "transitions": [
+        {
+          "label": "register request",
+          "name": "n10"
+        },
+        {
+          "label": null,
+          "name": "n11"
+        },
+        {
+          "label": "check ticket",
+          "name": "n12"
+        },
+        {
+          "label": "examine casually",
+          "name": "n13"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "n14"
+        },
+        {
+          "label": "decide",
+          "name": "n15"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "n16"
+        },
+        {
+          "label": null,
+          "name": "n17"
+        },
+        {
+          "label": "pay compensation",
+          "name": "n18"
+        },
+        {
+          "label": "reject request",
+          "name": "n19"
+        }
+      ]
+    },
+    "sync_net": {
+      "arcs": [
+        {
+          "source": "(>>, n1)",
+          "target": "(>>, n10)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n1)",
+          "target": "(t_register request_0, n10)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n10)",
+          "target": "(>>, n3)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n11)",
+          "target": "(>>, n6)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n11)",
+          "target": "(>>, n8)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n12)",
+          "target": "(>>, n7)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n13)",
+          "target": "(>>, n9)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n14)",
+          "target": "(>>, n9)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n15)",
+          "target": "(>>, n5)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n16)",
+          "target": "(>>, n3)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n17)",
+          "target": "(>>, n4)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n18)",
+          "target": "(>>, n2)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n19)",
+          "target": "(>>, n2)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n3)",
+          "target": "(>>, n11)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n4)",
+          "target": "(>>, n18)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n4)",
+          "target": "(>>, n19)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n4)",
+          "target": "(t_reject request_12, n19)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n5)",
+          "target": "(>>, n16)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n5)",
+          "target": "(>>, n17)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n5)",
+          "target": "(t_reinitiate request_4, n16)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n5)",
+          "target": "(t_reinitiate request_8, n16)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n6)",
+          "target": "(>>, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n6)",
+          "target": "(t_check ticket_10, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n6)",
+          "target": "(t_check ticket_2, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n6)",
+          "target": "(t_check ticket_5, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n7)",
+          "target": "(>>, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n7)",
+          "target": "(t_decide_11, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n7)",
+          "target": "(t_decide_3, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n7)",
+          "target": "(t_decide_7, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n8)",
+          "target": "(>>, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n8)",
+          "target": "(>>, n14)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n8)",
+          "target": "(t_examine casually_1, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n8)",
+          "target": "(t_examine casually_6, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n8)",
+          "target": "(t_examine casually_9, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n9)",
+          "target": "(>>, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n9)",
+          "target": "(t_decide_11, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n9)",
+          "target": "(t_decide_3, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, n9)",
+          "target": "(t_decide_7, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(p_0, >>)",
+          "target": "(t_register request_0, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_0, >>)",
+          "target": "(t_register request_0, n10)",
+          "weight": 1
+        },
+        {
+          "source": "(p_1, >>)",
+          "target": "(t_examine casually_1, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_1, >>)",
+          "target": "(t_examine casually_1, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(p_10, >>)",
+          "target": "(t_check ticket_10, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_10, >>)",
+          "target": "(t_check ticket_10, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(p_11, >>)",
+          "target": "(t_decide_11, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_11, >>)",
+          "target": "(t_decide_11, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(p_12, >>)",
+          "target": "(t_reject request_12, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_12, >>)",
+          "target": "(t_reject request_12, n19)",
+          "weight": 1
+        },
+        {
+          "source": "(p_2, >>)",
+          "target": "(t_check ticket_2, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_2, >>)",
+          "target": "(t_check ticket_2, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(p_3, >>)",
+          "target": "(t_decide_3, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_3, >>)",
+          "target": "(t_decide_3, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(p_4, >>)",
+          "target": "(t_reinitiate request_4, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_4, >>)",
+          "target": "(t_reinitiate request_4, n16)",
+          "weight": 1
+        },
+        {
+          "source": "(p_5, >>)",
+          "target": "(t_check ticket_5, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_5, >>)",
+          "target": "(t_check ticket_5, n12)",
+          "weight": 1
+        },
+        {
+          "source": "(p_6, >>)",
+          "target": "(t_examine casually_6, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_6, >>)",
+          "target": "(t_examine casually_6, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(p_7, >>)",
+          "target": "(t_decide_7, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_7, >>)",
+          "target": "(t_decide_7, n15)",
+          "weight": 1
+        },
+        {
+          "source": "(p_8, >>)",
+          "target": "(t_reinitiate request_8, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_8, >>)",
+          "target": "(t_reinitiate request_8, n16)",
+          "weight": 1
+        },
+        {
+          "source": "(p_9, >>)",
+          "target": "(t_examine casually_9, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_9, >>)",
+          "target": "(t_examine casually_9, n13)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_10, >>)",
+          "target": "(p_11, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_10, n12)",
+          "target": "(>>, n7)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_10, n12)",
+          "target": "(p_11, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_2, >>)",
+          "target": "(p_3, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_2, n12)",
+          "target": "(>>, n7)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_2, n12)",
+          "target": "(p_3, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_5, >>)",
+          "target": "(p_6, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_5, n12)",
+          "target": "(>>, n7)",
+          "weight": 1
+        },
+        {
+          "source": "(t_check ticket_5, n12)",
+          "target": "(p_6, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_11, >>)",
+          "target": "(p_12, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_11, n15)",
+          "target": "(>>, n5)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_11, n15)",
+          "target": "(p_12, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_3, >>)",
+          "target": "(p_4, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_3, n15)",
+          "target": "(>>, n5)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_3, n15)",
+          "target": "(p_4, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_7, >>)",
+          "target": "(p_8, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_7, n15)",
+          "target": "(>>, n5)",
+          "weight": 1
+        },
+        {
+          "source": "(t_decide_7, n15)",
+          "target": "(p_8, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_1, >>)",
+          "target": "(p_2, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_1, n13)",
+          "target": "(>>, n9)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_1, n13)",
+          "target": "(p_2, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_6, >>)",
+          "target": "(p_7, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_6, n13)",
+          "target": "(>>, n9)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_6, n13)",
+          "target": "(p_7, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_9, >>)",
+          "target": "(p_10, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_9, n13)",
+          "target": "(>>, n9)",
+          "weight": 1
+        },
+        {
+          "source": "(t_examine casually_9, n13)",
+          "target": "(p_10, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_register request_0, >>)",
+          "target": "(p_1, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_register request_0, n10)",
+          "target": "(>>, n3)",
+          "weight": 1
+        },
+        {
+          "source": "(t_register request_0, n10)",
+          "target": "(p_1, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reinitiate request_4, >>)",
+          "target": "(p_5, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reinitiate request_4, n16)",
+          "target": "(>>, n3)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reinitiate request_4, n16)",
+          "target": "(p_5, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reinitiate request_8, >>)",
+          "target": "(p_9, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reinitiate request_8, n16)",
+          "target": "(>>, n3)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reinitiate request_8, n16)",
+          "target": "(p_9, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reject request_12, >>)",
+          "target": "(p_13, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reject request_12, n19)",
+          "target": "(>>, n2)",
+          "weight": 1
+        },
+        {
+          "source": "(t_reject request_12, n19)",
+          "target": "(p_13, >>)",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "(>>, n2)": 1,
+        "(p_13, >>)": 1
+      },
+      "initial_marking": {
+        "(>>, n1)": 1,
+        "(p_0, >>)": 1
+      },
+      "places": [
+        "(>>, n1)",
+        "(>>, n2)",
+        "(>>, n3)",
+        "(>>, n4)",
+        "(>>, n5)",
+        "(>>, n6)",
+        "(>>, n7)",
+        "(>>, n8)",
+        "(>>, n9)",
+        "(p_0, >>)",
+        "(p_1, >>)",
+        "(p_10, >>)",
+        "(p_11, >>)",
+        "(p_12, >>)",
+        "(p_13, >>)",
+        "(p_2, >>)",
+        "(p_3, >>)",
+        "(p_4, >>)",
+        "(p_5, >>)",
+        "(p_6, >>)",
+        "(p_7, >>)",
+        "(p_8, >>)",
+        "(p_9, >>)"
+      ],
+      "transitions": [
+        {
+          "label": "(>>, register request)",
+          "name": "(>>, n10)"
+        },
+        {
+          "label": "(>>, None)",
+          "name": "(>>, n11)"
+        },
+        {
+          "label": "(>>, check ticket)",
+          "name": "(>>, n12)"
+        },
+        {
+          "label": "(>>, examine casually)",
+          "name": "(>>, n13)"
+        },
+        {
+          "label": "(>>, examine thoroughly)",
+          "name": "(>>, n14)"
+        },
+        {
+          "label": "(>>, decide)",
+          "name": "(>>, n15)"
+        },
+        {
+          "label": "(>>, reinitiate request)",
+          "name": "(>>, n16)"
+        },
+        {
+          "label": "(>>, None)",
+          "name": "(>>, n17)"
+        },
+        {
+          "label": "(>>, pay compensation)",
+          "name": "(>>, n18)"
+        },
+        {
+          "label": "(>>, reject request)",
+          "name": "(>>, n19)"
+        },
+        {
+          "label": "(check ticket, >>)",
+          "name": "(t_check ticket_10, >>)"
+        },
+        {
+          "label": "(check ticket, check ticket)",
+          "name": "(t_check ticket_10, n12)"
+        },
+        {
+          "label": "(check ticket, >>)",
+          "name": "(t_check ticket_2, >>)"
+        },
+        {
+          "label": "(check ticket, check ticket)",
+          "name": "(t_check ticket_2, n12)"
+        },
+        {
+          "label": "(check ticket, >>)",
+          "name": "(t_check ticket_5, >>)"
+        },
+        {
+          "label": "(check ticket, check ticket)",
+          "name": "(t_check ticket_5, n12)"
+        },
+        {
+          "label": "(decide, >>)",
+          "name": "(t_decide_11, >>)"
+        },
+        {
+          "label": "(decide, decide)",
+          "name": "(t_decide_11, n15)"
+        },
+        {
+          "label": "(decide, >>)",
+          "name": "(t_decide_3, >>)"
+        },
+        {
+          "label": "(decide, decide)",
+          "name": "(t_decide_3, n15)"
+        },
+        {
+          "label": "(decide, >>)",
+          "name": "(t_decide_7, >>)"
+        },
+        {
+          "label": "(decide, decide)",
+          "name": "(t_decide_7, n15)"
+        },
+        {
+          "label": "(examine casually, >>)",
+          "name": "(t_examine casually_1, >>)"
+        },
+        {
+          "label": "(examine casually, examine casually)",
+          "name": "(t_examine casually_1, n13)"
+        },
+        {
+          "label": "(examine casually, >>)",
+          "name": "(t_examine casually_6, >>)"
+        },
+        {
+          "label": "(examine casually, examine casually)",
+          "name": "(t_examine casually_6, n13)"
+        },
+        {
+          "label": "(examine casually, >>)",
+          "name": "(t_examine casually_9, >>)"
+        },
+        {
+          "label": "(examine casually, examine casually)",
+          "name": "(t_examine casually_9, n13)"
+        },
+        {
+          "label": "(register request, >>)",
+          "name": "(t_register request_0, >>)"
+        },
+        {
+          "label": "(register request, register request)",
+          "name": "(t_register request_0, n10)"
+        },
+        {
+          "label": "(reinitiate request, >>)",
+          "name": "(t_reinitiate request_4, >>)"
+        },
+        {
+          "label": "(reinitiate request, reinitiate request)",
+          "name": "(t_reinitiate request_4, n16)"
+        },
+        {
+          "label": "(reinitiate request, >>)",
+          "name": "(t_reinitiate request_8, >>)"
+        },
+        {
+          "label": "(reinitiate request, reinitiate request)",
+          "name": "(t_reinitiate request_8, n16)"
+        },
+        {
+          "label": "(reject request, >>)",
+          "name": "(t_reject request_12, >>)"
+        },
+        {
+          "label": "(reject request, reject request)",
+          "name": "(t_reject request_12, n19)"
+        }
+      ]
+    },
+    "trace": [
+      "register request",
+      "examine casually",
+      "check ticket",
+      "decide",
+      "reinitiate request",
+      "check ticket",
+      "examine casually",
+      "decide",
+      "reinitiate request",
+      "examine casually",
+      "check ticket",
+      "decide",
+      "reject request"
+    ]
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "sync-running-example-3",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes",
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.construct_synchronous_product_net",
+      "pm4py.solve_extended_marking_equation"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": 3
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

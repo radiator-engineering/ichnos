@@ -16,6 +16,23 @@ Each ``im`` and ``imd`` case emits:
 - ``petri_net_behaviour``: the same for ``pm4py.discover_petri_net_inductive``
   with the same arguments.
 
+Cases ``inductive-im-<option>-<log>`` run IM with one option set, through
+``pm4py.algo.discovery.inductive.algorithm.apply``, because
+``disable_strict_sequence_cut`` is not a ``pm4py.discover_*`` argument. The
+net is ``pm4py.convert_to_petri_net`` of the tree, as in
+``pm4py.discover_petri_net_inductive``:
+
+- ``nofallthrough``: ``disable_fallthroughs=True``, so only the empty-traces
+  and flower-model fall-throughs run.
+- ``plainsequence``: ``disable_strict_sequence_cut=True``.
+
+The six logs reach the activity-concurrent, strict tau loop and tau loop
+fall-throughs, but never activity once per trace. The case
+``inductive-im-fallthroughs-synthetic`` runs IM on a small log, given as
+trace strings in ``params`` and read with ``pm4py.parse_event_log_string``.
+It reaches activity once per trace, strict tau loop and tau loop. These cases
+emit the same three fields as ``im``.
+
 pm4py's IMf result can depend on Python's hash seed: the order of its
 exclusive-choice groups follows set order, and IMf breaks ties by that order.
 So each ``imf`` case mines the log once per seed in ``IMF_SEEDS``, each in a
@@ -65,6 +82,21 @@ INDUCTIVE_VARIANTS = {
 }
 
 
+# Option name -> (algorithm.apply parameters, log id), for IM.
+INDUCTIVE_OPTIONS = {
+    "nofallthrough": ({"disable_fallthroughs": True}, "receipt-csv"),
+    "plainsequence": ({"disable_strict_sequence_cut": True}, "receipt-csv"),
+}
+
+# A small log that reaches the activity-once-per-trace fall-through.
+INDUCTIVE_SYNTHETIC_TRACES = ["a,b,d,c,d", "b,a", "b,d,c,b,a"]
+
+INDUCTIVE_OPTION_FUNCTIONS = [
+    "pm4py.algo.discovery.inductive.algorithm.apply",
+    "pm4py.convert_to_petri_net",
+    *BEHAVIOUR_FUNCTIONS,
+]
+
 # Hash seeds for the IMf runs.
 IMF_SEEDS = list(range(8))
 
@@ -109,6 +141,27 @@ def _inductive_seeds(path: Path, variant: str) -> dict[str, Any]:
     return {"runs": [runs[tree] for tree in sorted(runs)]}
 
 
+def inductive_options(
+    fixtures: dict[str, Path],
+    parameters: dict[str, Any] | None = None,
+    traces: list[str] | None = None,
+) -> dict[str, Any]:
+    """Runs IM with ``parameters`` on the log in ``fixtures``, or on ``traces``."""
+    from pm4py.algo.discovery.inductive import algorithm as inductive_miner
+
+    log = load_log(fixtures["log"]) if traces is None else pm4py.parse_event_log_string(traces, ",")
+    tree = inductive_miner.apply(
+        log,
+        variant=inductive_miner.Variants.IM,
+        parameters={"noise_threshold": 0.0, **(parameters or {})},
+    )
+    return {
+        "tree": str(tree),
+        "tree_behaviour": model_behaviour(log, tree),
+        "petri_net_behaviour": model_behaviour(log, pm4py.convert_to_petri_net(tree)),
+    }
+
+
 def _register_inductive() -> None:
     for variant in INDUCTIVE_VARIANTS:
         for log_id, rel in INDUCTIVE_LOGS.items():
@@ -118,9 +171,114 @@ def _register_inductive() -> None:
                 functions=INDUCTIVE_FUNCTIONS,
                 params={"variant": variant},
             )(inductive)
+    for option, (parameters, log_id) in INDUCTIVE_OPTIONS.items():
+        case(
+            f"inductive-im-{option}-{log_id}",
+            fixture=INDUCTIVE_LOGS[log_id],
+            functions=INDUCTIVE_OPTION_FUNCTIONS,
+            params={"parameters": parameters},
+        )(inductive_options)
+    case(
+        "inductive-im-fallthroughs-synthetic",
+        functions=["pm4py.parse_event_log_string", *INDUCTIVE_OPTION_FUNCTIONS],
+        params={"traces": INDUCTIVE_SYNTHETIC_TRACES},
+    )(inductive_options)
 
 
 _register_inductive()
+
+
+# miners-classic DFG discovery cases. EventLog is the canonical oracle path.
+def dfg_mining(fixtures: dict[str, Path], traces=None, activity_key="concept:name",
+               timestamp_key="time:timestamp", start_key=None, excluded_dates=None):
+    from datetime import datetime, date
+    from pm4py.algo.discovery.dfg.variants import native, performance
+    from pm4py.statistics.eventually_follows.log import get as eventually
+    from pm4py.util import constants
+    if traces is None:
+        frame = load_log(fixtures["log"])
+        log = pm4py.convert_to_event_log(frame, stream_postprocessing=True)
+    else:
+        from pm4py.objects.log.obj import EventLog, Trace, Event
+        log = EventLog([Trace([Event({activity_key: e[0], timestamp_key: datetime.fromisoformat(e[1]),
+                                     **({start_key: datetime.fromisoformat(e[2])} if start_key else {})})
+                               for e in trace]) for trace in traces])
+        frame = None
+        # The reference's public performance/EFG wrappers leave the start key
+        # at time:timestamp even with a custom completion key, unless configured.
+        log.properties["pm4py:param:start_timestamp_key"] = timestamp_key
+    params = {"pm4py:param:activity_key": activity_key, "pm4py:param:timestamp_key": timestamp_key}
+    def edges(mapping):
+        return [[a,b,value] for (a,b), value in sorted(mapping.items())]
+    graph, starts, ends = pm4py.discover_dfg(log, activity_key=activity_key, timestamp_key=timestamp_key)
+    public_performance, ps, pe = pm4py.discover_performance_dfg(log, activity_key=activity_key, timestamp_key=timestamp_key)
+    result = {
+        "dfg": {"graph": edges(graph), "start_activities": starts, "end_activities": ends},
+        "alias": edges(pm4py.discover_directly_follows_graph(log, activity_key=activity_key, timestamp_key=timestamp_key)[0]),
+        "frequency_options": [{"window": w, "keep_once_per_case": once,
+                               "graph": edges(native.apply(log, {**params, "window": w, "keep_once_per_case": once}))}
+                              for w in [0,1,2,99] for once in [False,True]],
+        "minimum_self_distance": pm4py.derive_minimum_self_distance(log, activity_key=activity_key),
+        "eventually": edges(pm4py.discover_eventually_follows_graph(log, activity_key=activity_key, timestamp_key=timestamp_key)),
+        "performance": {"graph": edges(public_performance), "start_activities": ps, "end_activities": pe},
+    }
+    typed = pm4py.discover_dfg_typed(frame if frame is not None else log,
+                                    activity_key=activity_key, timestamp_key=timestamp_key)
+    result["typed"] = {"graph": edges(typed.graph), "start_activities": typed.start_activities,
+                       "end_activities": typed.end_activities}
+    variants = []
+    for interval in ([False, True] if start_key else [False]):
+        time_params = {**params, "pm4py:param:start_timestamp_key": start_key if interval else timestamp_key}
+        for first in [False, True]:
+            variants.append({"interval": interval, "first": first,
+                             "graph": edges(eventually.apply(log, {**time_params, "keep_first_following": first}))})
+    result["eventually_options"] = variants
+    performance_options = []
+    class Calendar:
+        def is_working_day(self, day):
+            return day not in {date.fromisoformat(d) for d in excluded_dates or []}
+    for interval in ([False, True] if start_key else [False]):
+        for business in [False, True]:
+            p = {**params, "pm4py:param:start_timestamp_key": start_key if interval else timestamp_key,
+                 "aggregationMeasure": "all", "business_hours": business,
+                 "business_hour_slots": constants.DEFAULT_BUSINESS_HOUR_SLOTS,
+                 "workcalendar": Calendar()}
+            row = {"interval": interval, "business": business, "graph": edges(performance.apply(log, p))}
+            if traces is not None:
+                row["raw_values"] = edges(performance.apply(log, {**p, "aggregationMeasure": "raw_values"}))
+            performance_options.append(row)
+    result["performance_options"] = performance_options
+    return result
+
+DFG_MINING_FUNCTIONS = [
+    "pm4py.discover_dfg", "pm4py.discover_directly_follows_graph", "pm4py.discover_dfg_typed",
+    "pm4py.discover_performance_dfg", "pm4py.derive_minimum_self_distance",
+    "pm4py.discover_eventually_follows_graph", "pm4py.algo.discovery.dfg.variants.native.apply",
+    "pm4py.algo.discovery.dfg.variants.performance.apply", "pm4py.statistics.eventually_follows.log.get.apply",
+]
+for _dfg_rel in ["running-example.xes", "receipt.xes", "roadtraffic100traces.xes",
+                 "interleavings/receipt_even.csv", "interleavings/receipt_odd.csv"]:
+    case("dfg-mining-" + _dfg_rel.replace("/", "-").replace(".", "-"), fixture=_dfg_rel,
+         functions=DFG_MINING_FUNCTIONS)(dfg_mining)
+
+case("dfg-mining-empty", functions=DFG_MINING_FUNCTIONS, params={"traces": [[], []]})(dfg_mining)
+case("dfg-mining-intervals", functions=DFG_MINING_FUNCTIONS, params={
+    "activity_key": "act", "timestamp_key": "end", "start_key": "start",
+    "excluded_dates": ["2024-01-02"],
+    "traces": [[], [["alone", "2024-01-01T08:00:00+00:00", "2024-01-01T08:00:00+00:00"]],
+        [["A", "2024-01-01T09:00:00+00:00", "2024-01-01T08:00:00+00:00"],
+         ["B", "2024-01-01T10:00:00+00:00", "2024-01-01T08:30:00+00:00"],
+         ["A", "2024-01-01T10:00:00.250000+00:00", "2024-01-01T10:00:00+00:00"],
+         ["B", "2024-01-02T10:00:00+00:00", "2024-01-02T08:00:00+00:00"],
+         ["A", "2024-01-03T08:00:00+00:00", "2024-01-03T08:00:00+00:00"]],
+        [["C", "2024-01-01T12:00:00+02:00", "2024-01-01T12:00:00+02:00"],
+         ["D", "2024-01-01T08:00:00+00:00", "2024-01-01T08:00:00+00:00"],
+         ["C", "2024-01-01T12:00:00+02:00", "2024-01-01T12:00:00+02:00"],
+         ["D", "2024-01-01T10:00:00+00:00", "2024-01-01T10:00:00+00:00"],
+         ["C", "2024-01-01T10:00:00.000001+00:00", "2024-01-01T10:00:00.000001+00:00"]],
+        [["repeat", "2024-01-01T07:00:00+00:00", "2024-01-01T07:00:00+00:00"],
+         ["repeat", "2024-01-01T07:00:00+00:00", "2024-01-01T07:00:00+00:00"]]],
+})(dfg_mining)
 
 
 if __name__ == "__main__":

@@ -44,6 +44,9 @@
 //!   as pm4py does without multiprocessing.
 //! - A noise threshold outside `[0, 1]` is an error. pm4py accepts any
 //!   value.
+//! - `InductiveVariant::Imf { noise_threshold: 0.0 }` runs IMf, with
+//!   nothing filtered. pm4py runs IM for a threshold of 0;
+//!   [`InductiveOptions::from_noise_threshold`] applies pm4py's rule.
 //! - Where pm4py would fail, ichnos returns a tree: a strict sequence cut
 //!   that merges into one group counts as no cut (pm4py recurses without
 //!   end), and an IMd base case whose only activity is an end activity

@@ -25,22 +25,31 @@ fn canonical(tree: &ProcessTree) -> ProcessTree {
 #[test]
 fn wf_nets_convert_like_pm4py() {
     let ids = cases("wfnet");
-    assert_eq!(ids.len(), 16, "expected 16 wfnet goldens, found {ids:?}");
+    assert_eq!(ids.len(), 17, "expected 17 wfnet goldens, found {ids:?}");
     for id in ids {
         let g = golden("wfnet", &id);
         let net = common::build_accepting(g.expected_at("/model"));
-        match (net.to_process_tree(), g.expected_at("/tree").as_str()) {
-            (Ok(ours), Some(theirs)) => {
+        let ours = net.to_process_tree();
+        match (
+            g.expected_at("/tree").as_str(),
+            g.expected_at("/error").as_str(),
+        ) {
+            (Some(theirs), None) => {
                 let theirs = ProcessTree::parse(theirs)
-                    .unwrap_or_else(|_| ProcessTree::activity(theirs))
+                    .unwrap_or_else(|e| panic!("{id}: pm4py's tree {theirs:?} does not parse: {e}"))
                     .fold();
+                let ours = ours.unwrap_or_else(|e| panic!("{id}: ours failed with {e:?}"));
                 assert_eq!(canonical(&ours), canonical(&theirs), "{id}: tree");
             }
-            (
-                Err(WfNetToTreeError::NotWorkflowNet | WfNetToTreeError::NotBlockStructured),
-                None,
-            ) => {}
-            (ours, theirs) => panic!("{id}: ours {ours:?}, pm4py {theirs:?}"),
+            (None, Some(error)) => {
+                let expected = match error {
+                    "not_workflow_net" => WfNetToTreeError::NotWorkflowNet,
+                    "not_block_structured" => WfNetToTreeError::NotBlockStructured,
+                    other => panic!("{id}: unknown pm4py error {other}"),
+                };
+                assert_eq!(ours, Err(expected), "{id}");
+            }
+            (tree, error) => panic!("{id}: golden has tree {tree:?} and error {error:?}"),
         }
     }
 }

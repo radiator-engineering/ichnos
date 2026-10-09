@@ -1,0 +1,712 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+            "target": "p_16",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_16",
+            "target": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_16"
+        ],
+        "transitions": [
+          {
+            "label": "e",
+            "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+          },
+          {
+            "label": "End",
+            "name": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "4e6e5b14-8a25-40a8-962b-649de2917762",
+            "target": "p_3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_3",
+            "target": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_3"
+        ],
+        "transitions": [
+          {
+            "label": "Start",
+            "name": "4e6e5b14-8a25-40a8-962b-649de2917762"
+          },
+          {
+            "label": "a",
+            "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+            "target": "p_14",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_14",
+            "target": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_14",
+            "target": "t_0",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_17",
+            "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "t_0",
+            "target": "p_17",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_14",
+          "p_17"
+        ],
+        "transitions": [
+          {
+            "label": "e",
+            "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+          },
+          {
+            "label": "c",
+            "name": "5b9db842-5285-4229-b6fb-c55952ac4e73"
+          },
+          {
+            "label": "d",
+            "name": "cadc2077-836f-4c05-acf5-7eb1dea15b3b"
+          },
+          {
+            "label": null,
+            "name": "t_0"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+            "target": "sink",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "sink": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "sink"
+        ],
+        "transitions": [
+          {
+            "label": "End",
+            "name": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+            "target": "p_13",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+            "target": "p_13",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_13",
+            "target": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_13"
+        ],
+        "transitions": [
+          {
+            "label": "c",
+            "name": "5b9db842-5285-4229-b6fb-c55952ac4e73"
+          },
+          {
+            "label": "a",
+            "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+          },
+          {
+            "label": "d",
+            "name": "cadc2077-836f-4c05-acf5-7eb1dea15b3b"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+            "target": "p_18",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_18",
+            "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_18"
+        ],
+        "transitions": [
+          {
+            "label": "e",
+            "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+          },
+          {
+            "label": "a",
+            "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "source",
+            "target": "4e6e5b14-8a25-40a8-962b-649de2917762",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "source": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "source"
+        ],
+        "transitions": [
+          {
+            "label": "Start",
+            "name": "4e6e5b14-8a25-40a8-962b-649de2917762"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "4e6e5b14-8a25-40a8-962b-649de2917762"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "target": "p_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "target": "p_14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_13",
+          "target": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "t_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_16",
+          "target": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_17",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_0",
+          "target": "p_17",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_13",
+        "p_14",
+        "p_16",
+        "p_17",
+        "p_3",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "e",
+          "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+        },
+        {
+          "label": "Start",
+          "name": "4e6e5b14-8a25-40a8-962b-649de2917762"
+        },
+        {
+          "label": "c",
+          "name": "5b9db842-5285-4229-b6fb-c55952ac4e73"
+        },
+        {
+          "label": "End",
+          "name": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56"
+        },
+        {
+          "label": "a",
+          "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+        },
+        {
+          "label": "d",
+          "name": "cadc2077-836f-4c05-acf5-7eb1dea15b3b"
+        },
+        {
+          "label": null,
+          "name": "t_0"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "target": "p_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "target": "p_14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_18",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_13",
+          "target": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_16",
+          "target": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_18",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_13",
+        "p_14",
+        "p_16",
+        "p_18",
+        "p_3",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "e",
+          "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+        },
+        {
+          "label": "Start",
+          "name": "4e6e5b14-8a25-40a8-962b-649de2917762"
+        },
+        {
+          "label": "c",
+          "name": "5b9db842-5285-4229-b6fb-c55952ac4e73"
+        },
+        {
+          "label": "End",
+          "name": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56"
+        },
+        {
+          "label": "a",
+          "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+        },
+        {
+          "label": "d",
+          "name": "cadc2077-836f-4c05-acf5-7eb1dea15b3b"
+        }
+      ]
+    },
+    "is_sound": true,
+    "marking_equation": 6,
+    "model": {
+      "arcs": [
+        {
+          "source": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "target": "p_16",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "target": "p_14",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "target": "p_18",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "target": "p_13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_13",
+          "target": "5b9db842-5285-4229-b6fb-c55952ac4e73",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_14",
+          "target": "t_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_16",
+          "target": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_17",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_18",
+          "target": "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "4e6e5b14-8a25-40a8-962b-649de2917762",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t_0",
+          "target": "p_17",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_13",
+        "p_14",
+        "p_16",
+        "p_17",
+        "p_18",
+        "p_3",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "e",
+          "name": "22ce2b93-c130-4cd3-8a70-3f1a604712f7"
+        },
+        {
+          "label": "Start",
+          "name": "4e6e5b14-8a25-40a8-962b-649de2917762"
+        },
+        {
+          "label": "c",
+          "name": "5b9db842-5285-4229-b6fb-c55952ac4e73"
+        },
+        {
+          "label": "End",
+          "name": "b63da257-4fe5-4cde-ad4f-523ad3d5eb56"
+        },
+        {
+          "label": "a",
+          "name": "b795b444-8c55-4b30-b6b7-b4d1f88ea547"
+        },
+        {
+          "label": "d",
+          "name": "cadc2077-836f-4c05-acf5-7eb1dea15b3b"
+        },
+        {
+          "label": null,
+          "name": "t_0"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 0.8823529411764706,
+      "extended_cardoso": 8,
+      "extended_cyclomatic": 7
+    },
+    "soundness": {
+      "messages": [
+        "Input is ok.",
+        "Petri Net is a workflow net.",
+        "Every place is covered by s-components.",
+        "There are no dead tasks.",
+        "All tasks are live."
+      ],
+      "sound": true
+    },
+    "workflow_net": true
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-murata2",
+    "fixtures": {
+      "model": "fixtures/logs/murata2.pnml"
+    },
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "name": "murata2"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
