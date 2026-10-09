@@ -197,6 +197,118 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "examine casually"
+                    },
+                    {
+                      "kind": "activity",
+                      "label": "examine thoroughly"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "kind": "activity",
+                  "label": "check ticket"
+                },
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "kind": "activity",
+              "label": "reinitiate request"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "pay compensation"
+            },
+            {
+              "kind": "activity",
+              "label": "reject request"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "kind": "activity",
+          "label": "register request"
+        },
+        {
+          "kind": "silent"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )",
     "tree_in": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )"
   },
@@ -209,7 +321,8 @@
     "functions": [
       "pm4py.parse_process_tree",
       "pm4py.convert_to_petri_net",
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {
       "model": {

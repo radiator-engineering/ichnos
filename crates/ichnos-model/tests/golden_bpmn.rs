@@ -456,6 +456,19 @@ fn bpmn_to_petri_nets_match_pm4py() {
             let actual = describe_net(&b.to_petri_net(options).net, &node_ids);
             assert_eq!(&actual, g.expected_at(key), "{id} {key}");
         }
+        common::assert_tree(
+            &id,
+            b.to_process_tree(),
+            g.expected_at("/tree"),
+            g.expected_at("/error"),
+            common::tree_error,
+        );
+        common::assert_powl(
+            &id,
+            b.to_powl(),
+            g.expected_at("/powl"),
+            g.expected_at("/powl_error"),
+        );
     }
 }
 

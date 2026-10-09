@@ -1,5 +1,6 @@
 {
   "expected": {
+    "error": "not_workflow_net",
     "model": {
       "flows": [
         {
@@ -684,7 +685,10 @@
           ]
         }
       ]
-    }
+    },
+    "powl": null,
+    "powl_error": "not_workflow_net",
+    "tree": null
   },
   "meta": {
     "area": "bpmn",
@@ -694,7 +698,9 @@
     },
     "functions": [
       "pm4py.convert_to_petri_net",
-      "pm4py.objects.conversion.bpmn.variants.to_petri_net.apply"
+      "pm4py.objects.conversion.bpmn.variants.to_petri_net.apply",
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {
       "model": {
