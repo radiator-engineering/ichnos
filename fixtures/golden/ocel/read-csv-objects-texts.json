@@ -1,0 +1,629 @@
+{
+  "expected": {
+    "cases": {
+      "basic": {
+        "objects_text": "ocel:oid,ocel:type,price\no1,order,12.5\ni1,item,\ni2,item,3\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {
+                "price": [
+                  "string",
+                  "12.5"
+                ]
+              },
+              "id": "o1",
+              "type": "order"
+            },
+            {
+              "attributes": {},
+              "id": "i1",
+              "type": "item"
+            },
+            {
+              "attributes": {
+                "price": [
+                  "string",
+                  "3"
+                ]
+              },
+              "id": "i2",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "empty": {
+        "objects_text": "ocel:oid,ocel:type\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "extra-columns-only": {
+        "objects_text": "ocel:oid,ocel:type,a,b\no1,order,,\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "order"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "na-id": {
+        "objects_text": "ocel:oid,ocel:type\nNA,order\no1,order\n,item\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "order"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "na-type": {
+        "objects_text": "ocel:oid,ocel:type\no1,NA\ni1,\ni2,item\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "i2",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "no-oid-column": {
+        "error": "KeyError",
+        "objects_text": "ocel:type,price\norder,12.5\n"
+      },
+      "no-type-column": {
+        "objects_text": "ocel:oid,price\no1,12.5\ni1,\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {
+                "price": [
+                  "string",
+                  "12.5"
+                ]
+              },
+              "id": "o1",
+              "type": null
+            },
+            {
+              "attributes": {},
+              "id": "i1",
+              "type": null
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "other-type": {
+        "objects_text": "ocel:oid,ocel:type\no1,item\ni1,order\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "item"
+            },
+            {
+              "attributes": {},
+              "id": "i1",
+              "type": "order"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "repeated-object": {
+        "objects_text": "ocel:oid,ocel:type\no1,order\no1,item\ni1,item\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "order"
+            },
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "item"
+            },
+            {
+              "attributes": {},
+              "id": "i1",
+              "type": "item"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      },
+      "unlisted-object": {
+        "objects_text": "ocel:oid,ocel:type\no1,order\n",
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "place",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "pick",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "order"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "order"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "place",
+              "event": "e1",
+              "object": "i2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "item"
+            },
+            {
+              "activity": "pick",
+              "event": "e2",
+              "object": "i1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "item"
+            }
+          ]
+        }
+      }
+    },
+    "log": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:order,ocel:type:item\ne1,place,2022-01-09 14:00:00,['o1'],\"['i1', 'i2']\"\ne2,pick,2022-01-09 15:00:00,,['i1']\n"
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "read-csv-objects-texts",
+    "fixtures": {},
+    "functions": [
+      "pm4py.read_ocel_csv"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

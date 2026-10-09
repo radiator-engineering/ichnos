@@ -1,0 +1,12 @@
+id,activity,timestamp,ot:item,ot:order,count,cost,rush,slot,note
+e1,place order,2022-01-09T14:00:00Z,"i1#ordered/i\/2#ordered{""weight"":1.5}","o1#placer{""value"":12.5,""vip"":true,""label"":""big""}",7,10,TRUE,2022-01-09T18:00:00Z,first
+e2,pick item,2022-01-09T15:30:00+01:00,i1#picked,,2,2.5,false,2022-01-09T18:00:00+01:00,"a,b"
+e3,pick item,2022-01-09T14:30:00.5Z,"i\/2#picked{""weight"":""1.75""}",,3,,False,,
+e4,ship,2022-01-10T08:00:00Z,,o1#shipped,,4,,,"x ""q"" é"
+,,,"i\#3{""weight"":2,""tag"":null}",,,,,,
+,,,,"o2{""value"":""7"",""since"":""2022-01-01T00:00:00Z""}",,,,,
+,,2022-01-09T17:00:00Z,,"o1{""value"":13,""label"":""bigger""}",,,,,
+,,2022-01-09T19:00:00+00:00,,"o1{""value"":13.5}",,,,,
+,,1970-01-01T00:00:00Z,"i1{""weight"":1.25}",,,,,,
+o1,O2O,,i1#contains/i\/2#contains,o2#follows,,,,,
+ e5 , audit ,2022-01-11T00:00:00Z,,,,,,,

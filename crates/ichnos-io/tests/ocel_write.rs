@@ -1,4 +1,4 @@
-//! The OCEL JSON and XML writers against pm4py's.
+//! The OCEL JSON, XML and CSV writers against pm4py's.
 //!
 //! Each `ocel/write-*` golden holds the tables pm4py's writers start from
 //! (`input`), the log's globals, and the file each writer gives. This test
@@ -13,20 +13,27 @@
 //! the order of events, objects and relations, must agree. Where the orders
 //! agree (`BYTE_EXACT`), the files must agree byte for byte.
 //!
+//! A CSV file is compared row by row, each row as its non-empty cells keyed
+//! by column name, with the JSON values in OCEL 2.0 references sorted by
+//! name. When both headers are the same, the files must agree byte for
+//! byte.
+//!
 //! A second test reads each fixture with the ichnos reader, writes it and
 //! compares the files with pm4py's read-then-write output in the same way.
 
 use std::fmt;
+use std::io::Write;
 use std::sync::Arc;
 
 use chrono::DateTime;
 use ichnos_core::{AttributeValue, Attributes};
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
-    OcelReadOptions, read_ocel_json, read_ocel_xml, read_ocel2, read_ocel2_json, read_ocel2_xml,
-    write_ocel, write_ocel_json, write_ocel_json_to_writer, write_ocel_xml,
-    write_ocel_xml_to_writer, write_ocel2, write_ocel2_json, write_ocel2_json_to_writer,
-    write_ocel2_xml, write_ocel2_xml_to_writer,
+    OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_json, read_ocel_xml, read_ocel2,
+    read_ocel2_csv, read_ocel2_json, read_ocel2_xml, write_ocel, write_ocel_csv_to_writer,
+    write_ocel_json, write_ocel_json_to_writer, write_ocel_xml, write_ocel_xml_to_writer,
+    write_ocel2, write_ocel2_csv, write_ocel2_csv_to_writer, write_ocel2_json,
+    write_ocel2_json_to_writer, write_ocel2_xml, write_ocel2_xml_to_writer,
 };
 use ichnos_ocel::{
     EventEvent, EventObject, ObjectChange, ObjectObject, Ocel, OcelEvent, OcelObject,
@@ -63,6 +70,12 @@ const PM4PY_FAILS: &[(&str, &str)] = &[("write-typed20-xmlocel", "xml2")];
 /// and ichnos writes the time as pandas formats it. These cases compare
 /// times as instants.
 const TEXT_TIMES: &[&str] = &["write-typed20-xmlocel"];
+
+/// Where pm4py's reader leaves the object attribute columns as pandas
+/// `object` columns, so its OCEL 1.0 XML writer tags every object value as
+/// `string`. ichnos tags a value by its type. These cases compare the
+/// `float` and `string` tags as one.
+const OBJECT_DTYPE: &[(&str, &str)] = &[("write-typed20-ocel-csv", "xml")];
 
 /// The time pm4py gives an object's attribute values in OCEL 2.0.
 const OBJECT_TIME: &str = "1970-01-01T00:00:00Z";
@@ -130,8 +143,12 @@ fn timestamp(v: &Value) -> chrono::DateTime<chrono::FixedOffset> {
     DateTime::parse_from_rfc3339(v.as_str().expect("timestamp")).expect("timestamp")
 }
 
-fn build(v: &Value, globals: &Value) -> Ocel {
+/// The log a write golden starts from: its `input` tables, `globals` and,
+/// when pm4py's event times are naive, `naive_times`.
+fn build(expected: &Value) -> Ocel {
+    let (v, globals) = (&expected["input"], &expected["globals"]);
     Ocel {
+        naive_times: expected["naive_times"].as_bool().unwrap_or(false),
         events: rows(v, "events")
             .iter()
             .map(|e| OcelEvent {
@@ -502,6 +519,102 @@ fn canon_xml_text(text: &str, _times: bool) -> String {
     out
 }
 
+/// The records of a CSV text as Python's `csv` module writes them.
+fn csv_records(text: &str) -> Vec<Vec<String>> {
+    let mut records = Vec::new();
+    let mut record = Vec::new();
+    let mut field = String::new();
+    let mut chars = text.chars().peekable();
+    let mut quoted = false;
+    while let Some(c) = chars.next() {
+        match c {
+            '"' if quoted && chars.peek() == Some(&'"') => {
+                chars.next();
+                field.push('"');
+            }
+            '"' => quoted = !quoted,
+            ',' if !quoted => record.push(std::mem::take(&mut field)),
+            '\r' if !quoted && chars.peek() == Some(&'\n') => {}
+            '\n' if !quoted => {
+                record.push(std::mem::take(&mut field));
+                records.push(std::mem::take(&mut record));
+            }
+            c => field.push(c),
+        }
+    }
+    records
+}
+
+/// A reference cell with the keys of each JSON object sorted.
+fn sorted_json(cell: &str) -> String {
+    let mut out = String::new();
+    let mut rest = cell;
+    loop {
+        let mut escape = false;
+        let start = rest.char_indices().find_map(|(i, c)| {
+            let found = !escape && c == '{';
+            escape = !escape && c == '\\';
+            found.then_some(i)
+        });
+        let Some(start) = start else {
+            out.push_str(rest);
+            return out;
+        };
+        out.push_str(&rest[..start]);
+        let mut stream = serde_json::Deserializer::from_str(&rest[start..]).into_iter::<J>();
+        let mut j = stream.next().expect("JSON").expect("JSON");
+        if let J::Obj(entries) = &mut j {
+            entries.sort_by(|a, b| a.0.cmp(&b.0));
+        }
+        out.push_str(&format!("{j:?}"));
+        rest = &rest[start + stream.byte_offset()..];
+    }
+}
+
+/// One line per row: its non-empty cells by column name.
+fn canon_csv(text: &str) -> String {
+    let mut records = csv_records(text).into_iter();
+    let header = records.next().unwrap_or_default();
+    records
+        .map(|record| {
+            let mut cells: Vec<(&String, String)> = header
+                .iter()
+                .zip(record)
+                .filter(|(_, v)| !v.is_empty())
+                .map(|(k, v)| {
+                    let v = if k.starts_with("ot:") {
+                        sorted_json(&v)
+                    } else {
+                        v
+                    };
+                    (k, v)
+                })
+                .collect();
+            cells.sort();
+            format!("{cells:?}\n")
+        })
+        .collect()
+}
+
+/// Compares a CSV text with pm4py's.
+fn compare_csv(what: &str, ours: &[u8], theirs: &Value, failures: &mut Vec<String>) {
+    let ours = std::str::from_utf8(ours).expect("UTF-8");
+    let theirs = theirs.as_str().expect("text");
+    assert_eq!(
+        canon_csv(theirs).lines().count() + 1,
+        csv_records(theirs).len(),
+        "{what}: one canonical line per record"
+    );
+    if ours.lines().next() == theirs.lines().next()
+        && let Some(diff) = first_difference(ours, theirs)
+    {
+        failures.push(format!("{what} (bytes): {diff}"));
+    }
+    if let Some(diff) = first_difference(&canon_csv(ours), &canon_csv(theirs)) {
+        failures.push(format!("{what}: {diff}"));
+    }
+}
+
 type Writer = fn(&Ocel, &mut Vec<u8>) -> ichnos_io::Result<()>;
 
 const WRITERS: [(&str, Writer); 4] = [
@@ -521,11 +634,11 @@ fn write_cases() -> Vec<String> {
 #[test]
 fn writers_match_pm4py() {
     let ids = write_cases();
-    assert_eq!(ids.len(), 12, "cases: {ids:?}");
+    assert_eq!(ids.len(), 15, "cases: {ids:?}");
     let mut failures = Vec::new();
     for id in &ids {
         let g = golden("ocel", id);
-        let ocel = build(&g.expected["input"], &g.expected["globals"]);
+        let ocel = build(&g.expected);
         compare_writers(id, &g.expected, &ocel, &mut failures);
     }
     assert!(failures.is_empty(), "{}", failures.join("\n\n"));
@@ -560,11 +673,13 @@ fn writers_match_pm4py_from_files() {
             "pm4py.read_ocel_xml" => read_ocel_xml(&path, &options),
             "pm4py.read_ocel2_json" => read_ocel2_json(&path),
             "pm4py.read_ocel2_xml" => read_ocel2_xml(&path, &options),
+            "pm4py.read_ocel2_csv" => read_ocel2_csv(&path),
+            "pm4py.read_ocel_csv" => read_ocel_csv(&path, Some(&g.fixture("objects"))),
             other => panic!("{id}: unknown reader {other}"),
         }
         .unwrap_or_else(|e| panic!("{id}: {e}"));
         if READER_RELATION_ORDER.contains(&id.as_str()) {
-            let order = build(&g.expected["input"], &g.expected["globals"]).relations;
+            let order = build(&g.expected).relations;
             let position = |r: &EventObject| order.iter().position(|o| o == r);
             assert!(ocel.relations.iter().all(|r| position(r).is_some()), "{id}");
             ocel.relations.sort_by_key(position);
@@ -572,7 +687,7 @@ fn writers_match_pm4py_from_files() {
         compare_writers(id, &g.expected, &ocel, &mut failures);
         checked += 1;
     }
-    assert_eq!(checked, 7);
+    assert_eq!(checked, 9);
     assert!(failures.is_empty(), "{}", failures.join("\n\n"));
 }
 
@@ -607,9 +722,34 @@ fn compare_writers(id: &str, expected: &Value, ocel: &Ocel, failures: &mut Vec<S
             canon_xml_text
         };
         let times = TEXT_TIMES.contains(&id);
-        if let Some(diff) = first_difference(&canon(&ours, times), &canon(theirs, times)) {
+        let (mut ours, mut theirs) = (canon(&ours, times), canon(theirs, times));
+        if OBJECT_DTYPE.contains(&(id, name)) {
+            ours = ours.replace("<float [", "<string [");
+            theirs = theirs.replace("<float [", "<string [");
+        }
+        if let Some(diff) = first_difference(&ours, &theirs) {
             failures.push(format!("{id} {name}: {diff}"));
         }
+    }
+    let want = &expected["writers"]["csv"];
+    let (mut table, mut objects) = (Vec::new(), Vec::new());
+    write_ocel_csv_to_writer(ocel, &mut table, Some(&mut objects as &mut dyn Write))
+        .unwrap_or_else(|e| panic!("{id} csv: {e}"));
+    compare_csv(&format!("{id} csv"), &table, &want["text"], failures);
+    compare_csv(
+        &format!("{id} csv objects"),
+        &objects,
+        &want["objects"],
+        failures,
+    );
+    let want = &expected["writers"]["csv2"];
+    let mut out = Vec::new();
+    let result = write_ocel2_csv_to_writer(ocel, &mut out);
+    if let Some(error) = want.get("error") {
+        assert!(result.is_err(), "{id} csv2: pm4py raises {error}");
+    } else {
+        result.unwrap_or_else(|e| panic!("{id} csv2: {e}"));
+        compare_csv(&format!("{id} csv2"), &out, &want["text"], failures);
     }
 }
 
@@ -632,14 +772,14 @@ fn first_difference(ours: &str, theirs: &str) -> Option<String> {
 #[test]
 fn json_layout_follows_ocel20_features() {
     let g = golden("ocel", "write-synthetic");
-    let ocel = build(&g.expected["input"], &g.expected["globals"]);
+    let ocel = build(&g.expected);
     assert!(!ocel.is_ocel20());
     let mut out = Vec::new();
     write_ocel_json_to_writer(&ocel, &mut out).unwrap();
     let text = String::from_utf8(out).unwrap();
     assert!(!text.contains("ocel:typedOmap"), "{text}");
     let g = golden("ocel", "write-synthetic20");
-    let ocel = build(&g.expected["input"], &g.expected["globals"]);
+    let ocel = build(&g.expected);
     let mut out = Vec::new();
     write_ocel_json_to_writer(&ocel, &mut out).unwrap();
     assert!(String::from_utf8(out).unwrap().contains("ocel:typedOmap"));
@@ -650,7 +790,7 @@ fn json_layout_follows_ocel20_features() {
 #[test]
 fn xml_refuses_control_characters() {
     let g = golden("ocel", "write-synthetic20");
-    let mut ocel = build(&g.expected["input"], &g.expected["globals"]);
+    let mut ocel = build(&g.expected);
     ocel.events[0]
         .attributes
         .insert("c_text", AttributeValue::String("a\u{1}b".into()));
@@ -690,16 +830,40 @@ fn files_read_back() {
         ocel.events.len()
     );
 
-    // `write_ocel`: `jsonocel` and `xmlocel` only.
+    // `write_ocel`: `jsonocel`, `xmlocel` and `csv`.
     write_ocel(&ocel, dir.join("c.JSONOCEL")).unwrap();
     assert!(write_ocel(&ocel, dir.join("c.json")).is_err());
-    assert!(write_ocel(&ocel, dir.join("c.csv")).is_err());
+    let path = dir.join("c.csv");
+    write_ocel(&ocel, &path).unwrap();
+    let back = read_ocel_csv(&path, None).unwrap();
+    let pairs = |o: &Ocel| {
+        let mut pairs: Vec<(String, String)> = o
+            .relations
+            .iter()
+            .map(|r| (r.event.to_string(), r.object.to_string()))
+            .collect();
+        pairs.sort();
+        pairs
+    };
+    assert_eq!(back.events.len(), ocel.events.len(), "csv");
+    assert_eq!(pairs(&back), pairs(&ocel), "csv");
+    assert_eq!(read_ocel(&path, &options).unwrap(), back);
     // `write_ocel2`: `json`, `jsonocel`, `xml` and `xmlocel`, also before `.gz`.
     let path = dir.join("d.json.gz");
     write_ocel2(&ocel, &path).unwrap();
     assert_eq!(read_ocel2(&path, &options).unwrap(), ocel);
     write_ocel2(&ocel, dir.join("d.xml")).unwrap();
-    assert!(write_ocel2(&ocel, dir.join("d.ocel.csv")).is_err());
+    let path = dir.join("d.ocel.csv");
+    write_ocel2(&ocel, &path).unwrap();
+    let back = read_ocel2(&path, &options).unwrap();
+    assert_eq!(back.events.len(), ocel.events.len(), "csv2");
+    assert_eq!(pairs(&back), pairs(&ocel), "csv2");
+    // The writer orders the object-to-object rows by source.
+    let mut o2o = ocel.o2o.clone();
+    o2o.sort_by(|a, b| (&a.source, &a.target).cmp(&(&b.source, &b.target)));
+    assert_eq!(back.o2o, o2o, "csv2");
+    // pm4py's OCEL 2.0 CSV writer requires the `.ocel.csv` ending.
+    assert!(write_ocel2_csv(&ocel, dir.join("d.csv")).is_err());
     assert!(write_ocel2(&ocel, dir.join("d.txt")).is_err());
     std::fs::remove_dir_all(&dir).unwrap();
 }

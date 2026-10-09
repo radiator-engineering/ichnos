@@ -60,7 +60,8 @@ impl Default for CsvWriteOptions {
     }
 }
 
-fn is_na(value: &str) -> bool {
+/// Whether pandas reads `value` as a missing value by default.
+pub(crate) fn is_na(value: &str) -> bool {
     matches!(
         value,
         "" | "#N/A"

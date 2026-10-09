@@ -1,0 +1,272 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "cost": [
+              "string",
+              "10"
+            ],
+            "note": [
+              "string",
+              "first"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00"
+        },
+        {
+          "activity": "pick",
+          "attributes": {
+            "cost": [
+              "string",
+              "2.5"
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "pick",
+          "attributes": {
+            "note": [
+              "string",
+              "a,b"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00"
+        },
+        {
+          "activity": "ship",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00"
+        },
+        {
+          "activity": "lonely",
+          "attributes": {
+            "note": [
+              "string",
+              "x"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2022-01-10T09:00:00.000000+00:00"
+        },
+        {
+          "activity": "not lists",
+          "attributes": {
+            "note": [
+              "string",
+              "multi\nline"
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2022-01-11T01:00:00.000000+00:00"
+        },
+        {
+          "activity": "repeat",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "2022-01-12T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "short row",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "2022-01-12T01:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {
+            "price": [
+              "string",
+              "12.5"
+            ],
+            "since": [
+              "string",
+              "2022-01-01"
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "since": [
+              "string",
+              "x"
+            ]
+          },
+          "id": "i'2",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "price": [
+              "string",
+              "1"
+            ]
+          },
+          "id": "o3",
+          "type": "order"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i'2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "ié",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i4x",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i\\5",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick",
+          "event": "e3",
+          "object": "i'2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T15:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "ship",
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "repeat",
+          "event": "e10",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "short row",
+          "event": "e8",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "2022-01-12T01:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "naive_times": true,
+    "writers": {
+      "csv": {
+        "objects": "ocel:oid,ocel:type,price,since\no1,order,12.5,2022-01-01\ni1,item,,\ni'2,item,,x\n",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,cost,note,ocel:type:order,ocel:type:item\ne1,place order,2022-01-09 14:00:00,10,first,['o1'],\"['i1', \"\"i'2\"\"]\"\ne3,pick,2022-01-09 14:30:00,2.5,,,\"[\"\"i'2\"\"]\"\ne2,pick,2022-01-09 15:30:00,,\"a,b\",,['i1']\ne4,ship,2022-01-10 08:00:00,,,['o1'],\ne10,repeat,2022-01-12 00:00:00,,,['o1'],\ne8,short row,2022-01-12 01:00:00,,,,\n"
+      },
+      "csv2": {
+        "error": "ValueError"
+      },
+      "json": {
+        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"order\",\n      \"item\"\n    ],\n    \"ocel:attribute-names\": [\n      \"cost\",\n      \"note\",\n      \"price\",\n      \"since\"\n    ],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:activity\": \"place order\",\n      \"ocel:timestamp\": \"2022-01-09T14:00:00Z\",\n      \"ocel:vmap\": {\n        \"cost\": \"10\",\n        \"note\": \"first\"\n      },\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i'2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i'2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:activity\": \"pick\",\n      \"ocel:timestamp\": \"2022-01-09T14:30:00Z\",\n      \"ocel:vmap\": {\n        \"cost\": \"2.5\"\n      },\n      \"ocel:omap\": [\n        \"i'2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i'2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:activity\": \"pick\",\n      \"ocel:timestamp\": \"2022-01-09T15:30:00Z\",\n      \"ocel:vmap\": {\n        \"note\": \"a,b\"\n      },\n      \"ocel:omap\": [\n        \"i1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e4\": {\n      \"ocel:activity\": \"ship\",\n      \"ocel:timestamp\": \"2022-01-10T08:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e10\": {\n      \"ocel:activity\": \"repeat\",\n      \"ocel:timestamp\": \"2022-01-12T00:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"o1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e8\": {\n      \"ocel:activity\": \"short row\",\n      \"ocel:timestamp\": \"2022-01-12T01:00:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": []\n    }\n  },\n  \"ocel:objects\": {\n    \"o1\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {\n        \"price\": \"12.5\",\n        \"since\": \"2022-01-01\"\n      }\n    },\n    \"i1\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    },\n    \"i'2\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {\n        \"since\": \"x\"\n      }\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"pick\": {\n      \"cost\": \"string\",\n      \"note\": \"string\"\n    },\n    \"place order\": {\n      \"cost\": \"string\",\n      \"note\": \"string\"\n    },\n    \"repeat\": {},\n    \"ship\": {},\n    \"short row\": {}\n  },\n  \"ocel:objectTypes\": {\n    \"item\": {\n      \"since\": \"string\"\n    },\n    \"order\": {\n      \"price\": \"string\",\n      \"since\": \"string\"\n    }\n  },\n  \"ocel:objectChanges\": []\n}"
+      },
+      "json2": {
+        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"since\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"price\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"since\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"pick\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"place order\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"repeat\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ship\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"short row\",\n      \"attributes\": []\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"price\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"12.5\"\n        },\n        {\n          \"name\": \"since\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"2022-01-01\"\n        }\n      ]\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"i'2\",\n      \"type\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"since\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"x\"\n        }\n      ]\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"place order\",\n      \"time\": \"2022-01-09T14:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": \"10\"\n        },\n        {\n          \"name\": \"note\",\n          \"value\": \"first\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i'2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"pick\",\n      \"time\": \"2022-01-09T14:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": \"2.5\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i'2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"pick\",\n      \"time\": \"2022-01-09T15:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"note\",\n          \"value\": \"a,b\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"ship\",\n      \"time\": \"2022-01-10T08:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"repeat\",\n      \"time\": \"2022-01-12T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"short row\",\n      \"time\": \"2022-01-12T01:00:00Z\"\n    }\n  ]\n}"
+      },
+      "xml": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"cost\"/>\n      <string key=\"attribute-name\" value=\"note\"/>\n      <string key=\"attribute-name\" value=\"price\"/>\n      <string key=\"attribute-name\" value=\"since\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"item\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <string key=\"activity\" value=\"place order\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i'2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"cost\" value=\"10\"/>\n        <string key=\"note\" value=\"first\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <string key=\"activity\" value=\"pick\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i'2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"cost\" value=\"2.5\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <string key=\"activity\" value=\"pick\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T15:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"note\" value=\"a,b\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <string key=\"activity\" value=\"ship\"/>\n      <date key=\"timestamp\" value=\"2022-01-10T08:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <string key=\"activity\" value=\"repeat\"/>\n      <date key=\"timestamp\" value=\"2022-01-12T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <string key=\"activity\" value=\"short row\"/>\n      <date key=\"timestamp\" value=\"2022-01-12T01:00:00Z\"/>\n      <list key=\"omap\"/>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\">\n        <string key=\"price\" value=\"12.5\"/>\n        <string key=\"since\" value=\"2022-01-01\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i'2\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\">\n        <string key=\"since\" value=\"x\"/>\n      </list>\n    </object>\n  </objects>\n</log>\n"
+      },
+      "xml2": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"item\">\n      <attributes>\n        <attribute name=\"since\" type=\"string\"/>\n      </attributes>\n    </object-type>\n    <object-type name=\"order\">\n      <attributes>\n        <attribute name=\"price\" type=\"string\"/>\n        <attribute name=\"since\" type=\"string\"/>\n      </attributes>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"pick\">\n      <attributes>\n        <attribute name=\"cost\" type=\"string\"/>\n        <attribute name=\"note\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"place order\">\n      <attributes>\n        <attribute name=\"cost\" type=\"string\"/>\n        <attribute name=\"note\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"repeat\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"ship\">\n      <attributes/>\n    </event-type>\n    <event-type name=\"short row\">\n      <attributes/>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"o1\" type=\"order\">\n      <attributes>\n        <attribute name=\"price\" time=\"1970-01-01T00:00:00Z\">12.5</attribute>\n        <attribute name=\"since\" time=\"1970-01-01T00:00:00Z\">2022-01-01</attribute>\n      </attributes>\n    </object>\n    <object id=\"i1\" type=\"item\">\n      <attributes/>\n    </object>\n    <object id=\"i'2\" type=\"item\">\n      <attributes>\n        <attribute name=\"since\" time=\"1970-01-01T00:00:00Z\">x</attribute>\n      </attributes>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"place order\" time=\"2022-01-09T14:00:00\">\n      <attributes>\n        <attribute name=\"cost\">10</attribute>\n        <attribute name=\"note\">first</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n        <relationship object-id=\"i'2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"pick\" time=\"2022-01-09T14:30:00\">\n      <attributes>\n        <attribute name=\"cost\">2.5</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"i'2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"pick\" time=\"2022-01-09T15:30:00\">\n      <attributes>\n        <attribute name=\"note\">a,b</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"i1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e4\" type=\"ship\" time=\"2022-01-10T08:00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e10\" type=\"repeat\" time=\"2022-01-12T00:00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e8\" type=\"short row\" time=\"2022-01-12T01:00:00\">\n      <attributes/>\n      <objects/>\n    </event>\n  </events>\n</log>\n"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "write-typed-csv-objects",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed.csv",
+      "objects": "fixtures/logs/ocel/typed-objects.csv"
+    },
+    "functions": [
+      "pm4py.read_ocel_csv",
+      "pm4py.write_ocel_json",
+      "pm4py.write_ocel_xml",
+      "pm4py.write_ocel2_json",
+      "pm4py.write_ocel2_xml",
+      "pm4py.write_ocel2_csv",
+      "pm4py.write_ocel_csv"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "objects": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

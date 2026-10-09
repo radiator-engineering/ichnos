@@ -105,13 +105,15 @@ pub fn write_ocel2_xml_to_writer(ocel: &Ocel, mut output: impl Write) -> Result<
 }
 
 /// Writes an OCEL 1.0 log, choosing the format by extension as pm4py's
-/// `write_ocel` does: a name ending in `jsonocel` is JSON and one ending in
-/// `xmlocel` is XML. pm4py's CSV (`csv`) and SQLite (`sqlite`) writers are
-/// not ported yet.
+/// `write_ocel` does: a name ending in `csv` is CSV, without an objects
+/// table, one ending in `jsonocel` is JSON and one ending in `xmlocel` is
+/// XML. pm4py's SQLite (`sqlite`) writer is not ported yet.
 pub fn write_ocel(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     let path = path.as_ref();
     let name = lower_name(path);
-    if name.ends_with("csv") || name.ends_with("sqlite") {
+    if name.ends_with("csv") {
+        super::write_ocel_csv(ocel, path, None)
+    } else if name.ends_with("sqlite") {
         Err(not_ported(path))
     } else if name.ends_with("jsonocel") {
         write_ocel_json(ocel, path)
@@ -125,8 +127,8 @@ pub fn write_ocel(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
 /// Writes an OCEL 2.0 log, choosing the format by extension as pm4py's
 /// `write_ocel2` does: a name ending in `xml` or `xmlocel` is XML and one
 /// ending in `json` or `jsonocel` is JSON, each optionally followed by
-/// `.gz`. pm4py's bundle (`.ocel.zip`), SQLite (`sqlite`) and CSV
-/// (`.ocel.csv`) writers are not ported yet.
+/// `.gz`, and one ending in `.ocel.csv` is CSV. pm4py's bundle
+/// (`.ocel.zip`) and SQLite (`sqlite`) writers are not ported yet.
 pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     let path = path.as_ref();
     let name = lower_name(path);
@@ -135,8 +137,10 @@ pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
             .iter()
             .any(|e| name.ends_with(e) || name.ends_with(&format!("{e}.gz")))
     };
-    if name.ends_with(".ocel.zip") || name.ends_with("sqlite") || name.ends_with(".ocel.csv") {
+    if name.ends_with(".ocel.zip") || name.ends_with("sqlite") {
         Err(not_ported(path))
+    } else if name.ends_with(".ocel.csv") {
+        super::write_ocel2_csv(ocel, path)
     } else if matches(["xml", "xmlocel"]) {
         write_ocel2_xml(ocel, path)
     } else if matches(["json", "jsonocel"]) {
@@ -155,7 +159,7 @@ fn not_ported(path: &Path) -> Error {
 
 /// Creates `path` and writes to it, through gzip when the name ends in
 /// `.gz`.
-fn to_path(path: &Path, write: impl FnOnce(&mut dyn Write) -> Result<()>) -> Result<()> {
+pub(super) fn to_path(path: &Path, write: impl FnOnce(&mut dyn Write) -> Result<()>) -> Result<()> {
     let mut output = BufWriter::new(File::create(path)?);
     if lower_name(path).ends_with(".gz") {
         let mut encoder = GzEncoder::new(&mut output, Compression::default());
@@ -170,7 +174,7 @@ fn to_path(path: &Path, write: impl FnOnce(&mut dyn Write) -> Result<()>) -> Res
 
 /// How pandas types a column, as far as the writers care.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-enum Kind {
+pub(super) enum Kind {
     /// `float64`: numbers, with a float or a missing value among them.
     Float,
     /// `datetime64`: dates, possibly missing.
@@ -185,13 +189,13 @@ enum Kind {
 
 /// The attribute columns of one table: their names in first-appearance
 /// order and their kinds.
-struct Columns {
-    names: Vec<Arc<str>>,
+pub(super) struct Columns {
+    pub(super) names: Vec<Arc<str>>,
     kinds: HashMap<Arc<str>, Kind>,
 }
 
 impl Columns {
-    fn new<'a>(rows: impl Iterator<Item = &'a Attributes>) -> Self {
+    pub(super) fn new<'a>(rows: impl Iterator<Item = &'a Attributes>) -> Self {
         // Per column: rows with a value, and which value types occur.
         #[derive(Default)]
         struct Seen {
@@ -253,7 +257,7 @@ impl Columns {
         Self { names, kinds }
     }
 
-    fn kind(&self, name: &str) -> Kind {
+    pub(super) fn kind(&self, name: &str) -> Kind {
         self.kinds.get(name).copied().unwrap_or(Kind::Object)
     }
 
@@ -269,7 +273,7 @@ impl Columns {
 }
 
 /// pandas' missing value: here an absent attribute or a float NaN.
-fn missing(value: &AttributeValue) -> bool {
+pub(super) fn missing(value: &AttributeValue) -> bool {
     matches!(value.plain(), AttributeValue::Float(f) if f.is_nan())
 }
 
@@ -342,10 +346,10 @@ fn types_per_group<'a>(
 
 /// A copy of the log after pm4py's consistency step and relation filter,
 /// with what every writer needs.
-struct Prepared {
-    ocel: Ocel,
-    events: Columns,
-    objects: Columns,
+pub(super) struct Prepared {
+    pub(super) ocel: Ocel,
+    pub(super) events: Columns,
+    pub(super) objects: Columns,
     /// The object changes as rows of pm4py's `object_changes` table: each
     /// holds its changed field's value, if it has one.
     change_rows: Vec<Attributes>,
@@ -353,7 +357,7 @@ struct Prepared {
 }
 
 impl Prepared {
-    fn new(ocel: &Ocel) -> Self {
+    pub(super) fn new(ocel: &Ocel) -> Self {
         let mut ocel = ocel.clone();
         ocel.make_consistent();
         ocel.retain_related();
@@ -957,7 +961,7 @@ impl Prepared {
                 El::new("event")
                     .attr("id", &*e.id)
                     .attr("type", &*e.activity)
-                    .attr("time", isoformat(&e.timestamp))
+                    .attr("time", event_time(&e.timestamp, self.ocel.naive_times))
                     .child(attributes)
                     .child(objects),
             );
@@ -1019,7 +1023,7 @@ fn classic_xml_tag(kind: Kind) -> &'static str {
     }
 }
 
-fn as_float(value: &AttributeValue) -> Option<f64> {
+pub(super) fn as_float(value: &AttributeValue) -> Option<f64> {
     match value.plain() {
         AttributeValue::Int(i) => Some(*i as f64),
         AttributeValue::Float(f) => Some(*f),
@@ -1060,7 +1064,7 @@ fn classic_text(value: &AttributeValue, kind: Kind) -> String {
 }
 
 /// A value as Python's `str` of pm4py's `normalize_value` writes it.
-fn normalized_text(value: &AttributeValue, kind: Kind) -> String {
+pub(super) fn normalized_text(value: &AttributeValue, kind: Kind) -> String {
     if kind == Kind::Float
         && let Some(f) = as_float(value)
     {
@@ -1079,10 +1083,21 @@ fn strftime_z(d: &DateTime<FixedOffset>) -> String {
         .to_string()
 }
 
+/// An event time as pm4py's OCEL 2.0 XML writer writes it: without an
+/// offset when the log's times are naive.
+fn event_time(d: &DateTime<FixedOffset>, naive: bool) -> String {
+    let text = isoformat(d);
+    if naive {
+        text.strip_suffix("+00:00").unwrap_or(&text).to_string()
+    } else {
+        text
+    }
+}
+
 /// A UTC time as pandas' `Timestamp.isoformat` writes it: fractional
 /// seconds only when there are any, with nine digits when the time has
 /// nanoseconds.
-fn isoformat(d: &DateTime<FixedOffset>) -> String {
+pub(super) fn isoformat(d: &DateTime<FixedOffset>) -> String {
     let d = d.with_timezone(&Utc);
     let nanos = d.nanosecond() % 1_000_000_000;
     let fraction = if !nanos.is_multiple_of(1_000) {
