@@ -1,0 +1,235 @@
+{
+  "expected": [
+    [
+      "Ellen",
+      "check ticket",
+      "2010-12-30T15:34:00Z"
+    ],
+    [
+      "Ellen",
+      "register request",
+      "2011-01-06T08:02:00Z"
+    ],
+    [
+      "Ellen",
+      "examine casually",
+      "2011-01-06T15:06:00Z"
+    ],
+    [
+      "Ellen",
+      "pay compensation",
+      "2011-01-08T11:05:00Z"
+    ],
+    [
+      "Ellen",
+      "reject request",
+      "2011-01-12T14:44:00Z"
+    ],
+    [
+      "Ellen",
+      "check ticket",
+      "2011-01-14T13:33:00Z"
+    ],
+    [
+      "Ellen",
+      "pay compensation",
+      "2011-01-15T09:45:00Z"
+    ],
+    [
+      "Mike",
+      "register request",
+      "2010-12-30T10:32:00Z"
+    ],
+    [
+      "Mike",
+      "check ticket",
+      "2010-12-30T11:12:00Z"
+    ],
+    [
+      "Mike",
+      "examine casually",
+      "2010-12-30T14:06:00Z"
+    ],
+    [
+      "Mike",
+      "check ticket",
+      "2011-01-05T14:12:00Z"
+    ],
+    [
+      "Mike",
+      "register request",
+      "2011-01-06T14:02:00Z"
+    ],
+    [
+      "Mike",
+      "examine casually",
+      "2011-01-07T09:16:00Z"
+    ],
+    [
+      "Mike",
+      "check ticket",
+      "2011-01-07T11:06:00Z"
+    ],
+    [
+      "Mike",
+      "check ticket",
+      "2011-01-07T15:22:00Z"
+    ],
+    [
+      "Mike",
+      "pay compensation",
+      "2011-01-16T10:47:00Z"
+    ],
+    [
+      "Mike",
+      "examine casually",
+      "2011-01-16T14:50:00Z"
+    ],
+    [
+      "Mike",
+      "reject request",
+      "2011-01-24T13:56:00Z"
+    ],
+    [
+      "Pete",
+      "register request",
+      "2010-12-30T10:02:00Z"
+    ],
+    [
+      "Pete",
+      "register request",
+      "2010-12-30T13:32:00Z"
+    ],
+    [
+      "Pete",
+      "register request",
+      "2011-01-06T14:02:00Z"
+    ],
+    [
+      "Pete",
+      "reject request",
+      "2011-01-07T13:24:00Z"
+    ],
+    [
+      "Pete",
+      "check ticket",
+      "2011-01-08T10:22:00Z"
+    ],
+    [
+      "Pete",
+      "check ticket",
+      "2011-01-08T10:43:00Z"
+    ],
+    [
+      "Pete",
+      "check ticket",
+      "2011-01-21T10:34:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-05T10:22:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-06T08:18:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-06T10:18:00Z"
+    ],
+    [
+      "Sara",
+      "reinitiate request",
+      "2011-01-06T11:18:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-07T15:52:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-09T08:55:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-09T11:02:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-10T12:28:00Z"
+    ],
+    [
+      "Sara",
+      "reinitiate request",
+      "2011-01-11T15:18:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-19T10:18:00Z"
+    ],
+    [
+      "Sara",
+      "reinitiate request",
+      "2011-01-20T11:48:00Z"
+    ],
+    [
+      "Sara",
+      "decide",
+      "2011-01-23T12:12:00Z"
+    ],
+    [
+      "Sean",
+      "examine casually",
+      "2010-12-30T13:16:00Z"
+    ],
+    [
+      "Sean",
+      "examine thoroughly",
+      "2011-01-06T12:06:00Z"
+    ],
+    [
+      "Sean",
+      "examine thoroughly",
+      "2011-01-08T13:43:00Z"
+    ],
+    [
+      "Sue",
+      "examine thoroughly",
+      "2010-12-31T09:06:00Z"
+    ],
+    [
+      "Sue",
+      "examine casually",
+      "2011-01-21T08:06:00Z"
+    ]
+  ],
+  "meta": {
+    "area": "core",
+    "case": "rebase-stream-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.rebase"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "case_id": "org:resource"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -4,10 +4,14 @@
 
 mod common;
 
+use ichnos_core::arrow::array::{Array, AsArray};
+use ichnos_core::arrow::compute::cast;
+use ichnos_core::arrow::datatypes::{DataType, Int64Type, TimeUnit, TimestampNanosecondType};
 use ichnos_core::artificial::{ARTIFICIAL_END, ARTIFICIAL_START};
-use ichnos_core::chrono::SecondsFormat;
+use ichnos_core::chrono::{DateTime, SecondsFormat, Utc};
 use ichnos_core::{
-    AttributeValue, Attributes, EventKeys, EventLog, LogEdge, LogNode, SortOrder, Trace,
+    AttributeValue, Attributes, EventKeys, EventLog, EventStream, LogEdge, LogNode, SortOrder,
+    Trace,
 };
 use ichnos_golden::golden;
 use serde_json::{Map, Value, json};
@@ -16,22 +20,25 @@ fn log() -> EventLog {
     common::load_csv_log("running-example.csv")
 }
 
-/// A value as the harness writes it: dates as RFC 3339 UTC with `Z`.
+/// A date as the harness writes it: RFC 3339 UTC with `Z`, with fractions
+/// only when non-zero: 6 digits, or 9 with nanoseconds.
+fn date_json(d: DateTime<Utc>) -> Value {
+    let format = match d.timestamp_subsec_nanos() {
+        0 => SecondsFormat::Secs,
+        n if n % 1_000 == 0 => SecondsFormat::Micros,
+        _ => SecondsFormat::Nanos,
+    };
+    json!(d.to_rfc3339_opts(format, true))
+}
+
+/// A value as the harness writes it.
 fn to_json(value: &AttributeValue) -> Value {
     match value.plain() {
         AttributeValue::String(s) | AttributeValue::Id(s) => json!(s.as_ref()),
         AttributeValue::Int(v) => json!(v),
         AttributeValue::Float(v) => json!(v),
         AttributeValue::Bool(v) => json!(v),
-        AttributeValue::Date(d) => {
-            // The harness writes fractions only when non-zero: 6 digits, or 9 with nanoseconds.
-            let format = match d.timestamp_subsec_nanos() {
-                0 => SecondsFormat::Secs,
-                n if n % 1_000 == 0 => SecondsFormat::Micros,
-                _ => SecondsFormat::Nanos,
-            };
-            json!(d.to_utc().to_rfc3339_opts(format, true))
-        }
+        AttributeValue::Date(d) => date_json(d.to_utc()),
         other => panic!("no JSON form for {other:?}"),
     }
 }
@@ -92,6 +99,57 @@ fn conversions_match_pm4py() {
         .collect();
     assert_eq!(&Value::from(columns), g.expected_at("/dataframe_columns"));
     assert_eq!(&json!(table.num_rows()), g.expected_at("/dataframe_rows"));
+
+    // Column types: the pandas dtype each Arrow type stands for. ichnos
+    // stores nanoseconds where pandas reports microseconds (change core-10),
+    // so timestamps compare only the kind and the time zone.
+    for field in table.schema().fields() {
+        let pointer = format!("/dataframe_dtypes/{}", field.name());
+        let expected = g.expected_at(&pointer).as_str().unwrap();
+        match field.data_type() {
+            DataType::Int64 => assert_eq!(expected, "int64", "{}", field.name()),
+            DataType::Utf8 => assert_eq!(expected, "str", "{}", field.name()),
+            DataType::Timestamp(_, Some(tz)) if tz.as_ref() == "UTC" => {
+                assert!(
+                    expected.starts_with("datetime64[") && expected.ends_with(", UTC]"),
+                    "{}: {expected}",
+                    field.name()
+                );
+            }
+            other => panic!("unexpected type {other} for {}", field.name()),
+        }
+    }
+
+    // Values of the first rows, column by column.
+    let schema = table.schema();
+    let head: Vec<Value> = (0..5)
+        .map(|row| {
+            let cells = schema.fields().iter().zip(table.columns()).map(|(f, c)| {
+                let value = if c.is_null(row) {
+                    Value::Null
+                } else {
+                    cell(c, row)
+                };
+                (f.name().clone(), value)
+            });
+            Value::Object(cells.collect())
+        })
+        .collect();
+    assert_eq!(&Value::from(head), g.expected_at("/dataframe_head"));
+}
+
+/// One non-null Arrow cell as the harness writes it.
+fn cell(column: &dyn Array, row: usize) -> Value {
+    match column.data_type() {
+        DataType::Int64 => json!(column.as_primitive::<Int64Type>().value(row)),
+        DataType::Utf8 => json!(column.as_string::<i32>().value(row)),
+        DataType::Timestamp(..) => {
+            let nanos = cast(column, &DataType::Timestamp(TimeUnit::Nanosecond, None)).unwrap();
+            let nanos = nanos.as_primitive::<TimestampNanosecondType>().value(row);
+            date_json(DateTime::from_timestamp_nanos(nanos))
+        }
+        other => panic!("no JSON form for {other}"),
+    }
 }
 
 #[test]
@@ -194,6 +252,37 @@ fn hof_matches_pm4py() {
     assert_eq!(by_name.attributes, first.attributes);
 }
 
+fn stream_rows(stream: &EventStream) -> Value {
+    stream
+        .events
+        .iter()
+        .map(|e| row(e, &["case:concept:name", "concept:name", "time:timestamp"]))
+        .collect()
+}
+
+#[test]
+fn stream_hof_matches_pm4py() {
+    let g = golden("core", "hof-stream-running-example-csv");
+    let stream = log().to_event_stream(&EventKeys::default());
+
+    let no_pete = stream
+        .filter_events(|e| e.get("org:resource").and_then(AttributeValue::as_str) != Some("Pete"));
+    assert_eq!(
+        &stream_rows(&no_pete),
+        g.expected_at("/filter_log_without_pete")
+    );
+
+    let mut by_name = stream.clone();
+    by_name.sort_events_by_key(
+        |e| e.get("concept:name").unwrap().to_string(),
+        SortOrder::Descending,
+    );
+    assert_eq!(
+        &stream_rows(&by_name),
+        g.expected_at("/sort_log_by_activity_reverse")
+    );
+}
+
 #[test]
 fn graph_matches_pm4py() {
     let g = golden("core", "networkx-running-example-csv");
@@ -252,6 +341,16 @@ fn rebase_matches_pm4py() {
 }
 
 #[test]
+fn stream_rebase_matches_pm4py() {
+    let g = golden("core", "rebase-stream-running-example-csv");
+    let rebased = log()
+        .to_event_stream(&EventKeys::default())
+        .rebase(&EventKeys::default().with_case_id("org:resource"))
+        .unwrap();
+    assert_eq!(&stream_rows(&rebased), g.expected_at(""));
+}
+
+#[test]
 fn sample_sizes_match_pm4py() {
     // pm4py samples with Python's `random`, so only the sizes can match.
     let g = golden("core", "sample-running-example-csv");
@@ -290,13 +389,8 @@ fn format_batch_row_order_matches_pm4py() {
         let g = golden("core", case);
         let raw = common::read_csv(&ichnos_golden::fixture_path(fixture));
         let table = ichnos_core::format_batch(&raw, &EventKeys::default(), None).unwrap();
-        let stream = ichnos_core::EventStream::from_arrow(&table).unwrap();
-        let rows: Vec<Value> = stream
-            .events
-            .iter()
-            .map(|e| row(e, &["case:concept:name", "concept:name", "time:timestamp"]))
-            .collect();
-        assert_eq!(&Value::from(rows), g.expected_at(""), "{case}");
+        let stream = EventStream::from_arrow(&table).unwrap();
+        assert_eq!(&stream_rows(&stream), g.expected_at(""), "{case}");
     }
 }
 

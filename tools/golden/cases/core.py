@@ -51,6 +51,8 @@ def convert(fixtures: dict[str, Path]) -> dict[str, Any]:
         "round_trip_case_ids": [t.attributes["concept:name"] for t in back],
         "dataframe_columns": list(frame.columns),
         "dataframe_rows": len(frame),
+        "dataframe_dtypes": {column: str(dtype) for column, dtype in frame.dtypes.items()},
+        "dataframe_head": frame.head(5).to_dict("records"),
     }
 
 
@@ -132,6 +134,29 @@ def hof(fixtures: dict[str, Path]) -> dict[str, Any]:
     }
 
 
+def _stream_rows(stream: Any) -> list[list[Any]]:
+    return [
+        [e["case:concept:name"], e["concept:name"], e["time:timestamp"]] for e in stream
+    ]
+
+
+@case(
+    "hof-stream-running-example-csv",
+    fixture=FIXTURE,
+    functions=["pm4py.hof.filter_log", "pm4py.hof.sort_log"],
+)
+def hof_stream(fixtures: dict[str, Path]) -> dict[str, Any]:
+    stream = pm4py.convert_to_event_stream(_log(fixtures))
+    return {
+        "filter_log_without_pete": _stream_rows(
+            pm4py.hof.filter_log(lambda e: e["org:resource"] != "Pete", stream)
+        ),
+        "sort_log_by_activity_reverse": _stream_rows(
+            pm4py.hof.sort_log(stream, key=lambda e: e["concept:name"], reverse=True)
+        ),
+    }
+
+
 @case(
     "networkx-running-example-csv",
     fixture=FIXTURE,
@@ -174,6 +199,17 @@ def rebase(fixtures: dict[str, Path], case_id: str) -> list[dict[str, Any]]:
     return [
         {"case_id": t.attributes["concept:name"], "activities": _activities(t)} for t in log
     ]
+
+
+@case(
+    "rebase-stream-running-example-csv",
+    fixture=FIXTURE,
+    functions=["pm4py.rebase"],
+    params={"case_id": "org:resource"},
+)
+def rebase_stream(fixtures: dict[str, Path], case_id: str) -> list[list[Any]]:
+    stream = pm4py.convert_to_event_stream(_log(fixtures))
+    return _stream_rows(pm4py.rebase(stream, case_id=case_id))
 
 
 @case(
