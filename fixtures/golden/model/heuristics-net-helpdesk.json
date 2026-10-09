@@ -1,0 +1,1779 @@
+{
+  "expected": {
+    "heuristics_net": {
+      "activities": [
+        "Assign seriousness",
+        "Closed",
+        "Create SW anomaly",
+        "DUPLICATE",
+        "INVALID",
+        "Insert ticket",
+        "RESOLVED",
+        "Require upgrade",
+        "Resolve SW anomaly",
+        "Resolve ticket",
+        "Schedule intervention",
+        "Take in charge ticket",
+        "VERIFIED",
+        "Wait"
+      ],
+      "activities_occurrences": {
+        "Assign seriousness": 4938,
+        "Closed": 4574,
+        "Create SW anomaly": 67,
+        "DUPLICATE": 1,
+        "INVALID": 2,
+        "Insert ticket": 118,
+        "RESOLVED": 2,
+        "Require upgrade": 119,
+        "Resolve SW anomaly": 13,
+        "Resolve ticket": 4983,
+        "Schedule intervention": 5,
+        "Take in charge ticket": 5060,
+        "VERIFIED": 3,
+        "Wait": 1463
+      },
+      "dependency_matrix": [
+        [
+          "Assign seriousness",
+          "Assign seriousness",
+          0.9977272727272727
+        ],
+        [
+          "Assign seriousness",
+          "Create SW anomaly",
+          0.8
+        ],
+        [
+          "Assign seriousness",
+          "Require upgrade",
+          0.8888888888888888
+        ],
+        [
+          "Assign seriousness",
+          "Resolve ticket",
+          0.9961389961389961
+        ],
+        [
+          "Assign seriousness",
+          "Take in charge ticket",
+          0.9997596731554914
+        ],
+        [
+          "Assign seriousness",
+          "Wait",
+          0.9857142857142858
+        ],
+        [
+          "Closed",
+          "VERIFIED",
+          0.0
+        ],
+        [
+          "Create SW anomaly",
+          "Create SW anomaly",
+          0.8
+        ],
+        [
+          "Create SW anomaly",
+          "Require upgrade",
+          0.5333333333333333
+        ],
+        [
+          "Create SW anomaly",
+          "Resolve SW anomaly",
+          0.875
+        ],
+        [
+          "Create SW anomaly",
+          "Resolve ticket",
+          0.9767441860465116
+        ],
+        [
+          "Create SW anomaly",
+          "Take in charge ticket",
+          -0.8771929824561403
+        ],
+        [
+          "DUPLICATE",
+          "Resolve ticket",
+          0.5
+        ],
+        [
+          "INVALID",
+          "Closed",
+          0.5
+        ],
+        [
+          "INVALID",
+          "VERIFIED",
+          0.5
+        ],
+        [
+          "Insert ticket",
+          "Assign seriousness",
+          0.9910714285714286
+        ],
+        [
+          "RESOLVED",
+          "INVALID",
+          0.6666666666666666
+        ],
+        [
+          "Require upgrade",
+          "Create SW anomaly",
+          -0.5333333333333333
+        ],
+        [
+          "Require upgrade",
+          "Require upgrade",
+          0.9411764705882353
+        ],
+        [
+          "Require upgrade",
+          "Resolve ticket",
+          0.9879518072289156
+        ],
+        [
+          "Require upgrade",
+          "Take in charge ticket",
+          -0.8354430379746836
+        ],
+        [
+          "Require upgrade",
+          "VERIFIED",
+          0.5
+        ],
+        [
+          "Require upgrade",
+          "Wait",
+          0.0625
+        ],
+        [
+          "Resolve SW anomaly",
+          "Require upgrade",
+          0.8
+        ],
+        [
+          "Resolve SW anomaly",
+          "Resolve SW anomaly",
+          0.8333333333333334
+        ],
+        [
+          "Resolve SW anomaly",
+          "Resolve ticket",
+          0.8
+        ],
+        [
+          "Resolve ticket",
+          "Closed",
+          0.9997806536521167
+        ],
+        [
+          "Resolve ticket",
+          "RESOLVED",
+          0.6666666666666666
+        ],
+        [
+          "Resolve ticket",
+          "Resolve ticket",
+          0.996078431372549
+        ],
+        [
+          "Schedule intervention",
+          "Resolve ticket",
+          0.8
+        ],
+        [
+          "Schedule intervention",
+          "Take in charge ticket",
+          -0.5714285714285714
+        ],
+        [
+          "Take in charge ticket",
+          "Create SW anomaly",
+          0.8771929824561403
+        ],
+        [
+          "Take in charge ticket",
+          "Require upgrade",
+          0.8354430379746836
+        ],
+        [
+          "Take in charge ticket",
+          "Resolve SW anomaly",
+          0.5
+        ],
+        [
+          "Take in charge ticket",
+          "Resolve ticket",
+          0.9997194163860831
+        ],
+        [
+          "Take in charge ticket",
+          "Schedule intervention",
+          0.5714285714285714
+        ],
+        [
+          "Take in charge ticket",
+          "Wait",
+          0.38760964912280704
+        ],
+        [
+          "VERIFIED",
+          "Closed",
+          0.0
+        ],
+        [
+          "VERIFIED",
+          "DUPLICATE",
+          0.5
+        ],
+        [
+          "Wait",
+          "Require upgrade",
+          -0.0625
+        ],
+        [
+          "Wait",
+          "Resolve ticket",
+          0.9987080103359173
+        ],
+        [
+          "Wait",
+          "Take in charge ticket",
+          -0.38760964912280704
+        ],
+        [
+          "Wait",
+          "Wait",
+          0.9912280701754386
+        ]
+      ],
+      "dfg_matrix": [
+        [
+          "Assign seriousness",
+          "Assign seriousness",
+          439
+        ],
+        [
+          "Assign seriousness",
+          "Create SW anomaly",
+          4
+        ],
+        [
+          "Assign seriousness",
+          "Require upgrade",
+          8
+        ],
+        [
+          "Assign seriousness",
+          "Resolve ticket",
+          258
+        ],
+        [
+          "Assign seriousness",
+          "Take in charge ticket",
+          4160
+        ],
+        [
+          "Assign seriousness",
+          "Wait",
+          69
+        ],
+        [
+          "Closed",
+          "VERIFIED",
+          1
+        ],
+        [
+          "Create SW anomaly",
+          "Create SW anomaly",
+          4
+        ],
+        [
+          "Create SW anomaly",
+          "Require upgrade",
+          11
+        ],
+        [
+          "Create SW anomaly",
+          "Resolve SW anomaly",
+          7
+        ],
+        [
+          "Create SW anomaly",
+          "Resolve ticket",
+          42
+        ],
+        [
+          "Create SW anomaly",
+          "Take in charge ticket",
+          3
+        ],
+        [
+          "DUPLICATE",
+          "Resolve ticket",
+          1
+        ],
+        [
+          "INVALID",
+          "Closed",
+          1
+        ],
+        [
+          "INVALID",
+          "VERIFIED",
+          1
+        ],
+        [
+          "Insert ticket",
+          "Assign seriousness",
+          111
+        ],
+        [
+          "RESOLVED",
+          "INVALID",
+          2
+        ],
+        [
+          "Require upgrade",
+          "Create SW anomaly",
+          3
+        ],
+        [
+          "Require upgrade",
+          "Require upgrade",
+          16
+        ],
+        [
+          "Require upgrade",
+          "Resolve ticket",
+          82
+        ],
+        [
+          "Require upgrade",
+          "Take in charge ticket",
+          6
+        ],
+        [
+          "Require upgrade",
+          "VERIFIED",
+          1
+        ],
+        [
+          "Require upgrade",
+          "Wait",
+          8
+        ],
+        [
+          "Resolve SW anomaly",
+          "Require upgrade",
+          4
+        ],
+        [
+          "Resolve SW anomaly",
+          "Resolve SW anomaly",
+          5
+        ],
+        [
+          "Resolve SW anomaly",
+          "Resolve ticket",
+          4
+        ],
+        [
+          "Resolve ticket",
+          "Closed",
+          4558
+        ],
+        [
+          "Resolve ticket",
+          "RESOLVED",
+          2
+        ],
+        [
+          "Resolve ticket",
+          "Resolve ticket",
+          254
+        ],
+        [
+          "Schedule intervention",
+          "Resolve ticket",
+          4
+        ],
+        [
+          "Schedule intervention",
+          "Take in charge ticket",
+          1
+        ],
+        [
+          "Take in charge ticket",
+          "Create SW anomaly",
+          53
+        ],
+        [
+          "Take in charge ticket",
+          "Require upgrade",
+          72
+        ],
+        [
+          "Take in charge ticket",
+          "Resolve SW anomaly",
+          1
+        ],
+        [
+          "Take in charge ticket",
+          "Resolve ticket",
+          3563
+        ],
+        [
+          "Take in charge ticket",
+          "Schedule intervention",
+          5
+        ],
+        [
+          "Take in charge ticket",
+          "Wait",
+          1265
+        ],
+        [
+          "VERIFIED",
+          "Closed",
+          1
+        ],
+        [
+          "VERIFIED",
+          "DUPLICATE",
+          1
+        ],
+        [
+          "Wait",
+          "Require upgrade",
+          7
+        ],
+        [
+          "Wait",
+          "Resolve ticket",
+          773
+        ],
+        [
+          "Wait",
+          "Take in charge ticket",
+          558
+        ],
+        [
+          "Wait",
+          "Wait",
+          113
+        ]
+      ],
+      "end_activities": [
+        {
+          "Closed": 4557,
+          "Require upgrade": 3,
+          "Resolve ticket": 10,
+          "Take in charge ticket": 1,
+          "VERIFIED": 1,
+          "Wait": 8
+        }
+      ],
+      "freq_triples_matrix": [
+        [
+          "Assign seriousness",
+          "Take in charge ticket",
+          1
+        ],
+        [
+          "Assign seriousness",
+          "Wait",
+          2
+        ],
+        [
+          "Create SW anomaly",
+          "Take in charge ticket",
+          1
+        ],
+        [
+          "Require upgrade",
+          "Create SW anomaly",
+          1
+        ],
+        [
+          "Resolve ticket",
+          "Take in charge ticket",
+          88
+        ],
+        [
+          "Resolve ticket",
+          "Wait",
+          2
+        ],
+        [
+          "Take in charge ticket",
+          "Create SW anomaly",
+          2
+        ],
+        [
+          "Take in charge ticket",
+          "Require upgrade",
+          4
+        ],
+        [
+          "Take in charge ticket",
+          "Resolve ticket",
+          125
+        ],
+        [
+          "Take in charge ticket",
+          "Schedule intervention",
+          1
+        ],
+        [
+          "Take in charge ticket",
+          "Wait",
+          482
+        ],
+        [
+          "Wait",
+          "Require upgrade",
+          2
+        ],
+        [
+          "Wait",
+          "Resolve ticket",
+          1
+        ],
+        [
+          "Wait",
+          "Take in charge ticket",
+          91
+        ]
+      ],
+      "nodes": [
+        {
+          "and_measures_in": [],
+          "and_measures_out": [
+            [
+              "Assign seriousness",
+              "Take in charge ticket",
+              0.9043478260869565
+            ],
+            [
+              "Create SW anomaly",
+              "Require upgrade",
+              1.0769230769230769
+            ],
+            [
+              "Resolve ticket",
+              "Take in charge ticket",
+              0.8062910160669835
+            ],
+            [
+              "Resolve ticket",
+              "Wait",
+              2.356707317073171
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.9977272727272727,
+              "frequency": 439,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0.9910714285714286,
+              "frequency": 111,
+              "target": "Insert ticket"
+            }
+          ],
+          "loop_length_two": {
+            "Take in charge ticket": 4160,
+            "Wait": 69
+          },
+          "name": "Assign seriousness",
+          "occurrences": 4938,
+          "outputs": [
+            {
+              "dependency": 0.9977272727272727,
+              "frequency": 439,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.8888888888888888,
+              "frequency": 8,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.9961389961389961,
+              "frequency": 258,
+              "target": "Resolve ticket"
+            },
+            {
+              "dependency": 0.9997596731554914,
+              "frequency": 4160,
+              "target": "Take in charge ticket"
+            },
+            {
+              "dependency": 0.9857142857142858,
+              "frequency": 69,
+              "target": "Wait"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [
+            [
+              "Assign seriousness",
+              "Take in charge ticket",
+              71.72413793103448
+            ],
+            [
+              "Create SW anomaly",
+              "Take in charge ticket",
+              0.9655172413793104
+            ]
+          ],
+          "and_measures_out": [
+            [
+              "Create SW anomaly",
+              "Require upgrade",
+              0.875
+            ],
+            [
+              "Create SW anomaly",
+              "Resolve ticket",
+              0.8936170212765957
+            ],
+            [
+              "Require upgrade",
+              "Resolve ticket",
+              1.5185185185185186
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.8771929824561403,
+              "frequency": 53,
+              "target": "Take in charge ticket"
+            }
+          ],
+          "loop_length_two": {
+            "Take in charge ticket": 3
+          },
+          "name": "Create SW anomaly",
+          "occurrences": 67,
+          "outputs": [
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.5333333333333333,
+              "frequency": 11,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.875,
+              "frequency": 7,
+              "target": "Resolve SW anomaly"
+            },
+            {
+              "dependency": 0.9767441860465116,
+              "frequency": 42,
+              "target": "Resolve ticket"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [
+            [
+              "Assign seriousness",
+              "Take in charge ticket",
+              51.358024691358025
+            ],
+            [
+              "Create SW anomaly",
+              "Take in charge ticket",
+              0.6666666666666666
+            ],
+            [
+              "Require upgrade",
+              "Take in charge ticket",
+              0.8764044943820225
+            ]
+          ],
+          "and_measures_out": [
+            [
+              "Require upgrade",
+              "Resolve ticket",
+              0.8282828282828283
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.8888888888888888,
+              "frequency": 8,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0.5333333333333333,
+              "frequency": 11,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.9411764705882353,
+              "frequency": 16,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Resolve SW anomaly"
+            },
+            {
+              "dependency": 0.8354430379746836,
+              "frequency": 72,
+              "target": "Take in charge ticket"
+            },
+            {
+              "dependency": 0,
+              "frequency": 8,
+              "target": "Wait"
+            }
+          ],
+          "loop_length_two": {
+            "Create SW anomaly": 3
+          },
+          "name": "Require upgrade",
+          "occurrences": 119,
+          "outputs": [
+            {
+              "dependency": 0.9411764705882353,
+              "frequency": 16,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.9879518072289156,
+              "frequency": 82,
+              "target": "Resolve ticket"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "VERIFIED"
+            },
+            {
+              "dependency": 0,
+              "frequency": 8,
+              "target": "Wait"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [
+            [
+              "Assign seriousness",
+              "Take in charge ticket",
+              1.08843537414966
+            ],
+            [
+              "Resolve ticket",
+              "Take in charge ticket",
+              0.9332111052907281
+            ],
+            [
+              "Resolve ticket",
+              "Wait",
+              0.7519455252918288
+            ]
+          ],
+          "and_measures_out": [
+            [
+              "Closed",
+              "Resolve ticket",
+              0.9470184915852898
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.9961389961389961,
+              "frequency": 258,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0.9767441860465116,
+              "frequency": 42,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "DUPLICATE"
+            },
+            {
+              "dependency": 0.9879518072289156,
+              "frequency": 82,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Resolve SW anomaly"
+            },
+            {
+              "dependency": 0.996078431372549,
+              "frequency": 254,
+              "target": "Resolve ticket"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Schedule intervention"
+            },
+            {
+              "dependency": 0.9997194163860831,
+              "frequency": 3563,
+              "target": "Take in charge ticket"
+            },
+            {
+              "dependency": 0.9987080103359173,
+              "frequency": 773,
+              "target": "Wait"
+            }
+          ],
+          "loop_length_two": {
+            "Take in charge ticket": 0,
+            "Wait": 0
+          },
+          "name": "Resolve ticket",
+          "occurrences": 4983,
+          "outputs": [
+            {
+              "dependency": 0.9997806536521167,
+              "frequency": 4558,
+              "target": "Closed"
+            },
+            {
+              "dependency": 0.6666666666666666,
+              "frequency": 2,
+              "target": "RESOLVED"
+            },
+            {
+              "dependency": 0.996078431372549,
+              "frequency": 254,
+              "target": "Resolve ticket"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.9997596731554914,
+              "frequency": 4160,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0,
+              "frequency": 1265,
+              "target": "Wait"
+            }
+          ],
+          "loop_length_two": {
+            "Create SW anomaly": 53,
+            "Require upgrade": 72,
+            "Resolve ticket": 3563,
+            "Schedule intervention": 5,
+            "Wait": 1265
+          },
+          "name": "Take in charge ticket",
+          "occurrences": 5060,
+          "outputs": [
+            {
+              "dependency": 0.8771929824561403,
+              "frequency": 53,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.8354430379746836,
+              "frequency": 72,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Resolve SW anomaly"
+            },
+            {
+              "dependency": 0.9997194163860831,
+              "frequency": 3563,
+              "target": "Resolve ticket"
+            },
+            {
+              "dependency": 0.5714285714285714,
+              "frequency": 5,
+              "target": "Schedule intervention"
+            },
+            {
+              "dependency": 0,
+              "frequency": 1265,
+              "target": "Wait"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [
+            [
+              "Resolve ticket",
+              "Wait",
+              0.8714768883878241
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.9857142857142858,
+              "frequency": 69,
+              "target": "Assign seriousness"
+            },
+            {
+              "dependency": 0.9912280701754386,
+              "frequency": 113,
+              "target": "Wait"
+            },
+            {
+              "dependency": 0,
+              "frequency": 558,
+              "target": "Take in charge ticket"
+            },
+            {
+              "dependency": 0,
+              "frequency": 7,
+              "target": "Require upgrade"
+            }
+          ],
+          "loop_length_two": {
+            "Require upgrade": 7,
+            "Resolve ticket": 773,
+            "Take in charge ticket": 558
+          },
+          "name": "Wait",
+          "occurrences": 1463,
+          "outputs": [
+            {
+              "dependency": 0.9987080103359173,
+              "frequency": 773,
+              "target": "Resolve ticket"
+            },
+            {
+              "dependency": 0.9912280701754386,
+              "frequency": 113,
+              "target": "Wait"
+            },
+            {
+              "dependency": 0,
+              "frequency": 558,
+              "target": "Take in charge ticket"
+            },
+            {
+              "dependency": 0,
+              "frequency": 7,
+              "target": "Require upgrade"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [
+            [
+              "Create SW anomaly",
+              "Take in charge ticket",
+              6.222222222222222
+            ]
+          ],
+          "and_measures_out": [
+            [
+              "Require upgrade",
+              "Resolve ticket",
+              9.11111111111111
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.875,
+              "frequency": 7,
+              "target": "Create SW anomaly"
+            },
+            {
+              "dependency": 0.8333333333333334,
+              "frequency": 5,
+              "target": "Resolve SW anomaly"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Take in charge ticket"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Resolve SW anomaly",
+          "occurrences": 13,
+          "outputs": [
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Require upgrade"
+            },
+            {
+              "dependency": 0.8333333333333334,
+              "frequency": 5,
+              "target": "Resolve SW anomaly"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Resolve ticket"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "VERIFIED"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "DUPLICATE",
+          "occurrences": 1,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Resolve ticket"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [
+            [
+              "Closed",
+              "VERIFIED",
+              0.6666666666666666
+            ]
+          ],
+          "inputs": [
+            {
+              "dependency": 0.6666666666666666,
+              "frequency": 2,
+              "target": "RESOLVED"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "INVALID",
+          "occurrences": 2,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Closed"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "VERIFIED"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "INVALID"
+            },
+            {
+              "dependency": 0.9997806536521167,
+              "frequency": 4558,
+              "target": "Resolve ticket"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Closed",
+          "occurrences": 4574,
+          "outputs": []
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "INVALID"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Require upgrade"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "VERIFIED",
+          "occurrences": 3,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "DUPLICATE"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [],
+          "loop_length_two": {},
+          "name": "Insert ticket",
+          "occurrences": 118,
+          "outputs": [
+            {
+              "dependency": 0.9910714285714286,
+              "frequency": 111,
+              "target": "Assign seriousness"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.6666666666666666,
+              "frequency": 2,
+              "target": "Resolve ticket"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "RESOLVED",
+          "occurrences": 2,
+          "outputs": [
+            {
+              "dependency": 0.6666666666666666,
+              "frequency": 2,
+              "target": "INVALID"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5714285714285714,
+              "frequency": 5,
+              "target": "Take in charge ticket"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Schedule intervention",
+          "occurrences": 5,
+          "outputs": [
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Resolve ticket"
+            }
+          ]
+        }
+      ],
+      "start_activities": [
+        {
+          "Assign seriousness": 4384,
+          "Create SW anomaly": 1,
+          "Insert ticket": 118,
+          "Resolve ticket": 2,
+          "Take in charge ticket": 74,
+          "Wait": 1
+        }
+      ]
+    },
+    "petri_net": {
+      "arcs": 124,
+      "final_marking": {
+        "sink0": 1
+      },
+      "initial_marking": {
+        "source0": 1
+      },
+      "places": [
+        "intplace_Assign seriousness",
+        "intplace_Create SW anomaly",
+        "intplace_Require upgrade",
+        "intplace_Resolve SW anomaly",
+        "intplace_Resolve ticket",
+        "intplace_Take in charge ticket",
+        "intplace_VERIFIED",
+        "intplace_Wait",
+        "pre_Assign seriousness",
+        "pre_Closed",
+        "pre_Create SW anomaly",
+        "pre_INVALID",
+        "pre_Require upgrade",
+        "pre_Resolve SW anomaly",
+        "pre_Resolve ticket",
+        "pre_Take in charge ticket",
+        "pre_VERIFIED",
+        "pre_Wait",
+        "sink0",
+        "source0",
+        "splace_in_Create SW anomaly_Assign seriousness",
+        "splace_in_Create SW anomaly_Create SW anomaly",
+        "splace_in_Create SW anomaly_Take in charge ticket",
+        "splace_in_Require upgrade_Assign seriousness",
+        "splace_in_Require upgrade_Create SW anomaly",
+        "splace_in_Require upgrade_Require upgrade",
+        "splace_in_Require upgrade_Take in charge ticket",
+        "splace_in_Resolve ticket_Assign seriousness",
+        "splace_in_Resolve ticket_Resolve ticket",
+        "splace_in_Resolve ticket_Take in charge ticket",
+        "splace_in_Resolve ticket_Wait",
+        "splace_in_Take in charge ticket_Assign seriousness"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "postset": [
+            "pre_Assign seriousness",
+            "splace_in_Take in charge ticket_Assign seriousness"
+          ],
+          "preset": [
+            "intplace_Assign seriousness"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Wait",
+            "splace_in_Resolve ticket_Assign seriousness"
+          ],
+          "preset": [
+            "intplace_Assign seriousness"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Create SW anomaly_Assign seriousness",
+            "splace_in_Require upgrade_Assign seriousness"
+          ],
+          "preset": [
+            "intplace_Assign seriousness"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Resolve ticket_Assign seriousness",
+            "splace_in_Take in charge ticket_Assign seriousness"
+          ],
+          "preset": [
+            "intplace_Assign seriousness"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve ticket",
+            "splace_in_Create SW anomaly_Create SW anomaly",
+            "splace_in_Require upgrade_Create SW anomaly"
+          ],
+          "preset": [
+            "intplace_Create SW anomaly"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve SW anomaly"
+          ],
+          "preset": [
+            "intplace_Create SW anomaly",
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve ticket",
+            "splace_in_Require upgrade_Require upgrade"
+          ],
+          "preset": [
+            "intplace_Require upgrade"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_VERIFIED"
+          ],
+          "preset": [
+            "intplace_Require upgrade"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Wait"
+          ],
+          "preset": [
+            "intplace_Require upgrade"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Require upgrade"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Require upgrade",
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "intplace_Resolve SW anomaly"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve SW anomaly"
+          ],
+          "preset": [
+            "intplace_Resolve SW anomaly"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Closed",
+            "splace_in_Resolve ticket_Resolve ticket"
+          ],
+          "preset": [
+            "intplace_Resolve ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Resolve ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Wait"
+          ],
+          "preset": [
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Create SW anomaly_Take in charge ticket"
+          ],
+          "preset": [
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Require upgrade_Take in charge ticket"
+          ],
+          "preset": [
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Resolve ticket_Take in charge ticket"
+          ],
+          "preset": [
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_VERIFIED"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Require upgrade"
+          ],
+          "preset": [
+            "intplace_Wait"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Take in charge ticket"
+          ],
+          "preset": [
+            "intplace_Wait"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Wait",
+            "splace_in_Resolve ticket_Wait"
+          ],
+          "preset": [
+            "intplace_Wait"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Wait"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Assign seriousness"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Create SW anomaly"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Take in charge ticket"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Wait"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Create SW anomaly"
+          ],
+          "preset": [
+            "splace_in_Create SW anomaly_Assign seriousness",
+            "splace_in_Create SW anomaly_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Create SW anomaly"
+          ],
+          "preset": [
+            "splace_in_Create SW anomaly_Create SW anomaly",
+            "splace_in_Create SW anomaly_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Require upgrade"
+          ],
+          "preset": [
+            "splace_in_Require upgrade_Assign seriousness",
+            "splace_in_Require upgrade_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Require upgrade"
+          ],
+          "preset": [
+            "splace_in_Require upgrade_Create SW anomaly",
+            "splace_in_Require upgrade_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Require upgrade"
+          ],
+          "preset": [
+            "splace_in_Require upgrade_Require upgrade",
+            "splace_in_Require upgrade_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "splace_in_Resolve ticket_Assign seriousness",
+            "splace_in_Resolve ticket_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "splace_in_Resolve ticket_Resolve ticket",
+            "splace_in_Resolve ticket_Take in charge ticket"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "splace_in_Resolve ticket_Resolve ticket",
+            "splace_in_Resolve ticket_Wait"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Take in charge ticket"
+          ],
+          "preset": [
+            "splace_in_Take in charge ticket_Assign seriousness"
+          ]
+        },
+        {
+          "label": "Assign seriousness",
+          "postset": [
+            "intplace_Assign seriousness"
+          ],
+          "preset": [
+            "pre_Assign seriousness"
+          ]
+        },
+        {
+          "label": "Closed",
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "pre_Closed"
+          ]
+        },
+        {
+          "label": "Create SW anomaly",
+          "postset": [
+            "intplace_Create SW anomaly"
+          ],
+          "preset": [
+            "pre_Create SW anomaly"
+          ]
+        },
+        {
+          "label": "DUPLICATE",
+          "postset": [
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "intplace_VERIFIED"
+          ]
+        },
+        {
+          "label": "INVALID",
+          "postset": [
+            "pre_Closed",
+            "pre_VERIFIED"
+          ],
+          "preset": [
+            "pre_INVALID"
+          ]
+        },
+        {
+          "label": "Insert ticket",
+          "postset": [
+            "pre_Assign seriousness"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": "RESOLVED",
+          "postset": [
+            "pre_INVALID"
+          ],
+          "preset": [
+            "intplace_Resolve ticket"
+          ]
+        },
+        {
+          "label": "Require upgrade",
+          "postset": [
+            "intplace_Require upgrade"
+          ],
+          "preset": [
+            "pre_Require upgrade"
+          ]
+        },
+        {
+          "label": "Resolve SW anomaly",
+          "postset": [
+            "intplace_Resolve SW anomaly"
+          ],
+          "preset": [
+            "pre_Resolve SW anomaly"
+          ]
+        },
+        {
+          "label": "Resolve ticket",
+          "postset": [
+            "intplace_Resolve ticket"
+          ],
+          "preset": [
+            "pre_Resolve ticket"
+          ]
+        },
+        {
+          "label": "Schedule intervention",
+          "postset": [
+            "pre_Resolve ticket"
+          ],
+          "preset": [
+            "intplace_Take in charge ticket"
+          ]
+        },
+        {
+          "label": "Take in charge ticket",
+          "postset": [
+            "intplace_Take in charge ticket"
+          ],
+          "preset": [
+            "pre_Take in charge ticket"
+          ]
+        },
+        {
+          "label": "VERIFIED",
+          "postset": [
+            "intplace_VERIFIED"
+          ],
+          "preset": [
+            "pre_VERIFIED"
+          ]
+        },
+        {
+          "label": "Wait",
+          "postset": [
+            "intplace_Wait"
+          ],
+          "preset": [
+            "pre_Wait"
+          ]
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "model",
+    "case": "heuristics-net-helpdesk",
+    "fixtures": {
+      "log": "fixtures/logs/helpdesk.xes.gz"
+    },
+    "functions": [
+      "pm4py.discover_heuristics_net",
+      "pm4py.convert_to_petri_net"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

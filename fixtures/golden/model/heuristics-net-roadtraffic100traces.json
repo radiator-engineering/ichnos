@@ -1,0 +1,764 @@
+{
+  "expected": {
+    "heuristics_net": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "activities_occurrences": {
+        "Add penalty": 57,
+        "Create Fine": 100,
+        "Insert Date Appeal to Prefecture": 1,
+        "Insert Fine Notification": 57,
+        "Notify Result Appeal to Offender": 1,
+        "Payment": 58,
+        "Receive Result Appeal from Prefecture": 1,
+        "Send Appeal to Prefecture": 1,
+        "Send Fine": 78,
+        "Send for Credit Collection": 36
+      },
+      "dependency_matrix": [
+        [
+          "Add penalty",
+          "Payment",
+          0.64
+        ],
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          0.5
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection",
+          0.972972972972973
+        ],
+        [
+          "Create Fine",
+          "Payment",
+          0.9583333333333334
+        ],
+        [
+          "Create Fine",
+          "Send Fine",
+          0.9871794871794872
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          0.5
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty",
+          0.9811320754716981
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          0.5
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment",
+          0.8
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment",
+          0.5
+        ],
+        [
+          "Payment",
+          "Add penalty",
+          -0.64
+        ],
+        [
+          "Payment",
+          "Payment",
+          0.8333333333333334
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          0.5
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          0.5
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification",
+          0.9824561403508771
+        ],
+        [
+          "Send Fine",
+          "Payment",
+          0.8333333333333334
+        ]
+      ],
+      "dfg_matrix": [
+        [
+          "Add penalty",
+          "Payment",
+          20
+        ],
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          1
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection",
+          36
+        ],
+        [
+          "Create Fine",
+          "Payment",
+          23
+        ],
+        [
+          "Create Fine",
+          "Send Fine",
+          77
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          1
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty",
+          52
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          1
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment",
+          4
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment",
+          1
+        ],
+        [
+          "Payment",
+          "Add penalty",
+          4
+        ],
+        [
+          "Payment",
+          "Payment",
+          5
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          1
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          1
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification",
+          56
+        ],
+        [
+          "Send Fine",
+          "Payment",
+          5
+        ]
+      ],
+      "end_activities": [
+        {
+          "Payment": 47,
+          "Send Fine": 17,
+          "Send for Credit Collection": 36
+        }
+      ],
+      "freq_triples_matrix": [
+        [
+          "Payment",
+          "Add penalty",
+          4
+        ]
+      ],
+      "nodes": [
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Insert Date Appeal to Prefecture"
+            },
+            {
+              "dependency": 0.9811320754716981,
+              "frequency": 52,
+              "target": "Insert Fine Notification"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Add penalty",
+          "occurrences": 57,
+          "outputs": [
+            {
+              "dependency": 0.64,
+              "frequency": 20,
+              "target": "Payment"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Send Appeal to Prefecture"
+            },
+            {
+              "dependency": 0.972972972972973,
+              "frequency": 36,
+              "target": "Send for Credit Collection"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [
+            [
+              "Add penalty",
+              "Insert Fine Notification",
+              2.08
+            ],
+            [
+              "Add penalty",
+              "Payment",
+              0.9230769230769231
+            ],
+            [
+              "Create Fine",
+              "Payment",
+              0.7931034482758621
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              2.6551724137931036
+            ],
+            [
+              "Insert Fine Notification",
+              "Send Fine",
+              5.6
+            ]
+          ],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.64,
+              "frequency": 20,
+              "target": "Add penalty"
+            },
+            {
+              "dependency": 0.9583333333333334,
+              "frequency": 23,
+              "target": "Create Fine"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Insert Fine Notification"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Notify Result Appeal to Offender"
+            },
+            {
+              "dependency": 0.8333333333333334,
+              "frequency": 5,
+              "target": "Payment"
+            },
+            {
+              "dependency": 0.8333333333333334,
+              "frequency": 5,
+              "target": "Send Fine"
+            }
+          ],
+          "loop_length_two": {
+            "Add penalty": 4
+          },
+          "name": "Payment",
+          "occurrences": 58,
+          "outputs": [
+            {
+              "dependency": 0.8333333333333334,
+              "frequency": 5,
+              "target": "Payment"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Add penalty"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Send Appeal to Prefecture",
+          "occurrences": 1,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Receive Result Appeal from Prefecture"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.972972972972973,
+              "frequency": 36,
+              "target": "Add penalty"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Send for Credit Collection",
+          "occurrences": 36,
+          "outputs": []
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [],
+          "loop_length_two": {},
+          "name": "Create Fine",
+          "occurrences": 100,
+          "outputs": [
+            {
+              "dependency": 0.9583333333333334,
+              "frequency": 23,
+              "target": "Payment"
+            },
+            {
+              "dependency": 0.9871794871794872,
+              "frequency": 77,
+              "target": "Send Fine"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.9871794871794872,
+              "frequency": 77,
+              "target": "Create Fine"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Send Fine",
+          "occurrences": 78,
+          "outputs": [
+            {
+              "dependency": 0.9824561403508771,
+              "frequency": 56,
+              "target": "Insert Fine Notification"
+            },
+            {
+              "dependency": 0.8333333333333334,
+              "frequency": 5,
+              "target": "Payment"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Insert Fine Notification"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Insert Date Appeal to Prefecture",
+          "occurrences": 1,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Add penalty"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.9824561403508771,
+              "frequency": 56,
+              "target": "Send Fine"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Insert Fine Notification",
+          "occurrences": 57,
+          "outputs": [
+            {
+              "dependency": 0.9811320754716981,
+              "frequency": 52,
+              "target": "Add penalty"
+            },
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Insert Date Appeal to Prefecture"
+            },
+            {
+              "dependency": 0.8,
+              "frequency": 4,
+              "target": "Payment"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Receive Result Appeal from Prefecture"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Notify Result Appeal to Offender",
+          "occurrences": 1,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Payment"
+            }
+          ]
+        },
+        {
+          "and_measures_in": [],
+          "and_measures_out": [],
+          "inputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Send Appeal to Prefecture"
+            }
+          ],
+          "loop_length_two": {},
+          "name": "Receive Result Appeal from Prefecture",
+          "occurrences": 1,
+          "outputs": [
+            {
+              "dependency": 0.5,
+              "frequency": 1,
+              "target": "Notify Result Appeal to Offender"
+            }
+          ]
+        }
+      ],
+      "start_activities": [
+        {
+          "Create Fine": 100
+        }
+      ]
+    },
+    "petri_net": {
+      "arcs": 51,
+      "final_marking": {
+        "sink0": 1
+      },
+      "initial_marking": {
+        "source0": 1
+      },
+      "places": [
+        "intplace_Add penalty",
+        "intplace_Create Fine",
+        "intplace_Insert Fine Notification",
+        "intplace_Payment",
+        "intplace_Send Fine",
+        "pre_Add penalty",
+        "pre_Notify Result Appeal to Offender",
+        "pre_Payment",
+        "pre_Receive Result Appeal from Prefecture",
+        "sink0",
+        "source0",
+        "splace_in_Payment_Add penalty",
+        "splace_in_Payment_Create Fine",
+        "splace_in_Payment_Insert Fine Notification",
+        "splace_in_Payment_Payment",
+        "splace_in_Payment_Send Fine"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Payment_Add penalty"
+          ],
+          "preset": [
+            "intplace_Add penalty"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Payment_Create Fine"
+          ],
+          "preset": [
+            "intplace_Create Fine"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Add penalty"
+          ],
+          "preset": [
+            "intplace_Insert Fine Notification"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Payment_Insert Fine Notification"
+          ],
+          "preset": [
+            "intplace_Insert Fine Notification"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Payment"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Payment_Payment"
+          ],
+          "preset": [
+            "intplace_Payment"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Send Fine"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "splace_in_Payment_Send Fine"
+          ],
+          "preset": [
+            "intplace_Send Fine"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Payment"
+          ],
+          "preset": [
+            "splace_in_Payment_Add penalty",
+            "splace_in_Payment_Insert Fine Notification"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Payment"
+          ],
+          "preset": [
+            "splace_in_Payment_Add penalty",
+            "splace_in_Payment_Payment"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Payment"
+          ],
+          "preset": [
+            "splace_in_Payment_Create Fine",
+            "splace_in_Payment_Payment"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Payment"
+          ],
+          "preset": [
+            "splace_in_Payment_Create Fine",
+            "splace_in_Payment_Send Fine"
+          ]
+        },
+        {
+          "label": null,
+          "postset": [
+            "pre_Payment"
+          ],
+          "preset": [
+            "splace_in_Payment_Insert Fine Notification",
+            "splace_in_Payment_Send Fine"
+          ]
+        },
+        {
+          "label": "Add penalty",
+          "postset": [
+            "intplace_Add penalty"
+          ],
+          "preset": [
+            "pre_Add penalty"
+          ]
+        },
+        {
+          "label": "Create Fine",
+          "postset": [
+            "intplace_Create Fine"
+          ],
+          "preset": [
+            "source0"
+          ]
+        },
+        {
+          "label": "Insert Date Appeal to Prefecture",
+          "postset": [
+            "pre_Add penalty"
+          ],
+          "preset": [
+            "intplace_Insert Fine Notification"
+          ]
+        },
+        {
+          "label": "Insert Fine Notification",
+          "postset": [
+            "intplace_Insert Fine Notification"
+          ],
+          "preset": [
+            "intplace_Send Fine"
+          ]
+        },
+        {
+          "label": "Notify Result Appeal to Offender",
+          "postset": [
+            "pre_Payment"
+          ],
+          "preset": [
+            "pre_Notify Result Appeal to Offender"
+          ]
+        },
+        {
+          "label": "Payment",
+          "postset": [
+            "intplace_Payment"
+          ],
+          "preset": [
+            "pre_Payment"
+          ]
+        },
+        {
+          "label": "Receive Result Appeal from Prefecture",
+          "postset": [
+            "pre_Notify Result Appeal to Offender"
+          ],
+          "preset": [
+            "pre_Receive Result Appeal from Prefecture"
+          ]
+        },
+        {
+          "label": "Send Appeal to Prefecture",
+          "postset": [
+            "pre_Receive Result Appeal from Prefecture"
+          ],
+          "preset": [
+            "intplace_Add penalty"
+          ]
+        },
+        {
+          "label": "Send Fine",
+          "postset": [
+            "intplace_Send Fine"
+          ],
+          "preset": [
+            "intplace_Create Fine"
+          ]
+        },
+        {
+          "label": "Send for Credit Collection",
+          "postset": [
+            "sink0"
+          ],
+          "preset": [
+            "intplace_Add penalty"
+          ]
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "model",
+    "case": "heuristics-net-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.discover_heuristics_net",
+      "pm4py.convert_to_petri_net"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

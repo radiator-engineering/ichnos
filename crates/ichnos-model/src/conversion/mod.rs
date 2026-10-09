@@ -4,6 +4,7 @@
 //! [`ProcessTree::to_petri_net`](crate::ProcessTree::to_petri_net).
 
 mod dfg_to_petri;
+mod heuristics_to_petri;
 mod petri_to_ts;
 mod tree_to_petri;
 
@@ -11,4 +12,4 @@ pub use dfg_to_petri::{ARTIFICIAL_END, ARTIFICIAL_START};
 pub use petri_to_ts::EdgeNaming;
 
 #[cfg(test)]
-mod tests;
+pub(crate) mod tests;

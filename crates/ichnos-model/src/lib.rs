@@ -8,6 +8,7 @@
 //! - [`process_tree`]: process trees, pm4py's string syntax, simplification
 //!   and random playout.
 //! - [`dfg`]: directly-follows graphs and their filters.
+//! - [`heuristics_net`]: heuristics nets and their AND and loop measures.
 //! - [`transition_system`]: transition systems and reachability graphs as
 //!   transition systems.
 //! - [`footprints`]: behavioural footprints of nets and trees.
@@ -25,6 +26,7 @@ pub mod conversion;
 pub mod dfg;
 mod error;
 pub mod footprints;
+pub mod heuristics_net;
 mod label;
 pub mod petri;
 pub mod process_tree;
@@ -33,6 +35,7 @@ pub mod transition_system;
 pub use dfg::Dfg;
 pub use error::Error;
 pub use footprints::{Footprints, TreeFootprints};
+pub use heuristics_net::HeuristicsNet;
 pub use label::Label;
 pub use petri::{AcceptingPetriNet, Marking, PetriNet, PlaceId, TransitionId};
 pub use process_tree::{Operator, ProcessTree};
