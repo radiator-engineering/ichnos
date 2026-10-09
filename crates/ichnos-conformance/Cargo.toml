@@ -11,3 +11,15 @@ repository.workspace = true
 workspace = true
 
 [dependencies]
+good_lp = { workspace = true }
+hashbrown = { workspace = true }
+ichnos-core = { workspace = true }
+ichnos-model = { workspace = true }
+rustc-hash = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+csv = { workspace = true }
+ichnos-golden = { workspace = true }
+# Exact float parsing, so golden fitness values compare bit for bit.
+serde_json = { workspace = true, features = ["float_roundtrip"] }
