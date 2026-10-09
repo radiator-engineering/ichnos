@@ -43,6 +43,8 @@ pub(crate) struct StateEquation {
 #[derive(Debug, Clone)]
 pub(crate) struct Estimate {
     pub(crate) h: u64,
+    /// The LP optimum before rounding.
+    pub(crate) objective: f64,
     pub(crate) x: Vec<f64>,
 }
 
@@ -95,6 +97,7 @@ impl StateEquation {
         match self.simplex.solve(&b) {
             Ok(s) => Ok(Some(Estimate {
                 h: Self::round_up(s.objective),
+                objective: s.objective,
                 x: s.x,
             })),
             Err(LpFailure::Infeasible) => Ok(None),
@@ -127,6 +130,7 @@ impl StateEquation {
         let objective: f64 = values.iter().zip(&self.costs).map(|(v, c)| v * c).sum();
         Ok(Some(Estimate {
             h: Self::round_up(objective),
+            objective,
             x: values,
         }))
     }
