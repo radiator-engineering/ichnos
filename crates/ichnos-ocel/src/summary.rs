@@ -5,6 +5,8 @@ use std::collections::{BTreeMap, HashMap, HashSet};
 use std::fmt;
 use std::sync::Arc;
 
+use ichnos_core::python::repr;
+
 use crate::ocel::Ocel;
 
 /// Counts that describe an object-centric event log (pm4py's
@@ -110,6 +112,13 @@ impl fmt::Display for OcelSummary {
     }
 }
 
+/// The summary text, as pm4py's `OCEL.__str__` and `__repr__` give it.
+impl fmt::Display for Ocel {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        self.summary().fmt(f)
+    }
+}
+
 /// Writes counts as Python prints a `Counter`.
 fn counter(f: &mut fmt::Formatter<'_>, counts: &[(Arc<str>, usize)]) -> fmt::Result {
     if counts.is_empty() {
@@ -120,57 +129,19 @@ fn counter(f: &mut fmt::Formatter<'_>, counts: &[(Arc<str>, usize)]) -> fmt::Res
         if i > 0 {
             write!(f, ", ")?;
         }
-        py_repr(f, key)?;
-        write!(f, ": {count}")?;
+        write!(f, "{}: {count}", repr(key))?;
     }
     write!(f, "}})")
-}
-
-/// Writes a string as Python's `repr` does.
-fn py_repr(f: &mut fmt::Formatter<'_>, s: &str) -> fmt::Result {
-    let quote = if s.contains('\'') && !s.contains('"') {
-        '"'
-    } else {
-        '\''
-    };
-    write!(f, "{quote}")?;
-    for c in s.chars() {
-        match c {
-            '\\' => write!(f, "\\\\")?,
-            '\n' => write!(f, "\\n")?,
-            '\r' => write!(f, "\\r")?,
-            '\t' => write!(f, "\\t")?,
-            c if c == quote => write!(f, "\\{c}")?,
-            c if (c as u32) < 0x20 || c == '\x7f' => write!(f, "\\x{:02x}", c as u32)?,
-            c => write!(f, "{c}")?,
-        }
-    }
-    write!(f, "{quote}")
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    struct Repr<'a>(&'a str);
-
-    impl fmt::Display for Repr<'_> {
-        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            py_repr(f, self.0)
-        }
-    }
-
-    #[test]
-    fn repr_follows_python() {
-        assert_eq!(Repr("a b").to_string(), "'a b'");
-        assert_eq!(Repr("it's").to_string(), "\"it's\"");
-        assert_eq!(Repr("it's \"x\"").to_string(), "'it\\'s \"x\"'");
-        assert_eq!(Repr("a\\b\n").to_string(), "'a\\\\b\\n'");
-    }
-
     #[test]
     fn empty_log() {
         let text = Ocel::new().summary().to_string();
         assert!(text.contains("Activities occurrences: Counter()\n"));
+        assert_eq!(Ocel::new().to_string(), text);
     }
 }
