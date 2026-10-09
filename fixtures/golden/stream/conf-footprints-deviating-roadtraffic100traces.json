@@ -1,0 +1,243 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "footprints",
+    "model": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "end_activities": [],
+      "parallel": [],
+      "sequence": [],
+      "start_activities": []
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "N77802",
+                {
+                  "deviations": 1,
+                  "is_fit": false,
+                  "last": "Create Fine"
+                }
+              ]
+            ]
+          ],
+          "sha256": "b46d1e6e53746c2ed710373d250a53faff9afc6b75e5b30a8ecb83adcc3be44f"
+        }
+      },
+      {
+        "at": 195,
+        "state": {
+          "count": 53,
+          "samples": [
+            [
+              0,
+              [
+                "A13415",
+                {
+                  "deviations": 2,
+                  "is_fit": false,
+                  "last": "Send Fine"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A17641",
+                {
+                  "deviations": 2,
+                  "is_fit": false,
+                  "last": "Payment"
+                }
+              ]
+            ],
+            [
+              52,
+              [
+                "V9832",
+                {
+                  "deviations": 5,
+                  "is_fit": false,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ]
+          ],
+          "sha256": "e5a248eaa5beab963f8730cab245092719675196200fabeb669d6c282990da75"
+        }
+      },
+      {
+        "at": 389,
+        "state": {
+          "count": 100,
+          "samples": [
+            [
+              0,
+              [
+                "A10466",
+                {
+                  "deviations": 5,
+                  "is_fit": false,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A13415",
+                {
+                  "deviations": 2,
+                  "is_fit": false,
+                  "last": "Send Fine"
+                }
+              ]
+            ],
+            [
+              99,
+              [
+                "V9832",
+                {
+                  "deviations": 5,
+                  "is_fit": false,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ]
+          ],
+          "sha256": "ae2f686b03ff5903a93e31cfa5641d9fda93670c7703dc1d9c2a29a4930663b4"
+        }
+      },
+      {
+        "at": 390,
+        "state": {
+          "count": 100,
+          "samples": [
+            [
+              0,
+              [
+                "A10466",
+                {
+                  "deviations": 5,
+                  "is_fit": false,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A13415",
+                {
+                  "deviations": 2,
+                  "is_fit": false,
+                  "last": "Send Fine"
+                }
+              ]
+            ],
+            [
+              99,
+              [
+                "V9832",
+                {
+                  "deviations": 5,
+                  "is_fit": false,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ]
+          ],
+          "sha256": "0be9bfdea1163156a7592ca0b625f1472e290ba8eb9bafb891219957a4e32561"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 100,
+      "samples": [
+        [
+          0,
+          [
+            "A10466",
+            false
+          ]
+        ],
+        [
+          1,
+          [
+            "A13415",
+            false
+          ]
+        ],
+        [
+          99,
+          [
+            "V9832",
+            false
+          ]
+        ]
+      ],
+      "sha256": "0871c7f9b7a602fc4b32fb093b326eb518c52e7cc9107fbfa5030e4eae911784"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-footprints-deviating-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.footprints.algorithm.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "footprints",
+      "perturb": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
