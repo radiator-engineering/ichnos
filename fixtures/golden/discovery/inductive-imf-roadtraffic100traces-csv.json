@@ -1,0 +1,264 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "petri_net_behaviour": {
+          "fitness_tbr": {
+            "average_trace_fitness": 0.9943444055944056,
+            "log_fitness": 0.9930151338766007,
+            "perc_fit_traces": 94.0,
+            "percentage_of_fitting_traces": 94.0
+          },
+          "footprints": {
+            "activities": [
+              "Add penalty",
+              "Create Fine",
+              "Insert Date Appeal to Prefecture",
+              "Insert Fine Notification",
+              "Notify Result Appeal to Offender",
+              "Payment",
+              "Receive Result Appeal from Prefecture",
+              "Send Appeal to Prefecture",
+              "Send Fine",
+              "Send for Credit Collection"
+            ],
+            "parallel": [
+              [
+                "Payment",
+                "Payment"
+              ]
+            ],
+            "sequence": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection"
+              ],
+              [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              [
+                "Notify Result Appeal to Offender",
+                "Send for Credit Collection"
+              ],
+              [
+                "Payment",
+                "Send for Credit Collection"
+              ],
+              [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ],
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              [
+                "Send Fine",
+                "Payment"
+              ],
+              [
+                "Send Fine",
+                "Send for Credit Collection"
+              ]
+            ],
+            "start_activities": [
+              "Create Fine"
+            ]
+          },
+          "model_kind": "petri_net",
+          "precision_tbr": 0.7425287356321839
+        },
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "tree": "->( 'Create Fine', X( tau, ->( 'Send Fine', X( tau, ->( 'Insert Fine Notification', X( tau, 'Insert Date Appeal to Prefecture' ), 'Add penalty', X( tau, ->( 'Send Appeal to Prefecture', 'Receive Result Appeal from Prefecture', 'Notify Result Appeal to Offender' ) ) ) ) ) ), X( tau, *( 'Payment', tau ) ), X( tau, 'Send for Credit Collection' ) )",
+        "tree_behaviour": {
+          "fitness_tbr": {
+            "average_trace_fitness": 0.9943444055944056,
+            "log_fitness": 0.9930151338766007,
+            "perc_fit_traces": 94.0,
+            "percentage_of_fitting_traces": 94.0
+          },
+          "footprints": {
+            "activities": [
+              "Add penalty",
+              "Create Fine",
+              "Insert Date Appeal to Prefecture",
+              "Insert Fine Notification",
+              "Notify Result Appeal to Offender",
+              "Payment",
+              "Receive Result Appeal from Prefecture",
+              "Send Appeal to Prefecture",
+              "Send Fine",
+              "Send for Credit Collection"
+            ],
+            "activities_always_happening": [
+              "Create Fine"
+            ],
+            "end_activities": [
+              "Add penalty",
+              "Create Fine",
+              "Notify Result Appeal to Offender",
+              "Payment",
+              "Send Fine",
+              "Send for Credit Collection"
+            ],
+            "max_trace_length_wo_loops": 10,
+            "min_trace_length": 1,
+            "parallel": [
+              [
+                "Payment",
+                "Payment"
+              ]
+            ],
+            "sequence": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection"
+              ],
+              [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              [
+                "Notify Result Appeal to Offender",
+                "Send for Credit Collection"
+              ],
+              [
+                "Payment",
+                "Send for Credit Collection"
+              ],
+              [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ],
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              [
+                "Send Fine",
+                "Payment"
+              ],
+              [
+                "Send Fine",
+                "Send for Credit Collection"
+              ]
+            ],
+            "skippable": false,
+            "start_activities": [
+              "Create Fine"
+            ]
+          },
+          "model_kind": "process_tree",
+          "precision_tbr": 0.7425287356321839
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "inductive-imf-roadtraffic100traces-csv",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.discover_process_tree_inductive",
+      "pm4py.discover_petri_net_inductive",
+      "pm4py.discover_footprints",
+      "pm4py.fitness_token_based_replay",
+      "pm4py.precision_token_based_replay"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imf"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

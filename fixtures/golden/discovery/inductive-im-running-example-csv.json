@@ -1,0 +1,228 @@
+{
+  "expected": {
+    "petri_net_behaviour": {
+      "fitness_tbr": {
+        "average_trace_fitness": 1.0,
+        "log_fitness": 1.0,
+        "perc_fit_traces": 100.0,
+        "percentage_of_fitting_traces": 100.0
+      },
+      "footprints": {
+        "activities": [
+          "check ticket",
+          "decide",
+          "examine casually",
+          "examine thoroughly",
+          "pay compensation",
+          "register request",
+          "reinitiate request",
+          "reject request"
+        ],
+        "parallel": [
+          [
+            "check ticket",
+            "examine casually"
+          ],
+          [
+            "check ticket",
+            "examine thoroughly"
+          ],
+          [
+            "examine casually",
+            "check ticket"
+          ],
+          [
+            "examine thoroughly",
+            "check ticket"
+          ]
+        ],
+        "sequence": [
+          [
+            "check ticket",
+            "decide"
+          ],
+          [
+            "decide",
+            "pay compensation"
+          ],
+          [
+            "decide",
+            "reinitiate request"
+          ],
+          [
+            "decide",
+            "reject request"
+          ],
+          [
+            "examine casually",
+            "decide"
+          ],
+          [
+            "examine thoroughly",
+            "decide"
+          ],
+          [
+            "register request",
+            "check ticket"
+          ],
+          [
+            "register request",
+            "examine casually"
+          ],
+          [
+            "register request",
+            "examine thoroughly"
+          ],
+          [
+            "reinitiate request",
+            "check ticket"
+          ],
+          [
+            "reinitiate request",
+            "examine casually"
+          ],
+          [
+            "reinitiate request",
+            "examine thoroughly"
+          ]
+        ],
+        "start_activities": [
+          "register request"
+        ]
+      },
+      "model_kind": "petri_net",
+      "precision_tbr": 0.7530864197530864
+    },
+    "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )",
+    "tree_behaviour": {
+      "fitness_tbr": {
+        "average_trace_fitness": 1.0,
+        "log_fitness": 1.0,
+        "perc_fit_traces": 100.0,
+        "percentage_of_fitting_traces": 100.0
+      },
+      "footprints": {
+        "activities": [
+          "check ticket",
+          "decide",
+          "examine casually",
+          "examine thoroughly",
+          "pay compensation",
+          "register request",
+          "reinitiate request",
+          "reject request"
+        ],
+        "activities_always_happening": [
+          "check ticket",
+          "decide",
+          "register request"
+        ],
+        "end_activities": [
+          "pay compensation",
+          "reject request"
+        ],
+        "max_trace_length_wo_loops": 5,
+        "min_trace_length": 5,
+        "parallel": [
+          [
+            "check ticket",
+            "examine casually"
+          ],
+          [
+            "check ticket",
+            "examine thoroughly"
+          ],
+          [
+            "examine casually",
+            "check ticket"
+          ],
+          [
+            "examine thoroughly",
+            "check ticket"
+          ]
+        ],
+        "sequence": [
+          [
+            "check ticket",
+            "decide"
+          ],
+          [
+            "decide",
+            "pay compensation"
+          ],
+          [
+            "decide",
+            "reinitiate request"
+          ],
+          [
+            "decide",
+            "reject request"
+          ],
+          [
+            "examine casually",
+            "decide"
+          ],
+          [
+            "examine thoroughly",
+            "decide"
+          ],
+          [
+            "register request",
+            "check ticket"
+          ],
+          [
+            "register request",
+            "examine casually"
+          ],
+          [
+            "register request",
+            "examine thoroughly"
+          ],
+          [
+            "reinitiate request",
+            "check ticket"
+          ],
+          [
+            "reinitiate request",
+            "examine casually"
+          ],
+          [
+            "reinitiate request",
+            "examine thoroughly"
+          ]
+        ],
+        "skippable": false,
+        "start_activities": [
+          "register request"
+        ]
+      },
+      "model_kind": "process_tree",
+      "precision_tbr": 0.7530864197530864
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "inductive-im-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_process_tree_inductive",
+      "pm4py.discover_petri_net_inductive",
+      "pm4py.discover_footprints",
+      "pm4py.fitness_token_based_replay",
+      "pm4py.precision_token_based_replay"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "im"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
