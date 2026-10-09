@@ -4,70 +4,10 @@
 //! (`algo/discovery/ocel/ocdfg`).
 
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
-use std::fmt;
 
 use ichnos_ocel::{ObjectGraphKind, Ocel, discover_objects_graph};
 
 use crate::{Error, Result};
-
-/// How two objects are related in an object graph (pm4py's `graph_type`
-/// of `discover_objects_graph`).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub enum ObjectRelation {
-    /// Both objects are related to some event (`object_interaction`).
-    Interaction,
-    /// The second object first appears in an event that the first object
-    /// was already part of (`object_descendants`).
-    Descendants,
-    /// The first object's last event is the second object's first event
-    /// (`object_inheritance`).
-    Inheritance,
-    /// Both objects first appear in the same event (`object_cobirth`).
-    Cobirth,
-    /// Both objects last appear in the same event (`object_codeath`).
-    Codeath,
-}
-
-impl ObjectRelation {
-    /// Every relation, in pm4py's order.
-    pub const ALL: [ObjectRelation; 5] = [
-        ObjectRelation::Interaction,
-        ObjectRelation::Descendants,
-        ObjectRelation::Inheritance,
-        ObjectRelation::Cobirth,
-        ObjectRelation::Codeath,
-    ];
-
-    /// pm4py's name of the relation, such as `object_interaction`.
-    pub fn as_str(self) -> &'static str {
-        match self {
-            ObjectRelation::Interaction => "object_interaction",
-            ObjectRelation::Descendants => "object_descendants",
-            ObjectRelation::Inheritance => "object_inheritance",
-            ObjectRelation::Cobirth => "object_cobirth",
-            ObjectRelation::Codeath => "object_codeath",
-        }
-    }
-}
-
-impl ObjectRelation {
-    /// The object graph of ichnos-ocel that gives this relation.
-    fn kind(self) -> ObjectGraphKind {
-        match self {
-            ObjectRelation::Interaction => ObjectGraphKind::Interaction,
-            ObjectRelation::Descendants => ObjectGraphKind::Descendants,
-            ObjectRelation::Inheritance => ObjectGraphKind::Inheritance,
-            ObjectRelation::Cobirth => ObjectGraphKind::Cobirth,
-            ObjectRelation::Codeath => ObjectGraphKind::Codeath,
-        }
-    }
-}
-
-impl fmt::Display for ObjectRelation {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_str(self.as_str())
-    }
-}
 
 /// An edge of an object-type graph: objects of type `source` relate to
 /// objects of type `target` by `relation`.
@@ -76,7 +16,7 @@ pub struct OtgEdge {
     /// The type of the first object.
     pub source: String,
     /// The relation between the objects.
-    pub relation: ObjectRelation,
+    pub relation: ObjectGraphKind,
     /// The type of the second object.
     pub target: String,
 }
@@ -175,7 +115,7 @@ impl<'a> Index<'a> {
 
 /// The object-type graph of a log, as pm4py's `discover_otg` computes it.
 ///
-/// For each [`ObjectRelation`], each pair of related objects adds 1 to the
+/// For each [`ObjectGraphKind`], each pair of related objects adds 1 to the
 /// edge between their types. The object types are those of the objects
 /// table.
 ///
@@ -189,8 +129,8 @@ impl<'a> Index<'a> {
 pub fn discover_otg(ocel: &Ocel) -> Result<Otg> {
     let index = Index::new(ocel);
     let mut edges: BTreeMap<OtgEdge, u64> = BTreeMap::new();
-    for relation in ObjectRelation::ALL {
-        for (o1, o2) in discover_objects_graph(ocel, relation.kind()) {
+    for relation in ObjectGraphKind::ALL {
+        for (o1, o2) in discover_objects_graph(ocel, relation) {
             let edge = OtgEdge {
                 source: index.object_type(&o1)?.to_owned(),
                 relation,

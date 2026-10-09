@@ -24,7 +24,8 @@ use ichnos_ocel::Ocel;
 
 use crate::{Error, Result};
 
-pub use graphs::{Etot, ObjectRelation, OcdfgMeasures, Otg, OtgEdge, discover_etot, discover_otg};
+pub use graphs::{Etot, OcdfgMeasures, Otg, OtgEdge, discover_etot, discover_otg};
+pub use ichnos_ocel::ObjectGraphKind;
 
 /// Options for [`conformance_otg`], with pm4py's defaults.
 #[derive(Debug, Clone, PartialEq)]
@@ -32,7 +33,7 @@ pub struct OtgConformanceOptions {
     /// The largest relative frequency difference an edge may have, by
     /// relation. A relation without an entry uses 0.2. Default 0.2 for
     /// each relation.
-    pub theta: BTreeMap<ObjectRelation, f64>,
+    pub theta: BTreeMap<ObjectGraphKind, f64>,
     /// The weight of missing object types. Default 1.
     pub alpha: f64,
     /// The weight of missing edges. Default 1.
@@ -44,7 +45,7 @@ pub struct OtgConformanceOptions {
 impl Default for OtgConformanceOptions {
     fn default() -> Self {
         OtgConformanceOptions {
-            theta: ObjectRelation::ALL.into_iter().map(|r| (r, 0.2)).collect(),
+            theta: ObjectGraphKind::ALL.into_iter().map(|r| (r, 0.2)).collect(),
             alpha: 1.0,
             beta: 1.0,
             gamma: 1.0,

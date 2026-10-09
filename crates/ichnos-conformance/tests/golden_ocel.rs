@@ -5,7 +5,7 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 
 use ichnos_conformance::ocel::{
-    Etot, EtotConformanceOptions, ObjectRelation, OcdfgConformanceOptions, OcdfgMeasures, Otg,
+    Etot, EtotConformanceOptions, ObjectGraphKind, OcdfgConformanceOptions, OcdfgMeasures, Otg,
     OtgConformanceOptions, OtgEdge, conformance_etot, conformance_etot_ocel, conformance_ocdfg,
     conformance_ocdfg_ocel, conformance_otg, conformance_otg_ocel, discover_etot, discover_otg,
 };
@@ -31,11 +31,8 @@ fn strings(v: &Value) -> BTreeSet<String> {
     v.as_array().unwrap().iter().map(s).collect()
 }
 
-fn relation(name: &str) -> ObjectRelation {
-    ObjectRelation::ALL
-        .into_iter()
-        .find(|r| r.as_str() == name)
-        .unwrap()
+fn relation(name: &str) -> ObjectGraphKind {
+    ObjectGraphKind::from_name(name).unwrap()
 }
 
 fn edge_of(v: &Value) -> OtgEdge {
@@ -59,7 +56,7 @@ fn otg_from(v: &Value) -> Otg {
 }
 
 fn edge_json(e: &OtgEdge) -> Value {
-    json!({"source": e.source, "relation": e.relation.as_str(), "target": e.target})
+    json!({"source": e.source, "relation": e.relation.name(), "target": e.target})
 }
 
 fn etot_from(v: &Value) -> Etot {
@@ -146,8 +143,8 @@ fn oracle_conformance_otg() {
         let mut options = OtgConformanceOptions::default();
         if custom {
             options.theta = BTreeMap::from([
-                (ObjectRelation::Interaction, 0.5),
-                (ObjectRelation::Cobirth, 0.0),
+                (ObjectGraphKind::Interaction, 0.5),
+                (ObjectGraphKind::Cobirth, 0.0),
             ]);
             options.alpha = 2.0;
             options.gamma = 0.5;
