@@ -44,6 +44,24 @@ traces deviate:
   variants are closest, pm4py's pick depends on string hashing, so
   ``cost_choices`` lists the cost of each pick it could make. ``cost`` and
   ``fitness`` are emitted only when there is one choice.
+
+Token replay (lane ``token-replay``), cases ``token-replay-<log>-<model>``
+over the same logs and nets as the Petri net alignments:
+
+- pm4py replays on the net rebuilt from ``model`` (see
+  :func:`net_from_description`), so that its node names are the canonical
+  ones. pm4py sorts places and transitions by name while replaying, and the
+  Rust side builds the same names.
+- ``traces``: per trace, in log order, ``case_id``, ``is_fit``, ``fitness``
+  and the ``missing``, ``consumed``, ``remaining`` and ``produced`` token
+  counts from ``pm4py.conformance_diagnostics_token_based_replay``.
+- ``variants``: per variant, in order of first trace, the same values plus
+  ``activated`` and ``problems`` (transition names, space-separated),
+  ``reached`` (the reached marking) and ``enabled`` (pm4py's
+  ``enabled_transitions_in_marking``).
+- ``options``: per non-default parameter set (:data:`TOKEN_REPLAY_OPTIONS`),
+  the ``params`` and, per variant, the counts, fitness and ``activated``.
+- ``fitness``: ``pm4py.fitness_token_based_replay``.
 """
 
 from __future__ import annotations
@@ -371,3 +389,150 @@ case(
     fixtures={"log": "running-example.csv", "model": "running-example.ptml"},
     functions=["pm4py.convert_to_event_log", "pm4py.conformance_diagnostics_alignments"],
 )(alignments_tree)
+
+
+# Token replay (lane ``token-replay``).
+
+TOKEN_REPLAY_FUNCTIONS = [
+    "pm4py.convert_to_event_log",
+    "pm4py.conformance_diagnostics_token_based_replay",
+    "pm4py.fitness_token_based_replay",
+]
+
+# Non-default parameter sets of pm4py's token replay. Each maps to the
+# parameters of ``token_replay.apply``.
+TOKEN_REPLAY_OPTIONS: dict[str, dict[str, bool]] = {
+    # The settings of ETConformance precision and replay_prefix_tbr.
+    "prefix": {
+        "consider_remaining_in_fitness": False,
+        "try_to_reach_final_marking_through_hidden": False,
+        "stop_immediately_unfit": True,
+        "walk_through_hidden_trans": True,
+    },
+    "no_hidden_walk": {"walk_through_hidden_trans": False},
+    "no_final_walk": {"try_to_reach_final_marking_through_hidden": False},
+    "remaining_ignored": {"consider_remaining_in_fitness": False},
+    "exhaustive": {"exhaustive_invisible_exploration": True},
+    "cleaning_token_flood": {"cleaning_token_flood": True},
+    "activities_not_in_model": {"consider_activities_not_in_model_in_fitness": True},
+}
+
+
+def net_from_description(model: dict[str, Any]) -> tuple[Any, Any, Any]:
+    """The pm4py net described by :func:`describe_canonical_net`, with its canonical names."""
+    from pm4py.objects.petri_net.obj import Marking, PetriNet
+    from pm4py.objects.petri_net.utils import petri_utils
+
+    net = PetriNet("golden")
+    nodes: dict[str, Any] = {}
+    for name in model["places"]:
+        nodes[name] = PetriNet.Place(name)
+        net.places.add(nodes[name])
+    for t in model["transitions"]:
+        nodes[t["name"]] = PetriNet.Transition(t["name"], t["label"])
+        net.transitions.add(nodes[t["name"]])
+    for a in model["arcs"]:
+        arc = petri_utils.add_arc_from_to(nodes[a["source"]], nodes[a["target"]], net, weight=a["weight"])
+        if a["type"] != "normal":
+            arc.properties["arctype"] = a["type"]
+    im = Marking({nodes[p]: n for p, n in model["initial_marking"].items()})
+    fm = Marking({nodes[p]: n for p, n in model["final_marking"].items()})
+    return net, im, fm
+
+
+def _replay_record(d: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "is_fit": d["trace_is_fit"],
+        "fitness": d["trace_fitness"],
+        "missing": d["missing_tokens"],
+        "consumed": d["consumed_tokens"],
+        "remaining": d["remaining_tokens"],
+        "produced": d["produced_tokens"],
+    }
+
+
+def _names(transitions: Any) -> str:
+    """Transition names joined by spaces, which keeps the golden files small."""
+    return " ".join(t.name for t in transitions)
+
+
+def _replay_details(d: dict[str, Any]) -> dict[str, Any]:
+    return {
+        **_replay_record(d),
+        "activated": _names(d["activated_transitions"]),
+        "problems": _names(d["transitions_with_problems"]),
+        "reached": {p.name: n for p, n in sorted(d["reached_marking"].items(), key=lambda x: x[0].name)},
+        "enabled": _names(sorted(d["enabled_transitions_in_marking"], key=lambda t: t.name)),
+    }
+
+
+def token_replay(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Token replay of the log in ``fixtures`` against its model, or the IM net."""
+    from pm4py.algo.conformance.tokenreplay.variants import token_replay as tbr
+    from pm4py.objects.log.obj import EventLog
+
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    if "model" in fixtures:
+        net, im, fm = load_model(fixtures["model"])
+    else:
+        net, im, fm = pm4py.discover_petri_net_inductive(log)
+    model = describe_canonical_net(net, im, fm)
+    # Replay on the net with canonical names: pm4py sorts places and
+    # transitions by name, so the names must match the Rust side's.
+    net, im, fm = net_from_description(model)
+    diagnostics = pm4py.conformance_diagnostics_token_based_replay(log, net, im, fm)
+    variants: dict[tuple[str, ...], int] = {}
+    for trace in log:
+        variants.setdefault(_variant(trace), len(variants))
+    first = {}
+    for trace, d in zip(log, diagnostics):
+        first.setdefault(_variant(trace), d)
+    options = {}
+    for name, params in TOKEN_REPLAY_OPTIONS.items():
+        params = {**params, "show_progress_bar": False}
+        if name == "activities_not_in_model":
+            # pm4py keeps the activities missing from the model in one record
+            # for the whole log, so one such trace makes every trace replayed
+            # after it unfit. Replay each variant alone to get the per-trace
+            # rule.
+            runs = []
+            for v in variants:
+                single = EventLog([log[[_variant(t) for t in log].index(v)]])
+                runs.append(tbr.apply(single, net, im, fm, parameters=params)[0])
+        else:
+            result = tbr.apply(log, net, im, fm, parameters=params)
+            by_variant = {}
+            for trace, d in zip(log, result):
+                by_variant.setdefault(_variant(trace), d)
+            runs = [by_variant[v] for v in variants]
+        options[name] = {
+            "params": TOKEN_REPLAY_OPTIONS[name],
+            "variants": [
+                {**_replay_record(d), "activated": _names(d["activated_transitions"])} for d in runs
+            ],
+        }
+    return {
+        "model": model,
+        "traces": [
+            {"case_id": trace.attributes["concept:name"], **_replay_record(d)}
+            for trace, d in zip(log, diagnostics)
+        ],
+        "variants": [{"activities": list(v), **_replay_details(first[v])} for v in variants],
+        "options": options,
+        "fitness": pm4py.fitness_token_based_replay(log, net, im, fm),
+    }
+
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"token-replay-{_log_id}-im",
+        fixture=_log,
+        functions=["pm4py.discover_petri_net_inductive", *TOKEN_REPLAY_FUNCTIONS],
+    )(token_replay)
+    for _net in ALIGNMENT_NETS[_log_id]:
+        _net_id = Path(_net).stem.replace("_", "-").lower()
+        case(
+            f"token-replay-{_log_id}-pnml-{_net_id}",
+            fixtures={"log": _log, "model": _net},
+            functions=TOKEN_REPLAY_FUNCTIONS,
+        )(token_replay)
