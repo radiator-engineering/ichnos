@@ -1,0 +1,702 @@
+{
+  "expected": {
+    "edges": [
+      {
+        "source": "a1",
+        "target": "branch_a_middle",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "a2",
+        "target": "branch_a_done",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "authorize",
+        "target": "branch_a_start",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "authorize",
+        "target": "branch_b_start",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "authorized",
+        "target": "authorize",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "b1",
+        "target": "branch_b_middle",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "b2",
+        "target": "branch_b_done",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "branch_a_done",
+        "target": "join",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "branch_a_middle",
+        "target": "a2",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "branch_a_start",
+        "target": "a1",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "branch_b_done",
+        "target": "join",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "branch_b_middle",
+        "target": "b2",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "branch_b_start",
+        "target": "b1",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "check",
+        "target": "checked",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "checked",
+        "target": "plan",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "clean",
+        "target": "authorized",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "close",
+        "target": "sink",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "gate",
+        "target": "clean",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "gate",
+        "target": "issue",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "gate",
+        "target": "reset",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "issue",
+        "target": "gate",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "issue",
+        "target": "open_items",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "join",
+        "target": "joined",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "joined",
+        "target": "review",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "open_items",
+        "target": "clean",
+        "type": "inhibitor",
+        "weight": 1
+      },
+      {
+        "source": "open_items",
+        "target": "reset",
+        "type": "reset",
+        "weight": 1
+      },
+      {
+        "source": "plan",
+        "target": "gate",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "registered",
+        "target": "check",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "reset",
+        "target": "authorized",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "review",
+        "target": "reviewed",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "reviewed",
+        "target": "close",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "reviewed",
+        "target": "revise",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "revise",
+        "target": "reviewed",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "source",
+        "target": "start",
+        "type": "normal",
+        "weight": 1
+      },
+      {
+        "source": "start",
+        "target": "registered",
+        "type": "normal",
+        "weight": 1
+      }
+    ],
+    "model": {
+      "arcs": [
+        {
+          "source": "a1",
+          "target": "branch_a_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a2",
+          "target": "branch_a_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_a_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_b_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorized",
+          "target": "authorize",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b1",
+          "target": "branch_b_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b2",
+          "target": "branch_b_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_middle",
+          "target": "a2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_start",
+          "target": "a1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_middle",
+          "target": "b2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_start",
+          "target": "b1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check",
+          "target": "checked",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "checked",
+          "target": "plan",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "clean",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "close",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "clean",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "issue",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "reset",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "open_items",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "join",
+          "target": "joined",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "joined",
+          "target": "review",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "clean",
+          "type": "inhibitor",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "reset",
+          "type": "reset",
+          "weight": 1
+        },
+        {
+          "source": "plan",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "registered",
+          "target": "check",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reset",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "review",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "close",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "revise",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "revise",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start",
+          "target": "registered",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "authorized",
+        "branch_a_done",
+        "branch_a_middle",
+        "branch_a_start",
+        "branch_b_done",
+        "branch_b_middle",
+        "branch_b_start",
+        "checked",
+        "gate",
+        "joined",
+        "open_items",
+        "registered",
+        "reviewed",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Acquire Forensic Images",
+          "name": "a1"
+        },
+        {
+          "label": "Analyze Root Cause",
+          "name": "a2"
+        },
+        {
+          "label": "Authorize Recovery",
+          "name": "authorize"
+        },
+        {
+          "label": "Restore Core Services",
+          "name": "b1"
+        },
+        {
+          "label": "Rotate Credentials",
+          "name": "b2"
+        },
+        {
+          "label": "Classify Severity",
+          "name": "check"
+        },
+        {
+          "label": "Confirm Clean Environment",
+          "name": "clean"
+        },
+        {
+          "label": "Close Incident",
+          "name": "close"
+        },
+        {
+          "label": "Detect Threat Indicator",
+          "name": "issue"
+        },
+        {
+          "label": "Reconcile Recovery Evidence",
+          "name": "join"
+        },
+        {
+          "label": "Build Response Plan",
+          "name": "plan"
+        },
+        {
+          "label": "Contain All Indicators",
+          "name": "reset"
+        },
+        {
+          "label": "Run Security Validation",
+          "name": "review"
+        },
+        {
+          "label": "Remediate Validation Finding",
+          "name": "revise"
+        },
+        {
+          "label": "Open Incident",
+          "name": "start"
+        }
+      ]
+    },
+    "nodes": [
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "authorized",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "branch_a_done",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "branch_a_middle",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "branch_a_start",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "branch_b_done",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "branch_b_middle",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "branch_b_start",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "checked",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "gate",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "joined",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "open_items",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "registered",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": false,
+        "name": "reviewed",
+        "type": "place"
+      },
+      {
+        "is_in_fm": true,
+        "is_in_im": false,
+        "name": "sink",
+        "type": "place"
+      },
+      {
+        "is_in_fm": false,
+        "is_in_im": true,
+        "name": "source",
+        "type": "place"
+      },
+      {
+        "label": "Acquire Forensic Images",
+        "name": "a1",
+        "type": "transition"
+      },
+      {
+        "label": "Analyze Root Cause",
+        "name": "a2",
+        "type": "transition"
+      },
+      {
+        "label": "Authorize Recovery",
+        "name": "authorize",
+        "type": "transition"
+      },
+      {
+        "label": "Restore Core Services",
+        "name": "b1",
+        "type": "transition"
+      },
+      {
+        "label": "Rotate Credentials",
+        "name": "b2",
+        "type": "transition"
+      },
+      {
+        "label": "Classify Severity",
+        "name": "check",
+        "type": "transition"
+      },
+      {
+        "label": "Confirm Clean Environment",
+        "name": "clean",
+        "type": "transition"
+      },
+      {
+        "label": "Close Incident",
+        "name": "close",
+        "type": "transition"
+      },
+      {
+        "label": "Detect Threat Indicator",
+        "name": "issue",
+        "type": "transition"
+      },
+      {
+        "label": "Reconcile Recovery Evidence",
+        "name": "join",
+        "type": "transition"
+      },
+      {
+        "label": "Build Response Plan",
+        "name": "plan",
+        "type": "transition"
+      },
+      {
+        "label": "Contain All Indicators",
+        "name": "reset",
+        "type": "transition"
+      },
+      {
+        "label": "Run Security Validation",
+        "name": "review",
+        "type": "transition"
+      },
+      {
+        "label": "Remediate Validation Finding",
+        "name": "revise",
+        "type": "transition"
+      },
+      {
+        "label": "Open Incident",
+        "name": "start",
+        "type": "transition"
+      }
+    ]
+  },
+  "meta": {
+    "area": "model",
+    "case": "networkx-net-cyber-incident-response",
+    "fixtures": {
+      "model": "fixtures/logs/inh_res_nets/cyber_incident_response.pnml"
+    },
+    "functions": [
+      "pm4py.convert_petri_net_to_networkx"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

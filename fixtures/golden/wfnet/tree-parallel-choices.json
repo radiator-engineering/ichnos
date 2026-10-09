@@ -223,6 +223,114 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "a"
+            },
+            {
+              "kind": "activity",
+              "label": "b"
+            },
+            {
+              "kind": "activity",
+              "label": "c"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "g"
+            },
+            {
+              "kind": "activity",
+              "label": "h"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "kind": "activity",
+          "label": "d"
+        },
+        {
+          "kind": "activity",
+          "label": "e"
+        },
+        {
+          "kind": "activity",
+          "label": "f"
+        },
+        {
+          "kind": "silent"
+        },
+        {
+          "kind": "silent"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": "+( *( 'g', 'h' ), X( 'a', 'c', 'b' ), ->( 'd', +( 'f', 'e' ) ) )",
     "tree_in": "+( X( 'a', 'b', 'c' ), ->( 'd', +( 'e', 'f' ) ), *( 'g', 'h' ) )"
   },
@@ -233,7 +341,8 @@
     "functions": [
       "pm4py.parse_process_tree",
       "pm4py.convert_to_petri_net",
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {},
     "params": {

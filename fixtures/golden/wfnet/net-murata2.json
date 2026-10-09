@@ -148,6 +148,106 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "c"
+            },
+            {
+              "kind": "activity",
+              "label": "d"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "kind": "activity",
+          "label": "End"
+        },
+        {
+          "kind": "activity",
+          "label": "Start"
+        },
+        {
+          "kind": "activity",
+          "label": "a"
+        },
+        {
+          "kind": "activity",
+          "label": "e"
+        },
+        {
+          "kind": "silent"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": "->( 'Start', 'a', *( 'c', 'd' ), 'e', 'End' )"
   },
   "meta": {
@@ -157,7 +257,8 @@
       "model": "fixtures/logs/murata2.pnml"
     },
     "functions": [
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {
       "model": {

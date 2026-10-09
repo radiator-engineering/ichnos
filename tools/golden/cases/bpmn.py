@@ -29,7 +29,9 @@ Cases:
   ``pm4py.convert_to_bpmn`` on an accepting Petri net.
 - ``bpmn-to-petri-*``: ``{"model": diagram, "petri_net": net,
   "petri_net_unreduced": net}`` from ``pm4py.convert_to_petri_net`` and from
-  the converter with ``ENABLE_REDUCTION`` off.
+  the converter with ``ENABLE_REDUCTION`` off, plus ``tree``/``error`` and
+  ``powl``/``powl_error`` for ``pm4py.convert_to_process_tree`` and
+  ``pm4py.convert_to_powl`` of the diagram, as in ``wfnet.py``.
 - ``bpmn-semantics-*``: ``{"model": diagram, "markings": [{node id:
   tokens}], "edges": [[from, node id, to]]}``, every marking reachable from
   ``get_initial_marking`` by ``weak_execute`` on ``enabled_nodes``, sorted;
@@ -178,10 +180,18 @@ def bpmn_to_petri(fixtures: dict[str, Path]) -> dict[str, Any]:
     raw = bpmn_variant.apply(
         b, parameters={bpmn_variant.Parameters.ENABLE_REDUCTION: False}
     )
+    from cases.wfnet import ERRORS, powl_of
+
+    try:
+        tree = {"tree": str(pm4py.convert_to_process_tree(b)), "error": None}
+    except ValueError as e:
+        tree = {"tree": None, "error": ERRORS[str(e)]}
     return {
         "model": describe_bpmn(b),
         "petri_net": describe_converted_net(*reduced),
         "petri_net_unreduced": describe_converted_net(*raw),
+        **tree,
+        **powl_of(*pm4py.convert_to_petri_net(b)),
     }
 
 
@@ -237,6 +247,8 @@ for name, path in [
         functions=[
             "pm4py.convert_to_petri_net",
             "pm4py.objects.conversion.bpmn.variants.to_petri_net.apply",
+            "pm4py.convert_to_process_tree",
+            "pm4py.convert_to_powl",
         ],
     )(bpmn_to_petri)
 

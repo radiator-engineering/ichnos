@@ -685,6 +685,360 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "activity",
+                                      "label": "Insert Date Appeal to Prefecture"
+                                    },
+                                    {
+                                      "kind": "silent"
+                                    }
+                                  ],
+                                  "kind": "xor"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "activity",
+                                      "label": "Notify Result Appeal to Offender"
+                                    },
+                                    {
+                                      "kind": "silent"
+                                    }
+                                  ],
+                                  "kind": "xor"
+                                }
+                              ],
+                              "kind": "po",
+                              "order": [
+                                [
+                                  0,
+                                  1
+                                ]
+                              ]
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "xor"
+                        },
+                        {
+                          "children": [
+                            {
+                              "kind": "activity",
+                              "label": "Add penalty"
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "xor"
+                        },
+                        {
+                          "children": [
+                            {
+                              "kind": "activity",
+                              "label": "Appeal to Judge"
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "xor"
+                        },
+                        {
+                          "children": [
+                            {
+                              "kind": "activity",
+                              "label": "Insert Fine Notification"
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "xor"
+                        },
+                        {
+                          "children": [
+                            {
+                              "kind": "activity",
+                              "label": "Receive Result Appeal from Prefecture"
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "xor"
+                        },
+                        {
+                          "kind": "silent"
+                        },
+                        {
+                          "kind": "silent"
+                        }
+                      ],
+                      "kind": "po",
+                      "order": [
+                        [
+                          0,
+                          6
+                        ],
+                        [
+                          1,
+                          6
+                        ],
+                        [
+                          2,
+                          6
+                        ],
+                        [
+                          3,
+                          6
+                        ],
+                        [
+                          4,
+                          6
+                        ],
+                        [
+                          5,
+                          0
+                        ],
+                        [
+                          5,
+                          1
+                        ],
+                        [
+                          5,
+                          2
+                        ],
+                        [
+                          5,
+                          3
+                        ],
+                        [
+                          5,
+                          4
+                        ],
+                        [
+                          5,
+                          6
+                        ]
+                      ]
+                    },
+                    {
+                      "kind": "silent"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "kind": "activity",
+                  "label": "Send Fine"
+                },
+                {
+                  "kind": "silent"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ]
+              ]
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "kind": "activity",
+                              "label": "Payment"
+                            },
+                            {
+                              "kind": "silent"
+                            }
+                          ],
+                          "kind": "loop"
+                        },
+                        {
+                          "kind": "silent"
+                        },
+                        {
+                          "kind": "silent"
+                        }
+                      ],
+                      "kind": "po",
+                      "order": [
+                        [
+                          0,
+                          2
+                        ],
+                        [
+                          1,
+                          0
+                        ],
+                        [
+                          1,
+                          2
+                        ]
+                      ]
+                    },
+                    {
+                      "kind": "silent"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "Send Appeal to Prefecture"
+                    },
+                    {
+                      "kind": "silent"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "kind": "silent"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ]
+              ]
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "Send for Credit Collection"
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "kind": "activity",
+          "label": "Create Fine"
+        },
+        {
+          "kind": "silent"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": "->( 'Create Fine', +( X( tau, 'Send for Credit Collection' ), X( tau, +( X( tau, 'Send Appeal to Prefecture' ), X( tau, *( 'Payment', tau ) ) ) ), X( tau, +( 'Send Fine', X( tau, +( X( tau, 'Appeal to Judge' ), X( tau, 'Receive Result Appeal from Prefecture' ), X( tau, 'Insert Fine Notification' ), X( tau, 'Add penalty' ), X( tau, ->( X( tau, 'Insert Date Appeal to Prefecture' ), X( tau, 'Notify Result Appeal to Offender' ) ) ) ) ) ) ) ) )"
   },
   "meta": {
@@ -694,7 +1048,8 @@
       "model": "fixtures/logs/roadtraffic.pnml"
     },
     "functions": [
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {
       "model": {

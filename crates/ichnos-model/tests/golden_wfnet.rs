@@ -1,55 +1,102 @@
-//! Workflow net to process tree against pm4py (`fixtures/golden/wfnet`);
-//! see `tools/golden/cases/wfnet.py`.
+//! Workflow net to process tree and to POWL against pm4py
+//! (`fixtures/golden/wfnet`); see `tools/golden/cases/wfnet.py`.
 
 mod common;
 
 use ichnos_golden::{cases, golden};
-use ichnos_model::conversion::WfNetToTreeError;
-use ichnos_model::{Operator, ProcessTree};
 
-/// Sorts the children of choice and parallel nodes by their string form.
-/// pm4py sorts them by a hash of their labels.
-fn canonical(tree: &ProcessTree) -> ProcessTree {
-    match tree {
-        ProcessTree::Node(op, children) => {
-            let mut children: Vec<ProcessTree> = children.iter().map(canonical).collect();
-            if matches!(op, Operator::Xor | Operator::Parallel) {
-                children.sort_by_key(ToString::to_string);
-            }
-            ProcessTree::Node(*op, children)
-        }
-        leaf => leaf.clone(),
-    }
+fn ids() -> Vec<String> {
+    let ids = cases("wfnet");
+    assert_eq!(ids.len(), 22, "expected 22 wfnet goldens, found {ids:?}");
+    ids
 }
 
 #[test]
 fn wf_nets_convert_like_pm4py() {
-    let ids = cases("wfnet");
-    assert_eq!(ids.len(), 17, "expected 17 wfnet goldens, found {ids:?}");
-    for id in ids {
+    for id in ids() {
         let g = golden("wfnet", &id);
         let net = common::build_accepting(g.expected_at("/model"));
-        let ours = net.to_process_tree();
-        match (
-            g.expected_at("/tree").as_str(),
-            g.expected_at("/error").as_str(),
-        ) {
-            (Some(theirs), None) => {
-                let theirs = ProcessTree::parse(theirs)
-                    .unwrap_or_else(|e| panic!("{id}: pm4py's tree {theirs:?} does not parse: {e}"))
-                    .fold();
-                let ours = ours.unwrap_or_else(|e| panic!("{id}: ours failed with {e:?}"));
-                assert_eq!(canonical(&ours), canonical(&theirs), "{id}: tree");
-            }
-            (None, Some(error)) => {
-                let expected = match error {
-                    "not_workflow_net" => WfNetToTreeError::NotWorkflowNet,
-                    "not_block_structured" => WfNetToTreeError::NotBlockStructured,
-                    other => panic!("{id}: unknown pm4py error {other}"),
-                };
-                assert_eq!(ours, Err(expected), "{id}");
-            }
-            (tree, error) => panic!("{id}: golden has tree {tree:?} and error {error:?}"),
+        common::assert_tree(
+            &id,
+            net.to_process_tree(),
+            g.expected_at("/tree"),
+            g.expected_at("/error"),
+            common::tree_error,
+        );
+    }
+}
+
+#[test]
+fn wf_nets_convert_to_powl_like_pm4py() {
+    for id in ids() {
+        let g = golden("wfnet", &id);
+        let net = common::build_accepting(g.expected_at("/model"));
+        common::assert_powl(
+            &id,
+            net.net.to_powl(),
+            g.expected_at("/powl"),
+            g.expected_at("/powl_error"),
+        );
+    }
+}
+
+/// A net as sorted place names, transitions, arcs and markings, with
+/// visible transitions renamed `t_<n>` in order of label and neighbouring
+/// places, as `tools/golden/cases/wfnet.py` renames pm4py's.
+fn shape(apn: &ichnos_model::AcceptingPetriNet) -> Vec<String> {
+    let net = &apn.net;
+    let mut visible: Vec<_> = net
+        .transitions()
+        .filter(|(_, t)| !t.is_silent())
+        .map(|(id, t)| {
+            let mut pre: Vec<&str> = net.preset(id).map(|p| net.place(p).name.as_str()).collect();
+            let mut post: Vec<&str> = net
+                .postset(id)
+                .map(|p| net.place(p).name.as_str())
+                .collect();
+            pre.sort_unstable();
+            post.sort_unstable();
+            (t.label.clone(), pre, post, id)
+        })
+        .collect();
+    visible.sort();
+    let name = |id| match visible.iter().position(|v| v.3 == id) {
+        Some(i) => format!("t_{i}"),
+        None => net.transition(id).name.clone(),
+    };
+    let mut out: Vec<String> = net
+        .places()
+        .map(|(_, p)| format!("place {}", p.name))
+        .collect();
+    for (id, t) in net.transitions() {
+        out.push(format!("transition {} {:?}", name(id), t.label));
+        for p in net.preset(id) {
+            out.push(format!("arc {} -> {}", net.place(p).name, name(id)));
         }
+        for p in net.postset(id) {
+            out.push(format!("arc {} -> {}", name(id), net.place(p).name));
+        }
+    }
+    for (key, m) in [
+        ("initial", &apn.initial_marking),
+        ("final", &apn.final_marking),
+    ] {
+        for (p, n) in m.iter() {
+            out.push(format!("{key} {} {n}", net.place(p).name));
+        }
+    }
+    out.sort();
+    out
+}
+
+#[test]
+fn trees_convert_to_the_nets_pm4py_builds() {
+    for id in ids().into_iter().filter(|id| id.starts_with("tree-")) {
+        let g = golden("wfnet", &id);
+        let tree = g.expected_at("/tree_in").as_str().expect("tree_in");
+        let tree = ichnos_model::ProcessTree::parse(tree)
+            .unwrap_or_else(|e| panic!("{id}: {tree:?} does not parse: {e}"));
+        let theirs = common::build_accepting(g.expected_at("/model"));
+        assert_eq!(shape(&tree.to_petri_net()), shape(&theirs), "{id}");
     }
 }
