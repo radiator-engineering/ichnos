@@ -1,0 +1,86 @@
+{
+  "objectTypes": [
+    {"name": "order", "attributes": [
+      {"name": "value", "type": "float"},
+      {"name": "priority", "type": "integer"},
+      {"name": "express", "type": "boolean"},
+      {"name": "due", "type": "time"},
+      {"name": "label", "type": "string"}
+    ]},
+    {"name": "item", "attributes": [
+      {"name": "weight", "type": "float"}
+    ]}
+  ],
+  "eventTypes": [
+    {"name": "place order", "attributes": [
+      {"name": "cost", "type": "float"},
+      {"name": "count", "type": "integer"},
+      {"name": "rush", "type": "boolean"},
+      {"name": "slot", "type": "time"},
+      {"name": "note", "type": "string"}
+    ]},
+    {"name": "pick item", "attributes": [
+      {"name": "count", "type": "integer"},
+      {"name": "rush", "type": "boolean"}
+    ]},
+    {"name": "ship", "attributes": []}
+  ],
+  "objects": [
+    {"id": "o1", "type": "order",
+     "attributes": [
+       {"name": "value", "time": "1970-01-01T00:00:00Z", "value": "120.5"},
+       {"name": "priority", "time": "1970-01-01T00:00:00Z", "value": 2},
+       {"name": "express", "time": "1970-01-01T00:00:00Z", "value": "false"},
+       {"name": "due", "time": "1970-01-01T00:00:00Z", "value": "2022-01-12T00:00:00+01:00"},
+       {"name": "label", "time": "0", "value": "null"},
+       {"name": "priority", "time": "2022-01-09T16:00:00Z", "value": 3.9},
+       {"name": "value", "time": "2022-01-09T17:00:00.5Z", "value": 130}
+     ],
+     "relationships": [
+       {"objectId": "i1", "qualifier": "contains"},
+       {"objectId": "i2", "qualifier": "contains"}
+     ]},
+    {"id": "i1", "type": "item",
+     "attributes": [
+       {"name": "weight", "time": "1970-01-01T00:00:00Z", "value": 1.5},
+       {"name": "weight", "time": "1970-01-01T00:00:00Z", "value": 1.25}
+     ]},
+    {"id": "i2", "type": "item", "attributes": []},
+    {"id": "lonely", "type": "item"}
+  ],
+  "events": [
+    {"id": "e1", "type": "place order", "time": "2022-01-09T14:00:00.1234567Z",
+     "attributes": [
+       {"name": "cost", "value": 10},
+       {"name": "count", "value": "7"},
+       {"name": "rush", "value": "TRUE"},
+       {"name": "slot", "value": "2022-01-09T18:00:00Z"},
+       {"name": "note", "value": "first"}
+     ],
+     "relationships": [
+       {"objectId": "o1", "qualifier": "placer"},
+       {"objectId": "i1", "qualifier": "ordered"},
+       {"objectId": "i1", "qualifier": "reordered"},
+       {"objectId": "ghost", "qualifier": "lost"}
+     ]},
+    {"id": "e2", "type": "pick item", "time": "2022-01-09T15:30:00+01:00",
+     "attributes": [
+       {"name": "count", "value": 2.7},
+       {"name": "rush", "value": 0}
+     ],
+     "relationships": [
+       {"objectId": "i1", "qualifier": "picked"}
+     ]},
+    {"id": "e3", "type": "pick item", "time": "2022-01-09T14:30:00",
+     "attributes": [
+       {"name": "count", "value": "null"}
+     ],
+     "relationships": [
+       {"objectId": "i2", "qualifier": "picked"}
+     ]},
+    {"id": "e4", "type": "ship", "time": "2022-01-10T08:00:00Z",
+     "relationships": [
+       {"objectId": "o1", "qualifier": "shipped"}
+     ]}
+  ]
+}

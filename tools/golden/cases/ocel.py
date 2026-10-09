@@ -137,6 +137,12 @@ _READERS = {
     "newocel.jsonocel": ("pm4py.read_ocel_json", pm4py.read_ocel_json),
     "ocel20_example.jsonocel": ("pm4py.read_ocel2_json", pm4py.read_ocel2_json),
     "ocel20_example.xmlocel": ("pm4py.read_ocel2_xml", pm4py.read_ocel2_xml),
+    # Synthetic logs with typed attributes, object changes, qualifiers,
+    # repeated relations and references to unknown objects.
+    "typed.jsonocel": ("pm4py.read_ocel_json", pm4py.read_ocel_json),
+    "typed.xmlocel": ("pm4py.read_ocel_xml", pm4py.read_ocel_xml),
+    "typed20.jsonocel": ("pm4py.read_ocel2_json", pm4py.read_ocel2_json),
+    "typed20.xmlocel": ("pm4py.read_ocel2_xml", pm4py.read_ocel2_xml),
 }
 
 
@@ -161,6 +167,48 @@ for _rel, (_name, _read) in _READERS.items():
 @case("model-empty", functions=["pm4py.OCEL"])
 def _empty(fixtures):
     return summarize(pm4py.OCEL())
+
+
+# Strings for the readers' timestamp parser. Each records the UTC time
+# pm4py gives, or null when it raises.
+_TIMESTAMPS = [
+    "2022-01-09T14:00:00", "2022-01-09T14:00:00Z", "2022-01-09T14:00:00z",
+    "2022-01-09T14:00:00.000Z", "2022-01-09 14:00:00", "2022-01-09T15:00:00+01:00",
+    "2022-01-09T14:00", "2022-01-09", "2022-01-09T14", "20220109T140000",
+    "20220109", "2022-01-09T14:00:00,5", "2022-01-09T15:00:00+01",
+    "2022-01-09T15:00:00+0100", "2022-01-09T13:00:00-01:00",
+    "2022-01-09T14:00:00+01:00:30", "2022-01-09T14:00:00+01:00:30.5",
+    "2022-01-09T14:00:00+01:75", "2022-W01-1", "2022W011", "2022W01", "2022-W01",
+    "2022-W01-1T10:00", "2022-W01T10:00", "2022W01T10:00", "2022W0110:00",
+    "2022-01-09T14:00:00.1234567Z", "2022-01-09T14:00:00.123",
+    "2022-01-09T14:00:00.1234565", "2022-01-09T14:00:00.123456789+01:00",
+    " 2022-01-09T14:00:00", "2022-01-09T14:00:00 ", "2022-01-09x14:00:00",
+    "2022-01-09T1400", "2022-01-09T140000.5", "2022-01-09T14:00:00:5",
+    "2022-01-09T140000123", "2022-01-09T24:00:00", "2022-01-09T14:00:60",
+    "2022-02-30", "2024-02-29", "0000-01-01", "0001-01-01", "9999-12-31T23:59:59",
+    "2022-01-09T14:00:00+24:00", "2022-01-09T14:00:00+23:59", "2022-01-09T14:00:",
+    "2022-01-09T14:00:00.", "2022-01-09T14:00:00.5x", "2022-01-09Z",
+    "2022-01-09T14:00:00Z+01:00", "2022-01-09T14:00:00ZZ", "2022-01-09T14Z",
+    "2022-01-09T14:00:00-00:00", "2022-01-09T14:00:00+01:00Z", "2020-W53-5",
+    "2021-W53-1", "2022-W00-1", "2022-W01-8", "2022-001", "2022-1-9",
+    "2022-01-09T", "yesterday", "", "1970-01-01T00:00:00", "0",
+    "2022-01-09T14:00:00.5Z", "2022-01-09\u00e914:00", "2022-01-09T\u0661\u0664:00",
+]
+
+
+@case("timestamps", functions=["pm4py.read_ocel_json", "pm4py.read_ocel2_json"])
+def _timestamps(fixtures):
+    from pm4py.util.dt_parsing import parser
+
+    parse = parser.get().apply
+    out = []
+    for text in _TIMESTAMPS:
+        try:
+            value = parse(text).astimezone(timezone.utc).isoformat()
+        except Exception:
+            value = None
+        out.append([text, value])
+    return {"timestamps": out}
 
 
 if __name__ == "__main__":

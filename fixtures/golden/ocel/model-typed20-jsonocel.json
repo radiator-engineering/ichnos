@@ -1,0 +1,273 @@
+{
+  "expected": {
+    "extended_table": {
+      "object_types": [
+        "item",
+        "order"
+      ],
+      "rows": [
+        {
+          "event": "e1",
+          "objects": {
+            "item": [
+              "i1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e2",
+          "objects": {
+            "item": [
+              "i1"
+            ]
+          }
+        },
+        {
+          "event": "e3",
+          "objects": {
+            "item": [
+              "i2"
+            ]
+          }
+        },
+        {
+          "event": "e4",
+          "objects": {
+            "order": [
+              "o1"
+            ]
+          }
+        }
+      ]
+    },
+    "is_ocel20": true,
+    "ocel": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "cost": [
+              "float",
+              10.0
+            ],
+            "count": [
+              "float",
+              7.0
+            ],
+            "note": [
+              "string",
+              "first"
+            ],
+            "rush": [
+              "boolean",
+              true
+            ],
+            "slot": [
+              "date",
+              "2022-01-09T18:00:00.000000+00:00"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "count": [
+              "float",
+              2.0
+            ],
+            "rush": [
+              "boolean",
+              false
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "ship",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i1"
+        },
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i2"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "2022-01-09T17:00:00.500000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            130.0
+          ]
+        },
+        {
+          "field": "priority",
+          "object": "o1",
+          "timestamp": "2022-01-09T16:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            3.0
+          ]
+        },
+        {
+          "field": "weight",
+          "object": "i1",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "item",
+          "value": [
+            "float",
+            1.25
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "due": [
+              "date",
+              "2022-01-11T23:00:00.000000+00:00"
+            ],
+            "express": [
+              "boolean",
+              false
+            ],
+            "priority": [
+              "float",
+              2.0
+            ],
+            "value": [
+              "float",
+              120.5
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              1.5
+            ]
+          },
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "item"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "reordered",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "placer",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "pick item",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "picked",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick item",
+          "event": "e3",
+          "object": "i2",
+          "qualifier": "picked",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "ship",
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "shipped",
+          "timestamp": "2022-01-10T08:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "summary": {
+      "activities": 3,
+      "activities_per_object_type": {
+        "item": 2,
+        "order": 2
+      },
+      "activity_counts": {
+        "pick item": 2,
+        "place order": 1,
+        "ship": 1
+      },
+      "events": 4,
+      "object_type_counts": {
+        "item": 2,
+        "order": 1
+      },
+      "object_types": 2,
+      "objects": 3,
+      "relations": 5,
+      "text": "Object-Centric Event Log (number of events: 4, number of objects: 3, number of activities: 3, number of object types: 2, events-objects relationships: 5)\nActivities occurrences: Counter({'pick item': 2, 'place order': 1, 'ship': 1})\nObject types occurrences (number of objects): Counter({'item': 2, 'order': 1})\nUnique activities per object type: Counter({'item': 2, 'order': 2})\nPlease use <THIS>.get_extended_table() to get a dataframe representation of the events related to the objects."
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "model-typed20-jsonocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed20.jsonocel"
+    },
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.read_ocel2_json"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

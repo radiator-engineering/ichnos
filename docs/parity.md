@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 294; ported: 202; dropped: 130; total: 626.
+todo: 290; ported: 206; dropped: 130; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -21,15 +21,15 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.read_bpmn` | `read.py` → `objects/bpmn/importer/importer`, `objects/bpmn/obj` | `ichnos_io::read_bpmn` | `ichnos-io` | ported | Returns a `BpmnDocument`: the `Bpmn` plus shape bounds and edge waypoints. Goldens `io/bpmn-read-*` on nine pm4py fixtures and a synthetic diagram with every element kind (`fixtures/logs/synthetic-bpmn/all_kinds.bpmn`); `io/bpmn-writer-special` reads ichnos output with pm4py. ch7_CreditAppSimulation fails in both. See ichnos-io Behaviour changes. |
 | `pm4py.read_ocel` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/importer/jsonocel/importer`, `objects/ocel/importer/sqlite/importer`, `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_rustxes, ocel20_standard, pandas, pandas_importer. |
 | `pm4py.read_ocel_csv` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
-| `pm4py.read_ocel_json` | `read.py` → `objects/ocel/importer/jsonocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20_rustxes, ocel20_standard. |
-| `pm4py.read_ocel_xml` | `read.py` → `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_xml` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_rustxes. |
+| `pm4py.read_ocel_json` | `read.py` → `objects/ocel/importer/jsonocel/importer`, `objects/ocel/obj` | `ichnos_io::read_ocel_json` | `ichnos-io` | ported | `read_ocel_json` (OCEL 1.0 layout, pm4py's `classic` variant). Goldens `ocel/model-example-log-jsonocel`, `ocel/model-newocel-jsonocel` and the synthetic `ocel/model-typed-jsonocel`: events, objects, relations, o2o, e2e and object changes equal pm4py's tables. See the ichnos-io (OCEL) Behaviour changes. |
+| `pm4py.read_ocel_xml` | `read.py` → `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos_io::read_ocel_xml` | `ichnos-io` | ported | `read_ocel_xml` (OCEL 1.0 layout, pm4py's `classic` variant). Goldens `ocel/model-example-log-xmlocel` and the synthetic `ocel/model-typed-xmlocel`: every table equals pm4py's, apart from the typed values listed in the Behaviour changes. See the ichnos-io (OCEL) Behaviour changes. |
 | `pm4py.read_ocel_sqlite` | `read.py` → `objects/ocel/importer/sqlite/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_sqlite` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas_importer. |
 | `pm4py.read_ocel2` | `read.py` → `objects/ocel/importer/bundled/importer`, `objects/ocel/importer/csv/importer`, `objects/ocel/importer/jsonocel/importer`, `objects/ocel/importer/sqlite/importer`, `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel2` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_rustxes, ocel20_standard, pandas, pandas_importer. |
 | `pm4py.read_ocel2_bundle` | `read.py` → `objects/ocel/importer/bundled/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel2_bundle` (planned) | `ichnos-io` | todo | Variants: ocel20. |
 | `pm4py.read_ocel2_csv` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel2_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
-| `pm4py.read_ocel2_json` | `read.py` → `objects/ocel/importer/jsonocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel2_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20_rustxes, ocel20_standard. |
+| `pm4py.read_ocel2_json` | `read.py` → `objects/ocel/importer/jsonocel/importer`, `objects/ocel/obj` | `ichnos_io::read_ocel2_json` | `ichnos-io` | ported | `read_ocel2_json` (OCEL 2.0 standard layout, pm4py's `ocel20_standard` variant). Goldens `ocel/model-ocel20-example-jsonocel` and the synthetic `ocel/model-typed20-jsonocel`: every table equals pm4py's, with relations compared as a set because pm4py orders them by set iteration. See the ichnos-io (OCEL) Behaviour changes. |
 | `pm4py.read_ocel2_sqlite` | `read.py` → `objects/ocel/importer/sqlite/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel2_sqlite` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas_importer. |
-| `pm4py.read_ocel2_xml` | `read.py` → `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel2_xml` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_rustxes. |
+| `pm4py.read_ocel2_xml` | `read.py` → `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos_io::read_ocel2_xml` | `ichnos-io` | ported | `read_ocel2_xml` (pm4py's `ocel20` variant). Goldens `ocel/model-ocel20-example-xmlocel` and the synthetic `ocel/model-typed20-xmlocel`: every table equals pm4py's, apart from the typed values listed in the Behaviour changes. See the ichnos-io (OCEL) Behaviour changes. |
 
 ## write
 
@@ -1354,6 +1354,22 @@ Lanes record each deliberate change from pm4py here.
 - BPMN import keeps edge waypoints; pm4py drops them. Nodes and flows keep document order; pm4py stores them in sets. A diagram without a `process` element gets process id `""`, and so do elements outside any process, where pm4py uses a random UUID. Repeated element ids, flows that name an unknown node and non-numeric bounds are errors; pm4py raises `AttributeError` on an unknown node.
 - BPMN export uses the stored bounds and waypoints, else pm4py's default layout (bounds 0, 0, 100, 100 and two waypoints at the origin). There is no Graphviz auto-layout, and the diagram and plane ids are fixed (`id_diagram`, `id_plane`). Several processes need a collaboration node, as in pm4py, but ichnos returns an error where pm4py raises `UnboundLocalError`. Text annotations get no `incoming` or `outgoing` children; pm4py appends them to the node written before the annotation.
 - BPMN export writes numbers in Rust's shortest form: a width of 100.0 is written `100`, and 1e20 as `100000000000000000000`, where pm4py writes `100.0` and `1e+20`. The bytes differ from pm4py's; the values read back the same.
+
+### ichnos-io (OCEL)
+
+- **One reader per layout.** `read_ocel_json` and `read_ocel_xml` read the OCEL 1.0 layouts, `read_ocel2_json` and `read_ocel2_xml` the OCEL 2.0 layouts. pm4py's `ocel20_rustxes` variants call an external library for the same layouts and are not ported separately.
+- **Choosing a reader by name.** `read_ocel` and `read_ocel2` follow pm4py's tests on the lowercased name. `read_ocel` reads names ending in `jsonocel` or `xmlocel`, without `.gz`. `read_ocel2` reads names ending in `xml`, `xmlocel`, `json` or `jsonocel`, each optionally followed by `.gz`. The CSV, SQLite and OCEL 2.0 bundle formats return an error until they are ported, so both rows stay `todo`.
+- **XML limits.** The XML readers take `OcelReadOptions`, with a nesting limit of 128 and an element limit of 1,000,000 by default, as the PNML reader does. pm4py has no limits. A large log needs a higher `max_nodes`.
+- **Relation order.** pm4py's OCEL 2.0 JSON reader orders each event's relations by Python set iteration, which depends on string hashing. `read_ocel2_json` keeps the order in which the event's relationships first name each object.
+- **Typed XML values.** pm4py's OCEL 1.0 XML reader converts only tags whose name contains `float` or `date`, and keeps every other value as a string. Its OCEL 2.0 XML reader does the same with the declared types, so the standard's `integer`, `boolean` and `time` values stay strings. ichnos also converts `int` and `long` to integers, `bool` to booleans, `double` to floats and `time` to dates, in both layouts. A value that does not convert stays a string, where pm4py's OCEL 1.0 reader raises for a `float` or `date` value. An OCEL 2.0 `float` value of `null` is 0 in pm4py; ichnos keeps the string `null`.
+- **JSON values keep their JSON type.** pandas turns an integer column with gaps into floats; ichnos keeps each value's own type.
+- **Timestamps.** ichnos ports pm4py's default parser (`strpfromiso`: Python 3.12's `datetime.fromisoformat`, then UTC), with microsecond precision. Three differences remain:
+  - When the `ciso8601` package is installed, pm4py uses it instead. ichnos follows `strpfromiso`.
+  - pm4py's OCEL 2.0 readers try `dateutil` on text that `fromisoformat` rejects: the XML reader for every time, the JSON reader for `date` and `time` attributes. ichnos rejects such an event or change time as an error, and keeps such an attribute as a string.
+  - pm4py parses OCEL 1.0 JSON object-change times with pandas `to_datetime`. ichnos parses them as event times.
+- **Missing data.** An object change without a time, which pm4py records with a missing timestamp, is left out of OCEL 2.0 JSON. A repeated OCEL XML object attribute without a time is an error, where pm4py fails to parse it. An XML relation to an unknown object is left out, where pm4py's OCEL 1.0 reader raises `KeyError`. Timestamps that do not parse are errors.
+- **Globals.** OCEL 1.0 JSON globals become nested attribute containers, with list items keyed by the empty string.
+- **Repeated ids.** OCEL 1.0 JSON keys events and objects by id. A repeated id keeps its first position and its last value, as pm4py's `dict` does. The other layouts list events and objects, and keep every row with a repeated id, as pm4py does. See the ichnos-ocel Behaviour changes for how `Ocel` resolves them.
 
 ### ichnos-discovery (DFG)
 

@@ -1,11 +1,12 @@
-//! Readers and writers for event logs, tables, Petri nets, process trees,
-//! DFGs and BPMN diagrams.
+//! Readers and writers for event logs, object-centric event logs, tables, Petri nets, process
+//! trees, DFGs and BPMN diagrams.
 
 pub mod bpmn;
 pub mod csv;
 pub mod dfg;
 mod error;
 mod model_xml;
+pub mod ocel;
 pub mod parquet;
 pub mod pnml;
 pub mod ptml;
@@ -23,6 +24,11 @@ pub use dfg::{
     DfgReadOptions, DfgWriteOptions, read_dfg, read_dfg_from_reader, write_dfg, write_dfg_to_writer,
 };
 pub use error::{Error, Result};
+pub use ocel::{
+    OcelReadOptions, read_ocel, read_ocel_json, read_ocel_json_from_reader, read_ocel_xml,
+    read_ocel_xml_from_reader, read_ocel2, read_ocel2_json, read_ocel2_json_from_reader,
+    read_ocel2_xml, read_ocel2_xml_from_reader,
+};
 pub use parquet::{
     ParquetReadOptions, ParquetWriteOptions, read_parquet, read_parquet_from_reader, write_parquet,
     write_parquet_to_writer,

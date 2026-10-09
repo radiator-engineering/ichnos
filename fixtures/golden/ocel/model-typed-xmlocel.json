@@ -1,0 +1,249 @@
+{
+  "expected": {
+    "extended_table": {
+      "object_types": [
+        "order",
+        "item"
+      ],
+      "rows": [
+        {
+          "event": "e1",
+          "objects": {
+            "item": [
+              "i1",
+              "i2"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e2",
+          "objects": {
+            "item": [
+              "i1"
+            ]
+          }
+        },
+        {
+          "event": "e3",
+          "objects": {
+            "item": [
+              "i2"
+            ]
+          }
+        }
+      ]
+    },
+    "is_ocel20": true,
+    "ocel": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "count": [
+              "string",
+              "7"
+            ],
+            "due": [
+              "date",
+              "2022-01-11T23:00:00.000000+00:00"
+            ],
+            "note": [
+              "string",
+              "first"
+            ],
+            "rate": [
+              "float",
+              0.5
+            ],
+            "rush": [
+              "string",
+              "true"
+            ],
+            "share": [
+              "string",
+              "1.25"
+            ],
+            "slot": [
+              "string",
+              "2022-01-09T18:00:00Z"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "count": [
+              "string",
+              "-2"
+            ],
+            "rush": [
+              "string",
+              "False"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i1"
+        },
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i2"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "priority",
+          "object": "o1",
+          "timestamp": "2022-01-09T16:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "string",
+            "3"
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            99.5
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "priority": [
+              "string",
+              "2"
+            ],
+            "value": [
+              "float",
+              120.5
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              1.5
+            ]
+          },
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "item"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "reordered",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick item",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "picked",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick item",
+          "event": "e3",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        }
+      ]
+    },
+    "summary": {
+      "activities": 2,
+      "activities_per_object_type": {
+        "item": 2,
+        "order": 1
+      },
+      "activity_counts": {
+        "pick item": 2,
+        "place order": 1
+      },
+      "events": 3,
+      "object_type_counts": {
+        "item": 2,
+        "order": 1
+      },
+      "object_types": 2,
+      "objects": 3,
+      "relations": 5,
+      "text": "Object-Centric Event Log (number of events: 3, number of objects: 3, number of activities: 2, number of object types: 2, events-objects relationships: 5)\nActivities occurrences: Counter({'pick item': 2, 'place order': 1})\nObject types occurrences (number of objects): Counter({'item': 2, 'order': 1})\nUnique activities per object type: Counter({'item': 2, 'order': 1})\nPlease use <THIS>.get_extended_table() to get a dataframe representation of the events related to the objects."
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "model-typed-xmlocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed.xmlocel"
+    },
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.read_ocel_xml"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
