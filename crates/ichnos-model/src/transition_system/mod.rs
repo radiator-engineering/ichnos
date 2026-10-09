@@ -298,6 +298,12 @@ impl TransitionSystem {
     /// through another successor of `s` (pm4py's
     /// `utils.transitive_reduction`). Fails on a cyclic transition system,
     /// where pm4py's result is undefined.
+    ///
+    /// It also differs from pm4py on acyclic systems whose edge names repeat,
+    /// which is the normal case in a reachability graph: pm4py removes edges
+    /// by name across the whole system, so it also deletes unrelated edges.
+    /// On `a -e-> b, b -e-> c, a -e-> c, x -e-> y` pm4py removes all four
+    /// edges; this keeps `a -> b`, `b -> c` and `x -> y`.
     pub fn transitive_reduction(&mut self) -> Result<(), TsError> {
         let order = self.topological_order().ok_or(TsError::Cyclic)?;
         let n = self.states.len();
@@ -330,4 +336,4 @@ impl TransitionSystem {
 }
 
 #[cfg(test)]
-mod tests;
+pub(crate) mod tests;

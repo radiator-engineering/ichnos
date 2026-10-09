@@ -46,6 +46,12 @@ impl PetriNet {
     /// `p11p22`. Two markings can get the same name; they stay separate
     /// states here.
     ///
+    /// Inhibitor and reset arcs act as such (see [`PetriNet::fire`]). pm4py
+    /// builds the graph with `ClassicSemantics`, which treats every input
+    /// arc as a normal arc: an inhibitor arc needs and consumes tokens, and
+    /// a reset arc removes only its weight. On nets with such arcs the two
+    /// graphs differ.
+    ///
     /// Fails if the net has more than `options.max_markings` reachable
     /// markings.
     pub fn to_transition_system(

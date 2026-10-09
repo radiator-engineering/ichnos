@@ -5,3 +5,7 @@ pub use ichnos_core::{
     EventKeys, EventLog, EventStream, Extension, Globals, LogEdge, LogGraph, LogNode, MetaValue,
     Position, SortOrder, Trace, Variant, Variants, XesExtension, format_batch,
 };
+
+/// Process models: Petri nets, process trees, DFGs, transition systems and
+/// their conversions. See [`ichnos_model`].
+pub use ichnos_model as model;

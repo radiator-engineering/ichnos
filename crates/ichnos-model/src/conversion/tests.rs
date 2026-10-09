@@ -3,8 +3,8 @@ use std::collections::{BTreeSet, HashSet, VecDeque};
 use crate::petri::{AcceptingPetriNet, Marking};
 use crate::{Label, Operator, ProcessTree};
 
-type Trace = Vec<Label>;
-type Language = BTreeSet<Trace>;
+pub(crate) type Trace = Vec<Label>;
+pub(crate) type Language = BTreeSet<Trace>;
 
 fn concat(a: &Language, b: &Language, max: usize) -> Language {
     let mut out = Language::new();
@@ -114,7 +114,10 @@ fn tree_language(tree: &ProcessTree, max: usize) -> Language {
 
 /// All traces from the initial to the final marking with at most `max`
 /// visible transitions.
-fn net_language(apn: &AcceptingPetriNet, max: usize) -> Language {
+/// The traces of up to `max` visible steps that reach the final marking.
+/// Does not end on a net where silent transitions alone can produce
+/// infinitely many markings.
+pub(crate) fn net_language(apn: &AcceptingPetriNet, max: usize) -> Language {
     let net = &apn.net;
     let mut out = Language::new();
     let mut seen: HashSet<(Marking, Trace)> = HashSet::new();
