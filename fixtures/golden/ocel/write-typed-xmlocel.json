@@ -170,6 +170,13 @@
       ]
     },
     "writers": {
+      "csv": {
+        "objects": "ocel:oid,ocel:type,value,priority,weight\no1,order,120.5,2,\ni1,item,,,1.5\ni2,item,,,\n",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,note,count,rate,rush,due,share,slot,ocel:type:order,ocel:type:item\ne1,place order,2022-01-09 14:00:00.123456+00:00,first,7,0.5,true,2022-01-11 23:00:00+00:00,1.25,2022-01-09T18:00:00Z,['o1'],\"['i1', 'i2']\"\ne2,pick item,2022-01-09 14:30:00+00:00,,-2,,False,,,,,['i1']\ne3,pick item,2022-01-09 14:30:00+00:00,,,,,,,,,['i2']\n"
+      },
+      "csv2": {
+        "error": "ValueError"
+      },
       "json": {
         "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"order\",\n      \"item\"\n    ],\n    \"ocel:attribute-names\": [\n      \"count\",\n      \"due\",\n      \"note\",\n      \"priority\",\n      \"rate\",\n      \"rush\",\n      \"share\",\n      \"slot\",\n      \"value\",\n      \"weight\"\n    ],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:activity\": \"place order\",\n      \"ocel:timestamp\": \"2022-01-09T14:00:00Z\",\n      \"ocel:vmap\": {\n        \"note\": \"first\",\n        \"count\": \"7\",\n        \"rate\": 0.5,\n        \"rush\": \"true\",\n        \"due\": \"2022-01-11T23:00:00Z\",\n        \"share\": \"1.25\",\n        \"slot\": \"2022-01-09T18:00:00Z\"\n      },\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"reordered\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:activity\": \"pick item\",\n      \"ocel:timestamp\": \"2022-01-09T14:30:00Z\",\n      \"ocel:vmap\": {\n        \"count\": \"-2\",\n        \"rush\": \"False\"\n      },\n      \"ocel:omap\": [\n        \"i1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"picked\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:activity\": \"pick item\",\n      \"ocel:timestamp\": \"2022-01-09T14:30:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"o1\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {\n        \"value\": 120.5,\n        \"priority\": \"2\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"contains\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"contains\"\n        }\n      ]\n    },\n    \"i1\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {\n        \"weight\": 1.5\n      }\n    },\n    \"i2\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"pick item\": {\n      \"count\": \"string\",\n      \"rush\": \"string\"\n    },\n    \"place order\": {\n      \"note\": \"string\",\n      \"count\": \"string\",\n      \"rate\": \"float\",\n      \"rush\": \"string\",\n      \"due\": \"date\",\n      \"share\": \"string\",\n      \"slot\": \"string\"\n    }\n  },\n  \"ocel:objectTypes\": {\n    \"item\": {\n      \"weight\": \"float\"\n    },\n    \"order\": {\n      \"value\": \"float\",\n      \"priority\": \"string\"\n    }\n  },\n  \"ocel:objectChanges\": [\n    {\n      \"ocel:oid\": \"o1\",\n      \"ocel:type\": \"order\",\n      \"priority\": \"3\",\n      \"ocel:timestamp\": \"2022-01-09T16:00:00+00:00\",\n      \"ocel:field\": \"priority\"\n    },\n    {\n      \"ocel:oid\": \"o1\",\n      \"ocel:type\": \"order\",\n      \"ocel:timestamp\": \"1970-01-01T00:00:00+00:00\",\n      \"ocel:field\": \"value\",\n      \"value\": 99.5\n    }\n  ]\n}"
       },
@@ -195,7 +202,9 @@
       "pm4py.write_ocel_json",
       "pm4py.write_ocel_xml",
       "pm4py.write_ocel2_json",
-      "pm4py.write_ocel2_xml"
+      "pm4py.write_ocel2_xml",
+      "pm4py.write_ocel2_csv",
+      "pm4py.write_ocel_csv"
     ],
     "loaders": {
       "log": {
