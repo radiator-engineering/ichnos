@@ -847,6 +847,375 @@ for name,traces in {
     case("ilp-miner-"+name,functions=ILP_FUNCTIONS,params={"traces":traces,"activity_key":"task" if name=="custom-key" else "concept:name"})(ilp_miner)
 case("ilp-miner-causal",functions=ILP_FUNCTIONS,params={"traces":[["a","b"]],"causal":[["▶","a"],["a","b"],["b","■"]]})(ilp_miner)
 
+# Genetic fixed-matrix, public discovery and controlled pm4py crossover cases.
+def _genetic_language(model, depth=3):
+    """Exact executable visible prefixes up to depth, with silent closure.
+
+    Unlike unrestricted reachability, this terminates for the visible loops
+    of the supplied unsound miners. Never emit a partial language on a cap.
+    """
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+
+    def key(m):
+        return tuple((m.get(p, 0) for p in places))
+
+    todo = deque([(im, ())])
+    seen = {(key(im), ())}
+    prefixes = {()}
+    accepted = set()
+    while todo:
+        marking, word = todo.popleft()
+        if marking == fm:
+            accepted.add(word)
+        for t in semantics.enabled_transitions(net, marking):
+            next_word = word if t.label is None else (*word, t.label)
+            if len(next_word) > depth:
+                continue
+            next_marking = semantics.execute(t, net, marking)
+            state = (key(next_marking), next_word)
+            prefixes.add(next_word)
+            if state not in seen:
+                if len(seen) >= 100000:
+                    raise RuntimeError("classic miner bounded language exceeded 100000 states")
+                seen.add(state)
+                todo.append((next_marking, next_word))
+    return {"depth": depth, "prefixes": sorted(prefixes), "accepted": sorted(accepted)}
+
+
+def _genetic_footprints(model):
+    """Only emit full footprints after a bounded reachability preflight."""
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+
+    def key(m):
+        return tuple((m.get(p, 0) for p in places))
+
+    todo = deque([im])
+    seen = {key(im)}
+    while todo:
+        m = todo.popleft()
+        for t in semantics.enabled_transitions(net, m):
+            nxt = semantics.execute(t, net, m)
+            state = key(nxt)
+            if state not in seen:
+                if len(seen) >= 10000:
+                    return {"status": "state_space_limit", "value": None}
+                seen.add(state)
+                todo.append(nxt)
+    return {"status": "complete", "value": pm4py.discover_footprints(net, im, fm)}
+
+
+def _genetic_named_transitions(model, labels):
+    # Native conversion gives every silent transition the empty name.
+    # pm4py's eventually-enabled traversal keys visited nodes by repr, causing
+    # collisions. Normalize names to the Rust causal-matrix IDs before comparing
+    # these name-sensitive diagnostics; labels, arcs and markings are unchanged.
+    net = model[0]
+    for transition in net.transitions:
+        if transition.label is not None:
+            transition.name = "t" + str(labels.index(transition.label))
+        else:
+            producers = {
+                arc.source.label for edge in transition.in_arcs for arc in edge.source.in_arcs
+            }
+            consumers = {
+                arc.target.label for edge in transition.out_arcs for arc in edge.target.out_arcs
+            }
+            assert len(producers) == len(consumers) == 1
+            transition.name = (
+                "tau-"
+                + str(labels.index(next(iter(producers))))
+                + "-"
+                + str(labels.index(next(iter(consumers))))
+            )
+
+
+def genetic_matrix_case(
+    fixtures, traces=None, activity_key="concept:name", matrix=None, depth=3, assert_silent=False
+):
+    from datetime import datetime, timedelta, timezone
+    from collections import defaultdict
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.objects.genetic_matrix.obj import GeneticMatrix
+    from pm4py.objects.conversion.genetic_matrix.variants.to_petri_net import apply
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
+    else:
+        log = EventLog(
+            [
+                Trace(
+                    [
+                        Event(
+                            {
+                                activity_key: a,
+                                "time:timestamp": datetime(2020, 1, 1, tzinfo=timezone.utc)
+                                + timedelta(seconds=i),
+                            }
+                        )
+                        for i, a in enumerate(trace)
+                    ],
+                    attributes={"concept:name": str(ti)},
+                )
+                for ti, trace in enumerate(traces)
+            ]
+        )
+    if matrix is None:
+        labels = list(dict.fromkeys((event[activity_key] for trace in log for event in trace)))
+        edges = {
+            (a[activity_key], b[activity_key]) for trace in log for a, b in zip(trace, trace[1:])
+        }
+        inputs = {t: [[a] for a, b in sorted(edges) if b == t] for t in labels}
+        outputs = {t: [[b] for a, b in sorted(edges) if a == t] for t in labels}
+    else:
+        labels = matrix["activities"]
+        inputs = matrix["inputs"]
+        outputs = matrix["outputs"]
+    I = defaultdict(list, {t: [frozenset(s) for s in inputs.get(t, [])] for t in labels})
+    O = defaultdict(list, {t: [frozenset(s) for s in outputs.get(t, [])] for t in labels})
+    model = apply(GeneticMatrix(I, O, labels))
+    if assert_silent:
+        _genetic_named_transitions(model, labels)
+    metrics = pm4py.fitness_token_based_replay(log, *model, activity_key=activity_key)
+    result = {
+        "matrix": {"activities": labels, "inputs": inputs, "outputs": outputs},
+        "model": {
+            "language": _genetic_language(model, depth),
+            "footprints": _genetic_footprints(model),
+        },
+        "fitness": 0.4 * metrics["average_trace_fitness"]
+        + 0.6 * metrics["percentage_of_fitting_traces"] / 100,
+    }
+    if assert_silent:
+        result["model"]["silent_transitions"] = sum((t.label is None for t in model[0].transitions))
+    return result
+
+
+def genetic_public_case(fixtures, traces, activity_key="concept:name"):
+    import random
+    from datetime import datetime, timedelta, timezone
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    log = EventLog(
+        [
+            Trace(
+                [
+                    Event(
+                        {
+                            activity_key: a,
+                            "time:timestamp": datetime(2020, 1, 1, tzinfo=timezone.utc)
+                            + timedelta(seconds=i),
+                        }
+                    )
+                    for i, a in enumerate(trace)
+                ],
+                attributes={"concept:name": str(ti)},
+            )
+            for ti, trace in enumerate(traces)
+        ]
+    )
+    random.seed(0)
+    model = pm4py.discover_petri_net_genetic(
+        log, population_size=4, generations=1, activity_key=activity_key
+    )
+    metrics = pm4py.fitness_token_based_replay(log, *model, activity_key=activity_key)
+    return {
+        "model": {"language": _genetic_language(model), "footprints": _genetic_footprints(model)},
+        "fitness": 0.4 * metrics["average_trace_fitness"]
+        + 0.6 * metrics["percentage_of_fitting_traces"] / 100,
+    }
+
+
+_GENETIC_FUNCTIONS = [
+    "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+    "pm4py.fitness_token_based_replay",
+]
+_GENETIC_PUBLIC_FUNCTIONS = ["pm4py.discover_petri_net_genetic", "pm4py.fitness_token_based_replay"]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "genetic-matrix-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_GENETIC_FUNCTIONS,
+    )(genetic_matrix_case)
+for _name, _traces in {
+    "sequence": [["a", "b", "c"]],
+    "parallel": [["a", "b", "c", "d"], ["a", "c", "b", "d"]],
+    "loop": [["a", "b", "a"]],
+    "silent": [["a", "b", "d"], ["a", "c", "d"]],
+}.items():
+    case("genetic-matrix-" + _name, functions=_GENETIC_FUNCTIONS, params={"traces": _traces})(
+        genetic_matrix_case
+    )
+case(
+    "genetic-matrix-custom-key",
+    functions=_GENETIC_FUNCTIONS,
+    params={"traces": [["λ", "", "終"]], "activity_key": "work"},
+)(genetic_matrix_case)
+case(
+    "genetic-matrix-grouped",
+    functions=_GENETIC_FUNCTIONS,
+    params={
+        "traces": [["a", "b", "c", "d"], ["a", "c", "b", "d"]],
+        "matrix": {
+            "activities": ["a", "b", "c", "d"],
+            "inputs": {"a": [], "b": [["a"]], "c": [["a"]], "d": [["b", "c"]]},
+            "outputs": {"a": [["b", "c"]], "b": [["d"]], "c": [["d"]], "d": []},
+        },
+    },
+)(genetic_matrix_case)
+for _name, _traces in {
+    "sequence": [["a", "b", "c"], ["a", "b", "c"]],
+    "single": [["a"]],
+    "loop": [["a", "b", "a", "b"]],
+}.items():
+    case(
+        "genetic-public-" + _name, functions=_GENETIC_PUBLIC_FUNCTIONS, params={"traces": _traces}
+    )(genetic_public_case)
+
+
+def genetic_operators_case(fixtures):
+    from unittest.mock import patch
+    from collections import defaultdict
+    from pm4py.algo.discovery.genetic.variants import classic
+
+    labels = ["a", "b", "c", "d"]
+
+    def individual(edges, grouped=False):
+        I = defaultdict(list, {t: [] for t in labels})
+        O = defaultdict(list, {t: [] for t in labels})
+        for a, b in edges:
+            I[b].append(frozenset([a]))
+            O[a].append(frozenset([b]))
+        if grouped:
+            I = defaultdict(list, {t: [frozenset().union(*v)] if v else [] for t, v in I.items()})
+            O = defaultdict(list, {t: [frozenset().union(*v)] if v else [] for t, v in O.items()})
+        return (I, O)
+
+    def serial(ind):
+        return {
+            "inputs": [
+                [sorted((labels.index(t) for t in s)) for s in ind[0][label]] for label in labels
+            ],
+            "outputs": [
+                [sorted((labels.index(t) for t in s)) for s in ind[1][label]] for label in labels
+            ],
+        }
+
+    a = individual([("a", "b"), ("a", "c"), ("b", "d"), ("c", "d")], True)
+    b = individual([("a", "b"), ("b", "c"), ("c", "d")])
+    crosses = []
+    for t in labels:
+        with patch.object(classic.random, "choice", return_value=t), patch.object(
+            classic.random, "randrange", return_value=0
+        ):
+            crosses.append([serial(child) for child in classic.crossover(a, b, labels)])
+    return {"parents": [serial(a), serial(b)], "crossovers": crosses}
+
+
+case("genetic-operators", functions=["pm4py.algo.discovery.genetic.variants.classic.crossover"])(
+    genetic_operators_case
+)
+_non_simple = {
+    "activities": ["a", "x", "b", "c"],
+    "inputs": {"b": [["a"]], "c": [["a", "x"]]},
+    "outputs": {"a": [["b", "c"]], "x": [["c"]]},
+}
+_non_simple_exit = {
+    "activities": ["a", "x", "b", "c", "d"],
+    "inputs": {"b": [["a"]], "c": [["a", "x"]], "d": [["b"], ["c"]]},
+    "outputs": {"a": [["b", "c"]], "x": [["c"]], "b": [["d"]], "c": [["d"]]},
+}
+_overlapping_simple = {
+    "activities": ["a", "x", "b", "c", "d"],
+    "inputs": {"b": [["a"]], "c": [["a", "x"]], "d": [["a"]]},
+    "outputs": {"a": [["b", "c"], ["d"]], "x": [["c"]]},
+}
+for _name, _matrix, _traces in [
+    ("non-simple", _non_simple, [["a", "b"], ["a", "c"], ["x", "c"]]),
+    ("non-simple-exit", _non_simple_exit, [["a", "b", "d"], ["a", "c", "d"], ["x", "c", "d"]]),
+    ("overlapping-simple", _overlapping_simple, [["a", "b"], ["a", "d"], ["x", "c"]]),
+]:
+    case(
+        "genetic-matrix-" + _name,
+        functions=_GENETIC_FUNCTIONS,
+        params={"matrix": _matrix, "traces": _traces, "depth": 4, "assert_silent": True},
+    )(genetic_matrix_case)
+
+
+def genetic_operators_prefix_case(fixtures):
+    from collections import defaultdict
+    from itertools import product
+    from unittest.mock import patch
+    from pm4py.algo.discovery.genetic.variants import classic
+
+    labels = ["u", "v", "w", "t", "x", "y", "z"]
+
+    def parent(grouped):
+        inputs = defaultdict(list, {a: [] for a in labels})
+        outputs = defaultdict(list, {a: [] for a in labels})
+        for a in ["u", "v", "w"]:
+            outputs[a] = [frozenset(["t"])]
+        for a in ["x", "y", "z"]:
+            inputs[a] = [frozenset(["t"])]
+        inputs["t"] = (
+            [frozenset(["v", "w"]), frozenset(["u"])]
+            if grouped
+            else [frozenset([a]) for a in ["u", "v", "w"]]
+        )
+        outputs["t"] = (
+            [frozenset(["y", "z"]), frozenset(["x"])]
+            if grouped
+            else [frozenset([a]) for a in ["x", "y", "z"]]
+        )
+        return (inputs, outputs)
+
+    def serial(ind):
+        return {
+            "inputs": [
+                [sorted((labels.index(t) for t in binding)) for binding in ind[0][a]]
+                for a in labels
+            ],
+            "outputs": [
+                [sorted((labels.index(t) for t in binding)) for binding in ind[1][a]]
+                for a in labels
+            ],
+        }
+
+    a, b = (parent(False), parent(True))
+    crossovers = []
+    choices = []
+    for t in labels:
+        input_range = range(min(len(a[0][t]), len(b[0][t]))) if a[0][t] and b[0][t] else [None]
+        output_range = range(min(len(a[1][t]), len(b[1][t]))) if a[1][t] and b[1][t] else [None]
+        for ip, op in product(input_range, output_range):
+            points = [point for point in [ip, op] if point is not None]
+            with patch.object(classic.random, "choice", return_value=t), patch.object(
+                classic.random, "randrange", side_effect=points
+            ):
+                crossovers.append([serial(child) for child in classic.crossover(a, b, labels)])
+            choices.append({"activity": t, "input_point": ip, "output_point": op})
+    return {"parents": [serial(a), serial(b)], "choices": choices, "crossovers": crossovers}
+
+
+case(
+    "genetic-operators-prefix",
+    functions=["pm4py.algo.discovery.genetic.variants.classic.crossover"],
+)(genetic_operators_prefix_case)
+
+
 # Classic and SM2 Split Miner BPMN discovery cases.
 _SPLIT_MINER_FUNCTIONS = [
     "pm4py.discover_bpmn_split_miner",
