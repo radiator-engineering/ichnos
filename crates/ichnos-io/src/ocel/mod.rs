@@ -1,6 +1,7 @@
-//! Object-centric event log readers: OCEL 1.0 and OCEL 2.0, as JSON and XML
-//! (pm4py's `read_ocel_json`, `read_ocel2_json`, `read_ocel_xml`,
-//! `read_ocel2_xml`, `read_ocel` and `read_ocel2`).
+//! Object-centric event log readers and writers: OCEL 1.0 and OCEL 2.0, as
+//! JSON and XML (pm4py's `read_ocel_json`, `read_ocel2_json`,
+//! `read_ocel_xml`, `read_ocel2_xml`, `read_ocel` and `read_ocel2`, and the
+//! matching `write_*` functions).
 //!
 //! Every reader ends as pm4py's do: it sorts the events by timestamp, keeping
 //! file order for ties, orders the relations the same way, then runs
@@ -9,6 +10,7 @@
 
 mod json;
 mod time;
+mod write;
 mod xml;
 
 use std::collections::HashMap;
@@ -23,6 +25,11 @@ use crate::error::{Error, Result};
 
 pub use json::{
     read_ocel_json, read_ocel_json_from_reader, read_ocel2_json, read_ocel2_json_from_reader,
+};
+pub use write::{
+    write_ocel, write_ocel_json, write_ocel_json_to_writer, write_ocel_xml,
+    write_ocel_xml_to_writer, write_ocel2, write_ocel2_json, write_ocel2_json_to_writer,
+    write_ocel2_xml, write_ocel2_xml_to_writer,
 };
 pub use xml::{
     read_ocel_xml, read_ocel_xml_from_reader, read_ocel2_xml, read_ocel2_xml_from_reader,
