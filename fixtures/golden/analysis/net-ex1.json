@@ -1,0 +1,664 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "A",
+            "target": "p1",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p1",
+            "target": "B",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p1"
+        ],
+        "transitions": [
+          {
+            "label": "A",
+            "name": "A"
+          },
+          {
+            "label": "B",
+            "name": "B"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "A",
+            "target": "p2",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p2",
+            "target": "C",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p2"
+        ],
+        "transitions": [
+          {
+            "label": "A",
+            "name": "A"
+          },
+          {
+            "label": "C",
+            "name": "C"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "B",
+            "target": "p3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p3",
+            "target": "E",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p3"
+        ],
+        "transitions": [
+          {
+            "label": "B",
+            "name": "B"
+          },
+          {
+            "label": "E",
+            "name": "E"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "B",
+            "target": "p4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p4",
+            "target": "D",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p4"
+        ],
+        "transitions": [
+          {
+            "label": "B",
+            "name": "B"
+          },
+          {
+            "label": "D",
+            "name": "D"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "C",
+            "target": "p6",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p6",
+            "target": "D",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p6"
+        ],
+        "transitions": [
+          {
+            "label": "C",
+            "name": "C"
+          },
+          {
+            "label": "D",
+            "name": "D"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "D",
+            "target": "p5",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p5",
+            "target": "E",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p5"
+        ],
+        "transitions": [
+          {
+            "label": "D",
+            "name": "D"
+          },
+          {
+            "label": "E",
+            "name": "E"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "E",
+            "target": "sink",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "sink": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "sink"
+        ],
+        "transitions": [
+          {
+            "label": "E",
+            "name": "E"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "source",
+            "target": "A",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "source": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "source"
+        ],
+        "transitions": [
+          {
+            "label": "A",
+            "name": "A"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "A"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "A",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p4",
+        "p5",
+        "p6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "A",
+          "name": "A"
+        },
+        {
+          "label": "B",
+          "name": "B"
+        },
+        {
+          "label": "C",
+          "name": "C"
+        },
+        {
+          "label": "D",
+          "name": "D"
+        },
+        {
+          "label": "E",
+          "name": "E"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "A",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "A",
+          "name": "A"
+        },
+        {
+          "label": "B",
+          "name": "B"
+        },
+        {
+          "label": "C",
+          "name": "C"
+        },
+        {
+          "label": "D",
+          "name": "D"
+        },
+        {
+          "label": "E",
+          "name": "E"
+        }
+      ]
+    },
+    "is_sound": true,
+    "marking_equation": 5,
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "A",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "A",
+          "name": "A"
+        },
+        {
+          "label": "B",
+          "name": "B"
+        },
+        {
+          "label": "C",
+          "name": "C"
+        },
+        {
+          "label": "D",
+          "name": "D"
+        },
+        {
+          "label": "E",
+          "name": "E"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 0.8666666666666667,
+      "extended_cardoso": 7,
+      "extended_cyclomatic": 7
+    },
+    "soundness": {
+      "messages": [
+        "Input is ok.",
+        "Petri Net is a workflow net.",
+        "Every place is covered by s-components.",
+        "There are no dead tasks.",
+        "All tasks are live."
+      ],
+      "sound": true
+    },
+    "workflow_net": true
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-ex1",
+    "fixtures": {
+      "model": "fixtures/logs/ex1.pnml"
+    },
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "name": "ex1"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
