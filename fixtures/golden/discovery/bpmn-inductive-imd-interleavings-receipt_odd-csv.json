@@ -1,0 +1,276 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n17",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n0",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n6",
+          "name": "end"
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n7",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n8",
+          "name": "T02 Check confirmation of receipt"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n9",
+          "name": "T05 Print and send confirmation of receipt"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "T07-1 Draft intern advice aspect 1"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "T09-1 Process or receive external advice from party 1"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "T09-4 Process or receive external advice from party 4"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "T10 Determine necessity to stop indication"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "T12 Check document X request unlicensed"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "T15 Print document X request unlicensed"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "T17 Check report Y to stop indication"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n17",
+          "name": "T20 Print report Y to stop indication"
+        }
+      ]
+    },
+    "tree": "->( *( tau, X( 'T17 Check report Y to stop indication', 'T05 Print and send confirmation of receipt', 'T10 Determine necessity to stop indication', 'T12 Check document X request unlicensed', 'T20 Print report Y to stop indication', 'T09-1 Process or receive external advice from party 1', 'T09-4 Process or receive external advice from party 4', 'T07-1 Draft intern advice aspect 1', 'T02 Check confirmation of receipt' ) ), X( tau, 'T15 Print document X request unlicensed' ) )"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-imd-interleavings-receipt_odd-csv",
+    "fixtures": {
+      "log": "fixtures/logs/interleavings/receipt_odd.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imd"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

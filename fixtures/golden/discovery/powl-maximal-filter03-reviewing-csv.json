@@ -1,0 +1,223 @@
+{
+  "expected": {
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "accept"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "loop"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "reject"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "loop"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "loop"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "get review X"
+                    },
+                    {
+                      "kind": "activity",
+                      "label": "time-out X"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "invite additional reviewer"
+                    },
+                    {
+                      "kind": "silent"
+                    }
+                  ],
+                  "kind": "loop"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  1,
+                  0
+                ]
+              ]
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "get review 1"
+                },
+                {
+                  "kind": "activity",
+                  "label": "time-out 1"
+                }
+              ],
+              "kind": "xor"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "get review 2"
+                },
+                {
+                  "kind": "activity",
+                  "label": "time-out 2"
+                }
+              ],
+              "kind": "xor"
+            },
+            {
+              "children": [
+                {
+                  "kind": "activity",
+                  "label": "get review 3"
+                },
+                {
+                  "kind": "activity",
+                  "label": "time-out 3"
+                }
+              ],
+              "kind": "xor"
+            }
+          ],
+          "kind": "po",
+          "order": []
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "collect reviews"
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "invite reviewers"
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "loop"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "powl-maximal-filter03-reviewing-csv",
+    "fixtures": {
+      "log": "fixtures/logs/reviewing.csv"
+    },
+    "functions": [
+      "pm4py.discover_powl"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "maximal-filter03"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

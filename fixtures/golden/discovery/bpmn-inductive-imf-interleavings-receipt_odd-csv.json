@@ -1,0 +1,400 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "bpmn": {
+          "flows": [
+            [
+              "n0",
+              "n12",
+              "SequenceFlow"
+            ],
+            [
+              "n1",
+              "n14",
+              "SequenceFlow"
+            ],
+            [
+              "n10",
+              "n11",
+              "SequenceFlow"
+            ],
+            [
+              "n10",
+              "n4",
+              "SequenceFlow"
+            ],
+            [
+              "n11",
+              "n23",
+              "SequenceFlow"
+            ],
+            [
+              "n11",
+              "n3",
+              "SequenceFlow"
+            ],
+            [
+              "n12",
+              "n1",
+              "SequenceFlow"
+            ],
+            [
+              "n12",
+              "n25",
+              "SequenceFlow"
+            ],
+            [
+              "n13",
+              "n27",
+              "SequenceFlow"
+            ],
+            [
+              "n13",
+              "n6",
+              "SequenceFlow"
+            ],
+            [
+              "n15",
+              "n0",
+              "SequenceFlow"
+            ],
+            [
+              "n16",
+              "n18",
+              "SequenceFlow"
+            ],
+            [
+              "n17",
+              "n4",
+              "SequenceFlow"
+            ],
+            [
+              "n17",
+              "n8",
+              "SequenceFlow"
+            ],
+            [
+              "n18",
+              "n21",
+              "SequenceFlow"
+            ],
+            [
+              "n18",
+              "n24",
+              "SequenceFlow"
+            ],
+            [
+              "n19",
+              "n7",
+              "SequenceFlow"
+            ],
+            [
+              "n2",
+              "n16",
+              "SequenceFlow"
+            ],
+            [
+              "n20",
+              "n10",
+              "SequenceFlow"
+            ],
+            [
+              "n21",
+              "n15",
+              "SequenceFlow"
+            ],
+            [
+              "n22",
+              "n9",
+              "SequenceFlow"
+            ],
+            [
+              "n23",
+              "n3",
+              "SequenceFlow"
+            ],
+            [
+              "n24",
+              "n15",
+              "SequenceFlow"
+            ],
+            [
+              "n25",
+              "n1",
+              "SequenceFlow"
+            ],
+            [
+              "n26",
+              "n13",
+              "SequenceFlow"
+            ],
+            [
+              "n27",
+              "n0",
+              "SequenceFlow"
+            ],
+            [
+              "n3",
+              "n16",
+              "SequenceFlow"
+            ],
+            [
+              "n4",
+              "n20",
+              "SequenceFlow"
+            ],
+            [
+              "n5",
+              "n22",
+              "SequenceFlow"
+            ],
+            [
+              "n6",
+              "n26",
+              "SequenceFlow"
+            ],
+            [
+              "n7",
+              "n0",
+              "SequenceFlow"
+            ],
+            [
+              "n7",
+              "n17",
+              "SequenceFlow"
+            ],
+            [
+              "n7",
+              "n6",
+              "SequenceFlow"
+            ],
+            [
+              "n8",
+              "n2",
+              "SequenceFlow"
+            ],
+            [
+              "n8",
+              "n5",
+              "SequenceFlow"
+            ],
+            [
+              "n9",
+              "n2",
+              "SequenceFlow"
+            ],
+            [
+              "n9",
+              "n5",
+              "SequenceFlow"
+            ]
+          ],
+          "nodes": [
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n0",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n1",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n2",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n3",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n4",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n5",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n6",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n7",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n8",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n9",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n10",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n11",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n12",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n13",
+              "name": ""
+            },
+            {
+              "class": "NormalEndEvent",
+              "direction": null,
+              "key": "n14",
+              "name": "end"
+            },
+            {
+              "class": "ParallelGateway",
+              "direction": "Converging",
+              "key": "n15",
+              "name": ""
+            },
+            {
+              "class": "ParallelGateway",
+              "direction": "Converging",
+              "key": "n16",
+              "name": ""
+            },
+            {
+              "class": "ParallelGateway",
+              "direction": "Diverging",
+              "key": "n17",
+              "name": ""
+            },
+            {
+              "class": "ParallelGateway",
+              "direction": "Diverging",
+              "key": "n18",
+              "name": ""
+            },
+            {
+              "class": "StartEvent",
+              "direction": null,
+              "key": "n19",
+              "name": "start"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n20",
+              "name": "T02 Check confirmation of receipt"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n21",
+              "name": "T05 Print and send confirmation of receipt"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n22",
+              "name": "T07-1 Draft intern advice aspect 1"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n23",
+              "name": "T09-4 Process or receive external advice from party 4"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n24",
+              "name": "T10 Determine necessity to stop indication"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n25",
+              "name": "T15 Print document X request unlicensed"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n26",
+              "name": "T17 Check report Y to stop indication"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n27",
+              "name": "T20 Print report Y to stop indication"
+            }
+          ]
+        },
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "tree": "->( X( tau, ->( *( 'T17 Check report Y to stop indication', tau ), 'T20 Print report Y to stop indication' ), ->( +( X( tau, *( 'T07-1 Draft intern advice aspect 1', tau ) ), ->( *( 'T02 Check confirmation of receipt', tau ), X( tau, 'T09-4 Process or receive external advice from party 4' ) ) ), +( 'T05 Print and send confirmation of receipt', 'T10 Determine necessity to stop indication' ) ) ), X( tau, 'T15 Print document X request unlicensed' ) )"
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-imf-interleavings-receipt_odd-csv",
+    "fixtures": {
+      "log": "fixtures/logs/interleavings/receipt_odd.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imf"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -20,20 +20,30 @@ pub(crate) enum Split {
 /// `fall_throughs` off, only the empty-traces split and the flower model
 /// remain, as with pm4py's `disable_fallthroughs`.
 pub(crate) fn fall_through(log: &Uvcl, fall_throughs: bool, strict_sequence: bool) -> Split {
+    fall_through_except_flower(log, fall_throughs, strict_sequence).unwrap_or_else(|| flower(log))
+}
+
+/// [`fall_through`] without its last resort, the flower model, which the
+/// POWL miner builds its own way.
+pub(crate) fn fall_through_except_flower(
+    log: &Uvcl,
+    fall_throughs: bool,
+    strict_sequence: bool,
+) -> Option<Split> {
     if let Some(split) = empty_traces(log) {
-        return split;
+        return Some(split);
     }
     if fall_throughs {
         let candidate =
             activity_once_per_trace(log).or_else(|| activity_concurrent(log, strict_sequence));
         if let Some(a) = candidate {
-            return split_activity(log, a);
+            return Some(split_activity(log, a));
         }
         if let Some(sublog) = tau_loop(log, true).or_else(|| tau_loop(log, false)) {
-            return Split::Node(Operator::Loop, vec![sublog, Uvcl::new()]);
+            return Some(Split::Node(Operator::Loop, vec![sublog, Uvcl::new()]));
         }
     }
-    flower(log)
+    None
 }
 
 /// If the log has empty traces: `X( tau, <the rest> )`, or tau when every

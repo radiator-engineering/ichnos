@@ -43,7 +43,7 @@ pub mod transition_system;
 pub use bpmn::Bpmn;
 pub use dfg::Dfg;
 pub use error::Error;
-pub use footprints::{Footprints, TreeFootprints};
+pub use footprints::{Footprints, PowlFootprints, TreeFootprints};
 pub use heuristics_net::HeuristicsNet;
 pub use label::Label;
 pub use petri::{AcceptingPetriNet, Marking, PetriNet, PlaceId, TransitionId};
