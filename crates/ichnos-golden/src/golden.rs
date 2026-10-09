@@ -173,6 +173,7 @@ pub fn cases(area: &str) -> Vec<String> {
         .into_iter()
         .flatten()
         .flatten()
+        .filter(|entry| entry.path().is_file())
         .filter_map(|entry| {
             let name = entry.file_name().into_string().ok()?;
             name.strip_suffix(".json").map(str::to_owned)
