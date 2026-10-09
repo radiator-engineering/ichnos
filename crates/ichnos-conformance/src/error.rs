@@ -7,6 +7,9 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    /// A conversion required for model comparison failed.
+    #[error("model comparison failed: {0}")]
+    ModelComparison(String),
     /// Reading the log failed, for example because an event has no activity.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),
