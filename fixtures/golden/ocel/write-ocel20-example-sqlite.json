@@ -1,10 +1,6 @@
 {
   "expected": {
-    "globals": {
-      "ocel:global-event": {},
-      "ocel:global-log": {},
-      "ocel:global-object": {}
-    },
+    "globals": {},
     "input": {
       "e2e": [],
       "events": [
@@ -17,7 +13,7 @@
             ]
           },
           "id": "e1",
-          "timestamp": "2022-01-09T14:00:00.000000+00:00"
+          "timestamp": "2022-01-09T15:00:00.000000+00:00"
         },
         {
           "activity": "Approve Purchase Requisition",
@@ -28,7 +24,7 @@
             ]
           },
           "id": "e2",
-          "timestamp": "2022-01-09T15:30:00.000000+00:00"
+          "timestamp": "2022-01-09T16:30:00.000000+00:00"
         },
         {
           "activity": "Create Purchase Order",
@@ -39,7 +35,7 @@
             ]
           },
           "id": "e3",
-          "timestamp": "2022-01-10T08:15:00.000000+00:00"
+          "timestamp": "2022-01-10T09:15:00.000000+00:00"
         },
         {
           "activity": "Change PO Quantity",
@@ -50,7 +46,7 @@
             ]
           },
           "id": "e4",
-          "timestamp": "2022-01-13T11:00:00.000000+00:00"
+          "timestamp": "2022-01-13T12:00:00.000000+00:00"
         },
         {
           "activity": "Insert Invoice",
@@ -61,7 +57,7 @@
             ]
           },
           "id": "e5",
-          "timestamp": "2022-01-14T11:00:00.000000+00:00"
+          "timestamp": "2022-01-14T12:00:00.000000+00:00"
         },
         {
           "activity": "Insert Invoice",
@@ -72,7 +68,7 @@
             ]
           },
           "id": "e6",
-          "timestamp": "2022-01-16T10:00:00.000000+00:00"
+          "timestamp": "2022-01-16T11:00:00.000000+00:00"
         },
         {
           "activity": "Insert Payment",
@@ -83,7 +79,7 @@
             ]
           },
           "id": "e7",
-          "timestamp": "2022-01-30T22:00:00.000000+00:00"
+          "timestamp": "2022-01-30T23:00:00.000000+00:00"
         },
         {
           "activity": "Insert Payment",
@@ -94,7 +90,7 @@
             ]
           },
           "id": "e8",
-          "timestamp": "2022-01-31T21:00:00.000000+00:00"
+          "timestamp": "2022-01-31T22:00:00.000000+00:00"
         },
         {
           "activity": "Insert Invoice",
@@ -105,7 +101,7 @@
             ]
           },
           "id": "e9",
-          "timestamp": "2022-02-02T08:00:00.000000+00:00"
+          "timestamp": "2022-02-02T09:00:00.000000+00:00"
         },
         {
           "activity": "Create Purchase Order",
@@ -116,7 +112,7 @@
             ]
           },
           "id": "e10",
-          "timestamp": "2022-02-02T16:00:00.000000+00:00"
+          "timestamp": "2022-02-02T17:00:00.000000+00:00"
         },
         {
           "activity": "Set Payment Block",
@@ -127,7 +123,7 @@
             ]
           },
           "id": "e11",
-          "timestamp": "2022-02-03T06:30:00.000000+00:00"
+          "timestamp": "2022-02-03T07:30:00.000000+00:00"
         },
         {
           "activity": "Remove Payment Block",
@@ -138,7 +134,7 @@
             ]
           },
           "id": "e12",
-          "timestamp": "2022-02-03T22:30:00.000000+00:00"
+          "timestamp": "2022-02-03T23:30:00.000000+00:00"
         },
         {
           "activity": "Insert Payment",
@@ -149,24 +145,14 @@
             ]
           },
           "id": "e13",
-          "timestamp": "2022-02-28T22:00:00.000000+00:00"
+          "timestamp": "2022-02-28T23:00:00.000000+00:00"
         }
       ],
       "o2o": [
         {
-          "qualifier": "Payment from invoice",
-          "source": "R1",
-          "target": "P1"
-        },
-        {
-          "qualifier": "Payment from invoice",
-          "source": "R2",
-          "target": "P2"
-        },
-        {
-          "qualifier": "Payment from invoice",
-          "source": "R3",
-          "target": "P3"
+          "qualifier": "PO from PR",
+          "source": "PR1",
+          "target": "PO1"
         },
         {
           "qualifier": "Invoice from PO",
@@ -179,21 +165,41 @@
           "target": "R2"
         },
         {
+          "qualifier": "Payment from invoice",
+          "source": "R1",
+          "target": "P1"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R2",
+          "target": "P2"
+        },
+        {
           "qualifier": "Maverick buying",
           "source": "PO2",
           "target": "R3"
         },
         {
-          "qualifier": "PO from PR",
-          "source": "PR1",
-          "target": "PO1"
+          "qualifier": "Payment from invoice",
+          "source": "R3",
+          "target": "P3"
         }
       ],
       "object_changes": [
         {
+          "field": "po_quantity",
+          "object": "PO1",
+          "timestamp": "2022-01-13T12:00:00.000000+00:00",
+          "type": "Purchase Order",
+          "value": [
+            "string",
+            "600"
+          ]
+        },
+        {
           "field": "is_blocked",
           "object": "R3",
-          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "timestamp": "2022-02-03T07:30:00.000000+00:00",
           "type": "Invoice",
           "value": [
             "string",
@@ -203,21 +209,11 @@
         {
           "field": "is_blocked",
           "object": "R3",
-          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "timestamp": "2022-02-03T23:30:00.000000+00:00",
           "type": "Invoice",
           "value": [
             "string",
             "No"
-          ]
-        },
-        {
-          "field": "po_quantity",
-          "object": "PO1",
-          "timestamp": "2022-01-13T11:00:00.000000+00:00",
-          "type": "Purchase Order",
-          "value": [
-            "string",
-            "600"
           ]
         }
       ],
@@ -316,7 +312,7 @@
           "event": "e1",
           "object": "PR1",
           "qualifier": "Regular placement of PR",
-          "timestamp": "2022-01-09T14:00:00.000000+00:00",
+          "timestamp": "2022-01-09T15:00:00.000000+00:00",
           "type": "Purchase Requisition"
         },
         {
@@ -324,7 +320,15 @@
           "event": "e2",
           "object": "PR1",
           "qualifier": "Regular approval of PR",
-          "timestamp": "2022-01-09T15:30:00.000000+00:00",
+          "timestamp": "2022-01-09T16:30:00.000000+00:00",
+          "type": "Purchase Requisition"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e3",
+          "object": "PR1",
+          "qualifier": "Created order from PR",
+          "timestamp": "2022-01-10T09:15:00.000000+00:00",
           "type": "Purchase Requisition"
         },
         {
@@ -332,23 +336,15 @@
           "event": "e3",
           "object": "PO1",
           "qualifier": "Created order with identifier",
-          "timestamp": "2022-01-10T08:15:00.000000+00:00",
+          "timestamp": "2022-01-10T09:15:00.000000+00:00",
           "type": "Purchase Order"
-        },
-        {
-          "activity": "Create Purchase Order",
-          "event": "e3",
-          "object": "PR1",
-          "qualifier": "Created order from PR",
-          "timestamp": "2022-01-10T08:15:00.000000+00:00",
-          "type": "Purchase Requisition"
         },
         {
           "activity": "Change PO Quantity",
           "event": "e4",
           "object": "PO1",
           "qualifier": "Change of quantity",
-          "timestamp": "2022-01-13T11:00:00.000000+00:00",
+          "timestamp": "2022-01-13T12:00:00.000000+00:00",
           "type": "Purchase Order"
         },
         {
@@ -356,7 +352,7 @@
           "event": "e5",
           "object": "PO1",
           "qualifier": "Invoice created starting from the PO",
-          "timestamp": "2022-01-14T11:00:00.000000+00:00",
+          "timestamp": "2022-01-14T12:00:00.000000+00:00",
           "type": "Purchase Order"
         },
         {
@@ -364,7 +360,7 @@
           "event": "e5",
           "object": "R1",
           "qualifier": "Invoice created with identifier",
-          "timestamp": "2022-01-14T11:00:00.000000+00:00",
+          "timestamp": "2022-01-14T12:00:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -372,7 +368,7 @@
           "event": "e6",
           "object": "PO1",
           "qualifier": "Invoice created starting from the PO",
-          "timestamp": "2022-01-16T10:00:00.000000+00:00",
+          "timestamp": "2022-01-16T11:00:00.000000+00:00",
           "type": "Purchase Order"
         },
         {
@@ -380,7 +376,15 @@
           "event": "e6",
           "object": "R2",
           "qualifier": "Invoice created with identifier",
-          "timestamp": "2022-01-16T10:00:00.000000+00:00",
+          "timestamp": "2022-01-16T11:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Insert Payment",
+          "event": "e7",
+          "object": "R1",
+          "qualifier": "Payment for the invoice",
+          "timestamp": "2022-01-30T23:00:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -388,23 +392,15 @@
           "event": "e7",
           "object": "P1",
           "qualifier": "Payment inserted with identifier",
-          "timestamp": "2022-01-30T22:00:00.000000+00:00",
+          "timestamp": "2022-01-30T23:00:00.000000+00:00",
           "type": "Payment"
-        },
-        {
-          "activity": "Insert Payment",
-          "event": "e7",
-          "object": "R1",
-          "qualifier": "Payment for the invoice",
-          "timestamp": "2022-01-30T22:00:00.000000+00:00",
-          "type": "Invoice"
         },
         {
           "activity": "Insert Payment",
           "event": "e8",
           "object": "R2",
           "qualifier": "Payment for the invoice",
-          "timestamp": "2022-01-31T21:00:00.000000+00:00",
+          "timestamp": "2022-01-31T22:00:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -412,7 +408,7 @@
           "event": "e8",
           "object": "P2",
           "qualifier": "Payment created with identifier",
-          "timestamp": "2022-01-31T21:00:00.000000+00:00",
+          "timestamp": "2022-01-31T22:00:00.000000+00:00",
           "type": "Payment"
         },
         {
@@ -420,7 +416,15 @@
           "event": "e9",
           "object": "R3",
           "qualifier": "Invoice created with identifier",
-          "timestamp": "2022-02-02T08:00:00.000000+00:00",
+          "timestamp": "2022-02-02T09:00:00.000000+00:00",
+          "type": "Invoice"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e10",
+          "object": "R3",
+          "qualifier": "Purchase order created with maverick buying from",
+          "timestamp": "2022-02-02T17:00:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -428,23 +432,15 @@
           "event": "e10",
           "object": "PO2",
           "qualifier": "Purhcase order created with identifier",
-          "timestamp": "2022-02-02T16:00:00.000000+00:00",
+          "timestamp": "2022-02-02T17:00:00.000000+00:00",
           "type": "Purchase Order"
-        },
-        {
-          "activity": "Create Purchase Order",
-          "event": "e10",
-          "object": "R3",
-          "qualifier": "Purchase order created with maverick buying from",
-          "timestamp": "2022-02-02T16:00:00.000000+00:00",
-          "type": "Invoice"
         },
         {
           "activity": "Set Payment Block",
           "event": "e11",
           "object": "R3",
           "qualifier": "Payment block due to unethical maverick buying",
-          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "timestamp": "2022-02-03T07:30:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -452,7 +448,7 @@
           "event": "e12",
           "object": "R3",
           "qualifier": "Payment block removed ...",
-          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "timestamp": "2022-02-03T23:30:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -460,7 +456,7 @@
           "event": "e13",
           "object": "R3",
           "qualifier": "Payment for the invoice",
-          "timestamp": "2022-02-28T22:00:00.000000+00:00",
+          "timestamp": "2022-02-28T23:00:00.000000+00:00",
           "type": "Invoice"
         },
         {
@@ -468,24 +464,24 @@
           "event": "e13",
           "object": "P3",
           "qualifier": "Payment inserted with identifier",
-          "timestamp": "2022-02-28T22:00:00.000000+00:00",
+          "timestamp": "2022-02-28T23:00:00.000000+00:00",
           "type": "Payment"
         }
       ]
     },
     "writers": {
       "csv": {
-        "objects": "ocel:oid,ocel:type,is_blocked,po_product,po_quantity,pr_product,pr_quantity\nR1,Invoice,No,,,,\nR2,Invoice,No,,,,\nR3,Invoice,No,,,,\nP1,Payment,,,,,\nP2,Payment,,,,,\nP3,Payment,,,,,\nPO1,Purchase Order,,Cows,500,,\nPO2,Purchase Order,,Notebooks,1,,\nPR1,Purchase Requisition,,,,Cows,500\n",
-        "text": "ocel:eid,ocel:timestamp,ocel:activity,pr_creator,pr_approver,po_creator,po_editor,invoice_inserter,payment_inserter,invoice_blocker,invoice_block_rem,ocel:type:Purchase Requisition,ocel:type:Purchase Order,ocel:type:Invoice,ocel:type:Payment\ne1,2022-01-09 14:00:00+00:00,Create Purchase Requisition,Mike,,,,,,,,['PR1'],,,\ne2,2022-01-09 15:30:00+00:00,Approve Purchase Requisition,,Tania,,,,,,,['PR1'],,,\ne3,2022-01-10 08:15:00+00:00,Create Purchase Order,,,Mike,,,,,,['PR1'],['PO1'],,\ne4,2022-01-13 11:00:00+00:00,Change PO Quantity,,,,Mike,,,,,,['PO1'],,\ne5,2022-01-14 11:00:00+00:00,Insert Invoice,,,,,Luke,,,,,['PO1'],['R1'],\ne6,2022-01-16 10:00:00+00:00,Insert Invoice,,,,,Luke,,,,,['PO1'],['R2'],\ne7,2022-01-30 22:00:00+00:00,Insert Payment,,,,,,Robot,,,,,['R1'],['P1']\ne8,2022-01-31 21:00:00+00:00,Insert Payment,,,,,,Robot,,,,,['R2'],['P2']\ne9,2022-02-02 08:00:00+00:00,Insert Invoice,,,,,Mario,,,,,,['R3'],\ne10,2022-02-02 16:00:00+00:00,Create Purchase Order,,,Mario,,,,,,,['PO2'],['R3'],\ne11,2022-02-03 06:30:00+00:00,Set Payment Block,,,,,,,Mario,,,,['R3'],\ne12,2022-02-03 22:30:00+00:00,Remove Payment Block,,,,,,,,Mario,,,['R3'],\ne13,2022-02-28 22:00:00+00:00,Insert Payment,,,,,,Robot,,,,,['R3'],['P3']\n"
+        "objects": "ocel:oid,is_blocked,po_product,po_quantity,pr_product,pr_quantity,ocel:type\nR1,No,,,,,Invoice\nR2,No,,,,,Invoice\nR3,No,,,,,Invoice\nP1,,,,,,Payment\nP2,,,,,,Payment\nP3,,,,,,Payment\nPO1,,Cows,500,,,Purchase Order\nPO2,,Notebooks,1,,,Purchase Order\nPR1,,,,Cows,500,Purchase Requisition\n",
+        "text": "ocel:eid,ocel:timestamp,pr_approver,po_editor,po_creator,pr_creator,invoice_inserter,payment_inserter,invoice_block_rem,invoice_blocker,ocel:activity,ocel:type:Purchase Requisition,ocel:type:Purchase Order,ocel:type:Invoice,ocel:type:Payment\ne1,2022-01-09 15:00:00+00:00,,,,Mike,,,,,Create Purchase Requisition,['PR1'],,,\ne2,2022-01-09 16:30:00+00:00,Tania,,,,,,,,Approve Purchase Requisition,['PR1'],,,\ne3,2022-01-10 09:15:00+00:00,,,Mike,,,,,,Create Purchase Order,['PR1'],['PO1'],,\ne4,2022-01-13 12:00:00+00:00,,Mike,,,,,,,Change PO Quantity,,['PO1'],,\ne5,2022-01-14 12:00:00+00:00,,,,,Luke,,,,Insert Invoice,,['PO1'],['R1'],\ne6,2022-01-16 11:00:00+00:00,,,,,Luke,,,,Insert Invoice,,['PO1'],['R2'],\ne7,2022-01-30 23:00:00+00:00,,,,,,Robot,,,Insert Payment,,,['R1'],['P1']\ne8,2022-01-31 22:00:00+00:00,,,,,,Robot,,,Insert Payment,,,['R2'],['P2']\ne9,2022-02-02 09:00:00+00:00,,,,,Mario,,,,Insert Invoice,,,['R3'],\ne10,2022-02-02 17:00:00+00:00,,,Mario,,,,,,Create Purchase Order,,['PO2'],['R3'],\ne11,2022-02-03 07:30:00+00:00,,,,,,,,Mario,Set Payment Block,,,['R3'],\ne12,2022-02-03 23:30:00+00:00,,,,,,,Mario,,Remove Payment Block,,,['R3'],\ne13,2022-02-28 23:00:00+00:00,,,,,,Robot,,,Insert Payment,,,['R3'],['P3']\n"
       },
       "csv2": {
-        "text": "id,activity,timestamp,ot:Invoice,ot:Payment,ot:Purchase Order,ot:Purchase Requisition,pr_creator,pr_approver,po_creator,po_editor,invoice_inserter,payment_inserter,invoice_blocker,invoice_block_rem\r\ne1,Create Purchase Requisition,2022-01-09T14:00:00+00:00,,,,PR1#Regular placement of PR,Mike,,,,,,,\r\ne2,Approve Purchase Requisition,2022-01-09T15:30:00+00:00,,,,PR1#Regular approval of PR,,Tania,,,,,,\r\ne3,Create Purchase Order,2022-01-10T08:15:00+00:00,,,PO1#Created order with identifier,PR1#Created order from PR,,,Mike,,,,,\r\ne4,Change PO Quantity,2022-01-13T11:00:00+00:00,,,PO1#Change of quantity,,,,,Mike,,,,\r\ne5,Insert Invoice,2022-01-14T11:00:00+00:00,R1#Invoice created with identifier,,PO1#Invoice created starting from the PO,,,,,,Luke,,,\r\ne6,Insert Invoice,2022-01-16T10:00:00+00:00,R2#Invoice created with identifier,,PO1#Invoice created starting from the PO,,,,,,Luke,,,\r\ne7,Insert Payment,2022-01-30T22:00:00+00:00,R1#Payment for the invoice,P1#Payment inserted with identifier,,,,,,,,Robot,,\r\ne8,Insert Payment,2022-01-31T21:00:00+00:00,R2#Payment for the invoice,P2#Payment created with identifier,,,,,,,,Robot,,\r\ne9,Insert Invoice,2022-02-02T08:00:00+00:00,R3#Invoice created with identifier,,,,,,,,Mario,,,\r\ne10,Create Purchase Order,2022-02-02T16:00:00+00:00,R3#Purchase order created with maverick buying from,,PO2#Purhcase order created with identifier,,,,Mario,,,,,\r\ne11,Set Payment Block,2022-02-03T06:30:00+00:00,R3#Payment block due to unethical maverick buying,,,,,,,,,,Mario,\r\ne12,Remove Payment Block,2022-02-03T22:30:00+00:00,R3#Payment block removed ...,,,,,,,,,,,Mario\r\ne13,Insert Payment,2022-02-28T22:00:00+00:00,R3#Payment for the invoice,P3#Payment inserted with identifier,,,,,,,,Robot,,\r\n,,,\"R1{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n,,,\"R2{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n,,,\"R3{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n,,,,,\"PO1{\"\"po_product\"\":\"\"Cows\"\",\"\"po_quantity\"\":\"\"500\"\"}\",,,,,,,,,\r\n,,,,,\"PO2{\"\"po_product\"\":\"\"Notebooks\"\",\"\"po_quantity\"\":\"\"1\"\"}\",,,,,,,,,\r\n,,,,,,\"PR1{\"\"pr_product\"\":\"\"Cows\"\",\"\"pr_quantity\"\":\"\"500\"\"}\",,,,,,,,\r\nPO1,o2o,,R1#Invoice from PO/R2#Invoice from PO,,,,,,,,,,,\r\nPO2,o2o,,R3#Maverick buying,,,,,,,,,,,\r\nPR1,o2o,,,,PO1#PO from PR,,,,,,,,,\r\nR1,o2o,,,P1#Payment from invoice,,,,,,,,,,\r\nR2,o2o,,,P2#Payment from invoice,,,,,,,,,,\r\nR3,o2o,,,P3#Payment from invoice,,,,,,,,,,\r\n,,2022-01-13T11:00:00+00:00,,,\"PO1{\"\"po_quantity\"\":\"\"600\"\"}\",,,,,,,,,\r\n,,2022-02-03T06:30:00+00:00,\"R3{\"\"is_blocked\"\":\"\"Yes\"\"}\",,,,,,,,,,,\r\n,,2022-02-03T22:30:00+00:00,\"R3{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n"
+        "text": "id,activity,timestamp,ot:Invoice,ot:Payment,ot:Purchase Order,ot:Purchase Requisition,pr_approver,po_editor,po_creator,pr_creator,invoice_inserter,payment_inserter,invoice_block_rem,invoice_blocker\r\ne1,Create Purchase Requisition,2022-01-09T15:00:00+00:00,,,,PR1#Regular placement of PR,,,,Mike,,,,\r\ne2,Approve Purchase Requisition,2022-01-09T16:30:00+00:00,,,,PR1#Regular approval of PR,Tania,,,,,,,\r\ne3,Create Purchase Order,2022-01-10T09:15:00+00:00,,,PO1#Created order with identifier,PR1#Created order from PR,,,Mike,,,,,\r\ne4,Change PO Quantity,2022-01-13T12:00:00+00:00,,,PO1#Change of quantity,,,Mike,,,,,,\r\ne5,Insert Invoice,2022-01-14T12:00:00+00:00,R1#Invoice created with identifier,,PO1#Invoice created starting from the PO,,,,,,Luke,,,\r\ne6,Insert Invoice,2022-01-16T11:00:00+00:00,R2#Invoice created with identifier,,PO1#Invoice created starting from the PO,,,,,,Luke,,,\r\ne7,Insert Payment,2022-01-30T23:00:00+00:00,R1#Payment for the invoice,P1#Payment inserted with identifier,,,,,,,,Robot,,\r\ne8,Insert Payment,2022-01-31T22:00:00+00:00,R2#Payment for the invoice,P2#Payment created with identifier,,,,,,,,Robot,,\r\ne9,Insert Invoice,2022-02-02T09:00:00+00:00,R3#Invoice created with identifier,,,,,,,,Mario,,,\r\ne10,Create Purchase Order,2022-02-02T17:00:00+00:00,R3#Purchase order created with maverick buying from,,PO2#Purhcase order created with identifier,,,,Mario,,,,,\r\ne11,Set Payment Block,2022-02-03T07:30:00+00:00,R3#Payment block due to unethical maverick buying,,,,,,,,,,,Mario\r\ne12,Remove Payment Block,2022-02-03T23:30:00+00:00,R3#Payment block removed ...,,,,,,,,,,Mario,\r\ne13,Insert Payment,2022-02-28T23:00:00+00:00,R3#Payment for the invoice,P3#Payment inserted with identifier,,,,,,,,Robot,,\r\n,,,\"R1{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n,,,\"R2{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n,,,\"R3{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n,,,,,\"PO1{\"\"po_product\"\":\"\"Cows\"\",\"\"po_quantity\"\":\"\"500\"\"}\",,,,,,,,,\r\n,,,,,\"PO2{\"\"po_product\"\":\"\"Notebooks\"\",\"\"po_quantity\"\":\"\"1\"\"}\",,,,,,,,,\r\n,,,,,,\"PR1{\"\"pr_product\"\":\"\"Cows\"\",\"\"pr_quantity\"\":\"\"500\"\"}\",,,,,,,,\r\nPO1,o2o,,R1#Invoice from PO/R2#Invoice from PO,,,,,,,,,,,\r\nPO2,o2o,,R3#Maverick buying,,,,,,,,,,,\r\nPR1,o2o,,,,PO1#PO from PR,,,,,,,,,\r\nR1,o2o,,,P1#Payment from invoice,,,,,,,,,,\r\nR2,o2o,,,P2#Payment from invoice,,,,,,,,,,\r\nR3,o2o,,,P3#Payment from invoice,,,,,,,,,,\r\n,,2022-01-13T12:00:00+00:00,,,\"PO1{\"\"po_quantity\"\":\"\"600\"\"}\",,,,,,,,,\r\n,,2022-02-03T07:30:00+00:00,\"R3{\"\"is_blocked\"\":\"\"Yes\"\"}\",,,,,,,,,,,\r\n,,2022-02-03T23:30:00+00:00,\"R3{\"\"is_blocked\"\":\"\"No\"\"}\",,,,,,,,,,,\r\n"
       },
       "json": {
-        "text": "{\n  \"ocel:global-event\": {},\n  \"ocel:global-object\": {},\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"Invoice\",\n      \"Payment\",\n      \"Purchase Order\",\n      \"Purchase Requisition\"\n    ],\n    \"ocel:attribute-names\": [\n      \"invoice_block_rem\",\n      \"invoice_blocker\",\n      \"invoice_inserter\",\n      \"is_blocked\",\n      \"payment_inserter\",\n      \"po_creator\",\n      \"po_editor\",\n      \"po_product\",\n      \"po_quantity\",\n      \"pr_approver\",\n      \"pr_creator\",\n      \"pr_product\",\n      \"pr_quantity\"\n    ],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:timestamp\": \"2022-01-09T14:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Requisition\",\n      \"ocel:vmap\": {\n        \"pr_creator\": \"Mike\"\n      },\n      \"ocel:omap\": [\n        \"PR1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PR1\",\n          \"ocel:qualifier\": \"Regular placement of PR\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:timestamp\": \"2022-01-09T15:30:00Z\",\n      \"ocel:activity\": \"Approve Purchase Requisition\",\n      \"ocel:vmap\": {\n        \"pr_approver\": \"Tania\"\n      },\n      \"ocel:omap\": [\n        \"PR1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PR1\",\n          \"ocel:qualifier\": \"Regular approval of PR\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:timestamp\": \"2022-01-10T08:15:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {\n        \"po_creator\": \"Mike\"\n      },\n      \"ocel:omap\": [\n        \"PO1\",\n        \"PR1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Created order with identifier\"\n        },\n        {\n          \"ocel:oid\": \"PR1\",\n          \"ocel:qualifier\": \"Created order from PR\"\n        }\n      ]\n    },\n    \"e4\": {\n      \"ocel:timestamp\": \"2022-01-13T11:00:00Z\",\n      \"ocel:activity\": \"Change PO Quantity\",\n      \"ocel:vmap\": {\n        \"po_editor\": \"Mike\"\n      },\n      \"ocel:omap\": [\n        \"PO1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Change of quantity\"\n        }\n      ]\n    },\n    \"e5\": {\n      \"ocel:timestamp\": \"2022-01-14T11:00:00Z\",\n      \"ocel:activity\": \"Insert Invoice\",\n      \"ocel:vmap\": {\n        \"invoice_inserter\": \"Luke\"\n      },\n      \"ocel:omap\": [\n        \"PO1\",\n        \"R1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"ocel:oid\": \"R1\",\n          \"ocel:qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    \"e6\": {\n      \"ocel:timestamp\": \"2022-01-16T10:00:00Z\",\n      \"ocel:activity\": \"Insert Invoice\",\n      \"ocel:vmap\": {\n        \"invoice_inserter\": \"Luke\"\n      },\n      \"ocel:omap\": [\n        \"PO1\",\n        \"R2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"ocel:oid\": \"R2\",\n          \"ocel:qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    \"e7\": {\n      \"ocel:timestamp\": \"2022-01-30T22:00:00Z\",\n      \"ocel:activity\": \"Insert Payment\",\n      \"ocel:vmap\": {\n        \"payment_inserter\": \"Robot\"\n      },\n      \"ocel:omap\": [\n        \"P1\",\n        \"R1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"P1\",\n          \"ocel:qualifier\": \"Payment inserted with identifier\"\n        },\n        {\n          \"ocel:oid\": \"R1\",\n          \"ocel:qualifier\": \"Payment for the invoice\"\n        }\n      ]\n    },\n    \"e8\": {\n      \"ocel:timestamp\": \"2022-01-31T21:00:00Z\",\n      \"ocel:activity\": \"Insert Payment\",\n      \"ocel:vmap\": {\n        \"payment_inserter\": \"Robot\"\n      },\n      \"ocel:omap\": [\n        \"R2\",\n        \"P2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R2\",\n          \"ocel:qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"ocel:oid\": \"P2\",\n          \"ocel:qualifier\": \"Payment created with identifier\"\n        }\n      ]\n    },\n    \"e9\": {\n      \"ocel:timestamp\": \"2022-02-02T08:00:00Z\",\n      \"ocel:activity\": \"Insert Invoice\",\n      \"ocel:vmap\": {\n        \"invoice_inserter\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    \"e10\": {\n      \"ocel:timestamp\": \"2022-02-02T16:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {\n        \"po_creator\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"PO2\",\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO2\",\n          \"ocel:qualifier\": \"Purhcase order created with identifier\"\n        },\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Purchase order created with maverick buying from\"\n        }\n      ]\n    },\n    \"e11\": {\n      \"ocel:timestamp\": \"2022-02-03T06:30:00Z\",\n      \"ocel:activity\": \"Set Payment Block\",\n      \"ocel:vmap\": {\n        \"invoice_blocker\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Payment block due to unethical maverick buying\"\n        }\n      ]\n    },\n    \"e12\": {\n      \"ocel:timestamp\": \"2022-02-03T22:30:00Z\",\n      \"ocel:activity\": \"Remove Payment Block\",\n      \"ocel:vmap\": {\n        \"invoice_block_rem\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Payment block removed ...\"\n        }\n      ]\n    },\n    \"e13\": {\n      \"ocel:timestamp\": \"2022-02-28T22:00:00Z\",\n      \"ocel:activity\": \"Insert Payment\",\n      \"ocel:vmap\": {\n        \"payment_inserter\": \"Robot\"\n      },\n      \"ocel:omap\": [\n        \"R3\",\n        \"P3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"ocel:oid\": \"P3\",\n          \"ocel:qualifier\": \"Payment inserted with identifier\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"R1\": {\n      \"ocel:type\": \"Invoice\",\n      \"ocel:ovmap\": {\n        \"is_blocked\": \"No\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"P1\",\n          \"ocel:qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    \"R2\": {\n      \"ocel:type\": \"Invoice\",\n      \"ocel:ovmap\": {\n        \"is_blocked\": \"No\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"P2\",\n          \"ocel:qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    \"R3\": {\n      \"ocel:type\": \"Invoice\",\n      \"ocel:ovmap\": {\n        \"is_blocked\": \"No\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"P3\",\n          \"ocel:qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    \"P1\": {\n      \"ocel:type\": \"Payment\",\n      \"ocel:ovmap\": {}\n    },\n    \"P2\": {\n      \"ocel:type\": \"Payment\",\n      \"ocel:ovmap\": {}\n    },\n    \"P3\": {\n      \"ocel:type\": \"Payment\",\n      \"ocel:ovmap\": {}\n    },\n    \"PO1\": {\n      \"ocel:type\": \"Purchase Order\",\n      \"ocel:ovmap\": {\n        \"po_product\": \"Cows\",\n        \"po_quantity\": \"500\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"R1\",\n          \"ocel:qualifier\": \"Invoice from PO\"\n        },\n        {\n          \"ocel:oid\": \"R2\",\n          \"ocel:qualifier\": \"Invoice from PO\"\n        }\n      ]\n    },\n    \"PO2\": {\n      \"ocel:type\": \"Purchase Order\",\n      \"ocel:ovmap\": {\n        \"po_product\": \"Notebooks\",\n        \"po_quantity\": \"1\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Maverick buying\"\n        }\n      ]\n    },\n    \"PR1\": {\n      \"ocel:type\": \"Purchase Requisition\",\n      \"ocel:ovmap\": {\n        \"pr_product\": \"Cows\",\n        \"pr_quantity\": \"500\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"PO from PR\"\n        }\n      ]\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"Approve Purchase Requisition\": {\n      \"pr_approver\": \"string\"\n    },\n    \"Change PO Quantity\": {\n      \"po_editor\": \"string\"\n    },\n    \"Create Purchase Order\": {\n      \"po_creator\": \"string\"\n    },\n    \"Create Purchase Requisition\": {\n      \"pr_creator\": \"string\"\n    },\n    \"Insert Invoice\": {\n      \"invoice_inserter\": \"string\"\n    },\n    \"Insert Payment\": {\n      \"payment_inserter\": \"string\"\n    },\n    \"Remove Payment Block\": {\n      \"invoice_block_rem\": \"string\"\n    },\n    \"Set Payment Block\": {\n      \"invoice_blocker\": \"string\"\n    }\n  },\n  \"ocel:objectTypes\": {\n    \"Invoice\": {\n      \"is_blocked\": \"string\"\n    },\n    \"Payment\": {},\n    \"Purchase Order\": {\n      \"po_product\": \"string\",\n      \"po_quantity\": \"string\"\n    },\n    \"Purchase Requisition\": {\n      \"pr_product\": \"string\",\n      \"pr_quantity\": \"string\"\n    }\n  },\n  \"ocel:objectChanges\": [\n    {\n      \"ocel:oid\": \"R3\",\n      \"ocel:type\": \"Invoice\",\n      \"ocel:field\": \"is_blocked\",\n      \"is_blocked\": \"Yes\",\n      \"ocel:timestamp\": \"2022-02-03T06:30:00+00:00\"\n    },\n    {\n      \"ocel:oid\": \"R3\",\n      \"ocel:type\": \"Invoice\",\n      \"ocel:field\": \"is_blocked\",\n      \"is_blocked\": \"No\",\n      \"ocel:timestamp\": \"2022-02-03T22:30:00+00:00\"\n    },\n    {\n      \"ocel:oid\": \"PO1\",\n      \"ocel:type\": \"Purchase Order\",\n      \"ocel:field\": \"po_quantity\",\n      \"ocel:timestamp\": \"2022-01-13T11:00:00+00:00\",\n      \"po_quantity\": \"600\"\n    }\n  ]\n}"
+        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"Invoice\",\n      \"Payment\",\n      \"Purchase Order\",\n      \"Purchase Requisition\"\n    ],\n    \"ocel:attribute-names\": [\n      \"invoice_block_rem\",\n      \"invoice_blocker\",\n      \"invoice_inserter\",\n      \"is_blocked\",\n      \"payment_inserter\",\n      \"po_creator\",\n      \"po_editor\",\n      \"po_product\",\n      \"po_quantity\",\n      \"pr_approver\",\n      \"pr_creator\",\n      \"pr_product\",\n      \"pr_quantity\"\n    ],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:timestamp\": \"2022-01-09T15:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Requisition\",\n      \"ocel:vmap\": {\n        \"pr_creator\": \"Mike\"\n      },\n      \"ocel:omap\": [\n        \"PR1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PR1\",\n          \"ocel:qualifier\": \"Regular placement of PR\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:timestamp\": \"2022-01-09T16:30:00Z\",\n      \"ocel:activity\": \"Approve Purchase Requisition\",\n      \"ocel:vmap\": {\n        \"pr_approver\": \"Tania\"\n      },\n      \"ocel:omap\": [\n        \"PR1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PR1\",\n          \"ocel:qualifier\": \"Regular approval of PR\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:timestamp\": \"2022-01-10T09:15:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {\n        \"po_creator\": \"Mike\"\n      },\n      \"ocel:omap\": [\n        \"PR1\",\n        \"PO1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PR1\",\n          \"ocel:qualifier\": \"Created order from PR\"\n        },\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Created order with identifier\"\n        }\n      ]\n    },\n    \"e4\": {\n      \"ocel:timestamp\": \"2022-01-13T12:00:00Z\",\n      \"ocel:activity\": \"Change PO Quantity\",\n      \"ocel:vmap\": {\n        \"po_editor\": \"Mike\"\n      },\n      \"ocel:omap\": [\n        \"PO1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Change of quantity\"\n        }\n      ]\n    },\n    \"e5\": {\n      \"ocel:timestamp\": \"2022-01-14T12:00:00Z\",\n      \"ocel:activity\": \"Insert Invoice\",\n      \"ocel:vmap\": {\n        \"invoice_inserter\": \"Luke\"\n      },\n      \"ocel:omap\": [\n        \"PO1\",\n        \"R1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"ocel:oid\": \"R1\",\n          \"ocel:qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    \"e6\": {\n      \"ocel:timestamp\": \"2022-01-16T11:00:00Z\",\n      \"ocel:activity\": \"Insert Invoice\",\n      \"ocel:vmap\": {\n        \"invoice_inserter\": \"Luke\"\n      },\n      \"ocel:omap\": [\n        \"PO1\",\n        \"R2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"ocel:oid\": \"R2\",\n          \"ocel:qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    \"e7\": {\n      \"ocel:timestamp\": \"2022-01-30T23:00:00Z\",\n      \"ocel:activity\": \"Insert Payment\",\n      \"ocel:vmap\": {\n        \"payment_inserter\": \"Robot\"\n      },\n      \"ocel:omap\": [\n        \"R1\",\n        \"P1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R1\",\n          \"ocel:qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"ocel:oid\": \"P1\",\n          \"ocel:qualifier\": \"Payment inserted with identifier\"\n        }\n      ]\n    },\n    \"e8\": {\n      \"ocel:timestamp\": \"2022-01-31T22:00:00Z\",\n      \"ocel:activity\": \"Insert Payment\",\n      \"ocel:vmap\": {\n        \"payment_inserter\": \"Robot\"\n      },\n      \"ocel:omap\": [\n        \"R2\",\n        \"P2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R2\",\n          \"ocel:qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"ocel:oid\": \"P2\",\n          \"ocel:qualifier\": \"Payment created with identifier\"\n        }\n      ]\n    },\n    \"e9\": {\n      \"ocel:timestamp\": \"2022-02-02T09:00:00Z\",\n      \"ocel:activity\": \"Insert Invoice\",\n      \"ocel:vmap\": {\n        \"invoice_inserter\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    \"e10\": {\n      \"ocel:timestamp\": \"2022-02-02T17:00:00Z\",\n      \"ocel:activity\": \"Create Purchase Order\",\n      \"ocel:vmap\": {\n        \"po_creator\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\",\n        \"PO2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Purchase order created with maverick buying from\"\n        },\n        {\n          \"ocel:oid\": \"PO2\",\n          \"ocel:qualifier\": \"Purhcase order created with identifier\"\n        }\n      ]\n    },\n    \"e11\": {\n      \"ocel:timestamp\": \"2022-02-03T07:30:00Z\",\n      \"ocel:activity\": \"Set Payment Block\",\n      \"ocel:vmap\": {\n        \"invoice_blocker\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Payment block due to unethical maverick buying\"\n        }\n      ]\n    },\n    \"e12\": {\n      \"ocel:timestamp\": \"2022-02-03T23:30:00Z\",\n      \"ocel:activity\": \"Remove Payment Block\",\n      \"ocel:vmap\": {\n        \"invoice_block_rem\": \"Mario\"\n      },\n      \"ocel:omap\": [\n        \"R3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Payment block removed ...\"\n        }\n      ]\n    },\n    \"e13\": {\n      \"ocel:timestamp\": \"2022-02-28T23:00:00Z\",\n      \"ocel:activity\": \"Insert Payment\",\n      \"ocel:vmap\": {\n        \"payment_inserter\": \"Robot\"\n      },\n      \"ocel:omap\": [\n        \"R3\",\n        \"P3\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"ocel:oid\": \"P3\",\n          \"ocel:qualifier\": \"Payment inserted with identifier\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"R1\": {\n      \"ocel:type\": \"Invoice\",\n      \"ocel:ovmap\": {\n        \"is_blocked\": \"No\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"P1\",\n          \"ocel:qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    \"R2\": {\n      \"ocel:type\": \"Invoice\",\n      \"ocel:ovmap\": {\n        \"is_blocked\": \"No\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"P2\",\n          \"ocel:qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    \"R3\": {\n      \"ocel:type\": \"Invoice\",\n      \"ocel:ovmap\": {\n        \"is_blocked\": \"No\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"P3\",\n          \"ocel:qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    \"P1\": {\n      \"ocel:type\": \"Payment\",\n      \"ocel:ovmap\": {}\n    },\n    \"P2\": {\n      \"ocel:type\": \"Payment\",\n      \"ocel:ovmap\": {}\n    },\n    \"P3\": {\n      \"ocel:type\": \"Payment\",\n      \"ocel:ovmap\": {}\n    },\n    \"PO1\": {\n      \"ocel:type\": \"Purchase Order\",\n      \"ocel:ovmap\": {\n        \"po_product\": \"Cows\",\n        \"po_quantity\": \"500\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"R1\",\n          \"ocel:qualifier\": \"Invoice from PO\"\n        },\n        {\n          \"ocel:oid\": \"R2\",\n          \"ocel:qualifier\": \"Invoice from PO\"\n        }\n      ]\n    },\n    \"PO2\": {\n      \"ocel:type\": \"Purchase Order\",\n      \"ocel:ovmap\": {\n        \"po_product\": \"Notebooks\",\n        \"po_quantity\": \"1\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"R3\",\n          \"ocel:qualifier\": \"Maverick buying\"\n        }\n      ]\n    },\n    \"PR1\": {\n      \"ocel:type\": \"Purchase Requisition\",\n      \"ocel:ovmap\": {\n        \"pr_product\": \"Cows\",\n        \"pr_quantity\": \"500\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"PO1\",\n          \"ocel:qualifier\": \"PO from PR\"\n        }\n      ]\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"Approve Purchase Requisition\": {\n      \"pr_approver\": \"string\"\n    },\n    \"Change PO Quantity\": {\n      \"po_editor\": \"string\"\n    },\n    \"Create Purchase Order\": {\n      \"po_creator\": \"string\"\n    },\n    \"Create Purchase Requisition\": {\n      \"pr_creator\": \"string\"\n    },\n    \"Insert Invoice\": {\n      \"invoice_inserter\": \"string\"\n    },\n    \"Insert Payment\": {\n      \"payment_inserter\": \"string\"\n    },\n    \"Remove Payment Block\": {\n      \"invoice_block_rem\": \"string\"\n    },\n    \"Set Payment Block\": {\n      \"invoice_blocker\": \"string\"\n    }\n  },\n  \"ocel:objectTypes\": {\n    \"Invoice\": {\n      \"is_blocked\": \"string\",\n      \"@@cumcount\": \"string\"\n    },\n    \"Payment\": {},\n    \"Purchase Order\": {\n      \"po_product\": \"string\",\n      \"po_quantity\": \"string\",\n      \"@@cumcount\": \"string\"\n    },\n    \"Purchase Requisition\": {\n      \"pr_product\": \"string\",\n      \"pr_quantity\": \"string\"\n    }\n  },\n  \"ocel:objectChanges\": [\n    {\n      \"ocel:oid\": \"PO1\",\n      \"ocel:timestamp\": \"2022-01-13T12:00:00+00:00\",\n      \"ocel:field\": \"po_quantity\",\n      \"po_quantity\": \"600\",\n      \"ocel:type\": \"Purchase Order\",\n      \"@@cumcount\": 1\n    },\n    {\n      \"ocel:oid\": \"R3\",\n      \"is_blocked\": \"Yes\",\n      \"ocel:timestamp\": \"2022-02-03T07:30:00+00:00\",\n      \"ocel:field\": \"is_blocked\",\n      \"ocel:type\": \"Invoice\",\n      \"@@cumcount\": 1\n    },\n    {\n      \"ocel:oid\": \"R3\",\n      \"is_blocked\": \"No\",\n      \"ocel:timestamp\": \"2022-02-03T23:30:00+00:00\",\n      \"ocel:field\": \"is_blocked\",\n      \"ocel:type\": \"Invoice\",\n      \"@@cumcount\": 2\n    }\n  ]\n}"
       },
       "json2": {
-        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Payment\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"pr_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"Approve Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_approver\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Change PO Quantity\",\n      \"attributes\": [\n        {\n          \"name\": \"po_editor\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Create Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Create Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Insert Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Insert Payment\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Remove Payment Block\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_block_rem\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Set Payment Block\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_blocker\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"R1\",\n      \"type\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"No\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P1\",\n          \"qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"R2\",\n      \"type\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"No\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P2\",\n          \"qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"R3\",\n      \"type\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"No\"\n        },\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"2022-02-03T06:30:00+00:00\",\n          \"value\": \"Yes\"\n        },\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"2022-02-03T22:30:00+00:00\",\n          \"value\": \"No\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P3\",\n          \"qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"P1\",\n      \"type\": \"Payment\"\n    },\n    {\n      \"id\": \"P2\",\n      \"type\": \"Payment\"\n    },\n    {\n      \"id\": \"P3\",\n      \"type\": \"Payment\"\n    },\n    {\n      \"id\": \"PO1\",\n      \"type\": \"Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"Cows\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"500\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"time\": \"2022-01-13T11:00:00+00:00\",\n          \"value\": \"600\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R1\",\n          \"qualifier\": \"Invoice from PO\"\n        },\n        {\n          \"objectId\": \"R2\",\n          \"qualifier\": \"Invoice from PO\"\n        }\n      ]\n    },\n    {\n      \"id\": \"PO2\",\n      \"type\": \"Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"Notebooks\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"1\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Maverick buying\"\n        }\n      ]\n    },\n    {\n      \"id\": \"PR1\",\n      \"type\": \"Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_product\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"Cows\"\n        },\n        {\n          \"name\": \"pr_quantity\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"500\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"PO from PR\"\n        }\n      ]\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"Create Purchase Requisition\",\n      \"time\": \"2022-01-09T14:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_creator\",\n          \"value\": \"Mike\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PR1\",\n          \"qualifier\": \"Regular placement of PR\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"Approve Purchase Requisition\",\n      \"time\": \"2022-01-09T15:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_approver\",\n          \"value\": \"Tania\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PR1\",\n          \"qualifier\": \"Regular approval of PR\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"2022-01-10T08:15:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"value\": \"Mike\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Created order with identifier\"\n        },\n        {\n          \"objectId\": \"PR1\",\n          \"qualifier\": \"Created order from PR\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"Change PO Quantity\",\n      \"time\": \"2022-01-13T11:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"po_editor\",\n          \"value\": \"Mike\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Change of quantity\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e5\",\n      \"type\": \"Insert Invoice\",\n      \"time\": \"2022-01-14T11:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"value\": \"Luke\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"objectId\": \"R1\",\n          \"qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e6\",\n      \"type\": \"Insert Invoice\",\n      \"time\": \"2022-01-16T10:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"value\": \"Luke\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"objectId\": \"R2\",\n          \"qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e7\",\n      \"type\": \"Insert Payment\",\n      \"time\": \"2022-01-30T22:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"value\": \"Robot\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P1\",\n          \"qualifier\": \"Payment inserted with identifier\"\n        },\n        {\n          \"objectId\": \"R1\",\n          \"qualifier\": \"Payment for the invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"Insert Payment\",\n      \"time\": \"2022-01-31T21:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"value\": \"Robot\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R2\",\n          \"qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"objectId\": \"P2\",\n          \"qualifier\": \"Payment created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e9\",\n      \"type\": \"Insert Invoice\",\n      \"time\": \"2022-02-02T08:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"2022-02-02T16:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO2\",\n          \"qualifier\": \"Purhcase order created with identifier\"\n        },\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Purchase order created with maverick buying from\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e11\",\n      \"type\": \"Set Payment Block\",\n      \"time\": \"2022-02-03T06:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_blocker\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Payment block due to unethical maverick buying\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e12\",\n      \"type\": \"Remove Payment Block\",\n      \"time\": \"2022-02-03T22:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_block_rem\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Payment block removed ...\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e13\",\n      \"type\": \"Insert Payment\",\n      \"time\": \"2022-02-28T22:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"value\": \"Robot\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"objectId\": \"P3\",\n          \"qualifier\": \"Payment inserted with identifier\"\n        }\n      ]\n    }\n  ]\n}"
+        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"@@cumcount\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Payment\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"@@cumcount\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_product\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"pr_quantity\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"Approve Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_approver\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Change PO Quantity\",\n      \"attributes\": [\n        {\n          \"name\": \"po_editor\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Create Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Create Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_creator\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Insert Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Insert Payment\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Remove Payment Block\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_block_rem\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Set Payment Block\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_blocker\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"R1\",\n      \"type\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"No\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P1\",\n          \"qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"R2\",\n      \"type\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"No\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P2\",\n          \"qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"R3\",\n      \"type\": \"Invoice\",\n      \"attributes\": [\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"No\"\n        },\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"2022-02-03T07:30:00+00:00\",\n          \"value\": \"Yes\"\n        },\n        {\n          \"name\": \"is_blocked\",\n          \"time\": \"2022-02-03T23:30:00+00:00\",\n          \"value\": \"No\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"P3\",\n          \"qualifier\": \"Payment from invoice\"\n        }\n      ]\n    },\n    {\n      \"id\": \"P1\",\n      \"type\": \"Payment\"\n    },\n    {\n      \"id\": \"P2\",\n      \"type\": \"Payment\"\n    },\n    {\n      \"id\": \"P3\",\n      \"type\": \"Payment\"\n    },\n    {\n      \"id\": \"PO1\",\n      \"type\": \"Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"Cows\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"500\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"time\": \"2022-01-13T12:00:00+00:00\",\n          \"value\": \"600\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R1\",\n          \"qualifier\": \"Invoice from PO\"\n        },\n        {\n          \"objectId\": \"R2\",\n          \"qualifier\": \"Invoice from PO\"\n        }\n      ]\n    },\n    {\n      \"id\": \"PO2\",\n      \"type\": \"Purchase Order\",\n      \"attributes\": [\n        {\n          \"name\": \"po_product\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"Notebooks\"\n        },\n        {\n          \"name\": \"po_quantity\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"1\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Maverick buying\"\n        }\n      ]\n    },\n    {\n      \"id\": \"PR1\",\n      \"type\": \"Purchase Requisition\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_product\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"Cows\"\n        },\n        {\n          \"name\": \"pr_quantity\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"500\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"PO from PR\"\n        }\n      ]\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"Create Purchase Requisition\",\n      \"time\": \"2022-01-09T15:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_creator\",\n          \"value\": \"Mike\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PR1\",\n          \"qualifier\": \"Regular placement of PR\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"Approve Purchase Requisition\",\n      \"time\": \"2022-01-09T16:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"pr_approver\",\n          \"value\": \"Tania\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PR1\",\n          \"qualifier\": \"Regular approval of PR\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"2022-01-10T09:15:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"value\": \"Mike\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PR1\",\n          \"qualifier\": \"Created order from PR\"\n        },\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Created order with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"Change PO Quantity\",\n      \"time\": \"2022-01-13T12:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"po_editor\",\n          \"value\": \"Mike\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Change of quantity\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e5\",\n      \"type\": \"Insert Invoice\",\n      \"time\": \"2022-01-14T12:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"value\": \"Luke\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"objectId\": \"R1\",\n          \"qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e6\",\n      \"type\": \"Insert Invoice\",\n      \"time\": \"2022-01-16T11:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"value\": \"Luke\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"PO1\",\n          \"qualifier\": \"Invoice created starting from the PO\"\n        },\n        {\n          \"objectId\": \"R2\",\n          \"qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e7\",\n      \"type\": \"Insert Payment\",\n      \"time\": \"2022-01-30T23:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"value\": \"Robot\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R1\",\n          \"qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"objectId\": \"P1\",\n          \"qualifier\": \"Payment inserted with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"Insert Payment\",\n      \"time\": \"2022-01-31T22:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"value\": \"Robot\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R2\",\n          \"qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"objectId\": \"P2\",\n          \"qualifier\": \"Payment created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e9\",\n      \"type\": \"Insert Invoice\",\n      \"time\": \"2022-02-02T09:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_inserter\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Invoice created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"Create Purchase Order\",\n      \"time\": \"2022-02-02T17:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"po_creator\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Purchase order created with maverick buying from\"\n        },\n        {\n          \"objectId\": \"PO2\",\n          \"qualifier\": \"Purhcase order created with identifier\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e11\",\n      \"type\": \"Set Payment Block\",\n      \"time\": \"2022-02-03T07:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_blocker\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Payment block due to unethical maverick buying\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e12\",\n      \"type\": \"Remove Payment Block\",\n      \"time\": \"2022-02-03T23:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"invoice_block_rem\",\n          \"value\": \"Mario\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Payment block removed ...\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e13\",\n      \"type\": \"Insert Payment\",\n      \"time\": \"2022-02-28T23:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"payment_inserter\",\n          \"value\": \"Robot\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"R3\",\n          \"qualifier\": \"Payment for the invoice\"\n        },\n        {\n          \"objectId\": \"P3\",\n          \"qualifier\": \"Payment inserted with identifier\"\n        }\n      ]\n    }\n  ]\n}"
       },
       "sqlite": {
         "reread": {
@@ -501,7 +497,7 @@
                   ]
                 },
                 "id": "e1",
-                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+                "timestamp": "2022-01-09T15:00:00.000000+00:00"
               },
               {
                 "activity": "Approve Purchase Requisition",
@@ -512,7 +508,7 @@
                   ]
                 },
                 "id": "e2",
-                "timestamp": "2022-01-09T15:30:00.000000+00:00"
+                "timestamp": "2022-01-09T16:30:00.000000+00:00"
               },
               {
                 "activity": "Create Purchase Order",
@@ -523,7 +519,7 @@
                   ]
                 },
                 "id": "e3",
-                "timestamp": "2022-01-10T08:15:00.000000+00:00"
+                "timestamp": "2022-01-10T09:15:00.000000+00:00"
               },
               {
                 "activity": "Change PO Quantity",
@@ -534,7 +530,7 @@
                   ]
                 },
                 "id": "e4",
-                "timestamp": "2022-01-13T11:00:00.000000+00:00"
+                "timestamp": "2022-01-13T12:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Invoice",
@@ -545,7 +541,7 @@
                   ]
                 },
                 "id": "e5",
-                "timestamp": "2022-01-14T11:00:00.000000+00:00"
+                "timestamp": "2022-01-14T12:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Invoice",
@@ -556,7 +552,7 @@
                   ]
                 },
                 "id": "e6",
-                "timestamp": "2022-01-16T10:00:00.000000+00:00"
+                "timestamp": "2022-01-16T11:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Payment",
@@ -567,7 +563,7 @@
                   ]
                 },
                 "id": "e7",
-                "timestamp": "2022-01-30T22:00:00.000000+00:00"
+                "timestamp": "2022-01-30T23:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Payment",
@@ -578,7 +574,7 @@
                   ]
                 },
                 "id": "e8",
-                "timestamp": "2022-01-31T21:00:00.000000+00:00"
+                "timestamp": "2022-01-31T22:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Invoice",
@@ -589,7 +585,7 @@
                   ]
                 },
                 "id": "e9",
-                "timestamp": "2022-02-02T08:00:00.000000+00:00"
+                "timestamp": "2022-02-02T09:00:00.000000+00:00"
               },
               {
                 "activity": "Create Purchase Order",
@@ -600,7 +596,7 @@
                   ]
                 },
                 "id": "e10",
-                "timestamp": "2022-02-02T16:00:00.000000+00:00"
+                "timestamp": "2022-02-02T17:00:00.000000+00:00"
               },
               {
                 "activity": "Set Payment Block",
@@ -611,7 +607,7 @@
                   ]
                 },
                 "id": "e11",
-                "timestamp": "2022-02-03T06:30:00.000000+00:00"
+                "timestamp": "2022-02-03T07:30:00.000000+00:00"
               },
               {
                 "activity": "Remove Payment Block",
@@ -622,7 +618,7 @@
                   ]
                 },
                 "id": "e12",
-                "timestamp": "2022-02-03T22:30:00.000000+00:00"
+                "timestamp": "2022-02-03T23:30:00.000000+00:00"
               },
               {
                 "activity": "Insert Payment",
@@ -633,7 +629,7 @@
                   ]
                 },
                 "id": "e13",
-                "timestamp": "2022-02-28T22:00:00.000000+00:00"
+                "timestamp": "2022-02-28T23:00:00.000000+00:00"
               }
             ],
             "o2o": [],
@@ -733,7 +729,7 @@
                 "event": "e1",
                 "object": "PR1",
                 "qualifier": "Regular placement of PR",
-                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "timestamp": "2022-01-09T15:00:00.000000+00:00",
                 "type": "Purchase Requisition"
               },
               {
@@ -741,7 +737,15 @@
                 "event": "e2",
                 "object": "PR1",
                 "qualifier": "Regular approval of PR",
-                "timestamp": "2022-01-09T15:30:00.000000+00:00",
+                "timestamp": "2022-01-09T16:30:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e3",
+                "object": "PR1",
+                "qualifier": "Created order from PR",
+                "timestamp": "2022-01-10T09:15:00.000000+00:00",
                 "type": "Purchase Requisition"
               },
               {
@@ -749,23 +753,15 @@
                 "event": "e3",
                 "object": "PO1",
                 "qualifier": "Created order with identifier",
-                "timestamp": "2022-01-10T08:15:00.000000+00:00",
+                "timestamp": "2022-01-10T09:15:00.000000+00:00",
                 "type": "Purchase Order"
-              },
-              {
-                "activity": "Create Purchase Order",
-                "event": "e3",
-                "object": "PR1",
-                "qualifier": "Created order from PR",
-                "timestamp": "2022-01-10T08:15:00.000000+00:00",
-                "type": "Purchase Requisition"
               },
               {
                 "activity": "Change PO Quantity",
                 "event": "e4",
                 "object": "PO1",
                 "qualifier": "Change of quantity",
-                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "timestamp": "2022-01-13T12:00:00.000000+00:00",
                 "type": "Purchase Order"
               },
               {
@@ -773,7 +769,7 @@
                 "event": "e5",
                 "object": "PO1",
                 "qualifier": "Invoice created starting from the PO",
-                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "timestamp": "2022-01-14T12:00:00.000000+00:00",
                 "type": "Purchase Order"
               },
               {
@@ -781,7 +777,7 @@
                 "event": "e5",
                 "object": "R1",
                 "qualifier": "Invoice created with identifier",
-                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "timestamp": "2022-01-14T12:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -789,7 +785,7 @@
                 "event": "e6",
                 "object": "PO1",
                 "qualifier": "Invoice created starting from the PO",
-                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "timestamp": "2022-01-16T11:00:00.000000+00:00",
                 "type": "Purchase Order"
               },
               {
@@ -797,7 +793,15 @@
                 "event": "e6",
                 "object": "R2",
                 "qualifier": "Invoice created with identifier",
-                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "timestamp": "2022-01-16T11:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e7",
+                "object": "R1",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-01-30T23:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -805,23 +809,15 @@
                 "event": "e7",
                 "object": "P1",
                 "qualifier": "Payment inserted with identifier",
-                "timestamp": "2022-01-30T22:00:00.000000+00:00",
+                "timestamp": "2022-01-30T23:00:00.000000+00:00",
                 "type": "Payment"
-              },
-              {
-                "activity": "Insert Payment",
-                "event": "e7",
-                "object": "R1",
-                "qualifier": "Payment for the invoice",
-                "timestamp": "2022-01-30T22:00:00.000000+00:00",
-                "type": "Invoice"
               },
               {
                 "activity": "Insert Payment",
                 "event": "e8",
                 "object": "R2",
                 "qualifier": "Payment for the invoice",
-                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "timestamp": "2022-01-31T22:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -829,7 +825,7 @@
                 "event": "e8",
                 "object": "P2",
                 "qualifier": "Payment created with identifier",
-                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "timestamp": "2022-01-31T22:00:00.000000+00:00",
                 "type": "Payment"
               },
               {
@@ -837,7 +833,15 @@
                 "event": "e9",
                 "object": "R3",
                 "qualifier": "Invoice created with identifier",
-                "timestamp": "2022-02-02T08:00:00.000000+00:00",
+                "timestamp": "2022-02-02T09:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e10",
+                "object": "R3",
+                "qualifier": "Purchase order created with maverick buying from",
+                "timestamp": "2022-02-02T17:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -845,23 +849,15 @@
                 "event": "e10",
                 "object": "PO2",
                 "qualifier": "Purhcase order created with identifier",
-                "timestamp": "2022-02-02T16:00:00.000000+00:00",
+                "timestamp": "2022-02-02T17:00:00.000000+00:00",
                 "type": "Purchase Order"
-              },
-              {
-                "activity": "Create Purchase Order",
-                "event": "e10",
-                "object": "R3",
-                "qualifier": "Purchase order created with maverick buying from",
-                "timestamp": "2022-02-02T16:00:00.000000+00:00",
-                "type": "Invoice"
               },
               {
                 "activity": "Set Payment Block",
                 "event": "e11",
                 "object": "R3",
                 "qualifier": "Payment block due to unethical maverick buying",
-                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "timestamp": "2022-02-03T07:30:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -869,7 +865,7 @@
                 "event": "e12",
                 "object": "R3",
                 "qualifier": "Payment block removed ...",
-                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "timestamp": "2022-02-03T23:30:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -877,7 +873,7 @@
                 "event": "e13",
                 "object": "R3",
                 "qualifier": "Payment for the invoice",
-                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "timestamp": "2022-02-28T23:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -885,7 +881,7 @@
                 "event": "e13",
                 "object": "P3",
                 "qualifier": "Payment inserted with identifier",
-                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "timestamp": "2022-02-28T23:00:00.000000+00:00",
                 "type": "Payment"
               }
             ]
@@ -902,12 +898,11 @@
                 ],
                 [
                   "text",
-                  "2022-01-09 14:00:00+00:00"
+                  "2022-01-09 15:00:00+00:00"
                 ],
-                [
-                  "text",
-                  "Create Purchase Requisition"
-                ],
+                null,
+                null,
+                null,
                 [
                   "text",
                   "Mike"
@@ -916,9 +911,10 @@
                 null,
                 null,
                 null,
-                null,
-                null,
-                null
+                [
+                  "text",
+                  "Create Purchase Requisition"
+                ]
               ],
               [
                 [
@@ -927,13 +923,8 @@
                 ],
                 [
                   "text",
-                  "2022-01-09 15:30:00+00:00"
+                  "2022-01-09 16:30:00+00:00"
                 ],
-                [
-                  "text",
-                  "Approve Purchase Requisition"
-                ],
-                null,
                 [
                   "text",
                   "Tania"
@@ -943,7 +934,12 @@
                 null,
                 null,
                 null,
-                null
+                null,
+                null,
+                [
+                  "text",
+                  "Approve Purchase Requisition"
+                ]
               ],
               [
                 [
@@ -952,11 +948,7 @@
                 ],
                 [
                   "text",
-                  "2022-01-10 08:15:00+00:00"
-                ],
-                [
-                  "text",
-                  "Create Purchase Order"
+                  "2022-01-10 09:15:00+00:00"
                 ],
                 null,
                 null,
@@ -968,7 +960,11 @@
                 null,
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Create Purchase Order"
+                ]
               ],
               [
                 [
@@ -977,14 +973,8 @@
                 ],
                 [
                   "text",
-                  "2022-01-13 11:00:00+00:00"
+                  "2022-01-13 12:00:00+00:00"
                 ],
-                [
-                  "text",
-                  "Change PO Quantity"
-                ],
-                null,
-                null,
                 null,
                 [
                   "text",
@@ -993,7 +983,13 @@
                 null,
                 null,
                 null,
-                null
+                null,
+                null,
+                null,
+                [
+                  "text",
+                  "Change PO Quantity"
+                ]
               ],
               [
                 [
@@ -1002,11 +998,7 @@
                 ],
                 [
                   "text",
-                  "2022-01-14 11:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
+                  "2022-01-14 12:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1018,7 +1010,11 @@
                 ],
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Insert Invoice"
+                ]
               ],
               [
                 [
@@ -1027,11 +1023,7 @@
                 ],
                 [
                   "text",
-                  "2022-01-16 10:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
+                  "2022-01-16 11:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1043,7 +1035,11 @@
                 ],
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Insert Invoice"
+                ]
               ],
               [
                 [
@@ -1052,11 +1048,7 @@
                 ],
                 [
                   "text",
-                  "2022-01-30 22:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
+                  "2022-01-30 23:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1068,7 +1060,11 @@
                   "Robot"
                 ],
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Insert Payment"
+                ]
               ],
               [
                 [
@@ -1077,11 +1073,7 @@
                 ],
                 [
                   "text",
-                  "2022-01-31 21:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
+                  "2022-01-31 22:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1093,7 +1085,11 @@
                   "Robot"
                 ],
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Insert Payment"
+                ]
               ],
               [
                 [
@@ -1102,11 +1098,7 @@
                 ],
                 [
                   "text",
-                  "2022-02-02 08:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
+                  "2022-02-02 09:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1118,7 +1110,11 @@
                 ],
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Insert Invoice"
+                ]
               ],
               [
                 [
@@ -1127,11 +1123,7 @@
                 ],
                 [
                   "text",
-                  "2022-02-02 16:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Create Purchase Order"
+                  "2022-02-02 17:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1143,7 +1135,11 @@
                 null,
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Create Purchase Order"
+                ]
               ],
               [
                 [
@@ -1152,12 +1148,9 @@
                 ],
                 [
                   "text",
-                  "2022-02-03 06:30:00+00:00"
+                  "2022-02-03 07:30:00+00:00"
                 ],
-                [
-                  "text",
-                  "Set Payment Block"
-                ],
+                null,
                 null,
                 null,
                 null,
@@ -1168,7 +1161,10 @@
                   "text",
                   "Mario"
                 ],
-                null
+                [
+                  "text",
+                  "Set Payment Block"
+                ]
               ],
               [
                 [
@@ -1177,13 +1173,8 @@
                 ],
                 [
                   "text",
-                  "2022-02-03 22:30:00+00:00"
+                  "2022-02-03 23:30:00+00:00"
                 ],
-                [
-                  "text",
-                  "Remove Payment Block"
-                ],
-                null,
                 null,
                 null,
                 null,
@@ -1193,6 +1184,11 @@
                 [
                   "text",
                   "Mario"
+                ],
+                null,
+                [
+                  "text",
+                  "Remove Payment Block"
                 ]
               ],
               [
@@ -1202,11 +1198,7 @@
                 ],
                 [
                   "text",
-                  "2022-02-28 22:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
+                  "2022-02-28 23:00:00+00:00"
                 ],
                 null,
                 null,
@@ -1218,10 +1210,14 @@
                   "Robot"
                 ],
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Insert Payment"
+                ]
               ]
             ],
-            "sql": "CREATE TABLE \"EVENTS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"pr_creator\" TEXT,\n  \"pr_approver\" TEXT,\n  \"po_creator\" TEXT,\n  \"po_editor\" TEXT,\n  \"invoice_inserter\" TEXT,\n  \"payment_inserter\" TEXT,\n  \"invoice_blocker\" TEXT,\n  \"invoice_block_rem\" TEXT\n)",
+            "sql": "CREATE TABLE \"EVENTS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"pr_approver\" TEXT,\n  \"po_editor\" TEXT,\n  \"po_creator\" TEXT,\n  \"pr_creator\" TEXT,\n  \"invoice_inserter\" TEXT,\n  \"payment_inserter\" TEXT,\n  \"invoice_block_rem\" TEXT,\n  \"invoice_blocker\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -1234,23 +1230,23 @@
                 ],
                 [
                   "text",
-                  "Create Purchase Requisition"
-                ],
-                [
-                  "text",
-                  "2022-01-09 14:00:00+00:00"
-                ],
-                [
-                  "text",
                   "PR1"
                 ],
                 [
                   "text",
-                  "Purchase Requisition"
+                  "Regular placement of PR"
                 ],
                 [
                   "text",
-                  "Regular placement of PR"
+                  "Create Purchase Requisition"
+                ],
+                [
+                  "text",
+                  "2022-01-09 15:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Purchase Requisition"
                 ]
               ],
               [
@@ -1260,23 +1256,23 @@
                 ],
                 [
                   "text",
-                  "Approve Purchase Requisition"
-                ],
-                [
-                  "text",
-                  "2022-01-09 15:30:00+00:00"
-                ],
-                [
-                  "text",
                   "PR1"
                 ],
                 [
                   "text",
-                  "Purchase Requisition"
+                  "Regular approval of PR"
                 ],
                 [
                   "text",
-                  "Regular approval of PR"
+                  "Approve Purchase Requisition"
+                ],
+                [
+                  "text",
+                  "2022-01-09 16:30:00+00:00"
+                ],
+                [
+                  "text",
+                  "Purchase Requisition"
                 ]
               ],
               [
@@ -1286,11 +1282,29 @@
                 ],
                 [
                   "text",
+                  "PR1"
+                ],
+                [
+                  "text",
+                  "Created order from PR"
+                ],
+                [
+                  "text",
                   "Create Purchase Order"
                 ],
                 [
                   "text",
-                  "2022-01-10 08:15:00+00:00"
+                  "2022-01-10 09:15:00+00:00"
+                ],
+                [
+                  "text",
+                  "Purchase Requisition"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
                 ],
                 [
                   "text",
@@ -1298,17 +1312,7 @@
                 ],
                 [
                   "text",
-                  "Purchase Order"
-                ],
-                [
-                  "text",
                   "Created order with identifier"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "e3"
                 ],
                 [
                   "text",
@@ -1316,19 +1320,11 @@
                 ],
                 [
                   "text",
-                  "2022-01-10 08:15:00+00:00"
+                  "2022-01-10 09:15:00+00:00"
                 ],
                 [
                   "text",
-                  "PR1"
-                ],
-                [
-                  "text",
-                  "Purchase Requisition"
-                ],
-                [
-                  "text",
-                  "Created order from PR"
+                  "Purchase Order"
                 ]
               ],
               [
@@ -1338,37 +1334,29 @@
                 ],
                 [
                   "text",
-                  "Change PO Quantity"
-                ],
-                [
-                  "text",
-                  "2022-01-13 11:00:00+00:00"
-                ],
-                [
-                  "text",
                   "PO1"
-                ],
-                [
-                  "text",
-                  "Purchase Order"
                 ],
                 [
                   "text",
                   "Change of quantity"
+                ],
+                [
+                  "text",
+                  "Change PO Quantity"
+                ],
+                [
+                  "text",
+                  "2022-01-13 12:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Purchase Order"
                 ]
               ],
               [
                 [
                   "text",
                   "e5"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
-                ],
-                [
-                  "text",
-                  "2022-01-14 11:00:00+00:00"
                 ],
                 [
                   "text",
@@ -1376,17 +1364,7 @@
                 ],
                 [
                   "text",
-                  "Purchase Order"
-                ],
-                [
-                  "text",
                   "Invoice created starting from the PO"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "e5"
                 ],
                 [
                   "text",
@@ -1394,7 +1372,17 @@
                 ],
                 [
                   "text",
-                  "2022-01-14 11:00:00+00:00"
+                  "2022-01-14 12:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Purchase Order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e5"
                 ],
                 [
                   "text",
@@ -1402,17 +1390,7 @@
                 ],
                 [
                   "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
                   "Invoice created with identifier"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "e6"
                 ],
                 [
                   "text",
@@ -1420,7 +1398,17 @@
                 ],
                 [
                   "text",
-                  "2022-01-16 10:00:00+00:00"
+                  "2022-01-14 12:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e6"
                 ],
                 [
                   "text",
@@ -1428,11 +1416,19 @@
                 ],
                 [
                   "text",
-                  "Purchase Order"
+                  "Invoice created starting from the PO"
                 ],
                 [
                   "text",
-                  "Invoice created starting from the PO"
+                  "Insert Invoice"
+                ],
+                [
+                  "text",
+                  "2022-01-16 11:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Purchase Order"
                 ]
               ],
               [
@@ -1442,23 +1438,23 @@
                 ],
                 [
                   "text",
-                  "Insert Invoice"
-                ],
-                [
-                  "text",
-                  "2022-01-16 10:00:00+00:00"
-                ],
-                [
-                  "text",
                   "R2"
                 ],
                 [
                   "text",
-                  "Invoice"
+                  "Invoice created with identifier"
                 ],
                 [
                   "text",
-                  "Invoice created with identifier"
+                  "Insert Invoice"
+                ],
+                [
+                  "text",
+                  "2022-01-16 11:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
                 ]
               ],
               [
@@ -1468,11 +1464,29 @@
                 ],
                 [
                   "text",
+                  "R1"
+                ],
+                [
+                  "text",
+                  "Payment for the invoice"
+                ],
+                [
+                  "text",
                   "Insert Payment"
                 ],
                 [
                   "text",
-                  "2022-01-30 22:00:00+00:00"
+                  "2022-01-30 23:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e7"
                 ],
                 [
                   "text",
@@ -1480,17 +1494,7 @@
                 ],
                 [
                   "text",
-                  "Payment"
-                ],
-                [
-                  "text",
                   "Payment inserted with identifier"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "e7"
                 ],
                 [
                   "text",
@@ -1498,33 +1502,17 @@
                 ],
                 [
                   "text",
-                  "2022-01-30 22:00:00+00:00"
+                  "2022-01-30 23:00:00+00:00"
                 ],
                 [
                   "text",
-                  "R1"
-                ],
-                [
-                  "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
-                  "Payment for the invoice"
+                  "Payment"
                 ]
               ],
               [
                 [
                   "text",
                   "e8"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
-                ],
-                [
-                  "text",
-                  "2022-01-31 21:00:00+00:00"
                 ],
                 [
                   "text",
@@ -1532,11 +1520,19 @@
                 ],
                 [
                   "text",
-                  "Invoice"
+                  "Payment for the invoice"
                 ],
                 [
                   "text",
-                  "Payment for the invoice"
+                  "Insert Payment"
+                ],
+                [
+                  "text",
+                  "2022-01-31 22:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
                 ]
               ],
               [
@@ -1546,23 +1542,23 @@
                 ],
                 [
                   "text",
-                  "Insert Payment"
-                ],
-                [
-                  "text",
-                  "2022-01-31 21:00:00+00:00"
-                ],
-                [
-                  "text",
                   "P2"
                 ],
                 [
                   "text",
-                  "Payment"
+                  "Payment created with identifier"
                 ],
                 [
                   "text",
-                  "Payment created with identifier"
+                  "Insert Payment"
+                ],
+                [
+                  "text",
+                  "2022-01-31 22:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Payment"
                 ]
               ],
               [
@@ -1572,23 +1568,23 @@
                 ],
                 [
                   "text",
-                  "Insert Invoice"
-                ],
-                [
-                  "text",
-                  "2022-02-02 08:00:00+00:00"
-                ],
-                [
-                  "text",
                   "R3"
                 ],
                 [
                   "text",
-                  "Invoice"
+                  "Invoice created with identifier"
                 ],
                 [
                   "text",
-                  "Invoice created with identifier"
+                  "Insert Invoice"
+                ],
+                [
+                  "text",
+                  "2022-02-02 09:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
                 ]
               ],
               [
@@ -1598,11 +1594,29 @@
                 ],
                 [
                   "text",
+                  "R3"
+                ],
+                [
+                  "text",
+                  "Purchase order created with maverick buying from"
+                ],
+                [
+                  "text",
                   "Create Purchase Order"
                 ],
                 [
                   "text",
-                  "2022-02-02 16:00:00+00:00"
+                  "2022-02-02 17:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e10"
                 ],
                 [
                   "text",
@@ -1610,17 +1624,7 @@
                 ],
                 [
                   "text",
-                  "Purchase Order"
-                ],
-                [
-                  "text",
                   "Purhcase order created with identifier"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "e10"
                 ],
                 [
                   "text",
@@ -1628,19 +1632,11 @@
                 ],
                 [
                   "text",
-                  "2022-02-02 16:00:00+00:00"
+                  "2022-02-02 17:00:00+00:00"
                 ],
                 [
                   "text",
-                  "R3"
-                ],
-                [
-                  "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
-                  "Purchase order created with maverick buying from"
+                  "Purchase Order"
                 ]
               ],
               [
@@ -1650,23 +1646,23 @@
                 ],
                 [
                   "text",
-                  "Set Payment Block"
-                ],
-                [
-                  "text",
-                  "2022-02-03 06:30:00+00:00"
-                ],
-                [
-                  "text",
                   "R3"
                 ],
                 [
                   "text",
-                  "Invoice"
+                  "Payment block due to unethical maverick buying"
                 ],
                 [
                   "text",
-                  "Payment block due to unethical maverick buying"
+                  "Set Payment Block"
+                ],
+                [
+                  "text",
+                  "2022-02-03 07:30:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
                 ]
               ],
               [
@@ -1676,37 +1672,29 @@
                 ],
                 [
                   "text",
-                  "Remove Payment Block"
-                ],
-                [
-                  "text",
-                  "2022-02-03 22:30:00+00:00"
-                ],
-                [
-                  "text",
                   "R3"
-                ],
-                [
-                  "text",
-                  "Invoice"
                 ],
                 [
                   "text",
                   "Payment block removed ..."
+                ],
+                [
+                  "text",
+                  "Remove Payment Block"
+                ],
+                [
+                  "text",
+                  "2022-02-03 23:30:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
                 ]
               ],
               [
                 [
                   "text",
                   "e13"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
-                ],
-                [
-                  "text",
-                  "2022-02-28 22:00:00+00:00"
                 ],
                 [
                   "text",
@@ -1714,17 +1702,7 @@
                 ],
                 [
                   "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
                   "Payment for the invoice"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "e13"
                 ],
                 [
                   "text",
@@ -1732,7 +1710,17 @@
                 ],
                 [
                   "text",
-                  "2022-02-28 22:00:00+00:00"
+                  "2022-02-28 23:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Invoice"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e13"
                 ],
                 [
                   "text",
@@ -1740,15 +1728,23 @@
                 ],
                 [
                   "text",
-                  "Payment"
+                  "Payment inserted with identifier"
                 ],
                 [
                   "text",
-                  "Payment inserted with identifier"
+                  "Insert Payment"
+                ],
+                [
+                  "text",
+                  "2022-02-28 23:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "Payment"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"RELATIONS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"ocel:qualifier\" TEXT\n)",
+            "sql": "CREATE TABLE \"RELATIONS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:oid\" TEXT,\n  \"ocel:qualifier\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"ocel:type\" TEXT\n)",
             "type": "table"
           },
           {
@@ -1761,16 +1757,16 @@
                 ],
                 [
                   "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
                   "No"
                 ],
                 null,
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Invoice"
+                ]
               ],
               [
                 [
@@ -1779,16 +1775,16 @@
                 ],
                 [
                   "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
                   "No"
                 ],
                 null,
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Invoice"
+                ]
               ],
               [
                 [
@@ -1797,70 +1793,66 @@
                 ],
                 [
                   "text",
-                  "Invoice"
-                ],
-                [
-                  "text",
                   "No"
                 ],
                 null,
                 null,
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Invoice"
+                ]
               ],
               [
                 [
                   "text",
                   "P1"
                 ],
+                null,
+                null,
+                null,
+                null,
+                null,
                 [
                   "text",
                   "Payment"
-                ],
-                null,
-                null,
-                null,
-                null,
-                null
+                ]
               ],
               [
                 [
                   "text",
                   "P2"
                 ],
+                null,
+                null,
+                null,
+                null,
+                null,
                 [
                   "text",
                   "Payment"
-                ],
-                null,
-                null,
-                null,
-                null,
-                null
+                ]
               ],
               [
                 [
                   "text",
                   "P3"
                 ],
+                null,
+                null,
+                null,
+                null,
+                null,
                 [
                   "text",
                   "Payment"
-                ],
-                null,
-                null,
-                null,
-                null,
-                null
+                ]
               ],
               [
                 [
                   "text",
                   "PO1"
-                ],
-                [
-                  "text",
-                  "Purchase Order"
                 ],
                 null,
                 [
@@ -1872,16 +1864,16 @@
                   "500"
                 ],
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Purchase Order"
+                ]
               ],
               [
                 [
                   "text",
                   "PO2"
-                ],
-                [
-                  "text",
-                  "Purchase Order"
                 ],
                 null,
                 [
@@ -1893,16 +1885,16 @@
                   "1"
                 ],
                 null,
-                null
+                null,
+                [
+                  "text",
+                  "Purchase Order"
+                ]
               ],
               [
                 [
                   "text",
                   "PR1"
-                ],
-                [
-                  "text",
-                  "Purchase Requisition"
                 ],
                 null,
                 null,
@@ -1914,10 +1906,14 @@
                 [
                   "text",
                   "500"
+                ],
+                [
+                  "text",
+                  "Purchase Requisition"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"OBJECTS\" (\n\"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"is_blocked\" TEXT,\n  \"po_product\" TEXT,\n  \"po_quantity\" TEXT,\n  \"pr_product\" TEXT,\n  \"pr_quantity\" TEXT\n)",
+            "sql": "CREATE TABLE \"OBJECTS\" (\n\"ocel:oid\" TEXT,\n  \"is_blocked\" TEXT,\n  \"po_product\" TEXT,\n  \"po_quantity\" TEXT,\n  \"pr_product\" TEXT,\n  \"pr_quantity\" TEXT,\n  \"ocel:type\" TEXT\n)",
             "type": "table"
           }
         ]
@@ -1936,7 +1932,7 @@
                   ]
                 },
                 "id": "e1",
-                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+                "timestamp": "2022-01-09T15:00:00.000000+00:00"
               },
               {
                 "activity": "Approve Purchase Requisition",
@@ -1947,7 +1943,7 @@
                   ]
                 },
                 "id": "e2",
-                "timestamp": "2022-01-09T15:30:00.000000+00:00"
+                "timestamp": "2022-01-09T16:30:00.000000+00:00"
               },
               {
                 "activity": "Create Purchase Order",
@@ -1958,7 +1954,7 @@
                   ]
                 },
                 "id": "e3",
-                "timestamp": "2022-01-10T08:15:00.000000+00:00"
+                "timestamp": "2022-01-10T09:15:00.000000+00:00"
               },
               {
                 "activity": "Change PO Quantity",
@@ -1969,7 +1965,7 @@
                   ]
                 },
                 "id": "e4",
-                "timestamp": "2022-01-13T11:00:00.000000+00:00"
+                "timestamp": "2022-01-13T12:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Invoice",
@@ -1980,7 +1976,7 @@
                   ]
                 },
                 "id": "e5",
-                "timestamp": "2022-01-14T11:00:00.000000+00:00"
+                "timestamp": "2022-01-14T12:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Invoice",
@@ -1991,7 +1987,7 @@
                   ]
                 },
                 "id": "e6",
-                "timestamp": "2022-01-16T10:00:00.000000+00:00"
+                "timestamp": "2022-01-16T11:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Payment",
@@ -2002,7 +1998,7 @@
                   ]
                 },
                 "id": "e7",
-                "timestamp": "2022-01-30T22:00:00.000000+00:00"
+                "timestamp": "2022-01-30T23:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Payment",
@@ -2013,7 +2009,7 @@
                   ]
                 },
                 "id": "e8",
-                "timestamp": "2022-01-31T21:00:00.000000+00:00"
+                "timestamp": "2022-01-31T22:00:00.000000+00:00"
               },
               {
                 "activity": "Insert Invoice",
@@ -2024,7 +2020,7 @@
                   ]
                 },
                 "id": "e9",
-                "timestamp": "2022-02-02T08:00:00.000000+00:00"
+                "timestamp": "2022-02-02T09:00:00.000000+00:00"
               },
               {
                 "activity": "Create Purchase Order",
@@ -2035,7 +2031,7 @@
                   ]
                 },
                 "id": "e10",
-                "timestamp": "2022-02-02T16:00:00.000000+00:00"
+                "timestamp": "2022-02-02T17:00:00.000000+00:00"
               },
               {
                 "activity": "Set Payment Block",
@@ -2046,7 +2042,7 @@
                   ]
                 },
                 "id": "e11",
-                "timestamp": "2022-02-03T06:30:00.000000+00:00"
+                "timestamp": "2022-02-03T07:30:00.000000+00:00"
               },
               {
                 "activity": "Remove Payment Block",
@@ -2057,7 +2053,7 @@
                   ]
                 },
                 "id": "e12",
-                "timestamp": "2022-02-03T22:30:00.000000+00:00"
+                "timestamp": "2022-02-03T23:30:00.000000+00:00"
               },
               {
                 "activity": "Insert Payment",
@@ -2068,24 +2064,14 @@
                   ]
                 },
                 "id": "e13",
-                "timestamp": "2022-02-28T22:00:00.000000+00:00"
+                "timestamp": "2022-02-28T23:00:00.000000+00:00"
               }
             ],
             "o2o": [
               {
-                "qualifier": "Payment from invoice",
-                "source": "R1",
-                "target": "P1"
-              },
-              {
-                "qualifier": "Payment from invoice",
-                "source": "R2",
-                "target": "P2"
-              },
-              {
-                "qualifier": "Payment from invoice",
-                "source": "R3",
-                "target": "P3"
+                "qualifier": "PO from PR",
+                "source": "PR1",
+                "target": "PO1"
               },
               {
                 "qualifier": "Invoice from PO",
@@ -2098,21 +2084,31 @@
                 "target": "R2"
               },
               {
+                "qualifier": "Payment from invoice",
+                "source": "R1",
+                "target": "P1"
+              },
+              {
+                "qualifier": "Payment from invoice",
+                "source": "R2",
+                "target": "P2"
+              },
+              {
                 "qualifier": "Maverick buying",
                 "source": "PO2",
                 "target": "R3"
               },
               {
-                "qualifier": "PO from PR",
-                "source": "PR1",
-                "target": "PO1"
+                "qualifier": "Payment from invoice",
+                "source": "R3",
+                "target": "P3"
               }
             ],
             "object_changes": [
               {
                 "field": "po_quantity",
                 "object": "PO1",
-                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "timestamp": "2022-01-13T12:00:00.000000+00:00",
                 "type": "Purchase Order",
                 "value": [
                   "string",
@@ -2122,7 +2118,7 @@
               {
                 "field": "is_blocked",
                 "object": "R3",
-                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "timestamp": "2022-02-03T07:30:00.000000+00:00",
                 "type": "Invoice",
                 "value": [
                   "string",
@@ -2132,7 +2128,7 @@
               {
                 "field": "is_blocked",
                 "object": "R3",
-                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "timestamp": "2022-02-03T23:30:00.000000+00:00",
                 "type": "Invoice",
                 "value": [
                   "string",
@@ -2235,7 +2231,7 @@
                 "event": "e1",
                 "object": "PR1",
                 "qualifier": "Regular placement of PR",
-                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "timestamp": "2022-01-09T15:00:00.000000+00:00",
                 "type": "Purchase Requisition"
               },
               {
@@ -2243,7 +2239,15 @@
                 "event": "e2",
                 "object": "PR1",
                 "qualifier": "Regular approval of PR",
-                "timestamp": "2022-01-09T15:30:00.000000+00:00",
+                "timestamp": "2022-01-09T16:30:00.000000+00:00",
+                "type": "Purchase Requisition"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e3",
+                "object": "PR1",
+                "qualifier": "Created order from PR",
+                "timestamp": "2022-01-10T09:15:00.000000+00:00",
                 "type": "Purchase Requisition"
               },
               {
@@ -2251,23 +2255,15 @@
                 "event": "e3",
                 "object": "PO1",
                 "qualifier": "Created order with identifier",
-                "timestamp": "2022-01-10T08:15:00.000000+00:00",
+                "timestamp": "2022-01-10T09:15:00.000000+00:00",
                 "type": "Purchase Order"
-              },
-              {
-                "activity": "Create Purchase Order",
-                "event": "e3",
-                "object": "PR1",
-                "qualifier": "Created order from PR",
-                "timestamp": "2022-01-10T08:15:00.000000+00:00",
-                "type": "Purchase Requisition"
               },
               {
                 "activity": "Change PO Quantity",
                 "event": "e4",
                 "object": "PO1",
                 "qualifier": "Change of quantity",
-                "timestamp": "2022-01-13T11:00:00.000000+00:00",
+                "timestamp": "2022-01-13T12:00:00.000000+00:00",
                 "type": "Purchase Order"
               },
               {
@@ -2275,7 +2271,7 @@
                 "event": "e5",
                 "object": "PO1",
                 "qualifier": "Invoice created starting from the PO",
-                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "timestamp": "2022-01-14T12:00:00.000000+00:00",
                 "type": "Purchase Order"
               },
               {
@@ -2283,7 +2279,7 @@
                 "event": "e5",
                 "object": "R1",
                 "qualifier": "Invoice created with identifier",
-                "timestamp": "2022-01-14T11:00:00.000000+00:00",
+                "timestamp": "2022-01-14T12:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2291,7 +2287,7 @@
                 "event": "e6",
                 "object": "PO1",
                 "qualifier": "Invoice created starting from the PO",
-                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "timestamp": "2022-01-16T11:00:00.000000+00:00",
                 "type": "Purchase Order"
               },
               {
@@ -2299,7 +2295,15 @@
                 "event": "e6",
                 "object": "R2",
                 "qualifier": "Invoice created with identifier",
-                "timestamp": "2022-01-16T10:00:00.000000+00:00",
+                "timestamp": "2022-01-16T11:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Insert Payment",
+                "event": "e7",
+                "object": "R1",
+                "qualifier": "Payment for the invoice",
+                "timestamp": "2022-01-30T23:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2307,23 +2311,15 @@
                 "event": "e7",
                 "object": "P1",
                 "qualifier": "Payment inserted with identifier",
-                "timestamp": "2022-01-30T22:00:00.000000+00:00",
+                "timestamp": "2022-01-30T23:00:00.000000+00:00",
                 "type": "Payment"
-              },
-              {
-                "activity": "Insert Payment",
-                "event": "e7",
-                "object": "R1",
-                "qualifier": "Payment for the invoice",
-                "timestamp": "2022-01-30T22:00:00.000000+00:00",
-                "type": "Invoice"
               },
               {
                 "activity": "Insert Payment",
                 "event": "e8",
                 "object": "R2",
                 "qualifier": "Payment for the invoice",
-                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "timestamp": "2022-01-31T22:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2331,7 +2327,7 @@
                 "event": "e8",
                 "object": "P2",
                 "qualifier": "Payment created with identifier",
-                "timestamp": "2022-01-31T21:00:00.000000+00:00",
+                "timestamp": "2022-01-31T22:00:00.000000+00:00",
                 "type": "Payment"
               },
               {
@@ -2339,7 +2335,15 @@
                 "event": "e9",
                 "object": "R3",
                 "qualifier": "Invoice created with identifier",
-                "timestamp": "2022-02-02T08:00:00.000000+00:00",
+                "timestamp": "2022-02-02T09:00:00.000000+00:00",
+                "type": "Invoice"
+              },
+              {
+                "activity": "Create Purchase Order",
+                "event": "e10",
+                "object": "R3",
+                "qualifier": "Purchase order created with maverick buying from",
+                "timestamp": "2022-02-02T17:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2347,23 +2351,15 @@
                 "event": "e10",
                 "object": "PO2",
                 "qualifier": "Purhcase order created with identifier",
-                "timestamp": "2022-02-02T16:00:00.000000+00:00",
+                "timestamp": "2022-02-02T17:00:00.000000+00:00",
                 "type": "Purchase Order"
-              },
-              {
-                "activity": "Create Purchase Order",
-                "event": "e10",
-                "object": "R3",
-                "qualifier": "Purchase order created with maverick buying from",
-                "timestamp": "2022-02-02T16:00:00.000000+00:00",
-                "type": "Invoice"
               },
               {
                 "activity": "Set Payment Block",
                 "event": "e11",
                 "object": "R3",
                 "qualifier": "Payment block due to unethical maverick buying",
-                "timestamp": "2022-02-03T06:30:00.000000+00:00",
+                "timestamp": "2022-02-03T07:30:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2371,7 +2367,7 @@
                 "event": "e12",
                 "object": "R3",
                 "qualifier": "Payment block removed ...",
-                "timestamp": "2022-02-03T22:30:00.000000+00:00",
+                "timestamp": "2022-02-03T23:30:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2379,7 +2375,7 @@
                 "event": "e13",
                 "object": "R3",
                 "qualifier": "Payment for the invoice",
-                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "timestamp": "2022-02-28T23:00:00.000000+00:00",
                 "type": "Invoice"
               },
               {
@@ -2387,7 +2383,7 @@
                 "event": "e13",
                 "object": "P3",
                 "qualifier": "Payment inserted with identifier",
-                "timestamp": "2022-02-28T22:00:00.000000+00:00",
+                "timestamp": "2022-02-28T23:00:00.000000+00:00",
                 "type": "Payment"
               }
             ]
@@ -2800,11 +2796,11 @@
                 ],
                 [
                   "text",
-                  "PO1"
+                  "PR1"
                 ],
                 [
                   "text",
-                  "Created order with identifier"
+                  "Created order from PR"
                 ]
               ],
               [
@@ -2814,11 +2810,11 @@
                 ],
                 [
                   "text",
-                  "PR1"
+                  "PO1"
                 ],
                 [
                   "text",
-                  "Created order from PR"
+                  "Created order with identifier"
                 ]
               ],
               [
@@ -2898,11 +2894,11 @@
                 ],
                 [
                   "text",
-                  "P1"
+                  "R1"
                 ],
                 [
                   "text",
-                  "Payment inserted with identifier"
+                  "Payment for the invoice"
                 ]
               ],
               [
@@ -2912,11 +2908,11 @@
                 ],
                 [
                   "text",
-                  "R1"
+                  "P1"
                 ],
                 [
                   "text",
-                  "Payment for the invoice"
+                  "Payment inserted with identifier"
                 ]
               ],
               [
@@ -2968,11 +2964,11 @@
                 ],
                 [
                   "text",
-                  "PO2"
+                  "R3"
                 ],
                 [
                   "text",
-                  "Purhcase order created with identifier"
+                  "Purchase order created with maverick buying from"
                 ]
               ],
               [
@@ -2982,11 +2978,11 @@
                 ],
                 [
                   "text",
-                  "R3"
+                  "PO2"
                 ],
                 [
                   "text",
-                  "Purchase order created with maverick buying from"
+                  "Purhcase order created with identifier"
                 ]
               ],
               [
@@ -3055,6 +3051,48 @@
               [
                 [
                   "text",
+                  "PR1"
+                ],
+                [
+                  "text",
+                  "PO1"
+                ],
+                [
+                  "text",
+                  "PO from PR"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "PO1"
+                ],
+                [
+                  "text",
+                  "R1"
+                ],
+                [
+                  "text",
+                  "Invoice from PO"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "PO1"
+                ],
+                [
+                  "text",
+                  "R2"
+                ],
+                [
+                  "text",
+                  "Invoice from PO"
+                ]
+              ],
+              [
+                [
+                  "text",
                   "R1"
                 ],
                 [
@@ -3083,48 +3121,6 @@
               [
                 [
                   "text",
-                  "R3"
-                ],
-                [
-                  "text",
-                  "P3"
-                ],
-                [
-                  "text",
-                  "Payment from invoice"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "PO1"
-                ],
-                [
-                  "text",
-                  "R1"
-                ],
-                [
-                  "text",
-                  "Invoice from PO"
-                ]
-              ],
-              [
-                [
-                  "text",
-                  "PO1"
-                ],
-                [
-                  "text",
-                  "R2"
-                ],
-                [
-                  "text",
-                  "Invoice from PO"
-                ]
-              ],
-              [
-                [
-                  "text",
                   "PO2"
                 ],
                 [
@@ -3139,15 +3135,15 @@
               [
                 [
                   "text",
-                  "PR1"
+                  "R3"
                 ],
                 [
                   "text",
-                  "PO1"
+                  "P3"
                 ],
                 [
                   "text",
-                  "PO from PR"
+                  "Payment from invoice"
                 ]
               ]
             ],
@@ -3164,19 +3160,19 @@
                 ],
                 [
                   "text",
-                  "2022-01-09 15:30:00+00:00"
-                ],
-                [
-                  "text",
-                  "Approve Purchase Requisition"
+                  "2022-01-09 16:30:00+00:00"
                 ],
                 [
                   "text",
                   "Tania"
+                ],
+                [
+                  "text",
+                  "Approve Purchase Requisition"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_ApprovePurchaseRequisition\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"pr_approver\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_ApprovePurchaseRequisition\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"pr_approver\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3189,19 +3185,19 @@
                 ],
                 [
                   "text",
-                  "2022-01-13 11:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Change PO Quantity"
+                  "2022-01-13 12:00:00+00:00"
                 ],
                 [
                   "text",
                   "Mike"
+                ],
+                [
+                  "text",
+                  "Change PO Quantity"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_ChangePoQuantity\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"po_editor\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_ChangePoQuantity\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"po_editor\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3214,15 +3210,15 @@
                 ],
                 [
                   "text",
-                  "2022-01-10 08:15:00+00:00"
-                ],
-                [
-                  "text",
-                  "Create Purchase Order"
+                  "2022-01-10 09:15:00+00:00"
                 ],
                 [
                   "text",
                   "Mike"
+                ],
+                [
+                  "text",
+                  "Create Purchase Order"
                 ]
               ],
               [
@@ -3232,19 +3228,19 @@
                 ],
                 [
                   "text",
-                  "2022-02-02 16:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Create Purchase Order"
+                  "2022-02-02 17:00:00+00:00"
                 ],
                 [
                   "text",
                   "Mario"
+                ],
+                [
+                  "text",
+                  "Create Purchase Order"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_CreatePurchaseOrder\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"po_creator\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_CreatePurchaseOrder\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"po_creator\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3257,19 +3253,19 @@
                 ],
                 [
                   "text",
-                  "2022-01-09 14:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Create Purchase Requisition"
+                  "2022-01-09 15:00:00+00:00"
                 ],
                 [
                   "text",
                   "Mike"
+                ],
+                [
+                  "text",
+                  "Create Purchase Requisition"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_CreatePurchaseRequisition\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"pr_creator\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_CreatePurchaseRequisition\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"pr_creator\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3282,15 +3278,15 @@
                 ],
                 [
                   "text",
-                  "2022-01-14 11:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
+                  "2022-01-14 12:00:00+00:00"
                 ],
                 [
                   "text",
                   "Luke"
+                ],
+                [
+                  "text",
+                  "Insert Invoice"
                 ]
               ],
               [
@@ -3300,15 +3296,15 @@
                 ],
                 [
                   "text",
-                  "2022-01-16 10:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
+                  "2022-01-16 11:00:00+00:00"
                 ],
                 [
                   "text",
                   "Luke"
+                ],
+                [
+                  "text",
+                  "Insert Invoice"
                 ]
               ],
               [
@@ -3318,19 +3314,19 @@
                 ],
                 [
                   "text",
-                  "2022-02-02 08:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Invoice"
+                  "2022-02-02 09:00:00+00:00"
                 ],
                 [
                   "text",
                   "Mario"
+                ],
+                [
+                  "text",
+                  "Insert Invoice"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_InsertInvoice\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"invoice_inserter\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_InsertInvoice\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"invoice_inserter\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3343,15 +3339,15 @@
                 ],
                 [
                   "text",
-                  "2022-01-30 22:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
+                  "2022-01-30 23:00:00+00:00"
                 ],
                 [
                   "text",
                   "Robot"
+                ],
+                [
+                  "text",
+                  "Insert Payment"
                 ]
               ],
               [
@@ -3361,15 +3357,15 @@
                 ],
                 [
                   "text",
-                  "2022-01-31 21:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
+                  "2022-01-31 22:00:00+00:00"
                 ],
                 [
                   "text",
                   "Robot"
+                ],
+                [
+                  "text",
+                  "Insert Payment"
                 ]
               ],
               [
@@ -3379,19 +3375,19 @@
                 ],
                 [
                   "text",
-                  "2022-02-28 22:00:00+00:00"
-                ],
-                [
-                  "text",
-                  "Insert Payment"
+                  "2022-02-28 23:00:00+00:00"
                 ],
                 [
                   "text",
                   "Robot"
+                ],
+                [
+                  "text",
+                  "Insert Payment"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_InsertPayment\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"payment_inserter\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_InsertPayment\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"payment_inserter\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3404,19 +3400,19 @@
                 ],
                 [
                   "text",
-                  "2022-02-03 22:30:00+00:00"
-                ],
-                [
-                  "text",
-                  "Remove Payment Block"
+                  "2022-02-03 23:30:00+00:00"
                 ],
                 [
                   "text",
                   "Mario"
+                ],
+                [
+                  "text",
+                  "Remove Payment Block"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_RemovePaymentBlock\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"invoice_block_rem\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_RemovePaymentBlock\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"invoice_block_rem\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3429,19 +3425,19 @@
                 ],
                 [
                   "text",
-                  "2022-02-03 06:30:00+00:00"
-                ],
-                [
-                  "text",
-                  "Set Payment Block"
+                  "2022-02-03 07:30:00+00:00"
                 ],
                 [
                   "text",
                   "Mario"
+                ],
+                [
+                  "text",
+                  "Set Payment Block"
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"event_SetPaymentBlock\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel:activity\" TEXT,\n  \"invoice_blocker\" TEXT\n)",
+            "sql": "CREATE TABLE \"event_SetPaymentBlock\" (\n\"ocel_id\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"invoice_blocker\" TEXT,\n  \"ocel:activity\" TEXT\n)",
             "type": "table"
           },
           {
@@ -3457,6 +3453,7 @@
                   "No"
                 ],
                 null,
+                null,
                 null
               ],
               [
@@ -3469,6 +3466,7 @@
                   "No"
                 ],
                 null,
+                null,
                 null
               ],
               [
@@ -3480,6 +3478,7 @@
                   "text",
                   "No"
                 ],
+                null,
                 null,
                 null
               ],
@@ -3494,11 +3493,15 @@
                 ],
                 [
                   "text",
-                  "is_blocked"
+                  "2022-02-03 07:30:00+00:00"
                 ],
                 [
                   "text",
-                  "2022-02-03 06:30:00+00:00"
+                  "is_blocked"
+                ],
+                [
+                  "real",
+                  1.0
                 ]
               ],
               [
@@ -3512,15 +3515,19 @@
                 ],
                 [
                   "text",
-                  "is_blocked"
+                  "2022-02-03 23:30:00+00:00"
                 ],
                 [
                   "text",
-                  "2022-02-03 22:30:00+00:00"
+                  "is_blocked"
+                ],
+                [
+                  "real",
+                  2.0
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_Invoice\" (\n\"ocel_id\" TEXT,\n  \"is_blocked\" TEXT,\n  \"ocel_changed_field\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "sql": "CREATE TABLE \"object_Invoice\" (\n\"ocel_id\" TEXT,\n  \"is_blocked\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel_changed_field\" TEXT,\n  \"@@cumcount\" REAL\n)",
             "type": "table"
           },
           {
@@ -3565,6 +3572,7 @@
                   "500"
                 ],
                 null,
+                null,
                 null
               ],
               [
@@ -3581,6 +3589,7 @@
                   "1"
                 ],
                 null,
+                null,
                 null
               ],
               [
@@ -3595,15 +3604,19 @@
                 ],
                 [
                   "text",
-                  "po_quantity"
+                  "2022-01-13 12:00:00+00:00"
                 ],
                 [
                   "text",
-                  "2022-01-13 11:00:00+00:00"
+                  "po_quantity"
+                ],
+                [
+                  "real",
+                  1.0
                 ]
               ]
             ],
-            "sql": "CREATE TABLE \"object_PurchaseOrder\" (\n\"ocel_id\" TEXT,\n  \"po_product\" TEXT,\n  \"po_quantity\" TEXT,\n  \"ocel_changed_field\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "sql": "CREATE TABLE \"object_PurchaseOrder\" (\n\"ocel_id\" TEXT,\n  \"po_product\" TEXT,\n  \"po_quantity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"ocel_changed_field\" TEXT,\n  \"@@cumcount\" REAL\n)",
             "type": "table"
           },
           {
@@ -3630,21 +3643,21 @@
         ]
       },
       "xml": {
-        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\"/>\n  <global scope=\"object\"/>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"invoice_block_rem\"/>\n      <string key=\"attribute-name\" value=\"invoice_blocker\"/>\n      <string key=\"attribute-name\" value=\"invoice_inserter\"/>\n      <string key=\"attribute-name\" value=\"is_blocked\"/>\n      <string key=\"attribute-name\" value=\"payment_inserter\"/>\n      <string key=\"attribute-name\" value=\"po_creator\"/>\n      <string key=\"attribute-name\" value=\"po_editor\"/>\n      <string key=\"attribute-name\" value=\"po_product\"/>\n      <string key=\"attribute-name\" value=\"po_quantity\"/>\n      <string key=\"attribute-name\" value=\"pr_approver\"/>\n      <string key=\"attribute-name\" value=\"pr_creator\"/>\n      <string key=\"attribute-name\" value=\"pr_product\"/>\n      <string key=\"attribute-name\" value=\"pr_quantity\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"Invoice\"/>\n      <string key=\"object-type\" value=\"Payment\"/>\n      <string key=\"object-type\" value=\"Purchase Order\"/>\n      <string key=\"object-type\" value=\"Purchase Requisition\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Requisition\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PR1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"pr_creator\" value=\"Mike\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T15:30:00Z\"/>\n      <string key=\"activity\" value=\"Approve Purchase Requisition\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PR1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"pr_approver\" value=\"Tania\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <date key=\"timestamp\" value=\"2022-01-10T08:15:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n        <string key=\"object-id\" value=\"PR1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"po_creator\" value=\"Mike\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <date key=\"timestamp\" value=\"2022-01-13T11:00:00Z\"/>\n      <string key=\"activity\" value=\"Change PO Quantity\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"po_editor\" value=\"Mike\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e5\"/>\n      <date key=\"timestamp\" value=\"2022-01-14T11:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n        <string key=\"object-id\" value=\"R1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_inserter\" value=\"Luke\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e6\"/>\n      <date key=\"timestamp\" value=\"2022-01-16T10:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n        <string key=\"object-id\" value=\"R2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_inserter\" value=\"Luke\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e7\"/>\n      <date key=\"timestamp\" value=\"2022-01-30T22:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"P1\"/>\n        <string key=\"object-id\" value=\"R1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"payment_inserter\" value=\"Robot\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <date key=\"timestamp\" value=\"2022-01-31T21:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R2\"/>\n        <string key=\"object-id\" value=\"P2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"payment_inserter\" value=\"Robot\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e9\"/>\n      <date key=\"timestamp\" value=\"2022-02-02T08:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_inserter\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <date key=\"timestamp\" value=\"2022-02-02T16:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO2\"/>\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"po_creator\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e11\"/>\n      <date key=\"timestamp\" value=\"2022-02-03T06:30:00Z\"/>\n      <string key=\"activity\" value=\"Set Payment Block\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_blocker\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e12\"/>\n      <date key=\"timestamp\" value=\"2022-02-03T22:30:00Z\"/>\n      <string key=\"activity\" value=\"Remove Payment Block\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_block_rem\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e13\"/>\n      <date key=\"timestamp\" value=\"2022-02-28T22:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n        <string key=\"object-id\" value=\"P3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"payment_inserter\" value=\"Robot\"/>\n      </list>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"R1\"/>\n      <string key=\"type\" value=\"Invoice\"/>\n      <list key=\"ovmap\">\n        <string key=\"is_blocked\" value=\"No\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"R2\"/>\n      <string key=\"type\" value=\"Invoice\"/>\n      <list key=\"ovmap\">\n        <string key=\"is_blocked\" value=\"No\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"R3\"/>\n      <string key=\"type\" value=\"Invoice\"/>\n      <list key=\"ovmap\">\n        <string key=\"is_blocked\" value=\"No\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"P1\"/>\n      <string key=\"type\" value=\"Payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"P2\"/>\n      <string key=\"type\" value=\"Payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"P3\"/>\n      <string key=\"type\" value=\"Payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"PO1\"/>\n      <string key=\"type\" value=\"Purchase Order\"/>\n      <list key=\"ovmap\">\n        <string key=\"po_product\" value=\"Cows\"/>\n        <string key=\"po_quantity\" value=\"500\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"PO2\"/>\n      <string key=\"type\" value=\"Purchase Order\"/>\n      <list key=\"ovmap\">\n        <string key=\"po_product\" value=\"Notebooks\"/>\n        <string key=\"po_quantity\" value=\"1\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"PR1\"/>\n      <string key=\"type\" value=\"Purchase Requisition\"/>\n      <list key=\"ovmap\">\n        <string key=\"pr_product\" value=\"Cows\"/>\n        <string key=\"pr_quantity\" value=\"500\"/>\n      </list>\n    </object>\n  </objects>\n</log>\n"
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"invoice_block_rem\"/>\n      <string key=\"attribute-name\" value=\"invoice_blocker\"/>\n      <string key=\"attribute-name\" value=\"invoice_inserter\"/>\n      <string key=\"attribute-name\" value=\"is_blocked\"/>\n      <string key=\"attribute-name\" value=\"payment_inserter\"/>\n      <string key=\"attribute-name\" value=\"po_creator\"/>\n      <string key=\"attribute-name\" value=\"po_editor\"/>\n      <string key=\"attribute-name\" value=\"po_product\"/>\n      <string key=\"attribute-name\" value=\"po_quantity\"/>\n      <string key=\"attribute-name\" value=\"pr_approver\"/>\n      <string key=\"attribute-name\" value=\"pr_creator\"/>\n      <string key=\"attribute-name\" value=\"pr_product\"/>\n      <string key=\"attribute-name\" value=\"pr_quantity\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"Invoice\"/>\n      <string key=\"object-type\" value=\"Payment\"/>\n      <string key=\"object-type\" value=\"Purchase Order\"/>\n      <string key=\"object-type\" value=\"Purchase Requisition\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T15:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Requisition\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PR1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"pr_creator\" value=\"Mike\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T16:30:00Z\"/>\n      <string key=\"activity\" value=\"Approve Purchase Requisition\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PR1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"pr_approver\" value=\"Tania\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <date key=\"timestamp\" value=\"2022-01-10T09:15:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PR1\"/>\n        <string key=\"object-id\" value=\"PO1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"po_creator\" value=\"Mike\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <date key=\"timestamp\" value=\"2022-01-13T12:00:00Z\"/>\n      <string key=\"activity\" value=\"Change PO Quantity\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"po_editor\" value=\"Mike\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e5\"/>\n      <date key=\"timestamp\" value=\"2022-01-14T12:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n        <string key=\"object-id\" value=\"R1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_inserter\" value=\"Luke\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e6\"/>\n      <date key=\"timestamp\" value=\"2022-01-16T11:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"PO1\"/>\n        <string key=\"object-id\" value=\"R2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_inserter\" value=\"Luke\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e7\"/>\n      <date key=\"timestamp\" value=\"2022-01-30T23:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R1\"/>\n        <string key=\"object-id\" value=\"P1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"payment_inserter\" value=\"Robot\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <date key=\"timestamp\" value=\"2022-01-31T22:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R2\"/>\n        <string key=\"object-id\" value=\"P2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"payment_inserter\" value=\"Robot\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e9\"/>\n      <date key=\"timestamp\" value=\"2022-02-02T09:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Invoice\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_inserter\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <date key=\"timestamp\" value=\"2022-02-02T17:00:00Z\"/>\n      <string key=\"activity\" value=\"Create Purchase Order\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n        <string key=\"object-id\" value=\"PO2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"po_creator\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e11\"/>\n      <date key=\"timestamp\" value=\"2022-02-03T07:30:00Z\"/>\n      <string key=\"activity\" value=\"Set Payment Block\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_blocker\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e12\"/>\n      <date key=\"timestamp\" value=\"2022-02-03T23:30:00Z\"/>\n      <string key=\"activity\" value=\"Remove Payment Block\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"invoice_block_rem\" value=\"Mario\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e13\"/>\n      <date key=\"timestamp\" value=\"2022-02-28T23:00:00Z\"/>\n      <string key=\"activity\" value=\"Insert Payment\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"R3\"/>\n        <string key=\"object-id\" value=\"P3\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"payment_inserter\" value=\"Robot\"/>\n      </list>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"R1\"/>\n      <string key=\"type\" value=\"Invoice\"/>\n      <list key=\"ovmap\">\n        <string key=\"is_blocked\" value=\"No\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"R2\"/>\n      <string key=\"type\" value=\"Invoice\"/>\n      <list key=\"ovmap\">\n        <string key=\"is_blocked\" value=\"No\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"R3\"/>\n      <string key=\"type\" value=\"Invoice\"/>\n      <list key=\"ovmap\">\n        <string key=\"is_blocked\" value=\"No\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"P1\"/>\n      <string key=\"type\" value=\"Payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"P2\"/>\n      <string key=\"type\" value=\"Payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"P3\"/>\n      <string key=\"type\" value=\"Payment\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"PO1\"/>\n      <string key=\"type\" value=\"Purchase Order\"/>\n      <list key=\"ovmap\">\n        <string key=\"po_product\" value=\"Cows\"/>\n        <string key=\"po_quantity\" value=\"500\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"PO2\"/>\n      <string key=\"type\" value=\"Purchase Order\"/>\n      <list key=\"ovmap\">\n        <string key=\"po_product\" value=\"Notebooks\"/>\n        <string key=\"po_quantity\" value=\"1\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"PR1\"/>\n      <string key=\"type\" value=\"Purchase Requisition\"/>\n      <list key=\"ovmap\">\n        <string key=\"pr_product\" value=\"Cows\"/>\n        <string key=\"pr_quantity\" value=\"500\"/>\n      </list>\n    </object>\n  </objects>\n</log>\n"
       },
       "xml2": {
-        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" type=\"string\"/>\n      </attributes>\n    </object-type>\n    <object-type name=\"Payment\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"Purchase Order\">\n      <attributes>\n        <attribute name=\"po_product\" type=\"string\"/>\n        <attribute name=\"po_quantity\" type=\"string\"/>\n      </attributes>\n    </object-type>\n    <object-type name=\"Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_product\" type=\"string\"/>\n        <attribute name=\"pr_quantity\" type=\"string\"/>\n      </attributes>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"Approve Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_approver\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Change PO Quantity\">\n      <attributes>\n        <attribute name=\"po_editor\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Create Purchase Order\">\n      <attributes>\n        <attribute name=\"po_creator\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Create Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_creator\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Insert Invoice\">\n      <attributes>\n        <attribute name=\"invoice_inserter\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Insert Payment\">\n      <attributes>\n        <attribute name=\"payment_inserter\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Remove Payment Block\">\n      <attributes>\n        <attribute name=\"invoice_block_rem\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Set Payment Block\">\n      <attributes>\n        <attribute name=\"invoice_blocker\" type=\"string\"/>\n      </attributes>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"R1\" type=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" time=\"1970-01-01T00:00:00Z\">No</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P1\" qualifier=\"Payment from invoice\"/>\n      </objects>\n    </object>\n    <object id=\"R2\" type=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" time=\"1970-01-01T00:00:00Z\">No</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P2\" qualifier=\"Payment from invoice\"/>\n      </objects>\n    </object>\n    <object id=\"R3\" type=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" time=\"1970-01-01T00:00:00Z\">No</attribute>\n        <attribute name=\"is_blocked\" time=\"2022-02-03T06:30:00+00:00\">Yes</attribute>\n        <attribute name=\"is_blocked\" time=\"2022-02-03T22:30:00+00:00\">No</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P3\" qualifier=\"Payment from invoice\"/>\n      </objects>\n    </object>\n    <object id=\"P1\" type=\"Payment\">\n      <attributes/>\n    </object>\n    <object id=\"P2\" type=\"Payment\">\n      <attributes/>\n    </object>\n    <object id=\"P3\" type=\"Payment\">\n      <attributes/>\n    </object>\n    <object id=\"PO1\" type=\"Purchase Order\">\n      <attributes>\n        <attribute name=\"po_product\" time=\"1970-01-01T00:00:00Z\">Cows</attribute>\n        <attribute name=\"po_quantity\" time=\"1970-01-01T00:00:00Z\">500</attribute>\n        <attribute name=\"po_quantity\" time=\"2022-01-13T11:00:00+00:00\">600</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R1\" qualifier=\"Invoice from PO\"/>\n        <relationship object-id=\"R2\" qualifier=\"Invoice from PO\"/>\n      </objects>\n    </object>\n    <object id=\"PO2\" type=\"Purchase Order\">\n      <attributes>\n        <attribute name=\"po_product\" time=\"1970-01-01T00:00:00Z\">Notebooks</attribute>\n        <attribute name=\"po_quantity\" time=\"1970-01-01T00:00:00Z\">1</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Maverick buying\"/>\n      </objects>\n    </object>\n    <object id=\"PR1\" type=\"Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_product\" time=\"1970-01-01T00:00:00Z\">Cows</attribute>\n        <attribute name=\"pr_quantity\" time=\"1970-01-01T00:00:00Z\">500</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"PO from PR\"/>\n      </objects>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"Create Purchase Requisition\" time=\"2022-01-09T14:00:00+00:00\">\n      <attributes>\n        <attribute name=\"pr_creator\">Mike</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PR1\" qualifier=\"Regular placement of PR\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"Approve Purchase Requisition\" time=\"2022-01-09T15:30:00+00:00\">\n      <attributes>\n        <attribute name=\"pr_approver\">Tania</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PR1\" qualifier=\"Regular approval of PR\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"Create Purchase Order\" time=\"2022-01-10T08:15:00+00:00\">\n      <attributes>\n        <attribute name=\"po_creator\">Mike</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Created order with identifier\"/>\n        <relationship object-id=\"PR1\" qualifier=\"Created order from PR\"/>\n      </objects>\n    </event>\n    <event id=\"e4\" type=\"Change PO Quantity\" time=\"2022-01-13T11:00:00+00:00\">\n      <attributes>\n        <attribute name=\"po_editor\">Mike</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Change of quantity\"/>\n      </objects>\n    </event>\n    <event id=\"e5\" type=\"Insert Invoice\" time=\"2022-01-14T11:00:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_inserter\">Luke</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Invoice created starting from the PO\"/>\n        <relationship object-id=\"R1\" qualifier=\"Invoice created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e6\" type=\"Insert Invoice\" time=\"2022-01-16T10:00:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_inserter\">Luke</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Invoice created starting from the PO\"/>\n        <relationship object-id=\"R2\" qualifier=\"Invoice created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e7\" type=\"Insert Payment\" time=\"2022-01-30T22:00:00+00:00\">\n      <attributes>\n        <attribute name=\"payment_inserter\">Robot</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P1\" qualifier=\"Payment inserted with identifier\"/>\n        <relationship object-id=\"R1\" qualifier=\"Payment for the invoice\"/>\n      </objects>\n    </event>\n    <event id=\"e8\" type=\"Insert Payment\" time=\"2022-01-31T21:00:00+00:00\">\n      <attributes>\n        <attribute name=\"payment_inserter\">Robot</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R2\" qualifier=\"Payment for the invoice\"/>\n        <relationship object-id=\"P2\" qualifier=\"Payment created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e9\" type=\"Insert Invoice\" time=\"2022-02-02T08:00:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_inserter\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Invoice created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e10\" type=\"Create Purchase Order\" time=\"2022-02-02T16:00:00+00:00\">\n      <attributes>\n        <attribute name=\"po_creator\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO2\" qualifier=\"Purhcase order created with identifier\"/>\n        <relationship object-id=\"R3\" qualifier=\"Purchase order created with maverick buying from\"/>\n      </objects>\n    </event>\n    <event id=\"e11\" type=\"Set Payment Block\" time=\"2022-02-03T06:30:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_blocker\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Payment block due to unethical maverick buying\"/>\n      </objects>\n    </event>\n    <event id=\"e12\" type=\"Remove Payment Block\" time=\"2022-02-03T22:30:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_block_rem\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Payment block removed ...\"/>\n      </objects>\n    </event>\n    <event id=\"e13\" type=\"Insert Payment\" time=\"2022-02-28T22:00:00+00:00\">\n      <attributes>\n        <attribute name=\"payment_inserter\">Robot</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Payment for the invoice\"/>\n        <relationship object-id=\"P3\" qualifier=\"Payment inserted with identifier\"/>\n      </objects>\n    </event>\n  </events>\n</log>\n"
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" type=\"string\"/>\n        <attribute name=\"@@cumcount\" type=\"string\"/>\n      </attributes>\n    </object-type>\n    <object-type name=\"Payment\">\n      <attributes/>\n    </object-type>\n    <object-type name=\"Purchase Order\">\n      <attributes>\n        <attribute name=\"po_product\" type=\"string\"/>\n        <attribute name=\"po_quantity\" type=\"string\"/>\n        <attribute name=\"@@cumcount\" type=\"string\"/>\n      </attributes>\n    </object-type>\n    <object-type name=\"Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_product\" type=\"string\"/>\n        <attribute name=\"pr_quantity\" type=\"string\"/>\n      </attributes>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"Approve Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_approver\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Change PO Quantity\">\n      <attributes>\n        <attribute name=\"po_editor\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Create Purchase Order\">\n      <attributes>\n        <attribute name=\"po_creator\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Create Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_creator\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Insert Invoice\">\n      <attributes>\n        <attribute name=\"invoice_inserter\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Insert Payment\">\n      <attributes>\n        <attribute name=\"payment_inserter\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Remove Payment Block\">\n      <attributes>\n        <attribute name=\"invoice_block_rem\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"Set Payment Block\">\n      <attributes>\n        <attribute name=\"invoice_blocker\" type=\"string\"/>\n      </attributes>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"R1\" type=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" time=\"1970-01-01T00:00:00Z\">No</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P1\" qualifier=\"Payment from invoice\"/>\n      </objects>\n    </object>\n    <object id=\"R2\" type=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" time=\"1970-01-01T00:00:00Z\">No</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P2\" qualifier=\"Payment from invoice\"/>\n      </objects>\n    </object>\n    <object id=\"R3\" type=\"Invoice\">\n      <attributes>\n        <attribute name=\"is_blocked\" time=\"1970-01-01T00:00:00Z\">No</attribute>\n        <attribute name=\"is_blocked\" time=\"2022-02-03T07:30:00+00:00\">Yes</attribute>\n        <attribute name=\"is_blocked\" time=\"2022-02-03T23:30:00+00:00\">No</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"P3\" qualifier=\"Payment from invoice\"/>\n      </objects>\n    </object>\n    <object id=\"P1\" type=\"Payment\">\n      <attributes/>\n    </object>\n    <object id=\"P2\" type=\"Payment\">\n      <attributes/>\n    </object>\n    <object id=\"P3\" type=\"Payment\">\n      <attributes/>\n    </object>\n    <object id=\"PO1\" type=\"Purchase Order\">\n      <attributes>\n        <attribute name=\"po_product\" time=\"1970-01-01T00:00:00Z\">Cows</attribute>\n        <attribute name=\"po_quantity\" time=\"1970-01-01T00:00:00Z\">500</attribute>\n        <attribute name=\"po_quantity\" time=\"2022-01-13T12:00:00+00:00\">600</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R1\" qualifier=\"Invoice from PO\"/>\n        <relationship object-id=\"R2\" qualifier=\"Invoice from PO\"/>\n      </objects>\n    </object>\n    <object id=\"PO2\" type=\"Purchase Order\">\n      <attributes>\n        <attribute name=\"po_product\" time=\"1970-01-01T00:00:00Z\">Notebooks</attribute>\n        <attribute name=\"po_quantity\" time=\"1970-01-01T00:00:00Z\">1</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Maverick buying\"/>\n      </objects>\n    </object>\n    <object id=\"PR1\" type=\"Purchase Requisition\">\n      <attributes>\n        <attribute name=\"pr_product\" time=\"1970-01-01T00:00:00Z\">Cows</attribute>\n        <attribute name=\"pr_quantity\" time=\"1970-01-01T00:00:00Z\">500</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"PO from PR\"/>\n      </objects>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"Create Purchase Requisition\" time=\"2022-01-09T15:00:00+00:00\">\n      <attributes>\n        <attribute name=\"pr_creator\">Mike</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PR1\" qualifier=\"Regular placement of PR\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"Approve Purchase Requisition\" time=\"2022-01-09T16:30:00+00:00\">\n      <attributes>\n        <attribute name=\"pr_approver\">Tania</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PR1\" qualifier=\"Regular approval of PR\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"Create Purchase Order\" time=\"2022-01-10T09:15:00+00:00\">\n      <attributes>\n        <attribute name=\"po_creator\">Mike</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PR1\" qualifier=\"Created order from PR\"/>\n        <relationship object-id=\"PO1\" qualifier=\"Created order with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e4\" type=\"Change PO Quantity\" time=\"2022-01-13T12:00:00+00:00\">\n      <attributes>\n        <attribute name=\"po_editor\">Mike</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Change of quantity\"/>\n      </objects>\n    </event>\n    <event id=\"e5\" type=\"Insert Invoice\" time=\"2022-01-14T12:00:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_inserter\">Luke</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Invoice created starting from the PO\"/>\n        <relationship object-id=\"R1\" qualifier=\"Invoice created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e6\" type=\"Insert Invoice\" time=\"2022-01-16T11:00:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_inserter\">Luke</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"PO1\" qualifier=\"Invoice created starting from the PO\"/>\n        <relationship object-id=\"R2\" qualifier=\"Invoice created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e7\" type=\"Insert Payment\" time=\"2022-01-30T23:00:00+00:00\">\n      <attributes>\n        <attribute name=\"payment_inserter\">Robot</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R1\" qualifier=\"Payment for the invoice\"/>\n        <relationship object-id=\"P1\" qualifier=\"Payment inserted with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e8\" type=\"Insert Payment\" time=\"2022-01-31T22:00:00+00:00\">\n      <attributes>\n        <attribute name=\"payment_inserter\">Robot</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R2\" qualifier=\"Payment for the invoice\"/>\n        <relationship object-id=\"P2\" qualifier=\"Payment created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e9\" type=\"Insert Invoice\" time=\"2022-02-02T09:00:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_inserter\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Invoice created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e10\" type=\"Create Purchase Order\" time=\"2022-02-02T17:00:00+00:00\">\n      <attributes>\n        <attribute name=\"po_creator\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Purchase order created with maverick buying from\"/>\n        <relationship object-id=\"PO2\" qualifier=\"Purhcase order created with identifier\"/>\n      </objects>\n    </event>\n    <event id=\"e11\" type=\"Set Payment Block\" time=\"2022-02-03T07:30:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_blocker\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Payment block due to unethical maverick buying\"/>\n      </objects>\n    </event>\n    <event id=\"e12\" type=\"Remove Payment Block\" time=\"2022-02-03T23:30:00+00:00\">\n      <attributes>\n        <attribute name=\"invoice_block_rem\">Mario</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Payment block removed ...\"/>\n      </objects>\n    </event>\n    <event id=\"e13\" type=\"Insert Payment\" time=\"2022-02-28T23:00:00+00:00\">\n      <attributes>\n        <attribute name=\"payment_inserter\">Robot</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"R3\" qualifier=\"Payment for the invoice\"/>\n        <relationship object-id=\"P3\" qualifier=\"Payment inserted with identifier\"/>\n      </objects>\n    </event>\n  </events>\n</log>\n"
       }
     }
   },
   "meta": {
     "area": "ocel",
-    "case": "write-ocel20-example-jsonocel",
+    "case": "write-ocel20-example-sqlite",
     "fixtures": {
-      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+      "log": "fixtures/logs/ocel/ocel20_example.sqlite"
     },
     "functions": [
-      "pm4py.read_ocel2_json",
+      "pm4py.read_ocel2_sqlite",
       "pm4py.write_ocel_json",
       "pm4py.write_ocel_xml",
       "pm4py.write_ocel2_json",

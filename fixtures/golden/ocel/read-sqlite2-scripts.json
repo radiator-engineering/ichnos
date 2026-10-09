@@ -1,0 +1,774 @@
+{
+  "expected": {
+    "cases": {
+      "all-changes": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [
+            {
+              "field": "a",
+              "object": "o1",
+              "timestamp": "2022-01-01T00:00:00.000000+00:00",
+              "type": "t",
+              "value": [
+                "int",
+                6
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "a": [
+                  "int",
+                  5
+                ]
+              },
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {
+                "a": [
+                  "int",
+                  7
+                ]
+              },
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "r",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, a INTEGER, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, a INTEGER, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',5,'2022-01-02 00:00:00','a');INSERT INTO object_T VALUES ('o1',6,'2022-01-01 00:00:00','a');INSERT INTO object_U VALUES ('o2',7,'2022-01-01 00:00:00','a');"
+      },
+      "basic": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "part",
+              "source": "o1",
+              "target": "o2"
+            },
+            {
+              "qualifier": "",
+              "source": "o2",
+              "target": "o1"
+            }
+          ],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "r",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');INSERT INTO object_object VALUES ('o1','o2','part');INSERT INTO object_object VALUES ('o2','o1',NULL);CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      },
+      "empty": {
+        "error": "ValueError",
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);"
+      },
+      "id-escape-suffix": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e\\x0','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e\\x0','o1',NULL);INSERT INTO event_object VALUES ('e2','o2',NULL);CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e\\x0','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      },
+      "ids-numbers": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "1.0",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "10",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "1.5",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "1.0",
+              "object": "10",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "2",
+              "object": "1.5",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES (1.0,'a');INSERT INTO event VALUES (2,'b');INSERT INTO object VALUES (10,'t');INSERT INTO object VALUES ('1.5','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES (1.0,10,NULL);INSERT INTO event_object VALUES ('2','1.5',NULL);INSERT INTO event_object VALUES ('1','10','x');INSERT INTO object_object VALUES (10.0,'1.5','y');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES (1.0,'2022-01-09 14:00:00');INSERT INTO event_B VALUES (2,'2022-01-09 15:00:00');INSERT INTO object_T VALUES (10,NULL,NULL);INSERT INTO object_U VALUES ('1.5',NULL,NULL);"
+      },
+      "missing-map": {
+        "error": "KeyError",
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      },
+      "missing-type-table": {
+        "error": "DatabaseError",
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_C (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_C VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      },
+      "no-changed-field": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {
+                "a": [
+                  "float",
+                  5.0
+                ]
+              },
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {
+                "a": [
+                  "float",
+                  6.0
+                ]
+              },
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "r",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, a INTEGER, ocel_time TIMESTAMP);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',5,'2022-01-01 00:00:00');INSERT INTO object_T VALUES ('o1',6,'2022-01-02 00:00:00');INSERT INTO object_U VALUES ('o2',NULL);"
+      },
+      "no-o2o-table": {
+        "error": "DatabaseError",
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      },
+      "quoted-map": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO object VALUES ('o1','t');INSERT INTO event_map_type VALUES ('a','A\"x');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO event_object VALUES ('e1','o1',NULL);CREATE TABLE \"event_A\"\"x\" (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO \"event_A\"\"x\" VALUES ('e1','2022-01-09 14:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);"
+      },
+      "sorting": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e3",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [
+            {
+              "field": "z",
+              "object": "o2",
+              "timestamp": "2022-01-09T11:00:00.000000+00:00",
+              "type": "u",
+              "value": null
+            },
+            {
+              "field": "y",
+              "object": "o1",
+              "timestamp": "2022-01-09T11:00:00.000000+00:00",
+              "type": "t",
+              "value": null
+            },
+            {
+              "field": "x",
+              "object": "o1",
+              "timestamp": "2022-01-09T12:00:00.000000+00:00",
+              "type": "t",
+              "value": null
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "b",
+              "event": "e4",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "a",
+              "event": "e3",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO event VALUES ('e3','a');INSERT INTO event VALUES ('e4','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e4','o2',NULL);INSERT INTO event_object VALUES ('e3','o1',NULL);INSERT INTO event_object VALUES ('e1','o1',NULL);INSERT INTO event_object VALUES ('e2','o2',NULL);CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e3','2022-01-09 15:00:00');INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 14:00:00');INSERT INTO event_B VALUES ('e4','2022-01-09 13:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_T VALUES ('o1','2022-01-09 12:00:00','x');INSERT INTO object_T VALUES ('o1','2022-01-09 11:00:00','y');INSERT INTO object_U VALUES ('o2',NULL,NULL);INSERT INTO object_U VALUES ('o2','2022-01-09 11:00:00','z');"
+      },
+      "ts-mixed-forms": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.500000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T14:00:00.500000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "r",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00.5+00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00+00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      },
+      "types-across-tables": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "i": [
+                  "float",
+                  1.0
+                ],
+                "s": [
+                  "string",
+                  "x"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {
+                "g": [
+                  "float",
+                  1.0
+                ],
+                "i": [
+                  "float",
+                  2.5
+                ],
+                "s": [
+                  "int",
+                  7
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {
+                "i": [
+                  "float",
+                  2.0
+                ],
+                "s": [
+                  "string",
+                  "y"
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [
+            {
+              "field": "v",
+              "object": "o1",
+              "timestamp": "2022-01-09T14:30:00.000000+00:00",
+              "type": "t",
+              "value": [
+                "string",
+                "p2"
+              ]
+            },
+            {
+              "field": "w",
+              "object": "o1",
+              "timestamp": "2022-01-09T15:30:00.000000+00:00",
+              "type": "t",
+              "value": [
+                "float",
+                3.0
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "v": [
+                  "string",
+                  "p"
+                ],
+                "w": [
+                  "float",
+                  1.0
+                ]
+              },
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {
+                "w": [
+                  "float",
+                  2.0
+                ]
+              },
+              "id": "o3",
+              "type": "t"
+            },
+            {
+              "attributes": {
+                "w": [
+                  "float",
+                  1.5
+                ],
+                "z": [
+                  "float",
+                  4.0
+                ]
+              },
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "r",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "a",
+              "event": "e3",
+              "object": "o3",
+              "qualifier": "",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO event VALUES ('e3','a');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO object VALUES ('o3','t');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');INSERT INTO event_object VALUES ('e3','o3',NULL);CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP, i INTEGER, s TEXT, f REAL, n TEXT);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP, i REAL, s INTEGER, g INTEGER);CREATE TABLE object_T (ocel_id TEXT, w INTEGER, v TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, w REAL, z INTEGER, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00',1,'x',NULL,NULL);INSERT INTO event_A VALUES ('e3','2022-01-09 16:00:00',2,'y',NULL,NULL);INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00',2.5,7,1);INSERT INTO object_T VALUES ('o1',1,'p',NULL,NULL);INSERT INTO object_T VALUES ('o3',2,NULL,NULL,NULL);INSERT INTO object_T VALUES ('o1',3,NULL,'2022-01-09 15:30:00','w');INSERT INTO object_T VALUES ('o1',NULL,'p2','2022-01-09 14:30:00','v');INSERT INTO object_U VALUES ('o2',1.5,4,NULL,NULL);"
+      },
+      "unrelated": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "u"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "u"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "r",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);INSERT INTO event VALUES ('e1','a');INSERT INTO event VALUES ('e2','b');INSERT INTO event VALUES ('e3','a');INSERT INTO object VALUES ('o1','t');INSERT INTO object VALUES ('o2','u');INSERT INTO object VALUES ('o3','t');INSERT INTO event_map_type VALUES ('a','A');INSERT INTO event_map_type VALUES ('b','B');INSERT INTO object_map_type VALUES ('t','T');INSERT INTO object_map_type VALUES ('u','U');INSERT INTO event_object VALUES ('e1','o1','q');INSERT INTO event_object VALUES ('e2','o2',NULL);INSERT INTO event_object VALUES ('e2','o1','r');INSERT INTO event_object VALUES ('e9','o1',NULL);INSERT INTO event_object VALUES ('e1','o9',NULL);INSERT INTO object_object VALUES ('o1','o9',NULL);CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP);CREATE TABLE object_T (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP, ocel_changed_field TEXT);INSERT INTO event_A VALUES ('e1','2022-01-09 14:00:00');INSERT INTO event_A VALUES ('e3','2022-01-09 16:00:00');INSERT INTO event_B VALUES ('e2','2022-01-09 15:00:00');INSERT INTO object_T VALUES ('o1',NULL,NULL);INSERT INTO object_T VALUES ('o3',NULL,NULL);INSERT INTO object_U VALUES ('o2',NULL,NULL);"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "read-sqlite2-scripts",
+    "fixtures": {},
+    "functions": [
+      "pm4py.read_ocel2_sqlite"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

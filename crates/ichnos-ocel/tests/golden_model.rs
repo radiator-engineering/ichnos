@@ -133,7 +133,7 @@ fn ocel_goldens() {
         .into_iter()
         .filter(|c| c.starts_with("model-"))
         .collect();
-    assert_eq!(ids.len(), 13, "cases: {ids:?}");
+    assert_eq!(ids.len(), 16, "cases: {ids:?}");
     for id in &ids {
         let g = golden("ocel", id);
         let e = &g.expected;
