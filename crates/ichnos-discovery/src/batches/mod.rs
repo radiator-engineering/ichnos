@@ -1,4 +1,6 @@
-//! Batch detection by activity/resource, preserving the pinned interval merge rules.
+//! Batch detection by activity/resource, ported from pm4py's
+//! `algo.discovery.batches.utils.detection` interval merge rules.
+
 use crate::{Error, Result};
 use ichnos_core::{Event, EventKeys, EventLog, Position};
 use ichnos_model::Label;
@@ -18,8 +20,9 @@ pub enum BatchType {
     /// All other merged groups, including groups separated by small gaps.
     Concurrent,
 }
+
 impl BatchType {
-    /// Pinned reference category name.
+    /// Category name returned by pm4py batch detection.
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Simultaneous => "Simultaneous",
@@ -30,6 +33,7 @@ impl BatchType {
         }
     }
 }
+
 /// An event identity in a batch: timestamps and trace case label.
 #[derive(Debug, Clone, PartialEq)]
 pub struct BatchEvent {
@@ -40,6 +44,7 @@ pub struct BatchEvent {
     /// Case identifier from the trace attribute configured in the options.
     pub case: Label,
 }
+
 /// One merged interval with deduplicated, sorted event identities.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Batch {
@@ -50,6 +55,7 @@ pub struct Batch {
     /// Distinct `(start, end, case)` events; identical observations collapse.
     pub events: Vec<BatchEvent>,
 }
+
 /// Batches for an activity/resource pair. Groups are returned in descending count/pair order.
 #[derive(Debug, Clone, PartialEq)]
 pub struct BatchGroup {
@@ -60,12 +66,14 @@ pub struct BatchGroup {
     /// Categories with at least one retained batch.
     pub batches: BTreeMap<BatchType, Vec<Batch>>,
 }
+
 impl BatchGroup {
     /// Total number of retained batches across categories.
     pub fn count(&self) -> usize {
         self.batches.values().map(Vec::len).sum()
     }
 }
+
 /// Batch discovery options.
 #[derive(Debug, Clone)]
 pub struct BatchOptions {
@@ -78,6 +86,7 @@ pub struct BatchOptions {
     /// Trace attribute holding case identity (default `concept:name`).
     pub case_attribute: String,
 }
+
 impl Default for BatchOptions {
     fn default() -> Self {
         Self {
@@ -104,8 +113,9 @@ pub(crate) fn timestamp(event: &Event, key: &str, position: Position) -> Result<
             expected: "date",
             found: value.type_name(),
         })?;
-    Ok(date.timestamp() as f64 + date.timestamp_subsec_nanos() as f64 / 1e9)
+    Ok(ichnos_stats::time::datetime_timestamp(date))
 }
+
 fn text(
     value: Option<&ichnos_core::AttributeValue>,
     key: &str,
@@ -124,12 +134,14 @@ fn text(
         }
     })?))
 }
+
 fn event_cmp(a: &BatchEvent, b: &BatchEvent) -> std::cmp::Ordering {
     a.start
         .total_cmp(&b.start)
         .then(a.end.total_cmp(&b.end))
         .then(a.case.cmp(&b.case))
 }
+
 // Python tuple comparison reaches set comparison only when endpoints tie.
 fn less(a: &Batch, b: &Batch) -> bool {
     if a.start != b.start {
@@ -140,6 +152,7 @@ fn less(a: &Batch, b: &Batch) -> bool {
     }
     a.events.len() < b.events.len() && a.events.iter().all(|e| b.events.contains(e))
 }
+
 fn sift_down(heap: &mut [Batch], start: usize, mut pos: usize) {
     let item = heap[pos].clone();
     while pos > start {
@@ -152,6 +165,7 @@ fn sift_down(heap: &mut [Batch], start: usize, mut pos: usize) {
     }
     heap[pos] = item;
 }
+
 fn sift_up(heap: &mut [Batch], mut pos: usize) {
     let start = pos;
     let item = heap[pos].clone();
@@ -168,6 +182,7 @@ fn sift_up(heap: &mut [Batch], mut pos: usize) {
     heap[pos] = item;
     sift_down(heap, start, pos);
 }
+
 fn merge(a: Batch, b: Batch) -> Batch {
     let mut events = a.events;
     events.extend(b.events);
@@ -179,6 +194,7 @@ fn merge(a: Batch, b: Batch) -> Batch {
         events,
     }
 }
+
 fn category(batch: &Batch) -> BatchType {
     let events = &batch.events;
     let first = &events[0];
@@ -196,9 +212,10 @@ fn category(batch: &Batch) -> BatchType {
         BatchType::Concurrent
     }
 }
+
 /// Detect batches without altering input. Uses completion times as starts by default.
 /// Missing resource/case/timestamp fields return positional core errors. The
-/// reference heap merge order and event identity deduplication are preserved.
+/// pm4py heap merge order and event identity deduplication are preserved.
 pub fn discover_batches(
     log: &EventLog,
     keys: &EventKeys,
@@ -262,15 +279,20 @@ pub fn discover_batches(
             let b = heap.remove(i + 1);
             let a = heap.remove(i);
             heap.push(merge(a, b));
-            // Sorting uses the same partial set tie comparison as Python.
+            // Equal positive-length intervals overlap regardless of tie order.
+            // Use a total order here; the heap retains Python's set comparison.
             heap.sort_by(|a, b| {
-                if less(a, b) {
-                    std::cmp::Ordering::Less
-                } else if less(b, a) {
-                    std::cmp::Ordering::Greater
-                } else {
-                    std::cmp::Ordering::Equal
-                }
+                a.start
+                    .total_cmp(&b.start)
+                    .then(a.end.total_cmp(&b.end))
+                    .then_with(|| {
+                        a.events
+                            .iter()
+                            .zip(&b.events)
+                            .map(|(a, b)| event_cmp(a, b))
+                            .find(|order| !order.is_eq())
+                            .unwrap_or_else(|| a.events.len().cmp(&b.events.len()))
+                    })
             });
         }
         loop {

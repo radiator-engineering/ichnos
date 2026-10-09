@@ -1,4 +1,6 @@
-//! Classic case-independent correlation mining using a continuous transportation LP.
+//! Classic case-independent correlation mining, ported from pm4py's
+//! `algo.discovery.correlation_mining.variants.classic`, using a transportation LP.
+
 use crate::{Error, Result};
 use good_lp::{Expression, ProblemVariables, Solution, SolverModel, constraint, microlp, variable};
 use ichnos_core::{EventKeys, EventLog, Position};
@@ -13,6 +15,7 @@ pub struct CorrelationOptions {
     /// Exact full bipartite timestamp matching instead of the minimum FIFO/reverse-LIFO mean.
     pub exact_time_matching: bool,
 }
+
 /// Statistics used to price a source/target edge, including diagonals.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct CorrelationEdge {
@@ -23,6 +26,7 @@ pub struct CorrelationEdge {
     /// Duration / fraction / minimum activity count; zero values become 1e11.
     pub cost: f64,
 }
+
 /// Frequency and performance graphs estimated without using case identifiers.
 #[derive(Debug, Clone)]
 pub struct CorrelationResult {
@@ -36,6 +40,7 @@ pub struct CorrelationResult {
     /// Observed event counts, the LP's incoming and outgoing marginal constraints.
     pub activity_counts: BTreeMap<Label, u64>,
 }
+
 fn mean(pairs: &[(f64, f64)]) -> f64 {
     if pairs.is_empty() {
         0.0
@@ -43,6 +48,7 @@ fn mean(pairs: &[(f64, f64)]) -> f64 {
         pairs.iter().map(|(a, b)| b - a).sum::<f64>() / pairs.len() as f64
     }
 }
+
 fn greedy(left: &[f64], right: &[f64]) -> f64 {
     let mut pairs = Vec::new();
     let mut j = 0;
@@ -71,6 +77,7 @@ fn greedy(left: &[f64], right: &[f64]) -> f64 {
     }
     fifo.min(mean(&pairs))
 }
+
 /// Discover classic correlation graphs. Events are stably sorted by start,
 /// completion and flattened index. Traces and case IDs do not constrain the LP.
 /// Empty input returns empty graphs. Tied LP optima may select different edges

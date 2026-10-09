@@ -1,0 +1,1099 @@
+{
+  "expected": {
+    "activity_key": "task",
+    "alpha_plus_error": null,
+    "alpha_plus_runs": null,
+    "heuristics": [
+      {
+        "net": {
+          "activities": [
+            "α",
+            "β",
+            "γ"
+          ],
+          "activities_occurrences": {
+            "α": 2,
+            "β": 3,
+            "γ": 2
+          },
+          "dependency_matrix": [
+            [
+              "α",
+              "β",
+              0.6666666666666666
+            ],
+            [
+              "β",
+              "β",
+              0.5
+            ],
+            [
+              "β",
+              "γ",
+              0.6666666666666666
+            ]
+          ],
+          "dfg": [
+            [
+              "α",
+              "β",
+              2
+            ],
+            [
+              "β",
+              "β",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              2
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "α",
+              "β",
+              2
+            ],
+            [
+              "β",
+              "β",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              2
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "α",
+              "β",
+              1
+            ],
+            [
+              "α",
+              "γ",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "γ": 2
+            }
+          ],
+          "freq_triples_matrix": [],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "α",
+              "occurrences": 2,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "β"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "α"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "β"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "β",
+              "occurrences": 3,
+              "outputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "β"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "γ"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "β"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "γ",
+              "occurrences": 2,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "α": 2
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "net": {
+          "activities": [
+            "α",
+            "β",
+            "γ"
+          ],
+          "activities_occurrences": {
+            "α": 2,
+            "β": 3,
+            "γ": 2
+          },
+          "dependency_matrix": [
+            [
+              "α",
+              "β",
+              0.6666666666666666
+            ],
+            [
+              "β",
+              "β",
+              0.5
+            ],
+            [
+              "β",
+              "γ",
+              0.6666666666666666
+            ]
+          ],
+          "dfg": [
+            [
+              "α",
+              "β",
+              2
+            ],
+            [
+              "β",
+              "β",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              2
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "α",
+              "β",
+              2
+            ],
+            [
+              "β",
+              "β",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              2
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "α",
+              "β",
+              1
+            ],
+            [
+              "α",
+              "γ",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "γ": 2
+            }
+          ],
+          "freq_triples_matrix": [],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "α",
+              "occurrences": 2,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "β",
+              "occurrences": 3,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "γ",
+              "occurrences": 2,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "α": 2
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 0.5,
+          "dependency_thresh": 0.8
+        }
+      },
+      {
+        "net": {
+          "activities": [
+            "α",
+            "β",
+            "γ"
+          ],
+          "activities_occurrences": {
+            "α": 2,
+            "β": 3,
+            "γ": 2
+          },
+          "dependency_matrix": [
+            [
+              "α",
+              "β",
+              0.6666666666666666
+            ],
+            [
+              "β",
+              "β",
+              0.5
+            ],
+            [
+              "β",
+              "γ",
+              0.6666666666666666
+            ]
+          ],
+          "dfg": [
+            [
+              "α",
+              "β",
+              2
+            ],
+            [
+              "β",
+              "β",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              2
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "α",
+              "β",
+              2
+            ],
+            [
+              "β",
+              "β",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              2
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "α",
+              "β",
+              1
+            ],
+            [
+              "α",
+              "γ",
+              1
+            ],
+            [
+              "β",
+              "γ",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "γ": 2
+            }
+          ],
+          "freq_triples_matrix": [],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "α",
+              "occurrences": 2,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "β"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "α"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "β",
+              "occurrences": 3,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "γ"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "β"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "γ",
+              "occurrences": 2,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "α": 2
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 1.0,
+          "dependency_thresh": 0.0,
+          "dfg_pre_cleaning_noise_thresh": 0.2,
+          "loop_length_two_thresh": 0.9,
+          "min_act_count": 2,
+          "min_dfg_occurrences": 2
+        }
+      }
+    ],
+    "models": {
+      "alpha": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [
+            [
+              "α",
+              "β",
+              "γ"
+            ],
+            [
+              "α",
+              "γ"
+            ],
+            [
+              "α",
+              "γ",
+              "β"
+            ],
+            [
+              "β",
+              "α",
+              "γ"
+            ],
+            [
+              "β",
+              "γ",
+              "α"
+            ],
+            [
+              "γ",
+              "α"
+            ],
+            [
+              "γ",
+              "α",
+              "β"
+            ],
+            [
+              "γ",
+              "β",
+              "α"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "γ"
+            ],
+            [
+              "α",
+              "γ"
+            ],
+            [
+              "α",
+              "γ",
+              "β"
+            ],
+            [
+              "α",
+              "γ",
+              "γ"
+            ],
+            [
+              "β"
+            ],
+            [
+              "β",
+              "α"
+            ],
+            [
+              "β",
+              "α",
+              "β"
+            ],
+            [
+              "β",
+              "α",
+              "γ"
+            ],
+            [
+              "β",
+              "β"
+            ],
+            [
+              "β",
+              "β",
+              "α"
+            ],
+            [
+              "β",
+              "β",
+              "β"
+            ],
+            [
+              "β",
+              "β",
+              "γ"
+            ],
+            [
+              "β",
+              "γ"
+            ],
+            [
+              "β",
+              "γ",
+              "α"
+            ],
+            [
+              "β",
+              "γ",
+              "β"
+            ],
+            [
+              "β",
+              "γ",
+              "γ"
+            ],
+            [
+              "γ"
+            ],
+            [
+              "γ",
+              "α"
+            ],
+            [
+              "γ",
+              "α",
+              "β"
+            ],
+            [
+              "γ",
+              "α",
+              "γ"
+            ],
+            [
+              "γ",
+              "β"
+            ],
+            [
+              "γ",
+              "β",
+              "α"
+            ],
+            [
+              "γ",
+              "β",
+              "β"
+            ],
+            [
+              "γ",
+              "β",
+              "γ"
+            ],
+            [
+              "γ",
+              "γ"
+            ],
+            [
+              "γ",
+              "γ",
+              "α"
+            ],
+            [
+              "γ",
+              "γ",
+              "β"
+            ],
+            [
+              "γ",
+              "γ",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "alpha_plus": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "α",
+              "β",
+              "γ"
+            ],
+            "parallel": [],
+            "sequence": [
+              [
+                "α",
+                "γ"
+              ]
+            ],
+            "start_activities": [
+              "α"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "α",
+              "γ"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "alpha_plus_remove_unconnected": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "α",
+              "β",
+              "γ"
+            ],
+            "parallel": [],
+            "sequence": [
+              [
+                "α",
+                "γ"
+              ]
+            ],
+            "start_activities": [
+              "α"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "α",
+              "γ"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "heuristics_0": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "α",
+              "β",
+              "γ"
+            ],
+            "parallel": [
+              [
+                "β",
+                "β"
+              ]
+            ],
+            "sequence": [
+              [
+                "α",
+                "β"
+              ],
+              [
+                "β",
+                "γ"
+              ]
+            ],
+            "start_activities": [
+              "α"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "α",
+              "β",
+              "γ"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "heuristics_1": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "γ"
+            ],
+            [
+              "α",
+              "γ"
+            ],
+            [
+              "α",
+              "γ",
+              "β"
+            ],
+            [
+              "α",
+              "γ",
+              "γ"
+            ],
+            [
+              "β"
+            ],
+            [
+              "β",
+              "α"
+            ],
+            [
+              "β",
+              "α",
+              "β"
+            ],
+            [
+              "β",
+              "α",
+              "γ"
+            ],
+            [
+              "β",
+              "β"
+            ],
+            [
+              "β",
+              "β",
+              "α"
+            ],
+            [
+              "β",
+              "β",
+              "β"
+            ],
+            [
+              "β",
+              "β",
+              "γ"
+            ],
+            [
+              "β",
+              "γ"
+            ],
+            [
+              "β",
+              "γ",
+              "α"
+            ],
+            [
+              "β",
+              "γ",
+              "β"
+            ],
+            [
+              "β",
+              "γ",
+              "γ"
+            ],
+            [
+              "γ"
+            ],
+            [
+              "γ",
+              "α"
+            ],
+            [
+              "γ",
+              "α",
+              "β"
+            ],
+            [
+              "γ",
+              "α",
+              "γ"
+            ],
+            [
+              "γ",
+              "β"
+            ],
+            [
+              "γ",
+              "β",
+              "α"
+            ],
+            [
+              "γ",
+              "β",
+              "β"
+            ],
+            [
+              "γ",
+              "β",
+              "γ"
+            ],
+            [
+              "γ",
+              "γ"
+            ],
+            [
+              "γ",
+              "γ",
+              "α"
+            ],
+            [
+              "γ",
+              "γ",
+              "β"
+            ],
+            [
+              "γ",
+              "γ",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "heuristics_2": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "α",
+              "β",
+              "γ"
+            ],
+            "parallel": [],
+            "sequence": [
+              [
+                "α",
+                "β"
+              ],
+              [
+                "β",
+                "γ"
+              ]
+            ],
+            "start_activities": [
+              "α"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "α",
+              "β",
+              "γ"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "heuristics_public": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "α",
+              "β",
+              "γ"
+            ],
+            "parallel": [
+              [
+                "β",
+                "β"
+              ]
+            ],
+            "sequence": [
+              [
+                "α",
+                "β"
+              ],
+              [
+                "β",
+                "γ"
+              ]
+            ],
+            "start_activities": [
+              "α"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "α",
+              "β",
+              "γ"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "α"
+            ],
+            [
+              "α",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "β"
+            ],
+            [
+              "α",
+              "β",
+              "γ"
+            ]
+          ]
+        }
+      }
+    },
+    "traces": [
+      [
+        "α",
+        "β",
+        "γ"
+      ],
+      [
+        "α",
+        "β",
+        "β",
+        "γ"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "classic-miners-custom-key",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_petri_net_alpha",
+      "pm4py.discover_petri_net_alpha_plus",
+      "pm4py.discover_heuristics_net",
+      "pm4py.discover_petri_net_heuristics",
+      "pm4py.algo.discovery.alpha.variants.plus.apply",
+      "pm4py.algo.discovery.heuristics.variants.classic.apply_heu",
+      "pm4py.convert_to_petri_net",
+      "pm4py.discover_footprints",
+      "pm4py.objects.petri_net.semantics.enabled_transitions",
+      "pm4py.objects.petri_net.semantics.execute"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "task",
+      "traces": [
+        [
+          "α",
+          "β",
+          "γ"
+        ],
+        [
+          "α",
+          "β",
+          "β",
+          "γ"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -333,12 +333,282 @@ for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
         params={"start_timestamp_key": "start_timestamp"} if _log_id == "interval-event-log" else {},
     )(temporal_profile)
 
+# miners-classic alpha and heuristics discovery cases.
+def _classic_language(model, depth=3):
+    """Exact executable visible prefixes up to depth, with silent closure.
 
-if __name__ == "__main__":
-    # One seeded run for _inductive_seeds: prints the result as one JSON line.
+    Unlike unrestricted reachability, this terminates for the visible loops
+    of the supplied unsound miners. Never emit a partial language on a cap.
+    """
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+    def key(m):
+        return tuple(m.get(p, 0) for p in places)
+    todo = deque([(im, ())])
+    seen = {(key(im), ())}
+    prefixes = {()}
+    accepted = set()
+    while todo:
+        marking, word = todo.popleft()
+        if marking == fm:
+            accepted.add(word)
+        for t in semantics.enabled_transitions(net, marking):
+            next_word = word if t.label is None else (*word, t.label)
+            if len(next_word) > depth:
+                continue
+            next_marking = semantics.execute(t, net, marking)
+            state = (key(next_marking), next_word)
+            prefixes.add(next_word)
+            if state not in seen:
+                if len(seen) >= 100000:
+                    raise RuntimeError("classic miner bounded language exceeded 100000 states")
+                seen.add(state)
+                todo.append((next_marking, next_word))
+    return {"depth": depth, "prefixes": sorted(prefixes), "accepted": sorted(accepted)}
+
+
+def _classic_footprints(model):
+    """Only emit full footprints after a bounded reachability preflight."""
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+    def key(m):
+        return tuple(m.get(p, 0) for p in places)
+    todo = deque([im])
+    seen = {key(im)}
+    while todo:
+        m = todo.popleft()
+        for t in semantics.enabled_transitions(net, m):
+            nxt = semantics.execute(t, net, m)
+            state = key(nxt)
+            if state not in seen:
+                if len(seen) >= 10000:
+                    return {"status": "state_space_limit", "value": None}
+                seen.add(state)
+                todo.append(nxt)
+    return {"status": "complete", "value": pm4py.discover_footprints(net, im, fm)}
+
+
+def _classic_alpha_plus_run(path, activity_key):
     from harness import canonical
+    from pm4py.algo.discovery.alpha.variants import plus
+    log = pm4py.convert_to_event_log(load_log(Path(path)))
+    models = {
+        "alpha_plus": pm4py.discover_petri_net_alpha_plus(log, activity_key=activity_key),
+        "alpha_plus_remove_unconnected": plus.apply(log, parameters={
+            "pm4py:param:activity_key": activity_key, "remove_unconnected": True}),
+    }
+    return canonical.normalize({name: {"footprints": _classic_footprints(model),
+                                       "language": _classic_language(model)}
+                                for name, model in models.items()})
 
-    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
+
+def _classic_alpha_plus_seeds(path, activity_key, seeds):
+    # Receipt's pair merge changes behaviour with Python set order. Each
+    # run is an unmodified public/native miner call in a fresh interpreter.
+    groups = {}
+    golden_tools = str(Path(__file__).resolve().parents[1])
+    worker = ("import json,sys; from cases.discovery import _classic_alpha_plus_run; "
+              "print(json.dumps(_classic_alpha_plus_run(sys.argv[1],sys.argv[2])))")
+    for seed in seeds:
+        env = dict(os.environ, PYTHONHASHSEED=str(seed))
+        env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
+        result = json.loads(subprocess.run([sys.executable, "-c", worker, str(path), activity_key],
+                                          env=env, check=True, capture_output=True, text=True).stdout)
+        key = json.dumps(result, sort_keys=True)
+        if key not in groups:
+            groups[key] = {"seeds": [], "models": result}
+        groups[key]["seeds"].append(seed)
+    return [groups[key] for key in sorted(groups)]
+
+
+def classic_miners(fixtures, traces=None, variants=None, activity_key="concept:name", alpha_plus_seeds=None):
+    """Public alpha/alpha+ and classic heuristics, with option sweeps."""
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from cases.model import describe_heuristics_net, _matrix
+    from pm4py.algo.discovery.alpha.variants import plus
+    from pm4py.algo.discovery.heuristics.variants import classic
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in t]) for t in traces])
+    kwargs = {"activity_key": activity_key}
+    models = {
+        "alpha": pm4py.discover_petri_net_alpha(log, **kwargs),
+    }
+    # The pinned alpha+ implementation indexes a missing boundary on an
+    # empty log. Record the exception; Rust deliberately returns a shell.
+    try:
+        if alpha_plus_seeds is None:
+            models["alpha_plus"] = pm4py.discover_petri_net_alpha_plus(log, **kwargs)
+            models["alpha_plus_remove_unconnected"] = plus.apply(log, parameters={
+                "pm4py:param:activity_key": activity_key, "remove_unconnected": True})
+        alpha_plus_error = None
+    except IndexError as exc:
+        alpha_plus_error = type(exc).__name__
+    options = variants or [
+        {},
+        {"dependency_thresh": 0.8, "and_measure_thresh": 0.5},
+        {"dependency_thresh": 0.0, "and_measure_thresh": 1.0,
+         "min_act_count": 2, "min_dfg_occurrences": 2,
+         "dfg_pre_cleaning_noise_thresh": 0.2, "loop_length_two_thresh": 0.9},
+    ]
+    nets = []
+    for i, parameters in enumerate(options):
+        params = {"pm4py:param:activity_key": activity_key, **parameters}
+        h = classic.apply_heu(log, parameters=params)
+        description = describe_heuristics_net(h)
+        description["nodes"].sort(key=lambda n: n["name"])
+        for node in description["nodes"]:
+            for field in ["inputs", "outputs"]:
+                node[field].sort(key=lambda e: (e["target"], e["dependency"], e["frequency"]))
+        description["dfg_window_2_matrix"] = _matrix(h.dfg_window_2_matrix)
+        description["dfg"] = sorted([a,b,v] for (a,b),v in h.dfg.items())
+        models[f"heuristics_{i}"] = pm4py.convert_to_petri_net(h)
+        nets.append({"options": parameters, "net": description})
+    # Public defaults are covered independently of the native option sweep.
+    public_h = pm4py.discover_heuristics_net(log, **kwargs)
+    assert public_h.dfg_matrix == classic.apply_heu(log, parameters={"pm4py:param:activity_key": activity_key}).dfg_matrix
+    models["heuristics_public"] = pm4py.discover_petri_net_heuristics(log, **kwargs)
+    return {
+        "traces": traces, "activity_key": activity_key,
+        "alpha_plus_error": alpha_plus_error,
+        "alpha_plus_runs": (_classic_alpha_plus_seeds(fixtures["log"], activity_key, alpha_plus_seeds)
+                            if alpha_plus_seeds is not None else None),
+        "heuristics": nets,
+        "models": {name: {"footprints": _classic_footprints(model),
+                           "language": _classic_language(model)}
+                   for name,model in models.items()},
+    }
+
+
+CLASSIC_MINER_FUNCTIONS = [
+    "pm4py.discover_petri_net_alpha", "pm4py.discover_petri_net_alpha_plus",
+    "pm4py.discover_heuristics_net", "pm4py.discover_petri_net_heuristics",
+    "pm4py.algo.discovery.alpha.variants.plus.apply",
+    "pm4py.algo.discovery.heuristics.variants.classic.apply_heu",
+    "pm4py.convert_to_petri_net", "pm4py.discover_footprints",
+    "pm4py.objects.petri_net.semantics.enabled_transitions",
+    "pm4py.objects.petri_net.semantics.execute",
+]
+for _id, _fixture in {
+    "running-example-xes": "running-example.xes",
+    "receipt-xes": "receipt.xes",
+    "roadtraffic100traces-xes": "roadtraffic100traces.xes",
+    "interleavings-receipt_even-csv": "interleavings/receipt_even.csv",
+    "interleavings-receipt_odd-csv": "interleavings/receipt_odd.csv",
+}.items():
+    case(f"classic-miners-{_id}", fixture=_fixture, functions=CLASSIC_MINER_FUNCTIONS,
+         params={"alpha_plus_seeds": list(range(8))} if _id == "receipt-xes" else {})(classic_miners)
+
+for _id, _traces in {
+    "empty": [],
+    "empty-trace": [[]],
+    "self-loop-only": [["a", "a"], ["a"]],
+    "boundaries": [[], ["a"], ["b"], ["a", "b"], ["a", "a"]],
+    "loops": [["s", "a", "a", "b", "e"], ["s", "b", "a", "b", "a", "e"],
+              ["s", "a", "b", "a", "b", "e"], ["s", "a", "e"]],
+    "parallel": [["s", "a", "b", "e"]] * 4 + [["s", "b", "a", "e"]] * 4,
+    "custom-key": [["α", "β", "γ"], ["α", "β", "β", "γ"]],
+}.items():
+    case(f"classic-miners-{_id}", functions=CLASSIC_MINER_FUNCTIONS,
+         params={"traces": _traces, "activity_key": "task" if _id == "custom-key" else "concept:name"})(classic_miners)
+
+
+case("classic-miners-cleaned-loop",functions=CLASSIC_MINER_FUNCTIONS,params={"traces":[["a","c","b"]]*20+[["a","b","a","c","b"]],"variants":[{"min_dfg_occurrences":0}]})(classic_miners)
+
+
+# miners-classic log-skeleton and DECLARE discovery cases.
+SKELETON_DECLARE_FUNCTIONS = [
+    "pm4py.discover_log_skeleton", "pm4py.discover_declare",
+    "pm4py.algo.discovery.declare.variants.classic.apply",
+]
+
+
+def skeleton_declare(fixtures, traces=None, activity_key="concept:name", declare_options=None):
+    """Lossless label-index encoding of public skeleton/DECLARE outputs."""
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.algo.discovery.declare.variants import classic as declare_classic
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in t]) for t in traces])
+    options = declare_options or [
+        {},
+        {"min_support_ratio": 0.75, "min_confidence_ratio": 0.95},
+        {"min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    ]
+    labels = sorted({e[activity_key] for t in log for e in t} |
+                    {a for opts in options for a in opts.get("considered_activities", [])})
+    index = {a: i for i, a in enumerate(labels)}
+    skeletons = []
+    for noise in [0.0, 0.2, 0.5, 0.9, 1.0]:
+        model = pm4py.discover_log_skeleton(log, noise_threshold=noise, activity_key=activity_key)
+        encoded = {name: sorted([index[a], index[b]] for a,b in value)
+                   for name,value in model.items() if name != "activ_freq"}
+        encoded["activ_freq"] = sorted([index[a], sorted(freqs)] for a,freqs in model["activ_freq"].items())
+        skeletons.append({"noise": noise, "model": encoded})
+    models = []
+    for opts in options:
+        kwargs = dict(opts)
+        for key in ["allowed_templates", "considered_activities"]:
+            if key in kwargs:
+                kwargs[key] = set(kwargs[key])
+        if "auto_selection_multiplier" in kwargs:
+            model = declare_classic.apply(log, parameters={"pm4py:param:activity_key": activity_key, **kwargs})
+        else:
+            model = pm4py.discover_declare(log, activity_key=activity_key, **kwargs)
+        encoded = {template: sorted([
+            [*[index[a] for a in (args if isinstance(args, tuple) else (args,))],
+             values["support"], values["confidence"]]
+            for args,values in rules.items()]) for template,rules in model.items()}
+        models.append({"options": opts, "model": encoded})
+    return {"labels": labels, "skeleton": skeletons, "declare": models}
+
+
+for _id, _fixture in {
+    "running-example-xes": "running-example.xes",
+    "receipt-xes": "receipt.xes",
+    "roadtraffic100traces-xes": "roadtraffic100traces.xes",
+    "interleavings-receipt_even-csv": "interleavings/receipt_even.csv",
+    "interleavings-receipt_odd-csv": "interleavings/receipt_odd.csv",
+}.items():
+    case(f"skeleton-declare-{_id}", fixture=_fixture, functions=SKELETON_DECLARE_FUNCTIONS)(skeleton_declare)
+
+SKELETON_DECLARE_SYNTHETIC_OPTIONS = [
+    {},
+    {"min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"min_support_ratio": 1.0, "min_confidence_ratio": 1.0},
+    {"min_support_ratio": 0.5},
+    {"min_confidence_ratio": 0.5},
+    {"auto_selection_multiplier": 0.0},
+    {"auto_selection_multiplier": 1.0},
+    {"considered_activities": ["a", "b", "ghost"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"considered_activities": []},
+    {"allowed_templates": []},
+    {"allowed_templates": ["absence", "succession", "coexistence", "noncoexistence", "altsuccession", "chainsuccession", "nonsuccession", "nonchainsuccession"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"allowed_templates": ["response", "precedence", "succession", "nonsuccession"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"allowed_templates": ["altresponse", "altprecedence", "altsuccession", "chainresponse", "chainprecedence", "chainsuccession", "nonchainsuccession"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+    {"allowed_templates": ["responded_existence", "coexistence", "noncoexistence", "existence", "absence"], "min_support_ratio": 0.0, "min_confidence_ratio": 0.0},
+]
+
+for _id, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "repeated": [["a", "b", "a", "b"], ["a", "a", "b"], ["b", "a", "b", "b"], ["a"], ["b"], []],
+    "weighted": [["a", "b"]] * 4 + [["a"]] * 2 + [["b"]] * 3 + [[]],
+    "projection": [["a", "x", "b", "a", "b"], ["x", "b", "x", "a"], ["x"], []],
+    "frequency-ties": [["a"], []],
+    "frequency-ties-reversed": [[], ["a"]],
+    "custom-key": [["α", "β", "α", "β"], ["β", "α"], []],
+}.items():
+    case(f"skeleton-declare-{_id}", functions=SKELETON_DECLARE_FUNCTIONS,
+         params={"traces": _traces, "activity_key": "task" if _id == "custom-key" else "concept:name",
+                 "declare_options": SKELETON_DECLARE_SYNTHETIC_OPTIONS})(skeleton_declare)
+
 # miners-classic batch and correlation discovery cases.
 def batches_correlation(fixtures, traces=None, activity_key="concept:name", interval=False, fill_missing_resource=None, oracle_solver="default"):
     from datetime import datetime
@@ -428,20 +698,22 @@ def batches_correlation(fixtures, traces=None, activity_key="concept:name", inte
                                      "counts":counts,"statistics":stats,"objective":float(objective),"solver": "scipy/highs" if oracle_solver == "highs" else solver.DEFAULT_LP_SOLVER_VARIANT})
     return {"batches":batch_runs,"correlation":correlation_runs}
 
-GROUP4_FUNCTIONS = ["pm4py.discover_batches", "pm4py.correlation_miner",
+BATCHES_CORRELATION_FUNCTIONS = ["pm4py.discover_batches", "pm4py.correlation_miner",
                    "pm4py.algo.discovery.batches.variants.log.apply",
                    "pm4py.algo.discovery.correlation_mining.variants.classic.apply"]
-for fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes", "interleavings/receipt_even.csv","interleavings/receipt_odd.csv"]:
-    case("batches-correlation-"+fixture.replace("/","-").replace(".","-"),
-         functions=GROUP4_FUNCTIONS,fixtures={"log":fixture},params={"fill_missing_resource":"unassigned","oracle_solver":"highs" if fixture=="receipt.xes" else "default"})(batches_correlation)
+for _fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes", "interleavings/receipt_even.csv","interleavings/receipt_odd.csv"]:
+    case("batches-correlation-"+_fixture.replace("/","-").replace(".","-"),
+         functions=BATCHES_CORRELATION_FUNCTIONS,fixtures={"log":_fixture},params={"fill_missing_resource":"unassigned","oracle_solver":"highs" if _fixture=="receipt.xes" else "default"})(batches_correlation)
 
-def _group4_rows(rows):
+def _batches_correlation_rows(rows):
     from datetime import datetime, timedelta, timezone
     epoch=datetime(2024,1,1,tzinfo=timezone.utc)
     return [[case_id, [[activity,resource,(epoch+timedelta(seconds=start)).isoformat(),(epoch+timedelta(seconds=end)).isoformat()]
                       for activity,resource,start,end in events]] for case_id,events in rows]
 
-GROUP4_SYNTHETIC = {
+BATCHES_CORRELATION_SYNTHETIC = {
+    "equal-endpoints": ([[f"case-{i % 32:02}", [("a", "r", 0, 10)]] for i in range(40)], True),
+    "microseconds": ([["c1", [("a", "r", 0.000001, 0.000001)]], ["c2", [("a", "r", 1.000001, 1.000001)]]], False),
     "empty": ([],False),
     "empty-traces": ([["empty",[]]],False),
     "five-types": ([["c1",[("sim","r",0,10),("start","r",0,10),("end","r",0,20),("seq","r",0,10),("conc","r",0,10)]],
@@ -452,6 +724,12 @@ GROUP4_SYNTHETIC = {
                    ["c2",[("b","r",20,21),("c","s",21,22),("a","r",25,24)]]],True),
     "custom-key": ([["c1",[("α","r",0,0),("β","s",10,10)]],["c2",[("α","r",1,1),("β","s",12,12)]]],False),
 }
-for name,(rows,interval) in GROUP4_SYNTHETIC.items():
-    params={"traces":_group4_rows(rows),"interval":interval,"activity_key":"task" if name=="custom-key" else "concept:name"}
-    case("batches-correlation-"+name,functions=GROUP4_FUNCTIONS,params=params)(batches_correlation)
+for _name,(_rows,_interval) in BATCHES_CORRELATION_SYNTHETIC.items():
+    _params={"traces":_batches_correlation_rows(_rows),"interval":_interval,"activity_key":"task" if _name=="custom-key" else "concept:name"}
+    case("batches-correlation-"+_name,functions=BATCHES_CORRELATION_FUNCTIONS,params=_params)(batches_correlation)
+
+if __name__ == "__main__":
+    # One seeded run for _inductive_seeds: prints the result as one JSON line.
+    from harness import canonical
+
+    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))

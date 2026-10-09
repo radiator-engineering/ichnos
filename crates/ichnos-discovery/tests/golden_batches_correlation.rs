@@ -237,7 +237,7 @@ fn check(name: &str) {
     assert_eq!(log, before);
 }
 macro_rules! cases { ($($test:ident => $name:literal),*) => { $(#[test] fn $test() { check($name); })* }; }
-cases!(running_example=>"running-example-xes",receipt=>"receipt-xes",roadtraffic=>"roadtraffic100traces-xes",even=>"interleavings-receipt_even-csv",odd=>"interleavings-receipt_odd-csv",empty=>"empty",empty_traces=>"empty-traces",five_types=>"five-types",duplicates=>"duplicates",heap_order=>"heap-order",intervals=>"intervals",custom_key=>"custom-key");
+cases!(running_example=>"running-example-xes",receipt=>"receipt-xes",roadtraffic=>"roadtraffic100traces-xes",even=>"interleavings-receipt_even-csv",odd=>"interleavings-receipt_odd-csv",empty=>"empty",empty_traces=>"empty-traces",five_types=>"five-types",duplicates=>"duplicates",heap_order=>"heap-order",intervals=>"intervals",custom_key=>"custom-key",equal_endpoints=>"equal-endpoints",microseconds=>"microseconds");
 
 #[test]
 fn typed_errors() {

@@ -18,6 +18,22 @@ pub enum Error {
     /// Correlation transportation solving failed or produced an invalid solution.
     #[error("correlation solver: {0}")]
     CorrelationSolver(String),
+    /// A DECLARE selection fraction must be finite and in `[0, 1]`.
+    #[error("DECLARE threshold {option}={value} is not in [0, 1]")]
+    DeclareThreshold {
+        /// The invalid option.
+        option: &'static str,
+        /// Its supplied value.
+        value: f64,
+    },
+    /// A heuristics threshold must be a finite fraction in `[0, 1]`.
+    #[error("heuristics threshold {option}={value} is not in [0, 1]")]
+    HeuristicsThreshold {
+        /// The invalid option.
+        option: &'static str,
+        /// Its supplied value.
+        value: f64,
+    },
 
     /// Reading the log failed, for example because an event has no
     /// activity.
