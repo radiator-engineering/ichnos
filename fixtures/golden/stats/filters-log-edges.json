@@ -1,0 +1,1918 @@
+{
+  "expected": [
+    {
+      "function": "filter_start_activities",
+      "params": {
+        "activities": [
+          "A"
+        ],
+        "retain": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_end_activities",
+      "params": {
+        "activities": [
+          "A"
+        ],
+        "retain": true
+      },
+      "result": []
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "event",
+        "retain": true,
+        "values": [
+          "A",
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "case",
+        "retain": true,
+        "values": [
+          "A",
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "retain": true,
+        "values": [
+          "s0",
+          "s1"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_variants",
+      "params": {
+        "retain": true,
+        "variants": [
+          [
+            "A",
+            "B",
+            "A",
+            "B"
+          ]
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_directly_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "A",
+            "B"
+          ]
+        ],
+        "retain": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_eventually_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "B",
+            "A"
+          ]
+        ],
+        "retain": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_paths_performance",
+      "params": {
+        "keep": true,
+        "max_performance": 10.0,
+        "min_performance": 0,
+        "path": [
+          "A",
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_four_eyes_principle",
+      "params": {
+        "activity1": "A",
+        "activity2": "B",
+        "keep_violations": false
+      },
+      "result": [
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_activity_done_different_resources",
+      "params": {
+        "activity": "A",
+        "keep_violations": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "A",
+            "...",
+            "B",
+            "..."
+          ]
+        ],
+        "positive": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "A",
+            "B",
+            "A",
+            "B"
+          ]
+        ],
+        "positive": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "A",
+            "..."
+          ]
+        ],
+        "positive": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "B"
+          ]
+        ],
+        "positive": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_start_activities",
+      "params": {
+        "activities": [
+          "A"
+        ],
+        "retain": false
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_end_activities",
+      "params": {
+        "activities": [
+          "A"
+        ],
+        "retain": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "event",
+        "retain": false,
+        "values": [
+          "A",
+          "B"
+        ]
+      },
+      "result": []
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "case",
+        "retain": false,
+        "values": [
+          "A",
+          "B"
+        ]
+      },
+      "result": []
+    },
+    {
+      "function": "filter_trace_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "retain": false,
+        "values": [
+          "s0",
+          "s1"
+        ]
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_variants",
+      "params": {
+        "retain": false,
+        "variants": [
+          [
+            "A",
+            "B",
+            "A",
+            "B"
+          ]
+        ]
+      },
+      "result": [
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_directly_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "A",
+            "B"
+          ]
+        ],
+        "retain": false
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_eventually_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "B",
+            "A"
+          ]
+        ],
+        "retain": false
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_paths_performance",
+      "params": {
+        "keep": false,
+        "max_performance": 10.0,
+        "min_performance": 0,
+        "path": [
+          "A",
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_four_eyes_principle",
+      "params": {
+        "activity1": "A",
+        "activity2": "B",
+        "keep_violations": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_activity_done_different_resources",
+      "params": {
+        "activity": "A",
+        "keep_violations": false
+      },
+      "result": [
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "A",
+            "...",
+            "B",
+            "..."
+          ]
+        ],
+        "positive": false
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "A",
+            "B",
+            "A",
+            "B"
+          ]
+        ],
+        "positive": false
+      },
+      "result": [
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "A",
+            "..."
+          ]
+        ],
+        "positive": false
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "B"
+          ]
+        ],
+        "positive": false
+      },
+      "result": [
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_log_relative_occurrence_event_attribute",
+      "params": {
+        "level": "cases",
+        "min_relative_stake": 0.3
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_log_relative_occurrence_event_attribute",
+      "params": {
+        "level": "events",
+        "min_relative_stake": 0.3
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_case_size",
+      "params": {
+        "max_size": 4,
+        "min_size": 3
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_case_performance",
+      "params": {
+        "max_performance": 10.0,
+        "min_performance": 0
+      },
+      "result": [
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "A",
+        "min_occurrences": 1
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "A",
+        "min_occurrences": 2
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "A",
+        "min_occurrences": 3
+      },
+      "result": []
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 0
+      },
+      "result": []
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 1
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 3
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_variants_by_coverage_percentage",
+      "params": {
+        "min_coverage_percentage": 0.1
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_variants_by_coverage_percentage",
+      "params": {
+        "min_coverage_percentage": 0.5
+      },
+      "result": []
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "A",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "5,6",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "B",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "6",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "9",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "A"
+        ],
+        "act2": [
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1",
+          "subcase": "0##@@0"
+        },
+        {
+          "id": "s0",
+          "indices": "2,3",
+          "subcase": "0##@@1"
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": "1##@@0"
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": "3##@@0"
+        }
+      ]
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "A"
+        ],
+        "act2": [
+          "A"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2",
+          "subcase": "0##@@0"
+        },
+        {
+          "id": "s1",
+          "indices": "4,5",
+          "subcase": "1##@@0"
+        }
+      ]
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "A",
+          "B"
+        ],
+        "act2": [
+          "A",
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1",
+          "subcase": "0##@@0"
+        },
+        {
+          "id": "s0",
+          "indices": "1,2",
+          "subcase": "0##@@1"
+        },
+        {
+          "id": "s0",
+          "indices": "2,3",
+          "subcase": "0##@@2"
+        },
+        {
+          "id": "s1",
+          "indices": "4,5",
+          "subcase": "1##@@0"
+        },
+        {
+          "id": "s1",
+          "indices": "5,6",
+          "subcase": "1##@@1"
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": "3##@@0"
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "events"
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "traces_contained"
+      },
+      "result": [
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "traces_intersecting"
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "traces_starting_in"
+      },
+      "result": [
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "traces_starting_in_exclude"
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "traces_completing_in"
+      },
+      "result": [
+        {
+          "id": "s0",
+          "indices": "0,1,2,3",
+          "subcase": null
+        },
+        {
+          "id": "s1",
+          "indices": "4,5,6",
+          "subcase": null
+        }
+      ]
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2024-01-01T00:00:15+00:00",
+        "dt2": "2024-01-01T00:00:30+00:00",
+        "mode": "traces_completing_in_exclude"
+      },
+      "result": [
+        {
+          "id": "s2",
+          "indices": "7",
+          "subcase": null
+        },
+        {
+          "id": "s3",
+          "indices": "8,9",
+          "subcase": null
+        },
+        {
+          "id": "s4",
+          "indices": "",
+          "subcase": null
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "area": "stats",
+    "case": "filters-log-edges",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.filter_log_relative_occurrence_event_attribute",
+      "pm4py.filter_start_activities",
+      "pm4py.filter_end_activities",
+      "pm4py.filter_event_attribute_values",
+      "pm4py.filter_trace_attribute_values",
+      "pm4py.filter_variants",
+      "pm4py.filter_directly_follows_relation",
+      "pm4py.filter_eventually_follows_relation",
+      "pm4py.filter_time_range",
+      "pm4py.filter_between",
+      "pm4py.filter_case_size",
+      "pm4py.filter_case_performance",
+      "pm4py.filter_activities_rework",
+      "pm4py.filter_paths_performance",
+      "pm4py.filter_variants_top_k",
+      "pm4py.filter_variants_by_coverage_percentage",
+      "pm4py.filter_prefixes",
+      "pm4py.filter_suffixes",
+      "pm4py.filter_four_eyes_principle",
+      "pm4py.filter_activity_done_different_resources",
+      "pm4py.filter_trace_segments"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
