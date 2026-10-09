@@ -81,9 +81,17 @@ Nanoseconds match pandas, so pm4py DataFrames and ichnos tables use the same uni
 
 `from_arrow` groups rows into traces as pm4py's `to_event_log` does: by the case column, in order of each case's first row. The trace attributes come from the case's first row.
 
+`to_arrow` writes the case ID (trace `concept:name`) to the column `keys.case_id`, so `from_arrow` with the same keys reads the table back. With the default keys that column is `case:concept:name`.
+
+The table holds traces and events only. `to_arrow` does not write log attributes, extensions, globals or classifiers, so a round trip through Arrow loses them; `from_arrow` declares extensions again from the column names. pm4py's `convert_to_dataframe` loses them too. XES output keeps them.
+
+`from_arrow` keeps the row order and column types of the table. pm4py reads a CSV through `format_dataframe`, which also casts the case ID and activity columns to strings and stable-sorts the rows by case ID, timestamp and input order. A reader that wants pm4py's trace and event order must apply both steps before `from_arrow`.
+
 ### Errors
 
-`ichnos_core::Error` is one `thiserror` enum for the crate. Errors that concern an event carry a `Position` (trace and event index, or stream index). Operations that can fail part-way check first and change nothing on error.
+`ichnos_core::Error` is one `thiserror` enum for the crate. Errors that concern an event carry a `Position`: trace and event index in a log, event index in a stream, or event index in a standalone trace. Operations that can fail part-way check first and change nothing on error.
+
+Other ichnos crates follow one pattern. Each crate defines its own `thiserror` `Error` enum with a `Core(#[from] ichnos_core::Error)` variant, so `?` passes core errors through. An error about an event reuses `ichnos_core::Position` rather than defining its own.
 
 ### Sorting
 
@@ -92,5 +100,4 @@ Nanoseconds match pandas, so pm4py DataFrames and ichnos tables use the same uni
 ### Not ported, and why
 
 - `serialize` / `deserialize` (pickle). Parquet, Arrow IPC and XES, through `ichnos-io`, cover persistence.
-- `format_dataframe` and `rebase`. `EventLog::from_arrow` with `EventKeys` covers building a log from a table. Renaming columns and casting types belong to the reader that builds the table.
 - `parse_process_tree` belongs to the model crate.
