@@ -106,15 +106,15 @@ pub fn write_ocel2_xml_to_writer(ocel: &Ocel, mut output: impl Write) -> Result<
 
 /// Writes an OCEL 1.0 log, choosing the format by extension as pm4py's
 /// `write_ocel` does: a name ending in `csv` is CSV, without an objects
-/// table, one ending in `jsonocel` is JSON and one ending in `xmlocel` is
-/// XML. pm4py's SQLite (`sqlite`) writer is not ported yet.
+/// table, one ending in `sqlite` is SQLite, one ending in `jsonocel` is
+/// JSON and one ending in `xmlocel` is XML.
 pub fn write_ocel(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     let path = path.as_ref();
     let name = lower_name(path);
     if name.ends_with("csv") {
         super::write_ocel_csv(ocel, path, None)
     } else if name.ends_with("sqlite") {
-        Err(not_ported(path))
+        super::write_ocel_sqlite(ocel, path)
     } else if name.ends_with("jsonocel") {
         write_ocel_json(ocel, path)
     } else if name.ends_with("xmlocel") {
@@ -127,8 +127,8 @@ pub fn write_ocel(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
 /// Writes an OCEL 2.0 log, choosing the format by extension as pm4py's
 /// `write_ocel2` does: a name ending in `xml` or `xmlocel` is XML and one
 /// ending in `json` or `jsonocel` is JSON, each optionally followed by
-/// `.gz`, and one ending in `.ocel.csv` is CSV. pm4py's bundle
-/// (`.ocel.zip`) and SQLite (`sqlite`) writers are not ported yet.
+/// `.gz`, one ending in `.ocel.csv` is CSV and one ending in `sqlite` is
+/// SQLite. pm4py's bundle (`.ocel.zip`) writer is not ported yet.
 pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     let path = path.as_ref();
     let name = lower_name(path);
@@ -137,8 +137,10 @@ pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
             .iter()
             .any(|e| name.ends_with(e) || name.ends_with(&format!("{e}.gz")))
     };
-    if name.ends_with(".ocel.zip") || name.ends_with("sqlite") {
+    if name.ends_with(".ocel.zip") {
         Err(not_ported(path))
+    } else if name.ends_with("sqlite") {
+        super::write_ocel2_sqlite(ocel, path)
     } else if name.ends_with(".ocel.csv") {
         super::write_ocel2_csv(ocel, path)
     } else if matches(["xml", "xmlocel"]) {
@@ -352,8 +354,8 @@ pub(super) struct Prepared {
     pub(super) objects: Columns,
     /// The object changes as rows of pm4py's `object_changes` table: each
     /// holds its changed field's value, if it has one.
-    change_rows: Vec<Attributes>,
-    changes: Columns,
+    pub(super) change_rows: Vec<Attributes>,
+    pub(super) changes: Columns,
 }
 
 impl Prepared {

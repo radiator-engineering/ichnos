@@ -276,6 +276,1257 @@
       "json2": {
         "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"it\\u20acm\",\n      \"attributes\": [\n        {\n          \"name\": \"g_price\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"i_label\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"g_price\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"h_since\",\n          \"type\": \"date\"\n        },\n        {\n          \"name\": \"i_label\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"pick\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"b_int\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"c_text\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"d_date\",\n          \"type\": \"date\"\n        },\n        {\n          \"name\": \"e_mixed\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"f_bool\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"place order\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"b_int\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"c_text\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"d_date\",\n          \"type\": \"date\"\n        },\n        {\n          \"name\": \"e_mixed\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"f_bool\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"ship & <go>\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"b_int\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"c_text\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"f_bool\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"g_price\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 12.0\n        },\n        {\n          \"name\": \"h_since\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"2021-12-31T23:00:00Z\"\n        },\n        {\n          \"name\": \"i_label\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"big\"\n        }\n      ]\n    },\n    {\n      \"id\": \"i<1>\",\n      \"type\": \"it\\u20acm\",\n      \"attributes\": [\n        {\n          \"name\": \"i_label\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"a\\\"b\"\n        }\n      ]\n    },\n    {\n      \"id\": \"i2\",\n      \"type\": \"it\\u20acm\",\n      \"attributes\": [\n        {\n          \"name\": \"g_price\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 0.1\n        }\n      ]\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"place order\",\n      \"time\": \"2022-01-01T10:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"value\": 1e+16\n        },\n        {\n          \"name\": \"b_int\",\n          \"value\": 3\n        },\n        {\n          \"name\": \"c_text\",\n          \"value\": \"\\u00dcn\\u00efc\\u00f6d\\u00e9 & <tag> \\\"q\\\" 's'\\n\\ttab\\r\"\n        },\n        {\n          \"name\": \"d_date\",\n          \"value\": \"2022-01-02T03:04:05Z\"\n        },\n        {\n          \"name\": \"e_mixed\",\n          \"value\": \"x\"\n        },\n        {\n          \"name\": \"f_bool\",\n          \"value\": true\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i<1>\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"pick\",\n      \"time\": \"2022-01-01T11:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"value\": 1.5e-07\n        },\n        {\n          \"name\": \"b_int\",\n          \"value\": -4\n        },\n        {\n          \"name\": \"c_text\",\n          \"value\": \"\\u65e5\\u672c \\ud83d\\ude00 \\u2028\"\n        },\n        {\n          \"name\": \"e_mixed\",\n          \"value\": 2.5\n        },\n        {\n          \"name\": \"f_bool\",\n          \"value\": false\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i<1>\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"pick\",\n      \"time\": \"2022-01-02T00:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"value\": 0.0001\n        },\n        {\n          \"name\": \"b_int\",\n          \"value\": 5\n        },\n        {\n          \"name\": \"d_date\",\n          \"value\": \"2022-01-03T00:00:00Z\"\n        },\n        {\n          \"name\": \"e_mixed\",\n          \"value\": 7\n        },\n        {\n          \"name\": \"f_bool\",\n          \"value\": true\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"ship & <go>\",\n      \"time\": \"2022-01-03T00:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"a_float\",\n          \"value\": 123456789.125\n        },\n        {\n          \"name\": \"b_int\",\n          \"value\": 0\n        },\n        {\n          \"name\": \"c_text\",\n          \"value\": \"\"\n        },\n        {\n          \"name\": \"f_bool\",\n          \"value\": false\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    }\n  ]\n}"
       },
+      "sqlite": {
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    1e+16
+                  ],
+                  "b_int": [
+                    "int",
+                    3
+                  ],
+                  "c_text": [
+                    "string",
+                    "Ünïcödé & <tag> \"q\" 's'\n\ttab\r"
+                  ],
+                  "d_date": [
+                    "string",
+                    "2022-01-02 03:04:05.500000+00:00"
+                  ],
+                  "e_mixed": [
+                    "string",
+                    "x"
+                  ],
+                  "f_bool": [
+                    "int",
+                    1
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    1.5e-07
+                  ],
+                  "b_int": [
+                    "int",
+                    -4
+                  ],
+                  "c_text": [
+                    "string",
+                    "日本 😀  "
+                  ],
+                  "e_mixed": [
+                    "string",
+                    "2.5"
+                  ],
+                  "f_bool": [
+                    "int",
+                    0
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-01T11:00:00.000000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    0.0001
+                  ],
+                  "b_int": [
+                    "int",
+                    5
+                  ],
+                  "d_date": [
+                    "string",
+                    "2022-01-03 00:00:00+00:00"
+                  ],
+                  "e_mixed": [
+                    "string",
+                    "7"
+                  ],
+                  "f_bool": [
+                    "int",
+                    1
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-02T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "ship & <go>",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    123456789.125
+                  ],
+                  "b_int": [
+                    "int",
+                    0
+                  ],
+                  "c_text": [
+                    "string",
+                    ""
+                  ],
+                  "f_bool": [
+                    "int",
+                    0
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2022-01-03T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {
+                  "g_price": [
+                    "float",
+                    12.0
+                  ],
+                  "h_since": [
+                    "string",
+                    "2021-12-31 23:00:00+00:00"
+                  ],
+                  "i_label": [
+                    "string",
+                    "big"
+                  ]
+                },
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {
+                  "i_label": [
+                    "string",
+                    "a\"b"
+                  ]
+                },
+                "id": "i<1>",
+                "type": "it€m"
+              },
+              {
+                "attributes": {
+                  "g_price": [
+                    "float",
+                    0.1
+                  ]
+                },
+                "id": "i2",
+                "type": "it€m"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i<1>",
+                "qualifier": "",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "pick",
+                "event": "e2",
+                "object": "i<1>",
+                "qualifier": "",
+                "timestamp": "2022-01-01T11:00:00.000000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "pick",
+                "event": "e3",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "2022-01-02T00:00:00.000000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "ship & <go>",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-03T00:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": [
+          {
+            "name": "EVENTS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-01 10:00:00.250000+00:00"
+                ],
+                [
+                  "real",
+                  1e+16
+                ],
+                [
+                  "integer",
+                  3
+                ],
+                [
+                  "text",
+                  "Ünïcödé & <tag> \"q\" 's'\n\ttab\r"
+                ],
+                [
+                  "text",
+                  "2022-01-02 03:04:05.500000+00:00"
+                ],
+                [
+                  "text",
+                  "x"
+                ],
+                [
+                  "integer",
+                  1
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-01 11:00:00+00:00"
+                ],
+                [
+                  "real",
+                  1.5e-07
+                ],
+                [
+                  "integer",
+                  -4
+                ],
+                [
+                  "text",
+                  "日本 😀  "
+                ],
+                null,
+                [
+                  "text",
+                  "2.5"
+                ],
+                [
+                  "integer",
+                  0
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-02 00:00:00+00:00"
+                ],
+                [
+                  "real",
+                  0.0001
+                ],
+                [
+                  "integer",
+                  5
+                ],
+                null,
+                [
+                  "text",
+                  "2022-01-03 00:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "7"
+                ],
+                [
+                  "integer",
+                  1
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship & <go>"
+                ],
+                [
+                  "text",
+                  "2022-01-03 00:00:00+00:00"
+                ],
+                [
+                  "real",
+                  123456789.125
+                ],
+                [
+                  "integer",
+                  0
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                null,
+                null,
+                [
+                  "integer",
+                  0
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"EVENTS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"a_float\" REAL,\n  \"b_int\" INTEGER,\n  \"c_text\" TEXT,\n  \"d_date\" TIMESTAMP,\n  \"e_mixed\" TEXT,\n  \"f_bool\" INTEGER\n)",
+            "type": "table"
+          },
+          {
+            "name": "RELATIONS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-01 10:00:00.250000+00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-01 10:00:00.250000+00:00"
+                ],
+                [
+                  "text",
+                  "i<1>"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-01 10:00:00.250000+00:00"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-01 11:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "i<1>"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-02 00:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship & <go>"
+                ],
+                [
+                  "text",
+                  "2022-01-03 00:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"RELATIONS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"ocel:qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "OBJECTS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "real",
+                  12.0
+                ],
+                [
+                  "text",
+                  "2021-12-31 23:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "big"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i<1>"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ],
+                null,
+                null,
+                [
+                  "text",
+                  "a\"b"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ],
+                [
+                  "real",
+                  0.1
+                ],
+                null,
+                null
+              ]
+            ],
+            "sql": "CREATE TABLE \"OBJECTS\" (\n\"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"g_price\" REAL,\n  \"h_since\" TIMESTAMP,\n  \"i_label\" TEXT\n)",
+            "type": "table"
+          }
+        ]
+      },
+      "sqlite2": {
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    1e+16
+                  ],
+                  "b_int": [
+                    "int",
+                    3
+                  ],
+                  "c_text": [
+                    "string",
+                    "Ünïcödé & <tag> \"q\" 's'\n\ttab\r"
+                  ],
+                  "d_date": [
+                    "string",
+                    "2022-01-02 03:04:05.500000+00:00"
+                  ],
+                  "e_mixed": [
+                    "string",
+                    "x"
+                  ],
+                  "f_bool": [
+                    "int",
+                    1
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    1.5e-07
+                  ],
+                  "b_int": [
+                    "int",
+                    -4
+                  ],
+                  "c_text": [
+                    "string",
+                    "日本 😀  "
+                  ],
+                  "e_mixed": [
+                    "float",
+                    2.5
+                  ],
+                  "f_bool": [
+                    "int",
+                    0
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-01T11:00:00.000000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    0.0001
+                  ],
+                  "b_int": [
+                    "int",
+                    5
+                  ],
+                  "d_date": [
+                    "string",
+                    "2022-01-03 00:00:00+00:00"
+                  ],
+                  "e_mixed": [
+                    "float",
+                    7.0
+                  ],
+                  "f_bool": [
+                    "int",
+                    1
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-02T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "ship & <go>",
+                "attributes": {
+                  "a_float": [
+                    "float",
+                    123456789.125
+                  ],
+                  "b_int": [
+                    "int",
+                    0
+                  ],
+                  "c_text": [
+                    "string",
+                    ""
+                  ],
+                  "f_bool": [
+                    "int",
+                    0
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2022-01-03T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {
+                  "i_label": [
+                    "string",
+                    "a\"b"
+                  ]
+                },
+                "id": "i<1>",
+                "type": "it€m"
+              },
+              {
+                "attributes": {
+                  "g_price": [
+                    "float",
+                    0.1
+                  ]
+                },
+                "id": "i2",
+                "type": "it€m"
+              },
+              {
+                "attributes": {
+                  "g_price": [
+                    "float",
+                    12.0
+                  ],
+                  "h_since": [
+                    "string",
+                    "2021-12-31 23:00:00+00:00"
+                  ],
+                  "i_label": [
+                    "string",
+                    "big"
+                  ]
+                },
+                "id": "o1",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i<1>",
+                "qualifier": "",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "2022-01-01T10:00:00.250000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "pick",
+                "event": "e2",
+                "object": "i<1>",
+                "qualifier": "",
+                "timestamp": "2022-01-01T11:00:00.000000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "pick",
+                "event": "e3",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "2022-01-02T00:00:00.000000+00:00",
+                "type": "it€m"
+              },
+              {
+                "activity": "ship & <go>",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-03T00:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": [
+          {
+            "name": "event",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship & <go>"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event\" (\n\"ocel_id\" TEXT,\n  \"ocel_type\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i<1>"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "it€m"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object\" (\n\"ocel_id\" TEXT,\n  \"ocel_type\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_map_type",
+            "rows": [
+              [
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "Pick"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "PlaceOrder"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "ship & <go>"
+                ],
+                [
+                  "text",
+                  "Shipgo"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_map_type\" (\n\"ocel_type\" TEXT,\n  \"ocel_type_map\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_map_type",
+            "rows": [
+              [
+                [
+                  "text",
+                  "it€m"
+                ],
+                [
+                  "text",
+                  "Itm"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  "Order"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_map_type\" (\n\"ocel_type\" TEXT,\n  \"ocel_type_map\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "i<1>"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "i<1>"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_object\" (\n\"ocel_event_id\" TEXT,\n  \"ocel_object_id\" TEXT,\n  \"ocel_qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_object",
+            "rows": [],
+            "sql": "CREATE TABLE \"object_object\" (\n\"ocel_source_id\" REAL,\n  \"ocel_target_id\" REAL,\n  \"ocel_qualifier\" REAL\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_Pick",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-01 11:00:00+00:00"
+                ],
+                [
+                  "real",
+                  1.5e-07
+                ],
+                [
+                  "integer",
+                  -4
+                ],
+                [
+                  "text",
+                  "日本 😀  "
+                ],
+                null,
+                [
+                  "real",
+                  2.5
+                ],
+                [
+                  "integer",
+                  0
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-02 00:00:00+00:00"
+                ],
+                [
+                  "real",
+                  0.0001
+                ],
+                [
+                  "integer",
+                  5
+                ],
+                null,
+                [
+                  "text",
+                  "2022-01-03 00:00:00+00:00"
+                ],
+                [
+                  "real",
+                  7.0
+                ],
+                [
+                  "integer",
+                  1
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_Pick\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"a_float\" REAL,\n  \"b_int\" INTEGER,\n  \"c_text\" TEXT,\n  \"d_date\" TIMESTAMP,\n  \"e_mixed\" REAL,\n  \"f_bool\" INTEGER\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_PlaceOrder",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-01 10:00:00.250000+00:00"
+                ],
+                [
+                  "real",
+                  1e+16
+                ],
+                [
+                  "integer",
+                  3
+                ],
+                [
+                  "text",
+                  "Ünïcödé & <tag> \"q\" 's'\n\ttab\r"
+                ],
+                [
+                  "text",
+                  "2022-01-02 03:04:05.500000+00:00"
+                ],
+                [
+                  "text",
+                  "x"
+                ],
+                [
+                  "integer",
+                  1
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_PlaceOrder\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"a_float\" REAL,\n  \"b_int\" INTEGER,\n  \"c_text\" TEXT,\n  \"d_date\" TIMESTAMP,\n  \"e_mixed\" TEXT,\n  \"f_bool\" INTEGER\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_Shipgo",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship & <go>"
+                ],
+                [
+                  "text",
+                  "2022-01-03 00:00:00+00:00"
+                ],
+                [
+                  "real",
+                  123456789.125
+                ],
+                [
+                  "integer",
+                  0
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "integer",
+                  0
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_Shipgo\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"a_float\" REAL,\n  \"b_int\" INTEGER,\n  \"c_text\" TEXT,\n  \"f_bool\" INTEGER\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_Itm",
+            "rows": [
+              [
+                [
+                  "text",
+                  "i<1>"
+                ],
+                null,
+                [
+                  "text",
+                  "a\"b"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "real",
+                  0.1
+                ],
+                null
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_Itm\" (\n\"ocel_id\" TEXT,\n  \"g_price\" REAL,\n  \"i_label\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_Order",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "real",
+                  12.0
+                ],
+                [
+                  "text",
+                  "2021-12-31 23:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "big"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_Order\" (\n\"ocel_id\" TEXT,\n  \"g_price\" REAL,\n  \"h_since\" TIMESTAMP,\n  \"i_label\" TEXT\n)",
+            "type": "table"
+          }
+        ]
+      },
       "xml": {
         "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"none\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"none\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"a_float\"/>\n      <string key=\"attribute-name\" value=\"b_int\"/>\n      <string key=\"attribute-name\" value=\"c_text\"/>\n      <string key=\"attribute-name\" value=\"d_date\"/>\n      <string key=\"attribute-name\" value=\"e_mixed\"/>\n      <string key=\"attribute-name\" value=\"f_bool\"/>\n      <string key=\"attribute-name\" value=\"g_price\"/>\n      <string key=\"attribute-name\" value=\"h_since\"/>\n      <string key=\"attribute-name\" value=\"i_label\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"it€m\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <string key=\"activity\" value=\"place order\"/>\n      <date key=\"timestamp\" value=\"2022-01-01T10:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i&lt;1&gt;\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"a_float\" value=\"1e+16\"/>\n        <string key=\"b_int\" value=\"3\"/>\n        <string key=\"c_text\" value=\"Ünïcödé &amp; &lt;tag&gt; &quot;q&quot; 's'&#10;&#9;tab&#13;\"/>\n        <date key=\"d_date\" value=\"2022-01-02T03:04:05Z\"/>\n        <string key=\"e_mixed\" value=\"x\"/>\n        <string key=\"f_bool\" value=\"True\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <string key=\"activity\" value=\"pick\"/>\n      <date key=\"timestamp\" value=\"2022-01-01T11:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i&lt;1&gt;\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"a_float\" value=\"1.5e-07\"/>\n        <string key=\"b_int\" value=\"-4\"/>\n        <string key=\"c_text\" value=\"日本 😀  \"/>\n        <string key=\"e_mixed\" value=\"2.5\"/>\n        <string key=\"f_bool\" value=\"False\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <string key=\"activity\" value=\"pick\"/>\n      <date key=\"timestamp\" value=\"2022-01-02T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i2\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"a_float\" value=\"0.0001\"/>\n        <string key=\"b_int\" value=\"5\"/>\n        <date key=\"d_date\" value=\"2022-01-03T00:00:00Z\"/>\n        <string key=\"e_mixed\" value=\"7\"/>\n        <string key=\"f_bool\" value=\"True\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <string key=\"activity\" value=\"ship &amp; &lt;go&gt;\"/>\n      <date key=\"timestamp\" value=\"2022-01-03T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"a_float\" value=\"123456789.125\"/>\n        <string key=\"b_int\" value=\"0\"/>\n        <string key=\"c_text\" value=\"\"/>\n        <string key=\"f_bool\" value=\"False\"/>\n      </list>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\">\n        <float key=\"g_price\" value=\"12.0\"/>\n        <date key=\"h_since\" value=\"2021-12-31T23:00:00Z\"/>\n        <string key=\"i_label\" value=\"big\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i&lt;1&gt;\"/>\n      <string key=\"type\" value=\"it€m\"/>\n      <list key=\"ovmap\">\n        <string key=\"i_label\" value=\"a&quot;b\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i2\"/>\n      <string key=\"type\" value=\"it€m\"/>\n      <list key=\"ovmap\">\n        <float key=\"g_price\" value=\"0.1\"/>\n      </list>\n    </object>\n  </objects>\n</log>\n"
       },
@@ -295,7 +1546,11 @@
       "pm4py.write_ocel2_json",
       "pm4py.write_ocel2_xml",
       "pm4py.write_ocel2_csv",
-      "pm4py.write_ocel_csv"
+      "pm4py.write_ocel_csv",
+      "pm4py.write_ocel_sqlite",
+      "pm4py.write_ocel2_sqlite",
+      "pm4py.read_ocel_sqlite",
+      "pm4py.read_ocel2_sqlite"
     ],
     "loaders": {},
     "params": {},

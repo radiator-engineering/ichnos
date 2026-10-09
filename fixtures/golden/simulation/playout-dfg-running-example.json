@@ -1,0 +1,324 @@
+{
+  "expected": {
+    "ends": {
+      "pay compensation": 3,
+      "reject request": 3
+    },
+    "graph": [
+      [
+        "check ticket",
+        "decide",
+        6
+      ],
+      [
+        "check ticket",
+        "examine casually",
+        2
+      ],
+      [
+        "check ticket",
+        "examine thoroughly",
+        1
+      ],
+      [
+        "decide",
+        "pay compensation",
+        3
+      ],
+      [
+        "decide",
+        "reinitiate request",
+        3
+      ],
+      [
+        "decide",
+        "reject request",
+        3
+      ],
+      [
+        "examine casually",
+        "check ticket",
+        4
+      ],
+      [
+        "examine casually",
+        "decide",
+        2
+      ],
+      [
+        "examine thoroughly",
+        "check ticket",
+        2
+      ],
+      [
+        "examine thoroughly",
+        "decide",
+        1
+      ],
+      [
+        "register request",
+        "check ticket",
+        2
+      ],
+      [
+        "register request",
+        "examine casually",
+        3
+      ],
+      [
+        "register request",
+        "examine thoroughly",
+        1
+      ],
+      [
+        "reinitiate request",
+        "check ticket",
+        1
+      ],
+      [
+        "reinitiate request",
+        "examine casually",
+        1
+      ],
+      [
+        "reinitiate request",
+        "examine thoroughly",
+        1
+      ]
+    ],
+    "starts": {
+      "register request": 6
+    },
+    "variants": [
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.07407407407407407
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.07407407407407407
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.07407407407407407
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.07407407407407407
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.055555555555555566
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.055555555555555566
+      },
+      {
+        "activities": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.02469135802469135
+      },
+      {
+        "activities": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.02469135802469135
+      },
+      {
+        "activities": [
+          "register request",
+          "examine thoroughly",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.018518518518518517
+      },
+      {
+        "activities": [
+          "register request",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.018518518518518517
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.010973936899862818
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.010973936899862818
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.010973936899862818
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.010973936899862818
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.008230452674897115
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.008230452674897115
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.008230452674897115
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.008230452674897115
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "probability": 0.005486968449931408
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "probability": 0.005486968449931408
+      }
+    ]
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "playout-dfg-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.play_out"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "name": "running-example"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

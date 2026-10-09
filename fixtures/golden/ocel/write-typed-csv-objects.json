@@ -231,6 +231,1145 @@
       "json2": {
         "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"since\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"price\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"since\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"pick\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"place order\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"repeat\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"ship\",\n      \"attributes\": []\n    },\n    {\n      \"name\": \"short row\",\n      \"attributes\": []\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"price\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"12.5\"\n        },\n        {\n          \"name\": \"since\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"2022-01-01\"\n        }\n      ]\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"item\"\n    },\n    {\n      \"id\": \"i'2\",\n      \"type\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"since\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"x\"\n        }\n      ]\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"place order\",\n      \"time\": \"2022-01-09T14:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": \"10\"\n        },\n        {\n          \"name\": \"note\",\n          \"value\": \"first\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i'2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"pick\",\n      \"time\": \"2022-01-09T14:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": \"2.5\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i'2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"pick\",\n      \"time\": \"2022-01-09T15:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"note\",\n          \"value\": \"a,b\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"ship\",\n      \"time\": \"2022-01-10T08:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e10\",\n      \"type\": \"repeat\",\n      \"time\": \"2022-01-12T00:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e8\",\n      \"type\": \"short row\",\n      \"time\": \"2022-01-12T01:00:00Z\"\n    }\n  ]\n}"
       },
+      "sqlite": {
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "cost": [
+                    "string",
+                    "10"
+                  ],
+                  "note": [
+                    "string",
+                    "first"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "cost": [
+                    "string",
+                    "2.5"
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "note": [
+                    "string",
+                    "a,b"
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00"
+              },
+              {
+                "activity": "ship",
+                "attributes": {},
+                "id": "e4",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00"
+              },
+              {
+                "activity": "repeat",
+                "attributes": {},
+                "id": "e10",
+                "timestamp": "2022-01-12T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {
+                  "price": [
+                    "string",
+                    "12.5"
+                  ],
+                  "since": [
+                    "string",
+                    "2022-01-01"
+                  ]
+                },
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {},
+                "id": "i1",
+                "type": "item"
+              },
+              {
+                "attributes": {
+                  "since": [
+                    "string",
+                    "x"
+                  ]
+                },
+                "id": "i'2",
+                "type": "item"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i'2",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick",
+                "event": "e3",
+                "object": "i'2",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick",
+                "event": "e2",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "ship",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "repeat",
+                "event": "e10",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-12T00:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": [
+          {
+            "name": "EVENTS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00"
+                ],
+                [
+                  "text",
+                  "10"
+                ],
+                [
+                  "text",
+                  "first"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00"
+                ],
+                [
+                  "text",
+                  "2.5"
+                ],
+                null
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-09 15:30:00"
+                ],
+                null,
+                [
+                  "text",
+                  "a,b"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "2022-01-10 08:00:00"
+                ],
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "e10"
+                ],
+                [
+                  "text",
+                  "repeat"
+                ],
+                [
+                  "text",
+                  "2022-01-12 00:00:00"
+                ],
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "e8"
+                ],
+                [
+                  "text",
+                  "short row"
+                ],
+                [
+                  "text",
+                  "2022-01-12 01:00:00"
+                ],
+                null,
+                null
+              ]
+            ],
+            "sql": "CREATE TABLE \"EVENTS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"cost\" TEXT,\n  \"note\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "RELATIONS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00"
+                ],
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00"
+                ],
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-09 15:30:00"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "2022-01-10 08:00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e10"
+                ],
+                [
+                  "text",
+                  "repeat"
+                ],
+                [
+                  "text",
+                  "2022-01-12 00:00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"RELATIONS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"ocel:qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "OBJECTS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  "12.5"
+                ],
+                [
+                  "text",
+                  "2022-01-01"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                null,
+                [
+                  "text",
+                  "x"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"OBJECTS\" (\n\"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"price\" TEXT,\n  \"since\" TEXT\n)",
+            "type": "table"
+          }
+        ]
+      },
+      "sqlite2": {
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "cost": [
+                    "string",
+                    "10"
+                  ],
+                  "note": [
+                    "string",
+                    "first"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "cost": [
+                    "string",
+                    "2.5"
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "pick",
+                "attributes": {
+                  "note": [
+                    "string",
+                    "a,b"
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00"
+              },
+              {
+                "activity": "ship",
+                "attributes": {},
+                "id": "e4",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00"
+              },
+              {
+                "activity": "repeat",
+                "attributes": {},
+                "id": "e10",
+                "timestamp": "2022-01-12T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "i1",
+                "type": "item"
+              },
+              {
+                "attributes": {
+                  "since": [
+                    "string",
+                    "x"
+                  ]
+                },
+                "id": "i'2",
+                "type": "item"
+              },
+              {
+                "attributes": {
+                  "price": [
+                    "string",
+                    "12.5"
+                  ],
+                  "since": [
+                    "string",
+                    "2022-01-01"
+                  ]
+                },
+                "id": "o1",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i'2",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick",
+                "event": "e3",
+                "object": "i'2",
+                "qualifier": "",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick",
+                "event": "e2",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "2022-01-09T15:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "ship",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "repeat",
+                "event": "e10",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2022-01-12T00:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": [
+          {
+            "name": "event",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e10"
+                ],
+                [
+                  "text",
+                  "repeat"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e8"
+                ],
+                [
+                  "text",
+                  "short row"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event\" (\n\"ocel_id\" TEXT,\n  \"ocel_type\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  "item"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object\" (\n\"ocel_id\" TEXT,\n  \"ocel_type\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_map_type",
+            "rows": [
+              [
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "Pick"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "PlaceOrder"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "repeat"
+                ],
+                [
+                  "text",
+                  "Repeat"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "Ship"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "short row"
+                ],
+                [
+                  "text",
+                  "ShortRow"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_map_type\" (\n\"ocel_type\" TEXT,\n  \"ocel_type_map\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_map_type",
+            "rows": [
+              [
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  "Item"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  "Order"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_map_type\" (\n\"ocel_type\" TEXT,\n  \"ocel_type_map\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e10"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_object\" (\n\"ocel_event_id\" TEXT,\n  \"ocel_object_id\" TEXT,\n  \"ocel_qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_object",
+            "rows": [],
+            "sql": "CREATE TABLE \"object_object\" (\n\"ocel_source_id\" REAL,\n  \"ocel_target_id\" REAL,\n  \"ocel_qualifier\" REAL\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_Pick",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00"
+                ],
+                [
+                  "text",
+                  "2.5"
+                ],
+                null
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick"
+                ],
+                [
+                  "text",
+                  "2022-01-09 15:30:00"
+                ],
+                null,
+                [
+                  "text",
+                  "a,b"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_Pick\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"cost\" TEXT,\n  \"note\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_PlaceOrder",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00"
+                ],
+                [
+                  "text",
+                  "10"
+                ],
+                [
+                  "text",
+                  "first"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_PlaceOrder\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"cost\" TEXT,\n  \"note\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_Repeat",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e10"
+                ],
+                [
+                  "text",
+                  "repeat"
+                ],
+                [
+                  "text",
+                  "2022-01-12 00:00:00"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_Repeat\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_Ship",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "2022-01-10 08:00:00"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_Ship\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_ShortRow",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e8"
+                ],
+                [
+                  "text",
+                  "short row"
+                ],
+                [
+                  "text",
+                  "2022-01-12 01:00:00"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_ShortRow\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_Item",
+            "rows": [
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                null
+              ],
+              [
+                [
+                  "text",
+                  "i'2"
+                ],
+                [
+                  "text",
+                  "x"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_Item\" (\n\"ocel_id\" TEXT,\n  \"since\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_Order",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "12.5"
+                ],
+                [
+                  "text",
+                  "2022-01-01"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_Order\" (\n\"ocel_id\" TEXT,\n  \"price\" TEXT,\n  \"since\" TEXT\n)",
+            "type": "table"
+          }
+        ]
+      },
       "xml": {
         "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"cost\"/>\n      <string key=\"attribute-name\" value=\"note\"/>\n      <string key=\"attribute-name\" value=\"price\"/>\n      <string key=\"attribute-name\" value=\"since\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"item\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <string key=\"activity\" value=\"place order\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i'2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"cost\" value=\"10\"/>\n        <string key=\"note\" value=\"first\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <string key=\"activity\" value=\"pick\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i'2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"cost\" value=\"2.5\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <string key=\"activity\" value=\"pick\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T15:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"note\" value=\"a,b\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <string key=\"activity\" value=\"ship\"/>\n      <date key=\"timestamp\" value=\"2022-01-10T08:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e10\"/>\n      <string key=\"activity\" value=\"repeat\"/>\n      <date key=\"timestamp\" value=\"2022-01-12T00:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e8\"/>\n      <string key=\"activity\" value=\"short row\"/>\n      <date key=\"timestamp\" value=\"2022-01-12T01:00:00Z\"/>\n      <list key=\"omap\"/>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\">\n        <string key=\"price\" value=\"12.5\"/>\n        <string key=\"since\" value=\"2022-01-01\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i'2\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\">\n        <string key=\"since\" value=\"x\"/>\n      </list>\n    </object>\n  </objects>\n</log>\n"
       },
@@ -253,7 +1392,11 @@
       "pm4py.write_ocel2_json",
       "pm4py.write_ocel2_xml",
       "pm4py.write_ocel2_csv",
-      "pm4py.write_ocel_csv"
+      "pm4py.write_ocel_csv",
+      "pm4py.write_ocel_sqlite",
+      "pm4py.write_ocel2_sqlite",
+      "pm4py.read_ocel_sqlite",
+      "pm4py.read_ocel2_sqlite"
     ],
     "loaders": {
       "log": {

@@ -1,9 +1,13 @@
-//! The OCEL JSON, XML and CSV readers against pm4py's.
+//! The OCEL JSON, XML, CSV and SQLite readers against pm4py's.
 //!
 //! The `ocel/model-*` goldens hold the tables pm4py's readers give for each
 //! fixture. This test reads the same fixtures and compares every table. The
 //! `ocel/read-csv*` goldens hold the tables, or pm4py's error, for short CSV
-//! texts. Goldens record times to the microsecond, so the test truncates
+//! texts, and the `ocel/read-sqlite*` goldens the same for databases built
+//! from short SQL scripts. Each `ocel/write-*` golden also holds the
+//! databases pm4py's SQLite writers give and what pm4py's SQLite readers
+//! read from them; the test rebuilds each database and reads it. Goldens
+//! record times to the microsecond, so the test truncates
 //! ichnos' nanoseconds.
 
 use std::path::Path;
@@ -13,8 +17,8 @@ use ichnos_core::AttributeValue;
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
     OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_csv_from_reader, read_ocel_json,
-    read_ocel_json_from_reader, read_ocel_xml, read_ocel2, read_ocel2_csv,
-    read_ocel2_csv_from_reader, read_ocel2_json, read_ocel2_xml,
+    read_ocel_json_from_reader, read_ocel_sqlite, read_ocel_xml, read_ocel2, read_ocel2_csv,
+    read_ocel2_csv_from_reader, read_ocel2_json, read_ocel2_sqlite, read_ocel2_xml,
 };
 use ichnos_ocel::Ocel;
 use serde_json::Value;
@@ -208,6 +212,10 @@ fn readers_match_pm4py() {
             (ocel, true)
         } else if functions.contains(&"pm4py.read_ocel2_csv") {
             (read_ocel2_csv(path), true)
+        } else if functions.contains(&"pm4py.read_ocel_sqlite") {
+            (read_ocel_sqlite(path), true)
+        } else if functions.contains(&"pm4py.read_ocel2_sqlite") {
+            (read_ocel2_sqlite(path), true)
         } else if functions.contains(&"pm4py.read_ocel_json") {
             (read_ocel_json(path), true)
         } else if functions.contains(&"pm4py.read_ocel_xml") {
@@ -225,7 +233,7 @@ fn readers_match_pm4py() {
         check(&ocel, &g.expected["ocel"], &id, in_order, xml);
         checked += 1;
     }
-    assert_eq!(checked, 12, "fixtures checked");
+    assert_eq!(checked, 15, "fixtures checked");
 }
 
 /// The log with its objects in the golden's order, where the golden has the
@@ -280,6 +288,125 @@ fn csv_texts_match_pm4py() {
         }
     }
     assert!(checked > 100, "{checked} texts");
+}
+
+/// A new database path in the temporary directory.
+fn temp_db(name: &str) -> std::path::PathBuf {
+    let path = std::env::temp_dir().join(format!(
+        "ichnos-ocel-read-{}-{name}.sqlite",
+        std::process::id()
+    ));
+    let _ = std::fs::remove_file(&path);
+    path
+}
+
+/// Where pm4py reads a database and ichnos refuses it, as listed under
+/// Behaviour changes: timestamps stored as integers.
+const SQLITE_REFUSED: &[&str] = &["ts-integer"];
+
+/// The `read-sqlite-scripts` and `read-sqlite2-scripts` goldens: each SQL
+/// script builds a database, which gives pm4py's tables or an error.
+#[test]
+fn sqlite_scripts_match_pm4py() {
+    type Read = fn(&Path) -> ichnos_io::Result<Ocel>;
+    let readers: [(&str, Read); 2] = [
+        ("read-sqlite-scripts", |p| read_ocel_sqlite(p)),
+        ("read-sqlite2-scripts", |p| read_ocel2_sqlite(p)),
+    ];
+    let mut checked = 0;
+    for (id, read) in readers {
+        let g = golden("ocel", id);
+        for (name, case) in g.expected["cases"].as_object().unwrap() {
+            let what = format!("{id} {name}");
+            let path = temp_db(&format!("{id}-{name}"));
+            rusqlite::Connection::open(&path)
+                .unwrap()
+                .execute_batch(case["script"].as_str().unwrap())
+                .unwrap();
+            let result = read(&path);
+            if case.get("error").is_some() {
+                assert!(result.is_err(), "{what}: pm4py raises {}", case["error"]);
+            } else if SQLITE_REFUSED.contains(&name.as_str()) {
+                assert!(result.is_err(), "{what}: refused");
+            } else {
+                let ocel = result.unwrap_or_else(|e| panic!("{what}: {e}"));
+                check(&ocel, &case["ocel"], &what, true, false);
+            }
+            std::fs::remove_file(&path).unwrap();
+            checked += 1;
+        }
+    }
+    assert!(checked > 20, "{checked} scripts");
+}
+
+/// A golden cell: `null` or `[storage class, value]`.
+fn sql_value(cell: &Value) -> rusqlite::types::Value {
+    use rusqlite::types::Value as Sql;
+    let Some(pair) = cell.as_array() else {
+        return Sql::Null;
+    };
+    match pair[0].as_str().unwrap() {
+        "integer" => Sql::Integer(pair[1].as_i64().unwrap()),
+        "real" => Sql::Real(pair[1].as_f64().unwrap()),
+        "text" => Sql::Text(pair[1].as_str().unwrap().into()),
+        other => panic!("cell type {other}"),
+    }
+}
+
+/// Rebuilds a database from a golden's dump of it.
+fn build_db(path: &Path, tables: &Value) {
+    let conn = rusqlite::Connection::open(path).unwrap();
+    for t in tables.as_array().unwrap() {
+        conn.execute(t["sql"].as_str().unwrap(), []).unwrap();
+        let name = t["name"].as_str().unwrap().replace('"', "\"\"");
+        for row in t["rows"].as_array().unwrap() {
+            let cells: Vec<_> = row.as_array().unwrap().iter().map(sql_value).collect();
+            let marks = vec!["?"; cells.len()].join(",");
+            conn.execute(
+                &format!("INSERT INTO \"{name}\" VALUES ({marks})"),
+                rusqlite::params_from_iter(cells),
+            )
+            .unwrap();
+        }
+    }
+}
+
+/// pm4py's SQLite writers' databases, rebuilt from the `write-*` goldens,
+/// read as pm4py's SQLite readers read them.
+#[test]
+fn sqlite_files_of_pm4py_read_back() {
+    type Read = fn(&Path) -> ichnos_io::Result<Ocel>;
+    let readers: [(&str, Read); 2] = [
+        ("sqlite", |p| read_ocel_sqlite(p)),
+        ("sqlite2", |p| read_ocel2_sqlite(p)),
+    ];
+    let mut checked = 0;
+    for id in cases("ocel")
+        .into_iter()
+        .filter(|c| c.starts_with("write-"))
+    {
+        let g = golden("ocel", &id);
+        for (name, read) in readers {
+            let want = &g.expected["writers"][name];
+            if want.get("error").is_some() {
+                continue;
+            }
+            let what = format!("{id} {name}");
+            let path = temp_db(&format!("{id}-{name}"));
+            build_db(&path, &want["tables"]);
+            let result = read(&path);
+            let reread = &want["reread"];
+            if reread.get("error").is_some() {
+                assert!(result.is_err(), "{what}: pm4py raises {}", reread["error"]);
+            } else {
+                let ocel = result.unwrap_or_else(|e| panic!("{what}: {e}"));
+                check(&ocel, &reread["ocel"], &what, true, false);
+            }
+            std::fs::remove_file(&path).unwrap();
+            checked += 1;
+        }
+    }
+    assert_eq!(checked, 36);
 }
 
 /// Objects tables where ichnos returns an error and pm4py reads objects
@@ -412,6 +539,22 @@ fn dispatch_follows_pm4py() {
         read_ocel2(&path, &options).unwrap(),
         read_ocel2_csv(&csv2).unwrap()
     );
+    // SQLite: `.sqlite` for OCEL 1.0, any name ending in `sqlite` for 2.0.
+    let db = golden("ocel", "model-ocel20-example-sqlite").fixture("log");
+    let path = dir.join("c.SQLITE");
+    std::fs::copy(&db, &path).unwrap();
+    assert_eq!(
+        read_ocel2(&path, &options).unwrap(),
+        read_ocel2_sqlite(&db).unwrap()
+    );
+    let db = golden("ocel", "model-example-log-sqlite").fixture("log");
+    let path = dir.join("d.sqlite");
+    std::fs::copy(&db, &path).unwrap();
+    assert_eq!(
+        read_ocel(&path, &options).unwrap(),
+        read_ocel_sqlite(&db).unwrap()
+    );
+    assert!(read_ocel(dir.join("d.db"), &options).is_err());
     assert!(read_ocel2(dir.join("b.txt"), &options).is_err());
     std::fs::remove_dir_all(&dir).unwrap();
 }

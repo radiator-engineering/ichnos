@@ -1,0 +1,489 @@
+{
+  "expected": {
+    "cases": {
+      "empty": {
+        "ocel": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);"
+      },
+      "ids-numbers": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "2.5",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "3",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "1",
+              "object": "3",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "2.5",
+              "object": "3",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES (1,'2022-01-09 14:00:00','a');INSERT INTO EVENTS VALUES (2.5,'2022-01-09 15:00:00','b');INSERT INTO OBJECTS VALUES (3,'t');INSERT INTO RELATIONS VALUES (1,'a','2022-01-09 14:00:00',3,'t',NULL);INSERT INTO RELATIONS VALUES (2.5,'b','2022-01-09 15:00:00',3,'t',NULL);"
+      },
+      "no-objects-table": {
+        "error": "DatabaseError",
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\", \"ocel:timestamp\", \"ocel:activity\");"
+      },
+      "no-qualifier": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\", \"ocel:timestamp\", \"ocel:activity\");CREATE TABLE OBJECTS (\"ocel:oid\", \"ocel:type\");CREATE TABLE RELATIONS (\"ocel:eid\", \"ocel:activity\", \"ocel:timestamp\", \"ocel:oid\", \"ocel:type\");INSERT INTO EVENTS VALUES ('e1','2022-01-09 14:00:00','a');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t');"
+      },
+      "ts-date": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-10T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','2022-01-09','a');INSERT INTO EVENTS VALUES ('e2','2022-01-10','b');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');"
+      },
+      "ts-forms": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','2022-01-09T14:00:00Z','a');INSERT INTO EVENTS VALUES ('e2','2022-01-09T13:00:00Z','b');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');"
+      },
+      "ts-garbage": {
+        "error": "DateParseError",
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','soon','a');INSERT INTO EVENTS VALUES ('e2','later','b');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');"
+      },
+      "ts-integer": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "1970-01-01T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "1970-01-01T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1',1,'a');INSERT INTO EVENTS VALUES ('e2',2,'b');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');"
+      },
+      "ts-naive-then-offset": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T14:00:00.500000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','2022-01-09 14:00:00','a');INSERT INTO EVENTS VALUES ('e2','2022-01-09T15:00:00.5+01:00','b');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');"
+      },
+      "types": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "f": [
+                  "float",
+                  1.5
+                ],
+                "i": [
+                  "float",
+                  1.0
+                ],
+                "j": [
+                  "int",
+                  1
+                ],
+                "k": [
+                  "float",
+                  1.0
+                ],
+                "m": [
+                  "string",
+                  "x"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {
+                "f": [
+                  "float",
+                  2.0
+                ],
+                "j": [
+                  "int",
+                  2
+                ],
+                "k": [
+                  "float",
+                  2.5
+                ],
+                "m": [
+                  "string",
+                  "3"
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {
+                "oi": [
+                  "int",
+                  7
+                ]
+              },
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT, i INTEGER, j INTEGER, f REAL, m TEXT, n TEXT, k REAL);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT, oi INTEGER, on2 TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','2022-01-09 14:00:00','a',1,1,1.5,'x',NULL,1);INSERT INTO EVENTS VALUES ('e2','2022-01-09 15:00:00','b',NULL,2,2,3,NULL,2.5);INSERT INTO OBJECTS VALUES ('o1','t',7,NULL);INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');"
+      },
+      "unrelated": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "q",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','2022-01-09 14:00:00','a');INSERT INTO EVENTS VALUES ('e2','2022-01-09 15:00:00','b');INSERT INTO EVENTS VALUES ('e3','2022-01-09 16:00:00','c');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO OBJECTS VALUES ('o2','t');INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t','q');INSERT INTO RELATIONS VALUES ('e9','z','2022-01-09 15:00:00','o9','t',NULL);"
+      },
+      "unsorted": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "t"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "t"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00",
+              "type": "t"
+            }
+          ]
+        },
+        "script": "CREATE TABLE EVENTS (\"ocel:eid\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:activity\" TEXT);CREATE TABLE OBJECTS (\"ocel:oid\" TEXT, \"ocel:type\" TEXT);CREATE TABLE RELATIONS (\"ocel:eid\" TEXT, \"ocel:activity\" TEXT, \"ocel:timestamp\" TIMESTAMP, \"ocel:oid\" TEXT, \"ocel:type\" TEXT, \"ocel:qualifier\" TEXT);INSERT INTO EVENTS VALUES ('e1','2022-01-09 16:00:00','a');INSERT INTO EVENTS VALUES ('e2','2022-01-09 15:00:00','b');INSERT INTO OBJECTS VALUES ('o1','t');INSERT INTO RELATIONS VALUES ('e2','b','2022-01-09 15:00:00','o1','t',NULL);INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 16:00:00','o1','t',NULL);"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "read-sqlite-scripts",
+    "fixtures": {},
+    "functions": [
+      "pm4py.read_ocel_sqlite"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

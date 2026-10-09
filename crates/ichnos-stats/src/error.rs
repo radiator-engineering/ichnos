@@ -14,6 +14,28 @@ pub enum Error {
         /// Name of the attribute that cannot be counted.
         key: String,
     },
+    /// A feature table repeats a column name.
+    #[error("duplicate feature column {0}")]
+    DuplicateColumn(String),
+    /// A feature column has the wrong number of rows.
+    #[error("column {column} has {actual} rows, expected {expected}")]
+    ColumnLength {
+        /// Column name.
+        column: String,
+        /// Number of case ids.
+        expected: usize,
+        /// Number of column values.
+        actual: usize,
+    },
+    /// A feature column contains an infinite value.
+    #[error("column {0} contains infinity")]
+    InfiniteColumn(String),
+    /// The aggregation column does not exist.
+    #[error("unknown feature column {0}")]
+    UnknownColumn(String),
+    /// Cube boundaries are not finite, exceed the limit, or have fewer than two distinct values.
+    #[error("at least two distinct finite cube boundaries, at most 10001, required")]
+    InvalidCubeBoundaries,
     /// An option is outside its valid range.
     #[error("invalid option: {0}")]
     InvalidOption(&'static str),
