@@ -184,18 +184,18 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.utils.Shared` | `utils.py` | `ichnos::core::Shared` (planned) | `ichnos-core` | dropped | Python global warning-state holder, not a process-mining API; Rust diagnostics replace it. |
 | `pm4py.utils.is_polars_lazyframe` | `utils.py` | `ichnos::core::is_polars_lazyframe` (planned) | `ichnos-core` | dropped | Python backend type detection; Rust types replace runtime pandas/polars dispatch. |
-| `pm4py.format_dataframe` | `utils.py` → `objects/log/util/dataframe_utils` | `ichnos::core::format_dataframe` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.rebase` | `utils.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/dataframe_utils` | `ichnos::core::rebase` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.format_dataframe` | `utils.py` → `objects/log/util/dataframe_utils` | `ichnos::format_batch` | `ichnos-core` | ported | Arrow `RecordBatch` form. Golden `log/running-example-csv` loads through it. Changes core-20 to core-22. |
+| `pm4py.rebase` | `utils.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/dataframe_utils` | `ichnos::EventLog::rebase`, `ichnos::EventStream::rebase` | `ichnos-core` | ported | Golden `core/rebase-running-example-csv`. |
 | `pm4py.parse_process_tree` | `utils.py` → `objects/process_tree/obj`, `objects/process_tree/utils/generic` | `ichnos::model::parse_process_tree` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.parse_powl_model_string` | `utils.py` → `objects/powl/obj`, `objects/powl/parser` | `ichnos::model::parse_powl_model_string` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.serialize` | `utils.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/obj`, `objects/dfg/exporter/exporter`, `objects/log/exporter/xes/exporter`, `objects/log/obj`, `objects/petri_net/exporter/exporter`, `objects/petri_net/obj`, `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos::core::serialize` (planned) | `ichnos-core` | todo | Variants: classic, etree, etree_xes_exp, line_by_line, pnml, ptml. |
-| `pm4py.deserialize` | `utils.py` → `objects/bpmn/importer/importer`, `objects/dfg/importer/importer`, `objects/log/importer/xes/importer`, `objects/petri_net/importer/importer`, `objects/process_tree/importer/importer` | `ichnos::core::deserialize` (planned) | `ichnos-core` | todo | Variants: chunk_regex, classic, iterparse, iterparse_20, iterparse_mem_compressed, line_by_line, lxml, pnml, ptml, rustxes. |
+| `pm4py.serialize` | `utils.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/obj`, `objects/dfg/exporter/exporter`, `objects/log/exporter/xes/exporter`, `objects/log/obj`, `objects/petri_net/exporter/exporter`, `objects/petri_net/obj`, `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | none | `ichnos-core` | dropped | Each ichnos-io writer (XES, Parquet, Arrow IPC, PNML and others) already returns the bytes, and Rust callers know the type, so a tagged dispatcher adds nothing. See `docs/design.md`. Change core-30. |
+| `pm4py.deserialize` | `utils.py` → `objects/bpmn/importer/importer`, `objects/dfg/importer/importer`, `objects/log/importer/xes/importer`, `objects/petri_net/importer/importer`, `objects/process_tree/importer/importer` | none | `ichnos-core` | dropped | Each ichnos-io reader already reads the bytes into a known type. See `docs/design.md`. Change core-30. |
 | `pm4py.utils.get_properties` | `utils.py` | `ichnos::core::get_properties` (planned) | `ichnos-core` | dropped | Python string-keyed parameter-map adapter; typed Rust options replace it. |
-| `pm4py.set_classifier` | `utils.py` → `objects/log/obj` | `ichnos::core::set_classifier` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.parse_event_log_string` | `utils.py` → `objects/log/obj` | `ichnos::core::parse_event_log_string` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.project_on_event_attribute` | `utils.py` → `objects/log/obj`, `streaming/conversion/from_pandas` | `ichnos::core::project_on_event_attribute` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.sample_cases` | `utils.py` → `objects/log/obj`, `objects/log/util/dataframe_utils`, `objects/log/util/sampling` | `ichnos::core::sample_cases` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.sample_events` | `utils.py` → `objects/log/obj`, `objects/log/util/sampling`, `objects/ocel/obj`, `objects/ocel/util/sampling` | `ichnos::core::sample_events` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.set_classifier` | `utils.py` → `objects/log/obj` | `ichnos::EventLog::insert_classifier_attribute`, `ichnos::EventLog::insert_named_classifier_attribute` | `ichnos-core` | ported | Golden `core/set-classifier-running-example-csv`. Changes core-14, core-29. |
+| `pm4py.parse_event_log_string` | `utils.py` → `objects/log/obj` | `ichnos::EventLog::from_trace_strings` | `ichnos-core` | ported | Checked against pm4py output in `log::tests::from_trace_strings_matches_pm4py`. Change core-12. |
+| `pm4py.project_on_event_attribute` | `utils.py` → `objects/log/obj`, `streaming/conversion/from_pandas` | `ichnos::EventLog::project` | `ichnos-core` | ported | Golden `core/project-running-example-csv`. Change core-28. |
+| `pm4py.sample_cases` | `utils.py` → `objects/log/obj`, `objects/log/util/dataframe_utils`, `objects/log/util/sampling` | `ichnos::EventLog::sample_cases` | `ichnos-core` | ported | Golden `core/sample-running-example-csv` (sizes only). Change core-17. |
+| `pm4py.sample_events` | `utils.py` → `objects/log/obj`, `objects/log/util/sampling`, `objects/ocel/obj`, `objects/ocel/util/sampling` | `ichnos::EventStream::sample_events` | `ichnos-core` | ported | Golden `core/sample-running-example-csv` (sizes only). Changes core-17, core-18. |
 
 ## vis
 
@@ -313,9 +313,9 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.convert_to_event_log` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_to_event_log` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.convert_to_event_stream` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_to_event_stream` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.convert_to_dataframe` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_to_dataframe` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_to_event_log` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::EventStream::into_event_log`, `ichnos::EventLog::from_arrow` | `ichnos-core` | ported | Golden `core/convert-running-example-csv`. Changes core-5 to core-9. |
+| `pm4py.convert_to_event_stream` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::EventLog::to_event_stream`, `ichnos::EventStream::from_arrow` | `ichnos-core` | ported | Golden `core/convert-running-example-csv`. Change core-11. |
+| `pm4py.convert_to_dataframe` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::EventLog::to_arrow`, `ichnos::EventStream::to_arrow` | `ichnos-core` | ported | DataFrame is an Arrow `RecordBatch`. Golden `core/convert-running-example-csv`. Changes core-10, core-16. |
 | `pm4py.convert_to_bpmn` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/process_tree/variants/to_bpmn`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/conversion/wf_net/variants/to_bpmn`, `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_bpmn` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
 | `pm4py.convert_to_petri_net` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/genetic_matrix/obj`, `objects/heuristics_net/obj`, `objects/petri_net/obj`, `objects/powl/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_petri_net` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
 | `pm4py.convert_to_process_tree` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/powl/variants/to_process_tree`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/conversion/wf_net/variants/to_process_tree`, `objects/petri_net/obj`, `objects/powl/obj`, `objects/process_tree/obj` | `ichnos::model::convert_to_process_tree` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
@@ -323,7 +323,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.convert_to_reachability_graph` | `convert.py` → `objects/bpmn/obj`, `objects/conversion/bpmn/variants/to_petri_net`, `objects/conversion/dfg/variants/to_petri_net_activity_defines_place`, `objects/conversion/genetic_matrix/variants/to_petri_net`, `objects/conversion/heuristics_net/variants/to_petri_net`, `objects/conversion/powl/converter`, `objects/conversion/process_tree/variants/to_petri_net`, `objects/petri_net/obj`, `objects/petri_net/utils/reachability_graph`, `objects/process_tree/obj`, `objects/transition_system/obj` | `ichnos::model::convert_to_reachability_graph` (planned) | `ichnos-model` | todo | Variants: to_petri_net. |
 | `pm4py.convert_log_to_ocel` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/ocel/obj`, `objects/ocel/util/log_ocel` | `ichnos::ocel::convert_log_to_ocel` (planned) | `ichnos-ocel` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
 | `pm4py.convert_ocel_to_networkx` | `convert.py` → `objects/conversion/ocel/converter`, `objects/ocel/obj` | `ichnos::ocel::convert_ocel_to_networkx` (planned) | `ichnos-ocel` | todo | Variants: ocel_features_to_nx, ocel_to_nx. |
-| `pm4py.convert_log_to_networkx` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::core::convert_log_to_networkx` (planned) | `ichnos-core` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.convert_log_to_networkx` | `convert.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::EventLog::to_graph` | `ichnos-core` | ported | petgraph `DiGraph`. Golden `core/networkx-running-example-csv`. Change core-27. |
 | `pm4py.convert_log_to_time_intervals` | `convert.py` → `algo/transformation/log_to_interval_tree/variants/open_paths`, `objects/log/obj` | `ichnos::perf::convert_log_to_time_intervals` (planned) | `ichnos-perf` | todo | Single entry point; preserve source defaults. |
 | `pm4py.convert_petri_net_to_networkx` | `convert.py` → `objects/petri_net/obj` | `ichnos::model::convert_petri_net_to_networkx` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.convert_petri_net_type` | `convert.py` → `objects/petri_net/obj`, `objects/petri_net/utils/petri_utils` | `ichnos::model::convert_petri_net_type` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
@@ -339,7 +339,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.analysis.check_is_sound` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos::model::check_is_sound` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.check_soundness` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos::model::check_soundness` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
 | `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos::ml::cluster_log` (planned) | `ichnos-ml` | todo | Variants: sklearn_profiles. |
-| `pm4py.insert_artificial_start_end` | `analysis.py` → `objects/log/obj`, `objects/log/util/artificial`, `objects/log/util/dataframe_utils` | `ichnos::core::insert_artificial_start_end` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.insert_artificial_start_end` | `analysis.py` → `objects/log/obj`, `objects/log/util/artificial`, `objects/log/util/dataframe_utils` | `ichnos::EventLog::insert_artificial_start_end` | `ichnos-core` | ported | Golden `core/artificial-start-end-running-example-csv`. Change core-26. |
 | `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::perf::insert_case_service_waiting_time` (planned) | `ichnos-perf` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
 | `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::perf::insert_case_arrival_finish_rate` (planned) | `ichnos-perf` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
 | `pm4py.check_is_workflow_net` | `analysis.py` → `algo/analysis/workflow_net/algorithm`, `objects/petri_net/obj` | `ichnos::model::check_is_workflow_net` (planned) | `ichnos-model` | todo | Variants: petri_net. |
@@ -361,10 +361,10 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.hof.filter_log` | `hof.py` → `objects/log/obj` | `ichnos::stats::filter_log` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.hof.filter_trace` | `hof.py` → `objects/log/obj` | `ichnos::stats::filter_trace` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.hof.sort_log` | `hof.py` → `objects/log/obj` | `ichnos::core::sort_log` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
-| `pm4py.hof.sort_trace` | `hof.py` → `objects/log/obj` | `ichnos::core::sort_trace` (planned) | `ichnos-core` | todo | Single entry point; preserve source defaults. |
+| `pm4py.hof.filter_log` | `hof.py` → `objects/log/obj` | `ichnos::EventLog::filter_traces`, `ichnos::EventStream::filter_events` | `ichnos-core` | ported | Moved from `ichnos-stats` to the core lane. Golden `core/hof-running-example-csv`. Change core-24. |
+| `pm4py.hof.filter_trace` | `hof.py` → `objects/log/obj` | `ichnos::Trace::filter_events` | `ichnos-core` | ported | Moved from `ichnos-stats` to the core lane. Golden `core/hof-running-example-csv`. Change core-24. |
+| `pm4py.hof.sort_log` | `hof.py` → `objects/log/obj` | `ichnos::EventLog::sort_traces_by_key`, `ichnos::EventStream::sort_events_by_key` | `ichnos-core` | ported | Golden `core/hof-running-example-csv`. Change core-24. |
+| `pm4py.hof.sort_trace` | `hof.py` → `objects/log/obj` | `ichnos::Trace::sort_events_by_key` | `ichnos-core` | ported | Golden `core/hof-running-example-csv`. Changes core-24, core-25. |
 
 ## llm
 
@@ -1279,6 +1279,41 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 ## Behaviour changes
 
 Lanes record each deliberate change from pm4py here.
+
+### ichnos-core
+
+Rows cite these as `core-N`.
+
+1. **Sorting keeps empty traces.** pm4py's `sort_timestamp_log` drops them. ichnos places them after all other traces.
+2. **Sorting fails cleanly.** An event without a date under the key gives `Error::MissingAttribute` or `Error::AttributeType`, and the log is unchanged. pm4py raises `KeyError` or `TypeError` part-way through.
+3. **Dates keep their UTC offset.** pm4py converts every date to UTC on read. ichnos stores `DateTime<FixedOffset>`. The instant is the same, and comparison and sorting use the instant.
+4. **No `properties` dict on logs.** Keys are always passed as `&EventKeys`.
+5. **`from_arrow` sets no log attributes.** pm4py's DataFrame-to-stream conversion sets `attributes={"origin": "csv"}`.
+6. **Extension detection order.** `from_arrow` declares standard extensions in the order their prefixes first appear in column names. pm4py adds them from a Python `set`, so its order depends on the hash seed.
+7. **Case prefix stripping.** Only the leading `case:` is removed from a column name. pm4py's `str.replace` removes every occurrence.
+8. **Case grouping key.** It follows Python dict semantics: a string and an ID with the same text are one case, and so are `1` and `1.0`. Booleans stay separate; in Python `True == 1`.
+9. **Nulls.** A null in an Arrow column means the attribute is absent. pm4py keeps NaN values in events unless `stream_postprocessing` is on.
+10. **`to_arrow` column types.** A column of incompatible types (for example int and bool) becomes `Utf8`, with values formatted as Python's `str()`; pandas keeps an object column. Lists and containers are an error. Meta-attributes are dropped. Dates outside 1677 to 2262 are an error.
+11. **`to_event_stream` does not change the log.** pm4py's `to_data_frame` writes the `case:` attributes into the original events.
+12. **`from_trace_strings` timestamps** start at 10,000,000 seconds after the epoch in UTC. pm4py uses the local time zone, then labels the result UTC. The two agree when the local time zone is UTC.
+13. **Non-string activities** are formatted as Python's `str()` in `activity_sequences` and `variants`. pm4py keeps the raw value.
+14. **`insert_classifier_attribute`** formats every value with `str()`, as `set_classifier` does on a log, and changes nothing if an event lacks a key. pm4py raises part-way through.
+15. **Variants come in first-appearance order.** pm4py sorts them by count.
+16. **`to_arrow` drops log metadata.** Log attributes, extensions, globals and classifiers are not written. pm4py keeps only `log.properties`, in `df.attrs`.
+17. **Sampling uses ChaCha8 with an explicit seed** and returns the sample in input order. pm4py uses Python's `random`, so samples differ; only sizes match.
+18. **`sample_events` exists only on `EventStream`.** pm4py's `sample_events` on a log samples traces, which `sample_cases` does.
+19. **`to_interval` has no business-hours option.** That belongs with the performance crate.
+20. **`format_batch` parses only the timestamp and start-timestamp columns.** pandas tries every string column.
+21. **An unparseable timestamp is an error** (`Error::UnparseableTimestamp`). pandas leaves the column as strings.
+22. **No day-first or month-first guessing.** Without `timestamp_format`, only ISO 8601 and RFC 3339 forms parse.
+23. **The lifecycle instance key is fixed to `concept:name`.**
+24. **The `hof` functions take Rust closures.** Filters return a copy with the metadata; sorts work in place, stably, and need an `Ord` key.
+25. **`Trace::sort_events_by_key` keeps the trace attributes.** pm4py's `sort_trace` drops them.
+26. **`insert_artificial_start_end` works on `EventLog` only.** pm4py's DataFrame version shifts timestamps by one millisecond and sorts the table; ichnos shifts by one second, as pm4py's log version does. A first or last event whose timestamp is not a date is an error, and the log is unchanged.
+27. **`to_graph` returns a petgraph `DiGraph`.** Case, event and attribute nodes are keyed apart, so an attribute value whose text is `CASE=1` does not merge with a case node as it does in NetworkX. The case ID is always the trace's `concept:name`. A list or container attribute is an error.
+28. **`project` gives `None` for a missing attribute.** pm4py raises `KeyError`.
+29. **`set_classifier` is two methods**: `insert_classifier_attribute` takes attribute keys and `insert_named_classifier_attribute` takes a log classifier name. Neither records the activity key on the log (see core-4).
+30. **`serialize` and `deserialize` are not ported.** The `ichnos-io` readers and writers give and take the bytes for each format.
 
 ## Proposed lanes
 
