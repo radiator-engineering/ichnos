@@ -1,0 +1,165 @@
+{
+  "expected": {
+    "event_types": {
+      "concept:name": [
+        "string"
+      ],
+      "lifecycle:transition": [
+        "string"
+      ]
+    },
+    "n_cases": 1000,
+    "n_events": 6186,
+    "samples": [
+      {
+        "attributes": {
+          "concept:name": "a12f0n00"
+        },
+        "events": [
+          {
+            "concept:name": "S",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "f",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "g",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "h",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "i",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "k",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "E",
+            "lifecycle:transition": "complete"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "1"
+        },
+        "events": [
+          {
+            "concept:name": "S",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "f",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "h",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "g",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "i",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "k",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "E",
+            "lifecycle:transition": "complete"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "2"
+        },
+        "events": [
+          {
+            "concept:name": "S",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "b",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "d",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "j",
+            "lifecycle:transition": "complete"
+          },
+          {
+            "concept:name": "E",
+            "lifecycle:transition": "complete"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "6b8ec909fb00e581a93894fb559fc3c7553ab801f96345fa9b041503cce9079e",
+    "trace_types": {
+      "concept:name": [
+        "string"
+      ]
+    },
+    "type_profiles": {
+      "c89c52638ee09d4063eb65e710ca1493b295b368154025ed3ab448495392dee8": {
+        "count": 1000,
+        "events": {
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "1f11b548e6efb507dd06aae84dae0324409a3e4163600ebcd7bd3dfff672e977": 279,
+      "4480e267d839c7377bcd0211d076d0b86d4965cd4287f39c2096e6d5113cbe9c": 118,
+      "56e2ef60a791bdf90c7ac7b059d93127c00d84555c7814303c778f3d19dc3065": 256,
+      "9e61768844df754ba728c9bbcaa932bd5f8d6241c26574bb2660ec423fc916a4": 230,
+      "e2887e4aec69155d30ce4fbfc7f451d158f29f6f70cd30c12e662c17a82b496d": 117
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "synthetic_logs-a12-a12f0n00-xes-gz",
+    "fixtures": {
+      "log": "fixtures/logs/synthetic_logs/a12/a12f0n00.xes.gz"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

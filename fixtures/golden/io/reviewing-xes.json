@@ -1,0 +1,1246 @@
+{
+  "expected": {
+    "event_types": {
+      "Result by Reviewer A": [
+        "string"
+      ],
+      "Result by Reviewer B": [
+        "string"
+      ],
+      "Result by Reviewer C": [
+        "string"
+      ],
+      "Result by Reviewer X": [
+        "string"
+      ],
+      "accepts": [
+        "string"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "lifecycle:transition": [
+        "string"
+      ],
+      "org:resource": [
+        "string"
+      ],
+      "rejects": [
+        "string"
+      ],
+      "time:timestamp": [
+        "date"
+      ]
+    },
+    "n_cases": 100,
+    "n_events": 3730,
+    "samples": [
+      {
+        "attributes": {
+          "concept:name": "1",
+          "description": "Simulated process instance"
+        },
+        "events": [
+          {
+            "concept:name": "invite reviewers",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2005-12-31T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite reviewers",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-01-05T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer B": "reject",
+            "concept:name": "get review 2",
+            "lifecycle:transition": "complete",
+            "org:resource": "Carol",
+            "time:timestamp": "2006-01-08T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer C": "reject",
+            "concept:name": "get review 3",
+            "lifecycle:transition": "complete",
+            "org:resource": "Pam",
+            "time:timestamp": "2006-01-09T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer A": "reject",
+            "concept:name": "get review 1",
+            "lifecycle:transition": "complete",
+            "org:resource": "John",
+            "time:timestamp": "2006-01-10T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "collect reviews",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-01-10T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "collect reviews",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-01-12T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-01-12T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "0",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "3",
+            "time:timestamp": "2006-01-17T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-01-17T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-01-19T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "accept",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Pam",
+            "time:timestamp": "2006-01-22T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-01-23T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "1",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "3",
+            "time:timestamp": "2006-01-26T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-01-26T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-01-27T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "reject",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mary",
+            "time:timestamp": "2006-01-30T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-02-13T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "1",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "4",
+            "time:timestamp": "2006-02-18T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-02-18T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-02-22T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "reject",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Sara",
+            "time:timestamp": "2006-02-24T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-04-07T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "1",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "5",
+            "time:timestamp": "2006-04-09T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "reject",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-04-10T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "reject",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-04-12T23:00:00.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "10",
+          "description": "Simulated process instance"
+        },
+        "events": [
+          {
+            "concept:name": "invite reviewers",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-02-02T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite reviewers",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-02-05T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer B": "accept",
+            "concept:name": "get review 2",
+            "lifecycle:transition": "complete",
+            "org:resource": "Sara",
+            "time:timestamp": "2006-02-05T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer C": "accept",
+            "concept:name": "get review 3",
+            "lifecycle:transition": "complete",
+            "org:resource": "John",
+            "time:timestamp": "2006-02-05T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out 1",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2006-02-06T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "collect reviews",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-02-06T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "collect reviews",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-02-10T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-02-28T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "0",
+            "time:timestamp": "2006-02-28T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-03-03T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-03-07T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2006-03-11T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-05-13T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "0",
+            "time:timestamp": "2006-05-16T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-05-19T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2006-05-22T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2006-05-30T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-07-26T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "0",
+            "time:timestamp": "2006-07-29T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-08-07T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2006-08-11T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "reject",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Pete",
+            "time:timestamp": "2006-08-13T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2006-11-17T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2006-11-21T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2007-02-01T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2007-02-05T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2007-02-09T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2007-12-01T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2007-12-01T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2007-12-01T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2007-12-01T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "accept",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Carol",
+            "time:timestamp": "2007-12-05T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2008-02-15T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "3",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2008-02-20T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2008-02-20T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2008-02-21T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2008-02-29T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2009-07-14T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "3",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2009-07-14T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "accept",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2009-07-16T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "accept",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2009-07-16T23:00:00.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "100",
+          "description": "Simulated process instance"
+        },
+        "events": [
+          {
+            "concept:name": "invite reviewers",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2007-03-14T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite reviewers",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2007-03-17T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer C": "accept",
+            "concept:name": "get review 3",
+            "lifecycle:transition": "complete",
+            "org:resource": "Pam",
+            "time:timestamp": "2007-03-18T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer A": "accept",
+            "concept:name": "get review 1",
+            "lifecycle:transition": "complete",
+            "org:resource": "Sara",
+            "time:timestamp": "2007-03-20T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer B": "reject",
+            "concept:name": "get review 2",
+            "lifecycle:transition": "complete",
+            "org:resource": "Pete",
+            "time:timestamp": "2007-03-21T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "collect reviews",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2007-03-21T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "collect reviews",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2007-03-24T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2008-02-01T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2008-02-02T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2008-02-02T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2008-02-04T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2008-02-04T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2008-08-10T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2008-08-13T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2008-08-13T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2008-08-15T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2008-08-20T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2009-03-07T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "1",
+            "time:timestamp": "2009-03-12T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2009-03-12T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2009-03-15T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "reject",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mary",
+            "time:timestamp": "2009-03-19T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2009-08-18T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "2",
+            "time:timestamp": "2009-08-18T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2009-08-21T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2009-08-23T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "time-out X",
+            "lifecycle:transition": "complete",
+            "org:resource": "__INVALID__",
+            "time:timestamp": "2009-08-30T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2009-09-05T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "2",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "2",
+            "time:timestamp": "2009-09-09T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "start",
+            "org:resource": "Anne",
+            "time:timestamp": "2009-09-09T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "invite additional reviewer",
+            "lifecycle:transition": "complete",
+            "org:resource": "Anne",
+            "time:timestamp": "2009-09-11T23:00:00.000000+00:00"
+          },
+          {
+            "Result by Reviewer X": "accept",
+            "concept:name": "get review X",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mary",
+            "time:timestamp": "2009-09-15T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "decide",
+            "lifecycle:transition": "start",
+            "org:resource": "Wil",
+            "time:timestamp": "2009-09-18T23:00:00.000000+00:00"
+          },
+          {
+            "accepts": "3",
+            "concept:name": "decide",
+            "lifecycle:transition": "complete",
+            "org:resource": "Wil",
+            "rejects": "2",
+            "time:timestamp": "2009-09-22T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "accept",
+            "lifecycle:transition": "start",
+            "org:resource": "Mike",
+            "time:timestamp": "2009-09-22T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "accept",
+            "lifecycle:transition": "complete",
+            "org:resource": "Mike",
+            "time:timestamp": "2009-09-22T23:00:00.000000+00:00"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "958a4f4f4ee885aba33d2746748080d75ed9a4e82fc068b7b9f764856f249168",
+    "trace_types": {
+      "concept:name": [
+        "string"
+      ],
+      "description": [
+        "string"
+      ]
+    },
+    "type_profiles": {
+      "173790685b1eafeb6f7b20d5c350bbe2448bf288234890fc836133e271865072": {
+        "count": 10,
+        "events": {
+          "Result by Reviewer A": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "18c99f662f1e2c04eb62e72dc31f4edfef74fdec287eef500ee1ccf15ed6a833": {
+        "count": 18,
+        "events": {
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "26e6f5a5a438c3d4bcf90a3b092970e549b2d33da396298ee309cf058c17bc6d": {
+        "count": 6,
+        "events": {
+          "Result by Reviewer A": [
+            "string"
+          ],
+          "Result by Reviewer C": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "421ee8128634ba352a8a49e4b7c1088bf5bfd0e169fece54232996b5b3f02c54": {
+        "count": 12,
+        "events": {
+          "Result by Reviewer B": [
+            "string"
+          ],
+          "Result by Reviewer C": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "4fcc5cf00fcdab2f585ff99ba619e9e0ad7d3dea861123440e20dc08320ae9fc": {
+        "count": 9,
+        "events": {
+          "Result by Reviewer B": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "56258c069f47b09f32644f1bbd4c8f0ed4defa11f352625586553c008b63aaa0": {
+        "count": 16,
+        "events": {
+          "Result by Reviewer C": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "56db69fd517c39dce8011ab388204db52f3c32784d1d1ec9343ef5c99b9d8a84": {
+        "count": 9,
+        "events": {
+          "Result by Reviewer A": [
+            "string"
+          ],
+          "Result by Reviewer B": [
+            "string"
+          ],
+          "Result by Reviewer C": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "6d06558742d2f82bed3562be80d8512ade5f34edb34c6d85f3cf980a1de2afd3": {
+        "count": 5,
+        "events": {
+          "Result by Reviewer A": [
+            "string"
+          ],
+          "Result by Reviewer C": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "8a5a7e7dc51e2bc927ce93547d6bc5fd58bc8bb6d4d18eaf697049b47860c4e1": {
+        "count": 2,
+        "events": {
+          "Result by Reviewer A": [
+            "string"
+          ],
+          "Result by Reviewer B": [
+            "string"
+          ],
+          "Result by Reviewer C": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      },
+      "9fc8c104652ea61fc12a79adcc06ce1ce8c1a2587fc402dc72ce934aa21541da": {
+        "count": 13,
+        "events": {
+          "Result by Reviewer A": [
+            "string"
+          ],
+          "Result by Reviewer B": [
+            "string"
+          ],
+          "Result by Reviewer X": [
+            "string"
+          ],
+          "accepts": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "rejects": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "0169e135452b423154736ecf5155cac6344b4707f56adaf9037b6edd48316ca5": 1,
+      "021b6b46a468c6114b0d34dcb3d80810fe0b7675c140aa12d59416f1587e6802": 2,
+      "02b7dba83458683e0ae4ba2a70c87b9745c30130ccae49866ce8848b22fadb01": 1,
+      "031864e23abfa310de2f097ed81aeb30c08255882c9fcdd35b32ca7259e25da0": 1,
+      "03b5a82155111e1a3baa38c3a0cc45ad08e8af6a4d82b241a9019df023fad1a4": 1,
+      "0577ab250b7c7888d391ac1d76248ef335746522aabaccdf15504b9519ebd733": 1,
+      "0d85e5ab8217cc8971f37633bdfd499d283bdd477d53f380cfc837eb8f52c47f": 1,
+      "106d3cbbc7fa55aa8d6c4d1e05471dc8a1a26622772df7c29eb1ff943c15bedd": 1,
+      "126dc6d4ad908805efab0475ecb202157ed467e35e5c7782d9e5900f32adef14": 1,
+      "14f2c12e9081034bf8feb31057cd221c54198dd7a31827dedefc12943072f5ba": 1,
+      "15bb0ed9be727d1f181a987f7f1a1f454981abd1872ca3b5836f2e39616d43b9": 1,
+      "1f6a88776a8924e70375d06ac9afb1aaf4c2df1603a3119cc060cb06061a2b79": 1,
+      "1ff24fc77242e369ccc7911a49f22754e1fa83239b4e233893154e26f84abe34": 1,
+      "2164624010f34798d72c503cb34c3d1c61a00aa920872a21fed609e143dd1c4d": 1,
+      "23efe2cee2fae6dcfd25a25dcd80a8746ea6be1bf5e7abe5bff41b6ca7ef3ca3": 1,
+      "2ede9a19621540ef9b600668f0ff279908674aa66e5e1165333b60ef70929606": 1,
+      "313b99f379d9ef77d7441c315eebf717e44e03ff329119851f329535d0d5f372": 1,
+      "33302429240cc9038d70c059e073f3f3ce3dbc854cbf157f699a9091fa5f7e42": 1,
+      "39b321719ce39d46a0add121fee17eaa4f92316c37e46034cda4d5e062f440bd": 1,
+      "3d3db4ec843bd4db0c4f6d7e52824e903b72583a874fd7441a2126f03d8d74dc": 1,
+      "3ec7c4ab9fee7697b117b8e97c033d7b2b60507262037f9c8e76b6eb646b5f39": 1,
+      "43435af67406f7f57366e52561e33855f012a005942ed4118424f89e78fc0fb7": 1,
+      "454fedef39b169b4dd51baa336514a5e5d93d7a7cadad38879da5ae8ed27dcb7": 1,
+      "45b599e324cba661c6d12d5cea31cae6da7b705cf7bd3a09e9b3d366af51beb8": 1,
+      "460152b4344899cc924dfa806efec01ae2779d9c83484e6bce90cd914ce2992a": 1,
+      "46494c38894148a9457a71fe03a7e4f94f3539b57488f516d6523ac0fee2223f": 1,
+      "47eee4b24e4df994c674caedc866bd7ff397bd08b856b6ba38a53374907270d0": 1,
+      "4a0d8570b054a94cfdf1d931261d62b32aab5583c7842342a8c0fb5e2f187c9d": 1,
+      "4aeb08a8160d80d63e8e4809f0e587d6d12a954263fa369167323958c1bac5e3": 1,
+      "50d6517a64f93efddddc0faa8e6216c2fe4ca3f56830b08c116f043296c7de81": 1,
+      "5199ae3d17b0381fee6f7602e3af6b2845fdb797db51b0d43dac4bca6577543a": 1,
+      "5225c7cebe0c90d82142ee91934232b1798fd0e98812dff28e63fbabd3acf0d7": 1,
+      "59b8a34550f24e96a59537417a3dca98c259f9dc399b145763fb2c324f1d8909": 1,
+      "5b6024475853f7c115b755dd0fd02cbae27d61ac75c87b7643c7187f16ea81d9": 1,
+      "5bd8261557447f88763b22398d0223d6467321865a2dac79cc24967edf851d64": 1,
+      "6274b6aba3b7ec2f2ee17e4f77cea3b797df227f8a2daed73113f9b56263b6b8": 1,
+      "645b7e0d041597f68f9517e6deb300cbf9c5923d4f400c686d37240c8fe7be7e": 1,
+      "64fd9ba071d3421b9111343af8d103d26ef9ad6ae29f742c7d2016ca368a9e8c": 1,
+      "660e330f083fd357a0ed90b59eb573440de9a2c2c7f1a4f64a2a1dcfee14210c": 1,
+      "671d611e68b8f94a45d828255a72469f98046121057604240b275f6c6373c2ec": 1,
+      "6917cda630c5393329abca60ca93ae98c59277ffa44c821c8ed397ec5bbf2a37": 1,
+      "6b0e9c515c1f57152d3e4c13b1e22a8ec9d3685410b0d06de127e2964d88aa88": 1,
+      "6ba0a7879bc83a030f0d7e1ba6237327a08f61fadbaa29a8af00ef7c1f2fd48d": 1,
+      "6bf58aefa7da47835c3c511f55fb54a9719fc873f808e9f2aab240b0e122166c": 1,
+      "716eed15f0f157e1435d7ca1a7177449543d106220a7860b67a62fc0ee07a44b": 1,
+      "7457c33f7e6910e4ceac1ef0344a8eaa80ea96d2b99b846db588bafb2ba7cac2": 1,
+      "752cdf75597a70563abcea903f0c3a44a70633680b6cf2e917fc640927244853": 1,
+      "76cb14f6679380713842e99f30d88294d26879e2ce5efc18f0927f04c3b69b6d": 1,
+      "7771fdc00843a291f6a532c7e1d378926e38f56a20b92c00936bb2f9112d16c3": 1,
+      "79420ca66cce16917bfe36537c9bf46fb8cf6396a7d6cdaa0867b7aeb677accc": 1,
+      "80785ffb00b8c700ade8f488a445da82994e961bfa5abb161349e2e2c8cd719c": 1,
+      "81ef886ee931e36504f82ecfc040e9a0ac9da6cad0afd9a38f1ce1defb1f2abf": 1,
+      "86bb1eca5868ffdca24bb5cd1645d418427919e6d2a5def6a802774c92972ee8": 1,
+      "87e80700f4cfa06b7e160e0b2c423038cd0898902a118619b584d1b0f840cbf6": 1,
+      "89b552147261a1cd3211a25a6aaae2b7eb3d85566cf23c510d5f40edd3ab4240": 1,
+      "8a426ad099e2740298d167bdfae76b2e170a4f75861278e1cac60a1bfb115707": 1,
+      "8ce82bc2e45dd55cb069ebb8e1ecfbd21315d8986efea1134934e41ca1f898dd": 1,
+      "8d5fef564a4886cde7ddf472566bd5e8c4287563d1e82f44457520cfb424eba9": 1,
+      "8e5b527c9f59e491d457f1527bb1b52e81eef790927db5368cb6051486f26bb1": 1,
+      "8f519baaf92da7bb0b171f5eb01195eafbb873d48236a7599b197ff261d83d6f": 1,
+      "8ff6525de248aa24b439c81d995b2c0bb23a1f370185465858621daaf6f5df84": 1,
+      "90a402540bdaa3d8ef3e4d0f8829cc77970d683a9d4a0f642de90728a8c333fa": 1,
+      "914aeee670827f375d902d7f6cd3f3971bc41ae5bf17c62f960ebbf4d133c8ec": 1,
+      "94de6a75d9407735c8b45ba2c237853c4bdf26e01c0ab4f5a4f891f38449ea53": 1,
+      "970b286e4e1e69460dd2079183abbd305b797155f6154096055fa60cae83a3a5": 1,
+      "98744a0c6c6711cd6f7f3ef9bd19d9e5e9be3f58e378d251fd24202de29b363d": 1,
+      "9aff44cda08669c8ebad940f713ffdbd7256633d75a074693d668cc0baf458bd": 1,
+      "9c37ef2e00a74f5835b618d1ec65a9ebbf48dd61c4f5ffdfb5947eb196c5f401": 1,
+      "9d0d43ad7de752a385126e9f74dc101b3bd4447b8a4633534dfdaf00543d897f": 1,
+      "9da0010282fe83fc612dd012238713009fc0b3782effe974acd207b5a82d2c75": 1,
+      "9ef970714122b817380c7cc863efec97e22a5c72070e8e5f7c4f4bf397912a53": 1,
+      "a4274f8bad416cd48c457b9631a8d2ea5d1ddebfc7129e3654240f7c7553c365": 1,
+      "a4d6ecf7f53fda3cd94e91b0fb8af0baa1ecc13656ef9f0ad6511f1dbad06719": 1,
+      "a8e736caac01ebef79694aa8a053d8d8518e0bc0a0bf65e63c1a500f78d1b9fb": 1,
+      "b319fc842522827822d342e20c95ece2ed64c3a3a2386295f7bb6eb0349ca8b0": 2,
+      "b333b11ec6a39a121efe8f48add3330bb15ec075071bc19fdb52570db4d32d9c": 2,
+      "b6db22e4d101729e615cd19fe6007d52ff9c24534ec709292a02fbcb6e3e7062": 1,
+      "b75db286bbad1e2d59b54c4e9fbf3846cefaa719796ef7bc77ae1ca0c251cebc": 1,
+      "b9740352d6f13fe20af581f989d094600ebaac1802769f17962e9b053f9e65ac": 1,
+      "bde2e7afb2272de8eecffb864860b1599bdaf7130d5d0a5a7a611f98c946d50b": 1,
+      "bedb79297322561562b95f87df51826e7414985f76e2d3fbd621851e1e57b9a2": 1,
+      "c0f6306862592a52456e872af3298d2a0169bdceb9661a556f0427fddc68ba3d": 1,
+      "c72ab13ad2ea804ef2cbae99745b3d013600ca91a45fafe684647341d1394e19": 1,
+      "c81cdb80d1e05725f7e73253431845fcafef0c9ebfb8e48d687f2c7df8d369e8": 1,
+      "c9086fd96d3cbef7cbb21290f2fdff14e9d6e1abc4d0ddbeb0a603545e0872ab": 1,
+      "d707794a5d0d51a1aec6daba7b8c406c5d30ac46560b86705bd7e40ae17c56f5": 1,
+      "de9c2885455e5227dda7c988d81e05482c971f8ebf20b3b19c24ccc23fb41720": 1,
+      "e3a8b4e26e0ff65a430f248b0b445c136da20a23a54399c2f77eab37c2bacd85": 1,
+      "e42a61efbdacabcb58ddeef53285e15546df50ce2f73fd4de494dd6a10ec11a1": 1,
+      "ed2912e73537fdf7c8b7006d60bee08a1d42ded2a8ace312f08eeb1a1719f5d8": 2,
+      "f0b9cb392d91c63c0aedfe877c9fd214179889f62f925a1c3ffd6d7b4ecf72e4": 1,
+      "f0c6bf2dc49a42ed700ba60eafcd5036c5bf97be8be36dcc5a4f50ae7d6529b1": 1,
+      "f28c0a57294a99451233eb10aa5ca7cbba49970f310cd4f0e745970fc0533ae2": 1,
+      "f489abb399caf77bdb371c479173125a8fc9f1a3b2679b41320e6fa1001b0845": 1,
+      "fcf50f473f7f0ebb5a7b391c9cbd1e6bf7b10b270f139ab7e2c45d170e6f5680": 1,
+      "fde2459fa137de9712672017205ce20ac97d6525938b5cd4832bd5fa4960177f": 1
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "reviewing-xes",
+    "fixtures": {
+      "log": "fixtures/logs/reviewing.xes"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

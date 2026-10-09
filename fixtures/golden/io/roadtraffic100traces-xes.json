@@ -1,0 +1,475 @@
+{
+  "expected": {
+    "event_types": {
+      "amount": [
+        "float"
+      ],
+      "article": [
+        "int"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "dismissal": [
+        "string"
+      ],
+      "expense": [
+        "float"
+      ],
+      "lastSent": [
+        "string"
+      ],
+      "lifecycle:transition": [
+        "string"
+      ],
+      "notificationType": [
+        "string"
+      ],
+      "org:resource": [
+        "string"
+      ],
+      "paymentAmount": [
+        "float"
+      ],
+      "points": [
+        "int"
+      ],
+      "time:timestamp": [
+        "date"
+      ],
+      "totalPaymentAmount": [
+        "float"
+      ],
+      "vehicleClass": [
+        "string"
+      ]
+    },
+    "n_cases": 100,
+    "n_events": 390,
+    "samples": [
+      {
+        "attributes": {
+          "concept:name": "N77802"
+        },
+        "events": [
+          {
+            "amount": 35.0,
+            "article": 157,
+            "concept:name": "Create Fine",
+            "dismissal": "NIL",
+            "lifecycle:transition": "complete",
+            "org:resource": "537",
+            "points": 0,
+            "time:timestamp": "2005-03-22T23:00:00.000000+00:00",
+            "totalPaymentAmount": 0.0,
+            "vehicleClass": "A"
+          },
+          {
+            "concept:name": "Send Fine",
+            "expense": 11.0,
+            "lifecycle:transition": "complete",
+            "time:timestamp": "2005-07-21T22:00:00.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "A17641"
+        },
+        "events": [
+          {
+            "amount": 36.0,
+            "article": 157,
+            "concept:name": "Create Fine",
+            "dismissal": "NIL",
+            "lifecycle:transition": "complete",
+            "org:resource": "541",
+            "points": 0,
+            "time:timestamp": "2007-07-13T22:00:00.000000+00:00",
+            "totalPaymentAmount": 0.0,
+            "vehicleClass": "A"
+          },
+          {
+            "concept:name": "Payment",
+            "lifecycle:transition": "complete",
+            "paymentAmount": 36.0,
+            "time:timestamp": "2007-07-15T22:00:00.000000+00:00",
+            "totalPaymentAmount": 36.0
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "S106046"
+        },
+        "events": [
+          {
+            "amount": 35.0,
+            "article": 157,
+            "concept:name": "Create Fine",
+            "dismissal": "NIL",
+            "lifecycle:transition": "complete",
+            "org:resource": "52",
+            "points": 0,
+            "time:timestamp": "2006-07-11T22:00:00.000000+00:00",
+            "totalPaymentAmount": 0.0,
+            "vehicleClass": "A"
+          },
+          {
+            "concept:name": "Send Fine",
+            "expense": 11.0,
+            "lifecycle:transition": "complete",
+            "time:timestamp": "2006-12-03T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "Insert Fine Notification",
+            "lastSent": "P",
+            "lifecycle:transition": "complete",
+            "notificationType": "P",
+            "time:timestamp": "2006-12-24T23:00:00.000000+00:00"
+          },
+          {
+            "amount": 71.5,
+            "concept:name": "Add penalty",
+            "lifecycle:transition": "complete",
+            "time:timestamp": "2007-02-22T23:00:00.000000+00:00"
+          },
+          {
+            "concept:name": "Payment",
+            "lifecycle:transition": "complete",
+            "paymentAmount": 49.25,
+            "time:timestamp": "2007-05-27T22:00:00.000000+00:00",
+            "totalPaymentAmount": 49.25
+          },
+          {
+            "concept:name": "Payment",
+            "lifecycle:transition": "complete",
+            "paymentAmount": 33.25,
+            "time:timestamp": "2007-07-04T22:00:00.000000+00:00",
+            "totalPaymentAmount": 82.5
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "ae73853bdc535edc84b0fb5f1bb8e9005259a028b79026b1167072492e1e902f",
+    "trace_types": {
+      "concept:name": [
+        "string"
+      ]
+    },
+    "type_profiles": {
+      "2b68bf40f34e3f988317fdc455cfa2f43519ac3766c437bd8e7a22e6b0dcf2d1": {
+        "count": 16,
+        "events": {
+          "amount": [
+            "float"
+          ],
+          "article": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "dismissal": [
+            "string"
+          ],
+          "expense": [
+            "float"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "points": [
+            "int"
+          ],
+          "time:timestamp": [
+            "date"
+          ],
+          "totalPaymentAmount": [
+            "float"
+          ],
+          "vehicleClass": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      },
+      "8414a158aec975d814b83f96d217bd7b1edb3359dc5137a85f0d490c70d34977": {
+        "count": 21,
+        "events": {
+          "amount": [
+            "float"
+          ],
+          "article": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "dismissal": [
+            "string"
+          ],
+          "expense": [
+            "float"
+          ],
+          "lastSent": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "notificationType": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "paymentAmount": [
+            "float"
+          ],
+          "points": [
+            "int"
+          ],
+          "time:timestamp": [
+            "date"
+          ],
+          "totalPaymentAmount": [
+            "float"
+          ],
+          "vehicleClass": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      },
+      "bf79a3c47eb9a49063f09da9ba8df800432db9be6911ec9d83822b7b93fb5cb5": {
+        "count": 22,
+        "events": {
+          "amount": [
+            "float"
+          ],
+          "article": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "dismissal": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "paymentAmount": [
+            "float"
+          ],
+          "points": [
+            "int"
+          ],
+          "time:timestamp": [
+            "date"
+          ],
+          "totalPaymentAmount": [
+            "float"
+          ],
+          "vehicleClass": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      },
+      "e0454fcdd805ebd4ef968b18d1d870f7f7838a534b59f03cdeb16325681cd36b": {
+        "count": 5,
+        "events": {
+          "amount": [
+            "float"
+          ],
+          "article": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "dismissal": [
+            "string"
+          ],
+          "expense": [
+            "float"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "paymentAmount": [
+            "float"
+          ],
+          "points": [
+            "int"
+          ],
+          "time:timestamp": [
+            "date"
+          ],
+          "totalPaymentAmount": [
+            "float"
+          ],
+          "vehicleClass": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      },
+      "ec84e3be5a5d9b381dbb61ecd9194d171fba2621f6f24967bb4d5fac15f5ab5e": {
+        "count": 35,
+        "events": {
+          "amount": [
+            "float"
+          ],
+          "article": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "dismissal": [
+            "string"
+          ],
+          "expense": [
+            "float"
+          ],
+          "lastSent": [
+            "string"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "notificationType": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "points": [
+            "int"
+          ],
+          "time:timestamp": [
+            "date"
+          ],
+          "totalPaymentAmount": [
+            "float"
+          ],
+          "vehicleClass": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      },
+      "fc38297eea5ac96db63be68d2f9ede919b3ab8396fe75282f833d41785ab75a4": {
+        "count": 1,
+        "events": {
+          "amount": [
+            "float"
+          ],
+          "article": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "dismissal": [
+            "string"
+          ],
+          "expense": [
+            "float"
+          ],
+          "lifecycle:transition": [
+            "string"
+          ],
+          "notificationType": [
+            "string"
+          ],
+          "org:resource": [
+            "string"
+          ],
+          "points": [
+            "int"
+          ],
+          "time:timestamp": [
+            "date"
+          ],
+          "totalPaymentAmount": [
+            "float"
+          ],
+          "vehicleClass": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "025fda449739e3094e7cfcadd72ff72de9301d00f423057aaa6eefe1c7fb7e99": 4,
+      "1653c7ef3bf9e2a1f11cbaae132efa68cf344f33810905c7d841c69824db9275": 4,
+      "2bbe736d551099b8b3aeb1b87439a5f4a54abf8fa09fd35d0282f0437e5f6680": 1,
+      "5ca44f90c8bbdd0f48f64cb98398b50cfef83fb86fdc43f92abea4399ff611b6": 16,
+      "61e0e81e286a2e796f99622aac869daede9cabb6201a413127095632968d1133": 1,
+      "70dcd12d2e71c846c2d5915b2f63c76de0806bb799979c96583b911927cfedce": 5,
+      "9e90564ae7f4fd8791975f115d62bfde4e11723eaf3ba9babbac55dfcd24c6a2": 10,
+      "c013835121035c50684a52df65aec10c07a9f045c49d7df7bef2cbeb3113d1e2": 36,
+      "e7a22ada39f8a7d046a6e7365249efbe1a2d0460620061e79cba1552592f717f": 1,
+      "f1e1e3792cd602da17df4ec3feeb2efab589fd04e834c9fad97ecfb7964882f8": 22
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "roadtraffic100traces-xes",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

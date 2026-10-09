@@ -1,0 +1,152 @@
+{
+  "expected": {
+    "event_types": {
+      "@@case_index": [
+        "int"
+      ],
+      "@@index": [
+        "int"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "time:timestamp": [
+        "date"
+      ]
+    },
+    "n_cases": 10,
+    "n_events": 30,
+    "samples": [
+      {
+        "attributes": {
+          "concept:name": "1"
+        },
+        "events": [
+          {
+            "@@case_index": 0,
+            "@@index": 0,
+            "concept:name": "A",
+            "time:timestamp": "1971-01-01T00:20:00.000000+00:00"
+          },
+          {
+            "@@case_index": 0,
+            "@@index": 1,
+            "concept:name": "B",
+            "time:timestamp": "1971-01-01T02:04:00.000000+00:00"
+          },
+          {
+            "@@case_index": 0,
+            "@@index": 2,
+            "concept:name": "E",
+            "time:timestamp": "1971-01-01T02:32:00.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "10"
+        },
+        "events": [
+          {
+            "@@case_index": 1,
+            "@@index": 3,
+            "concept:name": "A",
+            "time:timestamp": "1971-01-01T07:13:00.000000+00:00"
+          },
+          {
+            "@@case_index": 1,
+            "@@index": 4,
+            "concept:name": "C",
+            "time:timestamp": "1971-01-01T09:10:00.000000+00:00"
+          },
+          {
+            "@@case_index": 1,
+            "@@index": 5,
+            "concept:name": "E",
+            "time:timestamp": "1971-01-01T10:26:00.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "2"
+        },
+        "events": [
+          {
+            "@@case_index": 2,
+            "@@index": 6,
+            "concept:name": "A",
+            "time:timestamp": "1971-01-01T02:15:00.000000+00:00"
+          },
+          {
+            "@@case_index": 2,
+            "@@index": 7,
+            "concept:name": "D",
+            "time:timestamp": "1971-01-01T03:14:00.000000+00:00"
+          },
+          {
+            "@@case_index": 2,
+            "@@index": 8,
+            "concept:name": "E",
+            "time:timestamp": "1971-01-01T05:06:00.000000+00:00"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "c8ce68311ef390a8224ec4b13f80a596e774dfa88c4e8d31fa56a16d4d8b1741",
+    "trace_types": {
+      "concept:name": [
+        "string"
+      ]
+    },
+    "type_profiles": {
+      "049c3e5d0246d168c3f8759d73907da3d8cbbc0a4393b27fe6a5ff31a430bc8f": {
+        "count": 10,
+        "events": {
+          "@@case_index": [
+            "int"
+          ],
+          "@@index": [
+            "int"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "732efa96b9364dd86d8578dbd06ceec194b90e8cad7f80bfd0038dff81752735": 3,
+      "cd40953b9ff4a3ca380acbac124da9787a07c9e3272cb5242b92745450f8b17e": 3,
+      "d2c1bcb7753bbe9c02f4edf352d49a58b8a7c6ae7e306896efc287949b63e664": 4
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "correlation_mining-csv",
+    "fixtures": {
+      "log": "fixtures/logs/correlation_mining.csv"
+    },
+    "functions": [
+      "pm4py.format_dataframe",
+      "pm4py.convert_to_event_log"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "expected": {
+    "event_types": {
+      "@@index": [
+        "int"
+      ],
+      "activity": [
+        "string"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "protected": [
+        "boolean"
+      ],
+      "resource": [
+        "string"
+      ],
+      "time": [
+        "date"
+      ],
+      "time:timestamp": [
+        "date"
+      ]
+    },
+    "n_cases": 10000,
+    "n_events": 69528,
+    "samples": [
+      {
+        "attributes": {
+          "@@case_index": 0,
+          "age": 45,
+          "case": 1,
+          "citizen": true,
+          "concept:name": "1",
+          "gender": false,
+          "german speaking": true,
+          "private_insurance": true,
+          "underlying_condition": true
+        },
+        "events": [
+          {
+            "@@index": 0,
+            "activity": "Register at ER",
+            "concept:name": "Register at ER",
+            "protected": true,
+            "resource": "Nurse 1",
+            "time": "2015-01-05T00:00:42.000000+00:00",
+            "time:timestamp": "2015-01-05T00:00:42.000000+00:00"
+          },
+          {
+            "@@index": 1,
+            "activity": "Expert Examination",
+            "concept:name": "Expert Examination",
+            "protected": true,
+            "resource": "Doc. Pro",
+            "time": "2015-01-05T11:07:01.000000+00:00",
+            "time:timestamp": "2015-01-05T11:07:01.000000+00:00"
+          },
+          {
+            "@@index": 2,
+            "activity": "Diagnosis",
+            "concept:name": "Diagnosis",
+            "protected": true,
+            "resource": "Doc. Low",
+            "time": "2015-01-06T03:46:49.000000+00:00",
+            "time:timestamp": "2015-01-06T03:46:49.000000+00:00"
+          },
+          {
+            "@@index": 3,
+            "activity": "Treatment",
+            "concept:name": "Treatment",
+            "protected": true,
+            "resource": "Doc. Low",
+            "time": "2015-01-06T20:26:41.000000+00:00",
+            "time:timestamp": "2015-01-06T20:26:41.000000+00:00"
+          },
+          {
+            "@@index": 4,
+            "activity": "Treatment successful",
+            "concept:name": "Treatment successful",
+            "protected": true,
+            "resource": "Doc. Low",
+            "time": "2015-01-07T13:06:21.000000+00:00",
+            "time:timestamp": "2015-01-07T13:06:21.000000+00:00"
+          },
+          {
+            "@@index": 5,
+            "activity": "Discharge",
+            "concept:name": "Discharge",
+            "protected": true,
+            "resource": "Nurse 2",
+            "time": "2015-01-08T00:13:18.000000+00:00",
+            "time:timestamp": "2015-01-08T00:13:18.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "@@case_index": 1,
+          "age": 65,
+          "case": 10,
+          "citizen": false,
+          "concept:name": "10",
+          "gender": false,
+          "german speaking": true,
+          "private_insurance": true,
+          "underlying_condition": false
+        },
+        "events": [
+          {
+            "@@index": 6,
+            "activity": "Register at FD",
+            "concept:name": "Register at FD",
+            "protected": true,
+            "resource": "Nurse 3",
+            "time": "2015-01-05T00:01:40.000000+00:00",
+            "time:timestamp": "2015-01-05T00:01:40.000000+00:00"
+          },
+          {
+            "@@index": 7,
+            "activity": "Expert Examination",
+            "concept:name": "Expert Examination",
+            "protected": true,
+            "resource": "Doc. Pro",
+            "time": "2015-01-05T11:08:03.000000+00:00",
+            "time:timestamp": "2015-01-05T11:08:03.000000+00:00"
+          },
+          {
+            "@@index": 8,
+            "activity": "Diagnosis",
+            "concept:name": "Diagnosis",
+            "protected": true,
+            "resource": "Doc. Low",
+            "time": "2015-01-06T03:48:03.000000+00:00",
+            "time:timestamp": "2015-01-06T03:48:03.000000+00:00"
+          },
+          {
+            "@@index": 9,
+            "activity": "Treatment",
+            "concept:name": "Treatment",
+            "protected": true,
+            "resource": "Doc. Low",
+            "time": "2015-01-06T20:28:28.000000+00:00",
+            "time:timestamp": "2015-01-06T20:28:28.000000+00:00"
+          },
+          {
+            "@@index": 10,
+            "activity": "Treatment successful",
+            "concept:name": "Treatment successful",
+            "protected": true,
+            "resource": "Doc. Low",
+            "time": "2015-01-07T13:07:45.000000+00:00",
+            "time:timestamp": "2015-01-07T13:07:45.000000+00:00"
+          },
+          {
+            "@@index": 11,
+            "activity": "Discharge",
+            "concept:name": "Discharge",
+            "protected": true,
+            "resource": "Nurse 1",
+            "time": "2015-01-08T00:13:59.000000+00:00",
+            "time:timestamp": "2015-01-08T00:13:59.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "@@case_index": 2,
+          "age": 52,
+          "case": 100,
+          "citizen": false,
+          "concept:name": "100",
+          "gender": true,
+          "german speaking": true,
+          "private_insurance": false,
+          "underlying_condition": true
+        },
+        "events": [
+          {
+            "@@index": 12,
+            "activity": "Register at ER",
+            "concept:name": "Register at ER",
+            "protected": false,
+            "resource": "Nurse 1",
+            "time": "2015-01-05T00:01:49.000000+00:00",
+            "time:timestamp": "2015-01-05T00:01:49.000000+00:00"
+          },
+          {
+            "@@index": 13,
+            "activity": "Expert Examination",
+            "concept:name": "Expert Examination",
+            "protected": false,
+            "resource": "Doc. Low",
+            "time": "2015-01-05T11:07:48.000000+00:00",
+            "time:timestamp": "2015-01-05T11:07:48.000000+00:00"
+          },
+          {
+            "@@index": 14,
+            "activity": "Thorough Examination",
+            "concept:name": "Thorough Examination",
+            "protected": false,
+            "resource": "Doc. Pro",
+            "time": "2015-01-06T03:49:00.000000+00:00",
+            "time:timestamp": "2015-01-06T03:49:00.000000+00:00"
+          },
+          {
+            "@@index": 15,
+            "activity": "Diagnosis",
+            "concept:name": "Diagnosis",
+            "protected": false,
+            "resource": "Doc. Low",
+            "time": "2015-01-06T20:29:13.000000+00:00",
+            "time:timestamp": "2015-01-06T20:29:13.000000+00:00"
+          },
+          {
+            "@@index": 16,
+            "activity": "Treatment",
+            "concept:name": "Treatment",
+            "protected": false,
+            "resource": "Doc. Pro",
+            "time": "2015-01-07T13:09:13.000000+00:00",
+            "time:timestamp": "2015-01-07T13:09:13.000000+00:00"
+          },
+          {
+            "@@index": 17,
+            "activity": "Treatment successful",
+            "concept:name": "Treatment successful",
+            "protected": false,
+            "resource": "Doc. Low",
+            "time": "2015-01-08T05:48:36.000000+00:00",
+            "time:timestamp": "2015-01-08T05:48:36.000000+00:00"
+          },
+          {
+            "@@index": 18,
+            "activity": "Discharge",
+            "concept:name": "Discharge",
+            "protected": false,
+            "resource": "Nurse 1",
+            "time": "2015-01-08T16:54:51.000000+00:00",
+            "time:timestamp": "2015-01-08T16:54:51.000000+00:00"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "88943860cb558e6203175d099899da3a9becb078ec9defbb7db4cf792da908dc",
+    "trace_types": {
+      "@@case_index": [
+        "int"
+      ],
+      "age": [
+        "int"
+      ],
+      "case": [
+        "int"
+      ],
+      "citizen": [
+        "boolean"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "gender": [
+        "boolean"
+      ],
+      "german speaking": [
+        "boolean"
+      ],
+      "private_insurance": [
+        "boolean"
+      ],
+      "underlying_condition": [
+        "boolean"
+      ]
+    },
+    "type_profiles": {
+      "43f77cd41e71823f14f9166627fef75693e08455e8d811fe20944c944fa05cf0": {
+        "count": 10000,
+        "events": {
+          "@@index": [
+            "int"
+          ],
+          "activity": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "protected": [
+            "boolean"
+          ],
+          "resource": [
+            "string"
+          ],
+          "time": [
+            "date"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "@@case_index": [
+            "int"
+          ],
+          "age": [
+            "int"
+          ],
+          "case": [
+            "int"
+          ],
+          "citizen": [
+            "boolean"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "gender": [
+            "boolean"
+          ],
+          "german speaking": [
+            "boolean"
+          ],
+          "private_insurance": [
+            "boolean"
+          ],
+          "underlying_condition": [
+            "boolean"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "0099e399035cab9a08f836c8e4f30f9933890709ff9d8bd838c7905679df51d5": 11,
+      "00f377af97741cc11494a7f568fd954b77e38172058c34392225cded209888ae": 124,
+      "07549415e7e25bc8826a233cb03d745783b6c6638b6684a7bfe187dfd13b8827": 4,
+      "0788471757e70b7c206c15e4cdb9ef525b13ef1c195d2099f7137443c1ae3174": 17,
+      "0a51734bc46eea4b2fd878b4bd516b11e13cbe1f631f88209f25190d11a5319c": 9,
+      "0cbf7bd9c8d522b42222ceaa7062d2ad7ca8bee875e1122a5ef45126d2ac2646": 734,
+      "0e1f9373565a6e4fb326d1bfb5176cf44eabf1337f3790e80443e252bda340d3": 1,
+      "0fba84b4425f45b43f1fb3ea0a949eac45102839d633e6219209cd01e66443f1": 105,
+      "1a1b47644a8b57122cca63e3d1b30aa8e33b94b11f3550356314606ca6ac171c": 5,
+      "1bfcd951bb4adf3fe3e09ce012912668c9742c81e029d7604cd97c3173cd8097": 124,
+      "1d6ff5573a3d2ae21f579e3823ae4165a32cfcf9a1100e545d3b59acbf8bc980": 1,
+      "1f874959db63138a5d13cabe11612572f985fe8fec8a0ba490aba546f3ab80f7": 3,
+      "2255838aa778a19c39c4d763bd0e8f0925de7a558e72e85cd7a775978485281f": 19,
+      "2310d02e330bd34e28ae9aca7e838a802e68ccb792b3e323f0056a87c27e2479": 1,
+      "2660d24f727f07c5c4781621f735212f4e53139d141962acc8465eaeca4cf82e": 6,
+      "272cd2d4d215477393787a492feafb83a5b6757b8147693338f2000e6deb6370": 4,
+      "27510701b9ae56aef63fa63bfc70f000b872f92c676efa63a1e5b68083403ebe": 42,
+      "27a845979ee14ed0b2ce22d96e08af6d0c3d8bddf89818f9d399cc368692beb2": 13,
+      "2ae687efd99669f8c239ff491c05b9a61cd163d025c757ebfdeb0c783b781f47": 2,
+      "2dba3cb5be8bb9a1071264965e6a290c22da9481451150ceb19db9fad9137772": 16,
+      "3588eba4f1be677e373180a5e58934b742aaccd746adc339566509ebdab59612": 14,
+      "38eb0ef7e92a6aefcf2ad13c2869bc7a95193aa1ab2be1d6f84c6973bc739b86": 2,
+      "38f2f5d22a9cdf2f487ad4ca0d2256f5bc6d88f02f6072921c8116734c7a5531": 241,
+      "3c7809063e355da0cf9ac0c2a13edd321d50e658c5023095de56e9832b596713": 163,
+      "444e324fb9a330d58c057387d4efed284076e208341d7c34817da1d98b8abcfb": 1,
+      "457f7d3c43c0e5cc32f69696126bc747de73004c7220a00a42057d91d26f031b": 78,
+      "4779686d3a5b5dadc49a7e983c155e095e7ea3337acf1deff69464d108c33a82": 12,
+      "47f608968b1eee6188471ee7f49aac5466b21bc2134fb1e041b96f8d49de79a6": 563,
+      "4d87f2dd72758a6c60260959026cbe3f7fc59a3ce16dc52251425c4346ca7ec5": 123,
+      "5490eba51e17f4a4362c991b37505a2dbb8f8a3664f079fd6c4748728e8827db": 6,
+      "576a158b00e927328d2523f9069bb8751f629488f5749a2bd53254f2161bc800": 105,
+      "58bd8a68e42c24e2edab2f7e7e8c3e2cbaf263807f5df7921a95083cc5b6c2b0": 1496,
+      "5b277fb5c6bd1bd44635d0d3eb61258988dd90942093900094b84eb1b7b2b39a": 1,
+      "5c7a36d89815aa73c8d967cb6fbfdb34b6162fda2631cebcbff90f91ad6faa69": 70,
+      "5f312c8380cb544019e02afaf4e7ed0b69c0f2338ee5de413f144e84ffed5696": 1,
+      "5f3db1601f66bc8b712f82a69e5b06b1ce0380e2150bff8060f93684166a5c03": 88,
+      "5f7acc37aa11930dab318547ae74db3146a0481987552962b244e1d617e7b86f": 5,
+      "681ad0608228f14e2db6863d3e38e895912fa542db4ff7caac6f5ec4894b3287": 13,
+      "6908161e8a1a5fc317a1b77768eb3935f3c7d5cc3576c0c32d7588624b74d7cc": 119,
+      "702d1e7b859a82573cb663ee1f3e2cf4c2956f71037dc6ecfc65bd6e6ee79545": 13,
+      "740006b5141ba987ccf2246254368d1c92d53b91891cf48c25f125a09c5d6fe3": 2,
+      "75db32afa84e620f1bb68ec47e42906e5479dd1ec141d234c1785d868380dbb8": 768,
+      "75fa87b79fb432b6da6d00a5cdcbb62f81fd28563d128b876d3fe7d63a344343": 13,
+      "7674401f6573f83fbad86638bd5faf9881282a9906e9877e776112073fa153be": 2,
+      "76d8eca11b90f163c5e48026d8a5cee5e6d9c16da7dd1808c559b8a36796d3a5": 197,
+      "7b858be28f135138d75f5ef973c89c42923492d68592dabefb6982a4a70b91ab": 120,
+      "7e77c129132d046d9c125464e1abc7260259278763775619b16c51314f1f441d": 4,
+      "8820682e4a4a3b833071f6b7862283ecc0d9893d31760c335360f0af1d02beea": 80,
+      "8aab6a9788941729137fd924bdb35891ca8ec793367a1e6c276de7ef8bce3d44": 832,
+      "9362db74850bd1a6068f4be5b178b727ddaaf0791b026127a1bc3a7456246533": 86,
+      "9f5ad356677257675b4421dba31a224a43f61b6bf336da2eee4e046e91828258": 22,
+      "a0b3f2106d3ecf9378808dbbd1c3db77a21a0cece6398a171d1142c79a3869c7": 11,
+      "a438d36dff5eb3c93366371b1b24de21fce47339cae009a32f6b16fa6d7121af": 94,
+      "a9ed270b7f6988be9814e08545a6c3f0cad66f6935cf80189bd8d4f1e142aec2": 12,
+      "ae2c17d82fb2e7fb5b0fd91fbd714762298442e20f480027d49af09004f6b9fa": 20,
+      "b3dab4b75c5ddde5370cfb385adbba046841c3060906e772a4e91bb7a353e209": 38,
+      "bb068bf80a2fd3298a93b4659b503df491c5e8754fe7b0c11e42ae01345ed969": 116,
+      "c1031db59c68bf7c87e9090bd4135e766166946dccf848b7d001d8b4a58ae575": 531,
+      "c13ba6195719661509a72550feb948443a3d216b99a6974ce0ddc7ee43216f58": 38,
+      "c1ee2af7d6b3d95cfaa9de840caf80ab02f7e264b1acf6e6db1aa63f3224d863": 766,
+      "c27426761325eba513ea8e263f8ce8dc602552c62f5c0f254212b0905db3cb71": 4,
+      "cb940f5348fd7489c8f1a624874fecb7abdc23f6693900ee4efbf9c254c73f28": 3,
+      "cdd478a1a702c5e2d517d4841a22de528e04aee64dc7c3aaacd5a216d195e61b": 21,
+      "d074dd4e31c3570400bd562d3d4ae96c790f3d7f456d1628c19615cd54dceaa4": 11,
+      "d3304e730abf18e0666f108d6c996ff8bcc9e095f3c9d9c2f97e8f042922caff": 23,
+      "d6674972510472c9a0f901a53c929e1216105935a9281230d2fc73845040ec29": 2,
+      "da38a549be7cab37c48f01a307840cb411a7bbc5b2571183ea8c3c6e7618e58f": 3,
+      "da772e74564e87efe39ad9d6a499d4e3d54aedf2d21cb1dd6b7c60980be4a50a": 1,
+      "dab4eb80d892b5f7e8b1c26e75cb3b3bb3809281075d126861ab7b6c830615bf": 53,
+      "e6775fab3bd7a574cb86eededffd2843026732c6a80430d6db59802f41912a80": 41,
+      "e6e3ac985e99b559e17b443250ff1c3a0c4162a1da4951df42ccb5ddf8e8c88c": 1,
+      "e6f93af54481ddcdf4ef06aa59e6edf59a259ac984d3428267ae6beeda8291d4": 5,
+      "e78b6e5c68208ac32ecd86ac3c4c9d2c1852e4e2cd75f5ddf9374232a89166de": 1539,
+      "ee4aa59ce8587308a7f4f2d530ad6d6c83f094aee8973e3b42f09ffeca99a709": 3,
+      "ef7d0147f1015906521e28f572d32d52c02b3ea86428243b740e10ad19d9c9cb": 1,
+      "f2e820cde68f0586bfc99c46243c56a589878fc47227771f493183863adc11c2": 2,
+      "f57743453837f6bbb10d431e96f3f7b41531d31026659a3d7737cdafa05748e4": 4,
+      "f5ed6f466ad3d9024c7725a540b932c92a68dbf635717717105ed7b9aabbf203": 16,
+      "fb3f687d2cd8070bb3ff6adf1f2384781d9a79b46c208a30490c42309596b19a": 155,
+      "fe20517443729618e372662d497e356a3524c587f819c6812a4ee73a36fb641a": 5
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "fairness-hospital_log_high-xes-gz",
+    "fixtures": {
+      "log": "fixtures/logs/fairness/hospital_log_high.xes.gz"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

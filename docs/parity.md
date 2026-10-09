@@ -14,7 +14,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.read_xes` | `read.py` → `objects/conversion/log/converter`, `objects/log/importer/xes/importer`, `objects/log/obj` | `ichnos::io::read_xes` (planned) | `ichnos-io` | todo | Variants: chunk_regex, iterparse, iterparse_20, iterparse_mem_compressed, line_by_line, rustxes, to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.read_xes` | `read.py` → `objects/conversion/log/converter`, `objects/log/importer/xes/importer`, `objects/log/obj` | `ichnos_io::read_xes` | `ichnos-io` | ported | Streaming quick-xml; plain/gzip. All readable XES fixtures have io goldens and Rust round trips. See the ichnos-io Behaviour changes list for return types, null handling, validation and XML version differences. |
 | `pm4py.read_pnml` | `read.py` → `objects/petri_net/importer/importer`, `objects/petri_net/obj` | `ichnos::io::read_pnml` (planned) | `ichnos-io` | todo | Variants: pnml. |
 | `pm4py.read_ptml` | `read.py` → `objects/process_tree/importer/importer`, `objects/process_tree/obj` | `ichnos::io::read_ptml` (planned) | `ichnos-io` | todo | Variants: ptml. |
 | `pm4py.read_dfg` | `read.py` → `objects/dfg/importer/importer` | `ichnos::io::read_dfg` (planned) | `ichnos-io` | todo | Variants: classic. |
@@ -35,7 +35,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.write_xes` | `write.py` → `objects/log/exporter/xes/exporter`, `objects/log/obj` | `ichnos::io::write_xes` (planned) | `ichnos-io` | todo | Variants: etree, etree_xes_exp, line_by_line. |
+| `pm4py.write_xes` | `write.py` → `objects/log/exporter/xes/exporter`, `objects/log/obj` | `ichnos_io::write_xes` | `ichnos-io` | ported | Streaming quick-xml; plain/gzip. All readable XES fixtures have io goldens and Rust round trips. See the ichnos-io Behaviour changes list for return types, null handling, validation and XML version differences. |
 | `pm4py.write_pnml` | `write.py` → `objects/petri_net/exporter/exporter`, `objects/petri_net/obj` | `ichnos::io::write_pnml` (planned) | `ichnos-io` | todo | Variants: pnml. |
 | `pm4py.write_ptml` | `write.py` → `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos::io::write_ptml` (planned) | `ichnos-io` | todo | Variants: ptml. |
 | `pm4py.write_dfg` | `write.py` → `objects/dfg/exporter/exporter` | `ichnos::io::write_dfg` (planned) | `ichnos-io` | todo | Variants: classic. |
@@ -1280,6 +1280,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 Lanes record each deliberate change from pm4py here.
 
+### ichnos-io
+
+- `read_xes` returns an `EventLog`; pm4py returns a DataFrame by default. The oracle uses `return_legacy_log_object=True`.
+- Unknown vendor elements (including their subtrees), text and CDATA are ignored. Attributes without a key or scalar value are omitted because the core model has no null key/value; pm4py can retain `None`.
+- Invalid numeric/date values return errors rather than being silently dropped. Dates retain their input offset; naive dates use UTC. DOCTYPE is rejected and nesting depth is bounded.
+- `write_xes` emits `xes.version="2.0"`; pm4py emits `xes.version="1849-2016"` and `openxes.version`. XML layout and declaration ordering differ, while typed values round-trip.
+
 ### ichnos-core
 
 Rows cite these as `core-N`.
@@ -1356,6 +1363,8 @@ Crate: `ichnos-ocel`. Rows: `pm4py.OCEL`.
 Port sources: `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj.py`.
 
 ### log-io
+
+Ichnos-only table APIs: `ichnos_io::{read_csv, read_csv_from_reader, write_csv, write_csv_to_writer, read_parquet, read_parquet_from_reader, write_parquet, write_parquet_to_writer}`. Readers follow pandas plus `pm4py.format_dataframe`; pm4py has no corresponding public CSV/Parquet functions. CSV dates use RFC 3339 rather than pandas' space-separated form. Both writers reject list/container attributes through the core columnar conversion; metadata and empty traces cannot be represented. Automatic date parsing accepts supported formats per value, so mixed-format columns may convert where pandas would leave strings.
 
 Crate: `ichnos-io`. Rows: `pm4py.read_xes`, `pm4py.write_xes`.
 
