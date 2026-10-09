@@ -355,7 +355,7 @@ fn write_powl_with(
                 icon_dir: Some(dir.clone()),
                 ..options.clone()
             };
-            render(&powl_dot(powl, &options), &format, program)
+            render(&powl_dot(powl, &options), &format, program, &[])
         });
     let _ = std::fs::remove_dir_all(&dir);
     let mut output = rendered?;
