@@ -133,3 +133,21 @@ for rel in READABLE_FIXTURES:
 # The 2.0 backend preserves containers which the legacy iterparse backend
 # ignores. This fixture intentionally lacks activity names.
 case("xes_20-xes", fixture="xes_20.xes", functions=["pm4py.read_xes"], params={"variant": "iterparse_20"})(summarize)
+
+# Table cases are introduced by the stacked CSV/Parquet package.
+TABLE_FIXTURES = [
+    'correlation_mining.csv',
+    'interleavings/receipt_even.csv',
+    'interleavings/receipt_odd.csv',
+    'interval_event_log.csv',
+    'receipt.csv',
+    'receipt.parquet',
+    'reviewing.csv',
+    'roadtraffic.parquet',
+    'roadtraffic100traces.csv',
+    'running-example.csv',
+    'running-example.parquet',
+]
+for rel in TABLE_FIXTURES:
+    case_id = re.sub(r"[^a-z0-9_-]", "-", rel.lower())
+    case(case_id, fixture=rel, functions=["pm4py.format_dataframe", "pm4py.convert_to_event_log"])(summarize)

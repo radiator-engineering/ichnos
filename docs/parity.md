@@ -1364,6 +1364,8 @@ Port sources: `pm4py/objects/ocel/constants`, `pm4py/objects/ocel/obj.py`.
 
 ### log-io
 
+Ichnos-only table APIs: `ichnos_io::{read_csv, read_csv_from_reader, write_csv, write_csv_to_writer, read_parquet, read_parquet_from_reader, write_parquet, write_parquet_to_writer}`. Readers follow pandas plus `pm4py.format_dataframe`; pm4py has no corresponding public CSV/Parquet functions. CSV dates use RFC 3339 rather than pandas' space-separated form. Both writers reject list/container attributes through the core columnar conversion; metadata and empty traces cannot be represented. Automatic date parsing accepts supported formats per value, so mixed-format columns may convert where pandas would leave strings.
+
 Crate: `ichnos-io`. Rows: `pm4py.read_xes`, `pm4py.write_xes`.
 
 Port sources: `pm4py/objects/conversion/log/converter`, `pm4py/objects/log/exporter/xes/exporter`, `pm4py/objects/log/importer/xes/importer`, `pm4py/objects/log/obj`, `pm4py/read.py`, `pm4py/write.py`.
