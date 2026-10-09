@@ -1,0 +1,5859 @@
+{
+  "expected": {
+    "dfg": {
+      "activities": [
+        "accept",
+        "collect reviews",
+        "decide",
+        "get review 1",
+        "get review 2",
+        "get review 3",
+        "get review X",
+        "invite additional reviewer",
+        "invite reviewers",
+        "reject",
+        "time-out 1",
+        "time-out 2",
+        "time-out 3",
+        "time-out X"
+      ],
+      "end_activities": [],
+      "parallel": [
+        [
+          "accept",
+          "accept"
+        ],
+        [
+          "collect reviews",
+          "collect reviews"
+        ],
+        [
+          "decide",
+          "decide"
+        ],
+        [
+          "get review 1",
+          "get review 2"
+        ],
+        [
+          "get review 1",
+          "get review 3"
+        ],
+        [
+          "get review 1",
+          "time-out 2"
+        ],
+        [
+          "get review 1",
+          "time-out 3"
+        ],
+        [
+          "get review 2",
+          "get review 1"
+        ],
+        [
+          "get review 2",
+          "get review 3"
+        ],
+        [
+          "get review 2",
+          "time-out 1"
+        ],
+        [
+          "get review 2",
+          "time-out 3"
+        ],
+        [
+          "get review 3",
+          "get review 1"
+        ],
+        [
+          "get review 3",
+          "get review 2"
+        ],
+        [
+          "get review 3",
+          "time-out 1"
+        ],
+        [
+          "get review 3",
+          "time-out 2"
+        ],
+        [
+          "invite additional reviewer",
+          "invite additional reviewer"
+        ],
+        [
+          "invite reviewers",
+          "invite reviewers"
+        ],
+        [
+          "reject",
+          "reject"
+        ],
+        [
+          "time-out 1",
+          "get review 2"
+        ],
+        [
+          "time-out 1",
+          "get review 3"
+        ],
+        [
+          "time-out 1",
+          "time-out 2"
+        ],
+        [
+          "time-out 1",
+          "time-out 3"
+        ],
+        [
+          "time-out 2",
+          "get review 1"
+        ],
+        [
+          "time-out 2",
+          "get review 3"
+        ],
+        [
+          "time-out 2",
+          "time-out 1"
+        ],
+        [
+          "time-out 2",
+          "time-out 3"
+        ],
+        [
+          "time-out 3",
+          "get review 1"
+        ],
+        [
+          "time-out 3",
+          "get review 2"
+        ],
+        [
+          "time-out 3",
+          "time-out 1"
+        ],
+        [
+          "time-out 3",
+          "time-out 2"
+        ]
+      ],
+      "sequence": [
+        [
+          "collect reviews",
+          "decide"
+        ],
+        [
+          "decide",
+          "accept"
+        ],
+        [
+          "decide",
+          "invite additional reviewer"
+        ],
+        [
+          "decide",
+          "reject"
+        ],
+        [
+          "get review 1",
+          "collect reviews"
+        ],
+        [
+          "get review 2",
+          "collect reviews"
+        ],
+        [
+          "get review 3",
+          "collect reviews"
+        ],
+        [
+          "get review X",
+          "decide"
+        ],
+        [
+          "invite additional reviewer",
+          "get review X"
+        ],
+        [
+          "invite additional reviewer",
+          "time-out X"
+        ],
+        [
+          "invite reviewers",
+          "get review 1"
+        ],
+        [
+          "invite reviewers",
+          "get review 2"
+        ],
+        [
+          "invite reviewers",
+          "get review 3"
+        ],
+        [
+          "invite reviewers",
+          "time-out 1"
+        ],
+        [
+          "invite reviewers",
+          "time-out 2"
+        ],
+        [
+          "invite reviewers",
+          "time-out 3"
+        ],
+        [
+          "time-out 1",
+          "collect reviews"
+        ],
+        [
+          "time-out 2",
+          "collect reviews"
+        ],
+        [
+          "time-out 3",
+          "collect reviews"
+        ],
+        [
+          "time-out X",
+          "decide"
+        ]
+      ],
+      "start_activities": []
+    },
+    "entire": {
+      "activities": [
+        "accept",
+        "collect reviews",
+        "decide",
+        "get review 1",
+        "get review 2",
+        "get review 3",
+        "get review X",
+        "invite additional reviewer",
+        "invite reviewers",
+        "reject",
+        "time-out 1",
+        "time-out 2",
+        "time-out 3",
+        "time-out X"
+      ],
+      "dfg": [
+        [
+          [
+            "accept",
+            "accept"
+          ],
+          45
+        ],
+        [
+          [
+            "collect reviews",
+            "collect reviews"
+          ],
+          100
+        ],
+        [
+          [
+            "collect reviews",
+            "decide"
+          ],
+          100
+        ],
+        [
+          [
+            "decide",
+            "accept"
+          ],
+          45
+        ],
+        [
+          [
+            "decide",
+            "decide"
+          ],
+          626
+        ],
+        [
+          [
+            "decide",
+            "invite additional reviewer"
+          ],
+          526
+        ],
+        [
+          [
+            "decide",
+            "reject"
+          ],
+          55
+        ],
+        [
+          [
+            "get review 1",
+            "collect reviews"
+          ],
+          11
+        ],
+        [
+          [
+            "get review 1",
+            "get review 2"
+          ],
+          10
+        ],
+        [
+          [
+            "get review 1",
+            "get review 3"
+          ],
+          6
+        ],
+        [
+          [
+            "get review 1",
+            "time-out 2"
+          ],
+          8
+        ],
+        [
+          [
+            "get review 1",
+            "time-out 3"
+          ],
+          10
+        ],
+        [
+          [
+            "get review 2",
+            "collect reviews"
+          ],
+          10
+        ],
+        [
+          [
+            "get review 2",
+            "get review 1"
+          ],
+          6
+        ],
+        [
+          [
+            "get review 2",
+            "get review 3"
+          ],
+          12
+        ],
+        [
+          [
+            "get review 2",
+            "time-out 1"
+          ],
+          9
+        ],
+        [
+          [
+            "get review 2",
+            "time-out 3"
+          ],
+          8
+        ],
+        [
+          [
+            "get review 3",
+            "collect reviews"
+          ],
+          11
+        ],
+        [
+          [
+            "get review 3",
+            "get review 1"
+          ],
+          9
+        ],
+        [
+          [
+            "get review 3",
+            "get review 2"
+          ],
+          4
+        ],
+        [
+          [
+            "get review 3",
+            "time-out 1"
+          ],
+          11
+        ],
+        [
+          [
+            "get review 3",
+            "time-out 2"
+          ],
+          15
+        ],
+        [
+          [
+            "get review X",
+            "decide"
+          ],
+          263
+        ],
+        [
+          [
+            "invite additional reviewer",
+            "get review X"
+          ],
+          263
+        ],
+        [
+          [
+            "invite additional reviewer",
+            "invite additional reviewer"
+          ],
+          526
+        ],
+        [
+          [
+            "invite additional reviewer",
+            "time-out X"
+          ],
+          263
+        ],
+        [
+          [
+            "invite reviewers",
+            "get review 1"
+          ],
+          16
+        ],
+        [
+          [
+            "invite reviewers",
+            "get review 2"
+          ],
+          19
+        ],
+        [
+          [
+            "invite reviewers",
+            "get review 3"
+          ],
+          19
+        ],
+        [
+          [
+            "invite reviewers",
+            "invite reviewers"
+          ],
+          100
+        ],
+        [
+          [
+            "invite reviewers",
+            "time-out 1"
+          ],
+          16
+        ],
+        [
+          [
+            "invite reviewers",
+            "time-out 2"
+          ],
+          12
+        ],
+        [
+          [
+            "invite reviewers",
+            "time-out 3"
+          ],
+          18
+        ],
+        [
+          [
+            "reject",
+            "reject"
+          ],
+          55
+        ],
+        [
+          [
+            "time-out 1",
+            "collect reviews"
+          ],
+          22
+        ],
+        [
+          [
+            "time-out 1",
+            "get review 2"
+          ],
+          7
+        ],
+        [
+          [
+            "time-out 1",
+            "get review 3"
+          ],
+          9
+        ],
+        [
+          [
+            "time-out 1",
+            "time-out 2"
+          ],
+          11
+        ],
+        [
+          [
+            "time-out 1",
+            "time-out 3"
+          ],
+          6
+        ],
+        [
+          [
+            "time-out 2",
+            "collect reviews"
+          ],
+          26
+        ],
+        [
+          [
+            "time-out 2",
+            "get review 1"
+          ],
+          7
+        ],
+        [
+          [
+            "time-out 2",
+            "get review 3"
+          ],
+          4
+        ],
+        [
+          [
+            "time-out 2",
+            "time-out 1"
+          ],
+          10
+        ],
+        [
+          [
+            "time-out 2",
+            "time-out 3"
+          ],
+          8
+        ],
+        [
+          [
+            "time-out 3",
+            "collect reviews"
+          ],
+          20
+        ],
+        [
+          [
+            "time-out 3",
+            "get review 1"
+          ],
+          7
+        ],
+        [
+          [
+            "time-out 3",
+            "get review 2"
+          ],
+          5
+        ],
+        [
+          [
+            "time-out 3",
+            "time-out 1"
+          ],
+          9
+        ],
+        [
+          [
+            "time-out 3",
+            "time-out 2"
+          ],
+          9
+        ],
+        [
+          [
+            "time-out X",
+            "decide"
+          ],
+          263
+        ]
+      ],
+      "end_activities": [
+        "accept",
+        "reject"
+      ],
+      "min_trace_length": 11,
+      "parallel": [
+        [
+          "accept",
+          "accept"
+        ],
+        [
+          "collect reviews",
+          "collect reviews"
+        ],
+        [
+          "decide",
+          "decide"
+        ],
+        [
+          "get review 1",
+          "get review 2"
+        ],
+        [
+          "get review 1",
+          "get review 3"
+        ],
+        [
+          "get review 1",
+          "time-out 2"
+        ],
+        [
+          "get review 1",
+          "time-out 3"
+        ],
+        [
+          "get review 2",
+          "get review 1"
+        ],
+        [
+          "get review 2",
+          "get review 3"
+        ],
+        [
+          "get review 2",
+          "time-out 1"
+        ],
+        [
+          "get review 2",
+          "time-out 3"
+        ],
+        [
+          "get review 3",
+          "get review 1"
+        ],
+        [
+          "get review 3",
+          "get review 2"
+        ],
+        [
+          "get review 3",
+          "time-out 1"
+        ],
+        [
+          "get review 3",
+          "time-out 2"
+        ],
+        [
+          "invite additional reviewer",
+          "invite additional reviewer"
+        ],
+        [
+          "invite reviewers",
+          "invite reviewers"
+        ],
+        [
+          "reject",
+          "reject"
+        ],
+        [
+          "time-out 1",
+          "get review 2"
+        ],
+        [
+          "time-out 1",
+          "get review 3"
+        ],
+        [
+          "time-out 1",
+          "time-out 2"
+        ],
+        [
+          "time-out 1",
+          "time-out 3"
+        ],
+        [
+          "time-out 2",
+          "get review 1"
+        ],
+        [
+          "time-out 2",
+          "get review 3"
+        ],
+        [
+          "time-out 2",
+          "time-out 1"
+        ],
+        [
+          "time-out 2",
+          "time-out 3"
+        ],
+        [
+          "time-out 3",
+          "get review 1"
+        ],
+        [
+          "time-out 3",
+          "get review 2"
+        ],
+        [
+          "time-out 3",
+          "time-out 1"
+        ],
+        [
+          "time-out 3",
+          "time-out 2"
+        ]
+      ],
+      "sequence": [
+        [
+          "collect reviews",
+          "decide"
+        ],
+        [
+          "decide",
+          "accept"
+        ],
+        [
+          "decide",
+          "invite additional reviewer"
+        ],
+        [
+          "decide",
+          "reject"
+        ],
+        [
+          "get review 1",
+          "collect reviews"
+        ],
+        [
+          "get review 2",
+          "collect reviews"
+        ],
+        [
+          "get review 3",
+          "collect reviews"
+        ],
+        [
+          "get review X",
+          "decide"
+        ],
+        [
+          "invite additional reviewer",
+          "get review X"
+        ],
+        [
+          "invite additional reviewer",
+          "time-out X"
+        ],
+        [
+          "invite reviewers",
+          "get review 1"
+        ],
+        [
+          "invite reviewers",
+          "get review 2"
+        ],
+        [
+          "invite reviewers",
+          "get review 3"
+        ],
+        [
+          "invite reviewers",
+          "time-out 1"
+        ],
+        [
+          "invite reviewers",
+          "time-out 2"
+        ],
+        [
+          "invite reviewers",
+          "time-out 3"
+        ],
+        [
+          "time-out 1",
+          "collect reviews"
+        ],
+        [
+          "time-out 2",
+          "collect reviews"
+        ],
+        [
+          "time-out 3",
+          "collect reviews"
+        ],
+        [
+          "time-out X",
+          "decide"
+        ]
+      ],
+      "start_activities": [
+        "invite reviewers"
+      ]
+    },
+    "powl": {
+      "activities": [
+        "accept",
+        "collect reviews",
+        "decide",
+        "get review 1",
+        "get review 2",
+        "get review 3",
+        "get review X",
+        "invite additional reviewer",
+        "invite reviewers",
+        "reject",
+        "time-out 1",
+        "time-out 2",
+        "time-out 3",
+        "time-out X"
+      ],
+      "activities_always_happening": [
+        "collect reviews",
+        "decide",
+        "invite reviewers"
+      ],
+      "end_activities": [
+        "accept",
+        "reject"
+      ],
+      "min_trace_length": 7,
+      "parallel": [
+        [
+          "accept",
+          "accept"
+        ],
+        [
+          "collect reviews",
+          "collect reviews"
+        ],
+        [
+          "decide",
+          "decide"
+        ],
+        [
+          "get review 1",
+          "get review 2"
+        ],
+        [
+          "get review 1",
+          "get review 3"
+        ],
+        [
+          "get review 1",
+          "time-out 2"
+        ],
+        [
+          "get review 1",
+          "time-out 3"
+        ],
+        [
+          "get review 2",
+          "get review 1"
+        ],
+        [
+          "get review 2",
+          "get review 3"
+        ],
+        [
+          "get review 2",
+          "time-out 1"
+        ],
+        [
+          "get review 2",
+          "time-out 3"
+        ],
+        [
+          "get review 3",
+          "get review 1"
+        ],
+        [
+          "get review 3",
+          "get review 2"
+        ],
+        [
+          "get review 3",
+          "time-out 1"
+        ],
+        [
+          "get review 3",
+          "time-out 2"
+        ],
+        [
+          "invite additional reviewer",
+          "invite additional reviewer"
+        ],
+        [
+          "invite reviewers",
+          "invite reviewers"
+        ],
+        [
+          "reject",
+          "reject"
+        ],
+        [
+          "time-out 1",
+          "get review 2"
+        ],
+        [
+          "time-out 1",
+          "get review 3"
+        ],
+        [
+          "time-out 1",
+          "time-out 2"
+        ],
+        [
+          "time-out 1",
+          "time-out 3"
+        ],
+        [
+          "time-out 2",
+          "get review 1"
+        ],
+        [
+          "time-out 2",
+          "get review 3"
+        ],
+        [
+          "time-out 2",
+          "time-out 1"
+        ],
+        [
+          "time-out 2",
+          "time-out 3"
+        ],
+        [
+          "time-out 3",
+          "get review 1"
+        ],
+        [
+          "time-out 3",
+          "get review 2"
+        ],
+        [
+          "time-out 3",
+          "time-out 1"
+        ],
+        [
+          "time-out 3",
+          "time-out 2"
+        ]
+      ],
+      "sequence": [
+        [
+          "collect reviews",
+          "decide"
+        ],
+        [
+          "decide",
+          "accept"
+        ],
+        [
+          "decide",
+          "invite additional reviewer"
+        ],
+        [
+          "decide",
+          "reject"
+        ],
+        [
+          "get review 1",
+          "collect reviews"
+        ],
+        [
+          "get review 2",
+          "collect reviews"
+        ],
+        [
+          "get review 3",
+          "collect reviews"
+        ],
+        [
+          "get review X",
+          "decide"
+        ],
+        [
+          "invite additional reviewer",
+          "get review X"
+        ],
+        [
+          "invite additional reviewer",
+          "time-out X"
+        ],
+        [
+          "invite reviewers",
+          "get review 1"
+        ],
+        [
+          "invite reviewers",
+          "get review 2"
+        ],
+        [
+          "invite reviewers",
+          "get review 3"
+        ],
+        [
+          "invite reviewers",
+          "time-out 1"
+        ],
+        [
+          "invite reviewers",
+          "time-out 2"
+        ],
+        [
+          "invite reviewers",
+          "time-out 3"
+        ],
+        [
+          "time-out 1",
+          "collect reviews"
+        ],
+        [
+          "time-out 2",
+          "collect reviews"
+        ],
+        [
+          "time-out 3",
+          "collect reviews"
+        ],
+        [
+          "time-out X",
+          "decide"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "invite reviewers"
+      ]
+    },
+    "traces": {
+      "first": [
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 1",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "collect reviews"
+            ],
+            [
+              "get review 2",
+              "get review 3"
+            ],
+            [
+              "get review 3",
+              "get review 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 2"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 2",
+            "get review 3",
+            "get review 1",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out X"
+          ],
+          "count": 2,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              6
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "get review 1",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              3
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 36,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "get review 2"
+            ],
+            [
+              "get review 2",
+              "collect reviews"
+            ],
+            [
+              "get review 3",
+              "get review 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 3"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 3",
+            "get review 1",
+            "get review 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              7
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              6
+            ],
+            [
+              [
+                "get review 1",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              6
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 41,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "get review 2"
+            ],
+            [
+              "get review 2",
+              "get review 3"
+            ],
+            [
+              "get review 3",
+              "collect reviews"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "get review 2",
+            "get review 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              8
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              7
+            ],
+            [
+              [
+                "get review 1",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              6
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              6
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              7
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 46,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "get review 2"
+            ],
+            [
+              "get review 2",
+              "get review 3"
+            ],
+            [
+              "get review 3",
+              "collect reviews"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "get review 2",
+            "get review 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              13
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              12
+            ],
+            [
+              [
+                "get review 1",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              12
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              9
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              9
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 71,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "get review 2"
+            ],
+            [
+              "get review 2",
+              "collect reviews"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "time-out 3"
+            ],
+            [
+              "time-out 3",
+              "get review 1"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "time-out 3",
+            "get review 1",
+            "get review 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 1",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "collect reviews"
+            ],
+            [
+              "get review 2",
+              "get review 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "time-out 3"
+            ],
+            [
+              "time-out 3",
+              "get review 2"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "time-out 3",
+            "get review 2",
+            "get review 1",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 3"
+            ],
+            [
+              "get review 2",
+              "get review 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 2"
+            ],
+            [
+              "time-out 3",
+              "collect reviews"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 2",
+            "get review 1",
+            "time-out 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              6
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "get review 1",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 36,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "collect reviews"
+            ],
+            [
+              "get review 2",
+              "time-out 3"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 2"
+            ],
+            [
+              "time-out 3",
+              "get review 1"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 2",
+            "time-out 3",
+            "get review 1",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 2",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              6
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 36,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 3"
+            ],
+            [
+              "get review 2",
+              "collect reviews"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out 3",
+              "get review 2"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "time-out 3",
+            "get review 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 1",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              3
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "get review 3"
+            ],
+            [
+              "get review 3",
+              "collect reviews"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "time-out 2"
+            ],
+            [
+              "time-out 2",
+              "get review 1"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "time-out 2",
+            "get review 1",
+            "get review 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              6
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              3
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 36,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 2"
+            ],
+            [
+              "get review 3",
+              "collect reviews"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out 2",
+              "get review 3"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "time-out 2",
+            "get review 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              2
+            ],
+            [
+              [
+                "get review 1",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "collect reviews"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 21,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "get review 3"
+            ],
+            [
+              "get review 3",
+              "time-out 2"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out 2",
+              "collect reviews"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "get review 3",
+            "time-out 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              2
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 21,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 3"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out 2",
+              "collect reviews"
+            ],
+            [
+              "time-out 3",
+              "time-out 2"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "time-out 3",
+            "time-out 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              4
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              3
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 26,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 2"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "time-out 3"
+            ],
+            [
+              "time-out 2",
+              "collect reviews"
+            ],
+            [
+              "time-out 3",
+              "get review 1"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "time-out 3",
+            "get review 1",
+            "time-out 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2",
+            "time-out 3",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              8
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              7
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              7
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              4
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              4
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 46,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 3"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "time-out 2"
+            ],
+            [
+              "time-out 2",
+              "get review 1"
+            ],
+            [
+              "time-out 3",
+              "collect reviews"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "time-out 2",
+            "get review 1",
+            "time-out 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 1",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 2",
+            "time-out 3"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 1",
+                "time-out 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 1"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 2",
+                "time-out 3"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 3",
+                "collect reviews"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 1",
+              "time-out 2"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite reviewers",
+              "get review 1"
+            ],
+            [
+              "time-out 2",
+              "time-out 3"
+            ],
+            [
+              "time-out 3",
+              "collect reviews"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 1",
+            "time-out 2",
+            "time-out 3",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 1",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "time-out 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              1
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 1",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              3
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 2",
+              "collect reviews"
+            ],
+            [
+              "get review 3",
+              "time-out 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 3"
+            ],
+            [
+              "time-out 1",
+              "get review 2"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 3",
+            "time-out 1",
+            "get review 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 1",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              5
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "get review 2",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "time-out 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              4
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 1",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 31,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 2",
+              "collect reviews"
+            ],
+            [
+              "get review 3",
+              "time-out 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 3"
+            ],
+            [
+              "time-out 1",
+              "get review 2"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 3",
+            "time-out 1",
+            "get review 2",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 1",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              6
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "get review 2",
+                "time-out 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              3
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              5
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 1",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              2
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 36,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 2",
+              "time-out 1"
+            ],
+            [
+              "get review 3",
+              "get review 2"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 3"
+            ],
+            [
+              "time-out 1",
+              "collect reviews"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 3",
+            "get review 2",
+            "time-out 1",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        },
+        {
+          "activities": [
+            "accept",
+            "collect reviews",
+            "decide",
+            "get review 2",
+            "get review 3",
+            "get review X",
+            "invite additional reviewer",
+            "invite reviewers",
+            "time-out 1",
+            "time-out X"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "accept",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "collect reviews",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "accept"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "decide"
+              ],
+              7
+            ],
+            [
+              [
+                "decide",
+                "invite additional reviewer"
+              ],
+              6
+            ],
+            [
+              [
+                "get review 2",
+                "get review 3"
+              ],
+              1
+            ],
+            [
+              [
+                "get review 3",
+                "time-out 1"
+              ],
+              1
+            ],
+            [
+              [
+                "get review X",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "get review X"
+              ],
+              2
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "invite additional reviewer"
+              ],
+              6
+            ],
+            [
+              [
+                "invite additional reviewer",
+                "time-out X"
+              ],
+              4
+            ],
+            [
+              [
+                "invite reviewers",
+                "get review 2"
+              ],
+              1
+            ],
+            [
+              [
+                "invite reviewers",
+                "invite reviewers"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out 1",
+                "collect reviews"
+              ],
+              1
+            ],
+            [
+              [
+                "time-out X",
+                "decide"
+              ],
+              4
+            ]
+          ],
+          "end_activities": [
+            "accept"
+          ],
+          "min_trace_length": 41,
+          "parallel": [
+            [
+              "accept",
+              "accept"
+            ],
+            [
+              "collect reviews",
+              "collect reviews"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "invite additional reviewer"
+            ],
+            [
+              "invite reviewers",
+              "invite reviewers"
+            ]
+          ],
+          "sequence": [
+            [
+              "collect reviews",
+              "decide"
+            ],
+            [
+              "decide",
+              "accept"
+            ],
+            [
+              "decide",
+              "invite additional reviewer"
+            ],
+            [
+              "get review 2",
+              "get review 3"
+            ],
+            [
+              "get review 3",
+              "time-out 1"
+            ],
+            [
+              "get review X",
+              "decide"
+            ],
+            [
+              "invite additional reviewer",
+              "get review X"
+            ],
+            [
+              "invite additional reviewer",
+              "time-out X"
+            ],
+            [
+              "invite reviewers",
+              "get review 2"
+            ],
+            [
+              "time-out 1",
+              "collect reviews"
+            ],
+            [
+              "time-out X",
+              "decide"
+            ]
+          ],
+          "start_activities": [
+            "invite reviewers"
+          ],
+          "trace": [
+            "invite reviewers",
+            "invite reviewers",
+            "get review 2",
+            "get review 3",
+            "time-out 1",
+            "collect reviews",
+            "collect reviews",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "get review X",
+            "decide",
+            "decide",
+            "invite additional reviewer",
+            "invite additional reviewer",
+            "time-out X",
+            "decide",
+            "decide",
+            "accept",
+            "accept"
+          ]
+        }
+      ],
+      "groups": 96,
+      "rest_sha256": "ee9af7182ad0e0a254908df56824a7c6a4b5d266f414c679bc53d1f6c9ec6f7a",
+      "traces": 100
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "footprints-log-reviewing-csv",
+    "fixtures": {
+      "log": "fixtures/logs/reviewing.csv"
+    },
+    "functions": [
+      "pm4py.discover_footprints",
+      "pm4py.convert_to_event_log",
+      "pm4py.discover_dfg",
+      "pm4py.discover_powl"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

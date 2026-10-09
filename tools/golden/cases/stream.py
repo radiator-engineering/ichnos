@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+import numpy as np
 import pandas as pd
 from harness import case
 from pm4py.objects.log.obj import Event
@@ -20,6 +21,8 @@ from pm4py.streaming.util.live_to_static_stream import LiveToStaticStream
 
 
 def _value(value):
+    if isinstance(value, np.generic):
+        value = value.item()
     if isinstance(value, datetime):
         return {"date": value.astimezone(timezone.utc).isoformat(timespec="microseconds")}
     if isinstance(value, dict) and "value" in value and "children" in value:
@@ -212,7 +215,12 @@ def dataframe_traces(fixtures, rows=None, custom=False, interleaved=False):
     collector = LiveToStaticStream()
     stream = LiveTraceStream(parameters={"thread_pool_size": 1})
     stream.register(collector)
+    stream.register(collector)
+    if traces:
+        stream.append(reader.read_trace())
+    inactive = stream.state.name.lower()
     stream.start()
+    active = stream.state.name.lower()
     reader.to_trace_stream(stream)
     stream.stop()
     projected = [_trace(t) for t in traces]
@@ -222,6 +230,7 @@ def dataframe_traces(fixtures, rows=None, custom=False, interleaved=False):
         "raw": _summary(raw),
         "forwarded": _summary([_trace(t) for t in collector.get()]),
         "grouped_input": interleaved,
+        "states": [inactive, active, stream.state.name.lower()],
     }
 
 
@@ -348,3 +357,14 @@ case(
     functions=["pm4py.streaming.importer.xes.importer.apply"],
     params={"kind": "traces", "filter_case": "3"},
 )(import_stream)
+
+for _name, _ids in [
+    ("numeric-integers", [10, 2]),
+    ("numeric-floats", [10.5, 2.5]),
+    ("large-integers", [9007199254740993, 9007199254740992]),
+]:
+    case(
+        "dataframe-" + _name,
+        functions=["pm4py.streaming.conversion.from_pandas.apply"],
+        params={"rows": [[c, a, "2024-01-01T00:00:00+00:00"] for c in _ids for a in ["a", "b"]]},
+    )(dataframe_traces)

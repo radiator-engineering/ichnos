@@ -370,7 +370,13 @@ fn dataframe(name: &str) {
         rows.iter()
             .map(|row| {
                 let mut event = Event::new();
-                event.insert(keys.case_id.as_str(), row[0].as_str().unwrap());
+                if let Some(value) = row[0].as_i64() {
+                    event.insert(keys.case_id.as_str(), value);
+                } else if let Some(value) = row[0].as_f64() {
+                    event.insert(keys.case_id.as_str(), value);
+                } else {
+                    event.insert(keys.case_id.as_str(), row[0].as_str().unwrap());
+                }
                 event.insert(keys.activity.as_str(), row[1].as_str().unwrap());
                 event.insert(
                     keys.timestamp.as_str(),
@@ -394,7 +400,7 @@ fn dataframe(name: &str) {
     };
     let before = stream.clone();
     let mut reader = TraceIterator::from_event_stream(&stream, &keys).unwrap();
-    let first: Vec<_> = reader.by_ref().collect();
+    let first: Vec<_> = std::iter::from_fn(|| reader.read_trace()).collect();
     compare(
         &summary(first.iter().map(trace).collect()),
         &g.expected["traces"],
@@ -404,10 +410,24 @@ fn dataframe(name: &str) {
     reader.reset();
     let collector = Rc::new(RefCell::new(Collector::<Trace>::new()));
     let mut live = LiveTraceStream::new();
-    live.register(collector.clone());
+    let id = live.register(collector.clone());
+    assert_eq!(live.register(collector.clone()), id);
+    if let Some(trace) = reader.read_trace() {
+        live.append(trace).unwrap();
+    }
+    let inactive = format!("{:?}", live.state()).to_lowercase();
     live.start().unwrap();
+    let active = format!("{:?}", live.state()).to_lowercase();
     reader.to_trace_stream(&mut live).unwrap();
     live.stop().unwrap();
+    compare(
+        &json!([
+            inactive,
+            active,
+            format!("{:?}", live.state()).to_lowercase()
+        ]),
+        &g.expected["states"],
+    );
     compare(
         &summary(collector.borrow().get().iter().map(trace).collect()),
         &g.expected["forwarded"],
@@ -440,3 +460,5 @@ cases!(dataframe; dataframe_running => "running-example", dataframe_receipt => "
     dataframe_empty => "empty", dataframe_unsorted => "unsorted", dataframe_interleaved => "interleaved", dataframe_custom => "custom");
 
 cases!(importer; csv_transformed_filtered => "csv-transformed-filtered", xes_events_filtered => "xes-events-filtered", xes_traces_filtered => "xes-traces-filtered");
+
+cases!(dataframe; dataframe_numeric_integers => "numeric-integers", dataframe_numeric_floats => "numeric-floats", dataframe_large_integers => "large-integers");

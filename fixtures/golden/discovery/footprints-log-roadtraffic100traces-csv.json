@@ -1,0 +1,1196 @@
+{
+  "expected": {
+    "dfg": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "end_activities": [
+        "Send for Credit Collection"
+      ],
+      "parallel": [
+        [
+          "Add penalty",
+          "Payment"
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Add penalty"
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification"
+        ],
+        [
+          "Payment",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Send Fine"
+        ],
+        [
+          "Send Fine",
+          "Payment"
+        ]
+      ],
+      "sequence": [
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        [
+          "Create Fine",
+          "Send Fine"
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification"
+        ]
+      ],
+      "start_activities": [
+        "Create Fine"
+      ]
+    },
+    "entire": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "dfg": [
+        [
+          [
+            "Add penalty",
+            "Payment"
+          ],
+          20
+        ],
+        [
+          [
+            "Add penalty",
+            "Send Appeal to Prefecture"
+          ],
+          1
+        ],
+        [
+          [
+            "Add penalty",
+            "Send for Credit Collection"
+          ],
+          36
+        ],
+        [
+          [
+            "Create Fine",
+            "Payment"
+          ],
+          23
+        ],
+        [
+          [
+            "Create Fine",
+            "Send Fine"
+          ],
+          77
+        ],
+        [
+          [
+            "Insert Date Appeal to Prefecture",
+            "Add penalty"
+          ],
+          1
+        ],
+        [
+          [
+            "Insert Fine Notification",
+            "Add penalty"
+          ],
+          52
+        ],
+        [
+          [
+            "Insert Fine Notification",
+            "Insert Date Appeal to Prefecture"
+          ],
+          1
+        ],
+        [
+          [
+            "Insert Fine Notification",
+            "Payment"
+          ],
+          4
+        ],
+        [
+          [
+            "Notify Result Appeal to Offender",
+            "Payment"
+          ],
+          1
+        ],
+        [
+          [
+            "Payment",
+            "Add penalty"
+          ],
+          4
+        ],
+        [
+          [
+            "Payment",
+            "Insert Fine Notification"
+          ],
+          1
+        ],
+        [
+          [
+            "Payment",
+            "Payment"
+          ],
+          5
+        ],
+        [
+          [
+            "Payment",
+            "Send Fine"
+          ],
+          1
+        ],
+        [
+          [
+            "Receive Result Appeal from Prefecture",
+            "Notify Result Appeal to Offender"
+          ],
+          1
+        ],
+        [
+          [
+            "Send Appeal to Prefecture",
+            "Receive Result Appeal from Prefecture"
+          ],
+          1
+        ],
+        [
+          [
+            "Send Fine",
+            "Insert Fine Notification"
+          ],
+          56
+        ],
+        [
+          [
+            "Send Fine",
+            "Payment"
+          ],
+          5
+        ]
+      ],
+      "end_activities": [
+        "Payment",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "min_trace_length": 2,
+      "parallel": [
+        [
+          "Add penalty",
+          "Payment"
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Add penalty"
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification"
+        ],
+        [
+          "Payment",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Send Fine"
+        ],
+        [
+          "Send Fine",
+          "Payment"
+        ]
+      ],
+      "sequence": [
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        [
+          "Create Fine",
+          "Send Fine"
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification"
+        ]
+      ],
+      "start_activities": [
+        "Create Fine"
+      ]
+    },
+    "powl": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "activities_always_happening": [
+        "Create Fine"
+      ],
+      "end_activities": [
+        "Add penalty",
+        "Create Fine",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "min_trace_length": 1,
+      "parallel": [
+        [
+          "Add penalty",
+          "Payment"
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Payment"
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment"
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Add penalty"
+        ],
+        [
+          "Payment",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification"
+        ],
+        [
+          "Payment",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "Payment",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "Payment",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "Payment",
+          "Send Fine"
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Payment"
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Payment"
+        ],
+        [
+          "Send Fine",
+          "Payment"
+        ]
+      ],
+      "sequence": [
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        [
+          "Create Fine",
+          "Send Fine"
+        ],
+        [
+          "Create Fine",
+          "Send for Credit Collection"
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Send for Credit Collection"
+        ],
+        [
+          "Payment",
+          "Send for Credit Collection"
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification"
+        ],
+        [
+          "Send Fine",
+          "Send for Credit Collection"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "Create Fine"
+      ]
+    },
+    "traces": {
+      "first": [
+        {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Date Appeal to Prefecture",
+            "Insert Fine Notification",
+            "Notify Result Appeal to Offender",
+            "Payment",
+            "Receive Result Appeal from Prefecture",
+            "Send Appeal to Prefecture",
+            "Send Fine"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              1
+            ],
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              1
+            ],
+            [
+              [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 9,
+          "parallel": [],
+          "sequence": [
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Insert Date Appeal to Prefecture",
+            "Add penalty",
+            "Send Appeal to Prefecture",
+            "Receive Result Appeal from Prefecture",
+            "Notify Result Appeal to Offender",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Send Fine"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              1
+            ],
+            [
+              [
+                "Payment",
+                "Insert Fine Notification"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Payment"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 6,
+          "parallel": [],
+          "sequence": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Payment",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Send Fine"
+          ],
+          "count": 5,
+          "dfg": [
+            [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              1
+            ],
+            [
+              [
+                "Payment",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 6,
+          "parallel": [
+            [
+              "Payment",
+              "Payment"
+            ]
+          ],
+          "sequence": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Payment",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Send Fine"
+          ],
+          "count": 10,
+          "dfg": [
+            [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Send Fine"
+          ],
+          "count": 4,
+          "dfg": [
+            [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Payment",
+                "Add penalty"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 6,
+          "parallel": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ]
+          ],
+          "sequence": [
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Add penalty",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Send Fine",
+            "Send for Credit Collection"
+          ],
+          "count": 36,
+          "dfg": [
+            [
+              [
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              1
+            ],
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Send for Credit Collection"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
+            [
+              "Add penalty",
+              "Send for Credit Collection"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Send for Credit Collection"
+          ]
+        },
+        {
+          "activities": [
+            "Create Fine",
+            "Payment",
+            "Send Fine"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "Create Fine",
+                "Payment"
+              ],
+              1
+            ],
+            [
+              [
+                "Payment",
+                "Send Fine"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Send Fine"
+          ],
+          "min_trace_length": 3,
+          "parallel": [],
+          "sequence": [
+            [
+              "Create Fine",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Payment",
+            "Send Fine"
+          ]
+        },
+        {
+          "activities": [
+            "Create Fine",
+            "Payment",
+            "Send Fine"
+          ],
+          "count": 4,
+          "dfg": [
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ],
+            [
+              [
+                "Send Fine",
+                "Payment"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 3,
+          "parallel": [],
+          "sequence": [
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Create Fine",
+            "Payment"
+          ],
+          "count": 22,
+          "dfg": [
+            [
+              [
+                "Create Fine",
+                "Payment"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Payment"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
+            [
+              "Create Fine",
+              "Payment"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Payment"
+          ]
+        },
+        {
+          "activities": [
+            "Create Fine",
+            "Send Fine"
+          ],
+          "count": 16,
+          "dfg": [
+            [
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "Send Fine"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
+            [
+              "Create Fine",
+              "Send Fine"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ],
+          "trace": [
+            "Create Fine",
+            "Send Fine"
+          ]
+        }
+      ],
+      "groups": 10,
+      "rest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "traces": 100
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "footprints-log-roadtraffic100traces-csv",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.discover_footprints",
+      "pm4py.convert_to_event_log",
+      "pm4py.discover_dfg",
+      "pm4py.discover_powl"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

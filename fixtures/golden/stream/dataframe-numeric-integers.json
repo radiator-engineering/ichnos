@@ -1,0 +1,195 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": 2
+            },
+            "events": [
+              {
+                "concept:name": "a",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "b",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "attributes": {
+              "concept:name": 10
+            },
+            "events": [
+              {
+                "concept:name": "a",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "b",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "c08b3458db183038f9d19d79926501baf21eab663d3f8adc5043506ecc976cc9"
+    },
+    "grouped_input": false,
+    "raw": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": 2
+            },
+            "events": [
+              {
+                "concept:name": "a",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "b",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "attributes": {
+              "concept:name": 10
+            },
+            "events": [
+              {
+                "concept:name": "a",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "b",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "c08b3458db183038f9d19d79926501baf21eab663d3f8adc5043506ecc976cc9"
+    },
+    "states": [
+      "inactive",
+      "active",
+      "finished"
+    ],
+    "traces": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": 2
+            },
+            "events": [
+              {
+                "concept:name": "a",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "b",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "attributes": {
+              "concept:name": 10
+            },
+            "events": [
+              {
+                "concept:name": "a",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "b",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "c08b3458db183038f9d19d79926501baf21eab663d3f8adc5043506ecc976cc9"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dataframe-numeric-integers",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.conversion.from_pandas.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "rows": [
+        [
+          10,
+          "a",
+          "2024-01-01T00:00:00+00:00"
+        ],
+        [
+          10,
+          "b",
+          "2024-01-01T00:00:00+00:00"
+        ],
+        [
+          2,
+          "a",
+          "2024-01-01T00:00:00+00:00"
+        ],
+        [
+          2,
+          "b",
+          "2024-01-01T00:00:00+00:00"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
