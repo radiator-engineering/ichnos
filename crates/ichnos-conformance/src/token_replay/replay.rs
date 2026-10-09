@@ -1,11 +1,9 @@
 //! Replay of one trace (pm4py's `token_replay.apply_trace`).
 
 use std::collections::{BTreeSet, VecDeque};
-use std::rc::Rc;
 
 use ichnos_model::TransitionId;
-use ichnos_model::petri::{ReachabilityError, ReachabilityOptions};
-use rustc_hash::{FxHashMap, FxHashSet};
+use rustc_hash::FxHashSet;
 
 use super::net::{ReplayNet, Tokens};
 use super::{TokenReplayer, TraceReplay};
@@ -386,45 +384,9 @@ impl TokenReplayer {
         cleaned
     }
 
-    /// pm4py's `get_visible_transitions_eventually_enabled_by_marking`,
-    /// including its quirk: each transition keeps only the last marking it
-    /// was found enabled in, so a transition queued twice is expanded from
-    /// that marking both times.
+    /// pm4py's `get_visible_transitions_eventually_enabled_by_marking`
+    /// (see [`ReplayNet::eventually_enabled`]).
     pub(crate) fn eventually_enabled(&self, marking: &[u32]) -> Result<BTreeSet<TransitionId>> {
-        let net = &self.net;
-        let limit = ReachabilityOptions::default().max_markings;
-        let mut queue: Vec<TransitionId> = net.enabled_by_name(marking).collect();
-        let mut latest: FxHashMap<TransitionId, Rc<Tokens>> = Default::default();
-        let start = Rc::new(marking.to_vec());
-        for &t in &queue {
-            latest.insert(t, start.clone());
-        }
-        let mut visible = BTreeSet::new();
-        let mut seen: FxHashSet<(TransitionId, Rc<Tokens>)> = FxHashSet::default();
-        let mut i = 0;
-        while i < queue.len() {
-            let t = queue[i];
-            i += 1;
-            let m = latest[&t].clone();
-            if seen.contains(&(t, m.clone())) {
-                continue;
-            }
-            if !net.silent[t.index()] {
-                visible.insert(t);
-            } else if net.is_enabled(t, &m) {
-                let mut next = (*m).clone();
-                net.fire(t, &mut next);
-                let next = Rc::new(next);
-                for t2 in net.enabled_by_name(&next) {
-                    queue.push(t2);
-                    latest.insert(t2, next.clone());
-                }
-            }
-            seen.insert((t, m));
-            if seen.len() > limit {
-                return Err(ReachabilityError::TooManyMarkings(limit).into());
-            }
-        }
-        Ok(visible)
+        self.net.eventually_enabled(marking)
     }
 }

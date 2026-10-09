@@ -4,12 +4,15 @@
 //!   alignment-based fitness and precision.
 //! - [`token_replay`]: token-based replay of traces on Petri nets, with
 //!   token-based fitness and ETConformance precision.
+//! - [`footprints`]: footprint conformance of logs against Petri nets and
+//!   process trees, with footprints fitness and precision.
 //! - [`generalization`]: token-based generalization of Petri nets.
 //!
 //! Every module returns [`Error`].
 
 pub mod alignments;
 mod error;
+pub mod footprints;
 pub mod generalization;
 pub mod token_replay;
 

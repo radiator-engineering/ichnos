@@ -74,6 +74,27 @@ over the same logs and nets as the Petri net alignments:
 - ``generalization``: ``pm4py.generalization_tbr``.
 - ``prefixes``: per variant, the marking ``pm4py.replay_prefix_tbr``
   reaches on the variant's first half (``len // 2`` activities).
+
+Footprint conformance (lane ``token-replay``), cases
+``footprints-<log>-<model>`` over the same logs and nets, with the inductive
+miner's tree as well for ``im``:
+
+- ``model`` is the canonical net, as for token replay; ``tree`` (``im``
+  only) is the inductive-miner tree in pm4py's string form, and the ``im``
+  net is that tree converted with ``pm4py.convert_to_petri_net``. In
+  ``footprints-<log>-im-top`` the tree is mined from the log's
+  ``SEQUENCE_TOP_K`` most frequent variants, so that some traces deviate.
+- ``variants``: the activities of each variant, in order of first trace.
+- ``log_footprints``: the footprints of the whole log (pm4py's
+  ``entire_event_log`` variant), with the DFG as ``[a, b, count]`` triples.
+- ``checks``: per model kind (``net``, and ``tree`` for ``im``), the model's
+  ``footprints``; ``log``, the ``log_extensive`` deviations of the whole
+  log; ``variants``, the ``trace_extensive`` deviations of each variant
+  from ``pm4py.conformance_diagnostics_footprints(log, model)``;
+  ``fitness`` and ``precision`` from the ``EventLog``, ``fitness_log`` and
+  ``precision_log`` from the whole-log footprints; ``violations``, the
+  ``log_model`` variant on the whole log, loose and strict; and ``fitting``,
+  ``pm4py.check_is_fitting`` of each variant.
 """
 
 from __future__ import annotations
@@ -660,3 +681,120 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
             fixtures={"log": _log, "model": _net},
             functions=TOKEN_REPLAY_FUNCTIONS,
         )(token_replay)
+
+
+# Footprint conformance (lane ``token-replay``).
+
+FOOTPRINT_FUNCTIONS = [
+    "pm4py.convert_to_event_log",
+    "pm4py.discover_footprints",
+    "pm4py.conformance_diagnostics_footprints",
+    "pm4py.fitness_footprints",
+    "pm4py.precision_footprints",
+    "pm4py.check_is_fitting",
+]
+
+
+def _pairs(pairs: Any) -> list[list[str]]:
+    return sorted([a, b] for a, b in pairs)
+
+
+def _footprints_record(fp: dict[str, Any]) -> dict[str, Any]:
+    out: dict[str, Any] = {"sequence": _pairs(fp["sequence"]), "parallel": _pairs(fp["parallel"])}
+    for key in ("activities", "start_activities", "end_activities", "activities_always_happening"):
+        if key in fp:
+            out[key] = sorted(fp[key])
+    if "min_trace_length" in fp:
+        out["min_trace_length"] = fp["min_trace_length"]
+    if "dfg" in fp:
+        out["dfg"] = sorted([a, b, n] for (a, b), n in fp["dfg"].items())
+    return out
+
+
+def _deviations(d: dict[str, Any]) -> dict[str, Any]:
+    out = {
+        "footprints": _pairs(d["footprints"]),
+        "start_activities": sorted(d["start_activities"]),
+        "end_activities": sorted(d["end_activities"]),
+        "min_length_fit": d["min_length_fit"],
+        "is_footprints_fit": d["is_footprints_fit"],
+    }
+    if "activities_always_happening" in d:
+        out["activities_always_happening"] = sorted(d["activities_always_happening"])
+    return out
+
+
+def _footprint_checks(log: Any, variants: list[tuple[str, ...]], fp_log: dict[str, Any], *model: Any) -> dict[str, Any]:
+    from pm4py.algo.conformance.footprints import algorithm as fp_conformance
+
+    fp_model = pm4py.discover_footprints(*model)
+    first = {}
+    for trace, d in zip(log, pm4py.conformance_diagnostics_footprints(log, *model)):
+        first.setdefault(_variant(trace), d)
+    return {
+        "footprints": _footprints_record(fp_model),
+        "log": _deviations(pm4py.conformance_diagnostics_footprints(fp_log, fp_model)),
+        "variants": [_deviations(first[v]) for v in variants],
+        "fitness": pm4py.fitness_footprints(log, *model),
+        "fitness_log": pm4py.fitness_footprints(fp_log, fp_model),
+        "precision": pm4py.precision_footprints(log, *model),
+        "precision_log": pm4py.precision_footprints(fp_log, fp_model),
+        "violations": {
+            name: _pairs(
+                fp_conformance.apply(
+                    fp_log, fp_model, variant=fp_conformance.Variants.LOG_MODEL, parameters={"strict": strict}
+                )
+            )
+            for name, strict in (("loose", False), ("strict", True))
+        },
+        "fitting": [pm4py.check_is_fitting(list(v), *model) for v in variants],
+    }
+
+
+def footprints(fixtures: dict[str, Path], top_k: bool = False) -> dict[str, Any]:
+    """Footprint conformance of the log in ``fixtures`` against its model, or the IM tree and net."""
+    from pm4py.algo.discovery.footprints.log.variants import entire_event_log
+
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    tree = None
+    if "model" in fixtures:
+        net, im, fm = load_model(fixtures["model"])
+    else:
+        tree = pm4py.discover_process_tree_inductive(_top_k(log) if top_k else log)
+        net, im, fm = pm4py.convert_to_petri_net(tree)
+    model = describe_canonical_net(net, im, fm)
+    net, im, fm = net_from_description(model)
+    variants: dict[tuple[str, ...], None] = {}
+    for trace in log:
+        variants.setdefault(_variant(trace), None)
+    order = list(variants)
+    fp_log = entire_event_log.apply(log)
+    checks = {"net": _footprint_checks(log, order, fp_log, net, im, fm)}
+    out: dict[str, Any] = {"model": model}
+    if tree is not None:
+        out["tree"] = str(tree)
+        checks["tree"] = _footprint_checks(log, order, fp_log, tree)
+    out["variants"] = [list(v) for v in order]
+    out["log_footprints"] = _footprints_record(fp_log)
+    out["checks"] = checks
+    return out
+
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"footprints-{_log_id}-im",
+        fixture=_log,
+        functions=["pm4py.discover_process_tree_inductive", "pm4py.convert_to_petri_net", *FOOTPRINT_FUNCTIONS],
+    )(footprints)
+    case(
+        f"footprints-{_log_id}-im-top",
+        fixture=_log,
+        functions=["pm4py.discover_process_tree_inductive", "pm4py.convert_to_petri_net", *FOOTPRINT_FUNCTIONS],
+    )(lambda fixtures: footprints(fixtures, top_k=True))
+    for _net in ALIGNMENT_NETS[_log_id]:
+        _net_id = Path(_net).stem.replace("_", "-").lower()
+        case(
+            f"footprints-{_log_id}-pnml-{_net_id}",
+            fixtures={"log": _log, "model": _net},
+            functions=FOOTPRINT_FUNCTIONS,
+        )(footprints)
