@@ -1,0 +1,260 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "footprints",
+    "model": {
+      "activities": [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T03 Adjust confirmation of receipt",
+        "T04 Determine confirmation of receipt",
+        "T05 Print and send confirmation of receipt",
+        "T06 Determine necessity of stop advice",
+        "T07-1 Draft intern advice aspect 1",
+        "T07-2 Draft intern advice aspect 2",
+        "T07-3 Draft intern advice hold for aspect 3",
+        "T07-4 Draft internal advice to hold for type 4",
+        "T07-5 Draft intern advice aspect 5",
+        "T08 Draft and send request for advice",
+        "T09-1 Process or receive external advice from party 1",
+        "T09-2 Process or receive external advice from party 2",
+        "T09-3 Process or receive external advice from party 3",
+        "T09-4 Process or receive external advice from party 4",
+        "T10 Determine necessity to stop indication",
+        "T11 Create document X request unlicensed",
+        "T12 Check document X request unlicensed",
+        "T13 Adjust document X request unlicensed",
+        "T14 Determine document X request unlicensed",
+        "T15 Print document X request unlicensed",
+        "T16 Report reasons to hold request",
+        "T17 Check report Y to stop indication",
+        "T18 Adjust report Y to stop indicition",
+        "T19 Determine report Y to stop indication",
+        "T20 Print report Y to stop indication"
+      ],
+      "end_activities": [],
+      "parallel": [],
+      "sequence": [],
+      "start_activities": []
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "case-10011",
+                {
+                  "deviations": 1,
+                  "is_fit": false,
+                  "last": "Confirmation of receipt"
+                }
+              ]
+            ]
+          ],
+          "sha256": "12e4f0650ca7cabad2ba60cd4c27923cc3e9b6020e3695b42ccee279fec34723"
+        }
+      },
+      {
+        "at": 4288,
+        "state": {
+          "count": 719,
+          "samples": [
+            [
+              0,
+              [
+                "case-10011",
+                {
+                  "deviations": 4,
+                  "is_fit": false,
+                  "last": "T02 Check confirmation of receipt"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "case-10017",
+                {
+                  "deviations": 9,
+                  "is_fit": false,
+                  "last": "T03 Adjust confirmation of receipt"
+                }
+              ]
+            ],
+            [
+              718,
+              [
+                "case-6343",
+                {
+                  "deviations": 6,
+                  "is_fit": false,
+                  "last": "T10 Determine necessity to stop indication"
+                }
+              ]
+            ]
+          ],
+          "sha256": "5e5c4dea8950d4cf755b29cdcd42947c7b313b44c66928e393dc76f18f6523f8"
+        }
+      },
+      {
+        "at": 8576,
+        "state": {
+          "count": 1434,
+          "samples": [
+            [
+              0,
+              [
+                "case-10011",
+                {
+                  "deviations": 4,
+                  "is_fit": false,
+                  "last": "T02 Check confirmation of receipt"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "case-10017",
+                {
+                  "deviations": 9,
+                  "is_fit": false,
+                  "last": "T03 Adjust confirmation of receipt"
+                }
+              ]
+            ],
+            [
+              1433,
+              [
+                "case-9997",
+                {
+                  "deviations": 5,
+                  "is_fit": false,
+                  "last": "T06 Determine necessity of stop advice"
+                }
+              ]
+            ]
+          ],
+          "sha256": "c5b5e4f8d03b61cb169a1945944122699580d7a9c6ad0c7a49475d403a1dce6b"
+        }
+      },
+      {
+        "at": 8577,
+        "state": {
+          "count": 1434,
+          "samples": [
+            [
+              0,
+              [
+                "case-10011",
+                {
+                  "deviations": 4,
+                  "is_fit": false,
+                  "last": "T02 Check confirmation of receipt"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "case-10017",
+                {
+                  "deviations": 9,
+                  "is_fit": false,
+                  "last": "T03 Adjust confirmation of receipt"
+                }
+              ]
+            ],
+            [
+              1433,
+              [
+                "case-9997",
+                {
+                  "deviations": 6,
+                  "is_fit": false,
+                  "last": "T10 Determine necessity to stop indication"
+                }
+              ]
+            ]
+          ],
+          "sha256": "cd8af9aaeb104cfcb3825e0ac0c68dcaac4a1fdcc24fba4f59db5ed150996af2"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 1434,
+      "samples": [
+        [
+          0,
+          [
+            "case-10011",
+            false
+          ]
+        ],
+        [
+          1,
+          [
+            "case-10017",
+            false
+          ]
+        ],
+        [
+          1433,
+          [
+            "case-9997",
+            false
+          ]
+        ]
+      ],
+      "sha256": "75a150b3b1d8ae3448ab854924566db96c4d4858e6f8672b7f4cfbff20a75488"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-footprints-deviating-receipt",
+    "fixtures": {
+      "log": "fixtures/logs/receipt.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.footprints.algorithm.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "footprints",
+      "perturb": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

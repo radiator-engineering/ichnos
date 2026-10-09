@@ -1,0 +1,311 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "footprints",
+    "model": {
+      "activities": [
+        "check ticket",
+        "decide",
+        "examine casually",
+        "examine thoroughly",
+        "pay compensation",
+        "register request",
+        "reinitiate request",
+        "reject request"
+      ],
+      "end_activities": [
+        "pay compensation",
+        "reject request"
+      ],
+      "parallel": [
+        [
+          "check ticket",
+          "examine casually"
+        ],
+        [
+          "check ticket",
+          "examine thoroughly"
+        ],
+        [
+          "examine casually",
+          "check ticket"
+        ],
+        [
+          "examine thoroughly",
+          "check ticket"
+        ]
+      ],
+      "sequence": [
+        [
+          "check ticket",
+          "decide"
+        ],
+        [
+          "decide",
+          "pay compensation"
+        ],
+        [
+          "decide",
+          "reinitiate request"
+        ],
+        [
+          "decide",
+          "reject request"
+        ],
+        [
+          "examine casually",
+          "decide"
+        ],
+        [
+          "examine thoroughly",
+          "decide"
+        ],
+        [
+          "register request",
+          "check ticket"
+        ],
+        [
+          "register request",
+          "examine casually"
+        ],
+        [
+          "register request",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "check ticket"
+        ],
+        [
+          "reinitiate request",
+          "examine casually"
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly"
+        ]
+      ],
+      "start_activities": [
+        "register request"
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "3",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "register request"
+                }
+              ]
+            ]
+          ],
+          "sha256": "fef4d4b70ff45d7f3ba98d729c211f97d253e05770e6e4a99bf3d3e6e67ec455"
+        }
+      },
+      {
+        "at": 21,
+        "state": {
+          "count": 4,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "reject request"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "pay compensation"
+                }
+              ]
+            ],
+            [
+              3,
+              [
+                "6",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "examine casually"
+                }
+              ]
+            ]
+          ],
+          "sha256": "170e34203b9d216374212c970e1c523ec15ba6d15e4fad5b76ed650927a4b6c7"
+        }
+      },
+      {
+        "at": 41,
+        "state": {
+          "count": 6,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "reject request"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "pay compensation"
+                }
+              ]
+            ],
+            [
+              5,
+              [
+                "6",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "pay compensation"
+                }
+              ]
+            ]
+          ],
+          "sha256": "a10072978ff4cc38d288388fb4b9268f5ddc51d2b0e258f5bf0b1f580ed12b7e"
+        }
+      },
+      {
+        "at": 42,
+        "state": {
+          "count": 6,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "reject request"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "pay compensation"
+                }
+              ]
+            ],
+            [
+              5,
+              [
+                "6",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "pay compensation"
+                }
+              ]
+            ]
+          ],
+          "sha256": "88c64cf7f4142eee6cf5f8646ef97c1772fcca8126c93d1d614abfdab4294580"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 6,
+      "samples": [
+        [
+          0,
+          [
+            "1",
+            true
+          ]
+        ],
+        [
+          1,
+          [
+            "2",
+            true
+          ]
+        ],
+        [
+          5,
+          [
+            "6",
+            true
+          ]
+        ]
+      ],
+      "sha256": "e673f8fc5db2540ab02e7358d7aba495226531b9961c114b8a51c4fd99f9f3a8"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-footprints-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.footprints.algorithm.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "footprints"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

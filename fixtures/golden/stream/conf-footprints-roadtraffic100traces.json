@@ -1,0 +1,322 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "footprints",
+    "model": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "end_activities": [
+        "Payment",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "parallel": [
+        [
+          "Add penalty",
+          "Payment"
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Add penalty"
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification"
+        ],
+        [
+          "Payment",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Send Fine"
+        ],
+        [
+          "Send Fine",
+          "Payment"
+        ]
+      ],
+      "sequence": [
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        [
+          "Create Fine",
+          "Send Fine"
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification"
+        ]
+      ],
+      "start_activities": [
+        "Create Fine"
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "N77802",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Create Fine"
+                }
+              ]
+            ]
+          ],
+          "sha256": "6169a558c481f10052012ad528b3944165c27366cb31be575755f028f7c1660e"
+        }
+      },
+      {
+        "at": 195,
+        "state": {
+          "count": 53,
+          "samples": [
+            [
+              0,
+              [
+                "A13415",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send Fine"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A17641",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Payment"
+                }
+              ]
+            ],
+            [
+              52,
+              [
+                "V9832",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ]
+          ],
+          "sha256": "788b1b5907592db140125fb144007d402a02f4f4d7e6b81f3847036a815617ca"
+        }
+      },
+      {
+        "at": 389,
+        "state": {
+          "count": 100,
+          "samples": [
+            [
+              0,
+              [
+                "A10466",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A13415",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send Fine"
+                }
+              ]
+            ],
+            [
+              99,
+              [
+                "V9832",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ]
+          ],
+          "sha256": "bf57a1aea175a37b1b74ebc8bbaa522f8229a1873a63c29962f2b27dd974c94a"
+        }
+      },
+      {
+        "at": 390,
+        "state": {
+          "count": 100,
+          "samples": [
+            [
+              0,
+              [
+                "A10466",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A13415",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send Fine"
+                }
+              ]
+            ],
+            [
+              99,
+              [
+                "V9832",
+                {
+                  "deviations": 0,
+                  "is_fit": true,
+                  "last": "Send for Credit Collection"
+                }
+              ]
+            ]
+          ],
+          "sha256": "e9d6bc2659b5f97a1e53debfc6878e85a74f2377d997d15e0e64282efd7140a1"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 100,
+      "samples": [
+        [
+          0,
+          [
+            "A10466",
+            true
+          ]
+        ],
+        [
+          1,
+          [
+            "A13415",
+            true
+          ]
+        ],
+        [
+          99,
+          [
+            "V9832",
+            true
+          ]
+        ]
+      ],
+      "sha256": "283047ad15622e1186e4b77c2dc74bd8f8a7ccd7c4b56bee7609eb782331c193"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-footprints-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.footprints.algorithm.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "footprints"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

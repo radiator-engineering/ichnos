@@ -1,0 +1,116 @@
+{
+  "expected": {
+    "after_termination": {},
+    "kind": "footprints",
+    "model": {
+      "activities": [
+        "a",
+        "b"
+      ],
+      "end_activities": [
+        "b"
+      ],
+      "parallel": [
+        [
+          "b",
+          "a"
+        ]
+      ],
+      "sequence": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "start_activities": [
+        "a"
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {
+          "c": {
+            "deviations": 0,
+            "is_fit": true,
+            "last": "a"
+          }
+        }
+      },
+      {
+        "at": 2,
+        "state": {
+          "c": {
+            "deviations": 0,
+            "is_fit": true,
+            "last": "b"
+          }
+        }
+      }
+    ],
+    "terminated": {
+      "c": true
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-footprints-custom",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.footprints.algorithm.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_footprints",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_intra_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.verify_start_case",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.footprints.variants.classic.FootprintsStreamingConformance.terminate_all"
+    ],
+    "loaders": {},
+    "params": {
+      "custom": true,
+      "events": [
+        {
+          "case": "c",
+          "task": "a"
+        },
+        {
+          "case": "c",
+          "task": "b"
+        }
+      ],
+      "kind": "footprints",
+      "model": {
+        "activities": [
+          "a",
+          "b"
+        ],
+        "end_activities": [
+          "b"
+        ],
+        "parallel": [
+          [
+            "b",
+            "a"
+          ]
+        ],
+        "sequence": [
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "start_activities": [
+          "a"
+        ]
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
