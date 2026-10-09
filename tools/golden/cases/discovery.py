@@ -163,12 +163,10 @@ def dfg_mining(fixtures: dict[str, Path], traces=None, activity_key="concept:nam
         "eventually": edges(pm4py.discover_eventually_follows_graph(log, activity_key=activity_key, timestamp_key=timestamp_key)),
         "performance": {"graph": edges(public_performance), "start_activities": ps, "end_activities": pe},
     }
-    if frame is not None:
-        typed = pm4py.discover_dfg_typed(frame)
-        result["typed"] = {"graph": edges(typed.graph), "start_activities": typed.start_activities,
-                           "end_activities": typed.end_activities}
-    else:
-        result["typed"] = result["dfg"]
+    typed = pm4py.discover_dfg_typed(frame if frame is not None else log,
+                                    activity_key=activity_key, timestamp_key=timestamp_key)
+    result["typed"] = {"graph": edges(typed.graph), "start_activities": typed.start_activities,
+                       "end_activities": typed.end_activities}
     variants = []
     for interval in ([False, True] if start_key else [False]):
         time_params = {**params, "pm4py:param:start_timestamp_key": start_key if interval else timestamp_key}

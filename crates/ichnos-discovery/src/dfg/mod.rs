@@ -65,7 +65,7 @@ pub fn dfg(log: &EventLog, keys: &EventKeys, options: &DfgOptions) -> Result<Dfg
 }
 
 /// Typed DFG discovery, sharing [`fn@dfg`]'s model and behavior.
-/// Unlike pm4py's DataFrame-only signature, this accepts the canonical EventLog.
+/// Accepts the canonical EventLog, including empty and boundary-only traces.
 pub fn dfg_typed(log: &EventLog, keys: &EventKeys, options: &DfgOptions) -> Result<Dfg> {
     dfg(log, keys, options)
 }
