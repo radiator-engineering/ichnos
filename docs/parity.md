@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 151; ported: 294; dropped: 181; total: 626.
+todo: 146; ported: 299; dropped: 181; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -176,7 +176,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.get_case_duration` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos_stats::cases::get_case_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
 | `pm4py.get_frequent_trace_segments` | `stats.py` → `objects/log/obj` | `ichnos_stats::variants::get_frequent_trace_segments` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_activity_position_summary` | `stats.py` → `objects/log/obj` | `ichnos_stats::cases::get_activity_position_summary` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
-| `pm4py.get_process_cube` | `stats.py` → `statistics/process_cube/pandas/algorithm`, `statistics/process_cube/polars/algorithm` | `ichnos::stats::get_process_cube` (planned) | `ichnos-stats` | todo | Variants: classic. |
+| `pm4py.get_process_cube` | `stats.py` → `statistics/process_cube/pandas/algorithm`, `statistics/process_cube/polars/algorithm` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | ported | Typed numeric feature table, numeric/manual bins and one-hot prefixes; mean/sum/min/max aggregation and per-cell case sets. Goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}` and `cube-real-{running-example,receipt,roadtraffic100traces}`. See process-cube Behaviour changes. |
 
 ## utils
 
@@ -186,7 +186,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.utils.is_polars_lazyframe` | `utils.py` | `ichnos::core::is_polars_lazyframe` (planned) | `ichnos-core` | dropped | Python backend type detection; Rust types replace runtime pandas/polars dispatch. |
 | `pm4py.format_dataframe` | `utils.py` → `objects/log/util/dataframe_utils` | `ichnos::format_batch` | `ichnos-core` | ported | Arrow `RecordBatch` form. Goldens `core/format-receipt-csv` and `core/format-interval-event-log-csv` check row order; `log/running-example-csv` loads through it. Changes core-20 to core-22. |
 | `pm4py.rebase` | `utils.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/dataframe_utils` | `ichnos::EventLog::rebase`, `ichnos::EventStream::rebase` | `ichnos-core` | ported | Goldens `core/rebase-running-example-csv` and `core/rebase-stream-running-example-csv`. |
-| `pm4py.parse_process_tree` | `utils.py` → `objects/process_tree/obj`, `objects/process_tree/utils/generic` | `ichnos::model::parse_process_tree` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.parse_process_tree` | `utils.py` → `objects/process_tree/obj`, `objects/process_tree/utils/generic` | `ichnos_sim::parse_process_tree` | `ichnos-sim` | ported | Delegates to the existing typed model parser. Golden `simulation/parse-trees` compares operator notation, Unicode labels, tau and leaf-label multisets. Invalid syntax returns ParseError. |
 | `pm4py.parse_powl_model_string` | `utils.py` → `objects/powl/obj`, `objects/powl/parser` | `ichnos_model::Powl::parse` | `ichnos-model` | ported | Also `str::parse`. Goldens `powl/model-*` parse 17 POWL strings and compare the model, `simplify`, `simplify_using_frequent_transitions`, the Petri net and the process tree. |
 | `pm4py.serialize` | `utils.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/obj`, `objects/dfg/exporter/exporter`, `objects/log/exporter/xes/exporter`, `objects/log/obj`, `objects/petri_net/exporter/exporter`, `objects/petri_net/obj`, `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | none | `ichnos-core` | dropped | Each ichnos-io writer (XES, Parquet, Arrow IPC, PNML and others) already returns the bytes, and Rust callers know the type, so a tagged dispatcher adds nothing. See `docs/design.md`. Change core-30. |
 | `pm4py.deserialize` | `utils.py` → `objects/bpmn/importer/importer`, `objects/dfg/importer/importer`, `objects/log/importer/xes/importer`, `objects/petri_net/importer/importer`, `objects/process_tree/importer/importer` | none | `ichnos-core` | dropped | Each ichnos-io reader already reads the bytes into a known type. See `docs/design.md`. Change core-30. |
@@ -248,8 +248,8 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.play_out` | `sim.py` → `algo/simulation/playout/declare/algorithm`, `algo/simulation/playout/dfg/algorithm`, `algo/simulation/playout/petri_net/algorithm`, `algo/simulation/playout/process_tree/algorithm`, `objects/log/obj`, `objects/petri_net/inhibitor_reset/semantics`, `objects/petri_net/obj`, `objects/petri_net/semantics`, `objects/process_tree/obj` | `ichnos::sim::play_out` (planned) | `ichnos-sim` | todo | Variants: basic_playout, classic, extensive, performance, stochastic_playout, topbottom. |
-| `pm4py.generate_process_tree` | `sim.py` → `algo/simulation/tree_generator/algorithm`, `objects/process_tree/obj` | `ichnos::sim::generate_process_tree` (planned) | `ichnos-sim` | todo | Variants: basic, ptandloggenerator. |
+| `pm4py.play_out` | `sim.py` → `algo/simulation/playout/declare/algorithm`, `algo/simulation/playout/dfg/algorithm`, `algo/simulation/playout/petri_net/algorithm`, `algo/simulation/playout/process_tree/algorithm`, `objects/log/obj`, `objects/petri_net/inhibitor_reset/semantics`, `objects/petri_net/obj`, `objects/petri_net/semantics`, `objects/process_tree/obj` | `ichnos_sim::play_out` | `ichnos-sim` | ported | Tree top-bottom, Petri-net basic/explicit weights, DFG classic and DECLARE prefix-safe dispatch. Goldens `simulation/playout-tree-*`, `playout-petri-running-example`, `playout-dfg-*`, `playout-declare-prefixes`. Alternative extensive/performance variants and log-derived stochastic weights are not exposed. See simulation Behaviour changes. |
+| `pm4py.generate_process_tree` | `sim.py` → `algo/simulation/tree_generator/algorithm`, `objects/process_tree/obj` | `ichnos_sim::generate_process_tree` | `ichnos-sim` | ported | Default PTAndLogGenerator growth with triangular activity counts, operator weights, tau and duplicate labels. Goldens `simulation/generate-tree-{sequence,choice,parallel,loop,or,mixed}` compare population distributions and binary arities. The alternative basic generator is not exposed. See simulation Behaviour changes. |
 
 ## ml
 
@@ -307,7 +307,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.privacy.anonymize_differential_privacy` | `privacy.py` → `algo/anonymization/pripel/algorithm`, `algo/anonymization/trace_variant_query/algorithm`, `objects/log/obj` | `ichnos::privacy::anonymize_differential_privacy` (planned) | `ichnos-privacy` | todo | Variants: laplace, pripel, sacofa. |
+| `pm4py.privacy.anonymize_differential_privacy` | `privacy.py` → `algo/anonymization/pripel/algorithm`, `algo/anonymization/trace_variant_query/algorithm`, `objects/log/obj` | `ichnos_privacy::anonymize_differential_privacy` | `ichnos-privacy` | ported | SaCoFa prefix query plus PRIPEL assignment/context enrichment. Goldens `simulation/privacy-{synthetic,running-example,receipt,roadtraffic100traces}`, `privacy-mechanisms` and `privacy-behavioral-relations`. Numeric/boolean/categorical context and trace timestamp shifts. See privacy Behaviour changes and RNG validation limits. |
 
 ## convert
 
@@ -1640,6 +1640,46 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - `clear_history` releases event-level deviation records while retaining monitors and totals; pm4py has no history-clearing API.
 - Typed snapshots and history replace pm4py's logging of violated template names.
 - The shared synchronous `StreamSink` contract replaces pm4py's worker locking.
+
+### Simulation entry points (`ichnos-sim`)
+
+- Callers supply an RNG. ChaCha seeds repeat Rust experiments; Python `random`, NumPy and SciPy consume different streams, so Python samples are compared through variant rates, trace-length means, triangular activity-count means and operator rates. Distribution tolerances are 0.025–0.035 for rates, 0.08–0.15 for trace length and 0.25 for population activity means, with fixed sample sizes of 1000–12000. These checks do not compare raw random draws.
+- Tree top-bottom execution preserves silent leaves while shuffling parallel choices, then removes them from the emitted trace. It leaves trace attributes empty and emits activity attributes only, as pm4py does.
+- Interleaving shuffles a temporary child order instead of mutating the model.
+- OR returns a typed error in top-bottom execution; the pinned Python variant has no OR branch and fails while collecting the execution sequence.
+- Tree and Petri-net execution have configurable step bounds that also count silent steps. Exhausting a bound returns an error without a partial log.
+- Final-marking-only Petri-net generation has an attempt bound. It reports exhaustion instead of returning an empty result on the first failed attempt or retrying indefinitely after a successful attempt.
+- Petri-net transition weights are explicit typed inputs. Missing weights and the final stop option each have weight one. The wrapper does not infer stochastic weights from an event log; extensive/performance playout variants are not exposed.
+- DECLARE uses the shared discovery model types. Uniform next-event choices exclude prefix violations for all eighteen templates, preserving pm4py's absence of final obligation checks. Ordered activity iteration makes Rust sampling reproducible across runs.
+- DFG maps are ordered lexically, including start activities. Golden generation normalizes Python dictionary insertion order to that order. The log contains one trace per accepted variant, with its probability; it does not repeat a trace according to variant frequency.
+- DFG options expose count/probability/coverage stops and a partial-path bound. Wall-clock interruption and Python return-type switches are omitted.
+- The default PTAndLogGenerator algorithm is exposed through one typed generator. Repeated calls with one RNG generate a population. The alternative basic generator is omitted.
+- Generator activity-count sampling uses the triangular law directly; it omits SciPy's tiny offsets in the shape parameter. Equal min/mode/max is supported as a fixed count, whereas the pinned SciPy call fails on its zero scale.
+- Duplicate-label replacement selects uniformly from eligible nonsibling, nonselected leaves. If none exist it skips replacement, avoiding the pinned helper's empty-choice error or nonterminating retry loop. Growth attempts are bounded.
+- Process-tree parsing reuses the model parser and its typed errors. The parse golden compares leaf-label multisets because pm4py enumerates leaves breadth first and the Rust model enumerates them depth first.
+
+### Process cubes (`ichnos-stats`)
+
+- The feature table preserves column order and carries string case IDs plus optional numeric values. NaN is missing; infinities, duplicate columns and unequal column lengths return typed errors.
+- Numeric bins carry exact boundaries and an inclusive-lowest flag instead of pandas' precision-rounded interval strings. Returned values and case sets use `[y][x]`; pandas presents X as the pivot index and Y as columns.
+- One-hot axes select `prefix_*` columns with values at least one. A case can belong to several cells, and missing aggregation values still contribute to case membership.
+- Aggregations are the typed choices mean, sum, min and max. Arbitrary pandas aggregation strings/callables are not exposed.
+- Constant numeric columns get a single half-unit interval. Manual boundaries are sorted and deduplicated; invalid boundaries return a typed error.
+
+### SaCoFa and PRIPEL entry point (`ichnos-privacy`)
+
+- The pipeline returns an owned `EventLog`, keeps the source log unchanged and regenerates case IDs as strings. Python returns a dataframe and mutates source event dictionaries during contextual enrichment.
+- Callers supply an RNG. End-to-end goldens use epsilon 10 on a synthetic log and short projections of three real logs, comparing variant counts and contextual invariants. Independent epsilon-1 mechanism goldens compare sampled means and rates; the generator replaces diffprivlib's unseeded `SystemRandom` with seeded `RandomState` for those observations. Rust does not reproduce Python's draw sequence.
+- Mechanism observations use diffprivlib 0.6.6 alongside the pinned pm4py checkout. They cover bounded numeric noise, binary response, categorical response, integer-truncated Laplace noise and SaCoFa's universe selection. These regression checks do not establish a differential-privacy guarantee for the composed release; epsilon is supplied independently to both phases, following the entry point.
+- Prefixes use typed labels and a completion marker, so activity names containing `>>>`, `@` or `TRACE_END` are not misinterpreted as delimiters or discarded.
+- SaCoFa preserves the pinned double-exponential universe-selection helper, truncation of Laplace noise toward zero, nonnegative counts, unfinished-prefix pruning and completion-marker depth accounting. Exact behavioral-relation goldens include repeated activities and completed/unfinished prefixes.
+- Empty input and an empty nonempty-trace query return typed errors. Prefix expansions, output trace count and assignment matrix size have configurable limits; exceeding one returns no partial release.
+- Optimal rectangular assignment uses activity-sequence edit distance and deterministic tie handling. Matched source events are reused at most once; excess query traces sample contextual values from global attribute pools and pair-specific timestamp gaps.
+- Missing or decreasing timestamps and mixed scalar types for one attribute return typed errors. Context requires at least one adjacent timestamp pair, as pm4py's timestamp-domain construction does.
+- Unsupported/nested scalar attributes and nonfinite numeric values are removed before enrichment. The blocklist excludes specified context fields. Original trace attributes are discarded.
+- Categorical domains come from the attribute's values. The pinned PRIPEL helper mistakenly builds its utility list from attribute names, causing categorical-value rejection; the corrected domain is tested directly against diffprivlib's categorical mechanism.
+- Numeric noise is sampled from the bounded conditional Laplace law with sensitivity equal to the observed attribute range, using inverse-CDF sampling instead of rejection. Integer outputs use ties-to-even rounding; constant domains return their sole value.
+- Each trace's timestamp shift uses the current admissible interval as its sensitivity range and recalibrates for that interval. The Python helper instead caches the first shift scale while changing subsequent bounds. Resolved inter-event gaps are retained, following pm4py's implementation rather than its implication that gaps are individually randomized.
 
 ## Proposed lanes
 

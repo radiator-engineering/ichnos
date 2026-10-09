@@ -1,0 +1,123 @@
+{
+  "expected": {
+    "epsilon": 10.0,
+    "input": [
+      [
+        "register request",
+        "examine casually",
+        "check ticket"
+      ],
+      [
+        "register request",
+        "check ticket",
+        "examine casually"
+      ],
+      [
+        "register request",
+        "examine thoroughly",
+        "check ticket"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket"
+      ],
+      [
+        "register request",
+        "check ticket",
+        "examine thoroughly"
+      ]
+    ],
+    "invariants": {
+      "case_ids_unique": true,
+      "cost_in_domain": true,
+      "flags_boolean": true,
+      "maximum_length": 3,
+      "private_trace_attribute_removed": true,
+      "timestamps_ordered": true,
+      "traces": 5
+    },
+    "k": 3,
+    "output_variants": [
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine casually"
+        ],
+        1
+      ],
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine thoroughly"
+        ],
+        1
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket"
+        ],
+        3
+      ]
+    ],
+    "p": 2,
+    "query_variants": [
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine casually"
+        ],
+        1
+      ],
+      [
+        [
+          "register request",
+          "check ticket",
+          "examine thoroughly"
+        ],
+        1
+      ],
+      [
+        [
+          "register request",
+          "examine casually",
+          "check ticket"
+        ],
+        3
+      ]
+    ]
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "privacy-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.privacy.anonymize_differential_privacy"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "name": "running-example"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

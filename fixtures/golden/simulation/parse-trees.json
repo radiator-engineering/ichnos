@@ -1,0 +1,83 @@
+{
+  "expected": [
+    {
+      "display": "->( 'a', tau, 'b' )",
+      "input": "->( 'a', tau, 'b' )",
+      "leaves": [
+        null,
+        "a",
+        "b"
+      ]
+    },
+    {
+      "display": "X( 'a', 'b' )",
+      "input": "X( 'a', 'b' )",
+      "leaves": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "display": "+( ->( 'a', 'b' ), 'c' )",
+      "input": "+( ->( 'a', 'b' ), 'c' )",
+      "leaves": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "display": "<>( ->( 'a', 'b' ), 'c' )",
+      "input": "<>( ->( 'a', 'b' ), 'c' )",
+      "leaves": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "display": "*( 'a', 'b' )",
+      "input": "*( 'a', 'b' )",
+      "leaves": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "display": "tau",
+      "input": "tau",
+      "leaves": [
+        null
+      ]
+    },
+    {
+      "display": "O( 'a', 'b' )",
+      "input": "O( 'a', 'b' )",
+      "leaves": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "display": "->( 'é', X( 'a b', tau ) )",
+      "input": "->( 'é', X( 'a b', tau ) )",
+      "leaves": [
+        null,
+        "a b",
+        "é"
+      ]
+    }
+  ],
+  "meta": {
+    "area": "simulation",
+    "case": "parse-trees",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "expected": {
+    "ends": {
+      "Payment": 47,
+      "Send Fine": 17,
+      "Send for Credit Collection": 36
+    },
+    "graph": [
+      [
+        "Add penalty",
+        "Payment",
+        20
+      ],
+      [
+        "Add penalty",
+        "Send Appeal to Prefecture",
+        1
+      ],
+      [
+        "Add penalty",
+        "Send for Credit Collection",
+        36
+      ],
+      [
+        "Create Fine",
+        "Payment",
+        23
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        77
+      ],
+      [
+        "Insert Date Appeal to Prefecture",
+        "Add penalty",
+        1
+      ],
+      [
+        "Insert Fine Notification",
+        "Add penalty",
+        52
+      ],
+      [
+        "Insert Fine Notification",
+        "Insert Date Appeal to Prefecture",
+        1
+      ],
+      [
+        "Insert Fine Notification",
+        "Payment",
+        4
+      ],
+      [
+        "Notify Result Appeal to Offender",
+        "Payment",
+        1
+      ],
+      [
+        "Payment",
+        "Add penalty",
+        4
+      ],
+      [
+        "Payment",
+        "Insert Fine Notification",
+        1
+      ],
+      [
+        "Payment",
+        "Payment",
+        5
+      ],
+      [
+        "Payment",
+        "Send Fine",
+        1
+      ],
+      [
+        "Receive Result Appeal from Prefecture",
+        "Notify Result Appeal to Offender",
+        1
+      ],
+      [
+        "Send Appeal to Prefecture",
+        "Receive Result Appeal from Prefecture",
+        1
+      ],
+      [
+        "Send Fine",
+        "Insert Fine Notification",
+        56
+      ],
+      [
+        "Send Fine",
+        "Payment",
+        5
+      ]
+    ],
+    "starts": {
+      "Create Fine": 100
+    },
+    "variants": [
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        "probability": 0.318522622345337
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment"
+        ],
+        "probability": 0.18637931034482755
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine"
+        ],
+        "probability": 0.1678205128205128
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment"
+        ],
+        "probability": 0.1433961997148548
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Payment"
+        ],
+        "probability": 0.03999778956675507
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Payment"
+        ],
+        "probability": 0.03143685916825664
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment",
+          "Payment"
+        ],
+        "probability": 0.01606718192627824
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment",
+          "Payment"
+        ],
+        "probability": 0.012361741354728869
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        "probability": 0.010018148820326676
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        "probability": 0.007707746457237432
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        "probability": 0.007169809985742738
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        "probability": 0.0061254350451026346
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment",
+          "Add penalty",
+          "Payment"
+        ],
+        "probability": 0.00451008615474477
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment",
+          "Add penalty",
+          "Payment"
+        ],
+        "probability": 0.003469962485537926
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Payment",
+          "Payment"
+        ],
+        "probability": 0.0034480853074788853
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          "Payment"
+        ],
+        "probability": 0.00275761922528567
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Payment",
+          "Payment"
+        ],
+        "probability": 0.0027100740662290216
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        "probability": 0.0022848409590218743
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment",
+          "Send Fine"
+        ],
+        "probability": 0.0008642793987621581
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment",
+          "Send Fine"
+        ],
+        "probability": 0.0006649578273738496
+      }
+    ]
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "playout-dfg-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.play_out"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "name": "roadtraffic100traces"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

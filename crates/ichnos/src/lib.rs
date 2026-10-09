@@ -23,3 +23,12 @@ pub use ichnos_stream as stream;
 
 /// Object-centric event logs. See [`ichnos_ocel`].
 pub use ichnos_ocel as ocel;
+
+/// Seeded simulation and tree generation.
+pub use ichnos_sim as simulation;
+
+/// Privacy transformations.
+pub use ichnos_privacy as privacy;
+
+/// Event-log statistics and process cubes.
+pub use ichnos_stats as stats;
