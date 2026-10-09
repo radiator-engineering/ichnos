@@ -10,6 +10,11 @@ from tempfile import TemporaryDirectory
 import pandas as pd
 from harness import case
 from pm4py.objects.log.obj import Event
+from pm4py.streaming.algo.conformance.tbr import algorithm as _tbr_algorithm
+from pm4py.streaming.algo.conformance.footprints import algorithm as _fp_algorithm
+from pm4py.streaming.algo.conformance.temporal import algorithm as _temporal_algorithm
+from pm4py.objects.petri_net.obj import PetriNet, Marking
+from pm4py.objects.petri_net.utils.petri_utils import add_arc_from_to
 from pm4py.streaming.algo.discovery.dfg import algorithm as dfg_algorithm
 from pm4py.streaming.conversion import from_pandas
 from pm4py.streaming.importer.csv import importer as csv_importer
@@ -348,3 +353,354 @@ case(
     functions=["pm4py.streaming.importer.xes.importer.apply"],
     params={"kind": "traces", "filter_case": "3"},
 )(import_stream)
+# Appended to the stream area: incremental conformance using native algorithms.
+
+
+def _net(spec):
+    net = PetriNet("stream")
+    places = {name: PetriNet.Place(name) for name in spec["places"]}
+    transitions = {name: PetriNet.Transition(name, label) for name, label in spec["transitions"]}
+    net.places.update(places.values())
+    net.transitions.update(transitions.values())
+    for place, transition, output, weight in spec["arcs"]:
+        source, target = (
+            (transitions[transition], places[place])
+            if output
+            else (places[place], transitions[transition])
+        )
+        add_arc_from_to(source, target, net, weight=weight)
+    return (
+        net,
+        Marking({places[p]: n for p, n in spec["initial"].items()}),
+        Marking({places[p]: n for p, n in spec["final"].items()}),
+    )
+
+
+def _chain(activities):
+    places = [f"p{i:03}" for i in range(len(activities) + 1)]
+    transitions = [[f"t{i:03}", a] for i, a in enumerate(activities)]
+    arcs = []
+    for i, (transition, _) in enumerate(transitions):
+        arcs += [[places[i], transition, False, 1], [places[i + 1], transition, True, 1]]
+    return {
+        "places": places,
+        "transitions": transitions,
+        "arcs": arcs,
+        "initial": {places[0]: 1},
+        "final": {places[-1]: 1},
+    }
+
+
+def _marking(marking):
+    return {p.name: n for p, n in marking.items() if n}
+
+
+def _conf_state(algo, kind):
+    if kind in {"tbr", "footprints"}:
+        diagnostics = algo.get()
+        assert len(diagnostics) == len(algo.case_dict)
+    if kind == "tbr":
+        return {
+            c: {
+                "marking": _marking(algo.get_status(c)["marking"]),
+                "missing": int(algo.missing[c]),
+                "is_fit": int(algo.missing[c]) == 0,
+            }
+            for c in sorted(algo.case_dict)
+        }
+    if kind == "footprints":
+        return {
+            c: {
+                "last": algo.case_dict[c],
+                "deviations": int(algo.dev_dict[c]),
+                "is_fit": algo.get_status(c),
+            }
+            for c in sorted(algo.case_dict)
+        }
+    return {
+        c: [[d[1], d[2], d[3], "infinity" if d[4] == 2**63 - 1 else d[4]] for d in rows]
+        for c, rows in sorted(algo.get().items())
+    }
+
+
+def streaming_conformance(
+    fixtures,
+    kind,
+    events=None,
+    model=None,
+    custom=False,
+    maximum_iterations=10,
+    zeta=6.0,
+    interval=False,
+    perturb=False,
+):
+    import pm4py
+
+    rows = (
+        list(xes_importer.apply(str(fixtures["log"])))
+        if events is None
+        else [Event(e) for e in events]
+    )
+    case_key, activity_key, end_key = (
+        ("case", "task", "end")
+        if custom
+        else ("case:concept:name", "concept:name", "time:timestamp")
+    )
+    start_key = "start" if interval else end_key
+    for row in rows:
+        for key in {start_key, end_key}:
+            if key in row and isinstance(row[key], str):
+                row[key] = datetime.fromisoformat(row[key])
+    activities = sorted({str(e[activity_key]) for e in rows if activity_key in e})
+    if model is None:
+        if kind == "tbr":
+            model = _chain(activities)
+        elif kind == "footprints":
+            log = pm4py.read_xes(str(fixtures["log"]), return_legacy_log_object=True)
+            from pm4py.algo.discovery.footprints import algorithm as fp_discovery
+
+            fp = fp_discovery.apply(log, variant=fp_discovery.Variants.ENTIRE_EVENT_LOG)
+            model = {
+                key: sorted(fp[key])
+                for key in [
+                    "activities",
+                    "start_activities",
+                    "end_activities",
+                    "sequence",
+                    "parallel",
+                ]
+            }
+            if perturb:
+                model["start_activities"] = []
+                model["end_activities"] = []
+                model["sequence"] = []
+                model["parallel"] = []
+        else:
+            log = pm4py.read_xes(str(fixtures["log"]), return_legacy_log_object=True)
+            profile = pm4py.discover_temporal_profile(log)
+            model = [[a, b, mean, std] for (a, b), (mean, std) in sorted(profile.items())]
+    params = {
+        "pm4py:param:case_id_key": case_key,
+        "pm4py:param:activity_key": activity_key,
+        "pm4py:param:timestamp_key": end_key,
+        "pm4py:param:start_timestamp_key": start_key,
+        "maximum_iterations_invisibles": maximum_iterations,
+        "zeta": zeta,
+    }
+    if kind == "tbr":
+        algo = _tbr_algorithm.apply(*_net(model), parameters=params)
+    elif kind == "footprints":
+        fp = {
+            key: set(tuple(p) if isinstance(p, list) else p for p in items)
+            for key, items in model.items()
+        }
+        algo = _fp_algorithm.apply(fp, parameters=params)
+    else:
+        algo = _temporal_algorithm.apply(
+            {(a, b): (mean, std) for a, b, mean, std in model}, parameters=params
+        )
+    points = sorted({0, 1, len(rows) // 2, max(0, len(rows) - 1), len(rows)})
+    snapshots = [{"at": 0, "state": _conf_state(algo, kind)}]
+    for i, row in enumerate(rows, 1):
+        algo.receive(row)
+        if i in points:
+            snapshots.append({"at": i, "state": _conf_state(algo, kind)})
+    terminated = {}
+    if kind in {"tbr", "footprints"}:
+        for c in sorted(list(algo.case_dict)):
+            result = algo.terminate(c)
+            if kind == "tbr":
+                result["marking"] = _marking(result["marking"])
+            terminated[c] = result
+        # Also exercise native terminate_all, including fresh case IDs.
+        for row in rows:
+            algo.receive(row)
+        algo.terminate_all()
+    after = _conf_state(algo, kind) if kind != "temporal" else None
+    if events is None and kind != "temporal":
+        # Every case is checked, with complete ordered digests and typed samples.
+        compact = lambda state: _summary([[c, value] for c, value in sorted(state.items())])
+        for snapshot in snapshots:
+            snapshot["state"] = compact(snapshot["state"])
+        terminated = compact(terminated)
+        after = compact(after)
+    return {
+        "kind": kind,
+        "model": model,
+        "snapshots": snapshots,
+        "terminated": terminated,
+        "after_termination": after,
+    }
+
+
+_CONF_FUNCTIONS = {
+    kind: [
+        f"pm4py.streaming.algo.conformance.{kind}.algorithm.apply",
+        f"pm4py.streaming.algo.conformance.{kind}.variants.classic.apply",
+    ]
+    for kind in ["tbr", "footprints", "temporal"]
+}
+for _kind, _class, _methods in [
+    (
+        "tbr",
+        "TbrStreamingConformance",
+        [
+            "get_paths_net",
+            "verify_tbr",
+            "enable_trans_with_invisibles",
+            "get_status",
+            "terminate",
+            "terminate_all",
+        ],
+    ),
+    (
+        "footprints",
+        "FootprintsStreamingConformance",
+        [
+            "verify_footprints",
+            "verify_intra_case",
+            "verify_start_case",
+            "get_status",
+            "terminate",
+            "terminate_all",
+        ],
+    ),
+    ("temporal", "TemporalProfileStreamingConformance", ["check_conformance"]),
+]:
+    _path = f"pm4py.streaming.algo.conformance.{_kind}.variants.classic.{_class}"
+    _CONF_FUNCTIONS[_kind] += [_path] + [_path + "." + method for method in _methods]
+for _kind in _CONF_FUNCTIONS:
+    for _fixture in ["running-example", "receipt", "roadtraffic100traces"]:
+        case(
+            "conf-" + _kind + "-" + _fixture,
+            fixture=_fixture + ".xes",
+            functions=_CONF_FUNCTIONS[_kind],
+            params={"kind": _kind},
+        )(streaming_conformance)
+for _fixture in ["running-example", "receipt", "roadtraffic100traces"]:
+    case(
+        "conf-footprints-deviating-" + _fixture,
+        fixture=_fixture + ".xes",
+        functions=_CONF_FUNCTIONS["footprints"],
+        params={"kind": "footprints", "perturb": True},
+    )(streaming_conformance)
+
+_PAIR_FP = {
+    "activities": ["a", "b"],
+    "start_activities": ["a"],
+    "end_activities": ["b"],
+    "sequence": [["a", "b"]],
+    "parallel": [["b", "a"]],
+}
+_CONF_ROWS = [
+    {"case:concept:name": c, "concept:name": a}
+    for c, a in [("x", "a"), ("y", "b"), ("x", "unknown"), ("x", "b"), ("y", "a"), ("x", "a")]
+]
+_CONF_ROWS += [{"concept:name": "missing-case"}, {"case:concept:name": "missing-activity"}]
+for _kind, _model in [("tbr", _chain(["a", "b"])), ("footprints", _PAIR_FP)]:
+    case(
+        "conf-" + _kind + "-interleaved",
+        functions=_CONF_FUNCTIONS[_kind],
+        params={"kind": _kind, "events": _CONF_ROWS, "model": _model},
+    )(streaming_conformance)
+    case(
+        "conf-" + _kind + "-empty",
+        functions=_CONF_FUNCTIONS[_kind],
+        params={"kind": _kind, "events": [], "model": _model},
+    )(streaming_conformance)
+    case(
+        "conf-" + _kind + "-custom",
+        functions=_CONF_FUNCTIONS[_kind],
+        params={
+            "kind": _kind,
+            "events": [{"case": "c", "task": "a"}, {"case": "c", "task": "b"}],
+            "model": _model,
+            "custom": True,
+        },
+    )(streaming_conformance)
+
+_SILENT_NET = {
+    "places": ["p0", "p1", "p2", "p3"],
+    "transitions": [["tau-start", None], ["a", "a"], ["tau-end", None]],
+    "arcs": [
+        ["p0", "tau-start", False, 1],
+        ["p1", "tau-start", True, 1],
+        ["p1", "a", False, 1],
+        ["p2", "a", True, 1],
+        ["p2", "tau-end", False, 1],
+        ["p3", "tau-end", True, 1],
+    ],
+    "initial": {"p0": 1},
+    "final": {"p3": 1},
+}
+for _maximum in [0, 1, 2, 10]:
+    case(
+        "conf-tbr-silent-" + str(_maximum),
+        functions=_CONF_FUNCTIONS["tbr"],
+        params={
+            "kind": "tbr",
+            "events": [{"case:concept:name": "c", "concept:name": "a"}],
+            "model": _SILENT_NET,
+            "maximum_iterations": _maximum,
+        },
+    )(streaming_conformance)
+_WEIGHTED_NET = {
+    "places": ["p0", "p1"],
+    "transitions": [["a", "a"]],
+    "arcs": [["p0", "a", False, 2], ["p1", "a", True, 2]],
+    "initial": {},
+    "final": {"p1": 1},
+}
+case(
+    "conf-tbr-weighted",
+    functions=_CONF_FUNCTIONS["tbr"],
+    params={
+        "kind": "tbr",
+        "events": [{"case:concept:name": "c", "concept:name": "a"}],
+        "model": _WEIGHTED_NET,
+    },
+)(streaming_conformance)
+
+_TEMP_ROWS = [
+    {
+        "case": "c",
+        "task": a,
+        "start": "2024-01-01T00:00:" + s + "+00:00",
+        "end": "2024-01-01T00:00:" + e + "+00:00",
+    }
+    for a, s, e in [
+        ("a", "00", "03"),
+        ("b", "02", "04"),
+        ("b", "05", "07"),
+        ("a", "06", "08"),
+        ("b", "20", "21"),
+    ]
+]
+_TEMP_ROWS.insert(
+    2,
+    {
+        "case": "other",
+        "task": "a",
+        "start": "2024-01-01T00:00:00+00:00",
+        "end": "2024-01-01T00:00:01+00:00",
+    },
+)
+_TEMP_ROWS += [{"case": "c", "task": "b"}]
+for _zeta in [0.0, 1.0, 6.0]:
+    case(
+        "conf-temporal-interval-" + str(int(_zeta)),
+        functions=_CONF_FUNCTIONS["temporal"],
+        params={
+            "kind": "temporal",
+            "events": _TEMP_ROWS,
+            "model": [["a", "b", 5.0, 1.0], ["b", "b", 0.0, 0.0]],
+            "custom": True,
+            "interval": True,
+            "zeta": _zeta,
+        },
+    )(streaming_conformance)
+case(
+    "conf-temporal-empty",
+    functions=_CONF_FUNCTIONS["temporal"],
+    params={"kind": "temporal", "events": [], "model": []},
+)(streaming_conformance)

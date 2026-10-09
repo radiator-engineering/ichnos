@@ -20,11 +20,15 @@
 //! # Ok::<(), ichnos_stream::Error>(())
 //! ```
 
+mod conformance;
 mod conversion;
 mod dfg;
 mod error;
+mod footprints;
 mod live;
 mod reader;
+mod tbr;
+mod temporal;
 
 pub use conversion::TraceIterator;
 pub use dfg::{MissingEventPolicy, StreamingDfgDiscovery, StreamingDfgOptions, StreamingDfgResult};
@@ -34,4 +38,13 @@ pub use live::{
 };
 pub use reader::{
     CsvEventReader, CsvStreamOptions, XesEventReader, XesStreamOptions, XesTraceReader, feed,
+};
+
+pub use conformance::StreamingConformanceOptions;
+pub use footprints::{StreamingFootprintsConformance, StreamingFootprintsStatus};
+pub use tbr::{
+    StreamingTbrConformance, StreamingTbrOptions, StreamingTbrStatus, StreamingTbrTermination,
+};
+pub use temporal::{
+    StreamingTemporalConformance, StreamingTemporalOptions, TemporalDeviation, TemporalProfile,
 };

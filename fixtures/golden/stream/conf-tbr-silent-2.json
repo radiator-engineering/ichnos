@@ -1,0 +1,195 @@
+{
+  "expected": {
+    "after_termination": {},
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "p0",
+          "tau-start",
+          false,
+          1
+        ],
+        [
+          "p1",
+          "tau-start",
+          true,
+          1
+        ],
+        [
+          "p1",
+          "a",
+          false,
+          1
+        ],
+        [
+          "p2",
+          "a",
+          true,
+          1
+        ],
+        [
+          "p2",
+          "tau-end",
+          false,
+          1
+        ],
+        [
+          "p3",
+          "tau-end",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "p3": 1
+      },
+      "initial": {
+        "p0": 1
+      },
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "transitions": [
+        [
+          "tau-start",
+          null
+        ],
+        [
+          "a",
+          "a"
+        ],
+        [
+          "tau-end",
+          null
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {
+          "c": {
+            "is_fit": true,
+            "marking": {
+              "p2": 1
+            },
+            "missing": 0
+          }
+        }
+      }
+    ],
+    "terminated": {
+      "c": {
+        "is_fit": false,
+        "marking": {
+          "p2": 1
+        },
+        "missing": 1,
+        "remaining": 0
+      }
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-silent-2",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {},
+    "params": {
+      "events": [
+        {
+          "case:concept:name": "c",
+          "concept:name": "a"
+        }
+      ],
+      "kind": "tbr",
+      "maximum_iterations": 2,
+      "model": {
+        "arcs": [
+          [
+            "p0",
+            "tau-start",
+            false,
+            1
+          ],
+          [
+            "p1",
+            "tau-start",
+            true,
+            1
+          ],
+          [
+            "p1",
+            "a",
+            false,
+            1
+          ],
+          [
+            "p2",
+            "a",
+            true,
+            1
+          ],
+          [
+            "p2",
+            "tau-end",
+            false,
+            1
+          ],
+          [
+            "p3",
+            "tau-end",
+            true,
+            1
+          ]
+        ],
+        "final": {
+          "p3": 1
+        },
+        "initial": {
+          "p0": 1
+        },
+        "places": [
+          "p0",
+          "p1",
+          "p2",
+          "p3"
+        ],
+        "transitions": [
+          [
+            "tau-start",
+            null
+          ],
+          [
+            "a",
+            "a"
+          ],
+          [
+            "tau-end",
+            null
+          ]
+        ]
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

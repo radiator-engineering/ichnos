@@ -1,0 +1,452 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "p000",
+          "t000",
+          false,
+          1
+        ],
+        [
+          "p001",
+          "t000",
+          true,
+          1
+        ],
+        [
+          "p001",
+          "t001",
+          false,
+          1
+        ],
+        [
+          "p002",
+          "t001",
+          true,
+          1
+        ],
+        [
+          "p002",
+          "t002",
+          false,
+          1
+        ],
+        [
+          "p003",
+          "t002",
+          true,
+          1
+        ],
+        [
+          "p003",
+          "t003",
+          false,
+          1
+        ],
+        [
+          "p004",
+          "t003",
+          true,
+          1
+        ],
+        [
+          "p004",
+          "t004",
+          false,
+          1
+        ],
+        [
+          "p005",
+          "t004",
+          true,
+          1
+        ],
+        [
+          "p005",
+          "t005",
+          false,
+          1
+        ],
+        [
+          "p006",
+          "t005",
+          true,
+          1
+        ],
+        [
+          "p006",
+          "t006",
+          false,
+          1
+        ],
+        [
+          "p007",
+          "t006",
+          true,
+          1
+        ],
+        [
+          "p007",
+          "t007",
+          false,
+          1
+        ],
+        [
+          "p008",
+          "t007",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "p008": 1
+      },
+      "initial": {
+        "p000": 1
+      },
+      "places": [
+        "p000",
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "transitions": [
+        [
+          "t000",
+          "check ticket"
+        ],
+        [
+          "t001",
+          "decide"
+        ],
+        [
+          "t002",
+          "examine casually"
+        ],
+        [
+          "t003",
+          "examine thoroughly"
+        ],
+        [
+          "t004",
+          "pay compensation"
+        ],
+        [
+          "t005",
+          "register request"
+        ],
+        [
+          "t006",
+          "reinitiate request"
+        ],
+        [
+          "t007",
+          "reject request"
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "3",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p006": 1
+                  },
+                  "missing": 1
+                }
+              ]
+            ]
+          ],
+          "sha256": "ed191552b6f94fc54d2593b49399a6400bb10e57e0a23b584091ae3c821bd3e5"
+        }
+      },
+      {
+        "at": 21,
+        "state": {
+          "count": 4,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p004": 1,
+                    "p006": 1,
+                    "p008": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p003": 1,
+                    "p005": 1,
+                    "p006": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              3,
+              [
+                "6",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p003": 1,
+                    "p006": 1
+                  },
+                  "missing": 2
+                }
+              ]
+            ]
+          ],
+          "sha256": "e5a400257c504af8598b744f03c0f39c8d7d0ae55e2a53b1bb6f0447e61e3caf"
+        }
+      },
+      {
+        "at": 41,
+        "state": {
+          "count": 6,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p004": 1,
+                    "p006": 1,
+                    "p008": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p003": 1,
+                    "p005": 1,
+                    "p006": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              5,
+              [
+                "6",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p003": 1,
+                    "p005": 1,
+                    "p006": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ]
+          ],
+          "sha256": "cb8bc7f8bf19ea5e05aa11ffed3e6efec0b923b0577ffea2ae6283f69ffecd97"
+        }
+      },
+      {
+        "at": 42,
+        "state": {
+          "count": 6,
+          "samples": [
+            [
+              0,
+              [
+                "1",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p004": 1,
+                    "p006": 1,
+                    "p008": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "2",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p003": 1,
+                    "p005": 1,
+                    "p006": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              5,
+              [
+                "6",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p002": 1,
+                    "p003": 1,
+                    "p005": 1,
+                    "p006": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ]
+          ],
+          "sha256": "bcab257181cb41db3fb0ac24cdeb93e250a478e3cd0c004b0c0e5a346ef2dee8"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 6,
+      "samples": [
+        [
+          0,
+          [
+            "1",
+            {
+              "is_fit": false,
+              "marking": {
+                "p002": 1,
+                "p004": 1,
+                "p006": 1,
+                "p008": 1
+              },
+              "missing": 3,
+              "remaining": 3
+            }
+          ]
+        ],
+        [
+          1,
+          [
+            "2",
+            {
+              "is_fit": false,
+              "marking": {
+                "p002": 1,
+                "p003": 1,
+                "p005": 1,
+                "p006": 1
+              },
+              "missing": 4,
+              "remaining": 3
+            }
+          ]
+        ],
+        [
+          5,
+          [
+            "6",
+            {
+              "is_fit": false,
+              "marking": {
+                "p002": 1,
+                "p003": 1,
+                "p005": 1,
+                "p006": 1
+              },
+              "missing": 4,
+              "remaining": 3
+            }
+          ]
+        ]
+      ],
+      "sha256": "591579d6f0d60325a76c95b885cbf1bb721a9beb14319126924c9c2367eee211"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "tbr"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

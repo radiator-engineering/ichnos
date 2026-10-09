@@ -1,0 +1,482 @@
+{
+  "expected": {
+    "after_termination": {
+      "count": 0,
+      "samples": [],
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "kind": "tbr",
+    "model": {
+      "arcs": [
+        [
+          "p000",
+          "t000",
+          false,
+          1
+        ],
+        [
+          "p001",
+          "t000",
+          true,
+          1
+        ],
+        [
+          "p001",
+          "t001",
+          false,
+          1
+        ],
+        [
+          "p002",
+          "t001",
+          true,
+          1
+        ],
+        [
+          "p002",
+          "t002",
+          false,
+          1
+        ],
+        [
+          "p003",
+          "t002",
+          true,
+          1
+        ],
+        [
+          "p003",
+          "t003",
+          false,
+          1
+        ],
+        [
+          "p004",
+          "t003",
+          true,
+          1
+        ],
+        [
+          "p004",
+          "t004",
+          false,
+          1
+        ],
+        [
+          "p005",
+          "t004",
+          true,
+          1
+        ],
+        [
+          "p005",
+          "t005",
+          false,
+          1
+        ],
+        [
+          "p006",
+          "t005",
+          true,
+          1
+        ],
+        [
+          "p006",
+          "t006",
+          false,
+          1
+        ],
+        [
+          "p007",
+          "t006",
+          true,
+          1
+        ],
+        [
+          "p007",
+          "t007",
+          false,
+          1
+        ],
+        [
+          "p008",
+          "t007",
+          true,
+          1
+        ],
+        [
+          "p008",
+          "t008",
+          false,
+          1
+        ],
+        [
+          "p009",
+          "t008",
+          true,
+          1
+        ],
+        [
+          "p009",
+          "t009",
+          false,
+          1
+        ],
+        [
+          "p010",
+          "t009",
+          true,
+          1
+        ]
+      ],
+      "final": {
+        "p010": 1
+      },
+      "initial": {
+        "p000": 1
+      },
+      "places": [
+        "p000",
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010"
+      ],
+      "transitions": [
+        [
+          "t000",
+          "Add penalty"
+        ],
+        [
+          "t001",
+          "Create Fine"
+        ],
+        [
+          "t002",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "t003",
+          "Insert Fine Notification"
+        ],
+        [
+          "t004",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "t005",
+          "Payment"
+        ],
+        [
+          "t006",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "t007",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "t008",
+          "Send Fine"
+        ],
+        [
+          "t009",
+          "Send for Credit Collection"
+        ]
+      ]
+    },
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "count": 0,
+          "samples": [],
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "count": 1,
+          "samples": [
+            [
+              0,
+              [
+                "N77802",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p002": 1
+                  },
+                  "missing": 1
+                }
+              ]
+            ]
+          ],
+          "sha256": "db36a07c9d4f3dd6a2ef358f80000e7b9566ca3951471707dfe565409c627cc0"
+        }
+      },
+      {
+        "at": 195,
+        "state": {
+          "count": 53,
+          "samples": [
+            [
+              0,
+              [
+                "A13415",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p002": 1,
+                    "p009": 1
+                  },
+                  "missing": 2
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A17641",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p002": 1,
+                    "p006": 1
+                  },
+                  "missing": 2
+                }
+              ]
+            ],
+            [
+              52,
+              [
+                "V9832",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p001": 1,
+                    "p002": 1,
+                    "p004": 1,
+                    "p010": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ]
+          ],
+          "sha256": "db54cffeb67a99ae095eced482a3a7394aabd0d5fe1267ce6d9b0c5e73b2e344"
+        }
+      },
+      {
+        "at": 389,
+        "state": {
+          "count": 100,
+          "samples": [
+            [
+              0,
+              [
+                "A10466",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p001": 1,
+                    "p002": 1,
+                    "p004": 1,
+                    "p010": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A13415",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p002": 1,
+                    "p009": 1
+                  },
+                  "missing": 2
+                }
+              ]
+            ],
+            [
+              99,
+              [
+                "V9832",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p001": 1,
+                    "p002": 1,
+                    "p004": 1,
+                    "p010": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ]
+          ],
+          "sha256": "b1d39662e5c15ac834754f475584ee975e1dfcd5707232419aefe5366bc49579"
+        }
+      },
+      {
+        "at": 390,
+        "state": {
+          "count": 100,
+          "samples": [
+            [
+              0,
+              [
+                "A10466",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p001": 1,
+                    "p002": 1,
+                    "p004": 1,
+                    "p010": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ],
+            [
+              1,
+              [
+                "A13415",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p000": 1,
+                    "p002": 1,
+                    "p009": 1
+                  },
+                  "missing": 2
+                }
+              ]
+            ],
+            [
+              99,
+              [
+                "V9832",
+                {
+                  "is_fit": false,
+                  "marking": {
+                    "p001": 1,
+                    "p002": 1,
+                    "p004": 1,
+                    "p010": 1
+                  },
+                  "missing": 3
+                }
+              ]
+            ]
+          ],
+          "sha256": "203f69e548252b98883478bd537ee69d719384e40adced0190b9d8ef28cf9b84"
+        }
+      }
+    ],
+    "terminated": {
+      "count": 100,
+      "samples": [
+        [
+          0,
+          [
+            "A10466",
+            {
+              "is_fit": false,
+              "marking": {
+                "p001": 1,
+                "p002": 1,
+                "p004": 1,
+                "p010": 1
+              },
+              "missing": 3,
+              "remaining": 3
+            }
+          ]
+        ],
+        [
+          1,
+          [
+            "A13415",
+            {
+              "is_fit": false,
+              "marking": {
+                "p000": 1,
+                "p002": 1,
+                "p009": 1
+              },
+              "missing": 3,
+              "remaining": 2
+            }
+          ]
+        ],
+        [
+          99,
+          [
+            "V9832",
+            {
+              "is_fit": false,
+              "marking": {
+                "p001": 1,
+                "p002": 1,
+                "p004": 1,
+                "p010": 1
+              },
+              "missing": 3,
+              "remaining": 3
+            }
+          ]
+        ]
+      ],
+      "sha256": "d951a6573854b5314e0a4a5ce2f4325b87f11ba196f0a4a1621febca7d4112eb"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-tbr-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.conformance.tbr.algorithm.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_paths_net",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.verify_tbr",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.enable_trans_with_invisibles",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.get_status",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate",
+      "pm4py.streaming.algo.conformance.tbr.variants.classic.TbrStreamingConformance.terminate_all"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "tbr"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

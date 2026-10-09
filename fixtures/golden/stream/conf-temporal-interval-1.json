@@ -1,0 +1,197 @@
+{
+  "expected": {
+    "after_termination": null,
+    "kind": "temporal",
+    "model": [
+      [
+        "a",
+        "b",
+        5.0,
+        1.0
+      ],
+      [
+        "b",
+        "b",
+        0.0,
+        0.0
+      ]
+    ],
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {}
+      },
+      {
+        "at": 1,
+        "state": {}
+      },
+      {
+        "at": 3,
+        "state": {}
+      },
+      {
+        "at": 6,
+        "state": {
+          "c": [
+            [
+              "a",
+              "b",
+              2.0,
+              3.0
+            ],
+            [
+              "b",
+              "b",
+              1.0,
+              "infinity"
+            ],
+            [
+              "a",
+              "b",
+              17.0,
+              12.0
+            ],
+            [
+              "b",
+              "b",
+              16.0,
+              "infinity"
+            ],
+            [
+              "b",
+              "b",
+              13.0,
+              "infinity"
+            ],
+            [
+              "a",
+              "b",
+              12.0,
+              7.0
+            ]
+          ]
+        }
+      },
+      {
+        "at": 7,
+        "state": {
+          "c": [
+            [
+              "a",
+              "b",
+              2.0,
+              3.0
+            ],
+            [
+              "b",
+              "b",
+              1.0,
+              "infinity"
+            ],
+            [
+              "a",
+              "b",
+              17.0,
+              12.0
+            ],
+            [
+              "b",
+              "b",
+              16.0,
+              "infinity"
+            ],
+            [
+              "b",
+              "b",
+              13.0,
+              "infinity"
+            ],
+            [
+              "a",
+              "b",
+              12.0,
+              7.0
+            ]
+          ]
+        }
+      }
+    ],
+    "terminated": {}
+  },
+  "meta": {
+    "area": "stream",
+    "case": "conf-temporal-interval-1",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.temporal.algorithm.apply",
+      "pm4py.streaming.algo.conformance.temporal.variants.classic.apply",
+      "pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance",
+      "pm4py.streaming.algo.conformance.temporal.variants.classic.TemporalProfileStreamingConformance.check_conformance"
+    ],
+    "loaders": {},
+    "params": {
+      "custom": true,
+      "events": [
+        {
+          "case": "c",
+          "end": "2024-01-01T00:00:03+00:00",
+          "start": "2024-01-01T00:00:00+00:00",
+          "task": "a"
+        },
+        {
+          "case": "c",
+          "end": "2024-01-01T00:00:04+00:00",
+          "start": "2024-01-01T00:00:02+00:00",
+          "task": "b"
+        },
+        {
+          "case": "other",
+          "end": "2024-01-01T00:00:01+00:00",
+          "start": "2024-01-01T00:00:00+00:00",
+          "task": "a"
+        },
+        {
+          "case": "c",
+          "end": "2024-01-01T00:00:07+00:00",
+          "start": "2024-01-01T00:00:05+00:00",
+          "task": "b"
+        },
+        {
+          "case": "c",
+          "end": "2024-01-01T00:00:08+00:00",
+          "start": "2024-01-01T00:00:06+00:00",
+          "task": "a"
+        },
+        {
+          "case": "c",
+          "end": "2024-01-01T00:00:21+00:00",
+          "start": "2024-01-01T00:00:20+00:00",
+          "task": "b"
+        },
+        {
+          "case": "c",
+          "task": "b"
+        }
+      ],
+      "interval": true,
+      "kind": "temporal",
+      "model": [
+        [
+          "a",
+          "b",
+          5.0,
+          1.0
+        ],
+        [
+          "b",
+          "b",
+          0.0,
+          0.0
+        ]
+      ],
+      "zeta": 1.0
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
