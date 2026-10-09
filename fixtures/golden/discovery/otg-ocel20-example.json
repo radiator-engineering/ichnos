@@ -1,0 +1,97 @@
+{
+  "expected": {
+    "edges": [
+      {
+        "count": 3,
+        "relation": "object_descendants",
+        "source": "Invoice",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "relation": "object_descendants",
+        "source": "Invoice",
+        "target": "Purchase Order"
+      },
+      {
+        "count": 3,
+        "relation": "object_inheritance",
+        "source": "Invoice",
+        "target": "Payment"
+      },
+      {
+        "count": 3,
+        "relation": "object_codeath",
+        "source": "Payment",
+        "target": "Invoice"
+      },
+      {
+        "count": 3,
+        "relation": "object_interaction",
+        "source": "Payment",
+        "target": "Invoice"
+      },
+      {
+        "count": 2,
+        "relation": "object_descendants",
+        "source": "Purchase Order",
+        "target": "Invoice"
+      },
+      {
+        "count": 1,
+        "relation": "object_inheritance",
+        "source": "Purchase Order",
+        "target": "Invoice"
+      },
+      {
+        "count": 3,
+        "relation": "object_interaction",
+        "source": "Purchase Order",
+        "target": "Invoice"
+      },
+      {
+        "count": 1,
+        "relation": "object_interaction",
+        "source": "Purchase Order",
+        "target": "Purchase Requisition"
+      },
+      {
+        "count": 1,
+        "relation": "object_descendants",
+        "source": "Purchase Requisition",
+        "target": "Purchase Order"
+      },
+      {
+        "count": 1,
+        "relation": "object_inheritance",
+        "source": "Purchase Requisition",
+        "target": "Purchase Order"
+      }
+    ],
+    "object_types": [
+      "Invoice",
+      "Payment",
+      "Purchase Order",
+      "Purchase Requisition"
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "otg-ocel20-example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_otg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

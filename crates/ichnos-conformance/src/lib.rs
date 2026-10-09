@@ -8,6 +8,8 @@
 //!   process trees, with footprints fitness and precision.
 //! - [`generalization`]: token-based generalization of Petri nets.
 //! - [`temporal_profile`]: deviations of traces from a temporal profile.
+//! - [`ocel`]: object-centric conformance of object-type graphs, event
+//!   type–object type graphs and object-centric DFGs.
 //!
 //! Every module returns [`Error`].
 
@@ -15,6 +17,7 @@ pub mod alignments;
 mod error;
 pub mod footprints;
 pub mod generalization;
+pub mod ocel;
 pub mod temporal_profile;
 pub mod token_replay;
 

@@ -1,0 +1,96 @@
+{
+  "expected": {
+    "edges": [
+      {
+        "count": 7,
+        "relation": "object_interaction",
+        "source": "delivery",
+        "target": "element"
+      },
+      {
+        "count": 8,
+        "relation": "object_cobirth",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "count": 8,
+        "relation": "object_cobirth",
+        "source": "element",
+        "target": "order"
+      },
+      {
+        "count": 5,
+        "relation": "object_codeath",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "count": 7,
+        "relation": "object_descendants",
+        "source": "element",
+        "target": "delivery"
+      },
+      {
+        "count": 7,
+        "relation": "object_inheritance",
+        "source": "element",
+        "target": "delivery"
+      },
+      {
+        "count": 1,
+        "relation": "object_inheritance",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "count": 1,
+        "relation": "object_inheritance",
+        "source": "element",
+        "target": "order"
+      },
+      {
+        "count": 11,
+        "relation": "object_interaction",
+        "source": "element",
+        "target": "element"
+      },
+      {
+        "count": 9,
+        "relation": "object_interaction",
+        "source": "element",
+        "target": "order"
+      },
+      {
+        "count": 1,
+        "relation": "object_descendants",
+        "source": "order",
+        "target": "element"
+      }
+    ],
+    "object_types": [
+      "delivery",
+      "element",
+      "order"
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "otg-example-log",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_otg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1260,6 +1260,160 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
         )(alignments_decomposed)
 
 
+
+# OCEL graphs: object-type graphs (OTG) and event type-object type graphs
+# (ET-OT). Edge lists are sorted; the Rust tests compare them unordered.
+
+OCEL_GRAPH_LOGS = {
+    "example-log": "ocel/example_log.jsonocel",
+    "ocel20-example": "ocel/ocel20_example.jsonocel",
+}
+
+
+def _read_ocel(fixtures):
+    path = str(fixtures["log"])
+    return pm4py.read_ocel2(path) if "ocel20" in path else pm4py.read_ocel(path)
+
+
+def _otg_json(otg):
+    types, edges = otg
+    return {
+        "object_types": sorted(types),
+        "edges": [{"source": a, "relation": r, "target": b, "count": n}
+                  for (a, r, b), n in sorted(edges.items())],
+    }
+
+
+def _etot_json(etot):
+    activities, types, relations, weights = etot
+    assert set(relations) == set(weights)
+    return {
+        "activities": sorted(activities),
+        "object_types": sorted(types),
+        "edges": [{"activity": a, "object_type": ot, "count": n}
+                  for (a, ot), n in sorted(weights.items())],
+    }
+
+
+# Object-centric conformance (lane ``ocel``). ``ocel-<kind>-<log>`` checks
+# the log against the graph of the first half of its events (``model``);
+# ``ocel-<kind>-<log>-reversed`` checks that graph (``real``) against the
+# whole log's graph; ``-options`` cases pass non-default parameters.
+
+
+def _first_half(ocel):
+    ids = ocel.events[ocel.event_id_column].iloc[: len(ocel.events) // 2].tolist()
+    return pm4py.filter_ocel_events(ocel, ids)
+
+
+def _otg_edges(edges):
+    return [{"source": a, "relation": r, "target": b} for a, r, b in sorted(edges)]
+
+
+def ocel_otg(fixtures, reversed=False, parameters=None):
+    ocel = _read_ocel(fixtures)
+    half = pm4py.discover_otg(_first_half(ocel))
+    if reversed:
+        out = {"real": _otg_json(half)}
+        r = pm4py.conformance_otg(half, pm4py.discover_otg(ocel), parameters=parameters)
+    else:
+        out = {"model": _otg_json(half)}
+        r = pm4py.conformance_otg(ocel, half, parameters=parameters)
+    out.update({
+        "missing_object_types": sorted(r["missing_object_types"]),
+        "additional_object_types": sorted(r["additional_object_types"]),
+        "missing_edges": _otg_edges(r["missing_edges"]),
+        "additional_edges": _otg_edges(r["additional_edges"]),
+        "non_conforming_edges": [{"source": a, "relation": s, "target": b, "delta": d}
+                                 for (a, s, b), d in sorted(r["non_conforming_edges"].items())],
+        "fitness": r["fitness"],
+    })
+    return out
+
+
+def _pairs(pairs):
+    return [list(p) for p in sorted(pairs)]
+
+
+def ocel_etot(fixtures, reversed=False, parameters=None):
+    ocel = _read_ocel(fixtures)
+    half = pm4py.discover_etot(_first_half(ocel))
+    if reversed:
+        out = {"real": _etot_json(half)}
+        r = pm4py.conformance_etot(half, pm4py.discover_etot(ocel), parameters=parameters)
+    else:
+        out = {"model": _etot_json(half)}
+        r = pm4py.conformance_etot(ocel, half, parameters=parameters)
+    d = r["details"]
+    out.update({
+        "activities_missing": sorted(d["A_missing"]),
+        "activities_additional": sorted(d["A_additional"]),
+        "object_types_missing": sorted(d["OT_missing"]),
+        "object_types_additional": sorted(d["OT_additional"]),
+        "edges_missing": _pairs(d["R_missing"]),
+        "edges_additional": _pairs(d["R_additional"]),
+        "delta_rel": [{"activity": a, "object_type": ot, "delta": v}
+                      for (a, ot), v in sorted(d["delta_rel"].items())],
+        "fitness": r["fitness"],
+    })
+    return out
+
+
+def _ocdfg_json(ocdfg):
+    flows = {}
+    for couples in ocdfg["edges"]["event_couples"].values():
+        for flow, pairs in couples.items():
+            flows[flow] = flows.get(flow, 0) + len(pairs)
+    return {
+        "activities": sorted(ocdfg["activities"]),
+        "events": {a: len(evs) for a, evs in sorted(ocdfg["activities_indep"]["events"].items())},
+        "flows": [{"source": a, "target": b, "count": n} for (a, b), n in sorted(flows.items())],
+    }
+
+
+def ocel_ocdfg(fixtures, reversed=False, parameters=None):
+    ocel = _read_ocel(fixtures)
+    half = pm4py.discover_ocdfg(_first_half(ocel))
+    full = pm4py.discover_ocdfg(ocel)
+    if reversed:
+        out = {"real": _ocdfg_json(half)}
+        r = pm4py.conformance_ocdfg(half, full, parameters=parameters)
+    else:
+        out = {"model": _ocdfg_json(half), "log": _ocdfg_json(full)}
+        r = pm4py.conformance_ocdfg(ocel, half, parameters=parameters)
+    out.update({
+        "missing_activities": sorted(r["missing_activities"]),
+        "additional_activities": sorted(r["additional_activities"]),
+        "missing_flows": _pairs(r["missing_flows"]),
+        "additional_flows": _pairs(r["additional_flows"]),
+        "activity_measure_differences": dict(sorted(r["activity_measure_differences"].items())),
+        "non_conforming_activities_in_measure": sorted(r["non_conforming_activities_in_measure"]),
+        "flow_measure_differences": [{"source": a, "target": b, "difference": n}
+                                     for (a, b), n in sorted(r["flow_measure_differences"].items())],
+        "non_conforming_flows_in_measure": _pairs(r["non_conforming_flows_in_measure"]),
+        "fitness": r["fitness"],
+    })
+    return out
+
+
+OCEL_CONFORMANCE = {
+    "otg": (ocel_otg, ["pm4py.discover_otg", "pm4py.conformance_otg"],
+            {"theta": {"object_interaction": 0.5, "object_cobirth": 0.0}, "alpha": 2, "gamma": 0.5}),
+    "etot": (ocel_etot, ["pm4py.discover_etot", "pm4py.conformance_etot"],
+             {"theta_real": 0.5, "alpha": 2, "beta": 0.5}),
+    "ocdfg": (ocel_ocdfg, ["pm4py.discover_ocdfg", "pm4py.conformance_ocdfg"],
+              {"theta_act": 1, "theta_flow": 1, "alpha": 2, "delta": 0.5}),
+}
+
+for _kind, (_fn, _functions, _options) in OCEL_CONFORMANCE.items():
+    for _id, _fixture in OCEL_GRAPH_LOGS.items():
+        case(f"ocel-{_kind}-{_id}", fixture=_fixture, functions=_functions)(_fn)
+        case(f"ocel-{_kind}-{_id}-reversed", fixture=_fixture, functions=_functions,
+             params={"reversed": True})(_fn)
+    case(f"ocel-{_kind}-example-log-options", fixture=OCEL_GRAPH_LOGS["example-log"],
+         functions=_functions, params={"parameters": _options})(_fn)
+
+
 if __name__ == "__main__":
     # One seeded run for alignments_decomposed: reads the model and variants
     # as JSON on stdin and prints the results as one JSON line.
