@@ -5,6 +5,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 ## Summary
 
 todo: 142; ported: 303; dropped: 181; total: 626.
+todo: 135; ported: 309; dropped: 182; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -176,7 +177,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.get_case_duration` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos_stats::cases::get_case_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
 | `pm4py.get_frequent_trace_segments` | `stats.py` → `objects/log/obj` | `ichnos_stats::variants::get_frequent_trace_segments` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_activity_position_summary` | `stats.py` → `objects/log/obj` | `ichnos_stats::cases::get_activity_position_summary` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
-| `pm4py.get_process_cube` | `stats.py` → `statistics/process_cube/pandas/algorithm`, `statistics/process_cube/polars/algorithm` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | ported | Typed numeric feature table, numeric/manual bins and one-hot prefixes; mean/sum/min/max aggregation and per-cell case sets. Goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}` and `cube-real-{running-example,receipt,roadtraffic100traces}`. See process-cube Behaviour changes. |
+| `pm4py.get_process_cube` | `stats.py` → `statistics/process_cube/pandas/algorithm`, `statistics/process_cube/polars/algorithm` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | ported | Typed numeric feature table, numeric/manual bins and one-hot prefixes; mean/sum/min/max aggregation and per-cell case sets. Goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}` and `cube-real-{running-example,receipt,roadtraffic100traces}` and `cube-top-edge`. See process-cube Behaviour changes. |
 
 ## utils
 
@@ -248,7 +249,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.play_out` | `sim.py` → `algo/simulation/playout/declare/algorithm`, `algo/simulation/playout/dfg/algorithm`, `algo/simulation/playout/petri_net/algorithm`, `algo/simulation/playout/process_tree/algorithm`, `objects/log/obj`, `objects/petri_net/inhibitor_reset/semantics`, `objects/petri_net/obj`, `objects/petri_net/semantics`, `objects/process_tree/obj` | `ichnos_sim::play_out` | `ichnos-sim` | ported | Tree top-bottom, Petri-net basic/explicit weights, DFG classic and DECLARE prefix-safe dispatch. Goldens `simulation/playout-tree-*`, `playout-petri-running-example`, `playout-dfg-*`, `playout-declare-prefixes`. Alternative extensive/performance variants and log-derived stochastic weights are not exposed. See simulation Behaviour changes. |
+| `pm4py.play_out` | `sim.py` → `algo/simulation/playout/declare/algorithm`, `algo/simulation/playout/dfg/algorithm`, `algo/simulation/playout/petri_net/algorithm`, `algo/simulation/playout/process_tree/algorithm`, `objects/log/obj`, `objects/petri_net/inhibitor_reset/semantics`, `objects/petri_net/obj`, `objects/petri_net/semantics`, `objects/process_tree/obj` | `ichnos_sim::play_out` | `ichnos-sim` | ported | Tree top-bottom, Petri-net basic/explicit weights, DFG classic and DECLARE prefix-safe dispatch without final-obligation checks, as in pm4py. Goldens `simulation/playout-tree-*`, `playout-petri-running-example`, `playout-petri-final-stop`, `playout-dfg-*`, `playout-declare-prefixes`. Alternative extensive/performance variants and log-derived stochastic weights are not exposed. See simulation Behaviour changes. |
 | `pm4py.generate_process_tree` | `sim.py` → `algo/simulation/tree_generator/algorithm`, `objects/process_tree/obj` | `ichnos_sim::generate_process_tree` | `ichnos-sim` | ported | Default PTAndLogGenerator growth with triangular activity counts, operator weights, tau and duplicate labels. Goldens `simulation/generate-tree-{sequence,choice,parallel,loop,or,mixed}` compare population distributions and binary arities. The alternative basic generator is not exposed. See simulation Behaviour changes. |
 
 ## ml
@@ -307,7 +308,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.privacy.anonymize_differential_privacy` | `privacy.py` → `algo/anonymization/pripel/algorithm`, `algo/anonymization/trace_variant_query/algorithm`, `objects/log/obj` | `ichnos_privacy::anonymize_differential_privacy` | `ichnos-privacy` | ported | SaCoFa prefix query plus PRIPEL assignment/context enrichment. Goldens `simulation/privacy-{synthetic,running-example,receipt,roadtraffic100traces}`, `privacy-mechanisms` and `privacy-behavioral-relations`. Numeric/boolean/categorical context and trace timestamp shifts. See privacy Behaviour changes and RNG validation limits. |
+| `pm4py.privacy.anonymize_differential_privacy` | `privacy.py` → `algo/anonymization/pripel/algorithm`, `algo/anonymization/trace_variant_query/algorithm`, `objects/log/obj` | `ichnos_privacy::anonymize_differential_privacy` | `ichnos-privacy` | ported | SaCoFa prefix query plus PRIPEL assignment/context enrichment. Goldens `simulation/privacy-{synthetic,running-example,receipt,roadtraffic100traces}`, `privacy-mechanisms`, `privacy-mechanisms-{0-5,2-0}`, `privacy-epsilon-one-distribution` and `privacy-behavioral-relations`. Numeric/boolean/categorical context and trace timestamp shifts. See privacy Behaviour changes and RNG validation limits. |
 
 ## convert
 
@@ -333,15 +334,15 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.construct_synchronous_product_net` | `analysis.py` → `objects/log/obj`, `objects/petri_net/obj`, `objects/petri_net/utils/align_utils`, `objects/petri_net/utils/petri_utils`, `objects/petri_net/utils/synchronous_product` | `ichnos_model::analysis::SynchronousProduct::new` | `ichnos-model` | ported | Goldens `analysis/sync-*`: 6 running-example and 3 receipt variants against their nets. Product nodes are named with the strings `"(x, y)"`, not Python tuples; `SynchronousProduct::move_of` and `standard_cost` give each transition's move and pm4py's standard cost. See the ichnos-model (petri-analysis) Behaviour changes. |
-| `pm4py.compute_emd` | `analysis.py` → `algo/evaluation/earth_mover_distance/algorithm` | `ichnos::stats::compute_emd` (planned) | `ichnos-stats` | todo | Variants: pyemd. |
+| `pm4py.compute_emd` | `analysis.py` → `algo/evaluation/earth_mover_distance/algorithm` | `ichnos_stats::emd::compute_emd` | `ichnos-stats` | ported | Goldens `analysis_remaining/emd` and `emd-{running-example,receipt,roadtraffic100traces}` compare normalized trace edit distance and transport cost. Both real-log languages use every variant: 6, 116 and 10 respectively. The second language reweights those variants. Masses use NumPy isclose tolerances; a close positive second total is rescaled before solving. Uses microlp. |
 | `pm4py.solve_marking_equation` | `analysis.py` → `algo/analysis/marking_equation/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::solve_marking_equation` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets, unit costs). Linear program solved with `microlp`; each arc counts once, as in pm4py. Variants: classic. |
 | `pm4py.solve_extended_marking_equation` | `analysis.py` → `algo/analysis/extended_marking_equation/algorithm`, `objects/log/obj`, `objects/petri_net/obj` | `ichnos_model::analysis::SynchronousProduct::solve_extended_marking_equation` | `ichnos-model` | ported | Goldens `analysis/sync-*`, default split points and `split_points=[1]`. One known difference: pm4py truncates GLPK's 3.9999999999963 to 3 on `sync-running-example-3`, where ichnos gives 4. Variants: classic. |
-| `pm4py.analysis.check_is_sound` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::is_sound` | `ichnos-model` | todo | Woflan only; pm4py first tries its POWL conversion and answers `true` when that succeeds. Goldens `analysis/net-*` agree on 19 of 21 nets; on `and-split-xor-join` and `murata3` pm4py says sound and Woflan does not. Waits for a Petri-net-to-POWL conversion. |
+| `pm4py.analysis.check_is_sound` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::is_sound` | `ichnos-model` | ported | Goldens `analysis/net-*` compare pm4py POWL-first results. Successful POWL conversion returns true even for Woflan-unsound nets, including `net-and-split-xor-join` and `net-murata3`. Use `AcceptingPetriNet::check_soundness` for the Woflan verdict. |
 | `pm4py.check_soundness` | `analysis.py` → `algo/analysis/woflan/algorithm`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::check_soundness` | `ichnos-model` | ported | Woflan with pm4py's early stop; returns `SoundnessReport` with pm4py's diagnostic messages. Goldens `analysis/net-*` (21 nets; roadtraffic skipped because pm4py takes minutes). On `big_wf_net` the uncovered places differ because the solvers pick different optimal invariants; the verdict matches. |
-| `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos::ml::cluster_log` (planned) | `ichnos-ml` | todo | Variants: sklearn_profiles. |
+| `pm4py.cluster_log` | `analysis.py` → `algo/clustering/profiles/algorithm`, `objects/log/obj` | `ichnos_ml::profiles::{cluster_log, ProfileOptions, KMeans, Clusterer}` | `ichnos-ml` | ported | Goldens `analysis_remaining/clusters-{running-example,receipt,roadtraffic100traces}` compare complete-log activity profiles and explicit-center Lloyd partitions with pm4py. `profiles-numeric` covers categorical and numeric attributes. `clusters-default-running-example` records pm4py default groups; its Rust test reports the partition comparison. Rust defaults can differ because feature selection and center initialization differ. See Behaviour changes. |
 | `pm4py.insert_artificial_start_end` | `analysis.py` → `objects/log/obj`, `objects/log/util/artificial`, `objects/log/util/dataframe_utils` | `ichnos::EventLog::insert_artificial_start_end` | `ichnos-core` | ported | Golden `core/artificial-start-end-running-example-csv`. Change core-26. |
-| `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::perf::insert_case_service_waiting_time` (planned) | `ichnos-perf` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::perf::insert_case_arrival_finish_rate` (planned) | `ichnos-perf` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.insert_case_service_waiting_time` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_perf::insert_case_service_waiting_time` | `ichnos-perf` | ported | Goldens `analysis_remaining/times-{running-example,receipt,roadtraffic100traces}` and `times-intervals` cover service, sojourn and waiting values. The interval case includes overlap and negative durations. Returns an enriched EventLog copy. |
+| `pm4py.insert_case_arrival_finish_rate` | `analysis.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_perf::insert_case_arrival_finish_rate` | `ichnos-perf` | ported | Goldens `analysis_remaining/times-{running-example,receipt,roadtraffic100traces}` and `times-intervals` cover arrival and finish gaps. Ties use typed case identifiers. Uses the preceding finish, following pm4py implementation. |
 | `pm4py.check_is_workflow_net` | `analysis.py` → `algo/analysis/workflow_net/algorithm`, `objects/petri_net/obj` | `ichnos_model::PetriNet::is_workflow_net` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). Variants: petri_net. |
 | `pm4py.maximal_decomposition` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/decomposition` | `ichnos_model::AcceptingPetriNet::maximal_decomposition` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). For a duplicated label pm4py keeps the joining transition by memory-address order, which changes from run to run; ichnos keeps the one whose name sorts last, and `maximal_decomposition_with` takes the pick as a function. The goldens iterate pm4py's transitions in name order, so its pick is the same. |
 | `pm4py.simplicity_petri_net` | `analysis.py` → `algo/evaluation/simplicity/variants/arc_degree`, `algo/evaluation/simplicity/variants/extended_cardoso`, `algo/evaluation/simplicity/variants/extended_cyclomatic`, `objects/petri_net/obj` | `ichnos_model::AcceptingPetriNet::simplicity` | `ichnos-model` | ported | Goldens `analysis/net-*`: arc_degree and extended_cardoso on 22 nets, extended_cyclomatic on the 16 bounded ones. extended_cyclomatic follows pm4py's graph, which counts (state, transition name) pairs. Variants: arc_degree, extended_cardoso, extended_cyclomatic. |
@@ -349,13 +350,13 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.reduce_petri_net_invisibles` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/reduction` | `ichnos_model::PetriNet::apply_simple_reduction` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). |
 | `pm4py.reduce_petri_net_implicit_places` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/utils/murata` | `ichnos_model::AcceptingPetriNet::reduce_implicit_places` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets). Integer programs solved with `microlp`; pm4py uses scipy or PuLP. |
 | `pm4py.get_enabled_transitions` | `analysis.py` → `objects/petri_net/obj`, `objects/petri_net/semantics` | `ichnos_model::PetriNet::enabled_transitions` | `ichnos-model` | ported | Goldens `analysis/net-*` (22 nets, initial marking). |
-| `pm4py.get_activity_labels` | `analysis.py` → `objects/log/obj` | `ichnos::model::get_activity_labels` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.replace_activity_labels` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/obj`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/obj`, `objects/process_tree/utils/label_replacing` | `ichnos::model::replace_activity_labels` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.behavioral_similarity` | `analysis.py` → `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos::model::behavioral_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.structural_similarity` | `analysis.py` → `objects/process_tree/utils/struct_similarity` | `ichnos::model::structural_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.embeddings_similarity` | `analysis.py` → `objects/petri_net/utils/embeddings_similarity` | `ichnos::ml::embeddings_similarity` (planned) | `ichnos-ml` | todo | Single entry point; preserve source defaults. |
-| `pm4py.label_sets_similarity` | `analysis.py` | `ichnos::model::label_sets_similarity` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.map_labels_from_second_model` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/utils/label_replacing` | `ichnos::model::map_labels_from_second_model` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.get_activity_labels` | `analysis.py` → `objects/log/obj` | `ichnos_model::comparison::Model::activity_labels; ichnos_ml::profiles::activity_labels` | `ichnos-model / ichnos-ml` | ported | Goldens `analysis_remaining/models` and `times-{running-example,receipt,roadtraffic100traces}` cover models and event logs. Returns sorted distinct visible labels after model conversion. |
+| `pm4py.replace_activity_labels` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/obj`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/obj`, `objects/process_tree/utils/label_replacing` | `ichnos_model::comparison::Model::replace_activity_labels` | `ichnos-model` | ported | Golden `analysis_remaining/models` covers tree, accepting net, POWL and BPMN relabeling. Returns an owned copy. Direct DFG relabeling returns a typed error. |
+| `pm4py.behavioral_similarity` | `analysis.py` → `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos_conformance::footprints::behavioral_similarity; ichnos_model::comparison::behavioral_similarity` | `ichnos-conformance / ichnos-model` | ported | Golden `analysis_remaining/models` compares trees, accepting nets, POWL and BPMN, including BPMN pairs. Sequence and parallel relations have separate Jaccard terms. An empty denominator gives zero. DFG inputs are rejected, as in pm4py. |
+| `pm4py.structural_similarity` | `analysis.py` → `objects/process_tree/utils/struct_similarity` | `ichnos_model::comparison::{structural_similarity, structural_features}` | `ichnos-model` | ported | Golden `analysis_remaining/models` compares ten structural features for trees, accepting nets and POWL. Preserves pm4py comparison-specific POWL conversion behavior. See Behaviour changes. |
+| `pm4py.embeddings_similarity` | `analysis.py` → `objects/petri_net/utils/embeddings_similarity` | — | `ichnos-ml` | dropped | External Gensim Word2Vec training adapter: independently trained random-walk vectors depend on Python/Gensim internals and net set iteration. No built-in Rust training backend is provided; cosine of arbitrary vectors would not implement this function. |
+| `pm4py.label_sets_similarity` | `analysis.py` | `ichnos_model::comparison::{label_sets_similarity, Model::label_sets_similarity}` | `ichnos-model` | ported | Goldens `analysis_remaining/labels` and `models` compare greedy Unicode label matching. Thresholds are typed and validated. See Behaviour changes for lexical ties and zero-score candidates. |
+| `pm4py.map_labels_from_second_model` | `analysis.py` → `objects/bpmn/obj`, `objects/bpmn/util/label_replacing`, `objects/petri_net/utils/label_replacing`, `objects/powl/obj`, `objects/powl/utils/label_replacing`, `objects/process_tree/utils/label_replacing` | `ichnos_model::comparison::Model::map_labels_from_second_model` | `ichnos-model` | ported | Goldens `analysis_remaining/labels` and `models` compare one-to-one label mapping and renamed models. Matching uses pm4py SequenceMatcher ratios with lexical tie handling. |
 
 ## hof
 
@@ -1454,7 +1455,7 @@ Rows cite these as `core-N`.
 
 ### ichnos-model (petri-analysis)
 
-1. **`AcceptingPetriNet::is_sound` runs Woflan only.** pm4py's `check_is_sound` first tries to convert the net to POWL and answers `true` when that works, even for nets Woflan finds unsound (`and-split-xor-join`, `murata3` in the goldens). ichnos has no Petri-net-to-POWL conversion yet.
+1. **`AcceptingPetriNet::is_sound` tries POWL conversion first.** A successful conversion returns true; otherwise Woflan decides. This preserves the oracle verdict on and-split-xor-join and murata3 even though Woflan finds them unsound.
 2. **Woflan stops early, as pm4py's `check_soundness` does.** Only steps 1, 2, 3, 10 and 11 run; the steps for the full diagnosis (not-well-handled pairs, the minimal coverability graph, unboundedness sequences) are not ported, because `check_soundness` and `check_is_sound` never reach them.
 3. **Dead tasks come from the reachability graph, not the minimal coverability graph.** Woflan reaches step 10 only for S-coverable nets, which are bounded, so both graphs fire the same transitions.
 4. **Linear and integer programs use `microlp`.** pm4py uses scipy (HiGHS), CVXOPT with GLPK, or PuLP. Feasibility and optimal values agree, but the solutions themselves can differ: on `big_wf_net` Woflan's uniform invariants, and so the uncovered places it lists, are not pm4py's.
@@ -1652,18 +1653,21 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 ### Simulation entry points (`ichnos-sim`)
 
 - Callers supply an RNG. ChaCha seeds repeat Rust experiments; Python `random`, NumPy and SciPy consume different streams, so Python samples are compared through variant rates, trace-length means, triangular activity-count means and operator rates. Distribution tolerances are 0.025–0.035 for rates, 0.08–0.15 for trace length and 0.25 for population activity means, with fixed sample sizes of 1000–12000. These checks do not compare raw random draws.
-- Tree top-bottom execution preserves silent leaves while shuffling parallel choices, then removes them from the emitted trace. It leaves trace attributes empty and emits activity attributes only, as pm4py does.
 - Interleaving shuffles a temporary child order instead of mutating the model.
-- OR returns a typed error in top-bottom execution; the pinned Python variant has no OR branch and fails while collecting the execution sequence.
+- OR returns a typed error in top-bottom execution; pm4py's topbottom.get_ex_seq has no OR branch and fails while collecting the execution sequence.
 - Tree and Petri-net execution have configurable step bounds that also count silent steps. Exhausting a bound returns an error without a partial log.
-- Final-marking-only Petri-net generation has an attempt bound. It reports exhaustion instead of returning an empty result on the first failed attempt or retrying indefinitely after a successful attempt.
+- Final-marking-only Petri-net generation has an attempt bound. Its default is 100,000 attempts. It reports exhaustion instead of returning an empty result after the requested number of attempts all fail, or retrying indefinitely after a successful attempt. The bound does not apply when all traces are accepted.
+- Petri-net timestamps start at epoch second 10,000,000 in UTC; pm4py uses datetime.fromtimestamp in the host local time zone.
+- All-zero enabled transition weights return an error; pm4py pick_transition falls back to uniform selection.
 - Petri-net transition weights are explicit typed inputs. Missing weights and the final stop option each have weight one. The wrapper does not infer stochastic weights from an event log; extensive/performance playout variants are not exposed.
-- DECLARE uses the shared discovery model types. Uniform next-event choices exclude prefix violations for all eighteen templates, preserving pm4py's absence of final obligation checks. Ordered activity iteration makes Rust sampling reproducible across runs.
-- DFG maps are ordered lexically, including start activities. Golden generation normalizes Python dictionary insertion order to that order. The log contains one trace per accepted variant, with its probability; it does not repeat a trace according to variant frequency.
+- DECLARE uses shared discovery model types instead of pm4py dictionaries. Ordered activity iteration makes Rust sampling reproducible across runs.
+- DFG maps are ordered lexically, including start activities. Golden generation normalizes pm4py dictionary insertion order to that order.
+- Zero-count DFG starts and edges are skipped; pm4py raises a logarithm domain error.
 - DFG options expose count/probability/coverage stops and a partial-path bound. Wall-clock interruption and Python return-type switches are omitted.
 - The default PTAndLogGenerator algorithm is exposed through one typed generator. Repeated calls with one RNG generate a population. The alternative basic generator is omitted.
-- Generator activity-count sampling uses the triangular law directly; it omits SciPy's tiny offsets in the shape parameter. Equal min/mode/max is supported as a fixed count, whereas the pinned SciPy call fails on its zero scale.
-- Duplicate-label replacement selects uniformly from eligible nonsibling, nonselected leaves. If none exist it skips replacement, avoiding the pinned helper's empty-choice error or nonterminating retry loop. Growth attempts are bounded.
+- Generator minimum activity count zero is rejected; pm4py accepts it.
+- Generator activity-count sampling uses the triangular law directly; it omits SciPy's tiny offsets in the shape parameter. Equal min/mode/max is supported as a fixed count, whereas pm4py's SciPy call fails on its zero scale.
+- Duplicate-label replacement selects uniformly from eligible nonsibling, nonselected leaves. If none exist it skips replacement, avoiding pm4py's ptandloggenerator.add_duplicates empty-choice error or nonterminating retry loop. Growth attempts are bounded.
 - Process-tree parsing reuses the model parser and its typed errors. The parse golden compares leaf-label multisets because pm4py enumerates leaves breadth first and the Rust model enumerates them depth first.
 
 ### Process cubes (`ichnos-stats`)
@@ -1671,23 +1675,77 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - The feature table preserves column order and carries string case IDs plus optional numeric values. NaN is missing; infinities, duplicate columns and unequal column lengths return typed errors.
 - Numeric bins carry exact boundaries and an inclusive-lowest flag instead of pandas' precision-rounded interval strings. Returned values and case sets use `[y][x]`; pandas presents X as the pivot index and Y as columns.
 - One-hot axes select `prefix_*` columns with values at least one. A case can belong to several cells, and missing aggregation values still contribute to case membership.
+- An all-NaN numeric cube axis yields an empty cube; pm4py raises a non-increasing-bins error.
 - Aggregations are the typed choices mean, sum, min and max. Arbitrary pandas aggregation strings/callables are not exposed.
 - Constant numeric columns get a single half-unit interval. Manual boundaries are sorted and deduplicated; invalid boundaries return a typed error.
 
 ### SaCoFa and PRIPEL entry point (`ichnos-privacy`)
 
 - The pipeline returns an owned `EventLog`, keeps the source log unchanged and regenerates case IDs as strings. Python returns a dataframe and mutates source event dictionaries during contextual enrichment.
-- Callers supply an RNG. End-to-end goldens use epsilon 10 on a synthetic log and short projections of three real logs, comparing variant counts and contextual invariants. Independent epsilon-1 mechanism goldens compare sampled means and rates; the generator replaces diffprivlib's unseeded `SystemRandom` with seeded `RandomState` for those observations. Rust does not reproduce Python's draw sequence.
-- Mechanism observations use diffprivlib 0.6.6 alongside the pinned pm4py checkout. They cover bounded numeric noise, binary response, categorical response, integer-truncated Laplace noise and SaCoFa's universe selection. These regression checks do not establish a differential-privacy guarantee for the composed release; epsilon is supplied independently to both phases, following the entry point.
+- Callers supply an RNG. End-to-end goldens use epsilon 10 on a synthetic log and short projections of three real logs, comparing variant counts and contextual invariants. Mechanism goldens at epsilon 0.5, 1 and 2 compare sampled means and rates; an epsilon-1 end-to-end golden compares counts and context distributions across 200 seeds; the generator replaces diffprivlib's unseeded `SystemRandom` with seeded `RandomState` for those observations. Rust does not reproduce Python's draw sequence.
+- Mechanism observations use diffprivlib 0.6.6 alongside pm4py 2.7.23.8. They cover bounded numeric noise, binary response, categorical response, integer-truncated Laplace noise and SaCoFa's universe selection. These regression checks do not establish a differential-privacy guarantee for the composed release; epsilon is supplied independently to both phases, following the entry point.
 - Prefixes use typed labels and a completion marker, so activity names containing `>>>`, `@` or `TRACE_END` are not misinterpreted as delimiters or discarded.
-- SaCoFa preserves the pinned double-exponential universe-selection helper, truncation of Laplace noise toward zero, nonnegative counts, unfinished-prefix pruning and completion-marker depth accounting. Exact behavioral-relation goldens include repeated activities and completed/unfinished prefixes.
-- Empty input and an empty nonempty-trace query return typed errors. Prefix expansions, output trace count and assignment matrix size have configurable limits; exceeding one returns no partial release.
+- SaCoFa preserves pm4py's double-exponential exp_mech helper, truncation of Laplace noise toward zero, nonnegative counts, unfinished-prefix pruning and completion-marker depth accounting. Exact behavioral-relation goldens include repeated activities and completed/unfinished prefixes.
+- SaCoFa omits the empty-trace variant; pm4py can emit it.
+- Empty input and an empty nonempty-trace query return typed errors. Prefix expansions, output trace count and assignment matrix size have configurable limits; exceeding one returns no partial release. Defaults are 1,000,000 expanded prefixes, 10,000 output traces and 2,000,000 assignment cells; prefix length k has a hard cap of 100.
 - Optimal rectangular assignment uses activity-sequence edit distance and deterministic tie handling. Matched source events are reused at most once; excess query traces sample contextual values from global attribute pools and pair-specific timestamp gaps.
 - Missing or decreasing timestamps and mixed scalar types for one attribute return typed errors. Context requires at least one adjacent timestamp pair, as pm4py's timestamp-domain construction does.
 - Unsupported/nested scalar attributes and nonfinite numeric values are removed before enrichment. The blocklist excludes specified context fields. Original trace attributes are discarded.
-- Categorical domains come from the attribute's values. The pinned PRIPEL helper mistakenly builds its utility list from attribute names, causing categorical-value rejection; the corrected domain is tested directly against diffprivlib's categorical mechanism.
 - Numeric noise is sampled from the bounded conditional Laplace law with sensitivity equal to the observed attribute range, using inverse-CDF sampling instead of rejection. Integer outputs use ties-to-even rounding; constant domains return their sole value.
-- Each trace's timestamp shift uses the current admissible interval as its sensitivity range and recalibrates for that interval. The Python helper instead caches the first shift scale while changing subsequent bounds. Resolved inter-event gaps are retained, following pm4py's implementation rather than its implication that gaps are individually randomized.
+- Each trace's timestamp shift uses the current admissible interval as its sensitivity range rather than pm4py's whole-log timestamp range. A narrower sensitivity gives less noise for the same epsilon. The scale is recalibrated for each interval; pm4py instead caches the first diffprivlib LaplaceBoundedDomain scale while changing subsequent bounds. Resolved inter-event gaps are retained, following pm4py's implementation rather than its implication that gaps are individually randomized.
+
+### Analysis entry points
+
+- Model comparison takes a typed `comparison::Model` instead of heterogeneous positional arguments.
+- Behavioral comparison lives in conformance so Petri nets can reuse its silent-routing footprint implementation.
+- Behavioral similarity rejects DFG models, following pm4py's conversion restriction.
+- Structural comparison preserves pm4py's comparison-specific POWL dispatch: partial-order nodes lose their ordering edges and become parallel.
+- Frequent-transition annotations become literal leaf labels during structural comparison.
+- Direct `Powl::to_process_tree` retains partial orders; the dispatch quirk is confined to comparison.
+- Empty behavioral relations give similarity zero, including self-comparison, as in pm4py.
+- Label matching uses Unicode SequenceMatcher blocks and its popular-character anchor rule.
+- Equal-score label choices use lexical order instead of Python set iteration.
+- Label thresholds must be finite and in [0,1].
+- At threshold zero, zero-score candidates remain unmatched, avoiding pm4py's `remove(None)` failure.
+- DFG label extraction and structural comparison convert through an accepting net.
+- Direct DFG relabeling returns a typed error.
+- `is_sound` preserves pm4py's POWL-first shortcut: a successful conversion returns true even if Woflan finds the net unsound.
+- The `analysis/net-and-split-xor-join` and `analysis/net-murata3` goldens demonstrate that shortcut; `check_soundness` supplies the Woflan verdict.
+- EMD totals use NumPy's isclose rule: absolute tolerance 1e-8 plus relative tolerance 1e-5 times the second total.
+- A close positive second total is rescaled to the first total before constructing transport constraints.
+- If either accepted total is zero, EMD returns zero.
+- Larger mass differences return an error; POT can instead normalize unequal languages depending on installed dependencies.
+- The transport optimizer uses microlp instead of POT or SciPy.
+- Zero-mass support is ignored, and empty-trace self-distance is zero; pm4py can divide by zero for an empty trace.
+- Clustering takes typed feature options and a `Clusterer` trait.
+- Categorical presence, adjacent-value presence and last numeric event values use lexical feature order.
+- Missing categorical values and absent adjacent pairs produce pm4py's `UNDEFINED` feature.
+- `ProfileOptions::infer` scans the complete log instead of sampling up to 50 traces.
+- Inference excludes case identifiers and lifecycle transitions, retains attributes present in every trace and selects strings with at most 12 distinct values.
+- Default K-means uses two clusters, 300 iterations and variance-scaled tolerance 1e-4.
+- Initial centers use the first row and successive farthest points instead of sklearn's seed-0 K-means++.
+- The default partition can differ from pm4py's because feature selection and seeding differ; the running-example default golden records the comparison.
+- Explicit centers reproduce the covered pm4py Lloyd fixtures.
+- K-means assignment ties choose the lowest center index.
+- Empty-cluster relocation chooses the highest row index among equally distant eligible points.
+- Duplicate-only clusters can remain unused.
+- Custom clusterers return typed assignments instead of sklearn objects.
+- Invalid shapes, nonfinite numbers, out-of-range assignments and missing selected numeric values return errors.
+- Cluster logs preserve source metadata; pm4py creates logs with default metadata.
+- Cluster traces stay in input order and intermediate empty cluster indices are retained.
+- The Gensim Word2Vec trainer is dropped; no alternative similarity replaces its independently trained random-walk vectors.
+- Case-time enrichment returns an EventLog copy with aggregate values repeated on events instead of a DataFrame.
+- Enrichment retains log metadata and trace/event order.
+- Case identifiers support string/ID and integer values, with typed ordering for timestamp ties.
+- Other case identifier types return errors.
+- Repeated case identifiers are grouped across traces.
+- Service time sums all individual intervals, including overlaps and negative durations.
+- Waiting time can therefore be negative, as in pm4py.
+- Finish enrichment uses the preceding finish, following pm4py's implementation instead of the top-level docstring's next-finish wording.
+- Empty traces are preserved without enrichment.
+- Empty logs return an empty copy; pm4py's DataFrame arrival helper fails on no cases.
+- Enrichment requires date-valued timestamps.
+- Computed durations use microsecond resolution; submicrosecond detail is not retained in the enrichment values.
 
 ## Proposed lanes
 

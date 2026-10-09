@@ -24,7 +24,7 @@ fn cubes_match_numeric_prefix_and_missing_value_goldens() {
                 .collect(),
         };
         let x = Axis {
-            divisions: 2,
+            divisions: e["divisions_x"].as_u64().unwrap_or(2) as usize,
             ..Axis::new(e["x"].as_str().unwrap())
         };
         let y = Axis {

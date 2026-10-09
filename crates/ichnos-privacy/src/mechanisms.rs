@@ -53,7 +53,7 @@ pub(crate) fn categorical<R: Rng + ?Sized>(
     }
     size - 1
 }
-// The pinned SaCoFa helper exponentiates exponential scores again. Preserve
+// pm4py SaCoFa's exp_mech helper exponentiates exponential scores again. Preserve
 // this double-exponential law (rather than silently replacing it with softmax).
 pub(crate) fn universe<R: Rng + ?Sized>(size: usize, epsilon: f64, rng: &mut R) -> usize {
     let raw: Vec<_> = (0..=size)
@@ -77,36 +77,43 @@ mod tests {
     use rand_chacha::ChaCha8Rng;
     #[test]
     fn mechanism_distribution_goldens() {
-        let g = ichnos_golden::golden("simulation", "privacy-mechanisms");
-        let e = &g.expected;
-        let n = e["samples"].as_u64().unwrap() as usize;
-        let mut rng = ChaCha8Rng::seed_from_u64(1729);
-        let mut numeric = 0.;
-        let mut binary = 0;
-        let mut category = 0;
-        let mut zero = 0;
-        let mut universe_zero = 0;
-        for _ in 0..n {
-            let v = bounded(2., 0., 10., 1., &mut rng);
-            assert!((0. ..=10.).contains(&v));
-            numeric += v;
-            binary += usize::from(rng.random::<f64>() < 1. / (1. + (-1f64).exp()));
-            category += usize::from(categorical(0, 3, 1., &mut rng) == 0);
-            zero += usize::from(laplace(1., &mut rng).trunc() == 0.);
-            universe_zero += usize::from(universe(3, 1., &mut rng) == 0);
-        }
-        for (key, actual, tol) in [
-            ("numeric_mean", numeric / n as f64, 0.12),
-            ("boolean_keep", binary as f64 / n as f64, 0.025),
-            ("categorical_keep", category as f64 / n as f64, 0.025),
-            ("integer_laplace_zero", zero as f64 / n as f64, 0.025),
-            ("universe_zero", universe_zero as f64 / n as f64, 0.025),
+        for id in [
+            "privacy-mechanisms",
+            "privacy-mechanisms-0-5",
+            "privacy-mechanisms-2-0",
         ] {
-            let expected = e[key].as_f64().unwrap();
-            assert!(
-                (actual - expected).abs() <= tol,
-                "{key}: {actual} vs {expected}"
-            );
+            let g = ichnos_golden::golden("simulation", id);
+            let e = &g.expected;
+            let epsilon = e["epsilon"].as_f64().unwrap();
+            let n = e["samples"].as_u64().unwrap() as usize;
+            let mut rng = ChaCha8Rng::seed_from_u64(1729);
+            let mut numeric = 0.;
+            let mut binary = 0;
+            let mut category = 0;
+            let mut zero = 0;
+            let mut universe_zero = 0;
+            for _ in 0..n {
+                let v = bounded(2., 0., 10., epsilon, &mut rng);
+                assert!((0. ..=10.).contains(&v));
+                numeric += v;
+                binary += usize::from(rng.random::<f64>() < 1. / (1. + (-epsilon).exp()));
+                category += usize::from(categorical(0, 3, epsilon, &mut rng) == 0);
+                zero += usize::from(laplace(1. / epsilon, &mut rng).trunc() == 0.);
+                universe_zero += usize::from(universe(3, epsilon, &mut rng) == 0);
+            }
+            for (key, actual, tol) in [
+                ("numeric_mean", numeric / n as f64, 0.12),
+                ("boolean_keep", binary as f64 / n as f64, 0.025),
+                ("categorical_keep", category as f64 / n as f64, 0.025),
+                ("integer_laplace_zero", zero as f64 / n as f64, 0.025),
+                ("universe_zero", universe_zero as f64 / n as f64, 0.025),
+            ] {
+                let expected = e[key].as_f64().unwrap();
+                assert!(
+                    (actual - expected).abs() <= tol,
+                    "{key}: {actual} vs {expected}"
+                );
+            }
         }
     }
 }

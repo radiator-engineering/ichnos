@@ -10,3 +10,4 @@ pub mod variants;
 
 /// Numeric and one-hot process cubes.
 pub mod cube;
+pub mod emd;

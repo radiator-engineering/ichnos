@@ -472,17 +472,22 @@ impl AcceptingPetriNet {
         Ok(report)
     }
 
-    /// Whether the net is a sound workflow net: the verdict of
-    /// [`AcceptingPetriNet::check_soundness`] (pm4py's
-    /// `analysis.check_is_sound`).
+    /// pm4py's POWL-first `analysis.check_is_sound` shortcut.
     ///
-    /// pm4py first tries to convert the net to POWL and answers `true` when
-    /// that works; here woflan always decides.
+    /// A net that converts to POWL returns `true`, even when Woflan finds it
+    /// unsound. The `analysis/net-and-split-xor-join` and `analysis/net-murata3`
+    /// goldens are examples. Conversion ignores the accepting markings.
+    /// If POWL conversion fails, Woflan decides.
+    ///
+    /// Use [`AcceptingPetriNet::check_soundness`] for the Woflan soundness verdict.
     ///
     /// # Errors
     ///
     /// As [`AcceptingPetriNet::check_soundness`].
     pub fn is_sound(&self) -> Result<bool, AnalysisError> {
+        if self.net.to_powl().is_ok() {
+            return Ok(true);
+        }
         Ok(self.check_soundness()?.sound)
     }
 }

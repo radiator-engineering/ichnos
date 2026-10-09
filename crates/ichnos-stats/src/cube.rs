@@ -57,7 +57,7 @@ impl Axis {
         }
     }
 }
-/// Pivot values and case membership, indexed as [y][x].
+/// Pivot values and case membership, indexed as `[y][x]`.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ProcessCube {
     /// Column bins.
@@ -69,10 +69,8 @@ pub struct ProcessCube {
     /// Membership includes rows whose aggregation value is missing.
     pub cases: Vec<Vec<BTreeSet<String>>>,
 }
-/// Invalid table shape, column or bin configuration.
-#[derive(Debug, thiserror::Error)]
-#[error("invalid process cube: {0}")]
-pub struct CubeError(pub String);
+/// Compatibility name for typed process-cube errors.
+pub type CubeError = crate::Error;
 type Membership = Vec<Vec<usize>>;
 fn column<'a>(t: &'a FeatureTable, name: &str) -> Option<&'a [Option<f64>]> {
     t.columns
@@ -86,7 +84,7 @@ fn axis(t: &FeatureTable, a: &Axis) -> Result<(Vec<Bin>, Membership), CubeError>
             b.clone()
         } else {
             if a.divisions == 0 || a.divisions > 10_000 {
-                return Err(CubeError("divisions must be in 1..=10000".into()));
+                return Err(CubeError::InvalidOption("divisions must be in 1..=10000"));
             }
             let valid: Vec<_> = values
                 .iter()
@@ -102,20 +100,27 @@ fn axis(t: &FeatureTable, a: &Axis) -> Result<(Vec<Bin>, Membership), CubeError>
             if min == max {
                 vec![min - 0.5, max + 0.5]
             } else {
-                (0..=a.divisions)
-                    .map(|i| min + (max - min) * i as f64 / a.divisions as f64)
-                    .collect()
+                {
+                    let step = (max - min) / a.divisions as f64;
+                    (0..=a.divisions)
+                        .map(|i| {
+                            if i == a.divisions {
+                                max
+                            } else {
+                                i as f64 * step + min
+                            }
+                        })
+                        .collect()
+                }
             }
         };
         if bounds.iter().any(|v| !v.is_finite()) || bounds.len() > 10_001 {
-            return Err(CubeError("finite bounded bin boundaries required".into()));
+            return Err(CubeError::InvalidCubeBoundaries);
         }
         bounds.sort_by(f64::total_cmp);
         bounds.dedup();
         if bounds.len() < 2 {
-            return Err(CubeError(
-                "at least two distinct boundaries required".into(),
-            ));
+            return Err(CubeError::InvalidCubeBoundaries);
         }
         let bins: Vec<_> = bounds
             .windows(2)
@@ -172,17 +177,23 @@ pub fn get_process_cube(
     aggregation: Aggregation,
 ) -> Result<ProcessCube, CubeError> {
     let mut names = BTreeSet::new();
-    if t.columns.iter().any(|(n, v)| {
-        !names.insert(n)
-            || v.len() != t.case_ids.len()
-            || v.iter().flatten().any(|v| v.is_infinite())
-    }) {
-        return Err(CubeError(
-            "duplicate columns, row mismatch or infinity".into(),
-        ));
+    for (name, values) in &t.columns {
+        if !names.insert(name) {
+            return Err(CubeError::DuplicateColumn(name.clone()));
+        }
+        if values.len() != t.case_ids.len() {
+            return Err(CubeError::ColumnLength {
+                column: name.clone(),
+                expected: t.case_ids.len(),
+                actual: values.len(),
+            });
+        }
+        if values.iter().flatten().any(|v| v.is_infinite()) {
+            return Err(CubeError::InfiniteColumn(name.clone()));
+        }
     }
     let values = column(t, aggregation_column)
-        .ok_or_else(|| CubeError(format!("unknown aggregation column {aggregation_column}")))?;
+        .ok_or_else(|| CubeError::UnknownColumn(aggregation_column.to_string()))?;
     let (xb, xm) = axis(t, x)?;
     let (yb, ym) = axis(t, y)?;
     let mut groups: BTreeMap<(usize, usize), (Vec<f64>, BTreeSet<String>)> = BTreeMap::new();

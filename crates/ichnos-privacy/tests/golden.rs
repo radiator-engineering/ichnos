@@ -22,6 +22,7 @@ fn input(sequences: &[Vec<String>]) -> EventLog {
             );
             e.insert("cost", (i % 11) as f64);
             e.insert("flag", i % 2 == 0);
+            e.insert("category", if i % 2 == 0 { "red" } else { "blue" });
             trace.events.push(e);
         }
         log.traces.push(trace);
@@ -39,7 +40,8 @@ fn counts(sequences: impl IntoIterator<Item = Vec<String>>) -> Vec<serde_json::V
 fn entry_point_real_projections_and_synthetic() {
     for id in cases("simulation").into_iter().filter(|s| {
         s.starts_with("privacy-")
-            && s != "privacy-mechanisms"
+            && !s.starts_with("privacy-mechanisms")
+            && s != "privacy-epsilon-one-distribution"
             && s != "privacy-behavioral-relations"
     }) {
         let g = golden("simulation", &id);
@@ -83,6 +85,10 @@ fn entry_point_real_projections_and_synthetic() {
             for event in &t.events {
                 assert!((0. ..=10.).contains(&event.get("cost").unwrap().as_f64().unwrap()));
                 assert!(event.get("flag").unwrap().as_bool().is_some());
+                assert!(matches!(
+                    event.get("category").unwrap().as_str(),
+                    Some("red" | "blue")
+                ));
             }
             assert!(
                 t.events
@@ -135,4 +141,66 @@ fn categorical_context_blocklist_and_resource_errors() {
         ..options
     };
     assert!(trace_variant_query(&source, &invalid, &mut ChaCha8Rng::seed_from_u64(77)).is_err());
+}
+
+#[test]
+fn privacy_entry_point_at_epsilon_one_has_noise_distribution() {
+    let g = golden("simulation", "privacy-epsilon-one-distribution");
+    let e = &g.expected;
+    let n = e["seeds"].as_u64().unwrap() as usize;
+    let source = input(
+        &(0..50)
+            .map(|i| {
+                if i % 2 == 0 {
+                    vec!["a".into(), "b".into(), "c".into()]
+                } else {
+                    vec!["a".into(), "c".into()]
+                }
+            })
+            .collect::<Vec<_>>(),
+    );
+    let options = PrivacyOptions {
+        epsilon: 1.,
+        max_prefix_length: 3,
+        pruning_count: 2,
+        ..Default::default()
+    };
+    let mut totals = Vec::new();
+    let mut means = [0.; 4];
+    for seed in 0..n {
+        let output = anonymize_differential_privacy(
+            &source,
+            &options,
+            &mut ChaCha8Rng::seed_from_u64(seed as u64),
+        )
+        .unwrap();
+        totals.push(output.traces.len() as f64);
+        let events: Vec<_> = output.traces.iter().flat_map(|t| &t.events).collect();
+        means[0] += events.len() as f64 / output.traces.len().max(1) as f64;
+        for event in &events {
+            means[1] += event.get("cost").unwrap().as_f64().unwrap() / events.len() as f64;
+            means[2] +=
+                f64::from(event.get("flag").unwrap().as_bool().unwrap()) / events.len() as f64;
+            means[3] += f64::from(event.get("category").unwrap().as_str() == Some("red"))
+                / events.len() as f64;
+        }
+    }
+    let mean = totals.iter().sum::<f64>() / n as f64;
+    let std = (totals.iter().map(|x| (x - mean).powi(2)).sum::<f64>() / n as f64).sqrt();
+    for (key, actual, tolerance) in [
+        ("mean_traces", mean, 2.),
+        ("std_traces", std, 0.4),
+        ("mean_length", means[0] / n as f64, 0.08),
+        ("cost_mean", means[1] / n as f64, 0.2),
+        ("flag_rate", means[2] / n as f64, 0.06),
+        ("category_red", means[3] / n as f64, 0.06),
+    ] {
+        let expected = e[key].as_f64().unwrap();
+        println!("{key}: Rust {actual}, pm4py {expected}");
+        assert!(
+            (actual - expected).abs() <= tolerance,
+            "{key}: {actual} vs {expected}"
+        );
+    }
+    assert!(std > 1.5, "a noiseless trace query must fail this check");
 }

@@ -222,7 +222,9 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
         }
         // PRIPEL shifts the whole trace and retains its resolved inter-event gaps.
         // Recalibrate to each shift interval instead of reusing a cached scale
-        // from the first trace as the Python mechanism does.
+        // from the first trace as pm4py's LaplaceBoundedDomain does.
+        // Sensitivity is the admissible interval width, smaller than pm4py's
+        // whole-log range: this can yield less noise for the same epsilon.
         let begin = timestamp(&trace.events[0])?;
         let end = timestamp(trace.events.last().expect("nonempty query"))?;
         let lo = (min - begin) as f64 / 1e6;

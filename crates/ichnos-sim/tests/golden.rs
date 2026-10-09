@@ -352,3 +352,75 @@ fn duplicate_label_growth_is_bounded() {
     };
     assert!(generate_process_tree(&options, &mut rng).is_ok());
 }
+
+#[test]
+fn final_marking_stop_and_superset_goldens() {
+    use ichnos_model::petri::{AcceptingPetriNet, Marking, PetriNet};
+    let g = golden("simulation", "playout-petri-final-stop");
+    for row in g.expected.as_array().unwrap() {
+        let mut net = PetriNet::new("final with outgoing transition");
+        let p = net.add_place("p");
+        let q = net.add_place("q");
+        let a = net.add_transition("a", Some("a"));
+        net.add_input_arc(p, a).unwrap();
+        net.add_output_arc(a, q).unwrap();
+        let mut im = Marking::new();
+        im.set(p, row["tokens"].as_u64().unwrap() as u32);
+        let mut fm = Marking::new();
+        fm.set(p, 1);
+        let model = AcceptingPetriNet::new(net, im, fm);
+        let options = PlayOutOptions {
+            traces: 5000,
+            max_trace_length: 3,
+            require_final: row["require_final"].as_bool().unwrap(),
+            final_marking_leq: row["leq"].as_bool().unwrap(),
+            ..Default::default()
+        };
+        let result = play_out(
+            Model::PetriNet(&model),
+            &options,
+            &mut ChaCha8Rng::seed_from_u64(1729),
+        );
+        if row["traces"].as_u64().unwrap() == 0 {
+            assert!(matches!(
+                result,
+                Err(ichnos_sim::Error::Limit("Petri-net attempts"))
+            ));
+            continue;
+        }
+        let log = result.unwrap();
+        assert_eq!(log.traces.len(), 5000);
+        let observed = counts(&log);
+        for pair in row["rates"].as_array().unwrap() {
+            let sequence: Vec<String> = serde_json::from_value(pair[0].clone()).unwrap();
+            close(
+                observed.get(&sequence).copied().unwrap_or(0) as f64 / 5000.,
+                pair[1].as_f64().unwrap(),
+                0.035,
+            );
+        }
+        assert_eq!(observed.len(), row["rates"].as_array().unwrap().len());
+    }
+}
+
+#[test]
+fn unrestricted_petri_traces_do_not_use_attempt_limit() {
+    use ichnos_model::petri::{AcceptingPetriNet, Marking, PetriNet};
+    let net = AcceptingPetriNet::new(PetriNet::new("empty"), Marking::new(), Marking::new());
+    let options = PlayOutOptions {
+        traces: 150_000,
+        max_attempts: 1,
+        ..Default::default()
+    };
+    assert_eq!(
+        play_out(
+            Model::PetriNet(&net),
+            &options,
+            &mut ChaCha8Rng::seed_from_u64(1)
+        )
+        .unwrap()
+        .traces
+        .len(),
+        150_000
+    );
+}

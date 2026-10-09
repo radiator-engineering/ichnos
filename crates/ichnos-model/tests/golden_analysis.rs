@@ -124,13 +124,8 @@ fn report(failures: &[String]) {
 /// Known differences from pm4py, as `(case and output, our value, pm4py's
 /// value)`. `docs/parity.md` lists them as behaviour changes.
 ///
-/// - `check_is_sound` first tries pm4py's POWL conversion and answers
-///   `true` when it succeeds, even for these two nets that Woflan finds
-///   unsound; ichnos has no Petri-net-to-POWL conversion and uses Woflan.
 /// - pm4py truncates GLPK's optimum 3.9999999999963 to 3; ichnos rounds.
 const KNOWN: &[(&str, &str, &str)] = &[
-    ("net-and-split-xor-join is_sound", "false", "true"),
-    ("net-murata3 is_sound", "false", "true"),
     (
         "sync-running-example-3 /extended_marking_equation",
         "4",

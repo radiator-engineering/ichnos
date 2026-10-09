@@ -160,15 +160,15 @@ fn replace(t: &mut ProcessTree, path: &[usize], new: ProcessTree) {
 }
 fn duplicate<R: Rng + ?Sized>(tree: &mut ProcessTree, prob: f64, rng: &mut R) {
     let leaves = paths(tree);
+    if !leaves.iter().any(|path| path.len() >= 2) {
+        return;
+    }
     let selected: Vec<_> = leaves
         .iter()
         .filter(|_| rng.random::<f64>() < prob)
         .cloned()
         .collect();
     for source in &selected {
-        if source.len() < 2 {
-            continue;
-        }
         let candidates: Vec<_> = leaves
             .iter()
             .filter(|p| {
@@ -189,5 +189,35 @@ fn assign(t: &mut ProcessTree, path: &[usize], new: ProcessTree) {
         *t = new;
     } else if let ProcessTree::Node(_, children) = t {
         assign(&mut children[path[0]], &path[1..], new);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_chacha::ChaCha8Rng;
+    #[test]
+    fn root_child_can_be_a_duplicate_source() {
+        let tree = ProcessTree::sequence([
+            ProcessTree::activity("a"),
+            ProcessTree::sequence([ProcessTree::activity("b"), ProcessTree::activity("c")]),
+        ]);
+        let mut root_source_seen = false;
+        for seed in 0..100 {
+            let mut copy = tree.clone();
+            duplicate(&mut copy, 0.5, &mut ChaCha8Rng::seed_from_u64(seed));
+            root_source_seen |= copy
+                .leaves()
+                .filter(|leaf| leaf.label().is_some_and(|label| label.as_str() == "a"))
+                .count()
+                >= 2;
+        }
+        assert!(root_source_seen);
+        let shallow =
+            ProcessTree::sequence([ProcessTree::activity("a"), ProcessTree::activity("b")]);
+        let mut copy = shallow.clone();
+        duplicate(&mut copy, 0.5, &mut ChaCha8Rng::seed_from_u64(1));
+        assert_eq!(copy, shallow);
     }
 }

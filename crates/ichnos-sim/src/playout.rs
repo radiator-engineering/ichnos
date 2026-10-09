@@ -22,22 +22,7 @@ pub enum Model<'a> {
     /// Probability-ordered variant enumeration.
     Dfg(&'a Dfg),
 }
-/// Invalid models/options or execution limits.
-#[derive(Debug, thiserror::Error)]
-pub enum SimulationError {
-    /// An option violates its allowed range.
-    #[error("invalid simulation options: {0}")]
-    Options(&'static str),
-    /// The tree is malformed or contains an operator unsupported by top-bottom.
-    #[error("invalid tree: {0}")]
-    Tree(String),
-    /// A bound was reached; no partial log is returned.
-    #[error("simulation exceeded {0}")]
-    Limit(&'static str),
-    /// The graph has no positive start weight or has a reachable dead end.
-    #[error("invalid DFG: {0}")]
-    Dfg(&'static str),
-}
+use crate::Error as SimulationError;
 /// Tree and Petri-net options. Randomness is supplied by the caller.
 #[derive(Debug, Clone)]
 pub struct PlayOutOptions {
@@ -182,7 +167,12 @@ fn petri<R: Rng + ?Sized>(
 ) -> Result<EventLog, SimulationError> {
     let mut log = EventLog::default();
     let mut timestamp = 10_000_000i64;
-    for _ in 0..o.max_attempts {
+    let attempts = if o.require_final {
+        o.max_attempts
+    } else {
+        o.traces
+    };
+    for _ in 0..attempts {
         if log.traces.len() == o.traces {
             return Ok(log);
         }

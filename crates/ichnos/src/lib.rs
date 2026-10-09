@@ -1,5 +1,12 @@
 //! Process mining in Rust. Re-exports the public API of every ichnos crate.
 
+/// Trace profiles and clustering. See [`ichnos_ml`].
+pub use ichnos_ml as ml;
+/// Case-time enrichment. See [`ichnos_perf`].
+pub use ichnos_perf as perf;
+/// Event-log statistics, stochastic-language transport and process cubes. See [`ichnos_stats`].
+pub use ichnos_stats as stats;
+
 /// Process discovery: the inductive miner family and the temporal profile.
 /// See [`ichnos_discovery`].
 pub use ichnos_discovery as discovery;
@@ -24,11 +31,8 @@ pub use ichnos_stream as stream;
 /// Object-centric event logs. See [`ichnos_ocel`].
 pub use ichnos_ocel as ocel;
 
-/// Seeded simulation and tree generation.
-pub use ichnos_sim as simulation;
+/// Seeded simulation and tree generation. See [`ichnos_sim`].
+pub use ichnos_sim as sim;
 
-/// Privacy transformations.
+/// Privacy transformations. See [`ichnos_privacy`].
 pub use ichnos_privacy as privacy;
-
-/// Event-log statistics and process cubes.
-pub use ichnos_stats as stats;
