@@ -22,7 +22,7 @@ use rustc_hash::FxHashMap;
 
 use crate::attribute::{AttributeValue, Attributes};
 use crate::error::{Error, Result};
-use crate::keys::EventKeys;
+use crate::keys::{CONCEPT_NAME, EventKeys};
 use crate::log::{Event, EventLog, EventStream, Extension, XesExtension};
 
 /// Field metadata key that records the XES type of a column when Arrow alone
@@ -31,8 +31,14 @@ pub const XES_TYPE_METADATA_KEY: &str = "ichnos:xes-type";
 
 impl EventLog {
     /// The log as an Arrow table, one row per event. Trace attributes become
-    /// columns prefixed with `keys.case_prefix`. See [`EventStream::to_arrow`]
-    /// for how values map to Arrow types.
+    /// columns prefixed with `keys.case_prefix`, except the case ID (trace
+    /// `concept:name`), which goes in column `keys.case_id`, so
+    /// [`from_arrow`](Self::from_arrow) with the same keys reads the table
+    /// back. See [`EventStream::to_arrow`] for how values map to Arrow types.
+    ///
+    /// The table holds traces and events only. Log attributes, extensions,
+    /// globals and classifiers are not written; `from_arrow` declares
+    /// extensions again from the column names.
     pub fn to_arrow(&self, keys: &EventKeys) -> Result<RecordBatch> {
         let rows: Vec<Row<'_>> = self
             .traces
@@ -44,7 +50,7 @@ impl EventLog {
                 })
             })
             .collect();
-        rows_to_batch(&rows, &keys.case_prefix)
+        rows_to_batch(&rows, &keys.case_prefix, &keys.case_id)
     }
 
     /// Builds a log from an Arrow table: rows become events, grouped into
@@ -85,7 +91,7 @@ impl EventStream {
                 case: None,
             })
             .collect();
-        rows_to_batch(&rows, "")
+        rows_to_batch(&rows, "", "")
     }
 
     /// Builds a stream from an Arrow table, one event per row, attributes in
@@ -246,26 +252,44 @@ impl Columns {
         self.names.len() - 1
     }
 
-    fn prefixed(&mut self, prefix: &str, key: &Arc<str>) -> Arc<str> {
+    /// The column of trace attribute `key`: `case_id` for the case ID,
+    /// `prefix` + `key` for the others.
+    fn prefixed(&mut self, prefix: &str, case_id: &str, key: &Arc<str>) -> Arc<str> {
         self.prefixed
             .entry(key.clone())
-            .or_insert_with(|| format!("{prefix}{key}").into())
+            .or_insert_with(|| {
+                if key.as_ref() == CONCEPT_NAME {
+                    case_id.into()
+                } else {
+                    format!("{prefix}{key}").into()
+                }
+            })
             .clone()
     }
 }
 
 /// Whether event attribute `key` is overwritten by a trace attribute in the
 /// flat table (pm4py lets the trace attribute win).
-fn shadowed(key: &str, prefix: &str, case: Option<&Attributes>) -> bool {
-    match case {
-        Some(case) => key
-            .strip_prefix(prefix)
-            .is_some_and(|rest| case.contains_key(rest)),
-        None => false,
-    }
+fn shadowed(key: &str, prefix: &str, case_id: &str, case: Option<&Attributes>) -> bool {
+    case.is_some_and(|case| {
+        if key == case_id {
+            case.contains_key(CONCEPT_NAME)
+        } else {
+            key.strip_prefix(prefix)
+                .is_some_and(|rest| rest != CONCEPT_NAME && case.contains_key(rest))
+        }
+    })
 }
 
-fn rows_to_batch(rows: &[Row<'_>], prefix: &str) -> Result<RecordBatch> {
+/// Whether trace attribute `key`, written to column `name`, collides with
+/// the case ID column. The case ID wins.
+fn collides_with_case_id(key: &str, name: &str, case_id: &str, row: &Row<'_>) -> bool {
+    key != CONCEPT_NAME
+        && name == case_id
+        && row.case.is_some_and(|case| case.contains_key(CONCEPT_NAME))
+}
+
+fn rows_to_batch(rows: &[Row<'_>], prefix: &str, case_id: &str) -> Result<RecordBatch> {
     let mut cols = Columns {
         names: Vec::new(),
         kinds: Vec::new(),
@@ -277,13 +301,16 @@ fn rows_to_batch(rows: &[Row<'_>], prefix: &str) -> Result<RecordBatch> {
     for row in rows {
         for (key, value) in row.event {
             let i = cols.column(key);
-            if !shadowed(key, prefix, row.case) {
+            if !shadowed(key, prefix, case_id, row.case) {
                 let kind = Kind::of(key, value)?;
                 cols.kinds[i] = Some(cols.kinds[i].map_or(kind, |k| k.merge(kind)));
             }
         }
         for (key, value) in row.case.into_iter().flatten() {
-            let name = cols.prefixed(prefix, key);
+            let name = cols.prefixed(prefix, case_id, key);
+            if collides_with_case_id(key, &name, case_id, row) {
+                continue;
+            }
             let i = cols.column(&name);
             let kind = Kind::of(&name, value)?;
             cols.kinds[i] = Some(cols.kinds[i].map_or(kind, |k| k.merge(kind)));
@@ -298,12 +325,15 @@ fn rows_to_batch(rows: &[Row<'_>], prefix: &str) -> Result<RecordBatch> {
         .collect();
     for (r, row) in rows.iter().enumerate() {
         for (key, value) in row.event {
-            if !shadowed(key, prefix, row.case) {
+            if !shadowed(key, prefix, case_id, row.case) {
                 builders[cols.by_name[key]].push(r, key, value)?;
             }
         }
         for (key, value) in row.case.into_iter().flatten() {
             let name = &cols.prefixed[key];
+            if collides_with_case_id(key, name, case_id, row) {
+                continue;
+            }
             builders[cols.by_name[name]].push(r, name, value)?;
         }
     }
@@ -569,7 +599,7 @@ mod tests {
     use arrow::datatypes::Int32Type;
     use chrono::TimeZone;
 
-    use crate::log::Trace;
+    use crate::log::{Classifier, Trace};
 
     fn sample_log() -> EventLog {
         let plus2 = FixedOffset::east_opt(7200).unwrap();
@@ -640,6 +670,47 @@ mod tests {
             back.traces[0].events[0].get("org:resource"),
             Some(AttributeValue::Id(_))
         ));
+    }
+
+    #[test]
+    fn round_trip_drops_log_metadata() {
+        let keys = EventKeys::default();
+        let mut log = sample_log();
+        log.attributes.insert("source", "test");
+        log.classifiers.push(Classifier {
+            name: "Activity".into(),
+            keys: vec!["concept:name".into()],
+        });
+        let back = EventLog::from_arrow(&log.to_arrow(&keys).unwrap(), &keys).unwrap();
+        assert_eq!(back.traces.len(), log.traces.len());
+        assert!(back.attributes.is_empty());
+        assert!(back.classifiers.is_empty());
+    }
+
+    #[test]
+    fn round_trip_with_custom_case_id_column() {
+        let keys = EventKeys::default().with_case_id("case:id");
+        let mut log = sample_log();
+        log.traces[0].attributes.insert("id", "hidden");
+        log.traces[0].events[0].insert("case:id", "hidden too");
+        let batch = log.to_arrow(&keys).unwrap();
+        let schema = batch.schema();
+        let names: Vec<&str> = schema.fields().iter().map(|f| f.name().as_str()).collect();
+        assert!(names.contains(&"case:id"));
+        assert!(!names.contains(&"case:concept:name"));
+        let ids = batch
+            .column(schema.index_of("case:id").unwrap())
+            .as_string::<i32>();
+        assert_eq!(ids.value(0), "0");
+        assert_eq!(ids.value(2), "1");
+
+        let back = EventLog::from_arrow(&batch, &keys).unwrap();
+        let case_ids: Vec<_> = back
+            .iter()
+            .map(|t| t.case_id().unwrap().to_string())
+            .collect();
+        assert_eq!(case_ids, ["0", "1"]);
+        assert_eq!(back.num_events(), log.num_events());
     }
 
     #[test]
