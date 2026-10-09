@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 9; ported: 423; dropped: 194; total: 626.
+todo: 1; ported: 431; dropped: 194; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -278,14 +278,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.ocel_get_object_types` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::get_object_types` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_get_attribute_names` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/attributes_names` | `ichnos::ocel::get_attribute_names` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_flattening` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/flattening` | `ichnos::ocel::flattening` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_object_type_activities` | `ocel.py` → `objects/ocel/obj`, `statistics/ocel/ot_activities` | `ichnos::ocel::object_type_activities` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_objects_ot_count` | `ocel.py` → `objects/ocel/obj`, `statistics/ocel/objects_ot_count` | `ichnos::ocel::objects_ot_count` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_temporal_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::temporal_summary` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_objects_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::objects_summary` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_objects_interactions_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::objects_interactions_summary` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.ocel_get_object_types` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::object_types` | `ichnos-ocel` | ported | Object types in order of first appearance in the objects table. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). |
+| `pm4py.ocel_get_attribute_names` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/attributes_names` | `ichnos_ocel::Ocel::attribute_names` | `ichnos-ocel` | ported | Sorted event and object attribute names without the `ocel:` prefix. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
+| `pm4py.ocel_flattening` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/flattening` | `ichnos_ocel::Ocel::flatten` | `ichnos-ocel` | ported | Returns an `EventStream` with one event per event and related object of the type, with object attributes under `case:`. Each golden flattens on every object type and on an unknown type. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). |
+| `pm4py.ocel_object_type_activities` | `ocel.py` → `objects/ocel/obj`, `statistics/ocel/ot_activities` | `ichnos_stats::ocel::ot_activities::get_object_type_activities` | `ichnos-stats` | ported | pm4py's function wraps `statistics.ocel.ot_activities`, which ichnos-stats ports. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL statistics Behaviour changes. |
+| `pm4py.ocel_objects_ot_count` | `ocel.py` → `objects/ocel/obj`, `statistics/ocel/objects_ot_count` | `ichnos_stats::ocel::objects_ot_count::get_objects_ot_count` | `ichnos-stats` | ported | pm4py's function wraps `statistics.ocel.objects_ot_count`, which ichnos-stats ports. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL statistics Behaviour changes. |
+| `pm4py.ocel_temporal_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::temporal_summary` | `ichnos-ocel` | ported | One row per timestamp, earliest first, with the activities and objects of its relations. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
+| `pm4py.ocel_objects_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::objects_summary` | `ichnos-ocel` | ported | One row per related object, by id: activities, start, end, duration in seconds and interacting objects. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
+| `pm4py.ocel_objects_interactions_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::Ocel::objects_interactions_summary` | `ichnos-ocel` | ported | One row per event and ordered pair of distinct related objects. Goldens `ocel_summaries/*`: a synthetic log, an empty log, and example_log, newocel, ocel20_example, typed and typed20 (JSON). See OCEL summaries Behaviour changes. |
 | `pm4py.discover_ocdfg` | `ocel.py` → `algo/discovery/ocel/ocdfg/algorithm`, `objects/ocel/constants`, `objects/ocel/obj` | `ichnos_ocel::discover_ocdfg` | `ichnos-ocel` | ported | Returns `Ocdfg`. `OcdfgOptions::durations` gives elapsed edge durations, durations from a caller's function (business hours through `ichnos_stats::time::BusinessHours`), or none. Goldens `ocel_discovery/ocdfg-*`: ten OCEL fixtures read with the JSON, XML and CSV readers, an empty log, and a synthetic log with reversed and fractional times, repeated ids, no edge performance, and business hours with default slots, other slots and a holiday. See the ichnos-ocel (OC-DFG discovery) Behaviour changes. Variants: classic. |
 | `pm4py.discover_oc_petri_net` | `ocel.py` → `algo/discovery/ocel/ocpn/algorithm`, `objects/ocel/obj`, `objects/ocpn/obj` | `ichnos::ocel::discover_oc_petri_net` (planned) | `ichnos-ocel` | todo | Variants: classic, wo_annotation. |
 | `pm4py.discover_objects_graph` | `ocel.py` → `algo/transformation/ocel/graphs/object_cobirth_graph`, `algo/transformation/ocel/graphs/object_codeath_graph`, `algo/transformation/ocel/graphs/object_descendants_graph`, `algo/transformation/ocel/graphs/object_inheritance_graph`, `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj` | `ichnos_ocel::discover_objects_graph` | `ichnos-ocel` | ported | All five graph types (`ObjectGraphKind`). Goldens `convert/objects-graph-{example-log,ocel20-example}-object-{interaction,descendants,inheritance,cobirth,codeath}`: pairs equal. See the ichnos-ocel (conversions and object graphs) Behaviour changes. |
@@ -1909,6 +1909,15 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - `object_connected_components` returns groups that can be reused in later calls. pm4py optionally returns the filtered log and those groups together from `filter_ocel_cc_object`.
 - Start/end filters find an object's type in the objects table and skip a relation whose object is absent there. A hand-built `Ocel` can contain such a relation; pm4py can still use the type stored on its relations table.
 - Each filter has its own named golden. The goldens `ocel_filters/all-{example-log,newocel,ocel20-example}-jsonocel` also run all fifteen filters on the three complete logs and compare every retained table row.
+
+### OCEL summaries (`ichnos-ocel`)
+
+- `attribute_names` lists a name only when some event or object holds a value for it. pm4py lists every column of its events and objects tables, including a column whose values are all missing, such as `missing` in typed.jsonocel. The goldens check the names that hold a value.
+- The summaries read each relation's activity and time from its event. A relation whose event is not in the log is left out of the temporal summary, the object lifecycles and the interaction rows. pm4py reads the copies on its relations table. In the golden logs, pm4py's readers left no such relation.
+- `objects_summary` gives no interacting set for an object outside the objects table, as pandas gives a missing value, and does not add such an object to the sets of the others. pm4py raises a `KeyError` when such an object shares an event with another object.
+- `objects_summary` on a log with no relations returns no rows. pm4py raises an `AttributeError` (golden `ocel_summaries/empty`).
+- `objects_interactions_summary` skips an event outside the log and a pair with an object outside the objects table. pm4py raises a `KeyError`.
+- `temporal_summary` groups relations by time instant. A row keeps the offset of the first event at that instant.
 
 ## Proposed lanes
 
