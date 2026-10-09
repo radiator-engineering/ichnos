@@ -251,7 +251,8 @@ impl ProcessTree {
     /// The net has a `source` place with the initial token and a `sink`
     /// place for the final marking. Silent transitions are named after their
     /// role (`tauSplit_3`, `skip_5`, ...) as in pm4py. Visible transitions are
-    /// named `t_1`, `t_2`, ... where pm4py uses random UUIDs.
+    /// named `t_1`, `t_2`, ... where pm4py uses random UUIDs. The net is named
+    /// `process_tree_net`; pm4py names it `imdf_net_<timestamp>`.
     pub fn to_petri_net(&self) -> AcceptingPetriNet {
         let mut b = Builder {
             net: PetriNet::new("process_tree_net"),

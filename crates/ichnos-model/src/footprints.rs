@@ -267,6 +267,11 @@ impl PetriNet {
     /// Computes the footprints of the net from its reachability graph
     /// (pm4py's `footprints_discovery` on a Petri net).
     ///
+    /// Inhibitor and reset arcs act as such. pm4py explores the state space
+    /// with `ClassicSemantics`, which treats them as normal arcs, so on nets
+    /// with such arcs the footprints differ (see
+    /// [`PetriNet::to_transition_system`]).
+    ///
     /// Fails if the reachability graph exceeds `options.max_markings`.
     pub fn footprints(
         &self,

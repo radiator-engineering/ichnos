@@ -160,8 +160,8 @@ impl Dfg {
     }
 
     /// For each vertex, the activities reachable from it by one or more
-    /// edges (pm4py's `dfg_utils.get_successors` and the `post` part of
-    /// `get_transitive_relations`).
+    /// edges (pm4py's `dfg_utils.get_successors`). On a cycle a vertex is
+    /// its own successor.
     pub fn successors(&self) -> BTreeMap<Label, BTreeSet<Label>> {
         self.closure(false)
     }

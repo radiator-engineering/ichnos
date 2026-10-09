@@ -1,0 +1,2084 @@
+{
+  "expected": {
+    "input": {
+      "activities_count": {
+        "check ticket": 9,
+        "decide": 9,
+        "examine casually": 6,
+        "examine thoroughly": 3,
+        "pay compensation": 3,
+        "register request": 6,
+        "reinitiate request": 3,
+        "reject request": 3
+      },
+      "edges": {
+        "check ticket -> decide": 6,
+        "check ticket -> examine casually": 2,
+        "check ticket -> examine thoroughly": 1,
+        "decide -> pay compensation": 3,
+        "decide -> reinitiate request": 3,
+        "decide -> reject request": 3,
+        "examine casually -> check ticket": 4,
+        "examine casually -> decide": 2,
+        "examine thoroughly -> check ticket": 2,
+        "examine thoroughly -> decide": 1,
+        "register request -> check ticket": 2,
+        "register request -> examine casually": 3,
+        "register request -> examine thoroughly": 1,
+        "reinitiate request -> check ticket": 1,
+        "reinitiate request -> examine casually": 1,
+        "reinitiate request -> examine thoroughly": 1
+      },
+      "end_activities": {
+        "pay compensation": 3,
+        "reject request": 3
+      },
+      "start_activities": {
+        "register request": 6
+      }
+    },
+    "results": [
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> reject request": 3,
+            "register request -> check ticket": 2
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.0
+      },
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> reject request": 3,
+            "register request -> check ticket": 2
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.1
+      },
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> reject request": 3,
+            "register request -> check ticket": 2
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.25
+      },
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.5
+      },
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.75
+      },
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.9
+      },
+      {
+        "filter": "activities_percentage",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 1.0
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "register request -> examine casually": 3
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.0
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "register request -> examine casually": 3
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.1
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "pay compensation": 3,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "register request -> examine casually": 3
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.25
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.5
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.75
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.9
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 1.0
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.0
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.2
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.5
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "pay compensation": 3,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reject request": 3,
+            "register request -> check ticket": 2
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.8
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": false,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "pay compensation": 3,
+            "register request": 6,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reject request": 3,
+            "register request -> check ticket": 2
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.95
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.0
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.1
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.25
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.5
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.75
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.9
+      },
+      {
+        "filter": "paths_percentage",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 1.0
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.0
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.2
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.5
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.8
+      },
+      {
+        "filter": "keep_connected",
+        "keep_all_activities": true,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": 0.95
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6,
+            "reinitiate request": 3
+          },
+          "edges": {
+            "decide -> reinitiate request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "check ticket": 9
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "check ticket"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> decide": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "check ticket": 9
+          }
+        },
+        "param": "check ticket"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "check ticket"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "decide": 9
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "decide"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "decide": 9,
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "decide -> pay compensation": 3,
+            "decide -> reject request": 3
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "decide": 9
+          }
+        },
+        "param": "decide"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "decide"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6,
+            "reinitiate request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> reinitiate request": 3,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "examine casually": 6
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "examine casually"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "examine casually": 6
+          }
+        },
+        "param": "examine casually"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "examine casually"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "register request": 6
+          },
+          "edges": {},
+          "end_activities": {
+            "register request": 6
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "register request"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "register request"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "register request"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6,
+            "reinitiate request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> reinitiate request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "examine thoroughly": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "examine thoroughly"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "examine thoroughly": 3
+          }
+        },
+        "param": "examine thoroughly"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "examine thoroughly"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "pay compensation"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "pay compensation": 3
+          },
+          "edges": {},
+          "end_activities": {
+            "pay compensation": 3
+          },
+          "start_activities": {
+            "pay compensation": 3
+          }
+        },
+        "param": "pay compensation"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "pay compensation"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6,
+            "reinitiate request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> reinitiate request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "reinitiate request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "reinitiate request"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "reinitiate request": 3
+          }
+        },
+        "param": "reinitiate request"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "reinitiate request"
+      },
+      {
+        "filter": "to_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "reject request"
+      },
+      {
+        "filter": "from_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "reject request": 3
+          },
+          "edges": {},
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "reject request": 3
+          }
+        },
+        "param": "reject request"
+      },
+      {
+        "filter": "contain_activity",
+        "keep_all_activities": null,
+        "output": {
+          "activities_count": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          },
+          "end_activities": {
+            "reject request": 3
+          },
+          "start_activities": {
+            "register request": 6
+          }
+        },
+        "param": "reject request"
+      },
+      {
+        "filter": "clean_noise",
+        "keep_all_activities": null,
+        "output": {
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          }
+        },
+        "param": 0.0
+      },
+      {
+        "filter": "clean_noise",
+        "keep_all_activities": null,
+        "output": {
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          }
+        },
+        "param": 0.05
+      },
+      {
+        "filter": "clean_noise",
+        "keep_all_activities": null,
+        "output": {
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> check ticket": 1,
+            "reinitiate request -> examine casually": 1,
+            "reinitiate request -> examine thoroughly": 1
+          }
+        },
+        "param": 0.2
+      },
+      {
+        "filter": "clean_noise",
+        "keep_all_activities": null,
+        "output": {
+          "edges": {
+            "check ticket -> decide": 6,
+            "check ticket -> examine casually": 2,
+            "check ticket -> examine thoroughly": 1,
+            "decide -> pay compensation": 3,
+            "decide -> reinitiate request": 3,
+            "decide -> reject request": 3,
+            "examine casually -> check ticket": 4,
+            "examine casually -> decide": 2,
+            "examine thoroughly -> check ticket": 2,
+            "examine thoroughly -> decide": 1,
+            "register request -> check ticket": 2,
+            "register request -> examine casually": 3,
+            "register request -> examine thoroughly": 1,
+            "reinitiate request -> examine thoroughly": 1
+          }
+        },
+        "param": 0.5
+      }
+    ]
+  },
+  "meta": {
+    "area": "dfg",
+    "case": "filters-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_dfg",
+      "pm4py.get_event_attribute_values",
+      "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_on_activities_percentage",
+      "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_on_paths_percentage",
+      "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_keep_connected",
+      "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_to_activity",
+      "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_from_activity",
+      "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_contain_activity",
+      "pm4py.algo.filtering.dfg.dfg_filtering.clean_dfg_based_on_noise_thresh"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

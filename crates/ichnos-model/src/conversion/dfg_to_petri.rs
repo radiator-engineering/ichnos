@@ -43,9 +43,11 @@ impl Dfg {
     /// Each edge `a -> b` becomes a transition labelled `b` from the place of
     /// `a` to the place of `b`. Start activities get a transition from
     /// `source`; end activities a silent transition to `sink`. When the DFG
-    /// has no start (or end) activities they are inferred from the edges, as
-    /// pm4py does when none are passed. Activities without an edge are left
-    /// out, as in pm4py.
+    /// has no start (or end) activities they are inferred from the edges.
+    /// pm4py infers them only when the argument is missing: given empty
+    /// dicts, as `pm4py.convert_to_petri_net(dfg, {}, {})` passes, it builds
+    /// no start or end transitions. Activities without an edge are left out,
+    /// as in pm4py.
     pub fn to_petri_net(&self) -> AcceptingPetriNet {
         let mut net = PetriNet::new("");
         let source = net.add_place("source");
@@ -94,7 +96,12 @@ impl Dfg {
     /// `to_petri_net_invisibles_no_duplicates`).
     ///
     /// The artificial start and end activities [`ARTIFICIAL_START`] and
-    /// [`ARTIFICIAL_END`] become silent transitions.
+    /// [`ARTIFICIAL_END`] become silent transitions. Start and end activities
+    /// are inferred as in [`Dfg::to_petri_net`].
+    ///
+    /// When there is still no start (end) activity, for example on an empty
+    /// DFG or one where every activity is on a cycle, the initial (final)
+    /// marking is empty. pm4py raises `KeyError` then.
     pub fn to_petri_net_invisibles_no_duplicates(&self) -> AcceptingPetriNet {
         let start = Label::from(ARTIFICIAL_START);
         let end = Label::from(ARTIFICIAL_END);

@@ -166,3 +166,17 @@ fn net_footprints_match_tree_footprints() {
         assert_eq!(from_net, from_tree, "net footprints for {tree}");
     }
 }
+
+#[test]
+fn net_footprints_honour_inhibitor_arcs() {
+    // pm4py's ClassicSemantics treats the inhibitor arc as a normal arc and
+    // gives start activities {a, b} and no sequence.
+    let (net, im) = crate::transition_system::tests::inhibited_net();
+    let fp = net
+        .footprints(&im, crate::petri::ReachabilityOptions::default())
+        .unwrap();
+    let l = |s: &str| Label::from(s);
+    assert_eq!(fp.start_activities, BTreeSet::from([l("a")]));
+    assert_eq!(fp.sequence, BTreeSet::from([(l("a"), l("b"))]));
+    assert!(fp.parallel.is_empty());
+}
