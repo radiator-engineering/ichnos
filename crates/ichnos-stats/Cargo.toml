@@ -11,3 +11,12 @@ repository.workspace = true
 workspace = true
 
 [dependencies]
+ichnos-core = { workspace = true }
+indexmap = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+arrow = { workspace = true, features = ["csv"] }
+ichnos-golden = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
