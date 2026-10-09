@@ -987,3 +987,112 @@ case("ocel-empty", functions=_OCEL_FUNCTIONS,
      params={"events": [], "types": ["order"]})(streaming_ocel)
 
 case("iws-running-example-pnml", fixtures={"log":"running-example.xes","model":"running-example.pnml"}, functions=_IWS_FUNCTIONS)(streaming_iws)
+
+# Prefix-only Declare automata: immediate, absorbing violations; no end checks.
+from pm4py.streaming.algo.conformance.declare import algorithm as _declare_algorithm
+
+_DECLARE_STREAM_FUNCTIONS = [
+    "pm4py.streaming.algo.conformance.declare.algorithm.apply",
+    "pm4py.streaming.algo.conformance.declare.variants.automata.apply",
+    "pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance",
+]
+_DECLARE_UNARY = ["existence", "absence", "exactly_one", "init"]
+_DECLARE_BINARY = ["responded_existence", "coexistence", "response", "precedence",
+                   "succession", "altresponse", "altprecedence", "altsuccession",
+                   "chainresponse", "chainprecedence", "chainsuccession",
+                   "noncoexistence", "nonsuccession", "nonchainsuccession"]
+_DECLARE_ALL = [[t, ["A"]] for t in _DECLARE_UNARY] + [[t, ["A", "B"]] for t in _DECLARE_BINARY]
+
+
+def _declare_state(algo, compact=False):
+    result = algo.get()
+    cases = {}
+    for case_id, data in algo._cases.items():
+        constraints = sorted([[template, list(args), state]
+                              for (template, args), (state, _) in data["constraints_state"].items()])
+        cases[str(case_id)] = {"events": data["events"], "deviations": data["deviations"],
+                              "constraints_state": constraints}
+    history = [[_value(timestamp), count] for timestamp, count in result["deviations_per_time"]]
+    return {
+        "total_events_processed": result["total_events_processed"],
+        "total_deviations": result["total_deviations"],
+        "deviations_per_time": _summary(history) if compact else history,
+        "cases": _summary([[c, v] for c, v in sorted(cases.items())]) if compact else cases,
+    }
+
+
+def streaming_declare(fixtures, events=None, model=None):
+    import pm4py
+
+    rows = list(xes_importer.apply(str(fixtures["log"]))) if events is None else [Event(e) for e in events]
+    for row in rows:
+        if isinstance(row.get("time:timestamp"), str):
+            row["time:timestamp"] = datetime.fromisoformat(row["time:timestamp"])
+    if model is None:
+        # Discover rules on the real log for two representative activities.
+        # Use zero selection thresholds to exercise all eighteen templates.
+        log = pm4py.read_xes(str(fixtures["log"]), return_legacy_log_object=True)
+        activities = sorted({str(e["concept:name"]) for e in rows})[:2]
+        native_model = pm4py.discover_declare(log, considered_activities=set(activities),
+                                             min_support_ratio=0, min_confidence_ratio=0)
+        model = sorted([[template, list(args) if isinstance(args, tuple) else [args]]
+                        for template, rules in native_model.items() for args in rules])
+    else:
+        native_model = {}
+        for template, args in model:
+            key = args[0] if len(args) == 1 else tuple(args)
+            native_model.setdefault(template, {})[key] = {"support": 123, "confidence": 456}
+    algo = _declare_algorithm.apply(native_model)
+    points = sorted({0, 1, len(rows)//2, max(0,len(rows)-1),len(rows)})
+    snapshots = [{"at":0,"state":_declare_state(algo,events is None)}]
+    for i,row in enumerate(rows,1):
+        algo.receive(row)
+        if i in points:
+            snapshots.append({"at":i,"state":_declare_state(algo,events is None)})
+    live_algo = _declare_algorithm.apply(native_model)
+    stream = LiveEventStream(parameters={"thread_pool_size":1})
+    stream.register(live_algo)
+    for row in rows[:1]:
+        stream.append(row)
+    stream.start()
+    for row in rows[1:]:
+        stream.append(row)
+    stream.stop()
+    assert _declare_state(live_algo,events is None) == snapshots[-1]["state"]
+    return {"model":model,"snapshots":snapshots,"live":_declare_state(live_algo,events is None)}
+
+
+for _fixture in ["running-example", "receipt", "roadtraffic100traces"]:
+    case("declare-" + _fixture,fixture=_fixture + ".xes",functions=_DECLARE_STREAM_FUNCTIONS)(streaming_declare)
+
+
+def _declare_events(cases):
+    return [{"case:concept:name":case_id,"concept:name":activity}
+            for case_id,trace in cases for activity in trace]
+
+
+for _name,_rows in [
+    ("all-templates",_declare_events([("a",["A","A","B","B","X","A","B"]),
+                                     ("b",["B","A","X","B"]),
+                                     ("c",["X","X"])])),
+    ("pending",_declare_events([("a",["A"]),("b",["X"]),("c",["A","A","B"])])),
+    ("interleaved",_declare_events([("a",["A"]),("b",["B"]),("a",["B"]),
+                                   ("b",["A"]),("a",["A"]),("b",["B"])])),
+    ("missing",[{}, {"concept:name":"A"}, {"case:concept:name":"a"},
+                {"concept:name":"B"}, {"case:concept:name":"a","concept:name":"A"}]),
+    ("timestamps",[{"case:concept:name":"a","concept:name":"A","time:timestamp":"2024-01-01T00:00:00+00:00"},
+                   {"case:concept:name":"a","concept:name":"B"},
+                   {"case:concept:name":"a","concept:name":"A","time:timestamp":42}]),
+    ("empty",[]),
+]:
+    case("declare-" + _name,functions=_DECLARE_STREAM_FUNCTIONS,
+         params={"events":_rows,"model":_DECLARE_ALL})(streaming_declare)
+
+case("declare-self-pairs",functions=_DECLARE_STREAM_FUNCTIONS,
+     params={"events":_declare_events([("a",["A","A","X","A"])]),
+             "model":[[t,["A","A"]] for t in _DECLARE_BINARY]})(streaming_declare)
+case("declare-empty-model",functions=_DECLARE_STREAM_FUNCTIONS,
+     params={"events":_declare_events([("a",["A","B"])]),"model":[]})(streaming_declare)
+case("declare-special-labels",functions=_DECLARE_STREAM_FUNCTIONS,
+     params={"events":_declare_events([("case ' \\ ☃",["a,'\\☃","b)\n","a,'\\☃"])]),
+             "model":[["precedence",["a,'\\☃","b)\n"]], ["chainresponse",["a,'\\☃","b)\n"]]]})(streaming_declare)
