@@ -13,9 +13,12 @@
 //!   conformance checking against them.
 //! - [`alpha`]: classic alpha and alpha+ Petri-net discovery.
 //! - [`heuristics`]: classic heuristics nets and their Petri nets.
+//! - [`ocpn`]: object-centric Petri nets, mined per object type with the
+//!   inductive miner.
 //!
 //! Every miner takes an [`ichnos_core::EventLog`] with
-//! [`ichnos_core::EventKeys`] and a plain options struct, and returns a model
+//! [`ichnos_core::EventKeys`] (or, for object-centric miners, an
+//! [`ichnos_ocel::Ocel`]) and a plain options struct, and returns a model
 //! from `ichnos-model` or a typed summary. Errors are this crate's [`Error`].
 
 pub mod alpha;
@@ -34,6 +37,7 @@ pub mod heuristics;
 pub mod ilp;
 pub mod inductive;
 pub mod log_skeleton;
+pub mod ocpn;
 pub mod prefix_tree;
 pub mod split_miner;
 pub mod temporal_profile;
@@ -77,6 +81,7 @@ pub use log_skeleton::{
     SkeletonDeviation, SkeletonRelation, SkeletonTraceConformance, conformance_log_skeleton,
     log_skeleton,
 };
+pub use ocpn::{ObjectTypeNet, OcPetriNet, OcpnOptions, discover_oc_petri_net};
 pub use prefix_tree::{PrefixNode, PrefixTree, PrefixTreeOptions, prefix_tree};
 pub use split_miner::{
     SplitMinerOptions, SplitMinerResult, SplitMinerVariant, bpmn_split_miner, discover_split_miner,

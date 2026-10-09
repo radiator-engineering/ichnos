@@ -2107,6 +2107,155 @@ for _id, _fixture in OCEL_GRAPH_LOGS.items():
          functions=["pm4py.discover_etot"])(etot_case)
 
 
+# Object-centric Petri nets (lane miner-inductive), cases
+# ``ocpn-<run>-<log>``. Each run calls ``pm4py.discover_oc_petri_net`` (or,
+# for ``doublearc``, ``algorithm.apply``, whose parameters include
+# ``double_arc_threshold``) and records, per object type, the tree the
+# inductive miner found. pm4py converts that tree and drops it, so the run
+# wraps the converter to keep it.
+#
+# Output: ``activities`` and ``object_types`` (sorted), and ``nets``: for
+# each type, ``double_arcs`` (activity -> bool), ``object_ids`` (sorted) and
+# ``runs``. Each case runs once per seed in ``OCPN_SEEDS[run]``, each in a
+# fresh interpreter; ``runs`` holds one entry per distinct tree of the type,
+# with ``tree``, ``tree_footprints``, ``petri_net_footprints`` and the
+# ``seeds`` that produced it, sorted by tree.
+
+OCPN_LOGS = {
+    "example-log": "ocel/example_log.jsonocel",
+    "ocel20-example": "ocel/ocel20_example.jsonocel",
+    "recruiting-red": "ocel/recruiting-red.jsonocel",
+}
+
+# Run name -> (keyword arguments of discover_oc_petri_net, or algorithm.apply
+# parameters when the second item is True; logs).
+OCPN_RUNS = {
+    "im": ({}, False, list(OCPN_LOGS)),
+    "imf": ({"inductive_miner_variant": "imf", "noise_threshold": 0.2}, False, list(OCPN_LOGS)),
+    "imd": ({"inductive_miner_variant": "imd"}, False, list(OCPN_LOGS)),
+    "fallthroughs": (
+        {"disable_fallthroughs": False, "disable_strict_sequence_cut": False},
+        False,
+        list(OCPN_LOGS),
+    ),
+    # 0.6 makes Insert Invoice single for Purchase Order (score 2/3), where
+    # the default 0.8 makes it double.
+    "doublearc": ({"double_arc_threshold": 0.6}, True, ["ocel20-example"]),
+}
+
+# IMf can depend on the hash seed; the others are checked on two seeds.
+OCPN_SEEDS = {run: (IMF_SEEDS if run == "imf" else [0, 1]) for run in OCPN_RUNS}
+
+
+def _tree_text(tree) -> str:
+    """``str(tree)``, with a lone leaf quoted as pm4py quotes leaves under an
+    operator (``str`` prints a root leaf bare)."""
+    if tree.operator is None and tree.label is not None:
+        return "'" + tree.label + "'"
+    return str(tree)
+
+
+def _ocpn_run(path: Path, run: str) -> dict[str, Any]:
+    """One run of ``OCPN_RUNS[run]`` on the OCEL at ``path``."""
+    from pm4py.algo.discovery.ocel.ocpn import algorithm as ocpn_algorithm
+    from pm4py.algo.discovery.ocel.ocpn.variants import classic
+
+    kwargs, as_parameters, _ = OCPN_RUNS[run]
+    ocel = _read_ocel({"log": path})
+    converter = classic.tree_converter
+    original = converter.apply
+    converted = []
+
+    def keep_tree(tree, *args, **kw):
+        net = original(tree, *args, **kw)
+        converted.append((tree, net))
+        return net
+
+    converter.apply = keep_tree
+    try:
+        if as_parameters:
+            ocpn = ocpn_algorithm.apply(ocel, parameters=kwargs)
+        else:
+            ocpn = pm4py.discover_oc_petri_net(ocel, **kwargs)
+    finally:
+        converter.apply = original
+
+    nets = {}
+    for ot, net in ocpn["petri_nets"].items():
+        tree = next(t for t, n in converted if n is net)
+        nets[ot] = {
+            "double_arcs": dict(sorted(ocpn["double_arcs_on_activity"][ot].items())),
+            "object_ids": sorted(ocpn["object_ids"][ot]),
+            "tree": _tree_text(tree),
+            "tree_footprints": pm4py.discover_footprints(tree),
+            "petri_net_footprints": pm4py.discover_footprints(*net),
+        }
+    return {
+        "activities": sorted(ocpn["activities"]),
+        "object_types": sorted(ocpn["object_types"]),
+        "nets": nets,
+    }
+
+
+def ocpn_case(fixtures: dict[str, Path], run: str) -> dict[str, Any]:
+    """Runs ``OCPN_RUNS[run]`` once per seed and groups each type's trees."""
+    golden_tools = str(Path(__file__).resolve().parents[1])
+    out: dict[str, Any] | None = None
+    for seed in OCPN_SEEDS[run]:
+        env = dict(os.environ, PYTHONHASHSEED=str(seed))
+        env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
+        text = subprocess.run(
+            [sys.executable, __file__, str(fixtures["log"]), run, "ocpn"],
+            env=env,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout
+        result = json.loads(text.strip().splitlines()[-1])
+        if out is None:
+            out = {
+                "activities": result["activities"],
+                "object_types": result["object_types"],
+                "nets": {
+                    ot: {"double_arcs": n["double_arcs"], "object_ids": n["object_ids"], "runs": {}}
+                    for ot, n in result["nets"].items()
+                },
+            }
+        assert result["activities"] == out["activities"]
+        assert result["object_types"] == out["object_types"]
+        for ot, n in result["nets"].items():
+            entry = out["nets"][ot]
+            assert n["double_arcs"] == entry["double_arcs"]
+            assert n["object_ids"] == entry["object_ids"]
+            run_entry = entry["runs"].setdefault(n["tree"], {
+                "tree": n["tree"],
+                "tree_footprints": n["tree_footprints"],
+                "petri_net_footprints": n["petri_net_footprints"],
+                "seeds": [],
+            })
+            run_entry["seeds"].append(seed)
+    assert out is not None
+    for entry in out["nets"].values():
+        entry["runs"] = [entry["runs"][tree] for tree in sorted(entry["runs"])]
+    return out
+
+
+for _run, (_kwargs, _as_parameters, _logs) in OCPN_RUNS.items():
+    for _id in _logs:
+        case(
+            f"ocpn-{_run}-{_id}",
+            fixture=OCPN_LOGS[_id],
+            functions=[
+                "pm4py.algo.discovery.ocel.ocpn.algorithm.apply" if _as_parameters
+                else "pm4py.discover_oc_petri_net",
+                "pm4py.discover_footprints",
+            ],
+            params={"run": _run},
+        )(ocpn_case)
+
+SEEDED_RUNS["ocpn"] = _ocpn_run
+
+
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical
