@@ -1305,6 +1305,9 @@ Lanes record each deliberate change from pm4py here.
 - **The miner is chosen by `InductiveVariant`**, not by the `inductive_miner_variant` string and `noise_threshold`. pm4py runs IMf for `"imf"`, or for `"im"` with a threshold above 0. `multi_processing` is dropped, as in the inductive miner.
 - **A type with objects but no relations gets the inductive miner's tree for an empty log.** pm4py raises `KeyError`.
 - **A relation to an absent event or object is an error**, as in ichnos-stats' OCEL statistics. pm4py's flattening drops such relations.
+- **For IMd, start and end activities are counted in events.** Each type's directly-follows graph counts a start or end activity once per event that starts or ends an object's trace, as pm4py's OC-DFG does.
+- **The golden net footprints may hold extra pairs.** pm4py's marking search keeps one marking per silent transition, so it can miss footprint pairs the net allows. The `discovery/ocpn-*` test accepts an extra pair of the net only if it is also in pm4py's footprints of the tree.
+- **One golden sets a non-default double-arc threshold:** 0.6, on ocel20_example (`ocpn-doublearc-ocel20-example`).
 
 ### ichnos-discovery (footprints)
 
@@ -1397,6 +1400,7 @@ Lanes record each deliberate change from pm4py here.
 - **No column-name parameters.** `discover_ocdfg` reads the fields of `Ocel`, so it takes no `event_id`, `event_activity`, `event_timestamp`, `object_id` or `object_type`.
 - **Activities and types come from the events and objects tables.** pm4py reads a relation's activity and object type from the relations table. ichnos looks them up by id, and a repeated id resolves to its first row, as pm4py does for edges and timestamps.
 - **A relation to an unknown event or object is an error.** `discover_ocdfg` returns `OcdfgError::UnknownEvent` or `OcdfgError::UnknownObject`. pm4py counts such a relation from the relations table's own columns, and raises `KeyError` when an unknown object has an edge.
+- **`activities_indep` leaves out activities with no related objects.** An activity whose events relate to no object has no entry.
 
 ### ichnos-perf (time intervals)
 
