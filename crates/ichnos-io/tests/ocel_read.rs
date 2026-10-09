@@ -639,6 +639,29 @@ fn check_bundle(result: ichnos_io::Result<Ocel>, case: &Value, what: &str) {
     }
 }
 
+/// Bundles that ichnos reads differently from pm4py, as listed under
+/// Behaviour changes: the error ichnos returns, or `None` where ichnos
+/// reads the bundle and pm4py overwrites or rejects an `ocel:` attribute.
+const BUNDLE_DIFFERS: &[(&str, Option<&str>)] = &[
+    (
+        "integer-unicode-digit",
+        Some("events/event_create%20order.csv.cost is not a signed decimal integer."),
+    ),
+    (
+        "integer-too-large",
+        Some("events/event_create%20order.csv.cost does not fit in a 64-bit integer."),
+    ),
+    (
+        "timestamp-out-of-range",
+        Some(
+            "Parquet column 'events/event_pay%2Forder.parquet.ocel_time' holds a time \
+             outside the supported range.",
+        ),
+    ),
+    ("name-ocel-activity", None),
+    ("name-ocel-type", None),
+];
+
 /// The `read-bundle-directories` and `read-bundle-parquet` goldens: each
 /// bundle directory gives pm4py's tables or its error.
 #[test]
@@ -650,6 +673,22 @@ fn bundle_directories_match_pm4py() {
             let what = format!("{id} {name}");
             let root = temp_dir(&format!("{id}-{name}"));
             write_files(&root, &case["files"]);
+            if let Some((_, differs)) = BUNDLE_DIFFERS.iter().find(|(n, _)| n == name) {
+                let result = read_ocel2_bundle(&root);
+                match differs {
+                    Some(message) => assert_eq!(
+                        result.unwrap_err().to_string(),
+                        format!("invalid OCEL: {message}"),
+                        "{what}"
+                    ),
+                    None => {
+                        result.unwrap_or_else(|e| panic!("{what}: {e}"));
+                    }
+                }
+                std::fs::remove_dir_all(&root).unwrap();
+                checked += 1;
+                continue;
+            }
             check_bundle(read_ocel2_bundle(&root), case, &what);
             if case.get("error").is_none() {
                 let options = OcelReadOptions::default();
@@ -663,7 +702,7 @@ fn bundle_directories_match_pm4py() {
             checked += 1;
         }
     }
-    assert_eq!(checked, 96);
+    assert_eq!(checked, 105);
 }
 
 /// The `read-bundle-archives` golden: each archive, under its name, gives

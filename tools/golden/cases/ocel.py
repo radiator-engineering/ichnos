@@ -1261,6 +1261,19 @@ _BUNDLE_EDITS = {
     "time-no-zone": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01T00:00:00")],
     "time-lower-z": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01T00:00:00z")],
     "time-invalid": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-30T00:00:00Z")],
+    "time-final-newline": [_sub(_EV_C, "2024-02-01T00:00:00Z", '"2024-02-01T00:00:00Z\n"')],
+    "integer-final-newline": [_sub(_EV_C, ",5,", ',"5\n",')],
+    "integer-two-newlines": [_sub(_EV_C, ",5,", ',"5\n\n",')],
+    "integer-unicode-digit": [_sub(_EV_C, ",5,", ",\u0665,")],
+    "integer-too-large": [_sub(_EV_C, ",5,", ",99999999999999999999,")],
+    "float-final-newline": [_sub(_EV_P, "12.5", '"12.5\n"')],
+    "name-ocel-activity": [_attrs("eventTypes", "pay/order", [{"name": "ocel:activity", "type": "float"}]),
+                           _sub(_EV_P, "ocel_time,amount", "ocel_time,ocel:activity")],
+    "name-ocel-type": [_attrs("objectTypes", "orders", [{"name": "amount", "type": "integer"},
+                                                        {"name": "ocel:type", "type": "string"}]),
+                       _sub(_OB_O, "amount,status", "amount,ocel:type"),
+                       _sub(_CH_O, "amount,status", "amount,ocel:type"),
+                       _sub(_CH_O, "status,,paid", "ocel:type,,paid")],
     "time-text": [_sub(_EV_C, "2024-02-01T00:00:00Z", "soon Z")],
     "time-date-only": [_sub(_EV_C, "2024-02-01T00:00:00Z", "2024-02-01Z")],
     "event-time-empty": [_sub(_EV_P, "2024-01-01T09:00:00Z", "")],
@@ -1466,6 +1479,8 @@ def _parquet_cases():
         "timestamp-naive": _parquet_bundle(
             {(ev_p, "ocel_time"): lambda t, n, v: (pa.timestamp("us"), n, [x.tz_localize(None) for x in v])}),
         "column-missing": _parquet_bundle({(ev_c, "note"): lambda t, n, v: None}),
+        "timestamp-out-of-range": _parquet_bundle(
+            {(ev_p, "ocel_time"): lambda t, n, v: (t, n, [9_000_000_000_000_000_000, v[1].value // 1000])}),
         "id-empty": _parquet_bundle({(ev_p, "ocel_id"): lambda t, n, v: (t, n, ["", "e4"])}),
         "corrupt": corrupt,
     }

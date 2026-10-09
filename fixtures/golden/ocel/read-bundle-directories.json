@@ -1151,6 +1151,168 @@
           ]
         }
       },
+      "float-final-newline": {
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,5,true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,\"12.5\n\"\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
       "float-forms": {
         "files": {
           "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,5,true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
@@ -1510,6 +1672,168 @@
         },
         "message": "events/event_pay%2Forder.csv.amount is not a finite floating-point number."
       },
+      "integer-final-newline": {
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,\"5\n\",true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
       "integer-float-text": {
         "error": "ValueError",
         "files": {
@@ -1701,6 +2025,345 @@
           "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
         },
         "message": "events/event_create%20order.csv.cost is not a signed decimal integer."
+      },
+      "integer-too-large": {
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,99999999999999999999,true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  99999999999999999999
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
+      "integer-two-newlines": {
+        "error": "ValueError",
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,\"5\n\n\",true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "message": "events/event_create%20order.csv.cost is not a signed decimal integer."
+      },
+      "integer-unicode-digit": {
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,٥,true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
       },
       "lf-lines": {
         "files": {
@@ -2100,6 +2763,178 @@
         },
         "message": "OCEL bundle mixes CSV and Parquet table files."
       },
+      "name-ocel-activity": {
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,5,true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,ocel:activity\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"ocel:activity\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
+      },
+      "name-ocel-type": {
+        "error": "ValueError",
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,5,true,2024-02-01T00:00:00Z,\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,ocel:type\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,ocel:type,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,ocel:type\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"ocel:type\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "message": "An object-change row must assign exactly one attribute."
+      },
       "o2o-repeated": {
         "error": "ValueError",
         "files": {
@@ -2455,6 +3290,168 @@
           "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
         },
         "message": "events/event_create%20order.csv.due is not a valid ISO 8601 timestamp."
+      },
+      "time-final-newline": {
+        "files": {
+          "events/event_create%20order.csv": "ocel_id,ocel_time,cost,rush,due,note\r\ne1,2024-01-02T10:00:00+00:00,5,true,\"2024-02-01T00:00:00Z\n\",\"a, \"\"b\"\"\"\r\ne3,2024-01-01T10:00:00+01:00,-7,false,,\r\n",
+          "events/event_pay%2Forder.csv": "ocel_id,ocel_time,amount\r\ne2,2024-01-01T09:00:00Z,12.5\r\ne4,2024-01-03T00:00:00Z,\r\n",
+          "object_changes/object_changes_orders.csv": "ocel_id,ocel_time,ocel_changed_field,amount,status\r\no1,2024-01-02T11:00:00Z,amount,12,\r\no1,2024-01-01T11:00:00Z,status,,paid\r\n",
+          "object_changes/object_changes_sales%20person.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_orders.csv": "ocel_id,amount,status\r\no1,10,new\r\no2,,\r\n",
+          "objects/object_sales%20person.csv": "ocel_id\r\nAlice\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"pay/order\": {\n      \"file\": \"events/event_pay%2Forder.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"create order\": {\n      \"file\": \"events/event_create%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"orders\": {\n      \"file\": \"objects/object_orders.csv\",\n      \"changesFile\": \"object_changes/object_changes_orders.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"amount\",\n          \"type\": \"integer\"\n        },\n        {\n          \"name\": \"status\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"sales person\": {\n      \"file\": \"objects/object_sales%20person.csv\",\n      \"changesFile\": \"object_changes/object_changes_sales%20person.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,creates\r\ne2,o1,\r\ne3,o2,creates\r\ne1,Alice,seller\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,Alice,sold by\r\n"
+        },
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "pay/order",
+              "attributes": {
+                "amount": [
+                  "float",
+                  12.5
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  -7
+                ],
+                "rush": [
+                  "boolean",
+                  false
+                ]
+              },
+              "id": "e3",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00"
+            },
+            {
+              "activity": "create order",
+              "attributes": {
+                "cost": [
+                  "int",
+                  5
+                ],
+                "due": [
+                  "date",
+                  "2024-02-01T00:00:00.000000+00:00"
+                ],
+                "note": [
+                  "string",
+                  "a, \"b\""
+                ],
+                "rush": [
+                  "boolean",
+                  true
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "pay/order",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2024-01-03T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [
+            {
+              "qualifier": "sold by",
+              "source": "o1",
+              "target": "Alice"
+            }
+          ],
+          "object_changes": [
+            {
+              "field": "status",
+              "object": "o1",
+              "timestamp": "2024-01-01T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "string",
+                "paid"
+              ]
+            },
+            {
+              "field": "amount",
+              "object": "o1",
+              "timestamp": "2024-01-02T11:00:00.000000+00:00",
+              "type": "orders",
+              "value": [
+                "int",
+                12
+              ]
+            }
+          ],
+          "objects": [
+            {
+              "attributes": {
+                "amount": [
+                  "int",
+                  10
+                ],
+                "status": [
+                  "string",
+                  "new"
+                ]
+              },
+              "id": "o1",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "orders"
+            },
+            {
+              "attributes": {},
+              "id": "Alice",
+              "type": "sales person"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "pay/order",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e3",
+              "object": "o2",
+              "qualifier": "creates",
+              "timestamp": "2024-01-01T09:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "creates",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "orders"
+            },
+            {
+              "activity": "create order",
+              "event": "e1",
+              "object": "Alice",
+              "qualifier": "seller",
+              "timestamp": "2024-01-02T10:00:00.000000+00:00",
+              "type": "sales person"
+            }
+          ]
+        }
       },
       "time-forms": {
         "files": {

@@ -687,13 +687,21 @@ fn csv_value(text: &str, prim: Prim, label: &str) -> Result<Option<AttributeValu
     if text.is_empty() {
         return Ok(None);
     }
+    if prim == Prim::String {
+        return Ok(Some(AttributeValue::String(text.into())));
+    }
+    // pm4py's patterns end in `$`, which also matches before a final
+    // newline, and `int`, `float` and pandas ignore that newline.
+    let text = text.strip_suffix('\n').unwrap_or(text);
     Ok(Some(match prim {
-        Prim::String => AttributeValue::String(text.into()),
+        Prim::String => unreachable!("returned above"),
         Prim::Integer => {
-            let parsed = integer_text(text)
-                .then(|| text.parse::<i64>().ok())
-                .flatten()
-                .ok_or_else(|| error(format!("{label} is not a signed decimal integer.")))?;
+            if !integer_text(text) {
+                return Err(error(format!("{label} is not a signed decimal integer.")));
+            }
+            let parsed = text
+                .parse::<i64>()
+                .map_err(|_| error(format!("{label} does not fit in a 64-bit integer.")))?;
             AttributeValue::Int(parsed)
         }
         Prim::Float => {
@@ -848,7 +856,11 @@ fn read_parquet_table(
                 values.push(if array.is_null(i) {
                     None
                 } else {
-                    Some(arrow_value(array, i, prim))
+                    Some(arrow_value(array, i, prim).ok_or_else(|| {
+                        error(format!(
+                            "Parquet column '{path}.{name}' holds a time outside the supported range."
+                        ))
+                    })?)
                 });
             }
         }
@@ -859,7 +871,6 @@ fn read_parquet_table(
                 }
             }
         }
-        values.retain_mut(|_| true);
         for v in &mut values {
             if v.as_ref().is_some_and(missing) {
                 *v = None;
@@ -905,9 +916,10 @@ fn arrow_name(t: &DataType) -> String {
     }
 }
 
-fn arrow_value(array: &ArrayRef, i: usize, prim: Prim) -> AttributeValue {
+/// The value at row `i`, or `None` for a time that chrono cannot hold.
+fn arrow_value(array: &ArrayRef, i: usize, prim: Prim) -> Option<AttributeValue> {
     let any = array.as_any();
-    match prim {
+    Some(match prim {
         Prim::String => AttributeValue::String(
             any.downcast_ref::<StringArray>()
                 .expect("utf8")
@@ -930,12 +942,9 @@ fn arrow_value(array: &ArrayRef, i: usize, prim: Prim) -> AttributeValue {
                 .downcast_ref::<TimestampMicrosecondArray>()
                 .expect("timestamp")
                 .value(i);
-            AttributeValue::Date(utc(Utc
-                .timestamp_micros(micros)
-                .single()
-                .expect("in range")))
+            AttributeValue::Date(utc(Utc.timestamp_micros(micros).single()?))
         }
-    }
+    })
 }
 
 fn utc(d: DateTime<Utc>) -> DateTime<FixedOffset> {
