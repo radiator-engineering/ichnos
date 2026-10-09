@@ -93,4 +93,28 @@ impl EventKeys {
         self.resource = key.into();
         self
     }
+
+    /// Sets the start timestamp key.
+    pub fn with_start_timestamp(mut self, key: impl Into<String>) -> Self {
+        self.start_timestamp = key.into();
+        self
+    }
+
+    /// Sets the lifecycle transition key.
+    pub fn with_transition(mut self, key: impl Into<String>) -> Self {
+        self.transition = key.into();
+        self
+    }
+
+    /// Sets the group key.
+    pub fn with_group(mut self, key: impl Into<String>) -> Self {
+        self.group = key.into();
+        self
+    }
+
+    /// Sets the prefix of trace attribute columns.
+    pub fn with_case_prefix(mut self, prefix: impl Into<String>) -> Self {
+        self.case_prefix = prefix.into();
+        self
+    }
 }
