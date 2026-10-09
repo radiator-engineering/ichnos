@@ -847,6 +847,740 @@ for name,traces in {
     case("ilp-miner-"+name,functions=ILP_FUNCTIONS,params={"traces":traces,"activity_key":"task" if name=="custom-key" else "concept:name"})(ilp_miner)
 case("ilp-miner-causal",functions=ILP_FUNCTIONS,params={"traces":[["a","b"]],"causal":[["▶","a"],["a","b"],["b","■"]]})(ilp_miner)
 
+# Genetic fixed-matrix, public discovery and controlled pm4py crossover cases.
+def _genetic_language(model, depth=3):
+    """Exact executable visible prefixes up to depth, with silent closure.
+
+    Unlike unrestricted reachability, this terminates for the visible loops
+    of the supplied unsound miners. Never emit a partial language on a cap.
+    """
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+
+    def key(m):
+        return tuple((m.get(p, 0) for p in places))
+
+    todo = deque([(im, ())])
+    seen = {(key(im), ())}
+    prefixes = {()}
+    accepted = set()
+    while todo:
+        marking, word = todo.popleft()
+        if marking == fm:
+            accepted.add(word)
+        for t in semantics.enabled_transitions(net, marking):
+            next_word = word if t.label is None else (*word, t.label)
+            if len(next_word) > depth:
+                continue
+            next_marking = semantics.execute(t, net, marking)
+            state = (key(next_marking), next_word)
+            prefixes.add(next_word)
+            if state not in seen:
+                if len(seen) >= 100000:
+                    raise RuntimeError("classic miner bounded language exceeded 100000 states")
+                seen.add(state)
+                todo.append((next_marking, next_word))
+    return {"depth": depth, "prefixes": sorted(prefixes), "accepted": sorted(accepted)}
+
+
+def _genetic_footprints(model):
+    """Only emit full footprints after a bounded reachability preflight."""
+    from collections import deque
+    from pm4py.objects.petri_net import semantics
+
+    net, im, fm = model
+    places = sorted(net.places, key=lambda p: (p.name, id(p)))
+
+    def key(m):
+        return tuple((m.get(p, 0) for p in places))
+
+    todo = deque([im])
+    seen = {key(im)}
+    while todo:
+        m = todo.popleft()
+        for t in semantics.enabled_transitions(net, m):
+            nxt = semantics.execute(t, net, m)
+            state = key(nxt)
+            if state not in seen:
+                if len(seen) >= 10000:
+                    return {"status": "state_space_limit", "value": None}
+                seen.add(state)
+                todo.append(nxt)
+    return {"status": "complete", "value": pm4py.discover_footprints(net, im, fm)}
+
+
+def _genetic_named_transitions(model, labels):
+    # Native conversion gives every silent transition the empty name.
+    # pm4py's eventually-enabled traversal keys visited nodes by repr, causing
+    # collisions. Normalize names to the Rust causal-matrix IDs before comparing
+    # these name-sensitive diagnostics; labels, arcs and markings are unchanged.
+    net = model[0]
+    for transition in net.transitions:
+        if transition.label is not None:
+            transition.name = "t" + str(labels.index(transition.label))
+        else:
+            producers = {
+                arc.source.label for edge in transition.in_arcs for arc in edge.source.in_arcs
+            }
+            consumers = {
+                arc.target.label for edge in transition.out_arcs for arc in edge.target.out_arcs
+            }
+            assert len(producers) == len(consumers) == 1
+            transition.name = (
+                "tau-"
+                + str(labels.index(next(iter(producers))))
+                + "-"
+                + str(labels.index(next(iter(consumers))))
+            )
+
+
+def genetic_matrix_case(
+    fixtures, traces=None, activity_key="concept:name", matrix=None, depth=3, assert_silent=False
+):
+    from datetime import datetime, timedelta, timezone
+    from collections import defaultdict
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.objects.genetic_matrix.obj import GeneticMatrix
+    from pm4py.objects.conversion.genetic_matrix.variants.to_petri_net import apply
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
+    else:
+        log = EventLog(
+            [
+                Trace(
+                    [
+                        Event(
+                            {
+                                activity_key: a,
+                                "time:timestamp": datetime(2020, 1, 1, tzinfo=timezone.utc)
+                                + timedelta(seconds=i),
+                            }
+                        )
+                        for i, a in enumerate(trace)
+                    ],
+                    attributes={"concept:name": str(ti)},
+                )
+                for ti, trace in enumerate(traces)
+            ]
+        )
+    if matrix is None:
+        labels = list(dict.fromkeys((event[activity_key] for trace in log for event in trace)))
+        edges = {
+            (a[activity_key], b[activity_key]) for trace in log for a, b in zip(trace, trace[1:])
+        }
+        inputs = {t: [[a] for a, b in sorted(edges) if b == t] for t in labels}
+        outputs = {t: [[b] for a, b in sorted(edges) if a == t] for t in labels}
+    else:
+        labels = matrix["activities"]
+        inputs = matrix["inputs"]
+        outputs = matrix["outputs"]
+    I = defaultdict(list, {t: [frozenset(s) for s in inputs.get(t, [])] for t in labels})
+    O = defaultdict(list, {t: [frozenset(s) for s in outputs.get(t, [])] for t in labels})
+    model = apply(GeneticMatrix(I, O, labels))
+    if assert_silent:
+        _genetic_named_transitions(model, labels)
+    metrics = pm4py.fitness_token_based_replay(log, *model, activity_key=activity_key)
+    result = {
+        "matrix": {"activities": labels, "inputs": inputs, "outputs": outputs},
+        "model": {
+            "language": _genetic_language(model, depth),
+            "footprints": _genetic_footprints(model),
+        },
+        "fitness": 0.4 * metrics["average_trace_fitness"]
+        + 0.6 * metrics["percentage_of_fitting_traces"] / 100,
+    }
+    if assert_silent:
+        result["model"]["silent_transitions"] = sum((t.label is None for t in model[0].transitions))
+    return result
+
+
+def genetic_public_case(fixtures, traces, activity_key="concept:name"):
+    import random
+    from datetime import datetime, timedelta, timezone
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    log = EventLog(
+        [
+            Trace(
+                [
+                    Event(
+                        {
+                            activity_key: a,
+                            "time:timestamp": datetime(2020, 1, 1, tzinfo=timezone.utc)
+                            + timedelta(seconds=i),
+                        }
+                    )
+                    for i, a in enumerate(trace)
+                ],
+                attributes={"concept:name": str(ti)},
+            )
+            for ti, trace in enumerate(traces)
+        ]
+    )
+    random.seed(0)
+    model = pm4py.discover_petri_net_genetic(
+        log, population_size=4, generations=1, activity_key=activity_key
+    )
+    metrics = pm4py.fitness_token_based_replay(log, *model, activity_key=activity_key)
+    return {
+        "model": {"language": _genetic_language(model), "footprints": _genetic_footprints(model)},
+        "fitness": 0.4 * metrics["average_trace_fitness"]
+        + 0.6 * metrics["percentage_of_fitting_traces"] / 100,
+    }
+
+
+_GENETIC_FUNCTIONS = [
+    "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+    "pm4py.fitness_token_based_replay",
+]
+_GENETIC_PUBLIC_FUNCTIONS = ["pm4py.discover_petri_net_genetic", "pm4py.fitness_token_based_replay"]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "genetic-matrix-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_GENETIC_FUNCTIONS,
+    )(genetic_matrix_case)
+for _name, _traces in {
+    "sequence": [["a", "b", "c"]],
+    "parallel": [["a", "b", "c", "d"], ["a", "c", "b", "d"]],
+    "loop": [["a", "b", "a"]],
+    "silent": [["a", "b", "d"], ["a", "c", "d"]],
+}.items():
+    case("genetic-matrix-" + _name, functions=_GENETIC_FUNCTIONS, params={"traces": _traces})(
+        genetic_matrix_case
+    )
+case(
+    "genetic-matrix-custom-key",
+    functions=_GENETIC_FUNCTIONS,
+    params={"traces": [["λ", "", "終"]], "activity_key": "work"},
+)(genetic_matrix_case)
+case(
+    "genetic-matrix-grouped",
+    functions=_GENETIC_FUNCTIONS,
+    params={
+        "traces": [["a", "b", "c", "d"], ["a", "c", "b", "d"]],
+        "matrix": {
+            "activities": ["a", "b", "c", "d"],
+            "inputs": {"a": [], "b": [["a"]], "c": [["a"]], "d": [["b", "c"]]},
+            "outputs": {"a": [["b", "c"]], "b": [["d"]], "c": [["d"]], "d": []},
+        },
+    },
+)(genetic_matrix_case)
+for _name, _traces in {
+    "sequence": [["a", "b", "c"], ["a", "b", "c"]],
+    "single": [["a"]],
+    "loop": [["a", "b", "a", "b"]],
+}.items():
+    case(
+        "genetic-public-" + _name, functions=_GENETIC_PUBLIC_FUNCTIONS, params={"traces": _traces}
+    )(genetic_public_case)
+
+
+def genetic_operators_case(fixtures):
+    from unittest.mock import patch
+    from collections import defaultdict
+    from pm4py.algo.discovery.genetic.variants import classic
+
+    labels = ["a", "b", "c", "d"]
+
+    def individual(edges, grouped=False):
+        I = defaultdict(list, {t: [] for t in labels})
+        O = defaultdict(list, {t: [] for t in labels})
+        for a, b in edges:
+            I[b].append(frozenset([a]))
+            O[a].append(frozenset([b]))
+        if grouped:
+            I = defaultdict(list, {t: [frozenset().union(*v)] if v else [] for t, v in I.items()})
+            O = defaultdict(list, {t: [frozenset().union(*v)] if v else [] for t, v in O.items()})
+        return (I, O)
+
+    def serial(ind):
+        return {
+            "inputs": [
+                [sorted((labels.index(t) for t in s)) for s in ind[0][label]] for label in labels
+            ],
+            "outputs": [
+                [sorted((labels.index(t) for t in s)) for s in ind[1][label]] for label in labels
+            ],
+        }
+
+    a = individual([("a", "b"), ("a", "c"), ("b", "d"), ("c", "d")], True)
+    b = individual([("a", "b"), ("b", "c"), ("c", "d")])
+    crosses = []
+    for t in labels:
+        with patch.object(classic.random, "choice", return_value=t), patch.object(
+            classic.random, "randrange", return_value=0
+        ):
+            crosses.append([serial(child) for child in classic.crossover(a, b, labels)])
+    return {"parents": [serial(a), serial(b)], "crossovers": crosses}
+
+
+case("genetic-operators", functions=["pm4py.algo.discovery.genetic.variants.classic.crossover"])(
+    genetic_operators_case
+)
+_non_simple = {
+    "activities": ["a", "x", "b", "c"],
+    "inputs": {"b": [["a"]], "c": [["a", "x"]]},
+    "outputs": {"a": [["b", "c"]], "x": [["c"]]},
+}
+_non_simple_exit = {
+    "activities": ["a", "x", "b", "c", "d"],
+    "inputs": {"b": [["a"]], "c": [["a", "x"]], "d": [["b"], ["c"]]},
+    "outputs": {"a": [["b", "c"]], "x": [["c"]], "b": [["d"]], "c": [["d"]]},
+}
+_overlapping_simple = {
+    "activities": ["a", "x", "b", "c", "d"],
+    "inputs": {"b": [["a"]], "c": [["a", "x"]], "d": [["a"]]},
+    "outputs": {"a": [["b", "c"], ["d"]], "x": [["c"]]},
+}
+for _name, _matrix, _traces in [
+    ("non-simple", _non_simple, [["a", "b"], ["a", "c"], ["x", "c"]]),
+    ("non-simple-exit", _non_simple_exit, [["a", "b", "d"], ["a", "c", "d"], ["x", "c", "d"]]),
+    ("overlapping-simple", _overlapping_simple, [["a", "b"], ["a", "d"], ["x", "c"]]),
+]:
+    case(
+        "genetic-matrix-" + _name,
+        functions=_GENETIC_FUNCTIONS,
+        params={"matrix": _matrix, "traces": _traces, "depth": 4, "assert_silent": True},
+    )(genetic_matrix_case)
+
+
+def genetic_operators_prefix_case(fixtures):
+    from collections import defaultdict
+    from itertools import product
+    from unittest.mock import patch
+    from pm4py.algo.discovery.genetic.variants import classic
+
+    labels = ["u", "v", "w", "t", "x", "y", "z"]
+
+    def parent(grouped):
+        inputs = defaultdict(list, {a: [] for a in labels})
+        outputs = defaultdict(list, {a: [] for a in labels})
+        for a in ["u", "v", "w"]:
+            outputs[a] = [frozenset(["t"])]
+        for a in ["x", "y", "z"]:
+            inputs[a] = [frozenset(["t"])]
+        inputs["t"] = (
+            [frozenset(["v", "w"]), frozenset(["u"])]
+            if grouped
+            else [frozenset([a]) for a in ["u", "v", "w"]]
+        )
+        outputs["t"] = (
+            [frozenset(["y", "z"]), frozenset(["x"])]
+            if grouped
+            else [frozenset([a]) for a in ["x", "y", "z"]]
+        )
+        return (inputs, outputs)
+
+    def serial(ind):
+        return {
+            "inputs": [
+                [sorted((labels.index(t) for t in binding)) for binding in ind[0][a]]
+                for a in labels
+            ],
+            "outputs": [
+                [sorted((labels.index(t) for t in binding)) for binding in ind[1][a]]
+                for a in labels
+            ],
+        }
+
+    a, b = (parent(False), parent(True))
+    crossovers = []
+    choices = []
+    for t in labels:
+        input_range = range(min(len(a[0][t]), len(b[0][t]))) if a[0][t] and b[0][t] else [None]
+        output_range = range(min(len(a[1][t]), len(b[1][t]))) if a[1][t] and b[1][t] else [None]
+        for ip, op in product(input_range, output_range):
+            points = [point for point in [ip, op] if point is not None]
+            with patch.object(classic.random, "choice", return_value=t), patch.object(
+                classic.random, "randrange", side_effect=points
+            ):
+                crossovers.append([serial(child) for child in classic.crossover(a, b, labels)])
+            choices.append({"activity": t, "input_point": ip, "output_point": op})
+    return {"parents": [serial(a), serial(b)], "choices": choices, "crossovers": crossovers}
+
+
+case(
+    "genetic-operators-prefix",
+    functions=["pm4py.algo.discovery.genetic.variants.classic.crossover"],
+)(genetic_operators_prefix_case)
+
+
+# Classic and SM2 Split Miner BPMN discovery cases.
+_SPLIT_MINER_FUNCTIONS = [
+    "pm4py.discover_bpmn_split_miner",
+    "pm4py.algo.discovery.split_miner.variants.classic.apply",
+    "pm4py.algo.discovery.split_miner.variants.sm2.apply",
+]
+
+
+def _split_graph(model):
+    from pm4py.objects.bpmn.obj import BPMN
+
+    nodes = sorted(model.get_nodes(), key=lambda n: n.get_id())
+    index = {node: i for i, node in enumerate(nodes)}
+
+    def kind(n):
+        for cls, name in [
+            (BPMN.StartEvent, "start"),
+            (BPMN.EndEvent, "end"),
+            (BPMN.Task, "task"),
+            (BPMN.ExclusiveGateway, "xor"),
+            (BPMN.ParallelGateway, "and"),
+            (BPMN.InclusiveGateway, "or"),
+        ]:
+            if isinstance(n, cls):
+                return name
+        raise ValueError(type(n).__name__)
+
+    return {
+        "nodes": [[kind(n), n.get_name(), bool(getattr(n, "_sm_looped", False))] for n in nodes],
+        "edges": sorted([index[f.get_source()], index[f.get_target()]] for f in model.get_flows()),
+    }
+
+
+def split_miner(
+    fixtures,
+    traces=None,
+    activity_key="concept:name",
+    events=None,
+    transition_key="lifecycle:transition",
+    timestamp_key="time:timestamp",
+):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    log = (
+        pm4py.convert_to_event_log(load_log(fixtures["log"]))
+        if traces is None and events is None
+        else EventLog([Trace([Event({activity_key: a}) for a in t]) for t in (traces or [])])
+    )
+    if events is not None:
+        from datetime import datetime
+
+        log = EventLog(
+            [
+                Trace(
+                    [
+                        Event(
+                            {
+                                activity_key: a,
+                                transition_key: phase,
+                                **(
+                                    {timestamp_key: datetime.fromisoformat(stamp)}
+                                    if stamp is not None
+                                    else {}
+                                ),
+                            }
+                        )
+                        for a, phase, stamp in t
+                    ]
+                )
+                for t in events
+            ]
+        )
+    models = []
+    settings = [
+        ("classic", e, t, m)
+        for e, t, m in [
+            (0.1, 0.4, True),
+            (0.1, 0.4, False),
+            (0.1, 1.0, True),
+            (0.0, 0.0, True),
+            (0.5, 1.0, True),
+        ]
+    ]
+    settings += [("sm2", e, 1.0, True) for e in [0.1, 0.0, 0.5, 1.0]]
+    for variant, epsilon, eta, minimize in settings:
+        options = {
+            "variant": variant,
+            "epsilon": epsilon,
+            "eta": eta,
+            "minimize_or_joins": minimize,
+        }
+        try:
+            if variant == "sm2" and transition_key != "lifecycle:transition":
+                from pm4py.algo.discovery.split_miner.variants import sm2
+
+                model = sm2.apply(
+                    log,
+                    parameters={
+                        "pm4py:param:activity_key": activity_key,
+                        "pm4py:param:transition_key": transition_key,
+                        "pm4py:param:timestamp_key": timestamp_key,
+                        "split_miner_epsilon": epsilon,
+                    },
+                )
+            else:
+                model = pm4py.discover_bpmn_split_miner(
+                    log, activity_key=activity_key, timestamp_key=timestamp_key, **options
+                )
+            value = _split_graph(model)
+            error = None
+        except ValueError as exc:
+            if sum(map(len, log)):
+                raise
+            value = None
+            error = type(exc).__name__
+        models.append({"options": options, "graph": value, "error": error})
+    return models
+
+
+for _id, _fixture in {
+    "running-example-xes": "running-example.xes",
+    "receipt-xes": "receipt.xes",
+    "roadtraffic100traces-xes": "roadtraffic100traces.xes",
+    "interleavings-receipt_even-csv": "interleavings/receipt_even.csv",
+    "interleavings-receipt_odd-csv": "interleavings/receipt_odd.csv",
+}.items():
+    case("split-miner-" + _id, fixture=_fixture, functions=_SPLIT_MINER_FUNCTIONS)(split_miner)
+
+for _id, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "single": [["a"]],
+    "sequence": [["a", "b", "c"]],
+    "xor": [["s", "a", "e"], ["s", "b", "e"]],
+    "parallel": [["s", "a", "b", "e"]] * 4 + [["s", "b", "a", "e"]] * 4,
+    "self-loop": [["a", "a", "b"], ["a", "b"]],
+    "short-loop": [["s", "a", "b", "a", "e"], ["s", "a", "e"]],
+    "nested": [["s", "a", "b", "c", "e"], ["s", "b", "a", "c", "e"], ["s", "d", "c", "e"]],
+    "rigid": [
+        ["s", "a", "c", "e"],
+        ["s", "b", "c", "e"],
+        ["s", "a", "d", "e"],
+        ["s", "b", "d", "e"],
+        ["s", "c", "d", "e"],
+        ["s", "d", "c", "e"],
+    ],
+    "custom-key": [["α", "β", "γ"], ["α", "δ", "γ"]],
+}.items():
+    case(
+        "split-miner-" + _id,
+        functions=_SPLIT_MINER_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "task" if _id == "custom-key" else "concept:name",
+        },
+    )(split_miner)
+
+
+def _split_lifecycle_rows(rows):
+    from datetime import datetime, timedelta, timezone
+
+    epoch = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    return [
+        [
+            [a, phase, (epoch + timedelta(seconds=t)).isoformat() if t is not None else None]
+            for a, phase, t in trace
+        ]
+        for trace in rows
+    ]
+
+
+for _id, _events in {
+    "overlap": [
+        [
+            ("s", "complete", 0),
+            ("a", "start", 1),
+            ("b", "start", 2),
+            ("a", "complete", 3),
+            ("b", "complete", 4),
+            ("e", "complete", 5),
+        ],
+        [
+            ("s", "complete", 0),
+            ("b", "start", 1),
+            ("a", "start", 2),
+            ("b", "complete", 3),
+            ("a", "complete", 4),
+            ("e", "complete", 5),
+        ],
+    ],
+    "or-lifecycle": [
+        [
+            ("s", "complete", 0),
+            ("a", "start", 1),
+            ("b", "start", 2),
+            ("c", "start", 3),
+            ("a", "complete", 4),
+            ("b", "complete", 5),
+            ("c", "complete", 6),
+            ("e", "complete", 7),
+        ],
+        [
+            ("s", "complete", 0),
+            ("c", "start", 1),
+            ("b", "start", 2),
+            ("a", "start", 3),
+            ("c", "complete", 4),
+            ("b", "complete", 5),
+            ("a", "complete", 6),
+            ("e", "complete", 7),
+        ],
+    ]
+    * 4
+    + [
+        [("s", "complete", 0), (a, "start", 1), (a, "complete", 2), ("e", "complete", 3)]
+        for a in ["a", "b", "c"]
+    ],
+    "lifecycle-sorting": [
+        [("b", " COMPLETE ", 4), ("a", "complete", 2), ("a", "start", 1), ("b", "start", 3)]
+    ],
+    "lifecycle-fallback": [
+        [("a", "start", None), ("b", "start", 1), ("a", "complete", 2), ("b", "complete", 3)]
+    ],
+    "start-only": [[("a", "start", 0)]],
+    "ignored-lifecycle": [[("a", "schedule", 0), ("b", "suspend", 1)]],
+}.items():
+    case(
+        "split-miner-" + _id,
+        functions=_SPLIT_MINER_FUNCTIONS,
+        params={"events": _split_lifecycle_rows(_events)},
+    )(split_miner)
+case(
+    "split-miner-custom-lifecycle",
+    functions=_SPLIT_MINER_FUNCTIONS,
+    params={
+        "events": _split_lifecycle_rows(
+            [[("α", "start", 0), ("β", "start", 1), ("α", "complete", 2), ("β", "complete", 3)]]
+        ),
+        "activity_key": "task",
+        "transition_key": "phase",
+        "timestamp_key": "stamp",
+    },
+)(split_miner)
+
+
+# Fixed seeds generate repeatable dense/looping trace graphs. Store the traces
+# with each oracle result.
+def _split_seeded_traces(seed):
+    import random
+
+    rng = random.Random(seed)
+    return [[rng.choice("abcdef") for _ in range(rng.randint(1, 12))] for _ in range(20)]
+
+
+for _seed in range(8):
+    case(
+        "split-miner-seeded-" + str(_seed),
+        functions=_SPLIT_MINER_FUNCTIONS,
+        params={"traces": _split_seeded_traces(_seed)},
+    )(split_miner)
+
+
+case(
+    "split-miner-submicroseconds",
+    functions=_SPLIT_MINER_FUNCTIONS,
+    params={
+        "events": [
+            [
+                ["b", "complete", "2024-01-01T00:00:00.000000900+00:00"],
+                ["a", "complete", "2024-01-01T00:00:00.000000100+00:00"],
+            ]
+        ]
+    },
+)(split_miner)
+
+
+# Every completion permutation gives all three branches direct split edges.
+# Singleton traces also make every concurrent pair potentially exclusive.
+def _split_or_promotion_events():
+    from itertools import permutations
+
+    rows = [
+        [("s", "complete", None)]
+        + [(a, "start", None) for a in "abc"]
+        + [(a, "complete", None) for a in order]
+        + [("e", "complete", None)]
+        for order in permutations("abc")
+    ]
+    rows += [
+        [
+            ("s", "complete", None),
+            (a, "start", None),
+            (a, "complete", None),
+            ("e", "complete", None),
+        ]
+        for a in "abc"
+    ]
+    return _split_lifecycle_rows(rows)
+
+
+case(
+    "split-miner-or-promotion",
+    functions=_SPLIT_MINER_FUNCTIONS,
+    params={"events": _split_or_promotion_events()},
+)(split_miner)
+# miners-classic prefix-tree discovery cases.
+def prefix_tree_case(fixtures, traces=None, activity_key="concept:name"):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in trace]) for trace in traces])
+    runs = []
+    for limit in [None, 0, 1, 2, 1000000000]:
+        root = pm4py.discover_prefix_tree(log, max_path_length=limit, activity_key=activity_key)
+        rows = []
+        todo = [(root, [])]
+        while todo:
+            node, path = todo.pop()
+            rows.append(
+                {
+                    "path": path,
+                    "depth": node.depth,
+                    "final": node.final,
+                    "children": sorted((child.label for child in node.children)),
+                }
+            )
+            for child in node.children:
+                assert child.parent is node
+                todo.append((child, path + [child.label]))
+        runs.append({"limit": limit, "nodes": sorted(rows, key=lambda row: row["path"])})
+    return {"runs": runs}
+
+
+_PREFIX_TREE_FUNCTIONS = ["pm4py.discover_prefix_tree"]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "prefix-tree-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_PREFIX_TREE_FUNCTIONS,
+    )(prefix_tree_case)
+for _name, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "prefixes": [[], ["a"], ["a", "b"], ["a", "b"], ["a", "c"], ["b"]],
+    "loops": [["a", "b", "a", "a"], ["a", "a"]],
+    "custom-key": [["λ", "", "終"], ["λ", "終"]],
+}.items():
+    case(
+        "prefix-tree-" + _name,
+        functions=_PREFIX_TREE_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "work" if _name == "custom-key" else "concept:name",
+        },
+    )(prefix_tree_case)
+
+
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical

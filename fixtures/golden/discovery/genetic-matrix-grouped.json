@@ -1,0 +1,199 @@
+{
+  "expected": {
+    "fitness": 0.32000000000000006,
+    "matrix": {
+      "activities": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "inputs": {
+        "a": [],
+        "b": [
+          [
+            "a"
+          ]
+        ],
+        "c": [
+          [
+            "a"
+          ]
+        ],
+        "d": [
+          [
+            "b",
+            "c"
+          ]
+        ]
+      },
+      "outputs": {
+        "a": [
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "b": [
+          [
+            "d"
+          ]
+        ],
+        "c": [
+          [
+            "d"
+          ]
+        ],
+        "d": []
+      }
+    },
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "parallel": [],
+          "sequence": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b",
+              "d"
+            ],
+            [
+              "c",
+              "d"
+            ]
+          ],
+          "start_activities": [
+            "a"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [
+          [
+            "a",
+            "b",
+            "d"
+          ],
+          [
+            "a",
+            "c",
+            "d"
+          ]
+        ],
+        "depth": 3,
+        "prefixes": [
+          [],
+          [
+            "a"
+          ],
+          [
+            "a",
+            "b"
+          ],
+          [
+            "a",
+            "b",
+            "d"
+          ],
+          [
+            "a",
+            "c"
+          ],
+          [
+            "a",
+            "c",
+            "d"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-matrix-grouped",
+    "fixtures": {},
+    "functions": [
+      "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {},
+    "params": {
+      "matrix": {
+        "activities": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "inputs": {
+          "a": [],
+          "b": [
+            [
+              "a"
+            ]
+          ],
+          "c": [
+            [
+              "a"
+            ]
+          ],
+          "d": [
+            [
+              "b",
+              "c"
+            ]
+          ]
+        },
+        "outputs": {
+          "a": [
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "b": [
+            [
+              "d"
+            ]
+          ],
+          "c": [
+            [
+              "d"
+            ]
+          ],
+          "d": []
+        }
+      },
+      "traces": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "a",
+          "c",
+          "b",
+          "d"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "expected": {
+    "fitness": 1.0,
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "a"
+          ],
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [
+            "a"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [
+          [
+            "a"
+          ]
+        ],
+        "depth": 3,
+        "prefixes": [
+          [],
+          [
+            "a"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-public-single",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_petri_net_genetic",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {},
+    "params": {
+      "traces": [
+        [
+          "a"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

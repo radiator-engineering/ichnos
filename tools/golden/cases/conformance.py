@@ -153,8 +153,9 @@ each. Each seed runs in its own process with ``PYTHONHASHSEED`` set to the
 seed, because pm4py also iterates sets of label strings. Per variant, in order of first trace up to
 :data:`ALIGNMENT_VARIANT_LIMIT`, ``cost_choices`` lists the
 distinct costs, sorted, and ``alignment_choices`` the distinct alignments
-(label pairs, with null for ``>>`` and for a silent label), and ``bwc`` the
-best worst cost, which does not vary.
+(label pairs, with null for ``>>`` and for a silent label), ``bwc`` the
+best worst cost, which does not vary, and ``fitness_choices`` the distinct
+fitness values, sorted. pm4py reports no bwc or fitness for an empty trace.
 """
 
 from __future__ import annotations
@@ -1167,7 +1168,7 @@ def _label_pair(move: Any) -> list[Any]:
 
 
 def _decomposed_run(model: dict[str, Any], variants: list[list[str]], seed: int) -> list[dict[str, Any]]:
-    """One seeded run of ``recompos_maximal``: cost, label pairs and bwc per variant."""
+    """One seeded run of ``recompos_maximal``: cost, label pairs, bwc and fitness per variant."""
     from pm4py.algo.conformance.alignments.decomposed.variants import recompos_maximal
     from pm4py.objects.log.obj import EventLog
 
@@ -1176,7 +1177,12 @@ def _decomposed_run(model: dict[str, Any], variants: list[list[str]], seed: int)
         variant_log = EventLog([Trace([Event({"concept:name": a}) for a in v]) for v in variants])
         results = recompos_maximal.apply(variant_log, net, im, fm, parameters={"show_progress_bar": False})
     return [
-        {"cost": r["cost"], "alignment": [_label_pair(m) for m in r["alignment"]], "bwc": r.get("bwc")}
+        {
+            "cost": r["cost"],
+            "alignment": [_label_pair(m) for m in r["alignment"]],
+            "bwc": r.get("bwc"),
+            "fitness": r.get("fitness"),
+        }
         for r in results
     ]
 
@@ -1198,6 +1204,7 @@ def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
     costs: list[set[int]] = [set() for _ in variants]
     alignments: list[dict[str, Any]] = [{} for _ in variants]
     bwcs: list[set[int]] = [set() for _ in variants]
+    fitnesses: list[set[float]] = [set() for _ in variants]
     golden_tools = str(Path(__file__).resolve().parents[1])
     request = json.dumps({"model": model, "variants": [list(v) for v in variants]})
     for seed in range(DECOMPOSED_SEEDS):
@@ -1216,8 +1223,10 @@ def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
             alignments[i][json.dumps(r["alignment"])] = r["alignment"]
             if r["bwc"] is not None:
                 bwcs[i].add(r["bwc"])
+            if r["fitness"] is not None:
+                fitnesses[i].add(r["fitness"])
     records = []
-    for v, c, a, b in zip(variants, costs, alignments, bwcs):
+    for v, c, a, b, f in zip(variants, costs, alignments, bwcs, fitnesses):
         assert len(b) <= 1, b
         records.append(
             {
@@ -1225,6 +1234,7 @@ def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
                 "cost_choices": sorted(c),
                 "alignment_choices": [a[k] for k in sorted(a)],
                 "bwc": next(iter(b), None),
+                "fitness_choices": sorted(f),
             }
         )
     return {"model": model, "variants": records}

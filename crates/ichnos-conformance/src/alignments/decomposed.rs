@@ -32,6 +32,12 @@ use super::sync_product::{ModelPart, MoveSet, SyncProduct};
 use crate::error::{Error, Result};
 
 /// Options of [`DecomposedAligner`].
+///
+/// The aligner always uses pm4py's standard costs: 10000 for a log or model
+/// move on a visible transition, 1 for a silent move, 0 for a synchronous
+/// move. pm4py's `model_cost_function` and `sync_cost_function` parameters
+/// are not ported, because `recompos_maximal` raises `KeyError` when either
+/// is set.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DecomposedOptions {
     /// Give up on a trace after this long and report no alignment for it
