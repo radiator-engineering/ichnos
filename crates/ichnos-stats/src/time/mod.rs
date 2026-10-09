@@ -1,3 +1,4 @@
+//! Elapsed and business time, interval overlap, concurrency and temporal relations.
 mod business;
 mod matching;
 mod relations;

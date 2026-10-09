@@ -62,6 +62,8 @@ fn intervals(
         .collect()
 }
 /// Original event pairs that overlap, sorted stably by start timestamp.
+/// Overlap uses elapsed seconds, ignoring business schedules, as the source does.
+/// Durations retain subsecond precision; Polars truncates its duration column to whole seconds.
 pub fn get_concurrent_events(
     log: &EventLog,
     keys: &EventKeys,
@@ -110,6 +112,8 @@ pub fn get_concurrent_activities(
     Ok(result)
 }
 /// Temporally ordered event pairs, with optional first-following reduction.
+/// Flow times honour the business schedule when supplied, unlike elapsed concurrency overlap.
+/// Elapsed flow times retain subsecond precision; Polars truncates them to whole seconds.
 pub fn get_partial_order(
     log: &EventLog,
     keys: &EventKeys,

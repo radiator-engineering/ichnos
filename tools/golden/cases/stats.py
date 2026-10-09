@@ -181,6 +181,91 @@ def stats_util(fixtures):
     return [{"left":a,"right":b,"pairs":times_bipartite_matching.exact_match_minimum_average(a,b)} for a,b in inputs]
 
 
+def case_review(fixtures, interval=False):
+    import json
+    import polars as pl
+    from pm4py.statistics.traces.generic.polars import case_statistics as cs_polars
+    from pm4py.statistics.concurrent_activities.polars import get as concurrent_polars
+    from pm4py.statistics.eventually_follows.polars import get as eventually_polars
+    from pm4py.statistics.passed_time.log import algorithm as passed_algorithm
+    from pm4py.util import constants
+    df = load_log(fixtures["log"])
+    log = pm4py.convert_to_event_log(df, stream_postprocessing=True)
+    start_key = "start_timestamp" if interval else "time:timestamp"
+    columns = list(dict.fromkeys(["case:concept:name", "concept:name", "time:timestamp", start_key, "@@index"]))
+    lf = pl.from_pandas(df[columns]).lazy()
+    if not interval:
+        lf=lf.with_columns(pl.col("time:timestamp").alias("start_timestamp"))
+    relation_start="start_timestamp"
+    ordered = lf.sort(["case:concept:name",relation_start,"time:timestamp"],maintain_order=True).collect().to_dicts()
+    positions = {int(e["@@index"]):(ti,ei) for ti,t in enumerate(log) for ei,e in enumerate(t)}
+    def relations(frame, duration, business=False):
+        result=[]
+        for row in frame.collect().to_dicts():
+            source = positions[int(ordered[row["__index__"]]["@@index"])]
+            target = positions[int(ordered[row["__index___2"]]["@@index"])]
+            if duration == "__diff_maxs_minc":
+                precise=(min(row["time:timestamp"],row["time:timestamp_2"])-max(row[relation_start],row[relation_start+"_2"])).total_seconds()
+            else:
+                precise=float(row[duration]) if business else (row[relation_start+"_2"]-row["time:timestamp"]).total_seconds()
+            result.append({"trace":source[0],"source":source[1],"target":target[1],"duration":float(row[duration]),"precise_duration":precise})
+        # Compact representation retains every event pair and both duration values.
+        return [",".join(str(r[k]) for k in ["trace","source","target","duration","precise_duration"]) for r in sorted(result,key=lambda r:(r["trace"],r["source"],r["target"]))]
+    def variant_rows(frame):
+        return sorted([{"case_id":str(row["case:concept:name"]),"variant":list(row["variant"])} for row in frame.to_dicts()],key=lambda r:r["case_id"])
+    pandas_rows = cs_table.get_variants_df(df)
+    polars_rows, polars_list = cs_polars.get_variants_df_and_list(lf)
+    params={"pm4py:param:start_timestamp_key":start_key}
+    return {
+        "pandas_variants":sorted([{"case_id":str(cid),"variant":list(row["variant"])} for cid,row in pandas_rows.iterrows()],key=lambda r:r["case_id"]),
+        "polars_variants":variant_rows(cs_polars.get_variants_df(lf)),
+        "polars_variants_and_list_rows":variant_rows(polars_rows),
+        "polars_variants_list":polars_list,
+        "kde_log_json":json.loads(cs.get_kde_caseduration_json(log,{"graph_points":20})),
+        "kde_values_json":json.loads(case_duration.get_kde_caseduration_json([0,1,4,8],{"graph_points":20})),
+        "kde_small":[case_duration.get_kde_caseduration([0,1,4,8],{"graph_points":gp}) for gp in [2,3]],
+        "passed_algorithm":{a:passed_algorithm.apply(log,a,parameters=params) for a in sorted({e["concept:name"] for t in log for e in t})},
+        "concurrent_rows":relations(concurrent_polars.get_concurrent_events_dataframe(lf,start_timestamp_key=relation_start),"__diff_maxs_minc"),
+        "partial_rows":relations(eventually_polars.get_partial_order_dataframe(lf,start_timestamp_key=relation_start,keep_first_following=False),constants.DEFAULT_FLOW_TIME),
+        "partial_business_rows":relations(eventually_polars.get_partial_order_dataframe(lf,start_timestamp_key=relation_start,keep_first_following=False,business_hours=True,business_hours_slot=constants.DEFAULT_BUSINESS_HOUR_SLOTS),constants.DEFAULT_FLOW_TIME,business=True),
+    }
+
+
+def case_typed_ids(fixtures):
+    from pm4py.objects.log.obj import Event, EventLog, Trace
+    from datetime import datetime, timedelta, timezone
+    def make(ids):
+        log=EventLog()
+        for i,cid in enumerate(ids):
+            start=datetime(2024,1,1,tzinfo=timezone.utc)+timedelta(seconds=i*10)
+            log.append(Trace([Event({"concept:name":"A","time:timestamp":start}),Event({"concept:name":"B","time:timestamp":start+timedelta(seconds=i+1)})],attributes={"concept:name":cid}))
+        return log
+    def describe(ids,sort):
+        log=make(ids)
+        rows=cs.get_cases_description(log,{"enable_sort":sort})
+        index=cs.index_log_caseid(log)
+        ordered=sorted(log,key=lambda t:t.attributes["concept:name"]) if sort else log
+        typed={}
+        for trace in ordered:
+            typed[trace.attributes["concept:name"]]=next(iter(cs.get_cases_description(EventLog([trace]),{"enable_sort":False}).values()))
+        return {"typed_descriptions":[{"id":cid,"type":type(cid).__name__,"duration":row["caseDuration"]} for cid,row in typed.items()],"ids":ids,"sort":sort,"descriptions":[{"id":cid,"type":type(cid).__name__,"duration":row["caseDuration"]} for cid,row in rows.items()],"indexed":[{"id":cid,"type":type(cid).__name__,"duration":(trace[-1]["time:timestamp"]-trace[0]["time:timestamp"]).total_seconds()} for cid,trace in index.items()]}
+    return [describe([10,2,1.0,True],True),describe([1,"1"],False),describe([9007199254740993,9007199254740992],True)]
+
+
+case("case-typed-ids",functions=["pm4py.statistics.traces.generic.log.case_statistics.get_cases_description","pm4py.statistics.traces.generic.log.case_statistics.index_log_caseid"])(case_typed_ids)
+for _name in ["running-example","receipt","roadtraffic100traces","interval_event_log"]:
+    case(f"case-review-{_name.replace('_','-')}",fixture=f"{_name}.csv",params={"interval":_name=="interval_event_log"},functions=[
+        "pm4py.statistics.passed_time.log.algorithm.apply",
+        "pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe",
+        "pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe",
+        "pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration_json",
+        "pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json",
+        "pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df",
+        "pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list",
+        "pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df",
+    ])(case_review)
+
+
 for name in ["running-example", "receipt", "roadtraffic100traces", "interval_event_log"]:
     case(f"cases-{name.replace('_','-')}",fixture=f"{name}.csv",functions=[
         "pm4py.get_all_case_durations","pm4py.get_case_duration","pm4py.get_case_arrival_average",

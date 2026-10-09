@@ -1,3 +1,4 @@
+//! Case durations, arrivals, variants, repetitions and activity positions.
 mod duration;
 mod sequence;
 /// Case and event cycle-time statistics.

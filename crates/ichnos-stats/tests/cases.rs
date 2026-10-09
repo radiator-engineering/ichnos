@@ -3,15 +3,30 @@ use common::load;
 use ichnos_core::{EventKeys, EventLog};
 use ichnos_golden::{JsonCompare, assert_json_eq, golden};
 use ichnos_stats::{
-    attributes::KdeOptions,
+    attributes::{KdeOptions, Scalar},
     cases::*,
     time::{BusinessHours, TimeOptions},
 };
 use serde_json::{Value, json};
 use std::collections::BTreeMap;
 
-fn descriptions(values: indexmap::IndexMap<String, CaseDescription>) -> Value {
-    json!(values.into_iter().map(|(id,d)| (id,json!({"startTime":d.start_time,"endTime":d.end_time,"caseDuration":d.case_duration}))).collect::<BTreeMap<_,_>>())
+fn id_value(id: &Scalar) -> Value {
+    match id {
+        Scalar::String(v) => json!(v),
+        Scalar::Int(v) => json!(v),
+        Scalar::Bool(v) => json!(v),
+        Scalar::Float(v) => json!(f64::from_bits(*v)),
+        Scalar::Date(s, n) => json!([s, n]),
+    }
+}
+fn id_text(id: &Scalar) -> String {
+    match id {
+        Scalar::String(v) => v.clone(),
+        _ => id_value(id).to_string(),
+    }
+}
+fn descriptions(values: indexmap::IndexMap<Scalar, CaseDescription>) -> Value {
+    json!(values.into_iter().map(|(id,d)| (id_text(&id),json!({"startTime":d.start_time,"endTime":d.end_time,"caseDuration":d.case_duration}))).collect::<BTreeMap<_,_>>())
 }
 #[test]
 fn oracle_case_statistics() {
@@ -45,7 +60,7 @@ fn oracle_case_statistics() {
                 max_cases: Some(3),
                 ..Default::default()
             };
-            let actual=get_cases_description(&log,&keys,&opts).unwrap().into_iter().map(|(id,d)| json!([id,{"startTime":d.start_time,"endTime":d.end_time,"caseDuration":d.case_duration}])).collect::<Vec<_>>();
+            let actual=get_cases_description(&log,&keys,&opts).unwrap().into_iter().map(|(id,d)| json!([id_value(&id),{"startTime":d.start_time,"endTime":d.end_time,"caseDuration":d.case_duration}])).collect::<Vec<_>>();
             assert_json_eq(
                 &json!(actual),
                 &e["description_options"][i],
@@ -79,7 +94,7 @@ fn oracle_case_statistics() {
             .into_keys()
             .map(|id| {
                 let duration = get_case_duration(&log, &keys, &id, &options).unwrap();
-                (id, duration)
+                (id_text(&id), duration)
             })
             .collect::<BTreeMap<_, _>>();
         check("individual", json!(individual));
@@ -125,7 +140,7 @@ fn oracle_case_statistics() {
         let rows = get_variants_df_with_case_duration(&log, &keys)
             .unwrap()
             .into_iter()
-            .map(|v| json!({"case_id":v.case_id,"variant":v.variant,"duration":v.case_duration}))
+            .map(|v| json!({"case_id":id_value(&v.case_id),"variant":v.variant,"duration":v.case_duration}))
             .collect::<Vec<_>>();
         check("variant_rows", json!(rows));
         let (rows, list) = get_variants_df_and_list(&log, &keys).unwrap();
@@ -144,7 +159,7 @@ fn oracle_case_statistics() {
             json!(
                 indexed
                     .iter()
-                    .map(|(k, t)| (k.clone(), t.events.len()))
+                    .map(|(k, t)| (id_text(k), t.events.len()))
                     .collect::<BTreeMap<_, _>>()
             ),
         );
@@ -156,7 +171,7 @@ fn oracle_case_statistics() {
                     .iter()
                     .map(|e| e.get(&keys.activity).unwrap().to_string())
                     .collect::<Vec<_>>();
-                (id, activities)
+                (id_text(&id), activities)
             })
             .collect::<BTreeMap<_, _>>();
         check("events", json!(events));
@@ -215,7 +230,7 @@ fn empty_case_and_missing_timestamp() {
         get_first_quartile_case_duration(&log, &keys, &options).unwrap(),
         0.0
     );
-    assert!(get_case_duration(&log, &keys, "unknown", &options).is_err());
+    assert!(get_case_duration(&log, &keys, &Scalar::String("unknown".into()), &options).is_err());
     let mut log = EventLog::from_trace_strings(["A,B,A,C,A", "D,D"], ",", &keys);
     assert_eq!(get_minimum_self_distances(&log, &keys).unwrap()["A"], 1);
     assert_eq!(

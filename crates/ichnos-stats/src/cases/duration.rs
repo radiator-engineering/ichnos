@@ -1,15 +1,73 @@
 use crate::{
     Error, Result,
-    attributes::{Bandwidth, Density, KdeOptions},
+    attributes::{Bandwidth, Density, KdeOptions, Scalar},
     time::{TimeOptions, date, seconds},
 };
 use ichnos_core::{Event, EventKeys, EventLog, Position, Trace};
 use indexmap::IndexMap;
 
+fn case_id(value: &ichnos_core::AttributeValue, key: &str) -> Result<Scalar> {
+    Scalar::from_value(value).ok_or_else(|| Error::NonScalar {
+        key: key.to_owned(),
+    })
+}
+fn compare_ids(a: &Scalar, b: &Scalar) -> Option<std::cmp::Ordering> {
+    use std::cmp::Ordering;
+    enum Number {
+        Int(i64),
+        Float(f64),
+    }
+    fn number(s: &Scalar) -> Option<Number> {
+        match s {
+            Scalar::Int(i) => Some(Number::Int(*i)),
+            Scalar::Bool(b) => Some(Number::Int(i64::from(*b))),
+            Scalar::Float(bits) => Some(Number::Float(f64::from_bits(*bits))),
+            _ => None,
+        }
+    }
+    fn mixed(i: i64, f: f64) -> Option<Ordering> {
+        if f.is_nan() {
+            None
+        } else if f >= -(i64::MIN as f64) {
+            Some(Ordering::Less)
+        } else if f < i64::MIN as f64 {
+            Some(Ordering::Greater)
+        } else {
+            let cmp = i.cmp(&(f as i64));
+            if cmp == Ordering::Equal {
+                (i as f64).partial_cmp(&f)
+            } else {
+                Some(cmp)
+            }
+        }
+    }
+    match (a, b) {
+        (Scalar::String(a), Scalar::String(b)) => Some(a.cmp(b)),
+        (Scalar::Date(a, n), Scalar::Date(b, m)) => Some((a, n).cmp(&(b, m))),
+        _ => match (number(a)?, number(b)?) {
+            (Number::Int(a), Number::Int(b)) => Some(a.cmp(&b)),
+            (Number::Int(i), Number::Float(f)) => mixed(i, f),
+            (Number::Float(f), Number::Int(i)) => mixed(i, f).map(Ordering::reverse),
+            (Number::Float(a), Number::Float(b)) => a.partial_cmp(&b),
+        },
+    }
+}
+fn check_ids<'a>(ids: impl Iterator<Item = &'a Scalar>) -> Result<()> {
+    let mut ids = ids;
+    if let Some(first) = ids.next()
+        && (compare_ids(first, first).is_none() || ids.any(|id| compare_ids(first, id).is_none()))
+    {
+        return Err(Error::InvalidOption(
+            "case identifiers have incomparable types",
+        ));
+    }
+    Ok(())
+}
+
 /// Ordering key for case descriptions.
 #[derive(Clone, Copy, Debug, Default)]
 pub enum CaseSort {
-    /// Trace case identifier (text order).
+    /// Typed trace case identifier; incomparable mixed types return an error.
     #[default]
     Id,
     /// First event timestamp.
@@ -59,7 +117,7 @@ pub fn get_cases_description(
     log: &EventLog,
     keys: &EventKeys,
     options: &CaseOptions,
-) -> Result<IndexMap<String, CaseDescription>> {
+) -> Result<IndexMap<Scalar, CaseDescription>> {
     let mut rows = Vec::new();
     for (ti, t) in log.traces.iter().enumerate() {
         if let (Some(first), Some(last)) = (t.events.first(), t.events.last()) {
@@ -82,8 +140,9 @@ pub fn get_cases_description(
             let id = t
                 .attributes
                 .get(&options.case_id_attribute)
-                .map(ToString::to_string)
-                .unwrap_or_else(|| format!("EMPTY{ti}"));
+                .map(|v| case_id(v, &options.case_id_attribute))
+                .transpose()?
+                .unwrap_or_else(|| Scalar::String(format!("EMPTY{ti}")));
             rows.push((
                 id,
                 CaseDescription {
@@ -95,9 +154,12 @@ pub fn get_cases_description(
         }
     }
     if let Some(sort) = options.sort {
+        if matches!(sort, CaseSort::Id) {
+            check_ids(rows.iter().map(|r| &r.0))?;
+        }
         rows.sort_by(|a, b| {
             let order = match sort {
-                CaseSort::Id => a.0.cmp(&b.0),
+                CaseSort::Id => compare_ids(&a.0, &b.0).unwrap(),
                 CaseSort::Start => a.1.start_time.total_cmp(&b.1.start_time),
                 CaseSort::End => a.1.end_time.total_cmp(&b.1.end_time),
                 CaseSort::Duration => a.1.case_duration.total_cmp(&b.1.case_duration),
@@ -118,23 +180,23 @@ pub fn get_cases_description(
 pub fn index_log_caseid<'a>(
     log: &'a EventLog,
     attribute: &str,
-) -> Result<IndexMap<String, &'a Trace>> {
+) -> Result<IndexMap<Scalar, &'a Trace>> {
     log.traces
         .iter()
         .enumerate()
         .map(|(i, t)| {
             Ok((
-                t.attributes
-                    .get(attribute)
-                    .ok_or(Error::MissingCaseId(i))?
-                    .to_string(),
+                case_id(
+                    t.attributes.get(attribute).ok_or(Error::MissingCaseId(i))?,
+                    attribute,
+                )?,
                 t,
             ))
         })
         .collect()
 }
 /// Borrow the events of the last case with the requested identifier.
-pub fn get_events<'a>(log: &'a EventLog, case_id: &str, attribute: &str) -> Result<&'a [Event]> {
+pub fn get_events<'a>(log: &'a EventLog, case_id: &Scalar, attribute: &str) -> Result<&'a [Event]> {
     Ok(&index_log_caseid(log, attribute)?
         .get(case_id)
         .ok_or(Error::InvalidOption("unknown case identifier"))?
@@ -157,7 +219,7 @@ pub fn get_all_case_durations(
 pub fn get_case_duration(
     log: &EventLog,
     keys: &EventKeys,
-    case_id: &str,
+    case_id: &Scalar,
     options: &CaseOptions,
 ) -> Result<f64> {
     Ok(get_cases_description(log, keys, options)?
@@ -301,8 +363,8 @@ pub fn get_variant_statistics(
 pub struct CaseVariant {
     /// Input trace index.
     pub trace: usize,
-    /// Case ID as text.
-    pub case_id: String,
+    /// Typed case ID, retaining the first inserted representation.
+    pub case_id: Scalar,
     /// Activity sequence.
     pub variant: Vec<String>,
     /// Last minus first completion time, or zero for an empty trace.
@@ -318,10 +380,12 @@ pub fn get_variants_df_with_case_duration(
     let mut result = Vec::new();
     for (variant, indices) in groups {
         for trace in indices {
-            let case_id = log.traces[trace]
-                .case_id()
-                .ok_or(Error::MissingCaseId(trace))?
-                .to_string();
+            let case_id = case_id(
+                log.traces[trace]
+                    .case_id()
+                    .ok_or(Error::MissingCaseId(trace))?,
+                "concept:name",
+            )?;
             let case_duration = descriptions
                 .get(&case_id)
                 .map(|d| d.case_duration)
@@ -334,7 +398,8 @@ pub fn get_variants_df_with_case_duration(
             });
         }
     }
-    result.sort_by(|a, b| a.case_id.cmp(&b.case_id));
+    check_ids(result.iter().map(|r| &r.case_id))?;
+    result.sort_by(|a, b| compare_ids(&a.case_id, &b.case_id).unwrap());
     Ok(result)
 }
 /// Canonical typed case/variant rows.
@@ -363,9 +428,9 @@ pub fn get_kde_case_duration_values(values: &[f64], options: KdeOptions) -> Resu
             y: vec![1.0],
         });
     }
-    if options.graph_points < 4 {
+    if options.graph_points < 2 {
         return Err(Error::InvalidOption(
-            "case KDE requires at least four graph points",
+            "case KDE requires at least two graph points",
         ));
     }
     let min = values.iter().copied().fold(f64::INFINITY, f64::min);
@@ -387,8 +452,14 @@ pub fn get_kde_case_duration_values(values: &[f64], options: KdeOptions) -> Resu
     let start = min.max(0.001);
     let mut x = Vec::new();
     for i in 0..half {
-        let t = i as f64 / (half - 1) as f64;
-        x.push(if i + 1 == half {
+        let t = if half == 1 {
+            0.0
+        } else {
+            i as f64 / (half - 1) as f64
+        };
+        x.push(if half == 1 {
+            min
+        } else if i + 1 == half {
             max
         } else {
             min + (max - min) * t
