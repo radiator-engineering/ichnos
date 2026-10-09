@@ -95,6 +95,33 @@ miner's tree as well for ``im``:
   ``precision_log`` from the whole-log footprints; ``violations``, the
   ``log_model`` variant on the whole log, loose and strict; and ``fitting``,
   ``pm4py.check_is_fitting`` of each variant.
+
+Temporal profile conformance (lane ``temporal-profile-conformance``), cases
+``temporal-profile-<log>``. Each case emits one record per setting in
+``TEMPORAL_PROFILE_SETTINGS``. A setting names ``zeta``, whether time counts
+only business hours (pm4py's default slots), and which cases the profile is
+discovered on: all cases, or every other case in log order (``half``), so
+that some pairs have a standard deviation of 0 and deviate. Each record holds:
+
+- ``profile``: the profile from pm4py's dataframe variant of
+  ``discover_temporal_profile``, as ``[activity, activity, mean, stdev]`` rows.
+- ``dataframe``: the deviations from the dataframe variant of
+  ``pm4py.algo.conformance.temporal_profile``. ``counts`` holds the number
+  of deviations of every case in log order; ``rows`` holds the deviations of
+  the first ``TEMPORAL_PROFILE_ROWS`` cases, one sorted list per case. A
+  deviation is ``[activity, activity, seconds, zeta]``; pm4py's ``zeta`` is
+  ``sys.maxsize`` when the standard deviation is 0.
+- ``log_extra``: the deviations that only the log variant reports, as
+  ``[case index, activity, activity, seconds, zeta]``. The generator checks
+  that the log variant reports every deviation of the dataframe variant, up
+  to float noise. The log variant measures time with float epoch seconds, so
+  on logs with millisecond timestamps a pair seen once can deviate from its
+  own mean by float noise.
+
+The interval log passes ``start_timestamp_key="start_timestamp"``; the other
+logs use the completion timestamp as the start. To keep its golden small,
+the interval log runs only ``zeta1`` and ``zeta3``: the other logs cover
+business hours and ``half``, and ``zeta6`` finds no deviation on it.
 """
 
 from __future__ import annotations
@@ -798,3 +825,113 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
             fixtures={"log": _log, "model": _net},
             functions=FOOTPRINT_FUNCTIONS,
         )(footprints)
+
+
+TEMPORAL_PROFILE_LOGS = {
+    "running-example": "running-example.csv",
+    "receipt": "receipt.csv",
+    "roadtraffic100traces": "roadtraffic100traces.csv",
+    "interval-event-log": "interval_event_log.csv",
+}
+
+TEMPORAL_PROFILE_FUNCTIONS = [
+    "pm4py.conformance_temporal_profile",
+    "pm4py.algo.conformance.temporal_profile.variants.log.apply",
+    "pm4py.algo.conformance.temporal_profile.variants.dataframe.apply",
+    "pm4py.algo.discovery.temporal_profile.variants.dataframe.apply",
+]
+
+# The cases whose deviation rows a golden records; it counts them for every case.
+TEMPORAL_PROFILE_ROWS = 100
+
+# Setting name -> (zeta, business hours, profile from every other case only).
+TEMPORAL_PROFILE_SETTINGS = {
+    "zeta1": (1.0, False, False),
+    "zeta3": (3.0, False, False),
+    "zeta6": (6.0, False, False),
+    "business": (1.0, True, False),
+    "half": (1.0, False, True),
+}
+
+
+def temporal_profile(
+    fixtures: dict[str, Path], settings: list[str], start_timestamp_key: str | None = None
+) -> dict[str, Any]:
+    """Temporal profile deviations of the log in ``fixtures``, per setting and variant."""
+    from pm4py.algo.conformance.temporal_profile.variants import dataframe as conformance_dataframe
+    from pm4py.algo.conformance.temporal_profile.variants import log as conformance_log
+    from pm4py.algo.discovery.temporal_profile.variants import dataframe as discovery_dataframe
+
+    df = load_log(fixtures["log"])
+    log = pm4py.convert_to_event_log(df)
+    cases = list(df["case:concept:name"].unique())
+    assert cases == [t.attributes["concept:name"] for t in log]
+    half = df[df["case:concept:name"].isin(set(cases[::2]))]
+
+    def parameters(variant: Any, **extra: Any) -> dict[Any, Any]:
+        out = {getattr(variant.Parameters, k.upper()): v for k, v in extra.items()}
+        if start_timestamp_key is not None:
+            out[variant.Parameters.START_TIMESTAMP_KEY] = start_timestamp_key
+        return out
+
+    def deviations(result: list[list[tuple[Any, ...]]]) -> list[list[list[Any]]]:
+        return [sorted([a, b, float(d), z] for a, b, d, z in trace) for trace in result]
+
+    def close(x: list[Any], y: list[Any]) -> bool:
+        return x[:2] == y[:2] and all(abs(p - q) <= 1e-6 * max(1, abs(p), abs(q)) for p, q in zip(x[2:], y[2:]))
+
+    def log_extra(log_result: list[list[list[Any]]], df_result: list[list[list[Any]]]) -> list[list[Any]]:
+        extra = []
+        for i, (log_trace, df_trace) in enumerate(zip(log_result, df_result, strict=True)):
+            unmatched = list(log_trace)
+            for d in df_trace:
+                match = next(k for k, x in enumerate(unmatched) if close(x, d))
+                del unmatched[match]
+            extra.extend([i, *x] for x in unmatched)
+        return extra
+
+    out: dict[str, Any] = {}
+    for name in settings:
+        zeta, business, from_half = TEMPORAL_PROFILE_SETTINGS[name]
+        profile = discovery_dataframe.apply(
+            half if from_half else df, parameters=parameters(discovery_dataframe, business_hours=business)
+        )
+        checks = {
+            variant_name: deviations(
+                variant.apply(
+                    data,
+                    profile,
+                    parameters=parameters(variant, zeta=zeta, business_hours=business),
+                )
+            )
+            for variant_name, variant, data in [
+                ("log", conformance_log, log),
+                ("dataframe", conformance_dataframe, df),
+            ]
+        }
+        checks["log_extra"] = log_extra(checks.pop("log"), checks["dataframe"])
+        checks["dataframe"] = {
+            "counts": [len(trace) for trace in checks["dataframe"]],
+            "rows": checks["dataframe"][:TEMPORAL_PROFILE_ROWS],
+        }
+        out[name] = {
+            "zeta": zeta,
+            "business_hours": business,
+            "half": from_half,
+            "profile": [[a, b, float(m), float(s)] for (a, b), (m, s) in sorted(profile.items())],
+            **checks,
+        }
+    return out
+
+
+for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
+    case(
+        f"temporal-profile-{_log_id}",
+        fixture=_rel,
+        functions=TEMPORAL_PROFILE_FUNCTIONS,
+        params=(
+            {"settings": ["zeta1", "zeta3"], "start_timestamp_key": "start_timestamp"}
+            if _log_id == "interval-event-log"
+            else {"settings": ["zeta1", "zeta6", "business", "half"]}
+        ),
+    )(temporal_profile)

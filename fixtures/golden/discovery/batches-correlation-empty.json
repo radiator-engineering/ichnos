@@ -1,0 +1,46 @@
+{
+  "expected": {
+    "batches": [
+      {
+        "distance": 900,
+        "model": [],
+        "size": 2
+      },
+      {
+        "distance": 0,
+        "model": [],
+        "size": 2
+      },
+      {
+        "distance": 60,
+        "model": [],
+        "size": 3
+      },
+      {
+        "distance": 0,
+        "model": [],
+        "size": 1
+      }
+    ],
+    "correlation": []
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "batches-correlation-empty",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_batches",
+      "pm4py.correlation_miner",
+      "pm4py.algo.discovery.batches.variants.log.apply",
+      "pm4py.algo.discovery.correlation_mining.variants.classic.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "interval": false,
+      "traces": []
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
