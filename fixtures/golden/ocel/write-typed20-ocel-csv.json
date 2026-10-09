@@ -292,6 +292,1142 @@
       ]
     },
     "writers": {
+      "bundle-csv": {
+        "files": {
+          "events/event_audit.csv": "ocel_id,ocel_time\r\ne5,2022-01-11T00:00:00+00:00\r\n",
+          "events/event_pick%20item.csv": "ocel_id,ocel_time,count,cost,rush,slot,note\r\ne2,2022-01-09T14:30:00+00:00,2.0,2.5,false,2022-01-09T17:00:00+00:00,\"a,b\"\r\ne3,2022-01-09T14:30:00.500000+00:00,3.0,,false,,\r\n",
+          "events/event_place%20order.csv": "ocel_id,ocel_time,count,cost,rush,slot,note\r\ne1,2022-01-09T14:00:00+00:00,7.0,10.0,true,2022-01-09T18:00:00+00:00,first\r\n",
+          "events/event_ship.csv": "ocel_id,ocel_time,cost,note\r\ne4,2022-01-10T08:00:00+00:00,4.0,\"x \"\"q\"\" é\"\r\n",
+          "object_changes/object_changes_item.csv": "ocel_id,ocel_time,ocel_changed_field,weight\r\ni/2,2022-01-09T14:00:00+00:00,weight,1.5\r\ni/2,2022-01-09T14:30:00.500000+00:00,weight,1.75\r\n",
+          "object_changes/object_changes_order.csv": "ocel_id,ocel_time,ocel_changed_field,value,since,vip,label\r\no1,2022-01-09T14:00:00+00:00,value,12.5,,,\r\no1,2022-01-09T14:00:00+00:00,vip,,,true,\r\no1,2022-01-09T14:00:00+00:00,label,,,,big\r\no1,2022-01-09T17:00:00+00:00,value,13.0,,,\r\no1,2022-01-09T17:00:00+00:00,label,,,,bigger\r\no1,2022-01-09T19:00:00+00:00,value,13.5,,,\r\n",
+          "objects/object_item.csv": "ocel_id,weight\r\ni1,1.25\r\ni/2,\r\ni#3,2.0\r\n",
+          "objects/object_order.csv": "ocel_id,value,since,vip,label\r\no1,,,,\r\no2,7.0,2022-01-01T00:00:00+00:00,,\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"audit\": {\n      \"file\": \"events/event_audit.csv\",\n      \"attributes\": []\n    },\n    \"pick item\": {\n      \"file\": \"events/event_pick%20item.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"count\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"slot\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"place order\": {\n      \"file\": \"events/event_place%20order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"count\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"slot\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"ship\": {\n      \"file\": \"events/event_ship.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"item\": {\n      \"file\": \"objects/object_item.csv\",\n      \"changesFile\": \"object_changes/object_changes_item.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"weight\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"order\": {\n      \"file\": \"objects/object_order.csv\",\n      \"changesFile\": \"object_changes/object_changes_order.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"value\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"since\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"vip\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,i1,ordered\r\ne1,i/2,ordered\r\ne1,o1,placer\r\ne2,i1,picked\r\ne3,i/2,picked\r\ne4,o1,shipped\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\no1,i1,contains\r\no1,i/2,contains\r\no1,o2,follows\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    10.0
+                  ],
+                  "count": [
+                    "float",
+                    7.0
+                  ],
+                  "note": [
+                    "string",
+                    "first"
+                  ],
+                  "rush": [
+                    "boolean",
+                    true
+                  ],
+                  "slot": [
+                    "date",
+                    "2022-01-09T18:00:00.000000+00:00"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    2.5
+                  ],
+                  "count": [
+                    "float",
+                    2.0
+                  ],
+                  "note": [
+                    "string",
+                    "a,b"
+                  ],
+                  "rush": [
+                    "boolean",
+                    false
+                  ],
+                  "slot": [
+                    "date",
+                    "2022-01-09T17:00:00.000000+00:00"
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "count": [
+                    "float",
+                    3.0
+                  ],
+                  "rush": [
+                    "boolean",
+                    false
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-09T14:30:00.500000+00:00"
+              },
+              {
+                "activity": "ship",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    4.0
+                  ],
+                  "note": [
+                    "string",
+                    "x \"q\" é"
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00"
+              },
+              {
+                "activity": "audit",
+                "attributes": {},
+                "id": "e5",
+                "timestamp": "2022-01-11T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [
+              {
+                "qualifier": "contains",
+                "source": "o1",
+                "target": "i1"
+              },
+              {
+                "qualifier": "contains",
+                "source": "o1",
+                "target": "i/2"
+              },
+              {
+                "qualifier": "follows",
+                "source": "o1",
+                "target": "o2"
+              }
+            ],
+            "object_changes": [
+              {
+                "field": "weight",
+                "object": "i/2",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item",
+                "value": [
+                  "float",
+                  1.5
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  12.5
+                ]
+              },
+              {
+                "field": "vip",
+                "object": "o1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "boolean",
+                  true
+                ]
+              },
+              {
+                "field": "label",
+                "object": "o1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "string",
+                  "big"
+                ]
+              },
+              {
+                "field": "weight",
+                "object": "i/2",
+                "timestamp": "2022-01-09T14:30:00.500000+00:00",
+                "type": "item",
+                "value": [
+                  "float",
+                  1.75
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T17:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  13.0
+                ]
+              },
+              {
+                "field": "label",
+                "object": "o1",
+                "timestamp": "2022-01-09T17:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "string",
+                  "bigger"
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T19:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  13.5
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "weight": [
+                    "float",
+                    1.25
+                  ]
+                },
+                "id": "i1",
+                "type": "item"
+              },
+              {
+                "attributes": {},
+                "id": "i/2",
+                "type": "item"
+              },
+              {
+                "attributes": {
+                  "weight": [
+                    "float",
+                    2.0
+                  ]
+                },
+                "id": "i#3",
+                "type": "item"
+              },
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {
+                  "since": [
+                    "date",
+                    "2022-01-01T00:00:00.000000+00:00"
+                  ],
+                  "value": [
+                    "float",
+                    7.0
+                  ]
+                },
+                "id": "o2",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "ordered",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i/2",
+                "qualifier": "ordered",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "placer",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "pick item",
+                "event": "e2",
+                "object": "i1",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick item",
+                "event": "e3",
+                "object": "i/2",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.500000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "ship",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "shipped",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "events/event_audit.parquet",
+            8
+          ],
+          [
+            "events/event_pick%20item.parquet",
+            8
+          ],
+          [
+            "events/event_place%20order.parquet",
+            8
+          ],
+          [
+            "events/event_ship.parquet",
+            8
+          ],
+          [
+            "objects/object_item.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_item.parquet",
+            8
+          ],
+          [
+            "objects/object_order.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_order.parquet",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "events/event_audit.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTUVABUGFQosFQIVEBUGFQYcNgAoAmU1GAJlNRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcACBjIkPVBQAVABUGFQosFQIVEBUGFQYcGAgAIGMiQ9UFABgIACBjIkPVBQAWACgIACBjIkPVBQAYCAAgYyJD1QUAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTUYAmU1EREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIACBjIkPVBQAYCAAgYyJD1QUAFgAoCAAgYyJD1QUAGAgAIGMiQ9UFABERABksFQQVABUCABUAFRAVAgAAABacAhYCJggWrAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAD0CAABQQVIx"
+          },
+          "events/event_pick%20item.parquet": {
+            "base64": "UEFSMRUEFRgVHEwVBBUAEgAADCwCAAAAZTICAAAAZTMVABUGFQosFQQVEBUGFQYcNgAoAmUzGAJlMhERAAAAAwgBAwIVBBUgFSRMFQQVABIAABA8ACoRDifVBQAgyxgOJ9UFABUAFQYVCiwVBBUQFQYVBhwYCCDLGA4n1QUAGAgAKhEOJ9UFABYAKAggyxgOJ9UFABgIACoRDifVBQAREQAAAAMIAQMCFQQVIBUkTBUEFQASAAAQPAAAAAAAAABAAAAAAAAACEAVABUSFRYsFQQVEBUGFQYcGAgAAAAAAAAIQBgIAAAAAAAAAEAWACgIAAAAAAAACEAYCAAAAAAAAABAEREAAAAJIAIAAAAEAQEDAhUEFRAVFEwVAhUAEgAACBwAAAAAAAAEQBUAFRIVFiwVBBUQFQYVBhwYCAAAAAAAAARAGAgAAAAAAAAEQBYCKAgAAAAAAAAEQBgIAAAAAAAABEAREQAAAAkgAgAAAAMBAQIAFQAVDhUSLBUEFQAVBhUGHBgBABgBABYAKAEAGAEAEREAAAAHGAIAAAAEAQAVBBUQFRRMFQIVABIAAAgcAESCJinVBQAVABUSFRYsFQQVEBUGFQYcGAgARIImKdUFABgIAESCJinVBQAWAigIAESCJinVBQAYCABEgiYp1QUAEREAAAAJIAIAAAADAQECABUEFQ4VEkwVAhUAEgAABxgDAAAAYSxiFQAVEhUWLBUEFRAVBhUGHDYCKANhLGIYA2EsYhERAAAACSACAAAAAwEBAgAVBBmMNQAYBnNjaGVtYRUOABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQolAhgFY291bnQAFQolAhgEY29zdAAVACUCGARydXNoABUEJQIYBHNsb3QlFEyMERwsAAAAAAAVDCUCGARub3RlJQBMHAAAABYEGRwZfCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBBZ4FoABJkAmCBw2ACgCZTMYAmUyEREAGSwVBBUAFQIAFQAVEBUCADwWCBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBBbAARbIASbIASaIARwYCCDLGA4n1QUAGAgAKhEOJ9UFABYAKAggyxgOJ9UFABgIACoRDifVBQAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVChk1AAYQGRgFY291bnQVAhYEFswBFtQBJpADJtACHBgIAAAAAAAACEAYCAAAAAAAAABAFgAoCAAAAAAAAAhAGAgAAAAAAAAAQBERABksFQQVABUCABUAFRAVAgA8KQYZJgAEAAAAJgAcFQoZNQAGEBkYBGNvc3QVAhYEFrwBFsQBJtQEJqQEHBgIAAAAAAAABEAYCAAAAAAAAARAFgIoCAAAAAAAAARAGAgAAAAAAAAEQBERABksFQQVABUCABUAFRAVAgA8KQYZJgICAAAAJgAcFQAZJQYAGRgEcnVzaBUCFgQWVBZYJugFPBgBABgBABYAKAEAGAEAEREAGRwVABUAFQIAPCkGGSYABAAAACYAHBUEGTUABhAZGARzbG90FQIWBBa8ARbEASbwBibABhwYCABEgiYp1QUAGAgARIImKdUFABYCKAgARIImKdUFABgIAESCJinVBQAREQAZLBUEFQAVAgAVABUQFQIAPCkGGSYCAgAAACYAHBUMGTUABhAZGARub3RlFQIWBBZ+FoYBJrIIJoQIHDYCKANhLGIYA2EsYhERABksFQQVABUCABUAFRAVAgA8FgYZBhkmAgIAAAAWzggWBCYIFoIJABkcGAxBUlJPVzpzY2hlbWEY4AQvLy8vLzhBQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBY0FBQUJrQVFBQURBRUFBTmdBQUFDWUFBQUFiQUFBQURBQUFBQUVBQUFBVFAvLy93QUFBUVVRQUFBQUdBQUFBQVFBQUFBQUFBQUFCQUFBQUc1dmRHVUFBQUFBdVA3Ly8zVC8vLzhBQUFFS0VBQUFBQmdBQUFBRUFBQUFBQUFBQUFRQUFBQnpiRzkwQUFBQUFERC8vLzhBQUFJQUJBQUFBQU1BQUFCVlZFTUFyUC8vL3dBQUFRWVFBQUFBR0FBQUFBUUFBQUFBQUFBQUJBQUFBSEoxYzJnQUFBQUFHUC8vLzlULy8vOEFBQUVERUFBQUFCZ0FBQUFFQUFBQUFBQUFBQVFBQUFCamIzTjBBQUFBQU1iLy8vOEFBQUlBRUFBVUFBZ0FCZ0FIQUF3QUFBQVFBQkFBQUFBQUFBRURFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBVUFBQUJqYjNWdWRBQUdBQWdBQmdBR0FBQUFBQUFDQUx6Ly8vOEFBQUFLRUFBQUFDUUFBQUFFQUFBQUFBQUFBQWtBQUFCdlkyVnNYM1JwYldVQUFBQUlBQXdBQmdBSUFBZ0FBQUFBQUFJQUJBQUFBQU1BQUFCVlZFTUFFQUFVQUFnQUFBQUhBQXdBQUFBUUFCQUFBQUFBQUFBRkVBQUFBQndBQUFBRUFBQUFBQUFBQUFjQUFBQnZZMlZzWDJsa0FBUUFCQUFFQUFBQQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGXwcAAAcAAAcAAAcAAAcAAAcAAAcAAAAvwUAAFBBUjE="
+          },
+          "events/event_place%20order.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTEVABUGFQosFQIVEBUGFQYcNgAoAmUxGAJlMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAFjHoibVBQAVABUGFQosFQIVEBUGFQYcGAgAWMeiJtUFABgIAFjHoibVBQAWACgIAFjHoibVBQAYCABYx6Im1QUAEREAAAADCAECABUEFRAVFEwVAhUAEgAACBwAAAAAAAAcQBUAFRIVFiwVAhUQFQYVBhwYCAAAAAAAABxAGAgAAAAAAAAcQBYAKAgAAAAAAAAcQBgIAAAAAAAAHEAREQAAAAkgAgAAAAIBAQIAFQQVEBUUTBUCFQASAAAIHAAAAAAAACRAFQAVEhUWLBUCFRAVBhUGHBgIAAAAAAAAJEAYCAAAAAAAACRAFgAoCAAAAAAAACRAGAgAAAAAAAAkQBERAAAACSACAAAAAgEBAgAVABUOFRIsFQIVABUGFQYcGAEBGAEBFgAoAQEYAQEREQAAAAcYAgAAAAIBARUEFRAVFEwVAhUAEgAACBwA6BX9KdUFABUAFRIVFiwVAhUQFQYVBhwYCADoFf0p1QUAGAgA6BX9KdUFABYAKAgA6BX9KdUFABgIAOgV/SnVBQAREQAAAAkgAgAAAAIBAQIAFQQVEhUWTBUCFQASAAAJIAUAAABmaXJzdBUAFRIVFiwVAhUQFQYVBhw2ACgFZmlyc3QYBWZpcnN0EREAAAAJIAIAAAACAQECABUEGYw1ABgGc2NoZW1hFQ4AFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVCiUCGAVjb3VudAAVCiUCGARjb3N0ABUAJQIYBHJ1c2gAFQQlAhgEc2xvdCUUTIwRHCwAAAAAABUMJQIYBG5vdGUlAEwcAAAAFgIZHBl8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAmUxGAJlMRERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmrAEmfBwYCABYx6Im1QUAGAgAWMeiJtUFABYAKAgAWMeiJtUFABgIAFjHoibVBQAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVChk1AAYQGRgFY291bnQVAhYCFrwBFsQBJuQCJrQCHBgIAAAAAAAAHEAYCAAAAAAAABxAFgAoCAAAAAAAABxAGAgAAAAAAAAcQBERABksFQQVABUCABUAFRAVAgA8KQYZJgACAAAAJgAcFQoZNQAGEBkYBGNvc3QVAhYCFrwBFsQBJqgEJvgDHBgIAAAAAAAAJEAYCAAAAAAAACRAFgAoCAAAAAAAACRAGAgAAAAAAAAkQBERABksFQQVABUCABUAFRAVAgA8KQYZJgACAAAAJgAcFQAZJQYAGRgEcnVzaBUCFgIWVBZYJrwFPBgBARgBARYAKAEBGAEBEREAGRwVABUAFQIAPCkGGSYAAgAAACYAHBUEGTUABhAZGARzbG90FQIWAha8ARbEASbEBiaUBhwYCADoFf0p1QUAGAgA6BX9KdUFABYAKAgA6BX9KdUFABgIAOgV/SnVBQAREQAZLBUEFQAVAgAVABUQFQIAPCkGGSYAAgAAACYAHBUMGTUABhAZGARub3RlFQIWAhaKARaSASaKCCbYBxw2ACgFZmlyc3QYBWZpcnN0EREAGSwVBBUAFQIAFQAVEBUCADwWChkGGSYAAgAAABauCBYCJggW4ggAGRwYDEFSUk9XOnNjaGVtYRjgBC8vLy8vOEFCQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFjQUFBQmtBUUFBREFFQUFOZ0FBQUNZQUFBQWJBQUFBREFBQUFBRUFBQUFUUC8vL3dBQUFRVVFBQUFBR0FBQUFBUUFBQUFBQUFBQUJBQUFBRzV2ZEdVQUFBQUF1UDcvLzNULy8vOEFBQUVLRUFBQUFCZ0FBQUFFQUFBQUFBQUFBQVFBQUFCemJHOTBBQUFBQURELy8vOEFBQUlBQkFBQUFBTUFBQUJWVkVNQXJQLy8vd0FBQVFZUUFBQUFHQUFBQUFRQUFBQUFBQUFBQkFBQUFISjFjMmdBQUFBQUdQLy8vOVQvLy84QUFBRURFQUFBQUJnQUFBQUVBQUFBQUFBQUFBUUFBQUJqYjNOMEFBQUFBTWIvLy84QUFBSUFFQUFVQUFnQUJnQUhBQXdBQUFBUUFCQUFBQUFBQUFFREVBQUFBQndBQUFBRUFBQUFBQUFBQUFVQUFBQmpiM1Z1ZEFBR0FBZ0FCZ0FHQUFBQUFBQUNBTHovLy84QUFBQUtFQUFBQUNRQUFBQUVBQUFBQUFBQUFBa0FBQUJ2WTJWc1gzUnBiV1VBQUFBSUFBd0FCZ0FJQUFnQUFBQUFBQUlBQkFBQUFBTUFBQUJWVkVNQUVBQVVBQWdBQUFBSEFBd0FBQUFRQUJBQUFBQUFBQUFGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQWNBQUFCdlkyVnNYMmxrQUFRQUJBQUVBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZfBwAABwAABwAABwAABwAABwAABwAAADCBQAAUEFSMQ=="
+          },
+          "events/event_ship.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTQVABUGFQosFQIVEBUGFQYcNgAoAmU0GAJlNBERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOAouTXVBQAVABUGFQosFQIVEBUGFQYcGAgA4Ci5NdUFABgIAOAouTXVBQAWACgIAOAouTXVBQAYCADgKLk11QUAEREAAAADCAECABUEFRAVFEwVAhUAEgAACBwAAAAAAAAQQBUAFRIVFiwVAhUQFQYVBhwYCAAAAAAAABBAGAgAAAAAAAAQQBYAKAgAAAAAAAAQQBgIAAAAAAAAEEAREQAAAAkgAgAAAAIBAQIAFQQVGBUcTBUCFQASAAAMLAgAAAB4ICJxIiDDqRUAFRIVFiwVAhUQFQYVBhw2ACgIeCAicSIgw6kYCHggInEiIMOpEREAAAAJIAIAAAACAQECABUEGVw1ABgGc2NoZW1hFQgAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVCiUCGARjb3N0ABUMJQIYBG5vdGUlAEwcAAAAFgIZHBlMJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAmU0GAJlNBERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmrAEmfBwYCADgKLk11QUAGAgA4Ci5NdUFABYAKAgA4Ci5NdUFABgIAOAouTXVBQAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVChk1AAYQGRgEY29zdBUCFgIWvAEWxAEm5AImtAIcGAgAAAAAAAAQQBgIAAAAAAAAEEAWACgIAAAAAAAAEEAYCAAAAAAAABBAEREAGSwVBBUAFQIAFQAVEBUCADwpBhkmAAIAAAAmABwVDBk1AAYQGRgEbm90ZRUCFgIWnAEWpAEmsAQm+AMcNgAoCHggInEiIMOpGAh4ICJxIiDDqRERABksFQQVABUCABUAFRAVAgA8FhAZBhkmAAIAAAAW9AQWAiYIFpQFABkcGAxBUlJPVzpzY2hlbWEYmAMvLy8vL3lnQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBUUFBQURNQUFBQWRBQUFBRUFBQUFBRUFBQUEyUC8vL3dBQUFRVVFBQUFBR0FBQUFBUUFBQUFBQUFBQUJBQUFBRzV2ZEdVQUFBQUFSUC8vL3hBQUZBQUlBQVlBQndBTUFBQUFFQUFRQUFBQUFBQUJBeEFBQUFBY0FBQUFCQUFBQUFBQUFBQUVBQUFBWTI5emRBQUFCZ0FJQUFZQUJnQUFBQUFBQWdDOC8vLy9BQUFBQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFKQUFBQWIyTmxiRjkwYVcxbEFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRlMHAAAHAAAHAAAHAAAALcDAABQQVIx"
+          },
+          "object_changes/object_changes_item.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAaS8yFQAVBhUKLBUEFRAVBhUGHDYAKANpLzIYA2kvMhERAAAAAwgBBAAVBBUgFSRMFQQVABIAABA8AFjHoibVBQAgyxgOJ9UFABUAFQYVCiwVBBUQFQYVBhwYCCDLGA4n1QUAGAgAWMeiJtUFABYAKAggyxgOJ9UFABgIAFjHoibVBQAREQAAAAMIAQMCFQQVFBUYTBUCFQASAAAKJAYAAAB3ZWlnaHQVABUGFQosFQQVEBUGFQYcNgAoBndlaWdodBgGd2VpZ2h0EREAAAADCAEEABUEFSAVJEwVBBUAEgAAEDwAAAAAAAD4PwAAAAAAAPw/FQAVEhUWLBUEFRAVBhUGHBgIAAAAAAAA/D8YCAAAAAAAAPg/FgAoCAAAAAAAAPw/GAgAAAAAAAD4PxERAAAACSACAAAABAEBAwIVBBlcNQAYBnNjaGVtYRUIABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlABgSb2NlbF9jaGFuZ2VkX2ZpZWxkJQBMHAAAABUKJQIYBndlaWdodAAWBBkcGUwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgQWchZ6JjYmCBw2ACgDaS8yGANpLzIREQAZLBUEFQAVAgAVABUQFQIAPBYMGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYEFsABFsgBJsIBJoIBHBgIIMsYDifVBQAYCABYx6Im1QUAFgAoCCDLGA4n1QUAGAgAWMeiJtUFABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYEFoQBFowBJv4CJsoCHDYAKAZ3ZWlnaHQYBndlaWdodBERABksFQQVABUCABUAFRAVAgA8FhgZBhkGAAAAJgAcFQoZNQAGEBkYBndlaWdodBUCFgQWzAEW1AEmlgQm1gMcGAgAAAAAAAD8PxgIAAAAAAAA+D8WACgIAAAAAAAA/D8YCAAAAAAAAPg/EREAGSwVBBUAFQIAFQAVEBUCADwpBhkmAAQAAAAWggUWBCYIFqIFABkcGAxBUlJPVzpzY2hlbWEYrAMvLy8vL3pnQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBUUFBQURjQUFBQWhBQUFBRXdBQUFBVUFBQUFFQUFVQUFnQUJnQUhBQXdBQUFBUUFCQUFBQUFBQUFFREVBQUFBQ0FBQUFBRUFBQUFBQUFBQUFZQUFBQjNaV2xuYUhRQUFBQUFCZ0FJQUFZQUJnQUFBQUFBQWdDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGUwcAAAcAAAcAAAcAAAA6AMAAFBBUjE="
+          },
+          "object_changes/object_changes_order.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAbzEVABUGFQosFQwVEBUGFQYcNgAoAm8xGAJvMRERAAAAAwgBDAAVBBUwFTRMFQYVABIAABhcAFjHoibVBQAARIImKdUFAACMqdMq1QUAFQAVCBUMLBUMFRAVBhUGHBgIAIyp0yrVBQAYCABYx6Im1QUAFgAoCACMqdMq1QUAGAgAWMeiJtUFABERAAAABAwCA0AJFQQVMhU2TBUGFQASAAAZYAUAAAB2YWx1ZQMAAAB2aXAFAAAAbGFiZWwVABUIFQwsFQwVEBUGFQYcNgAoA3ZpcBgFbGFiZWwREQAAAAQMAgMkAhUEFTAVLEwVBhUAEgAAGAAABQEEKUAFBygAKkAAAAAAAAArQBUAFRQVGCwVDBUQFQYVBhwYCAAAAAAAACtAGAgAAAAAAAApQBYGKAgAAAAAAAArQBgIAAAAAAAAKUAREQAAAAokAgAAAAMpAgMkABUEFQAVAkwVABUAEgAAABUAFQ4VEiwVDBUQFQYVBhw2DAAAAAcYAgAAAAwAABUAFQ4VEiwVDBUAFQYVBhwYAQEYAQEWCigBARgBARERAAAABxgCAAAAAwIBFQQVIhUmTBUEFQASAAARQAMAAABiaWcGAAAAYmlnZ2VyFQAVEhUWLBUMFRAVBhUGHDYIKAZiaWdnZXIYA2JpZxERAAAACSACAAAAAxQBAwIVBBmMNQAYBnNjaGVtYRUOABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlABgSb2NlbF9jaGFuZ2VkX2ZpZWxkJQBMHAAAABUKJQIYBXZhbHVlABUEJQIYBXNpbmNlJRRMjBEcLAAAAAAAFQAlAhgDdmlwABUMJQIYBWxhYmVsJQBMHAAAABYMGRwZfCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWDBZsFnQmNCYIHDYAKAJvMRgCbzEREQAZLBUEFQAVAgAVABUQFQIAPBYYGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYMFtIBFtoBJswBJnwcGAgAjKnTKtUFABgIAFjHoibVBQAWACgIAIyp0yrVBQAYCABYx6Im1QUAEREAGSwVBBUAFQIAFQAVEBUCAAAAJgAcFQwZNQAGEBkYEm9jZWxfY2hhbmdlZF9maWVsZBUCFgwWnAEWpAEmqAMm1gIcNgAoA3ZpcBgFbGFiZWwREQAZLBUEFQAVAgAVABUQFQIAPBY4GQYZBgAAACYAHBUKGTUABhAZGAV2YWx1ZRUCFgwW3gEW3gEmwgQm+gMcGAgAAAAAAAArQBgIAAAAAAAAKUAWBigIAAAAAAAAK0AYCAAAAAAAAClAEREAGSwVBBUAFQIAFQAVEBUCADwpBhkmBgYAAAAmABwVBBk1AAYQGRgFc2luY2UVAhYMFlQWWib2BSbYBRw2DAAZLBUEFQAVAgAVABUQFQIAPCkGGSYMAAAAACYAHBUAGSUGABkYA3ZpcBUCFgwWVBZYJrIGPBgBARgBARYKKAEBGAEBEREAGRwVABUAFQIAPCkGGSYKAgAAACYAHBUMGTUABhAZGAVsYWJlbBUCFgwWmAEWoAEmzAcmigccNggoBmJpZ2dlchgDYmlnEREAGSwVBBUAFQIAFQAVEBUCADwWEhkGGSYIBAAAABb4BxYMJggWoggAGRwYDEFSUk9XOnNjaGVtYRjsBC8vLy8vOGdCQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFjQUFBQm9BUUFBRUFFQUFOZ0FBQUNrQUFBQVdBQUFBREFBQUFBRUFBQUFmUC8vL3dBQUFRVVFBQUFBR0FBQUFBUUFBQUFBQUFBQUJRQUFBR3hoWW1Wc0FBQUF0UDcvLzZULy8vOEFBQUVHRUFBQUFCUUFBQUFFQUFBQUFBQUFBQU1BQUFCMmFYQUEyUDcvLzhqLy8vOEFBQUVLRUFBQUFCZ0FBQUFFQUFBQUFBQUFBQVVBQUFCemFXNWpaUUFBQUZELy8vOEFBQUlBQkFBQUFBTUFBQUJWVkVNQUVBQVVBQWdBQmdBSEFBd0FBQUFRQUJBQUFBQUFBQUVERUFBQUFCd0FBQUFFQUFBQUFBQUFBQVVBQUFCMllXeDFaUUFHQUFnQUJnQUdBQUFBQUFBQ0FJai8vLzhBQUFBRkVBQUFBQ1FBQUFBRUFBQUFBQUFBQUJJQUFBQnZZMlZzWDJOb1lXNW5aV1JmWm1sbGJHUUFBSVQvLy8rOC8vLy9BQUFBQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFKQUFBQWIyTmxiRjkwYVcxbEFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBQUFBQUE9ABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZfBwAABwAABwAABwAABwAABwAABwAAACpBQAAUEFSMQ=="
+          },
+          "objects/object_item.parquet": {
+            "base64": "UEFSMRUEFSgVLEwVBhUAEgAAFEwCAAAAaTEDAAAAaS8yAwAAAGkjMxUAFQgVDCwVBhUQFQYVBhw2ACgCaTEYA2kjMxERAAAABAwCAyQAFQQVIBUkTBUEFQASAAAQPAAAAAAAAPQ/AAAAAAAAAEAVABUSFRYsFQYVEBUGFQYcGAgAAAAAAAAAQBgIAAAAAAAA9D8WAigIAAAAAAAAAEAYCAAAAAAAAPQ/EREAAAAJIAIAAAADBQEDAhUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVCiUCGAZ3ZWlnaHQAFgYZHBksJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYGFowBFpQBJlAmCBw2ACgCaTEYA2kjMxERABksFQQVABUCABUAFRAVAgA8FhAZBhkGAAAAJgAcFQoZNQAGEBkYBndlaWdodBUCFgYWzAEW1AEm3AEmnAEcGAgAAAAAAAAAQBgIAAAAAAAA9D8WAigIAAAAAAAAAEAYCAAAAAAAAPQ/EREAGSwVBBUAFQIAFQAVEBUCADwpBhkmAgQAAAAW2AIWBiYIFugCABkcGAxBUlJPVzpzY2hlbWEYgAIvLy8vLzdnQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBSUFBQUJjQUFBQUZBQUFBQkFBRkFBSUFBWUFCd0FNQUFBQUVBQVFBQUFBQUFBQkF4QUFBQUFnQUFBQUJBQUFBQUFBQUFBR0FBQUFkMlZwWjJoMEFBQUFBQVlBQ0FBR0FBWUFBQUFBQUFJQUVBQVVBQWdBQUFBSEFBd0FBQUFRQUJBQUFBQUFBQUFGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQWNBQUFCdlkyVnNYMmxrQUFRQUJBQUVBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZLBwAABwAAAA4AgAAUEFSMQ=="
+          },
+          "objects/object_order.parquet": {
+            "base64": "UEFSMRUEFRgVHEwVBBUAEgAADCwCAAAAbzECAAAAbzIVABUGFQosFQQVEBUGFQYcNgAoAm8yGAJvMRERAAAAAwgBAwIVBBUQFRRMFQIVABIAAAgcAAAAAAAAHEAVABUSFRYsFQQVEBUGFQYcGAgAAAAAAAAcQBgIAAAAAAAAHEAWAigIAAAAAAAAHEAYCAAAAAAAABxAEREAAAAJIAIAAAADAgECABUEFRAVFEwVAhUAEgAACBwAYPn3edQFABUAFRIVFiwVBBUQFQYVBhwYCABg+fd51AUAGAgAYPn3edQFABYCKAgAYPn3edQFABgIAGD593nUBQAREQAAAAkgAgAAAAMCAQIAFQAVDBUQLBUEFQAVBhUGHDYEAAAABhQCAAAABAAVBBUAFQJMFQAVABIAAAAVABUOFRIsFQQVEBUGFQYcNgQAAAAHGAIAAAAEAAAVBBlsNQAYBnNjaGVtYRUKABUMJQAYB29jZWxfaWQlAEwcAAAAFQolAhgFdmFsdWUAFQQlAhgFc2luY2UlFEyMERwsAAAAAAAVACUCGAN2aXAAFQwlAhgFbGFiZWwlAEwcAAAAFgQZHBlcJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYEFngWgAEmQCYIHDYAKAJvMhgCbzEREQAZLBUEFQAVAgAVABUQFQIAPBYIGQYZBgAAACYAHBUKGTUABhAZGAV2YWx1ZRUCFgQWvAEWxAEmuAEmiAEcGAgAAAAAAAAcQBgIAAAAAAAAHEAWAigIAAAAAAAAHEAYCAAAAAAAABxAEREAGSwVBBUAFQIAFQAVEBUCADwpBhkmAgIAAAAmABwVBBk1AAYQGRgFc2luY2UVAhYEFrwBFsQBJvwCJswCHBgIAGD593nUBQAYCABg+fd51AUAFgIoCABg+fd51AUAGAgAYPn3edQFABERABksFQQVABUCABUAFRAVAgA8KQYZJgICAAAAJgAcFQAZJQYAGRgDdmlwFQIWBBY2FjomkAQ8NgQAGRwVABUAFQIAPCkGGSYEAAAAACYAHBUMGTUABhAZGAVsYWJlbBUCFgQWVBZaJugEJsoEHDYEABksFQQVABUCABUAFRAVAgA8FgAZBhkmBAAAAAAW+gQWBCYIFpwFABkcGAxBUlJPVzpzY2hlbWEYzAMvLy8vLzFBQkFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBVUFBQUR3QUFBQXJBQUFBRmdBQUFBd0FBQUFCQUFBQUhULy8vOEFBQUVGRUFBQUFCZ0FBQUFFQUFBQUFBQUFBQVVBQUFCc1lXSmxiQUFBQUNULy8vK2MvLy8vQUFBQkJoQUFBQUFVQUFBQUJBQUFBQUFBQUFBREFBQUFkbWx3QUVqLy8vL0EvLy8vQUFBQkNoQUFBQUFnQUFBQUJBQUFBQUFBQUFBRkFBQUFjMmx1WTJVQUFBQUlBQXdBQmdBSUFBZ0FBQUFBQUFJQUJBQUFBQU1BQUFCVlZFTUFFQUFVQUFnQUJnQUhBQXdBQUFBUUFCQUFBQUFBQUFFREVBQUFBQndBQUFBRUFBQUFBQUFBQUFVQUFBQjJZV3gxWlFBR0FBZ0FCZ0FHQUFBQUFBQUNBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBQUFBQUE9ABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZXBwAABwAABwAABwAABwAAAAXBAAAUEFSMQ=="
+          },
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFTAVMEwVCBUAEgAAGBQCAAAAZTEFBjAyAgAAAGUzAgAAAGU0FQAVCBUMLBUMFRAVBhUGHDYAKAJlNBgCZTEREQAAAAQMAgNADhUEFSYVKkwVBhUAEgAAE0gCAAAAaTEDAAAAaS8yAgAAAG8xFQAVCBUMLBUMFRAVBhUGHDYAKAJvMRgDaS8yEREAAAAEDAIDJAkVBBVUFVRMFQgVABIAACpQBwAAAG9yZGVyZWQGAAAAcGxhY2VyBQo8aWNrZWQHAAAAc2hpcHBlZBUAFQgVDCwVDBUQFQYVBhw2ACgHc2hpcHBlZBgHb3JkZXJlZBERAAAABAwCA5AOFQQZTDUAGAZzY2hlbWEVBgAVDCUAGA1vY2VsX2V2ZW50X2lkJQBMHAAAABUMJQAYDm9jZWxfb2JqZWN0X2lkJQBMHAAAABUMJQAYDm9jZWxfcXVhbGlmaWVyJQBMHAAAABYMGRwZPCYAHBUMGTUABhAZGA1vY2VsX2V2ZW50X2lkFQIWDBaSARaWASZUJggcNgAoAmU0GAJlMRERABksFQQVABUCABUAFRAVAgA8FhgZBhkGAAAAJgAcFQwZNQAGEBkYDm9jZWxfb2JqZWN0X2lkFQIWDBaKARaSASbkASaeARw2ACgCbzEYA2kvMhERABksFQQVABUCABUAFRAVAgA8FhwZBhkGAAAAJgAcFQwZNQAGEBkYDm9jZWxfcXVhbGlmaWVyFQIWDBbKARbOASagAyawAhw2ACgHc2hpcHBlZBgHb3JkZXJlZBERABksFQQVABUCABUAFRAVAgA8Fk4ZBhkGAAAAFuYDFgwmCBb2AwAZHBgMQVJST1c6c2NoZW1hGLgCLy8vLy8rQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFCOEFBQUFPQUFBQUFRQUFBQ2cvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5eGRXRnNhV1pwWlhJQUFKRC8vLy9RLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXZZbXBsWTNSZmFXUUFBTUQvLy84UUFCUUFDQUFBQUFjQURBQUFBQkFBRUFBQUFBQUFBQVVRQUFBQUpBQUFBQVFBQUFBQUFBQUFEUUFBQUc5alpXeGZaWFpsYm5SZmFXUUFBQUFFQUFRQUJBQUFBQT09ABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZPBwAABwAABwAAADtAgAAUEFSMQ=="
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAbzEVABUGFQosFQYVEBUGFQYcNgAoAm8xGAJvMRERAAAAAwgBBgAVBBUmFSpMFQYVABIAABNIAgAAAGkxAwAAAGkvMgIAAABvMhUAFQgVDCwVBhUQFQYVBhw2ACgCbzIYA2kvMhERAAAABAwCAyQAFQQVLhUyTBUEFQASAAAXWAgAAABjb250YWlucwcAAABmb2xsb3dzFQAVBhUKLBUGFRAVBhUGHDYAKAdmb2xsb3dzGAhjb250YWlucxERAAAAAwgBAwQVBBlMNQAYBnNjaGVtYRUGABUMJQAYDm9jZWxfc291cmNlX2lkJQBMHAAAABUMJQAYDm9jZWxfdGFyZ2V0X2lkJQBMHAAAABUMJQAYDm9jZWxfcXVhbGlmaWVyJQBMHAAAABYGGRwZPCYAHBUMGTUABhAZGA5vY2VsX3NvdXJjZV9pZBUCFgYWbBZ0JjQmCBw2ACgCbzEYAm8xEREAGSwVBBUAFQIAFQAVEBUCADwWDBkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF90YXJnZXRfaWQVAhYGFooBFpIBJsIBJnwcNgAoAm8yGANpLzIREQAZLBUEFQAVAgAVABUQFQIAPBYOGQYZBgAAACYAHBUMGTUABhAZGA5vY2VsX3F1YWxpZmllchUCFgYWpAEWrAEm3AImjgIcNgAoB2ZvbGxvd3MYCGNvbnRhaW5zEREAGSwVBBUAFQIAFQAVEBUCADwWLhkGGQYAAAAWmgMWBiYIFrIDABkcGAxBUlJPVzpzY2hlbWEYuAIvLy8vLytBQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUI4QUFBQU9BQUFBQVFBQUFDZy8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjl4ZFdGc2FXWnBaWElBQUpELy8vL1EvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5MFlYSm5aWFJmYVdRQUFNRC8vLzhRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSkFBQUFBUUFBQUFBQUFBQURnQUFBRzlqWld4ZmMyOTFjbU5sWDJsa0FBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAO0CAABQQVIx"
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {\n    \"audit\": {\n      \"file\": \"events/event_audit.parquet\",\n      \"attributes\": []\n    },\n    \"pick item\": {\n      \"file\": \"events/event_pick%20item.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"count\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"slot\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"place order\": {\n      \"file\": \"events/event_place%20order.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"count\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"slot\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"ship\": {\n      \"file\": \"events/event_ship.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"item\": {\n      \"file\": \"objects/object_item.parquet\",\n      \"changesFile\": \"object_changes/object_changes_item.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"weight\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"order\": {\n      \"file\": \"objects/object_order.parquet\",\n      \"changesFile\": \"object_changes/object_changes_order.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"value\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"since\",\n          \"type\": \"time\"\n        },\n        {\n          \"name\": \"vip\",\n          \"type\": \"boolean\"\n        },\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    10.0
+                  ],
+                  "count": [
+                    "float",
+                    7.0
+                  ],
+                  "note": [
+                    "string",
+                    "first"
+                  ],
+                  "rush": [
+                    "boolean",
+                    true
+                  ],
+                  "slot": [
+                    "date",
+                    "2022-01-09T18:00:00.000000+00:00"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    2.5
+                  ],
+                  "count": [
+                    "float",
+                    2.0
+                  ],
+                  "note": [
+                    "string",
+                    "a,b"
+                  ],
+                  "rush": [
+                    "boolean",
+                    false
+                  ],
+                  "slot": [
+                    "date",
+                    "2022-01-09T17:00:00.000000+00:00"
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "count": [
+                    "float",
+                    3.0
+                  ],
+                  "rush": [
+                    "boolean",
+                    false
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-09T14:30:00.500000+00:00"
+              },
+              {
+                "activity": "ship",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    4.0
+                  ],
+                  "note": [
+                    "string",
+                    "x \"q\" é"
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00"
+              },
+              {
+                "activity": "audit",
+                "attributes": {},
+                "id": "e5",
+                "timestamp": "2022-01-11T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [
+              {
+                "qualifier": "contains",
+                "source": "o1",
+                "target": "i1"
+              },
+              {
+                "qualifier": "contains",
+                "source": "o1",
+                "target": "i/2"
+              },
+              {
+                "qualifier": "follows",
+                "source": "o1",
+                "target": "o2"
+              }
+            ],
+            "object_changes": [
+              {
+                "field": "weight",
+                "object": "i/2",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item",
+                "value": [
+                  "float",
+                  1.5
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  12.5
+                ]
+              },
+              {
+                "field": "vip",
+                "object": "o1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "boolean",
+                  true
+                ]
+              },
+              {
+                "field": "label",
+                "object": "o1",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "string",
+                  "big"
+                ]
+              },
+              {
+                "field": "weight",
+                "object": "i/2",
+                "timestamp": "2022-01-09T14:30:00.500000+00:00",
+                "type": "item",
+                "value": [
+                  "float",
+                  1.75
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T17:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  13.0
+                ]
+              },
+              {
+                "field": "label",
+                "object": "o1",
+                "timestamp": "2022-01-09T17:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "string",
+                  "bigger"
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T19:00:00.000000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  13.5
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "weight": [
+                    "float",
+                    1.25
+                  ]
+                },
+                "id": "i1",
+                "type": "item"
+              },
+              {
+                "attributes": {},
+                "id": "i/2",
+                "type": "item"
+              },
+              {
+                "attributes": {
+                  "weight": [
+                    "float",
+                    2.0
+                  ]
+                },
+                "id": "i#3",
+                "type": "item"
+              },
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {
+                  "since": [
+                    "date",
+                    "2022-01-01T00:00:00.000000+00:00"
+                  ],
+                  "value": [
+                    "float",
+                    7.0
+                  ]
+                },
+                "id": "o2",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "ordered",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i/2",
+                "qualifier": "ordered",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "placer",
+                "timestamp": "2022-01-09T14:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "pick item",
+                "event": "e2",
+                "object": "i1",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick item",
+                "event": "e3",
+                "object": "i/2",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.500000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "ship",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "shipped",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": {
+          "events/event_audit.parquet": {
+            "rows": [
+              [
+                "e5",
+                "2022-01-11T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_pick%20item.parquet": {
+            "rows": [
+              [
+                "e2",
+                "2022-01-09T14:30:00+00:00",
+                2.0,
+                2.5,
+                false,
+                "2022-01-09T17:00:00+00:00",
+                "a,b"
+              ],
+              [
+                "e3",
+                "2022-01-09T14:30:00.500000+00:00",
+                3.0,
+                null,
+                false,
+                null,
+                null
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "count",
+                "double",
+                true
+              ],
+              [
+                "cost",
+                "double",
+                true
+              ],
+              [
+                "rush",
+                "bool",
+                true
+              ],
+              [
+                "slot",
+                "timestamp[us, tz=UTC]",
+                true
+              ],
+              [
+                "note",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_place%20order.parquet": {
+            "rows": [
+              [
+                "e1",
+                "2022-01-09T14:00:00+00:00",
+                7.0,
+                10.0,
+                true,
+                "2022-01-09T18:00:00+00:00",
+                "first"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "count",
+                "double",
+                true
+              ],
+              [
+                "cost",
+                "double",
+                true
+              ],
+              [
+                "rush",
+                "bool",
+                true
+              ],
+              [
+                "slot",
+                "timestamp[us, tz=UTC]",
+                true
+              ],
+              [
+                "note",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_ship.parquet": {
+            "rows": [
+              [
+                "e4",
+                "2022-01-10T08:00:00+00:00",
+                4.0,
+                "x \"q\" é"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "cost",
+                "double",
+                true
+              ],
+              [
+                "note",
+                "string",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_item.parquet": {
+            "rows": [
+              [
+                "i/2",
+                "2022-01-09T14:00:00+00:00",
+                "weight",
+                1.5
+              ],
+              [
+                "i/2",
+                "2022-01-09T14:30:00.500000+00:00",
+                "weight",
+                1.75
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ],
+              [
+                "weight",
+                "double",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_order.parquet": {
+            "rows": [
+              [
+                "o1",
+                "2022-01-09T14:00:00+00:00",
+                "value",
+                12.5,
+                null,
+                null,
+                null
+              ],
+              [
+                "o1",
+                "2022-01-09T14:00:00+00:00",
+                "vip",
+                null,
+                null,
+                true,
+                null
+              ],
+              [
+                "o1",
+                "2022-01-09T14:00:00+00:00",
+                "label",
+                null,
+                null,
+                null,
+                "big"
+              ],
+              [
+                "o1",
+                "2022-01-09T17:00:00+00:00",
+                "value",
+                13.0,
+                null,
+                null,
+                null
+              ],
+              [
+                "o1",
+                "2022-01-09T17:00:00+00:00",
+                "label",
+                null,
+                null,
+                null,
+                "bigger"
+              ],
+              [
+                "o1",
+                "2022-01-09T19:00:00+00:00",
+                "value",
+                13.5,
+                null,
+                null,
+                null
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ],
+              [
+                "value",
+                "double",
+                true
+              ],
+              [
+                "since",
+                "timestamp[us, tz=UTC]",
+                true
+              ],
+              [
+                "vip",
+                "bool",
+                true
+              ],
+              [
+                "label",
+                "string",
+                true
+              ]
+            ]
+          },
+          "objects/object_item.parquet": {
+            "rows": [
+              [
+                "i1",
+                1.25
+              ],
+              [
+                "i/2",
+                null
+              ],
+              [
+                "i#3",
+                2.0
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "weight",
+                "double",
+                true
+              ]
+            ]
+          },
+          "objects/object_order.parquet": {
+            "rows": [
+              [
+                "o1",
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                "o2",
+                7.0,
+                "2022-01-01T00:00:00+00:00",
+                null,
+                null
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "value",
+                "double",
+                true
+              ],
+              [
+                "since",
+                "timestamp[us, tz=UTC]",
+                true
+              ],
+              [
+                "vip",
+                "bool",
+                true
+              ],
+              [
+                "label",
+                "string",
+                true
+              ]
+            ]
+          },
+          "relations/e2o.parquet": {
+            "rows": [
+              [
+                "e1",
+                "i1",
+                "ordered"
+              ],
+              [
+                "e1",
+                "i/2",
+                "ordered"
+              ],
+              [
+                "e1",
+                "o1",
+                "placer"
+              ],
+              [
+                "e2",
+                "i1",
+                "picked"
+              ],
+              [
+                "e3",
+                "i/2",
+                "picked"
+              ],
+              [
+                "e4",
+                "o1",
+                "shipped"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [
+              [
+                "o1",
+                "i1",
+                "contains"
+              ],
+              [
+                "o1",
+                "i/2",
+                "contains"
+              ],
+              [
+                "o1",
+                "o2",
+                "follows"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type,weight,tag,value,since,vip,label\ni1,item,1.25,,,,,\ni/2,item,,,,,,\no1,order,,,,,,\n",
         "text": "ocel:eid,ocel:activity,ocel:timestamp,count,cost,rush,slot,note,ocel:type:item,ocel:type:order\ne1,place order,2022-01-09 14:00:00+00:00,7.0,10.0,True,2022-01-09 18:00:00+00:00,first,\"['i1', 'i/2']\",['o1']\ne2,pick item,2022-01-09 14:30:00+00:00,2.0,2.5,False,2022-01-09 17:00:00+00:00,\"a,b\",['i1'],\ne3,pick item,2022-01-09 14:30:00.500000+00:00,3.0,,False,,,['i/2'],\ne4,ship,2022-01-10 08:00:00+00:00,,4.0,,,\"x \"\"q\"\" é\",,['o1']\n"
@@ -1718,7 +2854,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {
       "log": {

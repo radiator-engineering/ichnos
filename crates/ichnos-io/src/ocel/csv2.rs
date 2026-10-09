@@ -656,7 +656,7 @@ fn py_strip(text: &str) -> &str {
 }
 
 /// An ISO 8601 date and time with an offset, as UTC.
-fn parse_time(text: &str) -> Option<DateTime<FixedOffset>> {
+pub(super) fn parse_time(text: &str) -> Option<DateTime<FixedOffset>> {
     let (local, form) = parse_timestamp(text)?;
     form.separator?;
     let offset = FixedOffset::east_opt(form.offset?)?;
@@ -693,7 +693,7 @@ fn raw_number(value: &Raw) -> String {
 
 /// Python's `Decimal(text)` as a comparable key: sign, significant digits
 /// and exponent.
-fn decimal(text: &str) -> (bool, String, i64) {
+pub(super) fn decimal(text: &str) -> (bool, String, i64) {
     let (negative, text) = match text.strip_prefix('-') {
         Some(rest) => (true, rest),
         None => (false, text),
@@ -856,7 +856,7 @@ enum State {
 /// The records of a CSV text as Python's `csv.reader` gives them in strict
 /// mode, with the file opened with `newline=''`. A blank line is a record
 /// without fields.
-fn records(text: &str) -> Result<Vec<Vec<String>>> {
+pub(super) fn records(text: &str) -> Result<Vec<Vec<String>>> {
     let mut records = Vec::new();
     let mut fields: Vec<String> = Vec::new();
     let mut field = String::new();

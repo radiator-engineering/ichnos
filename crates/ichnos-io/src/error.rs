@@ -42,6 +42,9 @@ pub enum Error {
     /// The JSON document is malformed or does not have the expected shape.
     #[error(transparent)]
     Json(#[from] serde_json::Error),
+    /// A ZIP archive could not be read or written.
+    #[error(transparent)]
+    Zip(#[from] zip::result::ZipError),
     /// A core log conversion failed.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),
