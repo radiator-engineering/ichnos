@@ -40,6 +40,15 @@ fresh interpreter, and emits ``runs``: one entry per distinct tree, with the
 three fields above and the ``seeds`` that produced it, sorted by tree.
 
 Logs are CSV only until ichnos can read XES in the discovery tests.
+
+Temporal profile (lane ``miner-temporal-profile``), cases
+``temporal-profile-<log>``. Each case runs both
+variants in ``pm4py.algo.discovery.temporal_profile.variants``: ``log`` on ``pm4py.convert_to_event_log`` of the log, and ``dataframe`` on the
+log as loaded. Each variant runs once with elapsed time and once with
+``business_hours=True`` (pm4py's default slots). The interval log passes
+``start_timestamp_key="start_timestamp"``; the other logs use the completion
+timestamp as the start. Each profile is a list of
+``[activity, activity, mean, stdev]`` rows sorted by the activity pair.
 """
 
 from __future__ import annotations
@@ -186,6 +195,50 @@ def _register_inductive() -> None:
 
 
 _register_inductive()
+
+
+TEMPORAL_PROFILE_LOGS = {
+    "running-example": "running-example.csv",
+    "receipt": "receipt.csv",
+    "roadtraffic100traces": "roadtraffic100traces.csv",
+    "interval-event-log": "interval_event_log.csv",
+}
+
+TEMPORAL_PROFILE_FUNCTIONS = [
+    "pm4py.discover_temporal_profile",
+    "pm4py.algo.discovery.temporal_profile.variants.log.apply",
+    "pm4py.algo.discovery.temporal_profile.variants.dataframe.apply",
+]
+
+
+def temporal_profile(fixtures: dict[str, Path], start_timestamp_key: str | None = None) -> dict[str, Any]:
+    """Temporal profiles of the log in ``fixtures``, per variant and time measure."""
+    from pm4py.algo.discovery.temporal_profile.variants import dataframe as dataframe_variant
+    from pm4py.algo.discovery.temporal_profile.variants import log as log_variant
+
+    df = load_log(fixtures["log"])
+    inputs = {
+        "log": (pm4py.convert_to_event_log(df), log_variant),
+        "dataframe": (df, dataframe_variant),
+    }
+    out: dict[str, Any] = {}
+    for name, (log, variant) in inputs.items():
+        base = {} if start_timestamp_key is None else {variant.Parameters.START_TIMESTAMP_KEY: start_timestamp_key}
+        for measure, extra in [("elapsed", {}), ("business", {variant.Parameters.BUSINESS_HOURS: True})]:
+            profile = variant.apply(log, parameters={**base, **extra})
+            out[f"{name}_{measure}"] = [
+                [a, b, float(mean), float(std)] for (a, b), (mean, std) in sorted(profile.items())
+            ]
+    return out
+
+
+for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
+    case(
+        f"temporal-profile-{_log_id}",
+        fixture=_rel,
+        functions=TEMPORAL_PROFILE_FUNCTIONS,
+        params={"start_timestamp_key": "start_timestamp"} if _log_id == "interval-event-log" else {},
+    )(temporal_profile)
 
 
 if __name__ == "__main__":
