@@ -6,7 +6,7 @@
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 use std::fmt;
 
-use ichnos_ocel::Ocel;
+use ichnos_ocel::{ObjectGraphKind, Ocel, discover_objects_graph};
 
 use crate::{Error, Result};
 
@@ -46,6 +46,19 @@ impl ObjectRelation {
             ObjectRelation::Inheritance => "object_inheritance",
             ObjectRelation::Cobirth => "object_cobirth",
             ObjectRelation::Codeath => "object_codeath",
+        }
+    }
+}
+
+impl ObjectRelation {
+    /// The object graph of ichnos-ocel that gives this relation.
+    fn kind(self) -> ObjectGraphKind {
+        match self {
+            ObjectRelation::Interaction => ObjectGraphKind::Interaction,
+            ObjectRelation::Descendants => ObjectGraphKind::Descendants,
+            ObjectRelation::Inheritance => ObjectGraphKind::Inheritance,
+            ObjectRelation::Cobirth => ObjectGraphKind::Cobirth,
+            ObjectRelation::Codeath => ObjectGraphKind::Codeath,
         }
     }
 }
@@ -158,108 +171,6 @@ impl<'a> Index<'a> {
             .copied()
             .ok_or_else(|| Error::UnknownOcelObject(object.to_owned()))
     }
-
-    /// The objects of each event, in log order. An event without objects
-    /// has none.
-    fn lifecycle_order(&self, ocel: &Ocel) -> Vec<&[&'a str]> {
-        ocel.events
-            .iter()
-            .map(|e| self.objects.get(&*e.id).map_or(&[][..], Vec::as_slice))
-            .collect()
-    }
-}
-
-/// Splits each event's objects into those seen in an earlier event and
-/// those seen for the first time, in the given order.
-fn seen_unseen<'s, 'a: 's>(
-    order: impl Iterator<Item = &'s [&'a str]>,
-    mut visit: impl FnMut(&BTreeSet<&'a str>, &BTreeSet<&'a str>),
-) {
-    let mut set_objects: HashSet<&str> = HashSet::new();
-    for objects in order {
-        let (seen, unseen): (BTreeSet<&str>, BTreeSet<&str>) =
-            objects.iter().partition(|o| set_objects.contains(*o));
-        visit(&seen, &unseen);
-        set_objects.extend(unseen);
-    }
-}
-
-fn unordered_pairs<'a>(objects: &BTreeSet<&'a str>, graph: &mut BTreeSet<(&'a str, &'a str)>) {
-    for &o1 in objects {
-        for &o2 in objects {
-            if o1 < o2 {
-                graph.insert((o1, o2));
-            }
-        }
-    }
-}
-
-/// One object graph, as pm4py's `algo/transformation/ocel/graphs` computes
-/// it.
-fn object_graph<'s, 'a: 's>(
-    index: &'s Index<'a>,
-    order: &[&'s [&'a str]],
-    relation: ObjectRelation,
-) -> BTreeSet<(&'a str, &'a str)> {
-    let mut graph = BTreeSet::new();
-    match relation {
-        ObjectRelation::Interaction => {
-            for objects in index.objects.values() {
-                for &o1 in objects {
-                    for &o2 in objects {
-                        if o1 < o2 {
-                            graph.insert((o1, o2));
-                        }
-                    }
-                }
-            }
-        }
-        ObjectRelation::Descendants => seen_unseen(order.iter().copied(), |seen, unseen| {
-            for &o1 in seen {
-                for &o2 in unseen {
-                    graph.insert((o1, o2));
-                }
-            }
-        }),
-        ObjectRelation::Cobirth => seen_unseen(order.iter().copied(), |_, unseen| {
-            unordered_pairs(unseen, &mut graph);
-        }),
-        ObjectRelation::Codeath => seen_unseen(order.iter().rev().copied(), |_, unseen| {
-            unordered_pairs(unseen, &mut graph);
-        }),
-        ObjectRelation::Inheritance => {
-            // The last event of each object, by its index in the order.
-            let mut last: HashMap<&str, usize> = HashMap::new();
-            for (i, objects) in order.iter().enumerate() {
-                for &o in *objects {
-                    last.insert(o, i);
-                }
-            }
-            let mut i = 0;
-            seen_unseen(order.iter().copied(), |_, unseen| {
-                let ending: BTreeSet<&str> =
-                    order[i].iter().copied().filter(|o| last[o] == i).collect();
-                for &o2 in unseen {
-                    for &o1 in &ending {
-                        if o1 != o2 {
-                            graph.insert((o1, o2));
-                        }
-                    }
-                }
-                i += 1;
-            });
-            // pm4py drops the pairs that go both ways.
-            let both: Vec<(&str, &str)> = graph
-                .iter()
-                .filter(|(a, b)| graph.contains(&(*b, *a)))
-                .copied()
-                .collect();
-            for pair in both {
-                graph.remove(&pair);
-            }
-        }
-    }
-    graph
 }
 
 /// The object-type graph of a log, as pm4py's `discover_otg` computes it.
@@ -277,14 +188,13 @@ fn object_graph<'s, 'a: 's>(
 /// in the objects table.
 pub fn discover_otg(ocel: &Ocel) -> Result<Otg> {
     let index = Index::new(ocel);
-    let order = index.lifecycle_order(ocel);
     let mut edges: BTreeMap<OtgEdge, u64> = BTreeMap::new();
     for relation in ObjectRelation::ALL {
-        for (o1, o2) in object_graph(&index, &order, relation) {
+        for (o1, o2) in discover_objects_graph(ocel, relation.kind()) {
             let edge = OtgEdge {
-                source: index.object_type(o1)?.to_owned(),
+                source: index.object_type(&o1)?.to_owned(),
                 relation,
-                target: index.object_type(o2)?.to_owned(),
+                target: index.object_type(&o2)?.to_owned(),
             };
             *edges.entry(edge).or_default() += 1;
         }
