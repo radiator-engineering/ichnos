@@ -1,0 +1,38 @@
+//! The crate-wide error type.
+
+/// A result whose error is [`Error`].
+pub type Result<T, E = Error> = std::result::Result<T, E>;
+
+/// Errors produced by ichnos-conformance.
+#[derive(Debug, thiserror::Error)]
+#[non_exhaustive]
+pub enum Error {
+    /// Reading the log failed, for example because an event has no activity.
+    #[error(transparent)]
+    Core(#[from] ichnos_core::Error),
+    /// Exploring the markings reachable through silent transitions hit its
+    /// limit; the net may be unbounded.
+    #[error(transparent)]
+    Reachability(#[from] ichnos_model::petri::ReachabilityError),
+    /// The net has inhibitor or reset arcs. Alignments use the classic
+    /// firing rule, whose marking equation does not hold for those arcs.
+    #[error("alignments need a net without inhibitor or reset arcs")]
+    SpecialArcs,
+    /// The final marking cannot be reached from the initial marking, so the
+    /// net is not easy sound and no trace has an alignment. pm4py raises an
+    /// exception in the same case.
+    #[error("the final marking is not reachable from the initial marking")]
+    FinalMarkingUnreachable,
+    /// A per-event cost list does not have one entry per event.
+    #[error("{actual} log move costs given for a trace of {expected} events")]
+    LogMoveCostCount {
+        /// The number of events in the trace.
+        expected: usize,
+        /// The number of costs given.
+        actual: usize,
+    },
+    /// The linear program of the state-equation heuristic failed in a way
+    /// other than infeasibility.
+    #[error("the state-equation linear program failed: {0}")]
+    LinearProgram(String),
+}
