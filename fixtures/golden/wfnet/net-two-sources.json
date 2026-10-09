@@ -1,0 +1,69 @@
+{
+  "expected": {
+    "error": "not_workflow_net",
+    "model": {
+      "arcs": [
+        {
+          "source": "a",
+          "target": "o",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b",
+          "target": "o",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i1",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i2",
+          "target": "b",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "o": 2
+      },
+      "initial_marking": {
+        "i1": 1,
+        "i2": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "i1",
+        "i2",
+        "o"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": "a"
+        },
+        {
+          "label": "b",
+          "name": "b"
+        }
+      ]
+    },
+    "tree": null
+  },
+  "meta": {
+    "area": "wfnet",
+    "case": "net-two-sources",
+    "fixtures": {},
+    "functions": [
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
