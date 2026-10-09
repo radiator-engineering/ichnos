@@ -1,6 +1,6 @@
 # pm4py parity inventory
 
-Reference: pm4py **2.7.23.8**, commit **24a3bf6**, read from the DGX source checkout and cross-checked against its installed top-level exports.
+Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked against its installed top-level exports. Use `PM4PY_SRC` for the source checkout and `PM4PY_PYTHON` for its Python interpreter when reproducing the inventory.
 
 ## Summary
 
