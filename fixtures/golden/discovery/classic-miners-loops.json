@@ -1,0 +1,1972 @@
+{
+  "expected": {
+    "activity_key": "concept:name",
+    "alpha_plus_error": null,
+    "alpha_plus_runs": null,
+    "heuristics": [
+      {
+        "net": {
+          "activities": [
+            "a",
+            "b",
+            "e",
+            "s"
+          ],
+          "activities_occurrences": {
+            "a": 7,
+            "b": 5,
+            "e": 4,
+            "s": 4
+          },
+          "dependency_matrix": [
+            [
+              "a",
+              "a",
+              0.5
+            ],
+            [
+              "a",
+              "b",
+              0.125
+            ],
+            [
+              "a",
+              "e",
+              0.6666666666666666
+            ],
+            [
+              "b",
+              "a",
+              -0.125
+            ],
+            [
+              "b",
+              "e",
+              0.6666666666666666
+            ],
+            [
+              "s",
+              "a",
+              0.75
+            ],
+            [
+              "s",
+              "b",
+              0.5
+            ]
+          ],
+          "dfg": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              4
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "a",
+              3
+            ],
+            [
+              "b",
+              "e",
+              2
+            ],
+            [
+              "s",
+              "a",
+              3
+            ],
+            [
+              "s",
+              "b",
+              1
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              4
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "a",
+              3
+            ],
+            [
+              "b",
+              "e",
+              2
+            ],
+            [
+              "s",
+              "a",
+              3
+            ],
+            [
+              "s",
+              "b",
+              1
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "a",
+              "a",
+              2
+            ],
+            [
+              "a",
+              "b",
+              1
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "b",
+              2
+            ],
+            [
+              "b",
+              "e",
+              1
+            ],
+            [
+              "s",
+              "a",
+              2
+            ],
+            [
+              "s",
+              "b",
+              1
+            ],
+            [
+              "s",
+              "e",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "e": 4
+            }
+          ],
+          "freq_triples_matrix": [
+            [
+              "a",
+              "b",
+              2
+            ],
+            [
+              "b",
+              "a",
+              2
+            ]
+          ],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0,
+                  "frequency": 4,
+                  "target": "b"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "s"
+                }
+              ],
+              "loop_length_two": {
+                "b": 4
+              },
+              "name": "a",
+              "occurrences": 7,
+              "outputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0,
+                  "frequency": 4,
+                  "target": "b"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "e"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 3,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "s"
+                }
+              ],
+              "loop_length_two": {
+                "a": 3
+              },
+              "name": "b",
+              "occurrences": 5,
+              "outputs": [
+                {
+                  "dependency": 0,
+                  "frequency": 3,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "e"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "a",
+                  "b",
+                  1.4
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "b"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "e",
+              "occurrences": 4,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "a",
+                  "b",
+                  1.4
+                ]
+              ],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "s",
+              "occurrences": 4,
+              "outputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "b"
+                }
+              ]
+            }
+          ],
+          "start_activities": [
+            {
+              "s": 4
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "net": {
+          "activities": [
+            "a",
+            "b",
+            "e",
+            "s"
+          ],
+          "activities_occurrences": {
+            "a": 7,
+            "b": 5,
+            "e": 4,
+            "s": 4
+          },
+          "dependency_matrix": [
+            [
+              "a",
+              "a",
+              0.5
+            ],
+            [
+              "a",
+              "b",
+              0.125
+            ],
+            [
+              "a",
+              "e",
+              0.6666666666666666
+            ],
+            [
+              "b",
+              "a",
+              -0.125
+            ],
+            [
+              "b",
+              "e",
+              0.6666666666666666
+            ],
+            [
+              "s",
+              "a",
+              0.75
+            ],
+            [
+              "s",
+              "b",
+              0.5
+            ]
+          ],
+          "dfg": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              4
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "a",
+              3
+            ],
+            [
+              "b",
+              "e",
+              2
+            ],
+            [
+              "s",
+              "a",
+              3
+            ],
+            [
+              "s",
+              "b",
+              1
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              4
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "a",
+              3
+            ],
+            [
+              "b",
+              "e",
+              2
+            ],
+            [
+              "s",
+              "a",
+              3
+            ],
+            [
+              "s",
+              "b",
+              1
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "a",
+              "a",
+              2
+            ],
+            [
+              "a",
+              "b",
+              1
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "b",
+              2
+            ],
+            [
+              "b",
+              "e",
+              1
+            ],
+            [
+              "s",
+              "a",
+              2
+            ],
+            [
+              "s",
+              "b",
+              1
+            ],
+            [
+              "s",
+              "e",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "e": 4
+            }
+          ],
+          "freq_triples_matrix": [
+            [
+              "a",
+              "b",
+              2
+            ],
+            [
+              "b",
+              "a",
+              2
+            ]
+          ],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "a",
+              "occurrences": 7,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "b",
+              "occurrences": 5,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "e",
+              "occurrences": 4,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "s",
+              "occurrences": 4,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "s": 4
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 0.5,
+          "dependency_thresh": 0.8
+        }
+      },
+      {
+        "net": {
+          "activities": [
+            "a",
+            "b",
+            "e",
+            "s"
+          ],
+          "activities_occurrences": {
+            "a": 7,
+            "b": 5,
+            "e": 4,
+            "s": 4
+          },
+          "dependency_matrix": [
+            [
+              "a",
+              "a",
+              0.5
+            ],
+            [
+              "a",
+              "b",
+              0.125
+            ],
+            [
+              "a",
+              "e",
+              0.6666666666666666
+            ],
+            [
+              "b",
+              "a",
+              -0.125
+            ],
+            [
+              "b",
+              "e",
+              0.6666666666666666
+            ],
+            [
+              "s",
+              "a",
+              0.75
+            ],
+            [
+              "s",
+              "b",
+              0.5
+            ]
+          ],
+          "dfg": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              4
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "a",
+              3
+            ],
+            [
+              "b",
+              "e",
+              2
+            ],
+            [
+              "s",
+              "a",
+              3
+            ],
+            [
+              "s",
+              "b",
+              1
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              4
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "a",
+              3
+            ],
+            [
+              "b",
+              "e",
+              2
+            ],
+            [
+              "s",
+              "a",
+              3
+            ],
+            [
+              "s",
+              "b",
+              1
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "a",
+              "a",
+              2
+            ],
+            [
+              "a",
+              "b",
+              1
+            ],
+            [
+              "a",
+              "e",
+              2
+            ],
+            [
+              "b",
+              "b",
+              2
+            ],
+            [
+              "b",
+              "e",
+              1
+            ],
+            [
+              "s",
+              "a",
+              2
+            ],
+            [
+              "s",
+              "b",
+              1
+            ],
+            [
+              "s",
+              "e",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "e": 4
+            }
+          ],
+          "freq_triples_matrix": [
+            [
+              "a",
+              "b",
+              2
+            ],
+            [
+              "b",
+              "a",
+              2
+            ]
+          ],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "s"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "a",
+              "occurrences": 7,
+              "outputs": [
+                {
+                  "dependency": 0.125,
+                  "frequency": 4,
+                  "target": "b"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "e"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.125,
+                  "frequency": 4,
+                  "target": "a"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "b",
+              "occurrences": 5,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "e"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "a",
+                  "b",
+                  1.4
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "a"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "b"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "e",
+              "occurrences": 4,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "s",
+              "occurrences": 4,
+              "outputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "a"
+                }
+              ]
+            }
+          ],
+          "start_activities": [
+            {
+              "s": 4
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 1.0,
+          "dependency_thresh": 0.0,
+          "dfg_pre_cleaning_noise_thresh": 0.2,
+          "loop_length_two_thresh": 0.9,
+          "min_act_count": 2,
+          "min_dfg_occurrences": 2
+        }
+      }
+    ],
+    "models": {
+      "alpha": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "a",
+              "b",
+              "e",
+              "s"
+            ],
+            "parallel": [
+              [
+                "a",
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "a",
+                "e"
+              ],
+              [
+                "a",
+                "s"
+              ],
+              [
+                "b",
+                "a"
+              ],
+              [
+                "e",
+                "a"
+              ],
+              [
+                "s",
+                "a"
+              ]
+            ],
+            "sequence": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "s",
+                "b"
+              ]
+            ],
+            "start_activities": [
+              "a",
+              "s"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "s",
+              "b",
+              "e"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "a"
+            ],
+            [
+              "a",
+              "a"
+            ],
+            [
+              "a",
+              "a",
+              "a"
+            ],
+            [
+              "a",
+              "a",
+              "s"
+            ],
+            [
+              "a",
+              "s"
+            ],
+            [
+              "a",
+              "s",
+              "a"
+            ],
+            [
+              "a",
+              "s",
+              "b"
+            ],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "b"
+            ],
+            [
+              "s",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "a"
+            ],
+            [
+              "s",
+              "b",
+              "e"
+            ]
+          ]
+        }
+      },
+      "alpha_plus": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "a",
+              "b",
+              "e",
+              "s"
+            ],
+            "parallel": [
+              [
+                "a",
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "a",
+                "e"
+              ],
+              [
+                "a",
+                "s"
+              ],
+              [
+                "b",
+                "a"
+              ],
+              [
+                "b",
+                "b"
+              ],
+              [
+                "b",
+                "e"
+              ],
+              [
+                "b",
+                "s"
+              ],
+              [
+                "e",
+                "a"
+              ],
+              [
+                "e",
+                "b"
+              ],
+              [
+                "s",
+                "a"
+              ],
+              [
+                "s",
+                "b"
+              ]
+            ],
+            "sequence": [
+              [
+                "s",
+                "e"
+              ]
+            ],
+            "start_activities": [
+              "a",
+              "b",
+              "s"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "a",
+              "s",
+              "e"
+            ],
+            [
+              "b",
+              "s",
+              "e"
+            ],
+            [
+              "s",
+              "a",
+              "e"
+            ],
+            [
+              "s",
+              "b",
+              "e"
+            ],
+            [
+              "s",
+              "e"
+            ],
+            [
+              "s",
+              "e",
+              "a"
+            ],
+            [
+              "s",
+              "e",
+              "b"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "a"
+            ],
+            [
+              "a",
+              "a"
+            ],
+            [
+              "a",
+              "a",
+              "a"
+            ],
+            [
+              "a",
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "a",
+              "s"
+            ],
+            [
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "b",
+              "a"
+            ],
+            [
+              "a",
+              "b",
+              "b"
+            ],
+            [
+              "a",
+              "b",
+              "s"
+            ],
+            [
+              "a",
+              "s"
+            ],
+            [
+              "a",
+              "s",
+              "a"
+            ],
+            [
+              "a",
+              "s",
+              "b"
+            ],
+            [
+              "a",
+              "s",
+              "e"
+            ],
+            [
+              "b"
+            ],
+            [
+              "b",
+              "a"
+            ],
+            [
+              "b",
+              "a",
+              "a"
+            ],
+            [
+              "b",
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "a",
+              "s"
+            ],
+            [
+              "b",
+              "b"
+            ],
+            [
+              "b",
+              "b",
+              "a"
+            ],
+            [
+              "b",
+              "b",
+              "b"
+            ],
+            [
+              "b",
+              "b",
+              "s"
+            ],
+            [
+              "b",
+              "s"
+            ],
+            [
+              "b",
+              "s",
+              "a"
+            ],
+            [
+              "b",
+              "s",
+              "b"
+            ],
+            [
+              "b",
+              "s",
+              "e"
+            ],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "b"
+            ],
+            [
+              "s",
+              "a",
+              "e"
+            ],
+            [
+              "s",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "a"
+            ],
+            [
+              "s",
+              "b",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "e"
+            ],
+            [
+              "s",
+              "e"
+            ],
+            [
+              "s",
+              "e",
+              "a"
+            ],
+            [
+              "s",
+              "e",
+              "b"
+            ]
+          ]
+        }
+      },
+      "alpha_plus_remove_unconnected": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "e",
+              "s"
+            ],
+            "parallel": [],
+            "sequence": [
+              [
+                "s",
+                "e"
+              ]
+            ],
+            "start_activities": [
+              "s"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [
+            [
+              "s",
+              "e"
+            ]
+          ],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "e"
+            ]
+          ]
+        }
+      },
+      "heuristics_0": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "a",
+              "b",
+              "e",
+              "s"
+            ],
+            "parallel": [
+              [
+                "a",
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "a"
+              ],
+              [
+                "b",
+                "b"
+              ]
+            ],
+            "sequence": [
+              [
+                "a",
+                "e"
+              ],
+              [
+                "b",
+                "e"
+              ],
+              [
+                "s",
+                "a"
+              ],
+              [
+                "s",
+                "b"
+              ]
+            ],
+            "start_activities": [
+              "s"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "b"
+            ],
+            [
+              "s",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "a"
+            ]
+          ]
+        }
+      },
+      "heuristics_1": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "a"
+            ],
+            [
+              "a",
+              "a"
+            ],
+            [
+              "a",
+              "a",
+              "a"
+            ],
+            [
+              "a",
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "a",
+              "e"
+            ],
+            [
+              "a",
+              "a",
+              "s"
+            ],
+            [
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "b",
+              "a"
+            ],
+            [
+              "a",
+              "b",
+              "b"
+            ],
+            [
+              "a",
+              "b",
+              "e"
+            ],
+            [
+              "a",
+              "b",
+              "s"
+            ],
+            [
+              "a",
+              "e"
+            ],
+            [
+              "a",
+              "e",
+              "a"
+            ],
+            [
+              "a",
+              "e",
+              "b"
+            ],
+            [
+              "a",
+              "e",
+              "e"
+            ],
+            [
+              "a",
+              "e",
+              "s"
+            ],
+            [
+              "a",
+              "s"
+            ],
+            [
+              "a",
+              "s",
+              "a"
+            ],
+            [
+              "a",
+              "s",
+              "b"
+            ],
+            [
+              "a",
+              "s",
+              "e"
+            ],
+            [
+              "b"
+            ],
+            [
+              "b",
+              "a"
+            ],
+            [
+              "b",
+              "a",
+              "a"
+            ],
+            [
+              "b",
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "a",
+              "e"
+            ],
+            [
+              "b",
+              "a",
+              "s"
+            ],
+            [
+              "b",
+              "b"
+            ],
+            [
+              "b",
+              "b",
+              "a"
+            ],
+            [
+              "b",
+              "b",
+              "b"
+            ],
+            [
+              "b",
+              "b",
+              "e"
+            ],
+            [
+              "b",
+              "b",
+              "s"
+            ],
+            [
+              "b",
+              "e"
+            ],
+            [
+              "b",
+              "e",
+              "a"
+            ],
+            [
+              "b",
+              "e",
+              "b"
+            ],
+            [
+              "b",
+              "e",
+              "e"
+            ],
+            [
+              "b",
+              "e",
+              "s"
+            ],
+            [
+              "b",
+              "s"
+            ],
+            [
+              "b",
+              "s",
+              "a"
+            ],
+            [
+              "b",
+              "s",
+              "b"
+            ],
+            [
+              "b",
+              "s",
+              "e"
+            ],
+            [
+              "e"
+            ],
+            [
+              "e",
+              "a"
+            ],
+            [
+              "e",
+              "a",
+              "a"
+            ],
+            [
+              "e",
+              "a",
+              "b"
+            ],
+            [
+              "e",
+              "a",
+              "e"
+            ],
+            [
+              "e",
+              "a",
+              "s"
+            ],
+            [
+              "e",
+              "b"
+            ],
+            [
+              "e",
+              "b",
+              "a"
+            ],
+            [
+              "e",
+              "b",
+              "b"
+            ],
+            [
+              "e",
+              "b",
+              "e"
+            ],
+            [
+              "e",
+              "b",
+              "s"
+            ],
+            [
+              "e",
+              "e"
+            ],
+            [
+              "e",
+              "e",
+              "a"
+            ],
+            [
+              "e",
+              "e",
+              "b"
+            ],
+            [
+              "e",
+              "e",
+              "e"
+            ],
+            [
+              "e",
+              "e",
+              "s"
+            ],
+            [
+              "e",
+              "s"
+            ],
+            [
+              "e",
+              "s",
+              "a"
+            ],
+            [
+              "e",
+              "s",
+              "b"
+            ],
+            [
+              "e",
+              "s",
+              "e"
+            ],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "b"
+            ],
+            [
+              "s",
+              "a",
+              "e"
+            ],
+            [
+              "s",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "a"
+            ],
+            [
+              "s",
+              "b",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "e"
+            ],
+            [
+              "s",
+              "e"
+            ],
+            [
+              "s",
+              "e",
+              "a"
+            ],
+            [
+              "s",
+              "e",
+              "b"
+            ],
+            [
+              "s",
+              "e",
+              "e"
+            ]
+          ]
+        }
+      },
+      "heuristics_2": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "a",
+              "b",
+              "e",
+              "s"
+            ],
+            "parallel": [],
+            "sequence": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "s",
+                "a"
+              ]
+            ],
+            "start_activities": [
+              "s"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "b"
+            ]
+          ]
+        }
+      },
+      "heuristics_public": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "a",
+              "b",
+              "e",
+              "s"
+            ],
+            "parallel": [
+              [
+                "a",
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "a"
+              ],
+              [
+                "b",
+                "b"
+              ]
+            ],
+            "sequence": [
+              [
+                "a",
+                "e"
+              ],
+              [
+                "b",
+                "e"
+              ],
+              [
+                "s",
+                "a"
+              ],
+              [
+                "s",
+                "b"
+              ]
+            ],
+            "start_activities": [
+              "s"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "s"
+            ],
+            [
+              "s",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "a"
+            ],
+            [
+              "s",
+              "a",
+              "b"
+            ],
+            [
+              "s",
+              "b"
+            ],
+            [
+              "s",
+              "b",
+              "a"
+            ]
+          ]
+        }
+      }
+    },
+    "traces": [
+      [
+        "s",
+        "a",
+        "a",
+        "b",
+        "e"
+      ],
+      [
+        "s",
+        "b",
+        "a",
+        "b",
+        "a",
+        "e"
+      ],
+      [
+        "s",
+        "a",
+        "b",
+        "a",
+        "b",
+        "e"
+      ],
+      [
+        "s",
+        "a",
+        "e"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "classic-miners-loops",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_petri_net_alpha",
+      "pm4py.discover_petri_net_alpha_plus",
+      "pm4py.discover_heuristics_net",
+      "pm4py.discover_petri_net_heuristics",
+      "pm4py.algo.discovery.alpha.variants.plus.apply",
+      "pm4py.algo.discovery.heuristics.variants.classic.apply_heu",
+      "pm4py.convert_to_petri_net",
+      "pm4py.discover_footprints",
+      "pm4py.objects.petri_net.semantics.enabled_transitions",
+      "pm4py.objects.petri_net.semantics.execute"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "traces": [
+        [
+          "s",
+          "a",
+          "a",
+          "b",
+          "e"
+        ],
+        [
+          "s",
+          "b",
+          "a",
+          "b",
+          "a",
+          "e"
+        ],
+        [
+          "s",
+          "a",
+          "b",
+          "a",
+          "b",
+          "e"
+        ],
+        [
+          "s",
+          "a",
+          "e"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

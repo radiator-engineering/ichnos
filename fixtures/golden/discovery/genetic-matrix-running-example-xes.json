@@ -1,0 +1,200 @@
+{
+  "expected": {
+    "fitness": 0.24854700854700856,
+    "matrix": {
+      "activities": [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reinitiate request",
+        "examine thoroughly",
+        "pay compensation",
+        "reject request"
+      ],
+      "inputs": {
+        "check ticket": [
+          [
+            "examine casually"
+          ],
+          [
+            "examine thoroughly"
+          ],
+          [
+            "register request"
+          ],
+          [
+            "reinitiate request"
+          ]
+        ],
+        "decide": [
+          [
+            "check ticket"
+          ],
+          [
+            "examine casually"
+          ],
+          [
+            "examine thoroughly"
+          ]
+        ],
+        "examine casually": [
+          [
+            "check ticket"
+          ],
+          [
+            "register request"
+          ],
+          [
+            "reinitiate request"
+          ]
+        ],
+        "examine thoroughly": [
+          [
+            "check ticket"
+          ],
+          [
+            "register request"
+          ],
+          [
+            "reinitiate request"
+          ]
+        ],
+        "pay compensation": [
+          [
+            "decide"
+          ]
+        ],
+        "register request": [],
+        "reinitiate request": [
+          [
+            "decide"
+          ]
+        ],
+        "reject request": [
+          [
+            "decide"
+          ]
+        ]
+      },
+      "outputs": {
+        "check ticket": [
+          [
+            "decide"
+          ],
+          [
+            "examine casually"
+          ],
+          [
+            "examine thoroughly"
+          ]
+        ],
+        "decide": [
+          [
+            "pay compensation"
+          ],
+          [
+            "reinitiate request"
+          ],
+          [
+            "reject request"
+          ]
+        ],
+        "examine casually": [
+          [
+            "check ticket"
+          ],
+          [
+            "decide"
+          ]
+        ],
+        "examine thoroughly": [
+          [
+            "check ticket"
+          ],
+          [
+            "decide"
+          ]
+        ],
+        "pay compensation": [],
+        "register request": [
+          [
+            "check ticket"
+          ],
+          [
+            "examine casually"
+          ],
+          [
+            "examine thoroughly"
+          ]
+        ],
+        "reinitiate request": [
+          [
+            "check ticket"
+          ],
+          [
+            "examine casually"
+          ],
+          [
+            "examine thoroughly"
+          ]
+        ],
+        "reject request": []
+      }
+    },
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request",
+            "reject request"
+          ],
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [
+            "register request"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [],
+        "depth": 3,
+        "prefixes": [
+          [],
+          [
+            "register request"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-matrix-running-example-xes",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

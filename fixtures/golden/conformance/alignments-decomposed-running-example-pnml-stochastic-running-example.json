@@ -1,0 +1,674 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "t9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "t8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t11",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t13",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t12",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t10",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t11",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t12",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t13",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t6",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t7",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t8",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t9",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p5": 1
+      },
+      "initial_marking": {
+        "p4": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": "t0"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "t1"
+        },
+        {
+          "label": "decide",
+          "name": "t10"
+        },
+        {
+          "label": null,
+          "name": "t11"
+        },
+        {
+          "label": null,
+          "name": "t12"
+        },
+        {
+          "label": null,
+          "name": "t13"
+        },
+        {
+          "label": "reject request",
+          "name": "t2"
+        },
+        {
+          "label": "register request",
+          "name": "t3"
+        },
+        {
+          "label": "examine casually",
+          "name": "t4"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "t5"
+        },
+        {
+          "label": null,
+          "name": "t6"
+        },
+        {
+          "label": "pay compensation",
+          "name": "t7"
+        },
+        {
+          "label": null,
+          "name": "t8"
+        },
+        {
+          "label": null,
+          "name": "t9"
+        }
+      ]
+    },
+    "variants": [
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "reject request",
+              "reject request"
+            ],
+            [
+              null,
+              null
+            ]
+          ]
+        ],
+        "bwc": 80000,
+        "cost_choices": [
+          2
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              null,
+              null
+            ]
+          ]
+        ],
+        "bwc": 80000,
+        "cost_choices": [
+          5
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              null,
+              null
+            ]
+          ]
+        ],
+        "bwc": 120000,
+        "cost_choices": [
+          3
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "reject request",
+              "reject request"
+            ],
+            [
+              null,
+              null
+            ]
+          ]
+        ],
+        "bwc": 80000,
+        "cost_choices": [
+          5
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "reject request",
+              "reject request"
+            ],
+            [
+              null,
+              null
+            ]
+          ]
+        ],
+        "bwc": 160000,
+        "cost_choices": [
+          7
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              null,
+              null
+            ]
+          ]
+        ],
+        "bwc": 80000,
+        "cost_choices": [
+          2
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-decomposed-running-example-pnml-stochastic-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv",
+      "model": "fixtures/logs/stochastic_running_example.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.algo.conformance.alignments.decomposed.variants.recompos_maximal.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
