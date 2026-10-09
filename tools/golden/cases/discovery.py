@@ -1539,6 +1539,524 @@ _register_footprints()
 SEEDED_RUNS = {"tree": _inductive_run, "bpmn": _bpmn_inductive_run}
 
 
+# Classic and SM2 Split Miner BPMN discovery cases.
+_SPLIT_MINER_FUNCTIONS = [
+    "pm4py.discover_bpmn_split_miner",
+    "pm4py.algo.discovery.split_miner.variants.classic.apply",
+    "pm4py.algo.discovery.split_miner.variants.sm2.apply",
+]
+
+
+def _split_graph(model):
+    from pm4py.objects.bpmn.obj import BPMN
+
+    nodes = sorted(model.get_nodes(), key=lambda n: n.get_id())
+    index = {node: i for i, node in enumerate(nodes)}
+
+    def kind(n):
+        for cls, name in [
+            (BPMN.StartEvent, "start"),
+            (BPMN.EndEvent, "end"),
+            (BPMN.Task, "task"),
+            (BPMN.ExclusiveGateway, "xor"),
+            (BPMN.ParallelGateway, "and"),
+            (BPMN.InclusiveGateway, "or"),
+        ]:
+            if isinstance(n, cls):
+                return name
+        raise ValueError(type(n).__name__)
+
+    return {
+        "nodes": [[kind(n), n.get_name(), bool(getattr(n, "_sm_looped", False))] for n in nodes],
+        "edges": sorted([index[f.get_source()], index[f.get_target()]] for f in model.get_flows()),
+    }
+
+
+def split_miner(
+    fixtures,
+    traces=None,
+    activity_key="concept:name",
+    events=None,
+    transition_key="lifecycle:transition",
+    timestamp_key="time:timestamp",
+):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    log = (
+        pm4py.convert_to_event_log(load_log(fixtures["log"]))
+        if traces is None and events is None
+        else EventLog([Trace([Event({activity_key: a}) for a in t]) for t in (traces or [])])
+    )
+    if events is not None:
+        from datetime import datetime
+
+        log = EventLog(
+            [
+                Trace(
+                    [
+                        Event(
+                            {
+                                activity_key: a,
+                                transition_key: phase,
+                                **(
+                                    {timestamp_key: datetime.fromisoformat(stamp)}
+                                    if stamp is not None
+                                    else {}
+                                ),
+                            }
+                        )
+                        for a, phase, stamp in t
+                    ]
+                )
+                for t in events
+            ]
+        )
+    models = []
+    settings = [
+        ("classic", e, t, m)
+        for e, t, m in [
+            (0.1, 0.4, True),
+            (0.1, 0.4, False),
+            (0.1, 1.0, True),
+            (0.0, 0.0, True),
+            (0.5, 1.0, True),
+        ]
+    ]
+    settings += [("sm2", e, 1.0, True) for e in [0.1, 0.0, 0.5, 1.0]]
+    for variant, epsilon, eta, minimize in settings:
+        options = {
+            "variant": variant,
+            "epsilon": epsilon,
+            "eta": eta,
+            "minimize_or_joins": minimize,
+        }
+        try:
+            if variant == "sm2" and transition_key != "lifecycle:transition":
+                from pm4py.algo.discovery.split_miner.variants import sm2
+
+                model = sm2.apply(
+                    log,
+                    parameters={
+                        "pm4py:param:activity_key": activity_key,
+                        "pm4py:param:transition_key": transition_key,
+                        "pm4py:param:timestamp_key": timestamp_key,
+                        "split_miner_epsilon": epsilon,
+                    },
+                )
+            else:
+                model = pm4py.discover_bpmn_split_miner(
+                    log, activity_key=activity_key, timestamp_key=timestamp_key, **options
+                )
+            value = _split_graph(model)
+            error = None
+        except ValueError as exc:
+            if sum(map(len, log)):
+                raise
+            value = None
+            error = type(exc).__name__
+        models.append({"options": options, "graph": value, "error": error})
+    return models
+
+
+for _id, _fixture in {
+    "running-example-xes": "running-example.xes",
+    "receipt-xes": "receipt.xes",
+    "roadtraffic100traces-xes": "roadtraffic100traces.xes",
+    "interleavings-receipt_even-csv": "interleavings/receipt_even.csv",
+    "interleavings-receipt_odd-csv": "interleavings/receipt_odd.csv",
+}.items():
+    case("split-miner-" + _id, fixture=_fixture, functions=_SPLIT_MINER_FUNCTIONS)(split_miner)
+
+for _id, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "single": [["a"]],
+    "sequence": [["a", "b", "c"]],
+    "xor": [["s", "a", "e"], ["s", "b", "e"]],
+    "parallel": [["s", "a", "b", "e"]] * 4 + [["s", "b", "a", "e"]] * 4,
+    "self-loop": [["a", "a", "b"], ["a", "b"]],
+    "short-loop": [["s", "a", "b", "a", "e"], ["s", "a", "e"]],
+    "nested": [["s", "a", "b", "c", "e"], ["s", "b", "a", "c", "e"], ["s", "d", "c", "e"]],
+    "rigid": [
+        ["s", "a", "c", "e"],
+        ["s", "b", "c", "e"],
+        ["s", "a", "d", "e"],
+        ["s", "b", "d", "e"],
+        ["s", "c", "d", "e"],
+        ["s", "d", "c", "e"],
+    ],
+    "custom-key": [["α", "β", "γ"], ["α", "δ", "γ"]],
+}.items():
+    case(
+        "split-miner-" + _id,
+        functions=_SPLIT_MINER_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "task" if _id == "custom-key" else "concept:name",
+        },
+    )(split_miner)
+
+
+def _split_lifecycle_rows(rows):
+    from datetime import datetime, timedelta, timezone
+
+    epoch = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    return [
+        [
+            [a, phase, (epoch + timedelta(seconds=t)).isoformat() if t is not None else None]
+            for a, phase, t in trace
+        ]
+        for trace in rows
+    ]
+
+
+for _id, _events in {
+    "overlap": [
+        [
+            ("s", "complete", 0),
+            ("a", "start", 1),
+            ("b", "start", 2),
+            ("a", "complete", 3),
+            ("b", "complete", 4),
+            ("e", "complete", 5),
+        ],
+        [
+            ("s", "complete", 0),
+            ("b", "start", 1),
+            ("a", "start", 2),
+            ("b", "complete", 3),
+            ("a", "complete", 4),
+            ("e", "complete", 5),
+        ],
+    ],
+    "or-lifecycle": [
+        [
+            ("s", "complete", 0),
+            ("a", "start", 1),
+            ("b", "start", 2),
+            ("c", "start", 3),
+            ("a", "complete", 4),
+            ("b", "complete", 5),
+            ("c", "complete", 6),
+            ("e", "complete", 7),
+        ],
+        [
+            ("s", "complete", 0),
+            ("c", "start", 1),
+            ("b", "start", 2),
+            ("a", "start", 3),
+            ("c", "complete", 4),
+            ("b", "complete", 5),
+            ("a", "complete", 6),
+            ("e", "complete", 7),
+        ],
+    ]
+    * 4
+    + [
+        [("s", "complete", 0), (a, "start", 1), (a, "complete", 2), ("e", "complete", 3)]
+        for a in ["a", "b", "c"]
+    ],
+    "lifecycle-sorting": [
+        [("b", " COMPLETE ", 4), ("a", "complete", 2), ("a", "start", 1), ("b", "start", 3)]
+    ],
+    "lifecycle-fallback": [
+        [("a", "start", None), ("b", "start", 1), ("a", "complete", 2), ("b", "complete", 3)]
+    ],
+    "start-only": [[("a", "start", 0)]],
+    "ignored-lifecycle": [[("a", "schedule", 0), ("b", "suspend", 1)]],
+}.items():
+    case(
+        "split-miner-" + _id,
+        functions=_SPLIT_MINER_FUNCTIONS,
+        params={"events": _split_lifecycle_rows(_events)},
+    )(split_miner)
+case(
+    "split-miner-custom-lifecycle",
+    functions=_SPLIT_MINER_FUNCTIONS,
+    params={
+        "events": _split_lifecycle_rows(
+            [[("α", "start", 0), ("β", "start", 1), ("α", "complete", 2), ("β", "complete", 3)]]
+        ),
+        "activity_key": "task",
+        "transition_key": "phase",
+        "timestamp_key": "stamp",
+    },
+)(split_miner)
+
+
+# Fixed seeds generate repeatable dense/looping trace graphs. Store the traces
+# with each oracle result.
+def _split_seeded_traces(seed):
+    import random
+
+    rng = random.Random(seed)
+    return [[rng.choice("abcdef") for _ in range(rng.randint(1, 12))] for _ in range(20)]
+
+
+for _seed in range(8):
+    case(
+        "split-miner-seeded-" + str(_seed),
+        functions=_SPLIT_MINER_FUNCTIONS,
+        params={"traces": _split_seeded_traces(_seed)},
+    )(split_miner)
+
+
+case(
+    "split-miner-submicroseconds",
+    functions=_SPLIT_MINER_FUNCTIONS,
+    params={
+        "events": [
+            [
+                ["b", "complete", "2024-01-01T00:00:00.000000900+00:00"],
+                ["a", "complete", "2024-01-01T00:00:00.000000100+00:00"],
+            ]
+        ]
+    },
+)(split_miner)
+
+
+# Every completion permutation gives all three branches direct split edges.
+# Singleton traces also make every concurrent pair potentially exclusive.
+def _split_or_promotion_events():
+    from itertools import permutations
+
+    rows = [
+        [("s", "complete", None)]
+        + [(a, "start", None) for a in "abc"]
+        + [(a, "complete", None) for a in order]
+        + [("e", "complete", None)]
+        for order in permutations("abc")
+    ]
+    rows += [
+        [
+            ("s", "complete", None),
+            (a, "start", None),
+            (a, "complete", None),
+            ("e", "complete", None),
+        ]
+        for a in "abc"
+    ]
+    return _split_lifecycle_rows(rows)
+
+
+case(
+    "split-miner-or-promotion",
+    functions=_SPLIT_MINER_FUNCTIONS,
+    params={"events": _split_or_promotion_events()},
+)(split_miner)
+# miners-classic prefix-tree discovery cases.
+def prefix_tree_case(fixtures, traces=None, activity_key="concept:name"):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in trace]) for trace in traces])
+    runs = []
+    for limit in [None, 0, 1, 2, 1000000000]:
+        root = pm4py.discover_prefix_tree(log, max_path_length=limit, activity_key=activity_key)
+        rows = []
+        todo = [(root, [])]
+        while todo:
+            node, path = todo.pop()
+            rows.append(
+                {
+                    "path": path,
+                    "depth": node.depth,
+                    "final": node.final,
+                    "children": sorted((child.label for child in node.children)),
+                }
+            )
+            for child in node.children:
+                assert child.parent is node
+                todo.append((child, path + [child.label]))
+        runs.append({"limit": limit, "nodes": sorted(rows, key=lambda row: row["path"])})
+    return {"runs": runs}
+
+
+_PREFIX_TREE_FUNCTIONS = ["pm4py.discover_prefix_tree"]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "prefix-tree-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_PREFIX_TREE_FUNCTIONS,
+    )(prefix_tree_case)
+for _name, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "prefixes": [[], ["a"], ["a", "b"], ["a", "b"], ["a", "c"], ["b"]],
+    "loops": [["a", "b", "a", "a"], ["a", "a"]],
+    "custom-key": [["λ", "", "終"], ["λ", "終"]],
+}.items():
+    case(
+        "prefix-tree-" + _name,
+        functions=_PREFIX_TREE_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "work" if _name == "custom-key" else "concept:name",
+        },
+    )(prefix_tree_case)
+
+
+# miners-classic view-based transition-system discovery cases.
+def transition_system_case(fixtures, traces=None, activity_key="concept:name"):
+    import json
+    from collections import Counter
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.algo.discovery.transition_system import algorithm
+    from pm4py.objects.transition_system import constants
+
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:
+        log = EventLog([Trace([Event({activity_key: a}) for a in trace]) for trace in traces])
+    trace_ids = {id(trace): i for i, trace in enumerate(log)}
+
+    def abstract(value):
+        if isinstance(value, Counter):
+            return sorted([label, count] for label, count in value.items())
+        if isinstance(value, set):
+            return sorted(value)
+        return list(value)
+
+    def key(value):
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+    def events(values):
+        return [[trace_ids[id(trace)], i] for trace, i in values]
+
+    options = [
+        {"direction": d, "view": v, "window": 2, "include_data": False}
+        for d in ["forward", "backward"]
+        for v in ["sequence", "set", "multiset"]
+    ]
+    if traces is None:
+        options += [
+            {"direction": "forward", "view": "sequence", "window": w, "include_data": False}
+            for w in [0, 1000000000]
+        ]
+    else:
+        options = [
+            {"direction": d, "view": v, "window": w, "include_data": data}
+            for d in ["forward", "backward"]
+            for v in ["sequence", "set", "multiset"]
+            for w in [0, 1, 2, 1000000000]
+            for data in [False, True]
+        ]
+    if traces is None and fixtures["log"].name in {
+        "receipt.xes",
+        "receipt_even.csv",
+        "receipt_odd.csv",
+    }:
+        options = [
+            {"direction": "forward", "view": v, "window": 2, "include_data": False}
+            for v in ["sequence", "set", "multiset"]
+        ]
+    runs = []
+    for option in options:
+        params = {"pm4py:param:activity_key": activity_key, **option}
+        model = (
+            algorithm.apply(log, parameters=params)
+            if option["include_data"]
+            else pm4py.discover_transition_system(
+                log,
+                activity_key=activity_key,
+                **{k: v for k, v in option.items() if k != "include_data"}
+            )
+        )
+        states = {
+            key(abstract(state.name)): {
+                "view": abstract(state.name),
+                "incoming": [],
+                "outgoing": [],
+            }
+            for state in model.states
+        }
+        edges = {}
+        for edge in model.transitions:
+            source = abstract(edge.from_state.name)
+            target = abstract(edge.to_state.name)
+            positions = events(edge.data[constants.EVENTS])
+            edge_key = (key(source), edge.name, key(target))
+            row = edges.setdefault(
+                edge_key, {"from": source, "to": target, "label": edge.name, "events": []}
+            )
+            row["events"].extend(positions)
+            states[key(source)]["outgoing"].extend(positions)
+            states[key(target)]["incoming"].extend(positions)
+        for state in states.values():
+            state["incoming"].sort()
+            state["outgoing"].sort()
+        graph = {
+            "states": sorted(states.values(), key=lambda row: key(row["view"])),
+            "edges": [{**edges[k], "events": sorted(edges[k]["events"])} for k in sorted(edges)],
+        }
+        native_state_data = []
+        if traces is not None and option["include_data"]:
+            grouped = {}
+            for state in model.states:
+                grouped.setdefault(key(abstract(state.name)), []).append(state)
+            loops = {
+                key(abstract(edge.from_state.name))
+                for edge in model.transitions
+                if abstract(edge.from_state.name) == abstract(edge.to_state.name)
+            }
+            for identity, matching in sorted(grouped.items()):
+                if len(matching) == 1 and identity not in loops:
+                    state = matching[0]
+                    native_state_data.append(
+                        {
+                            "view": abstract(state.name),
+                            "incoming": sorted(events(state.data[constants.INGOING_EVENTS])),
+                            "outgoing": sorted(events(state.data[constants.OUTGOING_EVENTS])),
+                        }
+                    )
+        runs.append({"options": option, "graph": graph, "native_state_data": native_state_data})
+    if traces is not None and any(traces):
+        assert any(run["native_state_data"] for run in runs)
+    return {
+        "runs": runs,
+        "identity": "structured views; equal named states and edges merged; state data aggregated from transition events",
+    }
+
+
+_TRANSITION_FUNCTIONS = [
+    "pm4py.discover_transition_system",
+    "pm4py.algo.discovery.transition_system.algorithm.apply",
+]
+for _fixture in [
+    "running-example.xes",
+    "receipt.xes",
+    "roadtraffic100traces.xes",
+    "interleavings/receipt_even.csv",
+    "interleavings/receipt_odd.csv",
+]:
+    case(
+        "transition-system-" + _fixture.replace("/", "-").replace(".", "-"),
+        fixture=_fixture,
+        functions=_TRANSITION_FUNCTIONS,
+    )(transition_system_case)
+for _name, _traces in {
+    "empty": [],
+    "empty-traces": [[], []],
+    "views": [[], ["a", "b", "a", "c"], ["a", "a", "b"], ["b", "a"], ["a", "b", "a", "c"]],
+    "single": [["a"], ["a"]],
+    "custom-key": [["λ", "", "終"], ["終", "λ", "λ"]],
+}.items():
+    case(
+        "transition-system-" + _name,
+        functions=_TRANSITION_FUNCTIONS,
+        params={
+            "traces": _traces,
+            "activity_key": "work" if _name == "custom-key" else "concept:name",
+        },
+    )(transition_system_case)
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical
