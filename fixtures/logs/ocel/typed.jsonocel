@@ -1,0 +1,64 @@
+{
+  "ocel:global-log": {
+    "ocel:attribute-names": ["cost", "rate", "rush", "note"],
+    "ocel:object-types": ["order", "item"],
+    "ocel:version": "1.0",
+    "ocel:ordering": "timestamp"
+  },
+  "ocel:global-event": {"ocel:activity": "__INVALID__"},
+  "ocel:global-object": {"ocel:type": "__INVALID__"},
+  "ocel:events": {
+    "e1": {
+      "ocel:activity": "place order",
+      "ocel:timestamp": "2022-01-09T14:00:00.1234567Z",
+      "ocel:omap": ["o1", "i1", "i2"],
+      "ocel:vmap": {"cost": 10, "rate": 0.5, "rush": true, "note": "first", "missing": null}
+    },
+    "e2": {
+      "ocel:activity": "pick item",
+      "ocel:timestamp": "2022-01-09T15:30:00+01:00",
+      "ocel:omap": ["i1", "ghost"],
+      "ocel:typedOmap": [
+        {"ocel:oid": "i1", "ocel:qualifier": "picked"},
+        {"ocel:oid": "ghost", "ocel:qualifier": "lost"},
+        {"ocel:oid": "i1", "ocel:qualifier": "repicked"}
+      ],
+      "ocel:vmap": {"cost": 3}
+    },
+    "e3": {
+      "ocel:activity": "pick item",
+      "ocel:timestamp": "2022-01-09T14:30:00",
+      "ocel:omap": ["i2"],
+      "ocel:vmap": {"cost": null, "note": "second"}
+    },
+    "e4": {
+      "ocel:activity": "ship",
+      "ocel:timestamp": "20220110T08",
+      "ocel:omap": ["o1", "o1"],
+      "ocel:vmap": {}
+    },
+    "e5": {
+      "ocel:activity": "audit",
+      "ocel:timestamp": "2022-W02-1",
+      "ocel:omap": ["ghost"],
+      "ocel:vmap": {"note": "dropped"}
+    }
+  },
+  "ocel:objects": {
+    "o1": {
+      "ocel:type": "order",
+      "ocel:ovmap": {"value": 120.5, "priority": 2, "express": false, "label": null},
+      "ocel:o2o": [
+        {"ocel:oid": "i1", "ocel:qualifier": "contains"},
+        {"ocel:oid": "i2", "ocel:qualifier": "contains"}
+      ]
+    },
+    "i1": {"ocel:type": "item", "ocel:ovmap": {"weight": 1.5}},
+    "i2": {"ocel:type": "item", "ocel:ovmap": {"weight": 2}},
+    "lonely": {"ocel:type": "item", "ocel:ovmap": {}}
+  },
+  "ocel:objectChanges": [
+    {"ocel:oid": "o1", "ocel:field": "priority", "priority": 3, "ocel:timestamp": "2022-01-09T16:00:00"},
+    {"ocel:oid": "i1", "ocel:field": "weight", "weight": 1.75, "ocel:timestamp": "1970-01-01T00:00:00"}
+  ]
+}

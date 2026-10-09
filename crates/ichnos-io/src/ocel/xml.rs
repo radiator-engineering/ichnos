@@ -10,17 +10,16 @@ use chrono::{DateTime, FixedOffset};
 use ichnos_core::{AttributeValue, Attributes};
 use ichnos_ocel::{EventObject, ObjectChange, ObjectObject, Ocel, OcelEvent, OcelObject};
 
-use super::{finish, open, time};
+use super::{OcelReadOptions, finish, open, time};
 use crate::error::{Error, Result};
 use crate::model_xml::{self, Element};
 
 const FORMAT: &str = "OCEL XML";
-const MAX_DEPTH: usize = 64;
 
 /// Reads an OCEL 1.0 XML file (pm4py's `read_ocel_xml`). A name ending in
 /// `.gz` is decompressed.
-pub fn read_ocel_xml(path: impl AsRef<Path>) -> Result<Ocel> {
-    read_ocel_xml_from_reader(open(path.as_ref())?)
+pub fn read_ocel_xml(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
+    read_ocel_xml_from_reader(open(path.as_ref())?, options)
 }
 
 /// Reads OCEL 1.0 XML from a reader.
@@ -31,14 +30,14 @@ pub fn read_ocel_xml(path: impl AsRef<Path>) -> Result<Ocel> {
 /// [`ObjectChange`] at its `timestamp`. An event relates to each object of
 /// its `omap` once. Relations to objects that are not in the log are left
 /// out.
-pub fn read_ocel_xml_from_reader(input: impl BufRead) -> Result<Ocel> {
-    classic(&model_xml::read(input, FORMAT, MAX_DEPTH, usize::MAX)?)
+pub fn read_ocel_xml_from_reader(input: impl BufRead, options: &OcelReadOptions) -> Result<Ocel> {
+    classic(&parse(input, options)?)
 }
 
 /// Reads an OCEL 2.0 XML file (pm4py's `read_ocel2_xml`). A name ending in
 /// `.gz` is decompressed.
-pub fn read_ocel2_xml(path: impl AsRef<Path>) -> Result<Ocel> {
-    read_ocel2_xml_from_reader(open(path.as_ref())?)
+pub fn read_ocel2_xml(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
+    read_ocel2_xml_from_reader(open(path.as_ref())?, options)
 }
 
 /// Reads OCEL 2.0 XML from a reader.
@@ -48,8 +47,12 @@ pub fn read_ocel2_xml(path: impl AsRef<Path>) -> Result<Ocel> {
 /// else is a string. The first value of an object attribute is the
 /// object's attribute, and each later value is an [`ObjectChange`] at its
 /// `time`. Relations to objects that are not in the log are left out.
-pub fn read_ocel2_xml_from_reader(input: impl BufRead) -> Result<Ocel> {
-    standard(&model_xml::read(input, FORMAT, MAX_DEPTH, usize::MAX)?)
+pub fn read_ocel2_xml_from_reader(input: impl BufRead, options: &OcelReadOptions) -> Result<Ocel> {
+    standard(&parse(input, options)?)
+}
+
+fn parse(input: impl BufRead, options: &OcelReadOptions) -> Result<Element> {
+    model_xml::read(input, FORMAT, options.max_depth, options.max_nodes)
 }
 
 fn timestamp(text: &str) -> Result<DateTime<FixedOffset>> {

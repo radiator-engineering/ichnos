@@ -9,6 +9,9 @@ use std::path::Path;
 use std::sync::Arc;
 
 use ichnos_core::{AttributeValue, Attributes};
+use ichnos_ocel::constants::{
+    CHANGED_FIELD, EVENT_TIMESTAMP, GLOBAL_EVENT, GLOBAL_LOG, GLOBAL_OBJECT, OBJECT_ID, QUALIFIER,
+};
 use ichnos_ocel::{EventObject, ObjectChange, ObjectObject, Ocel, OcelEvent, OcelObject};
 use serde::de::{Deserialize, DeserializeOwned, Deserializer, MapAccess, Visitor};
 use serde_json::Value;
@@ -50,7 +53,8 @@ pub fn read_ocel2_json_from_reader(input: impl Read) -> Result<Ocel> {
     standard(doc)
 }
 
-/// A JSON object read as its entries in file order.
+/// A JSON object read as its entries in file order. A repeated key keeps
+/// its first position and its last value, as in a Python `dict`.
 struct Ordered<T>(Vec<(String, T)>);
 
 impl<T> Default for Ordered<T> {
@@ -71,9 +75,16 @@ impl<'de, T: DeserializeOwned> Deserialize<'de> for Ordered<T> {
                 self,
                 mut map: A,
             ) -> std::result::Result<Self::Value, A::Error> {
-                let mut entries = Vec::new();
+                let mut entries: Vec<(String, T)> = Vec::new();
+                let mut index: HashMap<String, usize> = HashMap::new();
                 while let Some((k, v)) = map.next_entry::<String, T>()? {
-                    entries.push((k, v));
+                    match index.get(&k) {
+                        Some(&i) => entries[i].1 = v,
+                        None => {
+                            index.insert(k.clone(), entries.len());
+                            entries.push((k, v));
+                        }
+                    }
                 }
                 Ok(Ordered(entries))
             }
@@ -185,8 +196,8 @@ fn classic(doc: ClassicDoc) -> Result<Ocel> {
         for rel in &o.o2o {
             ocel.o2o.push(ObjectObject {
                 source: id.as_str().into(),
-                target: get(rel, "ocel:oid").map(text).unwrap_or_default(),
-                qualifier: get(rel, "ocel:qualifier").and_then(qualifier),
+                target: get(rel, OBJECT_ID).map(text).unwrap_or_default(),
+                qualifier: get(rel, QUALIFIER).and_then(qualifier),
             });
         }
         ocel.objects.push(OcelObject {
@@ -212,10 +223,10 @@ fn classic(doc: ClassicDoc) -> Result<Ocel> {
             }
         }
         for typed in &e.typed_omap {
-            if let Some(o) = get(typed, "ocel:oid")
+            if let Some(o) = get(typed, OBJECT_ID)
                 && let Some(&i) = index.get(&text(o))
             {
-                related[i].qualifier = get(typed, "ocel:qualifier").and_then(qualifier);
+                related[i].qualifier = get(typed, QUALIFIER).and_then(qualifier);
             }
         }
         ocel.relations.extend(related);
@@ -227,9 +238,9 @@ fn classic(doc: ClassicDoc) -> Result<Ocel> {
         });
     }
     for change in &doc.object_changes {
-        let object = get(change, "ocel:oid").map(text).unwrap_or_default();
-        let field = get(change, "ocel:field").map(text).unwrap_or_default();
-        let when = get(change, "ocel:timestamp").map(text).unwrap_or_default();
+        let object = get(change, OBJECT_ID).map(text).unwrap_or_default();
+        let field = get(change, CHANGED_FIELD).map(text).unwrap_or_default();
+        let when = get(change, EVENT_TIMESTAMP).map(text).unwrap_or_default();
         ocel.object_changes.push(ObjectChange {
             object_type: types.get(&*object).cloned().unwrap_or_default(),
             object,
@@ -240,9 +251,9 @@ fn classic(doc: ClassicDoc) -> Result<Ocel> {
     }
     let mut globals = Attributes::default();
     for (key, v) in [
-        ("ocel:global-log", &doc.global_log),
-        ("ocel:global-event", &doc.global_event),
-        ("ocel:global-object", &doc.global_object),
+        (GLOBAL_LOG, &doc.global_log),
+        (GLOBAL_EVENT, &doc.global_event),
+        (GLOBAL_OBJECT, &doc.global_object),
     ] {
         if let Some(v) = v.as_ref().and_then(value) {
             globals.insert(key, v);

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<log>
+  <global scope="event">
+    <string key="ocel:activity" value="__INVALID__"/>
+  </global>
+  <global scope="object">
+    <string key="ocel:type" value="__INVALID__"/>
+  </global>
+  <global scope="log">
+    <list key="attribute-names"/>
+    <list key="object-types">
+      <string key="object-type" value="order"/>
+      <string key="object-type" value="item"/>
+    </list>
+    <string key="version" value="1.0"/>
+    <string key="ordering" value="timestamp"/>
+  </global>
+  <events>
+    <event>
+      <string key="id" value="e1"/>
+      <date key="timestamp" value="2022-01-09T14:00:00.1234567Z"/>
+      <string key="activity" value="place order"/>
+      <list key="omap">
+        <string key="object-id" value="o1"/>
+        <string key="object-id" value="i1" qualifier="ordered"/>
+        <string key="object-id" value="i1" qualifier="reordered"/>
+        <string key="object-id" value="i2"/>
+      </list>
+      <list key="vmap">
+        <string key="note" value="first"/>
+        <int key="count" value="7"/>
+        <float key="rate" value="0.5"/>
+        <boolean key="rush" value="true"/>
+        <date key="due" value="2022-01-12T00:00:00+01:00"/>
+        <double key="share" value="1.25"/>
+        <time key="slot" value="2022-01-09T18:00:00Z"/>
+      </list>
+    </event>
+    <event>
+      <string key="id" value="e2"/>
+      <date key="timestamp" value="2022-01-09T15:30:00+01:00"/>
+      <string key="activity" value="pick item"/>
+      <list key="omap">
+        <string key="object-id" value="i1" qualifier="picked"/>
+      </list>
+      <list key="vmap">
+        <int key="count" value="-2"/>
+        <boolean key="rush" value="False"/>
+      </list>
+    </event>
+    <event>
+      <string key="id" value="e3"/>
+      <date key="timestamp" value="2022-01-09T14:30:00"/>
+      <string key="activity" value="pick item"/>
+      <list key="omap">
+        <string key="object-id" value="i2"/>
+      </list>
+      <list key="vmap"/>
+    </event>
+  </events>
+  <objects>
+    <object>
+      <string key="id" value="o1"/>
+      <string key="type" value="order"/>
+      <list key="ovmap">
+        <float key="value" value="120.5"/>
+        <int key="priority" value="2"/>
+        <int key="priority" value="3" timestamp="2022-01-09T16:00:00Z"/>
+        <float key="value" value="99.5" timestamp="1970-01-01T00:00:00"/>
+      </list>
+    </object>
+    <object>
+      <string key="id" value="i1"/>
+      <string key="type" value="item"/>
+      <list key="ovmap">
+        <float key="weight" value="1.5"/>
+      </list>
+    </object>
+    <object>
+      <string key="id" value="i2"/>
+      <string key="type" value="item"/>
+      <list key="ovmap"/>
+    </object>
+  </objects>
+  <o2o>
+    <relationship source="o1" target="i1" qualifier="contains"/>
+    <relationship source="o1" target="i2" qualifier="contains"/>
+  </o2o>
+</log>

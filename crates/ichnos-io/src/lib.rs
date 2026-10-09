@@ -20,7 +20,7 @@ pub use dfg::{
 };
 pub use error::{Error, Result};
 pub use ocel::{
-    read_ocel, read_ocel_json, read_ocel_json_from_reader, read_ocel_xml,
+    OcelReadOptions, read_ocel, read_ocel_json, read_ocel_json_from_reader, read_ocel_xml,
     read_ocel_xml_from_reader, read_ocel2, read_ocel2_json, read_ocel2_json_from_reader,
     read_ocel2_xml, read_ocel2_xml_from_reader,
 };

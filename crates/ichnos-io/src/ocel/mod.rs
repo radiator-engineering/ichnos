@@ -28,50 +28,80 @@ pub use xml::{
     read_ocel_xml, read_ocel_xml_from_reader, read_ocel2_xml, read_ocel2_xml_from_reader,
 };
 
-/// Reads an OCEL 1.0 log, choosing the format by extension (pm4py's
-/// `read_ocel`): `.jsonocel` or `.json` for JSON, `.xmlocel` or `.xml` for
-/// XML, each optionally gzipped (`.gz`).
-pub fn read_ocel(path: impl AsRef<Path>) -> Result<Ocel> {
-    let path = path.as_ref();
-    match format(path)? {
-        Format::Json => read_ocel_json(path),
-        Format::Xml => read_ocel_xml(path),
+/// Options for the OCEL XML readers. The JSON readers take none.
+#[derive(Debug, Clone)]
+pub struct OcelReadOptions {
+    /// Maximum XML nesting.
+    pub max_depth: usize,
+    /// Maximum XML element count. Every event, object, attribute and
+    /// relationship is at least one element, so raise this for large logs.
+    pub max_nodes: usize,
+}
+
+impl Default for OcelReadOptions {
+    fn default() -> Self {
+        Self {
+            max_depth: 128,
+            max_nodes: 1_000_000,
+        }
     }
 }
 
-/// Reads an OCEL 2.0 log, choosing the format by extension (pm4py's
-/// `read_ocel2`): `.jsonocel` or `.json` for JSON, `.xmlocel` or `.xml` for
-/// XML, each optionally gzipped (`.gz`).
-pub fn read_ocel2(path: impl AsRef<Path>) -> Result<Ocel> {
+/// Reads an OCEL 1.0 log, choosing the format by extension as pm4py's
+/// `read_ocel` does: a name ending in `jsonocel` is JSON and one ending in
+/// `xmlocel` is XML. pm4py's CSV (`csv`) and SQLite (`.sqlite`) readers are
+/// not ported yet. `options` applies to XML.
+pub fn read_ocel(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
     let path = path.as_ref();
-    match format(path)? {
-        Format::Json => read_ocel2_json(path),
-        Format::Xml => read_ocel2_xml(path),
-    }
-}
-
-enum Format {
-    Json,
-    Xml,
-}
-
-fn format(path: &Path) -> Result<Format> {
-    let name = path
-        .file_name()
-        .and_then(|n| n.to_str())
-        .unwrap_or_default()
-        .to_lowercase();
-    let name = name.strip_suffix(".gz").unwrap_or(&name);
-    if name.ends_with(".jsonocel") || name.ends_with(".json") {
-        Ok(Format::Json)
-    } else if name.ends_with(".xmlocel") || name.ends_with(".xml") {
-        Ok(Format::Xml)
+    let name = lower_name(path);
+    if name.ends_with("csv") || name.ends_with(".sqlite") {
+        Err(not_ported(path))
+    } else if name.ends_with("jsonocel") {
+        read_ocel_json(path)
+    } else if name.ends_with("xmlocel") {
+        read_ocel_xml(path, options)
     } else {
-        Err(Error::Ocel(format!(
-            "unsupported OCEL extension: {}",
-            path.display()
-        )))
+        Err(unsupported(path))
     }
+}
+
+/// Reads an OCEL 2.0 log, choosing the format by extension as pm4py's
+/// `read_ocel2` does: a name ending in `xml` or `xmlocel` is XML and one
+/// ending in `json` or `jsonocel` is JSON, each optionally followed by `.gz`.
+/// pm4py's bundle (`.ocel.zip`), SQLite (`sqlite`) and CSV (`.ocel.csv`)
+/// readers are not ported yet. `options` applies to XML.
+pub fn read_ocel2(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
+    let path = path.as_ref();
+    let name = lower_name(path);
+    let matches = |extensions: [&str; 2]| {
+        extensions
+            .iter()
+            .any(|e| name.ends_with(e) || name.ends_with(&format!("{e}.gz")))
+    };
+    if name.ends_with(".ocel.zip") || name.ends_with("sqlite") || name.ends_with(".ocel.csv") {
+        Err(not_ported(path))
+    } else if matches(["xml", "xmlocel"]) {
+        read_ocel2_xml(path, options)
+    } else if matches(["json", "jsonocel"]) {
+        read_ocel2_json(path)
+    } else {
+        Err(unsupported(path))
+    }
+}
+
+fn lower_name(path: &Path) -> String {
+    path.to_string_lossy().to_lowercase()
+}
+
+fn not_ported(path: &Path) -> Error {
+    Error::Ocel(format!(
+        "reading this OCEL format is not ported yet: {}",
+        path.display()
+    ))
+}
+
+fn unsupported(path: &Path) -> Error {
+    Error::Ocel(format!("unsupported OCEL file format: {}", path.display()))
 }
 
 /// Opens a file, decompressing it when its name ends in `.gz`.
