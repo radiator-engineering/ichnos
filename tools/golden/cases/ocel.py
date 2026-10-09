@@ -211,5 +211,141 @@ def _timestamps(fixtures):
     return {"timestamps": out}
 
 
+# The writers, keyed by the name the golden uses. ``json`` is pm4py's
+# ``write_ocel_json``, which picks the ``ocel20`` variant for a log with OCEL
+# 2.0 features and ``classic`` otherwise.
+_WRITERS = {
+    "json": ("pm4py.write_ocel_json", "jsonocel", pm4py.write_ocel_json),
+    "xml": ("pm4py.write_ocel_xml", "xmlocel", pm4py.write_ocel_xml),
+    "json2": ("pm4py.write_ocel2_json", "jsonocel", pm4py.write_ocel2_json),
+    "xml2": ("pm4py.write_ocel2_xml", "xmlocel", pm4py.write_ocel2_xml),
+}
+
+
+def write_all(ocel):
+    """Writes ``ocel`` with each writer and records the file text, or the
+    error when pm4py raises. ``input`` holds the tables the writers start
+    from, in the form ``summarize`` uses, and ``globals`` the log's globals."""
+    import copy
+    import tempfile
+
+    # pm4py's writers change the log they are given (the consistency step
+    # fills in qualifiers), so record the input first and give each writer
+    # its own copy.
+    tables = _tables(ocel)
+    out = {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for name, (_, extension, write) in _WRITERS.items():
+            path = Path(tmp) / f"{name}.{extension}"
+            try:
+                write(copy.deepcopy(ocel), str(path))
+                out[name] = {"text": path.read_bytes().decode("utf-8")}
+            except Exception as e:
+                out[name] = {"error": type(e).__name__}
+    return {"input": tables, "globals": ocel.globals, "writers": out}
+
+
+def _write_pinned(rel, path):
+    """Reads ``path`` like ``_read_pinned``, then writes it with each writer."""
+    golden_tools = str(Path(__file__).resolve().parent.parent)
+    env = dict(os.environ, PYTHONHASHSEED="0")
+    env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
+    out = subprocess.run([sys.executable, __file__, "--write", rel, str(path)], env=env,
+                         check=True, capture_output=True, text=True)
+    return json.loads(out.stdout)
+
+
+_WRITTEN = [rel for rel in _READERS if not rel.endswith(".csv")]
+
+for _rel in _WRITTEN:
+    def _run_write(fixtures, _rel=_rel):
+        return _write_pinned(_rel, fixtures["log"])
+
+    case("write-" + _rel.replace(".", "-").replace("_", "-"), fixture="ocel/" + _rel,
+         functions=[_READERS[_rel][0]] + [w[0] for w in _WRITERS.values()])(_run_write)
+
+
+@case("write-empty", functions=[w[0] for w in _WRITERS.values()])
+def _write_empty(fixtures):
+    return write_all(pm4py.OCEL())
+
+
+def _synthetic(ocel20):
+    """A small log built from data frames. Its attribute columns are in
+    name order, so a writer that orders attributes by name gives pm4py's
+    bytes. It covers escaping, Python float text, typed and mixed columns,
+    rows that the relation filter drops, and, with ``ocel20``, qualifiers,
+    object-to-object relations and object changes."""
+    def ts(text):
+        return pd.Timestamp(text, tz="UTC") if text else pd.NaT
+
+    events = pd.DataFrame({
+        "ocel:eid": ["e1", "e2", "e3", "e4", "e5"],
+        "ocel:activity": ["place order", "pick", "pick", "ship & <go>", "audit"],
+        "ocel:timestamp": [ts("2022-01-01T10:00:00.25"), ts("2022-01-01T11:00:00"),
+                           ts("2022-01-02T00:00:00"), ts("2022-01-03T00:00:00"),
+                           ts("2022-01-04T00:00:00")],
+        "a_float": [1e16, 1.5e-7, 0.0001, 123456789.125, 2.0],
+        "b_int": [3, -4, 5, 0, 1],
+        "c_text": ['\u00dcn\u00efc\u00f6d\u00e9 & <tag> "q" \'s\'\n\ttab\r', "\u65e5\u672c \U0001f600 \u2028",
+                   None, "", "unused"],
+        "d_date": [ts("2022-01-02T03:04:05.5"), ts(None), ts("2022-01-03T00:00:00"), ts(None),
+                   ts(None)],
+        "e_mixed": ["x", 2.5, 7, None, "y"],
+        "f_bool": [True, False, True, False, True],
+    })
+    objects = pd.DataFrame({
+        "ocel:oid": ["o1", "i<1>", "i2", "lonely"],
+        "ocel:type": ["order", "it\u20acm", "it\u20acm", "it\u20acm"],
+        "g_price": [12.0, float("nan"), 0.1, 1.0],
+        "h_since": [ts("2021-12-31T23:00:00"), ts(None), ts(None), ts(None)],
+        "i_label": ["big", 'a"b', None, "alone"],
+    })
+    pairs = [("e1", "o1", "placer"), ("e1", "i<1>", None), ("e1", "i2", "item"),
+             ("e2", "i<1>", "picked"), ("e3", "i2", "picked"), ("e4", "o1", ""),
+             ("e4", "ghost", "lost")]
+    ev = events.set_index("ocel:eid")
+    ob = dict(zip(objects["ocel:oid"], objects["ocel:type"]))
+    relations = pd.DataFrame({
+        "ocel:eid": [e for e, _, _ in pairs],
+        "ocel:activity": [ev.loc[e, "ocel:activity"] for e, _, _ in pairs],
+        "ocel:timestamp": [ev.loc[e, "ocel:timestamp"] for e, _, _ in pairs],
+        "ocel:oid": [o for _, o, _ in pairs],
+        "ocel:type": [ob.get(o, "it\u20acm") for _, o, _ in pairs],
+    })
+    if not ocel20:
+        globals_ = {"ocel:global-event": {"ocel:activity": "none"},
+                    "ocel:global-object": {"ocel:type": "none"}}
+        return pm4py.OCEL(events=events, objects=objects, relations=relations, globals=globals_)
+    relations["ocel:qualifier"] = [q for _, _, q in pairs]
+    o2o = pd.DataFrame({"ocel:oid": ["o1", "o1", "i2"], "ocel:oid_2": ["i<1>", "i2", "ghost"],
+                        "ocel:qualifier": ["contains", None, "x"]})
+    e2e = pd.DataFrame({"ocel:eid": ["e1"], "ocel:eid_2": ["e2"], "ocel:qualifier": ["next"]})
+    changes = pd.DataFrame({
+        "ocel:oid": ["o1", "i2", "i<1>", "lonely"],
+        "ocel:type": ["order", "it\u20acm", "it\u20acm", "it\u20acm"],
+        "ocel:timestamp": [ts("2022-01-02T00:00:00.5"), ts("2022-01-03T00:00:00"),
+                           ts("2022-01-03T00:00:00"), ts("2022-01-03T00:00:00")],
+        "ocel:field": ["g_price", "i_label", "g_price", "g_price"],
+        "g_price": [13.5, float("nan"), float("nan"), 2.0],
+        "i_label": [None, "relabelled", None, None],
+    })
+    return pm4py.OCEL(events=events, objects=objects, relations=relations, o2o=o2o, e2e=e2e,
+                      object_changes=changes)
+
+
+@case("write-synthetic", functions=["pm4py.OCEL"] + [w[0] for w in _WRITERS.values()])
+def _write_synthetic(fixtures):
+    return write_all(_synthetic(False))
+
+
+@case("write-synthetic20", functions=["pm4py.OCEL"] + [w[0] for w in _WRITERS.values()])
+def _write_synthetic20(fixtures):
+    return write_all(_synthetic(True))
+
+
 if __name__ == "__main__":
-    print(json.dumps(summarize(_READERS[sys.argv[1]][1](sys.argv[2]))))
+    if sys.argv[1] == "--write":
+        print(json.dumps(write_all(_READERS[sys.argv[2]][1](sys.argv[3]))))
+    else:
+        print(json.dumps(summarize(_READERS[sys.argv[1]][1](sys.argv[2]))))

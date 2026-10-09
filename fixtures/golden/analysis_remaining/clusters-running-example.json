@@ -1,0 +1,120 @@
+{
+  "expected": {
+    "centers": [
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "groups": [
+      [
+        "3",
+        "6",
+        "5"
+      ],
+      [
+        "2",
+        "1",
+        "4"
+      ]
+    ],
+    "names": [
+      "event:concept:name@check ticket",
+      "event:concept:name@decide",
+      "event:concept:name@examine casually",
+      "event:concept:name@examine thoroughly",
+      "event:concept:name@pay compensation",
+      "event:concept:name@register request",
+      "event:concept:name@reinitiate request",
+      "event:concept:name@reject request",
+      "succession:concept:name@check ticket#decide",
+      "succession:concept:name@check ticket#examine casually",
+      "succession:concept:name@check ticket#examine thoroughly",
+      "succession:concept:name@decide#pay compensation",
+      "succession:concept:name@decide#reinitiate request",
+      "succession:concept:name@decide#reject request",
+      "succession:concept:name@examine casually#check ticket",
+      "succession:concept:name@examine casually#decide",
+      "succession:concept:name@examine thoroughly#check ticket",
+      "succession:concept:name@examine thoroughly#decide",
+      "succession:concept:name@register request#check ticket",
+      "succession:concept:name@register request#examine casually",
+      "succession:concept:name@register request#examine thoroughly",
+      "succession:concept:name@reinitiate request#check ticket",
+      "succession:concept:name@reinitiate request#examine casually",
+      "succession:concept:name@reinitiate request#examine thoroughly"
+    ],
+    "profile_sha256": "1b53bb5377a2f85831697ae210e0301c1fbeb655c52f55492ba4daaac739321e",
+    "rows": 6,
+    "sklearn_version": "1.7.2"
+  },
+  "meta": {
+    "area": "analysis_remaining",
+    "case": "clusters-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.cluster_log"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

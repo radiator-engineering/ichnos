@@ -495,5 +495,10 @@ fn standard(doc: StandardDoc) -> Result<Ocel> {
             attributes,
         });
     }
+    // pm4py converts the layout to OCEL 1.0 with empty global maps.
+    for key in [GLOBAL_LOG, GLOBAL_EVENT, GLOBAL_OBJECT] {
+        ocel.globals
+            .insert(key, AttributeValue::Container(Attributes::default()));
+    }
     Ok(finish(ocel))
 }

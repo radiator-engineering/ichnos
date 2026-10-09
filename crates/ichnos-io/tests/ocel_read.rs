@@ -180,7 +180,10 @@ fn check(ocel: &Ocel, want: &Value, id: &str, relations_in_order: bool, xml: boo
 #[test]
 fn readers_match_pm4py() {
     let mut checked = 0;
-    for id in cases("ocel") {
+    for id in cases("ocel")
+        .into_iter()
+        .filter(|c| c.starts_with("model-"))
+    {
         let g = golden("ocel", &id);
         let functions: Vec<&str> = g.meta["functions"]
             .as_array()
