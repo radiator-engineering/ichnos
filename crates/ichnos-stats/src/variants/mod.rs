@@ -294,12 +294,12 @@ pub fn get_variants_paths_duration(
     aggregation: DurationAggregation,
 ) -> Result<Vec<VariantPathDuration>> {
     let mut result = Vec::new();
+    let has_start = log
+        .traces
+        .iter()
+        .flat_map(|t| &t.events)
+        .any(|e| e.get(&keys.start_timestamp).is_some());
     for (variant, indices) in get_variants_from_log_trace_idx(log, keys)? {
-        let has_start = log
-            .traces
-            .iter()
-            .flat_map(|t| &t.events)
-            .any(|e| e.get(&keys.start_timestamp).is_some());
         let mut samples: BTreeMap<usize, Vec<(f64, usize)>> = BTreeMap::new();
         for &i in &indices {
             let t = &log.traces[i];

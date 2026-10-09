@@ -50,10 +50,12 @@ fn oracle_variants() {
             );
         }
         let split = split_by_process_variant(&log, &keys).unwrap();
+        let mut split_rows = Vec::new();
         for (v, l) in split {
-            assert_eq!(l.len(), counts[&v]);
+            split_rows.push(json!({"variant": v, "count": l.len()}).to_string());
             assert_eq!(l.attributes, log.attributes);
         }
+        assert_multiset_eq(&split_rows, &rows(&e["split_counts"]));
         assert_eq!(json!(get_rework(&log, &keys).unwrap()), e["rework"]);
         let cases = get_rework_cases(&log, &keys)
             .unwrap()
@@ -163,5 +165,17 @@ fn empty_and_invalid_logs() {
     ));
     let log = EventLog::from_trace_strings(["A,B,A", "A,A", ""], ",", &keys);
     assert_eq!(get_rework(&log, &keys).unwrap()["A"], 2);
+    let mut missing_dates = log.clone();
+    for trace in &mut missing_dates.traces {
+        for event in &mut trace.events {
+            event.attributes.remove(&keys.timestamp);
+        }
+    }
+    let durations = get_variants_along_with_case_durations(&missing_dates, &keys).unwrap();
+    assert!(
+        durations
+            .values()
+            .all(|v| v.durations.iter().all(|d| *d == 0.0))
+    );
     assert!(get_chaotic_activities(&log, &keys, Some(-1.0)).is_err());
 }
