@@ -1265,3 +1265,195 @@ if __name__ == "__main__":
     # as JSON on stdin and prints the results as one JSON line.
     _request = json.load(sys.stdin)
     print(json.dumps(_decomposed_run(_request["model"], _request["variants"], int(sys.argv[2]))))
+
+
+# ---------------------------------------------------------------------------
+# DECLARE and log-skeleton conformance (lane ``declare-skeleton``).
+#
+# Cases ``declare-<log>`` and ``log-skeleton-<log>`` check a log against
+# models pm4py discovers. Each record of ``checks`` names how its model was
+# found (``options`` or ``noise``, and ``model_traces``: the number of leading
+# traces it was discovered on, or null for the whole log), so that some
+# traces deviate. Activities are indices into the sorted ``labels``, and
+# lists are space-separated strings, to keep the files small. Each record
+# holds:
+#
+# - ``model``: DECLARE: the rules, one string ``"<template> <a> [<b>]"``
+#   each, in pm4py's check order (``DECLARE_CHECK_ORDER``) and sorted within
+#   a template. Log skeleton: per relation, its pairs as ``"a>b"``, sorted,
+#   and ``activ_freq`` as ``"a:n,m"``.
+# - ``per_trace``: for each trace, in log order, an index into ``results``.
+# - ``results``: the distinct per-trace results of
+#   ``pm4py.conformance_declare`` / ``pm4py.conformance_log_skeleton``:
+#   ``deviations``, ``no_dev_total``, ``no_constr_total``, ``dev_fitness``
+#   and ``is_fit``.
+#
+# DECLARE deviations are indices into ``model``. pm4py lists the rules of
+# one template in the model's dict order; the model is passed with its rules
+# sorted, which is the order ichnos keeps. Log-skeleton deviations are
+# ``"activ_freq a:n"`` or ``"<relation> a>b c>d"``; pm4py lists the pairs of
+# a relation in set order, so they are sorted here. pm4py sorts the
+# deviations by constraint name, then activity and count. ``considered`` names the
+# constraints passed to the classic variant, when not all six.
+# ``*-synthetic`` cases use small hand-written traces.
+# ---------------------------------------------------------------------------
+
+from pm4py.algo.conformance.log_skeleton.variants import classic as skeleton_conformance_classic
+from pm4py.objects.log.obj import EventLog
+
+DECLARE_SKELETON_LOGS = {
+    "running-example": "running-example.xes",
+    "receipt": "receipt.xes",
+    "reviewing": "reviewing.xes",
+}
+DECLARE_SKELETON_TRACES = [
+    ["a", "b", "a", "b"], ["a", "a", "b"], ["b", "a", "b", "b"], ["a"], ["b"], [],
+    ["a", "c", "b"], ["c", "a", "b", "c"], ["a", "b", "c", "a", "b"],
+]
+DECLARE_CHECKS = [
+    {"options": {}, "model_traces": None},
+    {"options": {}, "model_traces": 10},
+]
+SKELETON_CHECKS = [
+    {"noise": 0.1, "model_traces": None},
+    {"noise": 0.0, "model_traces": 10},
+    {"noise": 0.2, "model_traces": None, "considered": ["always_after", "never_together", "activ_freq"]},
+]
+
+
+def _declare_skeleton_log(fixtures: dict[str, Path], traces: list[list[str]] | None) -> Any:
+    if traces is None:
+        return pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    return EventLog([Trace([Event({"concept:name": a}) for a in t]) for t in traces])
+
+
+def _leading(log: Any, n: int | None) -> Any:
+    return log if n is None else EventLog(list(log)[:n], attributes=log.attributes)
+
+
+def _distinct(results: list[dict[str, Any]]) -> dict[str, Any]:
+    index: dict[str, int] = {}
+    distinct: list[dict[str, Any]] = []
+    per_trace = []
+    for r in results:
+        key = json.dumps(r, sort_keys=True)
+        if key not in index:
+            index[key] = len(distinct)
+            distinct.append(r)
+        per_trace.append(index[key])
+    return {"per_trace": " ".join(map(str, per_trace)), "results": distinct}
+
+
+DECLARE_CHECK_ORDER = [
+    "existence", "exactly_one", "init", "responded_existence", "coexistence", "noncoexistence",
+    "response", "precedence", "succession", "altresponse", "chainresponse", "altprecedence",
+    "chainprecedence", "altsuccession", "chainsuccession", "absence", "nonsuccession",
+    "nonchainsuccession",
+]
+
+
+def _labels(log: Any) -> dict[str, int]:
+    return {a: i for i, a in enumerate(sorted({e["concept:name"] for t in log for e in t}))}
+
+
+def _args(args: Any) -> tuple[str, ...]:
+    return args if isinstance(args, tuple) else (args,)
+
+
+def declare_conformance(fixtures: dict[str, Path], traces: list[list[str]] | None = None,
+                        checks: list[dict[str, Any]] = DECLARE_CHECKS) -> dict[str, Any]:
+    log = _declare_skeleton_log(fixtures, traces)
+    labels = _labels(log)
+    out = []
+    for check in checks:
+        model = pm4py.discover_declare(_leading(log, check["model_traces"]), **check["options"])
+        assert set(model) <= set(DECLARE_CHECK_ORDER)
+        model = {t: {k: model[t][k] for k in sorted(model[t])} for t in DECLARE_CHECK_ORDER if t in model}
+        rules = [(t, _args(a)) for t, r in model.items() for a in r]
+        index = {rule: i for i, rule in enumerate(rules)}
+        results = [
+            {
+                "deviations": " ".join(str(index[(t, _args(a))]) for t, a in r["deviations"]),
+                "no_dev_total": r["no_dev_total"],
+                "no_constr_total": r["no_constr_total"],
+                "dev_fitness": r["dev_fitness"],
+                "is_fit": r["is_fit"],
+            }
+            for r in pm4py.conformance_declare(log, model)
+        ]
+        encoded = [" ".join([t, *(str(labels[a]) for a in args)]) for t, args in rules]
+        out.append({**check, "model": encoded, **_distinct(results)})
+    return {"labels": list(labels), "checks": out}
+
+
+def log_skeleton_conformance(fixtures: dict[str, Path], traces: list[list[str]] | None = None,
+                             checks: list[dict[str, Any]] = SKELETON_CHECKS) -> dict[str, Any]:
+    log = _declare_skeleton_log(fixtures, traces)
+    labels = _labels(log)
+
+    def pairs(value: Any) -> str:
+        return " ".join(f"{i}>{j}" for i, j in sorted((labels[a], labels[b]) for a, b in value))
+
+    def deviation(name: str, value: Any) -> str:
+        if name == "activ_freq":
+            return f"{name} {labels[value[0]]}:{value[1]}"
+        return f"{name} {pairs(value)}"
+
+    out = []
+    for check in checks:
+        model = pm4py.discover_log_skeleton(_leading(log, check["model_traces"]),
+                                            noise_threshold=check["noise"])
+        if "considered" in check:
+            raw = skeleton_conformance_classic.apply_log(
+                log, model, parameters={"considered_constraints": check["considered"]})
+        else:
+            raw = pm4py.conformance_log_skeleton(log, model)
+        results = [
+            {
+                "deviations": [deviation(n, v) for n, v in r["deviations"]],
+                "no_dev_total": r["no_dev_total"],
+                "no_constr_total": r["no_constr_total"],
+                "dev_fitness": r["dev_fitness"],
+                "is_fit": r["is_fit"],
+            }
+            for r in raw
+        ]
+        encoded = {name: pairs(value) for name, value in model.items() if name != "activ_freq"}
+        encoded["activ_freq"] = " ".join(
+            f"{labels[a]}:{','.join(str(n) for n in sorted(f))}"
+            for a, f in sorted(model["activ_freq"].items(), key=lambda x: labels[x[0]]))
+        out.append({**check, "model": encoded, **_distinct(results)})
+    return {"labels": list(labels), "checks": out}
+
+
+_DECLARE_FUNCTIONS = ["pm4py.conformance_declare", "pm4py.discover_declare"]
+_SKELETON_FUNCTIONS = [
+    "pm4py.conformance_log_skeleton", "pm4py.discover_log_skeleton",
+    "pm4py.algo.conformance.log_skeleton.variants.classic.apply_log",
+]
+for _log_id, _log in DECLARE_SKELETON_LOGS.items():
+    _checks = DECLARE_CHECKS
+    if _log_id == "running-example":
+        _checks = [*_checks, {"options": {"min_support_ratio": 0.2, "min_confidence_ratio": 0.8},
+                              "model_traces": None}]
+    case(f"declare-{_log_id}", fixture=_log, functions=_DECLARE_FUNCTIONS,
+         params={"checks": _checks})(declare_conformance)
+    case(f"log-skeleton-{_log_id}", fixture=_log, functions=_SKELETON_FUNCTIONS)(log_skeleton_conformance)
+
+case("declare-synthetic", functions=_DECLARE_FUNCTIONS, params={
+    "traces": DECLARE_SKELETON_TRACES,
+    "checks": [
+        {"options": {"min_support_ratio": 0.0, "min_confidence_ratio": 0.0}, "model_traces": None},
+        {"options": {"min_support_ratio": 0.0, "min_confidence_ratio": 0.0}, "model_traces": 3},
+        {"options": {}, "model_traces": 2},
+    ],
+})(declare_conformance)
+case("log-skeleton-synthetic", functions=_SKELETON_FUNCTIONS, params={
+    "traces": DECLARE_SKELETON_TRACES,
+    "checks": [
+        {"noise": 0.0, "model_traces": 3},
+        {"noise": 0.5, "model_traces": None},
+        {"noise": 0.0, "model_traces": 1},
+        {"noise": 0.0, "model_traces": 6, "considered": ["equivalence", "always_before", "directly_follows"]},
+    ],
+})(log_skeleton_conformance)

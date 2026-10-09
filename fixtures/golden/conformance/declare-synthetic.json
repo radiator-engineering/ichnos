@@ -1,0 +1,436 @@
+{
+  "expected": {
+    "checks": [
+      {
+        "model": [
+          "existence 0",
+          "existence 1",
+          "existence 2",
+          "exactly_one 0",
+          "exactly_one 1",
+          "exactly_one 2",
+          "init 0",
+          "init 1",
+          "init 2",
+          "responded_existence 0 1",
+          "responded_existence 0 2",
+          "responded_existence 1 0",
+          "responded_existence 1 2",
+          "responded_existence 2 0",
+          "responded_existence 2 1",
+          "coexistence 0 1",
+          "coexistence 0 2",
+          "coexistence 1 0",
+          "coexistence 1 2",
+          "coexistence 2 0",
+          "coexistence 2 1",
+          "noncoexistence 0 1",
+          "noncoexistence 0 2",
+          "noncoexistence 1 0",
+          "noncoexistence 1 2",
+          "noncoexistence 2 0",
+          "noncoexistence 2 1",
+          "response 0 1",
+          "response 0 2",
+          "response 1 0",
+          "response 1 2",
+          "response 2 0",
+          "response 2 1",
+          "precedence 0 1",
+          "precedence 0 2",
+          "precedence 1 0",
+          "precedence 1 2",
+          "precedence 2 0",
+          "precedence 2 1",
+          "succession 0 1",
+          "succession 0 2",
+          "succession 1 0",
+          "succession 1 2",
+          "succession 2 0",
+          "succession 2 1",
+          "altresponse 0 1",
+          "altresponse 0 2",
+          "altresponse 1 0",
+          "altresponse 1 2",
+          "altresponse 2 0",
+          "altresponse 2 1",
+          "chainresponse 0 1",
+          "chainresponse 0 2",
+          "chainresponse 1 0",
+          "chainresponse 1 2",
+          "chainresponse 2 0",
+          "chainresponse 2 1",
+          "altprecedence 0 1",
+          "altprecedence 0 2",
+          "altprecedence 1 0",
+          "altprecedence 1 2",
+          "altprecedence 2 0",
+          "altprecedence 2 1",
+          "chainprecedence 0 1",
+          "chainprecedence 0 2",
+          "chainprecedence 1 0",
+          "chainprecedence 1 2",
+          "chainprecedence 2 0",
+          "chainprecedence 2 1",
+          "altsuccession 0 1",
+          "altsuccession 0 2",
+          "altsuccession 1 0",
+          "altsuccession 1 2",
+          "altsuccession 2 0",
+          "altsuccession 2 1",
+          "chainsuccession 0 1",
+          "chainsuccession 0 2",
+          "chainsuccession 1 0",
+          "chainsuccession 1 2",
+          "chainsuccession 2 0",
+          "chainsuccession 2 1",
+          "absence 0",
+          "absence 1",
+          "absence 2",
+          "nonsuccession 0 1",
+          "nonsuccession 0 2",
+          "nonsuccession 1 0",
+          "nonsuccession 1 2",
+          "nonsuccession 2 0",
+          "nonsuccession 2 1",
+          "nonchainsuccession 0 1",
+          "nonchainsuccession 0 2",
+          "nonchainsuccession 1 0",
+          "nonchainsuccession 1 2",
+          "nonchainsuccession 2 0",
+          "nonchainsuccession 2 1"
+        ],
+        "model_traces": null,
+        "options": {
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        "per_trace": "0 1 2 3 4 5 6 7 8",
+        "results": [
+          {
+            "dev_fitness": 0.46875,
+            "deviations": "2 3 4 5 7 8 10 12 16 18 19 20 21 23 28 29 30 35 37 38 40 41 42 43 44 46 47 48 52 53 54 59 61 62 65 67 68 70 71 72 73 74 76 77 78 79 80 81 82 84 90",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 51
+          },
+          {
+            "dev_fitness": 0.44791666666666663,
+            "deviations": "2 3 5 7 8 10 12 16 18 19 20 21 23 28 29 30 35 37 38 40 41 42 43 44 45 46 47 48 51 52 53 54 59 61 62 65 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 84",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 53
+          },
+          {
+            "dev_fitness": 0.46875,
+            "deviations": "2 4 5 6 8 10 12 16 18 19 20 21 23 28 29 30 33 37 38 39 40 41 42 43 44 46 47 48 52 53 54 57 61 62 63 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 51
+          },
+          {
+            "dev_fitness": 0.6145833333333333,
+            "deviations": "1 2 4 5 7 8 9 10 15 16 17 19 27 28 35 37 39 40 41 43 45 46 51 52 59 61 65 67 69 70 71 73 75 76 77 79 81",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 37
+          },
+          {
+            "dev_fitness": 0.6145833333333333,
+            "deviations": "0 2 3 5 6 8 11 12 15 17 18 20 29 30 33 38 39 41 42 44 47 48 53 54 57 62 63 68 69 71 72 74 75 77 78 80 82",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 37
+          },
+          {
+            "dev_fitness": 0.90625,
+            "deviations": "0 1 2 3 4 5 6 7 8",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 9
+          },
+          {
+            "dev_fitness": 0.5208333333333333,
+            "deviations": "7 8 21 22 23 24 25 26 29 30 31 35 36 37 41 42 43 47 48 49 51 53 54 55 59 60 61 63 65 66 67 71 72 73 75 77 78 79 81 82 83 84 85 89 91 95",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 46
+          },
+          {
+            "dev_fitness": 0.48958333333333337,
+            "deviations": "5 6 7 21 22 23 24 25 26 29 31 32 34 35 36 40 41 42 43 44 47 49 50 52 53 55 56 58 59 60 64 65 66 68 70 71 72 73 74 76 77 78 79 80 81 82 83 84 90",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 49
+          },
+          {
+            "dev_fitness": 0.47916666666666663,
+            "deviations": "3 4 7 8 21 22 23 24 25 26 28 29 30 35 37 38 40 41 42 43 44 46 47 48 52 53 54 56 59 61 62 64 65 67 68 70 71 72 73 74 76 77 78 79 80 81 82 83 84 90",
+            "is_fit": false,
+            "no_constr_total": 96,
+            "no_dev_total": 50
+          }
+        ]
+      },
+      {
+        "model": [
+          "existence 0",
+          "existence 1",
+          "exactly_one 0",
+          "exactly_one 1",
+          "init 0",
+          "init 1",
+          "responded_existence 0 1",
+          "responded_existence 1 0",
+          "coexistence 0 1",
+          "coexistence 1 0",
+          "noncoexistence 0 1",
+          "noncoexistence 1 0",
+          "response 0 1",
+          "response 1 0",
+          "precedence 0 1",
+          "precedence 1 0",
+          "succession 0 1",
+          "succession 1 0",
+          "altresponse 0 1",
+          "altresponse 1 0",
+          "chainresponse 0 1",
+          "chainresponse 1 0",
+          "altprecedence 0 1",
+          "altprecedence 1 0",
+          "chainprecedence 0 1",
+          "chainprecedence 1 0",
+          "altsuccession 0 1",
+          "altsuccession 1 0",
+          "chainsuccession 0 1",
+          "chainsuccession 1 0",
+          "absence 0",
+          "absence 1",
+          "nonsuccession 0 1",
+          "nonsuccession 1 0",
+          "nonchainsuccession 0 1",
+          "nonchainsuccession 1 0"
+        ],
+        "model_traces": 3,
+        "options": {
+          "min_confidence_ratio": 0.0,
+          "min_support_ratio": 0.0
+        },
+        "per_trace": "0 1 2 3 4 5 6 7 0",
+        "results": [
+          {
+            "dev_fitness": 0.5,
+            "deviations": "2 3 5 10 11 13 15 17 19 21 23 25 27 29 30 31 32 34",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 18
+          },
+          {
+            "dev_fitness": 0.4444444444444444,
+            "deviations": "2 5 10 11 13 15 17 18 19 20 21 23 25 26 27 28 29 30 31 32",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 20
+          },
+          {
+            "dev_fitness": 0.5,
+            "deviations": "3 4 10 11 13 14 16 17 19 21 22 24 26 27 28 29 30 31",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 18
+          },
+          {
+            "dev_fitness": 0.4722222222222222,
+            "deviations": "1 3 5 6 8 9 12 15 16 17 18 20 23 25 26 27 28 29 30",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 19
+          },
+          {
+            "dev_fitness": 0.4722222222222222,
+            "deviations": "0 2 4 7 8 9 13 14 16 17 19 21 22 24 26 27 28 29 31",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 19
+          },
+          {
+            "dev_fitness": 0.8333333333333334,
+            "deviations": "0 1 2 3 4 5",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 6
+          },
+          {
+            "dev_fitness": 0.5,
+            "deviations": "5 10 11 13 15 17 19 20 21 23 24 25 27 28 29 30 31 32",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 18
+          },
+          {
+            "dev_fitness": 0.5277777777777778,
+            "deviations": "4 5 10 11 13 15 17 19 21 23 25 27 29 30 31 32 34",
+            "is_fit": false,
+            "no_constr_total": 36,
+            "no_dev_total": 17
+          }
+        ]
+      },
+      {
+        "model": [
+          "existence 0",
+          "existence 1",
+          "init 0",
+          "responded_existence 0 1",
+          "responded_existence 1 0",
+          "coexistence 0 1",
+          "coexistence 1 0",
+          "response 0 1",
+          "precedence 0 1",
+          "succession 0 1",
+          "altprecedence 0 1",
+          "chainprecedence 0 1",
+          "nonsuccession 1 0",
+          "nonchainsuccession 1 0"
+        ],
+        "model_traces": 2,
+        "options": {},
+        "per_trace": "0 0 1 2 3 4 5 6 0",
+        "results": [
+          {
+            "dev_fitness": 1.0,
+            "deviations": "",
+            "is_fit": true,
+            "no_constr_total": 14,
+            "no_dev_total": 0
+          },
+          {
+            "dev_fitness": 0.6428571428571428,
+            "deviations": "2 8 9 10 11",
+            "is_fit": false,
+            "no_constr_total": 14,
+            "no_dev_total": 5
+          },
+          {
+            "dev_fitness": 0.5714285714285714,
+            "deviations": "1 3 5 6 7 9",
+            "is_fit": false,
+            "no_constr_total": 14,
+            "no_dev_total": 6
+          },
+          {
+            "dev_fitness": 0.3571428571428571,
+            "deviations": "0 2 4 5 6 8 9 10 11",
+            "is_fit": false,
+            "no_constr_total": 14,
+            "no_dev_total": 9
+          },
+          {
+            "dev_fitness": 0.7857142857142857,
+            "deviations": "0 1 2",
+            "is_fit": false,
+            "no_constr_total": 14,
+            "no_dev_total": 3
+          },
+          {
+            "dev_fitness": 0.9285714285714286,
+            "deviations": "11",
+            "is_fit": false,
+            "no_constr_total": 14,
+            "no_dev_total": 1
+          },
+          {
+            "dev_fitness": 0.9285714285714286,
+            "deviations": "2",
+            "is_fit": false,
+            "no_constr_total": 14,
+            "no_dev_total": 1
+          }
+        ]
+      }
+    ],
+    "labels": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "declare-synthetic",
+    "fixtures": {},
+    "functions": [
+      "pm4py.conformance_declare",
+      "pm4py.discover_declare"
+    ],
+    "loaders": {},
+    "params": {
+      "checks": [
+        {
+          "model_traces": null,
+          "options": {
+            "min_confidence_ratio": 0.0,
+            "min_support_ratio": 0.0
+          }
+        },
+        {
+          "model_traces": 3,
+          "options": {
+            "min_confidence_ratio": 0.0,
+            "min_support_ratio": 0.0
+          }
+        },
+        {
+          "model_traces": 2,
+          "options": {}
+        }
+      ],
+      "traces": [
+        [
+          "a",
+          "b",
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "a",
+          "b",
+          "b"
+        ],
+        [
+          "a"
+        ],
+        [
+          "b"
+        ],
+        [],
+        [
+          "a",
+          "c",
+          "b"
+        ],
+        [
+          "c",
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          "a",
+          "b",
+          "c",
+          "a",
+          "b"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
