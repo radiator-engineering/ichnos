@@ -1,0 +1,973 @@
+{
+  "expected": {
+    "checks": {
+      "net": {
+        "fitness": {
+          "log_fitness": 0.8809523809523809,
+          "perc_fit_traces": 66.66666666666666
+        },
+        "fitness_log": 0.8830409356725146,
+        "fitting": [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        "footprints": {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request",
+            "reject request"
+          ],
+          "parallel": [
+            [
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "decide",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              "decide"
+            ],
+            [
+              "examine thoroughly",
+              "reinitiate request"
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly"
+            ]
+          ],
+          "sequence": [
+            [
+              "check ticket",
+              "decide"
+            ],
+            [
+              "decide",
+              "pay compensation"
+            ],
+            [
+              "decide",
+              "reinitiate request"
+            ],
+            [
+              "decide",
+              "reject request"
+            ],
+            [
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "pay compensation"
+            ],
+            [
+              "examine thoroughly",
+              "reject request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "reinitiate request",
+              "check ticket"
+            ]
+          ],
+          "start_activities": [
+            "register request"
+          ]
+        },
+        "log": {
+          "end_activities": [],
+          "footprints": [
+            [
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "examine casually",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "examine casually"
+            ]
+          ],
+          "is_footprints_fit": false,
+          "min_length_fit": true,
+          "start_activities": []
+        },
+        "precision": 0.7222222222222222,
+        "precision_log": 0.7222222222222222,
+        "variants": [
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ],
+              [
+                "reinitiate request",
+                "examine casually"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          }
+        ],
+        "violations": {
+          "loose": [
+            [
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "examine casually",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "examine casually"
+            ]
+          ],
+          "strict": [
+            [
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "decide"
+            ],
+            [
+              "examine thoroughly",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "examine casually"
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly"
+            ]
+          ]
+        }
+      },
+      "tree": {
+        "fitness": {
+          "log_fitness": 0.8809523809523809,
+          "perc_fit_traces": 50.0
+        },
+        "fitness_log": 0.8830409356725146,
+        "fitting": [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        "footprints": {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request",
+            "reject request"
+          ],
+          "activities_always_happening": [
+            "check ticket",
+            "decide",
+            "examine thoroughly",
+            "register request"
+          ],
+          "end_activities": [
+            "pay compensation",
+            "reject request"
+          ],
+          "min_trace_length": 5,
+          "parallel": [
+            [
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "decide",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              "decide"
+            ],
+            [
+              "examine thoroughly",
+              "reinitiate request"
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly"
+            ]
+          ],
+          "sequence": [
+            [
+              "check ticket",
+              "decide"
+            ],
+            [
+              "decide",
+              "pay compensation"
+            ],
+            [
+              "decide",
+              "reinitiate request"
+            ],
+            [
+              "decide",
+              "reject request"
+            ],
+            [
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "pay compensation"
+            ],
+            [
+              "examine thoroughly",
+              "reject request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "reinitiate request",
+              "check ticket"
+            ]
+          ],
+          "start_activities": [
+            "register request"
+          ]
+        },
+        "log": {
+          "end_activities": [],
+          "footprints": [
+            [
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "examine casually",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "examine casually"
+            ]
+          ],
+          "is_footprints_fit": false,
+          "min_length_fit": true,
+          "start_activities": []
+        },
+        "precision": 0.7222222222222222,
+        "precision_log": 0.7222222222222222,
+        "variants": [
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [
+              "examine thoroughly"
+            ],
+            "end_activities": [],
+            "footprints": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [
+              "examine thoroughly"
+            ],
+            "end_activities": [],
+            "footprints": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ],
+              [
+                "reinitiate request",
+                "examine casually"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [
+              "examine thoroughly"
+            ],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          }
+        ],
+        "violations": {
+          "loose": [
+            [
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "examine casually",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "examine casually"
+            ]
+          ],
+          "strict": [
+            [
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "decide"
+            ],
+            [
+              "examine thoroughly",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "examine casually"
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly"
+            ]
+          ]
+        }
+      }
+    },
+    "log_footprints": {
+      "activities": [
+        "check ticket",
+        "decide",
+        "examine casually",
+        "examine thoroughly",
+        "pay compensation",
+        "register request",
+        "reinitiate request",
+        "reject request"
+      ],
+      "dfg": [
+        [
+          "check ticket",
+          "decide",
+          6
+        ],
+        [
+          "check ticket",
+          "examine casually",
+          2
+        ],
+        [
+          "check ticket",
+          "examine thoroughly",
+          1
+        ],
+        [
+          "decide",
+          "pay compensation",
+          3
+        ],
+        [
+          "decide",
+          "reinitiate request",
+          3
+        ],
+        [
+          "decide",
+          "reject request",
+          3
+        ],
+        [
+          "examine casually",
+          "check ticket",
+          4
+        ],
+        [
+          "examine casually",
+          "decide",
+          2
+        ],
+        [
+          "examine thoroughly",
+          "check ticket",
+          2
+        ],
+        [
+          "examine thoroughly",
+          "decide",
+          1
+        ],
+        [
+          "register request",
+          "check ticket",
+          2
+        ],
+        [
+          "register request",
+          "examine casually",
+          3
+        ],
+        [
+          "register request",
+          "examine thoroughly",
+          1
+        ],
+        [
+          "reinitiate request",
+          "check ticket",
+          1
+        ],
+        [
+          "reinitiate request",
+          "examine casually",
+          1
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly",
+          1
+        ]
+      ],
+      "end_activities": [
+        "pay compensation",
+        "reject request"
+      ],
+      "min_trace_length": 5,
+      "parallel": [
+        [
+          "check ticket",
+          "examine casually"
+        ],
+        [
+          "check ticket",
+          "examine thoroughly"
+        ],
+        [
+          "examine casually",
+          "check ticket"
+        ],
+        [
+          "examine thoroughly",
+          "check ticket"
+        ]
+      ],
+      "sequence": [
+        [
+          "check ticket",
+          "decide"
+        ],
+        [
+          "decide",
+          "pay compensation"
+        ],
+        [
+          "decide",
+          "reinitiate request"
+        ],
+        [
+          "decide",
+          "reject request"
+        ],
+        [
+          "examine casually",
+          "decide"
+        ],
+        [
+          "examine thoroughly",
+          "decide"
+        ],
+        [
+          "register request",
+          "check ticket"
+        ],
+        [
+          "register request",
+          "examine casually"
+        ],
+        [
+          "register request",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "check ticket"
+        ],
+        [
+          "reinitiate request",
+          "examine casually"
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly"
+        ]
+      ],
+      "start_activities": [
+        "register request"
+      ]
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t10",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p9",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p9",
+          "target": "t7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t10",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t6",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t7",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t8",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t9",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p2": 1
+      },
+      "initial_marking": {
+        "p1": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8",
+        "p9"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "name": "t0"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "t1"
+        },
+        {
+          "label": "examine casually",
+          "name": "t10"
+        },
+        {
+          "label": null,
+          "name": "t2"
+        },
+        {
+          "label": "check ticket",
+          "name": "t3"
+        },
+        {
+          "label": "decide",
+          "name": "t4"
+        },
+        {
+          "label": "pay compensation",
+          "name": "t5"
+        },
+        {
+          "label": null,
+          "name": "t6"
+        },
+        {
+          "label": "reject request",
+          "name": "t7"
+        },
+        {
+          "label": "register request",
+          "name": "t8"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "t9"
+        }
+      ]
+    },
+    "tree": "->( 'register request', X( tau, 'examine casually' ), +( 'examine thoroughly', *( ->( 'check ticket', 'decide' ), 'reinitiate request' ) ), X( 'reject request', 'pay compensation' ) )",
+    "variants": [
+      [
+        "register request",
+        "examine thoroughly",
+        "check ticket",
+        "decide",
+        "reject request"
+      ],
+      [
+        "register request",
+        "check ticket",
+        "examine casually",
+        "decide",
+        "pay compensation"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reinitiate request",
+        "examine thoroughly",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ],
+      [
+        "register request",
+        "check ticket",
+        "examine thoroughly",
+        "decide",
+        "reject request"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reinitiate request",
+        "check ticket",
+        "examine casually",
+        "decide",
+        "reinitiate request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reject request"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "footprints-running-example-im-top",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_process_tree_inductive",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_event_log",
+      "pm4py.discover_footprints",
+      "pm4py.conformance_diagnostics_footprints",
+      "pm4py.fitness_footprints",
+      "pm4py.precision_footprints",
+      "pm4py.check_is_fitting"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
