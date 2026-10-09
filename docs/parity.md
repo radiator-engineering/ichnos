@@ -15,9 +15,9 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.read_xes` | `read.py` → `objects/conversion/log/converter`, `objects/log/importer/xes/importer`, `objects/log/obj` | `ichnos_io::read_xes` | `ichnos-io` | ported | Streaming quick-xml; plain/gzip. All readable XES fixtures have io goldens and Rust round trips. See the ichnos-io Behaviour changes list for return types, null handling, validation and XML version differences. |
-| `pm4py.read_pnml` | `read.py` → `objects/petri_net/importer/importer`, `objects/petri_net/obj` | `ichnos::io::read_pnml` (planned) | `ichnos-io` | todo | Variants: pnml. |
-| `pm4py.read_ptml` | `read.py` → `objects/process_tree/importer/importer`, `objects/process_tree/obj` | `ichnos::io::read_ptml` (planned) | `ichnos-io` | todo | Variants: ptml. |
-| `pm4py.read_dfg` | `read.py` → `objects/dfg/importer/importer` | `ichnos::io::read_dfg` (planned) | `ichnos-io` | todo | Variants: classic. |
+| `pm4py.read_pnml` | `read.py` → `objects/petri_net/importer/importer`, `objects/petri_net/obj` | `ichnos_io::read_pnml` | `ichnos-io` | ported | PnmlDocument holds an AcceptingPetriNet plus alternate finals and stochastic/data metadata. 22 fixture goldens and round trips; SampleNet is round-trip-only because it is unbounded. See ichnos-io Behaviour changes. |
+| `pm4py.read_ptml` | `read.py` → `objects/process_tree/importer/importer`, `objects/process_tree/obj` | `ichnos_io::read_ptml` | `ichnos-io` | ported | Builds ProcessTree; seven fixture goldens and round trips. Referenced/shared subtrees, two/three-child loops and edge declaration order are supported. See ichnos-io Behaviour changes. |
+| `pm4py.read_dfg` | `read.py` → `objects/dfg/importer/importer` | `ichnos_io::read_dfg` | `ichnos-io` | ported | Builds Dfg from the line format, including boundary/edge counts. Fixture counts, frequencies, footprints and round trip are golden-tested. Last duplicate frequency wins. |
 | `pm4py.read_bpmn` | `read.py` → `objects/bpmn/importer/importer`, `objects/bpmn/obj` | `ichnos::io::read_bpmn` (planned) | `ichnos-io` | todo | Variants: lxml. |
 | `pm4py.read_ocel` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/importer/jsonocel/importer`, `objects/ocel/importer/sqlite/importer`, `objects/ocel/importer/xmlocel/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_rustxes, ocel20_standard, pandas, pandas_importer. |
 | `pm4py.read_ocel_csv` | `read.py` → `objects/ocel/importer/csv/importer`, `objects/ocel/obj` | `ichnos::io::read_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
@@ -36,9 +36,9 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.write_xes` | `write.py` → `objects/log/exporter/xes/exporter`, `objects/log/obj` | `ichnos_io::write_xes` | `ichnos-io` | ported | Streaming quick-xml; plain/gzip. All readable XES fixtures have io goldens and Rust round trips. See the ichnos-io Behaviour changes list for return types, null handling, validation and XML version differences. |
-| `pm4py.write_pnml` | `write.py` → `objects/petri_net/exporter/exporter`, `objects/petri_net/obj` | `ichnos::io::write_pnml` (planned) | `ichnos-io` | todo | Variants: pnml. |
-| `pm4py.write_ptml` | `write.py` → `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos::io::write_ptml` (planned) | `ichnos-io` | todo | Variants: ptml. |
-| `pm4py.write_dfg` | `write.py` → `objects/dfg/exporter/exporter` | `ichnos::io::write_dfg` (planned) | `ichnos-io` | todo | Variants: classic. |
+| `pm4py.write_pnml` | `write.py` → `objects/petri_net/exporter/exporter`, `objects/petri_net/obj` | `ichnos_io::write_pnml` | `ichnos-io` | ported | Weighted normal/inhibitor/reset arcs, final markings and stochastic/data declarations round-trip. Uses deterministic XML ids/layout; graphics and arbitrary tool metadata are not exported. See ichnos-io Behaviour changes. |
+| `pm4py.write_ptml` | `write.py` → `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos_io::write_ptml` | `ichnos-io` | ported | Deterministic node ids; emits a silent third loop child for ProM by default. Seven fixture round trips. Interleaving and loops with more than two model children return errors. |
+| `pm4py.write_dfg` | `write.py` → `objects/dfg/exporter/exporter` | `ichnos_io::write_dfg` | `ichnos-io` | ported | Deterministic lexical activity indexes, explicit start/end frequencies; optional inferred boundaries. Empty graphs and boundary-only activities round-trip. Unrepresentable whitespace/newline labels error. |
 | `pm4py.write_bpmn` | `write.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/layout/layouter`, `objects/bpmn/obj` | `ichnos::io::write_bpmn` (planned) | `ichnos-io` | todo | Variants: etree, graphviz, graphviz_new. |
 | `pm4py.write_ocel` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. |
 | `pm4py.write_ocel_csv` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
@@ -1282,10 +1282,18 @@ Lanes record each deliberate change from pm4py here.
 
 ### ichnos-io
 
+- PNML preserves alternative final markings; pm4py merges them into one marking on import. `PnmlWriteOptions::include_alternative_final_markings = false` exports only the primary marking for pm4py consumers. Writer goldens read exact ichnos-generated PNML/PTML/DFG bytes with pm4py, including a PNML with two final markings.
+
 - `read_xes` returns an `EventLog`; pm4py returns a DataFrame by default. The oracle uses `return_legacy_log_object=True`.
 - Unknown vendor elements (including their subtrees), text and CDATA are ignored. Attributes without a key or scalar value are omitted because the core model has no null key/value; pm4py can retain `None`.
 - Invalid numeric/date values return errors rather than being silently dropped. Dates retain their input offset; naive dates use UTC. DOCTYPE is rejected and nesting depth is bounded.
 - `write_xes` emits `xes.version="2.0"`; pm4py emits `xes.version="1849-2016"` and `openxes.version`. XML layout and declaration ordering differ, while typed values round-trip.
+
+- Model XML import builds bounded DOM trees with configurable depth/node limits; declarations use UTF-8, DOCTYPE is rejected, and malformed references, counts or structure return typed errors.
+- PNML returns `PnmlDocument` with an `AcceptingPetriNet` and typed supplemental metadata. Final-marking inference is opt-in, matching `pm4py.read_pnml`; alternative final markings remain alternatives rather than being merged into one marking. Graphics and unrelated tool declarations are omitted. Distribution parameter text is retained without a sampling engine.
+- PTML preserves edge declaration order and clones shared referenced subtrees. It keeps a non-silent three-child loop exit in its original sequence position (pm4py can move it to the end of the parent, or omit a root exit). Identical repeated node declarations are accepted; cycles, conflicting declarations and unreachable nodes error. Export rejects interleaving and loops with more than two model children.
+- DFG output retains explicit empty boundary maps by default; inference is opt-in. Duplicate activity declarations, negative counts, invalid indexes and labels that cannot round-trip in the line format error. Unreferenced declarations have no representation in the core DFG.
+- Model-I/O goldens compare counts and behavioural footprints, not generated ids. SampleNet is excluded from generation and its footprints are unavailable; import/round-trip still runs. The seven inhibitor/reset fixtures have unbounded counters and record null footprints with status `unbounded`. Petri footprint exploration otherwise caps at 10,000 markings; a42 records null with status `state_space_limit`. Finite ordinary nets use pm4py's ClassicSemantics; imported special arc kinds are checked separately and retain the core's inhibitor/reset firing rules.
 
 ### ichnos-core
 

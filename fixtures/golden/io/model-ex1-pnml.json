@@ -1,0 +1,196 @@
+{
+  "expected": {
+    "arc_structure": [
+      [
+        "A",
+        "p1",
+        1,
+        "normal"
+      ],
+      [
+        "A",
+        "p2",
+        1,
+        "normal"
+      ],
+      [
+        "B",
+        "p3",
+        1,
+        "normal"
+      ],
+      [
+        "B",
+        "p4",
+        1,
+        "normal"
+      ],
+      [
+        "C",
+        "p6",
+        1,
+        "normal"
+      ],
+      [
+        "D",
+        "p5",
+        1,
+        "normal"
+      ],
+      [
+        "E",
+        "sink",
+        1,
+        "normal"
+      ],
+      [
+        "p1",
+        "B",
+        1,
+        "normal"
+      ],
+      [
+        "p2",
+        "C",
+        1,
+        "normal"
+      ],
+      [
+        "p3",
+        "E",
+        1,
+        "normal"
+      ],
+      [
+        "p4",
+        "D",
+        1,
+        "normal"
+      ],
+      [
+        "p5",
+        "E",
+        1,
+        "normal"
+      ],
+      [
+        "p6",
+        "D",
+        1,
+        "normal"
+      ],
+      [
+        "source",
+        "A",
+        1,
+        "normal"
+      ]
+    ],
+    "arcs": 14,
+    "final_marking": {
+      "sink": 1
+    },
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "parallel": [
+        [
+          "B",
+          "C"
+        ],
+        [
+          "C",
+          "B"
+        ]
+      ],
+      "sequence": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "D"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "D",
+          "E"
+        ]
+      ],
+      "start_activities": [
+        "A"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_marking": {
+      "source": 1
+    },
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 8,
+    "reset_arcs": 0,
+    "silent_transitions": 0,
+    "stochastic": [],
+    "transition_labels": [
+      [
+        "A",
+        "A"
+      ],
+      [
+        "B",
+        "B"
+      ],
+      [
+        "C",
+        "C"
+      ],
+      [
+        "D",
+        "D"
+      ],
+      [
+        "E",
+        "E"
+      ]
+    ],
+    "transitions": 5
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-ex1-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/ex1.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

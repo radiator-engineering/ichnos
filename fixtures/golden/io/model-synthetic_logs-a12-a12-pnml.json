@@ -1,0 +1,379 @@
+{
+  "expected": {
+    "arc_structure": [
+      [
+        "n1",
+        "n15",
+        1,
+        "normal"
+      ],
+      [
+        "n10",
+        "n21",
+        1,
+        "normal"
+      ],
+      [
+        "n11",
+        "n18",
+        1,
+        "normal"
+      ],
+      [
+        "n12",
+        "n24",
+        1,
+        "normal"
+      ],
+      [
+        "n12",
+        "n25",
+        1,
+        "normal"
+      ],
+      [
+        "n13",
+        "n27",
+        1,
+        "normal"
+      ],
+      [
+        "n14",
+        "n26",
+        1,
+        "normal"
+      ],
+      [
+        "n15",
+        "n3",
+        1,
+        "normal"
+      ],
+      [
+        "n16",
+        "n5",
+        1,
+        "normal"
+      ],
+      [
+        "n17",
+        "n10",
+        1,
+        "normal"
+      ],
+      [
+        "n17",
+        "n7",
+        1,
+        "normal"
+      ],
+      [
+        "n18",
+        "n6",
+        1,
+        "normal"
+      ],
+      [
+        "n19",
+        "n9",
+        1,
+        "normal"
+      ],
+      [
+        "n20",
+        "n8",
+        1,
+        "normal"
+      ],
+      [
+        "n21",
+        "n11",
+        1,
+        "normal"
+      ],
+      [
+        "n22",
+        "n4",
+        1,
+        "normal"
+      ],
+      [
+        "n23",
+        "n12",
+        1,
+        "normal"
+      ],
+      [
+        "n24",
+        "n13",
+        1,
+        "normal"
+      ],
+      [
+        "n25",
+        "n14",
+        1,
+        "normal"
+      ],
+      [
+        "n26",
+        "n13",
+        1,
+        "normal"
+      ],
+      [
+        "n27",
+        "n4",
+        1,
+        "normal"
+      ],
+      [
+        "n28",
+        "n2",
+        1,
+        "normal"
+      ],
+      [
+        "n3",
+        "n16",
+        1,
+        "normal"
+      ],
+      [
+        "n3",
+        "n23",
+        1,
+        "normal"
+      ],
+      [
+        "n4",
+        "n28",
+        1,
+        "normal"
+      ],
+      [
+        "n5",
+        "n17",
+        1,
+        "normal"
+      ],
+      [
+        "n6",
+        "n22",
+        1,
+        "normal"
+      ],
+      [
+        "n7",
+        "n19",
+        1,
+        "normal"
+      ],
+      [
+        "n8",
+        "n18",
+        1,
+        "normal"
+      ],
+      [
+        "n9",
+        "n20",
+        1,
+        "normal"
+      ]
+    ],
+    "arcs": 30,
+    "final_marking": {
+      "n2": 1
+    },
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "E",
+        "S",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k"
+      ],
+      "parallel": [
+        [
+          "g",
+          "h"
+        ],
+        [
+          "h",
+          "g"
+        ],
+        [
+          "h",
+          "i"
+        ],
+        [
+          "i",
+          "h"
+        ]
+      ],
+      "sequence": [
+        [
+          "S",
+          "b"
+        ],
+        [
+          "S",
+          "f"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "d",
+          "j"
+        ],
+        [
+          "e",
+          "j"
+        ],
+        [
+          "f",
+          "g"
+        ],
+        [
+          "f",
+          "h"
+        ],
+        [
+          "g",
+          "i"
+        ],
+        [
+          "h",
+          "k"
+        ],
+        [
+          "i",
+          "k"
+        ],
+        [
+          "j",
+          "E"
+        ],
+        [
+          "k",
+          "E"
+        ]
+      ],
+      "start_activities": [
+        "S"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_marking": {
+      "n1": 1
+    },
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 14,
+    "reset_arcs": 0,
+    "silent_transitions": 2,
+    "stochastic": [],
+    "transition_labels": [
+      [
+        "n15",
+        "S"
+      ],
+      [
+        "n16",
+        "f"
+      ],
+      [
+        "n17",
+        null
+      ],
+      [
+        "n18",
+        null
+      ],
+      [
+        "n19",
+        "g"
+      ],
+      [
+        "n20",
+        "i"
+      ],
+      [
+        "n21",
+        "h"
+      ],
+      [
+        "n22",
+        "k"
+      ],
+      [
+        "n23",
+        "b"
+      ],
+      [
+        "n24",
+        "d"
+      ],
+      [
+        "n25",
+        "c"
+      ],
+      [
+        "n26",
+        "e"
+      ],
+      [
+        "n27",
+        "j"
+      ],
+      [
+        "n28",
+        "E"
+      ]
+    ],
+    "transitions": 14
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-synthetic_logs-a12-a12-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/synthetic_logs/a12/a12.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

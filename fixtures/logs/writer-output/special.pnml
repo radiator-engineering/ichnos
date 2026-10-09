@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml>
+  <net id="net&amp;name" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>net&amp;name</text>
+    </name>
+    <page id="page0">
+      <place id="p">
+        <name>
+          <text>in&amp;put</text>
+        </name>
+        <initialMarking>
+          <text>2</text>
+        </initialMarking>
+      </place>
+      <place id="q">
+      </place>
+      <place id="r">
+      </place>
+      <transition id="t" guard="x &gt; 0">
+        <name>
+          <text>work &amp; more</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$"/>
+        <toolspecific tool="StochasticPetriNet" version="0.2">
+          <property key="distributionType">EXPONENTIAL</property>
+          <property key="distributionParameters">3.5</property>
+          <property key="priority">2</property>
+          <property key="weight">0.25</property>
+          <property key="invisible">true</property>
+          <property key="vendor">x&amp;y</property>
+        </toolspecific>
+        <readVariable>x</readVariable>
+        <writeVariable>y</writeVariable>
+      </transition>
+      <arc id="arc_0" source="p" target="t">
+        <inscription>
+          <text>2</text>
+        </inscription>
+        <arctype>
+          <text>inhibitor</text>
+        </arctype>
+      </arc>
+      <arc id="arc_1" source="q" target="t">
+        <arctype>
+          <text>reset</text>
+        </arctype>
+      </arc>
+      <arc id="arc_2" source="t" target="r">
+      </arc>
+    </page>
+    <finalmarkings>
+      <marking>
+        <place idref="r">
+          <text>3</text>
+        </place>
+      </marking>
+      <marking>
+        <place idref="p">
+          <text>1</text>
+        </place>
+      </marking>
+    </finalmarkings>
+    <variables>
+      <variable type="java.lang.Double">
+        <name>x</name>
+      </variable>
+    </variables>
+  </net>
+</pnml>

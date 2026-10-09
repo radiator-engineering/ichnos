@@ -1,0 +1,213 @@
+{
+  "expected": {
+    "arc_structure": [
+      [
+        "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+        "p_16",
+        1,
+        "normal"
+      ],
+      [
+        "4e6e5b14-8a25-40a8-962b-649de2917762",
+        "p_3",
+        1,
+        "normal"
+      ],
+      [
+        "5b9db842-5285-4229-b6fb-c55952ac4e73",
+        "p_14",
+        1,
+        "normal"
+      ],
+      [
+        "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+        "sink",
+        1,
+        "normal"
+      ],
+      [
+        "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+        "p_13",
+        1,
+        "normal"
+      ],
+      [
+        "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+        "p_18",
+        1,
+        "normal"
+      ],
+      [
+        "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+        "p_13",
+        1,
+        "normal"
+      ],
+      [
+        "p_13",
+        "5b9db842-5285-4229-b6fb-c55952ac4e73",
+        1,
+        "normal"
+      ],
+      [
+        "p_14",
+        "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+        1,
+        "normal"
+      ],
+      [
+        "p_14",
+        "t_0",
+        1,
+        "normal"
+      ],
+      [
+        "p_16",
+        "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+        1,
+        "normal"
+      ],
+      [
+        "p_17",
+        "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+        1,
+        "normal"
+      ],
+      [
+        "p_18",
+        "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+        1,
+        "normal"
+      ],
+      [
+        "p_3",
+        "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+        1,
+        "normal"
+      ],
+      [
+        "source",
+        "4e6e5b14-8a25-40a8-962b-649de2917762",
+        1,
+        "normal"
+      ],
+      [
+        "t_0",
+        "p_17",
+        1,
+        "normal"
+      ]
+    ],
+    "arcs": 16,
+    "final_marking": {
+      "sink": 1
+    },
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "End",
+        "Start",
+        "a",
+        "c",
+        "d",
+        "e"
+      ],
+      "parallel": [
+        [
+          "c",
+          "d"
+        ],
+        [
+          "d",
+          "c"
+        ]
+      ],
+      "sequence": [
+        [
+          "Start",
+          "a"
+        ],
+        [
+          "a",
+          "c"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "e",
+          "End"
+        ]
+      ],
+      "start_activities": [
+        "Start"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_marking": {
+      "source": 1
+    },
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 8,
+    "reset_arcs": 0,
+    "silent_transitions": 1,
+    "stochastic": [],
+    "transition_labels": [
+      [
+        "22ce2b93-c130-4cd3-8a70-3f1a604712f7",
+        "e"
+      ],
+      [
+        "4e6e5b14-8a25-40a8-962b-649de2917762",
+        "Start"
+      ],
+      [
+        "5b9db842-5285-4229-b6fb-c55952ac4e73",
+        "c"
+      ],
+      [
+        "b63da257-4fe5-4cde-ad4f-523ad3d5eb56",
+        "End"
+      ],
+      [
+        "b795b444-8c55-4b30-b6b7-b4d1f88ea547",
+        "a"
+      ],
+      [
+        "cadc2077-836f-4c05-acf5-7eb1dea15b3b",
+        "d"
+      ],
+      [
+        "t_0",
+        null
+      ]
+    ],
+    "transitions": 7
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-murata2-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/murata2.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

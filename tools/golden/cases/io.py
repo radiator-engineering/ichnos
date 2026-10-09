@@ -151,3 +151,127 @@ TABLE_FIXTURES = [
 for rel in TABLE_FIXTURES:
     case_id = re.sub(r"[^a-z0-9_-]", "-", rel.lower())
     case(case_id, fixture=rel, functions=["pm4py.format_dataframe", "pm4py.convert_to_event_log"])(summarize)
+
+
+# Imported PNML ids come from the file, so structure can be compared exactly.
+def summarize_model(fixtures, max_markings=10000):
+    path = fixtures["model"]
+    if path.suffix == ".pnml":
+        from pm4py.objects.petri_net.obj import InhibitorNet, ResetNet
+        from pm4py.objects.petri_net.importer import importer
+        from pm4py.algo.discovery.footprints.petri.variants import reach_graph
+        from pm4py.objects.petri_net.semantics import ClassicSemantics
+        class StateSpaceLimit(Exception):
+            pass
+        class LimitedSemantics(ClassicSemantics):
+            def __init__(self):
+                self.markings = set()
+            def weak_execute(self, transition, net, marking, **kwargs):
+                result = super().weak_execute(transition, net, marking, **kwargs)
+                self.markings.add(result)
+                if len(self.markings) > max_markings:
+                    raise StateSpaceLimit()
+                return result
+        net, im, fm = pm4py.read_pnml(str(path))
+        _, _, _, stochastic = importer.apply(str(path), parameters={
+            "auto_guess_final_marking": False, "return_stochastic_map": True})
+        if "inh_res_nets" in path.parts:
+            footprints, status = None, "unbounded"
+        else:
+            semantics = LimitedSemantics()
+            semantics.markings.add(im)
+            try:
+                footprints = reach_graph.apply(net, im, parameters={"petri_semantics": semantics})
+                status = "complete"
+            except StateSpaceLimit:
+                footprints, status = None, "state_space_limit"
+        return {
+            "model_kind": "petri_net",
+            "arc_structure": sorted([
+                [a.source.name, a.target.name, a.weight,
+                 "inhibitor" if isinstance(a, InhibitorNet.InhibitorArc) else
+                 "reset" if isinstance(a, ResetNet.ResetArc) else "normal"]
+                for a in net.arcs]),
+            "transition_labels": sorted([[t.name, t.label] for t in net.transitions]),
+            "initial_marking": {p.name: n for p, n in im.items()},
+            "final_marking": {p.name: n for p, n in fm.items()},
+            "places": len(net.places), "transitions": len(net.transitions),
+            "arcs": len(net.arcs),
+            "silent_transitions": sum(t.label is None for t in net.transitions),
+            "inhibitor_arcs": sum(isinstance(a, InhibitorNet.InhibitorArc) for a in net.arcs),
+            "reset_arcs": sum(isinstance(a, ResetNet.ResetArc) for a in net.arcs),
+            "initial_tokens": sum(im.values()), "final_tokens": sum(fm.values()),
+            "stochastic": sorted([{
+                "label": t.label,
+                "distribution_type": rv.get_distribution_type(),
+                "priority": rv.get_priority(), "weight": rv.get_weight(),
+            } for t, rv in stochastic.items()], key=lambda x: json.dumps(x, sort_keys=True)),
+            "footprints": footprints, "footprints_status": status,
+        }
+    if path.suffix == ".ptml":
+        tree = pm4py.read_ptml(str(path))
+        def counts(node):
+            descendants = [counts(c) for c in node.children]
+            return (1 + sum(n for n, _, _ in descendants),
+                    int(node.operator is None and node.label is not None) + sum(n for _, n, _ in descendants),
+                    int(node.operator is None and node.label is None) + sum(n for _, _, n in descendants))
+        nodes, activities, silent = counts(tree)
+        return {"model_kind": "process_tree", "nodes": nodes,
+                "activity_nodes": activities, "silent_nodes": silent,
+                "footprints": pm4py.discover_footprints(tree)}
+    graph, starts, ends = pm4py.read_dfg(str(path))
+    return {"model_kind": "dfg", "edges": len(graph),
+            "edge_frequency": sum(graph.values()),
+            "start_activities": starts, "end_activities": ends,
+            "frequencies": [[a, b, count] for (a, b), count in sorted(graph.items())],
+            "footprints": pm4py.discover_footprints(graph)}
+
+# SampleNet.pnml is unbounded; reachability-based footprints do not terminate.
+# It is covered by a Rust import/round-trip test instead of a generator case.
+MODEL_FIXTURES = [
+    'big_wf_net.pnml',
+    'data_petri_net.pnml',
+    'ex1.pnml',
+    'ex2.pnml',
+    'inh_res_nets/cyber_incident_response.pnml',
+    'inh_res_nets/emergency_evacuation.pnml',
+    'inh_res_nets/hospital_discharge.pnml',
+    'inh_res_nets/insurance_claim.pnml',
+    'inh_res_nets/loan_underwriting.pnml',
+    'inh_res_nets/manufacturing_batch.pnml',
+    'inh_res_nets/order_fulfillment.pnml',
+    'murata1.pnml',
+    'murata2.pnml',
+    'murata3.pnml',
+    'receipt_one_variant.pnml',
+    'roadtraffic.pnml',
+    'running-example.dfg',
+    'running-example.pnml',
+    'running-example.ptml',
+    'stochastic_running_example.pnml',
+    'synthetic_logs/a12/a12.pnml',
+    'synthetic_logs/a12/a12.ptml',
+    'synthetic_logs/a22/a22.pnml',
+    'synthetic_logs/a22/a22.ptml',
+    'synthetic_logs/a32/a32.pnml',
+    'synthetic_logs/a32/a32.ptml',
+    'synthetic_logs/a42/a42.pnml',
+    'synthetic_logs/a42/a42.ptml',
+    'tree_ex_with_loops.ptml',
+    'tree_ex_wo_loops.ptml',
+]
+for rel in MODEL_FIXTURES:
+    case_id = "model-" + re.sub(r"[^a-z0-9_-]", "-", rel.lower())
+    function = "pm4py.read_" + rel.rsplit(".", 1)[1]
+    functions = [function, "pm4py.discover_footprints"]
+    params = {}
+    if rel.endswith(".pnml"):
+        functions = [function, "pm4py.objects.petri_net.importer.importer.apply",
+                     "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"]
+        params = {"max_markings": 10000}
+    case(case_id, fixtures={"model": rel}, params=params, functions=functions)(summarize_model)
+
+# Exact bytes produced by ichnos, read by the reference implementation.
+for rel in ["special.pnml", "loop.ptml", "boundary.dfg"]:
+    case("writer-" + rel.replace(".", "-"), fixtures={"model": "writer-output/" + rel},
+         functions=["pm4py.read_" + rel.rsplit(".", 1)[1], "pm4py.discover_footprints"])(summarize_model)
