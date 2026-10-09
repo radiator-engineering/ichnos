@@ -1,0 +1,173 @@
+{
+  "expected": {
+    "events": [
+      {
+        "case:concept:name": "overwritten",
+        "ocel:activity": "A",
+        "ocel:timestamp": {
+          "date": "2024-01-01T00:00:00.000000+00:00"
+        },
+        "ocel:type:item": [
+          "i1"
+        ],
+        "ocel:type:order": [
+          "o1",
+          "o1",
+          "o2"
+        ],
+        "ocel:type:unregistered": [
+          "u1"
+        ],
+        "payload": 42
+      },
+      {
+        "ocel:activity": "B",
+        "ocel:timestamp": {
+          "date": "2024-01-02T00:00:00.000000+00:00"
+        },
+        "ocel:type:item": [
+          "i2"
+        ],
+        "ocel:type:order": []
+      }
+    ],
+    "flattened": {
+      "empty": [],
+      "item": [
+        {
+          "case:concept:name": "i1",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i1",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i2",
+          "concept:name": "B",
+          "time:timestamp": {
+            "date": "2024-01-02T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i2",
+          "concept:name": "B",
+          "time:timestamp": {
+            "date": "2024-01-02T00:00:00.000000+00:00"
+          }
+        }
+      ],
+      "order": [
+        {
+          "case:concept:name": "o1",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o1",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o1",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o1",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o2",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o2",
+          "concept:name": "A",
+          "payload": 42,
+          "time:timestamp": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          }
+        }
+      ]
+    },
+    "types": [
+      "order",
+      "item",
+      "empty"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "ocel-duplicates",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor",
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register",
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append"
+    ],
+    "loaders": {},
+    "params": {
+      "duplicate": true,
+      "events": [
+        {
+          "case:concept:name": "overwritten",
+          "ocel:activity": "A",
+          "ocel:timestamp": "2024-01-01T00:00:00+00:00",
+          "ocel:type:item": [
+            "i1"
+          ],
+          "ocel:type:order": [
+            "o1",
+            "o1",
+            "o2"
+          ],
+          "ocel:type:unregistered": [
+            "u1"
+          ],
+          "payload": 42
+        },
+        {
+          "ocel:activity": "B",
+          "ocel:timestamp": "2024-01-02T00:00:00+00:00",
+          "ocel:type:item": [
+            "i2"
+          ],
+          "ocel:type:order": []
+        }
+      ],
+      "types": [
+        "order",
+        "item",
+        "empty"
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
