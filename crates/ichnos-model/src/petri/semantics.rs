@@ -7,7 +7,9 @@
 
 use std::collections::{BTreeSet, HashSet, VecDeque};
 
-use super::{ArcEnds, ArcKind, Marking, PetriNet, TransitionId};
+use super::{
+    ArcEnds, ArcKind, Marking, PetriNet, ReachabilityError, ReachabilityOptions, TransitionId,
+};
 
 /// Error returned by [`PetriNet::fire`] when the transition is not enabled.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
@@ -76,9 +78,16 @@ impl PetriNet {
     /// pm4py's `align_utils.get_visible_transitions_eventually_enabled_by_marking`
     /// computes the same set but can miss markings when one silent transition
     /// is reached along two paths. This version explores every marking
-    /// reachable through silent transitions. It does not terminate if that
-    /// silent-only state space is infinite.
-    pub fn visible_transitions_eventually_enabled(&self, m: &Marking) -> BTreeSet<TransitionId> {
+    /// reachable through silent transitions.
+    ///
+    /// Fails with [`ReachabilityError::TooManyMarkings`] once more than
+    /// `options.max_markings` markings are reachable through silent
+    /// transitions alone, so it ends even when that state space is infinite.
+    pub fn visible_transitions_eventually_enabled(
+        &self,
+        m: &Marking,
+        options: ReachabilityOptions,
+    ) -> Result<BTreeSet<TransitionId>, ReachabilityError> {
         let mut visible = BTreeSet::new();
         let mut seen: HashSet<Marking> = HashSet::new();
         let mut queue = VecDeque::from([m.clone()]);
@@ -90,11 +99,14 @@ impl PetriNet {
                 } else {
                     let next = self.weak_fire(t, &cur);
                     if seen.insert(next.clone()) {
+                        if seen.len() > options.max_markings {
+                            return Err(ReachabilityError::TooManyMarkings(options.max_markings));
+                        }
                         queue.push_back(next);
                     }
                 }
             }
         }
-        visible
+        Ok(visible)
     }
 }

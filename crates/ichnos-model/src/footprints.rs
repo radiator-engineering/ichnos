@@ -17,7 +17,11 @@ use crate::process_tree::{LoopRedo, Operator, ProcessTree};
 pub type LabelPair = (Label, Label);
 
 /// Footprints shared by every model type.
+///
+/// With the `serde` feature this serializes as pm4py's footprints dict, with
+/// each relation as a list of `[a, b]` pairs.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Footprints {
     /// All visible activities.
     pub activities: BTreeSet<Label>,
@@ -31,9 +35,14 @@ pub struct Footprints {
 
 /// Footprints of a process tree, with the extra outputs pm4py computes for
 /// trees.
+///
+/// With the `serde` feature this serializes as one flat object, as pm4py's
+/// footprints dict for a tree does.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct TreeFootprints {
     /// The shared footprints.
+    #[cfg_attr(feature = "serde", serde(flatten))]
     pub footprints: Footprints,
     /// Activities that can end a trace.
     pub end_activities: BTreeSet<Label>,
@@ -44,6 +53,7 @@ pub struct TreeFootprints {
     /// See [`ProcessTree::min_trace_length`].
     pub min_trace_length: usize,
     /// See [`ProcessTree::max_trace_length_without_loops`].
+    #[cfg_attr(feature = "serde", serde(rename = "max_trace_length_wo_loops"))]
     pub max_trace_length_without_loops: usize,
 }
 
@@ -289,7 +299,7 @@ impl PetriNet {
                 .map(|&(t, _)| t)
                 .filter(visible)
                 .collect();
-            let eventually = self.visible_transitions_eventually_enabled(m);
+            let eventually = self.visible_transitions_eventually_enabled(m, options)?;
             if i == 0 {
                 start = eventually.iter().map(|&t| label(t)).collect();
             }
