@@ -165,17 +165,17 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.split_by_process_variant` | `stats.py` → `objects/log/obj`, `objects/log/util/pandas_numpy_variants` | `ichnos_stats::variants::split_by_process_variant` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). Returns metadata-preserving EventLogs rather than DataFrames with utility columns. |
 | `pm4py.get_variants_paths_duration` | `stats.py` → `objects/log/obj`, `objects/log/util/pandas_numpy_variants` | `ichnos_stats::variants::get_variants_paths_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
 | `pm4py.get_stochastic_language` | `stats.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/petri_net/obj`, `objects/process_tree/obj`, `statistics/variants/log/get` | `ichnos_stats::variants::get_stochastic_language` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
-| `pm4py.get_minimum_self_distances` | `stats.py` → `algo/discovery/minimum_self_distance/algorithm`, `objects/log/obj` | `ichnos::stats::get_minimum_self_distances` (planned) | `ichnos-stats` | todo | Variants: log, pandas, polars. |
-| `pm4py.get_minimum_self_distance_witnesses` | `stats.py` → `algo/discovery/minimum_self_distance/algorithm`, `algo/discovery/minimum_self_distance/utils`, `objects/log/obj` | `ichnos::stats::get_minimum_self_distance_witnesses` (planned) | `ichnos-stats` | todo | Variants: log, pandas, polars. |
-| `pm4py.get_case_arrival_average` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_arrival` | `ichnos::stats::get_case_arrival_average` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_rework_cases_per_activity` | `stats.py` → `objects/log/obj`, `statistics/rework/log/get` | `ichnos::stats::get_rework_cases_per_activity` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_case_overlap` | `stats.py` → `objects/log/obj`, `statistics/overlap/cases/log/get` | `ichnos::stats::get_case_overlap` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_cycle_time` | `stats.py` → `objects/log/obj`, `statistics/traces/cycle_time/log/get` | `ichnos::stats::get_cycle_time` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_service_time` | `stats.py` → `objects/log/obj`, `statistics/service_time/log/get` | `ichnos::stats::get_service_time` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_all_case_durations` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos::stats::get_all_case_durations` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.get_case_duration` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos::stats::get_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.get_minimum_self_distances` | `stats.py` → `algo/discovery/minimum_self_distance/algorithm`, `objects/log/obj` | `ichnos_stats::cases::get_minimum_self_distances` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.get_minimum_self_distance_witnesses` | `stats.py` → `algo/discovery/minimum_self_distance/algorithm`, `algo/discovery/minimum_self_distance/utils`, `objects/log/obj` | `ichnos_stats::cases::get_minimum_self_distance_witnesses` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.get_case_arrival_average` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_arrival` | `ichnos_stats::cases::get_case_arrival_average` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
+| `pm4py.get_rework_cases_per_activity` | `stats.py` → `objects/log/obj`, `statistics/rework/log/get` | `ichnos_stats::cases::get_rework_cases_per_activity` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.get_case_overlap` | `stats.py` → `objects/log/obj`, `statistics/overlap/cases/log/get` | `ichnos_stats::cases::get_case_overlap` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Includes self and duplicate intervals, expands by epsilon; empty traces contribute zero. |
+| `pm4py.get_cycle_time` | `stats.py` → `objects/log/obj`, `statistics/traces/cycle_time/log/get` | `ichnos_stats::cases::get_cycle_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Preserves reference omission of the final merged interval; empty inputs return zero. |
+| `pm4py.get_service_time` | `stats.py` → `objects/log/obj`, `statistics/service_time/log/get` | `ichnos_stats::cases::get_service_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
+| `pm4py.get_all_case_durations` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos_stats::cases::get_all_case_durations` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
+| `pm4py.get_case_duration` | `stats.py` → `objects/log/obj`, `statistics/traces/generic/log/case_statistics` | `ichnos_stats::cases::get_case_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
 | `pm4py.get_frequent_trace_segments` | `stats.py` → `objects/log/obj` | `ichnos_stats::variants::get_frequent_trace_segments` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt and roadtraffic100traces CSV; Arrow nulls are absent (pm4py stream postprocessing enabled). |
-| `pm4py.get_activity_position_summary` | `stats.py` → `objects/log/obj` | `ichnos::stats::get_activity_position_summary` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.get_activity_position_summary` | `stats.py` → `objects/log/obj` | `ichnos_stats::cases::get_activity_position_summary` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
 | `pm4py.get_process_cube` | `stats.py` → `statistics/process_cube/pandas/algorithm`, `statistics/process_cube/polars/algorithm` | `ichnos::stats::get_process_cube` (planned) | `ichnos-stats` | todo | Variants: classic. |
 
 ## utils
@@ -496,7 +496,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.concurrent_activities.log.get.apply` | `statistics/concurrent_activities/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/sorting` | `ichnos::stats::concurrent_activities::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.concurrent_activities.log.get.apply` | `statistics/concurrent_activities/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/sorting` | `ichnos_stats::time::get_concurrent_activities` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
 
 ## statistics.concurrent_activities.pandas.get
 
@@ -508,7 +508,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe` | `statistics/concurrent_activities/polars/get.py` | `ichnos::stats::concurrent_activities::polars::get::get_concurrent_events_dataframe` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.concurrent_activities.polars.get.get_concurrent_events_dataframe` | `statistics/concurrent_activities/polars/get.py` | `ichnos_stats::time::get_concurrent_events` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
 | `pm4py.statistics.concurrent_activities.polars.get.apply` | `statistics/concurrent_activities/polars/get.py` | `ichnos::stats::concurrent_activities::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.concurrent_activities.log.get.apply; ichnos has one implementation |
 
 ## statistics.end_activities.common.get
@@ -540,7 +540,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.eventually_follows.log.get.apply` | `statistics/eventually_follows/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/sorting` | `ichnos::stats::eventually_follows::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.eventually_follows.log.get.apply` | `statistics/eventually_follows/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `objects/log/util/sorting` | `ichnos_stats::time::get_eventually_follows` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
 
 ## statistics.eventually_follows.pandas.get
 
@@ -552,14 +552,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe` | `statistics/eventually_follows/polars/get.py` | `ichnos::stats::eventually_follows::polars::get::get_partial_order_dataframe` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.eventually_follows.polars.get.get_partial_order_dataframe` | `statistics/eventually_follows/polars/get.py` | `ichnos_stats::time::get_partial_order` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
 | `pm4py.statistics.eventually_follows.polars.get.apply` | `statistics/eventually_follows/polars/get.py` | `ichnos::stats::eventually_follows::polars::get::apply` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.eventually_follows.log.get.apply; ichnos has one implementation |
 
 ## statistics.eventually_follows.uvcl.get
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.eventually_follows.uvcl.get.apply` | `statistics/eventually_follows/uvcl/get.py` → `algo/discovery/inductive/dtypes/im_ds` | `ichnos::stats::eventually_follows::uvcl::get::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.eventually_follows.uvcl.get.apply` | `statistics/eventually_follows/uvcl/get.py` → `algo/discovery/inductive/dtypes/im_ds` | `ichnos_stats::time::get_eventually_follows_sequences` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
 
 ## statistics.ocel.act_ot_dependent
 
@@ -606,7 +606,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.cases.log.get.apply` | `statistics/overlap/cases/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/overlap/utils/compute` | `ichnos::stats::overlap::cases::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.overlap.cases.log.get.apply` | `statistics/overlap/cases/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/overlap/utils/compute` | `ichnos_stats::time::get_case_overlap` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Includes self and duplicate intervals, expands by epsilon; empty traces contribute zero. |
 
 ## statistics.overlap.cases.pandas.get
 
@@ -624,7 +624,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.interval_events.log.get.apply` | `statistics/overlap/interval_events/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/overlap/utils/compute` | `ichnos::stats::overlap::interval_events::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.overlap.interval_events.log.get.apply` | `statistics/overlap/interval_events/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/overlap/utils/compute` | `ichnos_stats::time::get_interval_event_overlap` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Includes self and duplicate intervals, expands by epsilon; empty traces contribute zero. |
 
 ## statistics.overlap.interval_events.pandas.get
 
@@ -642,31 +642,31 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.overlap.utils.compute.apply` | `statistics/overlap/utils/compute.py` | `ichnos::stats::overlap::utils::compute::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.overlap.utils.compute.apply` | `statistics/overlap/utils/compute.py` | `ichnos_stats::time::get_overlap` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Includes self and duplicate intervals, expands by epsilon; empty traces contribute zero. |
 
 ## statistics.passed_time.log.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.log.algorithm.apply` | `statistics/passed_time/log/algorithm.py` → `objects/log/obj` | `ichnos::stats::passed_time::log::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.passed_time.log.algorithm.apply` | `statistics/passed_time/log/algorithm.py` → `objects/log/obj` | `ichnos_stats::time::get_passed_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed pre/post neighbor lists and weighted averages; default returns both directions. |
 
 ## statistics.passed_time.log.variants.post
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.log.variants.post.apply` | `statistics/passed_time/log/variants/post.py` → `algo/discovery/dfg/variants/native`, `algo/discovery/dfg/variants/performance`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::passed_time::log::variants::post::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.passed_time.log.variants.post.apply` | `statistics/passed_time/log/variants/post.py` → `algo/discovery/dfg/variants/native`, `algo/discovery/dfg/variants/performance`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::time::get_passed_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed pre/post neighbor lists and weighted averages; default returns both directions. |
 
 ## statistics.passed_time.log.variants.pre
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.log.variants.pre.apply` | `statistics/passed_time/log/variants/pre.py` → `algo/discovery/dfg/variants/native`, `algo/discovery/dfg/variants/performance`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::passed_time::log::variants::pre::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.passed_time.log.variants.pre.apply` | `statistics/passed_time/log/variants/pre.py` → `algo/discovery/dfg/variants/native`, `algo/discovery/dfg/variants/performance`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::time::get_passed_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed pre/post neighbor lists and weighted averages; default returns both directions. |
 
 ## statistics.passed_time.log.variants.prepost
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.passed_time.log.variants.prepost.apply` | `statistics/passed_time/log/variants/prepost.py` → `algo/discovery/dfg/variants/native`, `algo/discovery/dfg/variants/performance`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::passed_time::log::variants::prepost::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.passed_time.log.variants.prepost.apply` | `statistics/passed_time/log/variants/prepost.py` → `algo/discovery/dfg/variants/native`, `algo/discovery/dfg/variants/performance`, `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::time::get_passed_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed pre/post neighbor lists and weighted averages; default returns both directions. |
 
 ## statistics.passed_time.pandas.algorithm
 
@@ -780,7 +780,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.service_time.log.get.apply` | `statistics/service_time/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::service_time::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.service_time.log.get.apply` | `statistics/service_time/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::time::get_service_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
 
 ## statistics.service_time.pandas.get
 
@@ -823,7 +823,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.cycle_time.log.get.apply` | `statistics/traces/cycle_time/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/traces/cycle_time/util/compute` | `ichnos::stats::traces::cycle_time::log::get::apply` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.traces.cycle_time.log.get.apply` | `statistics/traces/cycle_time/log/get.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/traces/cycle_time/util/compute` | `ichnos_stats::time::get_cycle_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Preserves reference omission of the final merged interval; empty inputs return zero. |
 
 ## statistics.traces.cycle_time.pandas.get
 
@@ -841,35 +841,35 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.cycle_time.util.compute.cycle_time` | `statistics/traces/cycle_time/util/compute.py` | `ichnos::stats::traces::cycle_time::util::compute::cycle_time` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.cycle_time.util.compute.cycle_time` | `statistics/traces/cycle_time/util/compute.py` | `ichnos_stats::time::cycle_time` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Preserves reference omission of the final merged interval; empty inputs return zero. |
 
 ## statistics.traces.generic.common.case_duration
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration` | `statistics/traces/generic/common/case_duration.py` | `ichnos::stats::traces::generic::common::case_duration::get_kde_caseduration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
-| `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration_json` | `statistics/traces/generic/common/case_duration.py` | `ichnos::stats::traces::generic::common::case_duration::get_kde_caseduration_json` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration` | `statistics/traces/generic/common/case_duration.py` | `ichnos_stats::cases::get_kde_case_duration_values` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed Density replaces JSON wrappers; duplicate grid points retained; singular inputs return a typed error. |
+| `pm4py.statistics.traces.generic.common.case_duration.get_kde_caseduration_json` | `statistics/traces/generic/common/case_duration.py` | `ichnos_stats::cases::get_kde_case_duration_values` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed Density replaces JSON wrappers; duplicate grid points retained; singular inputs return a typed error. |
 
 ## statistics.traces.generic.log.case_arrival
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.log.case_arrival.get_case_arrival_avg` | `statistics/traces/generic/log/case_arrival.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_arrival::get_case_arrival_avg` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_arrival.get_case_dispersion_avg` | `statistics/traces/generic/log/case_arrival.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_arrival::get_case_dispersion_avg` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.traces.generic.log.case_arrival.get_case_arrival_avg` | `statistics/traces/generic/log/case_arrival.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_case_arrival_avg` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
+| `pm4py.statistics.traces.generic.log.case_arrival.get_case_dispersion_avg` | `statistics/traces/generic/log/case_arrival.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_case_dispersion_avg` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
 
 ## statistics.traces.generic.log.case_statistics
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/variants/log/get` | `ichnos::stats::traces::generic::log::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_cases_description` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_statistics::get_cases_description` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.index_log_caseid` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter` | `ichnos::stats::traces::generic::log::case_statistics::index_log_caseid` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_events` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_statistics::get_events` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_statistics::get_all_case_durations` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_statistics::get_first_quartile_case_duration` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos::stats::traces::generic::log::case_statistics::get_median_case_duration` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::log::case_statistics::get_kde_caseduration` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
-| `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::log::case_statistics::get_kde_caseduration_json` (planned) | `ichnos-stats` | todo | Variants: to_data_frame, to_event_log, to_event_stream, to_nx. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj`, `statistics/variants/log/get` | `ichnos_stats::cases::get_variant_statistics` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_cases_description` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_cases_description` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.statistics.traces.generic.log.case_statistics.index_log_caseid` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter` | `ichnos_stats::cases::index_log_caseid` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_events` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_events` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_all_case_durations` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Weekly business schedule and excluded dates supported. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_first_quartile_case_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Preserves reference floor(3n/4) index despite the helper name. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `objects/log/obj` | `ichnos_stats::cases::get_median_case_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Preserves upper-middle selection for even samples. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `statistics/traces/generic/common/case_duration` | `ichnos_stats::cases::get_kde_caseduration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed Density replaces JSON wrappers; duplicate grid points retained; singular inputs return a typed error. |
+| `pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/log/case_statistics.py` → `objects/conversion/log/converter`, `statistics/traces/generic/common/case_duration` | `ichnos_stats::cases::get_kde_caseduration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed Density replaces JSON wrappers; duplicate grid points retained; singular inputs return a typed error. |
 
 ## statistics.traces.generic.pandas.case_arrival
 
@@ -883,10 +883,10 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.statistics.traces.generic.pandas.case_statistics.get_variant_statistics` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics; ichnos has one implementation |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df_and_list` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos_stats::cases::get_variants_df_and_list` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
 | `pm4py.statistics.traces.generic.pandas.case_statistics.get_cases_description` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_cases_description` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_cases_description; ichnos has one implementation |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
-| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_with_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_variants_df_with_case_duration` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos_stats::cases::get_variants_df` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
+| `pm4py.statistics.traces.generic.pandas.case_statistics.get_variants_df_with_case_duration` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos_stats::cases::get_variants_df_with_case_duration` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
 | `pm4py.statistics.traces.generic.pandas.case_statistics.get_events` | `statistics/traces/generic/pandas/case_statistics.py` | `ichnos::stats::traces::generic::pandas::case_statistics::get_events` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_events; ichnos has one implementation |
 | `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration` | `statistics/traces/generic/pandas/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::pandas::case_statistics::get_kde_caseduration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration; ichnos has one implementation |
 | `pm4py.statistics.traces.generic.pandas.case_statistics.get_kde_caseduration_json` | `statistics/traces/generic/pandas/case_statistics.py` → `statistics/traces/generic/common/case_duration` | `ichnos::stats::traces::generic::pandas::case_statistics::get_kde_caseduration_json` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_kde_caseduration_json; ichnos has one implementation |
@@ -906,9 +906,9 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `pm4py.statistics.traces.generic.polars.case_statistics.get_variant_statistics` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variant_statistics` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_variant_statistics; ichnos has one implementation |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variants_df_and_list` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df_and_list` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos_stats::cases::get_variants_df_and_list` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
 | `pm4py.statistics.traces.generic.polars.case_statistics.get_cases_description` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_cases_description` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_cases_description; ichnos has one implementation |
-| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_variants_df` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.traces.generic.polars.case_statistics.get_variants_df` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos_stats::cases::get_variants_df` | `ichnos-stats` | ported | Golden stats cases on running-example, receipt, roadtraffic100traces and interval-event-log; metric tolerance 1e-6 relative / 1e-12 absolute. Typed rows replace backend DataFrames; canonical log implementation. |
 | `pm4py.statistics.traces.generic.polars.case_statistics.get_all_case_durations` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_all_case_durations` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_all_case_durations; ichnos has one implementation |
 | `pm4py.statistics.traces.generic.polars.case_statistics.get_median_case_duration` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_median_case_duration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_median_case_duration; ichnos has one implementation |
 | `pm4py.statistics.traces.generic.polars.case_statistics.get_first_quartile_case_duration` | `statistics/traces/generic/polars/case_statistics.py` | `ichnos::stats::traces::generic::polars::case_statistics::get_first_quartile_case_duration` (planned) | `ichnos-stats` | dropped | collapsed into pm4py.statistics.traces.generic.log.case_statistics.get_first_quartile_case_duration; ichnos has one implementation |
@@ -919,7 +919,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.util.times_bipartite_matching.exact_match_minimum_average` | `statistics/util/times_bipartite_matching.py` | `ichnos::stats::util::times_bipartite_matching::exact_match_minimum_average` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. |
+| `pm4py.statistics.util.times_bipartite_matching.exact_match_minimum_average` | `statistics/util/times_bipartite_matching.py` | `ichnos_stats::time::exact_match_minimum_average` | `ichnos-stats` | ported | Golden matching cases; tied optimal assignments compared by cardinality and total gap. Typed result; empty inputs return an empty matching. |
 
 ## statistics.variants.log.get
 
