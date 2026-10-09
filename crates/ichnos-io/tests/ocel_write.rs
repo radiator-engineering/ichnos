@@ -17,6 +17,9 @@
 //! by column name, with the JSON values in OCEL 2.0 references sorted by
 //! name. When both headers are the same, the files must agree byte for
 //! byte.
+//!
+//! A second test reads each fixture with the ichnos reader, writes it and
+//! compares the files with pm4py's read-then-write output in the same way.
 
 use std::fmt;
 use std::io::Write;
@@ -27,10 +30,10 @@ use ichnos_core::{AttributeValue, Attributes};
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
     OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_json, read_ocel_xml, read_ocel2,
-    read_ocel2_json, read_ocel2_xml, write_ocel, write_ocel_csv_to_writer, write_ocel_json,
-    write_ocel_json_to_writer, write_ocel_xml, write_ocel_xml_to_writer, write_ocel2,
-    write_ocel2_csv, write_ocel2_csv_to_writer, write_ocel2_json, write_ocel2_json_to_writer,
-    write_ocel2_xml, write_ocel2_xml_to_writer,
+    read_ocel2_csv, read_ocel2_json, read_ocel2_xml, write_ocel, write_ocel_csv_to_writer,
+    write_ocel_json, write_ocel_json_to_writer, write_ocel_xml, write_ocel_xml_to_writer,
+    write_ocel2, write_ocel2_csv, write_ocel2_csv_to_writer, write_ocel2_json,
+    write_ocel2_json_to_writer, write_ocel2_xml, write_ocel2_xml_to_writer,
 };
 use ichnos_ocel::{
     EventEvent, EventObject, ObjectChange, ObjectObject, Ocel, OcelEvent, OcelObject,
@@ -632,66 +635,117 @@ fn writers_match_pm4py() {
     for id in &ids {
         let g = golden("ocel", id);
         let ocel = build(&g.expected["input"], &g.expected["globals"]);
-        for (name, write) in WRITERS {
-            let want = &g.expected["writers"][name];
-            let mut out = Vec::new();
-            let result = write(&ocel, &mut out);
-            if let Some(error) = want.get("error") {
-                if PM4PY_FAILS.contains(&(id.as_str(), name)) {
-                    result.unwrap_or_else(|e| panic!("{id} {name}: {e}"));
-                    parse_xml(std::str::from_utf8(&out).expect("UTF-8"));
-                } else {
-                    assert!(result.is_err(), "{id} {name}: pm4py raises {error}");
-                }
-                continue;
-            }
-            result.unwrap_or_else(|e| panic!("{id} {name}: {e}"));
-            let ours = String::from_utf8(out).expect("UTF-8");
-            let theirs = want["text"].as_str().expect("text");
-            if BYTE_EXACT
-                .iter()
-                .any(|(case, writers)| case == id && writers.contains(&name))
-                && let Some(diff) = first_difference(&ours, theirs)
-            {
-                failures.push(format!("{id} {name} (bytes): {diff}"));
-            }
-            let canon = if name.starts_with("json") {
-                canon_json_text
-            } else {
-                canon_xml_text
-            };
-            let times = TEXT_TIMES.contains(&id.as_str());
-            let (mut ours, mut theirs) = (canon(&ours, times), canon(theirs, times));
-            if OBJECT_DTYPE.contains(&(id.as_str(), name)) {
-                ours = ours.replace("<float [", "<string [");
-                theirs = theirs.replace("<float [", "<string [");
-            }
-            if let Some(diff) = first_difference(&ours, &theirs) {
-                failures.push(format!("{id} {name}: {diff}"));
-            }
-        }
-        let want = &g.expected["writers"]["csv"];
-        let (mut table, mut objects) = (Vec::new(), Vec::new());
-        write_ocel_csv_to_writer(&ocel, &mut table, Some(&mut objects as &mut dyn Write))
-            .unwrap_or_else(|e| panic!("{id} csv: {e}"));
-        compare_csv(&format!("{id} csv"), &table, &want["text"], &mut failures);
-        compare_csv(
-            &format!("{id} csv objects"),
-            &objects,
-            &want["objects"],
-            &mut failures,
-        );
-        let want = &g.expected["writers"]["csv2"];
-        let mut out = Vec::new();
-        let result = write_ocel2_csv_to_writer(&ocel, &mut out);
-        if let Some(error) = want.get("error") {
-            assert!(result.is_err(), "{id} csv2: pm4py raises {error}");
-        } else {
-            result.unwrap_or_else(|e| panic!("{id} csv2: {e}"));
-            compare_csv(&format!("{id} csv2"), &out, &want["text"], &mut failures);
-        }
+        compare_writers(id, &g.expected, &ocel, &mut failures);
     }
     assert!(failures.is_empty(), "{}", failures.join("\n\n"));
+}
+
+/// Where the ichnos reader types values that pm4py's OCEL XML readers keep
+/// as text (the "Typed XML values" Behaviour change), so the attribute
+/// types in the written files differ.
+const READER_TYPES_DIFFER: &[&str] = &["write-typed-xmlocel", "write-typed20-xmlocel"];
+
+/// Where pm4py's OCEL 2.0 JSON reader orders each event's relations by
+/// Python set iteration (the "Relation order" Behaviour change). The test
+/// puts the relations in pm4py's order before writing.
+const READER_RELATION_ORDER: &[&str] = &["write-ocel20-example-jsonocel", "write-typed20-jsonocel"];
+
+/// pm4py reads each fixture with its own reader, then writes it. Reading
+/// the fixture with the ichnos reader instead must give the same files, so
+/// "read with ichnos, write with ichnos" agrees with pm4py end to end.
+#[test]
+fn writers_match_pm4py_from_files() {
+    let options = OcelReadOptions::default();
+    let mut checked = 0;
+    let mut failures = Vec::new();
+    for id in &write_cases() {
+        let g = golden("ocel", id);
+        if g.meta["fixtures"].get("log").is_none() || READER_TYPES_DIFFER.contains(&id.as_str()) {
+            continue;
+        }
+        let path = g.fixture("log");
+        let mut ocel = match g.meta["functions"][0].as_str().expect("reader") {
+            "pm4py.read_ocel_json" => read_ocel_json(&path),
+            "pm4py.read_ocel_xml" => read_ocel_xml(&path, &options),
+            "pm4py.read_ocel2_json" => read_ocel2_json(&path),
+            "pm4py.read_ocel2_xml" => read_ocel2_xml(&path, &options),
+            "pm4py.read_ocel2_csv" => read_ocel2_csv(&path),
+            other => panic!("{id}: unknown reader {other}"),
+        }
+        .unwrap_or_else(|e| panic!("{id}: {e}"));
+        if READER_RELATION_ORDER.contains(&id.as_str()) {
+            let order = build(&g.expected["input"], &g.expected["globals"]).relations;
+            let position = |r: &EventObject| order.iter().position(|o| o == r);
+            assert!(ocel.relations.iter().all(|r| position(r).is_some()), "{id}");
+            ocel.relations.sort_by_key(position);
+        }
+        compare_writers(id, &g.expected, &ocel, &mut failures);
+        checked += 1;
+    }
+    assert_eq!(checked, 8);
+    assert!(failures.is_empty(), "{}", failures.join("\n\n"));
+}
+
+/// Writes `ocel` with each writer and compares the files with the golden's.
+fn compare_writers(id: &str, expected: &Value, ocel: &Ocel, failures: &mut Vec<String>) {
+    for (name, write) in WRITERS {
+        let want = &expected["writers"][name];
+        let mut out = Vec::new();
+        let result = write(ocel, &mut out);
+        if let Some(error) = want.get("error") {
+            if PM4PY_FAILS.contains(&(id, name)) {
+                result.unwrap_or_else(|e| panic!("{id} {name}: {e}"));
+                parse_xml(std::str::from_utf8(&out).expect("UTF-8"));
+            } else {
+                assert!(result.is_err(), "{id} {name}: pm4py raises {error}");
+            }
+            continue;
+        }
+        result.unwrap_or_else(|e| panic!("{id} {name}: {e}"));
+        let ours = String::from_utf8(out).expect("UTF-8");
+        let theirs = want["text"].as_str().expect("text");
+        if BYTE_EXACT
+            .iter()
+            .any(|(case, writers)| *case == id && writers.contains(&name))
+            && let Some(diff) = first_difference(&ours, theirs)
+        {
+            failures.push(format!("{id} {name} (bytes): {diff}"));
+        }
+        let canon = if name.starts_with("json") {
+            canon_json_text
+        } else {
+            canon_xml_text
+        };
+        let times = TEXT_TIMES.contains(&id);
+        let (mut ours, mut theirs) = (canon(&ours, times), canon(theirs, times));
+        if OBJECT_DTYPE.contains(&(id, name)) {
+            ours = ours.replace("<float [", "<string [");
+            theirs = theirs.replace("<float [", "<string [");
+        }
+        if let Some(diff) = first_difference(&ours, &theirs) {
+            failures.push(format!("{id} {name}: {diff}"));
+        }
+    }
+    let want = &expected["writers"]["csv"];
+    let (mut table, mut objects) = (Vec::new(), Vec::new());
+    write_ocel_csv_to_writer(ocel, &mut table, Some(&mut objects as &mut dyn Write))
+        .unwrap_or_else(|e| panic!("{id} csv: {e}"));
+    compare_csv(&format!("{id} csv"), &table, &want["text"], failures);
+    compare_csv(
+        &format!("{id} csv objects"),
+        &objects,
+        &want["objects"],
+        failures,
+    );
+    let want = &expected["writers"]["csv2"];
+    let mut out = Vec::new();
+    let result = write_ocel2_csv_to_writer(ocel, &mut out);
+    if let Some(error) = want.get("error") {
+        assert!(result.is_err(), "{id} csv2: pm4py raises {error}");
+    } else {
+        result.unwrap_or_else(|e| panic!("{id} csv2: {e}"));
+        compare_csv(&format!("{id} csv2"), &out, &want["text"], failures);
+    }
 }
 
 /// The first line where two texts differ, with the lines before it.

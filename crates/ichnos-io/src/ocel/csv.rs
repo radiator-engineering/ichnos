@@ -111,8 +111,7 @@ pub fn read_ocel_csv_from_reader(table: impl Read, objects: Option<&mut dyn Read
     // Per object type column, the objects in first-appearance order. A byte
     // string and a string with the same text are two objects, as in
     // pm4py's set.
-    let mut found: Vec<Found> =
-        vec![Default::default(); types.len()];
+    let mut found: Vec<Found> = vec![Default::default(); types.len()];
     for (r, row) in frame.rows.iter().enumerate() {
         ocel.events.push(OcelEvent {
             id: text(row, eid),
