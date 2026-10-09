@@ -1,0 +1,257 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n17",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n6",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n2",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n6",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n9",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "b"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "c"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "d"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "d"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "e"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "f"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n17",
+          "name": "g"
+        }
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "->( +( 'a', 'b', X( 'c', 'd' ) ), +( 'd', 'e', +( 'f', 'g' ) ) )"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "tree-to-bpmn-tree_ex_wo_loops",
+    "fixtures": {
+      "model": "fixtures/logs/tree_ex_wo_loops.ptml"
+    },
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

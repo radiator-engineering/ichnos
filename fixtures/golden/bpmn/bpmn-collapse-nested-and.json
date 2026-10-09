@@ -1,0 +1,274 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n1",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n1",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "EndEvent",
+          "direction": null,
+          "key": "n0",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": "j1"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n2",
+          "name": "s1"
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n3",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n4",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n5",
+          "name": "b"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n6",
+          "name": "c"
+        }
+      ]
+    },
+    "model": {
+      "flows": [
+        {
+          "class": "SequenceFlow",
+          "id": "f7",
+          "name": "",
+          "process": "nested",
+          "source": "a",
+          "target": "j1"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f5",
+          "name": "",
+          "process": "nested",
+          "source": "b",
+          "target": "j2"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f6",
+          "name": "",
+          "process": "nested",
+          "source": "c",
+          "target": "j2"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f9",
+          "name": "",
+          "process": "nested",
+          "source": "j1",
+          "target": "end"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f8",
+          "name": "",
+          "process": "nested",
+          "source": "j2",
+          "target": "j1"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f1",
+          "name": "",
+          "process": "nested",
+          "source": "s1",
+          "target": "a"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f2",
+          "name": "",
+          "process": "nested",
+          "source": "s1",
+          "target": "s2"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f3",
+          "name": "",
+          "process": "nested",
+          "source": "s2",
+          "target": "b"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f4",
+          "name": "",
+          "process": "nested",
+          "source": "s2",
+          "target": "c"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "f0",
+          "name": "",
+          "process": "nested",
+          "source": "start",
+          "target": "s1"
+        }
+      ],
+      "nodes": [
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "a",
+          "name": "a",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "b",
+          "name": "b",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "c",
+          "name": "c",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "EndEvent",
+          "depth": null,
+          "direction": null,
+          "id": "end",
+          "name": "end",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "j1",
+          "name": "j1",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "j2",
+          "name": "j2",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "s1",
+          "name": "s1",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "s2",
+          "name": "s2",
+          "process": "nested"
+        },
+        {
+          "activity": null,
+          "class": "StartEvent",
+          "depth": null,
+          "direction": null,
+          "id": "start",
+          "name": "start",
+          "process": "nested"
+        }
+      ],
+      "process_id": "nested"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "bpmn-collapse-nested-and",
+    "fixtures": {},
+    "functions": [
+      "pm4py.objects.bpmn.util.reduction.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "nested": "and"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

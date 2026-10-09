@@ -1,0 +1,122 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n3",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n2",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n5",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n6",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n7",
+          "name": "b"
+        }
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "->( tau, X( tau, 'a' ), +( tau, 'b' ), tau )"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "tree-to-bpmn-taus",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {},
+    "params": {
+      "tree": "->( tau, X( tau, 'a' ), +( tau, 'b' ), tau )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

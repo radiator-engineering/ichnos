@@ -1,0 +1,171 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n1",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n6",
+          "name": "end"
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n7",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n8",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n9",
+          "name": "b"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "c"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "d"
+        }
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "*( ->( 'a', X( 'b', tau ) ), X( 'c', ->( tau, 'd' ) ) )"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "tree-to-bpmn-loops",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {},
+    "params": {
+      "tree": "*( ->( 'a', X( 'b', tau ) ), X( 'c', ->( tau, 'd' ) ) )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
