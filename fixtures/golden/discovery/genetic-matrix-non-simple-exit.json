@@ -1,0 +1,203 @@
+{
+  "expected": {
+    "fitness": 0.3666666666666667,
+    "matrix": {
+      "activities": [
+        "a",
+        "x",
+        "b",
+        "c",
+        "d"
+      ],
+      "inputs": {
+        "b": [
+          [
+            "a"
+          ]
+        ],
+        "c": [
+          [
+            "a",
+            "x"
+          ]
+        ],
+        "d": [
+          [
+            "b"
+          ],
+          [
+            "c"
+          ]
+        ]
+      },
+      "outputs": {
+        "a": [
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "b": [
+          [
+            "d"
+          ]
+        ],
+        "c": [
+          [
+            "d"
+          ]
+        ],
+        "x": [
+          [
+            "c"
+          ]
+        ]
+      }
+    },
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "x"
+          ],
+          "parallel": [],
+          "sequence": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "c"
+            ],
+            [
+              "x",
+              "c"
+            ]
+          ],
+          "start_activities": [
+            "a",
+            "x"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [],
+        "depth": 4,
+        "prefixes": [
+          [],
+          [
+            "a"
+          ],
+          [
+            "a",
+            "b"
+          ],
+          [
+            "a",
+            "c"
+          ],
+          [
+            "x"
+          ],
+          [
+            "x",
+            "c"
+          ]
+        ]
+      },
+      "silent_transitions": 3
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-matrix-non-simple-exit",
+    "fixtures": {},
+    "functions": [
+      "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {},
+    "params": {
+      "assert_silent": true,
+      "depth": 4,
+      "matrix": {
+        "activities": [
+          "a",
+          "x",
+          "b",
+          "c",
+          "d"
+        ],
+        "inputs": {
+          "b": [
+            [
+              "a"
+            ]
+          ],
+          "c": [
+            [
+              "a",
+              "x"
+            ]
+          ],
+          "d": [
+            [
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ]
+        },
+        "outputs": {
+          "a": [
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "b": [
+            [
+              "d"
+            ]
+          ],
+          "c": [
+            [
+              "d"
+            ]
+          ],
+          "x": [
+            [
+              "c"
+            ]
+          ]
+        }
+      },
+      "traces": [
+        [
+          "a",
+          "b",
+          "d"
+        ],
+        [
+          "a",
+          "c",
+          "d"
+        ],
+        [
+          "x",
+          "c",
+          "d"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

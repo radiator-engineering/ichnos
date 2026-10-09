@@ -1,0 +1,123 @@
+{
+  "expected": {
+    "fitness": 0.35000000000000003,
+    "matrix": {
+      "activities": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "inputs": {
+        "a": [],
+        "b": [
+          [
+            "a"
+          ],
+          [
+            "c"
+          ]
+        ],
+        "c": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ]
+        ],
+        "d": [
+          [
+            "b"
+          ],
+          [
+            "c"
+          ]
+        ]
+      },
+      "outputs": {
+        "a": [
+          [
+            "b"
+          ],
+          [
+            "c"
+          ]
+        ],
+        "b": [
+          [
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ],
+        "c": [
+          [
+            "b"
+          ],
+          [
+            "d"
+          ]
+        ],
+        "d": []
+      }
+    },
+    "model": {
+      "footprints": {
+        "status": "complete",
+        "value": {
+          "activities": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [
+            "a"
+          ]
+        }
+      },
+      "language": {
+        "accepted": [],
+        "depth": 3,
+        "prefixes": [
+          [],
+          [
+            "a"
+          ]
+        ]
+      }
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "genetic-matrix-parallel",
+    "fixtures": {},
+    "functions": [
+      "pm4py.objects.conversion.genetic_matrix.variants.to_petri_net.apply",
+      "pm4py.fitness_token_based_replay"
+    ],
+    "loaders": {},
+    "params": {
+      "traces": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "a",
+          "c",
+          "b",
+          "d"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
