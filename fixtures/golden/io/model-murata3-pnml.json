@@ -1,0 +1,143 @@
+{
+  "expected": {
+    "arcs": 28,
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "End",
+        "Start",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h"
+      ],
+      "parallel": [
+        [
+          "b",
+          "e"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "d",
+          "e"
+        ],
+        [
+          "d",
+          "f"
+        ],
+        [
+          "d",
+          "g"
+        ],
+        [
+          "e",
+          "b"
+        ],
+        [
+          "e",
+          "c"
+        ],
+        [
+          "e",
+          "d"
+        ],
+        [
+          "f",
+          "d"
+        ],
+        [
+          "g",
+          "d"
+        ]
+      ],
+      "sequence": [
+        [
+          "Start",
+          "a"
+        ],
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "e"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "c",
+          "d"
+        ],
+        [
+          "c",
+          "f"
+        ],
+        [
+          "d",
+          "h"
+        ],
+        [
+          "e",
+          "f"
+        ],
+        [
+          "f",
+          "g"
+        ],
+        [
+          "g",
+          "h"
+        ],
+        [
+          "h",
+          "End"
+        ]
+      ],
+      "start_activities": [
+        "Start"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 15,
+    "reset_arcs": 0,
+    "silent_transitions": 2,
+    "stochastic": [],
+    "transitions": 12
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-murata3-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/murata3.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

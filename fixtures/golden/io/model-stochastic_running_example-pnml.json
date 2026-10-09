@@ -1,0 +1,258 @@
+{
+  "expected": {
+    "arcs": 28,
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "check ticket",
+        "decide",
+        "examine casually",
+        "examine thoroughly",
+        "pay compensation",
+        "register request",
+        "reinitiate request",
+        "reject request"
+      ],
+      "parallel": [
+        [
+          "check ticket",
+          "check ticket"
+        ],
+        [
+          "check ticket",
+          "decide"
+        ],
+        [
+          "check ticket",
+          "examine casually"
+        ],
+        [
+          "check ticket",
+          "examine thoroughly"
+        ],
+        [
+          "decide",
+          "check ticket"
+        ],
+        [
+          "decide",
+          "decide"
+        ],
+        [
+          "decide",
+          "examine casually"
+        ],
+        [
+          "decide",
+          "examine thoroughly"
+        ],
+        [
+          "decide",
+          "reinitiate request"
+        ],
+        [
+          "examine casually",
+          "check ticket"
+        ],
+        [
+          "examine casually",
+          "decide"
+        ],
+        [
+          "examine casually",
+          "examine casually"
+        ],
+        [
+          "examine casually",
+          "examine thoroughly"
+        ],
+        [
+          "examine thoroughly",
+          "check ticket"
+        ],
+        [
+          "examine thoroughly",
+          "decide"
+        ],
+        [
+          "examine thoroughly",
+          "examine casually"
+        ],
+        [
+          "examine thoroughly",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "decide"
+        ]
+      ],
+      "sequence": [
+        [
+          "decide",
+          "pay compensation"
+        ],
+        [
+          "decide",
+          "reject request"
+        ],
+        [
+          "register request",
+          "check ticket"
+        ],
+        [
+          "register request",
+          "decide"
+        ],
+        [
+          "register request",
+          "examine casually"
+        ],
+        [
+          "register request",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "check ticket"
+        ],
+        [
+          "reinitiate request",
+          "examine casually"
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "pay compensation"
+        ],
+        [
+          "reinitiate request",
+          "reject request"
+        ]
+      ],
+      "start_activities": [
+        "register request"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 8,
+    "reset_arcs": 0,
+    "silent_transitions": 6,
+    "stochastic": [
+      {
+        "distribution_type": "EXPONENTIAL",
+        "label": "check ticket",
+        "priority": 0,
+        "weight": 0.75
+      },
+      {
+        "distribution_type": "EXPONENTIAL",
+        "label": "examine casually",
+        "priority": 0,
+        "weight": 0.5
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": "register request",
+        "priority": 1,
+        "weight": 1.0
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": null,
+        "priority": 1,
+        "weight": 0.25
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": null,
+        "priority": 1,
+        "weight": 0.25
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": null,
+        "priority": 1,
+        "weight": 0.25
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": null,
+        "priority": 1,
+        "weight": 0.3333333333333333
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": null,
+        "priority": 1,
+        "weight": 0.6666666666666666
+      },
+      {
+        "distribution_type": "IMMEDIATE",
+        "label": null,
+        "priority": 1,
+        "weight": 1.0
+      },
+      {
+        "distribution_type": "UNIFORM",
+        "label": "decide",
+        "priority": 0,
+        "weight": 0.75
+      },
+      {
+        "distribution_type": "UNIFORM",
+        "label": "examine thoroughly",
+        "priority": 0,
+        "weight": 0.25
+      },
+      {
+        "distribution_type": "UNIFORM",
+        "label": "pay compensation",
+        "priority": 0,
+        "weight": 0.3333333333333333
+      },
+      {
+        "distribution_type": "UNIFORM",
+        "label": "reinitiate request",
+        "priority": 0,
+        "weight": 0.3333333333333333
+      },
+      {
+        "distribution_type": "UNIFORM",
+        "label": "reject request",
+        "priority": 0,
+        "weight": 0.3333333333333333
+      }
+    ],
+    "transitions": 14
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-stochastic_running_example-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/stochastic_running_example.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

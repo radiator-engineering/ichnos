@@ -1,0 +1,121 @@
+{
+  "expected": {
+    "arcs": 22,
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "check ticket",
+        "decide",
+        "examine casually",
+        "examine thoroughly",
+        "pay compensation",
+        "register request",
+        "reinitiate request",
+        "reject request"
+      ],
+      "parallel": [
+        [
+          "check ticket",
+          "examine casually"
+        ],
+        [
+          "check ticket",
+          "examine thoroughly"
+        ],
+        [
+          "examine casually",
+          "check ticket"
+        ],
+        [
+          "examine thoroughly",
+          "check ticket"
+        ]
+      ],
+      "sequence": [
+        [
+          "check ticket",
+          "decide"
+        ],
+        [
+          "decide",
+          "pay compensation"
+        ],
+        [
+          "decide",
+          "reinitiate request"
+        ],
+        [
+          "decide",
+          "reject request"
+        ],
+        [
+          "examine casually",
+          "decide"
+        ],
+        [
+          "examine thoroughly",
+          "decide"
+        ],
+        [
+          "register request",
+          "check ticket"
+        ],
+        [
+          "register request",
+          "examine casually"
+        ],
+        [
+          "register request",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "check ticket"
+        ],
+        [
+          "reinitiate request",
+          "examine casually"
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly"
+        ]
+      ],
+      "start_activities": [
+        "register request"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 9,
+    "reset_arcs": 0,
+    "silent_transitions": 2,
+    "stochastic": [],
+    "transitions": 10
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-running-example-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "expected": {
+    "arcs": 30,
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "E",
+        "S",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k"
+      ],
+      "parallel": [
+        [
+          "g",
+          "h"
+        ],
+        [
+          "h",
+          "g"
+        ],
+        [
+          "h",
+          "i"
+        ],
+        [
+          "i",
+          "h"
+        ]
+      ],
+      "sequence": [
+        [
+          "S",
+          "b"
+        ],
+        [
+          "S",
+          "f"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "d",
+          "j"
+        ],
+        [
+          "e",
+          "j"
+        ],
+        [
+          "f",
+          "g"
+        ],
+        [
+          "f",
+          "h"
+        ],
+        [
+          "g",
+          "i"
+        ],
+        [
+          "h",
+          "k"
+        ],
+        [
+          "i",
+          "k"
+        ],
+        [
+          "j",
+          "E"
+        ],
+        [
+          "k",
+          "E"
+        ]
+      ],
+      "start_activities": [
+        "S"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 14,
+    "reset_arcs": 0,
+    "silent_transitions": 2,
+    "stochastic": [],
+    "transitions": 14
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-synthetic_logs-a12-a12-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/synthetic_logs/a12/a12.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

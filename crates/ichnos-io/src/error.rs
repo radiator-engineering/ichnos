@@ -1,6 +1,17 @@
-/// Errors returned by log readers and writers.
+/// Errors returned by log and model readers and writers.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
+    /// A model-format document is malformed or cannot represent the model.
+    #[error("invalid {format}: {detail}")]
+    ModelFormat {
+        /// The format name.
+        format: &'static str,
+        /// The validation failure.
+        detail: String,
+    },
+    /// Model construction or validation failed.
+    #[error(transparent)]
+    Model(#[from] ichnos_model::Error),
     /// CSV syntax or record width is invalid.
     #[error(transparent)]
     Csv(#[from] csv::Error),

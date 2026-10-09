@@ -1,0 +1,39 @@
+{
+  "expected": {
+    "arcs": 35,
+    "final_tokens": 1,
+    "footprints": null,
+    "footprints_status": "unbounded",
+    "inhibitor_arcs": 1,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 15,
+    "reset_arcs": 1,
+    "silent_transitions": 0,
+    "stochastic": [],
+    "transitions": 15
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-inh_res_nets-order_fulfillment-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/inh_res_nets/order_fulfillment.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "expected": {
+    "arcs": 16,
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "End",
+        "Start",
+        "a",
+        "c",
+        "d",
+        "e"
+      ],
+      "parallel": [
+        [
+          "c",
+          "d"
+        ],
+        [
+          "d",
+          "c"
+        ]
+      ],
+      "sequence": [
+        [
+          "Start",
+          "a"
+        ],
+        [
+          "a",
+          "c"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "e",
+          "End"
+        ]
+      ],
+      "start_activities": [
+        "Start"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 8,
+    "reset_arcs": 0,
+    "silent_transitions": 1,
+    "stochastic": [],
+    "transitions": 7
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-murata2-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/murata2.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

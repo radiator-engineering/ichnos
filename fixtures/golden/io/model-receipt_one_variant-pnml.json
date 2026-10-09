@@ -1,0 +1,69 @@
+{
+  "expected": {
+    "arcs": 10,
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "Confirmation of receipt",
+        "T02 Check confirmation of receipt",
+        "T04 Determine confirmation of receipt",
+        "T05 Print and send confirmation of receipt",
+        "T06 Determine necessity of stop advice"
+      ],
+      "parallel": [],
+      "sequence": [
+        [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ],
+        [
+          "T02 Check confirmation of receipt",
+          "T04 Determine confirmation of receipt"
+        ],
+        [
+          "T04 Determine confirmation of receipt",
+          "T05 Print and send confirmation of receipt"
+        ],
+        [
+          "T05 Print and send confirmation of receipt",
+          "T06 Determine necessity of stop advice"
+        ]
+      ],
+      "start_activities": [
+        "Confirmation of receipt"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 6,
+    "reset_arcs": 0,
+    "silent_transitions": 0,
+    "stochastic": [],
+    "transitions": 5
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-receipt_one_variant-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/receipt_one_variant.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

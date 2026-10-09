@@ -1,0 +1,133 @@
+{
+  "expected": {
+    "activity_nodes": 12,
+    "footprints": {
+      "activities": [
+        "E",
+        "S",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k"
+      ],
+      "activities_always_happening": [
+        "E",
+        "S"
+      ],
+      "end_activities": [
+        "E"
+      ],
+      "max_trace_length_wo_loops": 7,
+      "min_trace_length": 5,
+      "parallel": [
+        [
+          "g",
+          "h"
+        ],
+        [
+          "h",
+          "g"
+        ],
+        [
+          "h",
+          "i"
+        ],
+        [
+          "i",
+          "h"
+        ]
+      ],
+      "sequence": [
+        [
+          "S",
+          "b"
+        ],
+        [
+          "S",
+          "f"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "d",
+          "j"
+        ],
+        [
+          "e",
+          "j"
+        ],
+        [
+          "f",
+          "g"
+        ],
+        [
+          "f",
+          "h"
+        ],
+        [
+          "g",
+          "i"
+        ],
+        [
+          "h",
+          "k"
+        ],
+        [
+          "i",
+          "k"
+        ],
+        [
+          "j",
+          "E"
+        ],
+        [
+          "k",
+          "E"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "S"
+      ]
+    },
+    "model_kind": "process_tree",
+    "nodes": 20,
+    "silent_nodes": 0
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-synthetic_logs-a12-a12-ptml",
+    "fixtures": {
+      "model": "fixtures/logs/synthetic_logs/a12/a12.ptml"
+    },
+    "functions": [
+      "pm4py.read_ptml",
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

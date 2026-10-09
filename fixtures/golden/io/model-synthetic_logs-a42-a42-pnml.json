@@ -1,0 +1,39 @@
+{
+  "expected": {
+    "arcs": 204,
+    "final_tokens": 1,
+    "footprints": null,
+    "footprints_status": "state_space_limit",
+    "inhibitor_arcs": 0,
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 73,
+    "reset_arcs": 0,
+    "silent_transitions": 43,
+    "stochastic": [],
+    "transitions": 85
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-synthetic_logs-a42-a42-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/synthetic_logs/a42/a42.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
