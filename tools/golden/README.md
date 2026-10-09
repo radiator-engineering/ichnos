@@ -202,3 +202,19 @@ footprint relations and start activities, and fitness and precision within
 
 Integers in JSON always compare exactly. NaN equals NaN, and an infinity
 equals the same infinity.
+
+## pm4py output that depends on the hash seed
+
+Some pm4py algorithms iterate Python sets, so their output can change with
+`PYTHONHASHSEED`. The generator does not pin the seed, so such a case fails
+`--check` at random. pm4py's IMf is one: the order of its exclusive-choice
+groups follows set order, and IMf breaks ties by that order.
+
+For such a case, mine the input once per seed, each in a fresh interpreter,
+and emit every distinct result. `cases/discovery.py` does this in
+`_inductive_seeds`: it runs the module as a script under seeds 0–7 and emits
+`runs`, one entry per distinct tree with the `seeds` that produced it, sorted
+by tree. The Rust test then accepts a result that equals any run. Other lanes
+may reuse `_inductive_seeds` or copy its pattern. Use it only where you have
+shown that the output changes with the seed, because each seed costs one
+interpreter start.

@@ -75,6 +75,11 @@ pub enum InductiveVariant {
     /// frequent outgoing edge, and start activities rarer than this fraction
     /// of the most frequent one, are ignored when no cut holds otherwise.
     /// Empty traces become a skip only above this fraction of the traces.
+    ///
+    /// A threshold of 0 still runs IMf, with nothing filtered. That differs
+    /// from pm4py's `discover_process_tree_inductive`, which runs IM for a
+    /// threshold of 0. [`InductiveOptions::from_noise_threshold`] applies
+    /// pm4py's rule.
     Imf {
         /// The noise threshold; pm4py's `noise_threshold`.
         noise_threshold: f64,
