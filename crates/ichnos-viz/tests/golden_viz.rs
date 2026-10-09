@@ -13,13 +13,24 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use ichnos_discovery::PerformanceDfg;
 use ichnos_discovery::dfg::{Aggregation, BusinessHours, PerformanceSummary};
+use ichnos_discovery::prefix_tree::{PrefixNode, PrefixTree};
 use ichnos_golden::{Golden, cases, golden};
 use ichnos_model::heuristics_net::{HeuristicsEdge, HeuristicsNet, Matrix};
 use ichnos_model::petri::{ArcEnds, ArcKind};
-use ichnos_model::{Dfg, Label, Marking, PetriNet, PlaceId, ProcessTree};
+use ichnos_model::powl::{FrequentTransition, StrictPartialOrder};
+use ichnos_model::{
+    Dfg, Footprints, Label, Marking, PetriNet, PlaceId, Powl, ProcessTree, TransitionSystem,
+};
+use ichnos_ocel::{Ocel, OcelObject};
 use ichnos_viz::{
-    BpmnDotOptions, Decoration, DfgDotOptions, HeuristicsNetDotOptions, PerformanceDfgDotOptions,
-    PetriNetDotOptions, ProcessTreeDotOptions, VizError,
+    AlignmentStep, AlignmentsDotOptions, BpmnDotOptions, Decoration, DfgDotOptions,
+    DottedChartAttributes, DottedChartDotOptions, FootprintsDotOptions, HeuristicsNetDotOptions,
+    NetworkAnalysisDotOptions, NetworkAnalysisEdge, ObjectGraphDotOptions, ObjectTypeNet,
+    OcPetriNet, Ocdfg, OcdfgActivityMetric, OcdfgAnnotation, OcdfgCounts, OcdfgDotOptions,
+    OcdfgEdge, OcdfgEdgeMetric, OcpnDiagnostics, OcpnDotOptions, PerformanceDfgDotOptions,
+    PerformanceSpectrumDotOptions, PerformanceSpectrumOptions, PetriNetDotOptions,
+    PlaceDiagnostics, PowlDotOptions, PrefixTreeDotOptions, ProcessTreeDotOptions,
+    TransitionSystemDotOptions, VariantAlignment, VizError,
 };
 use serde_json::Value;
 
@@ -162,6 +173,8 @@ fn parse_dot(src: &str) -> Parsed {
     pos += 1;
     // One frame per open graph or subgraph: (graph attrs, node defaults).
     let mut frames: Vec<(Attrs, Attrs)> = vec![(Attrs::new(), Attrs::new())];
+    // Nesting depth of each subgraph, by name.
+    let mut depth: BTreeMap<String, usize> = BTreeMap::new();
     while !frames.is_empty() {
         let t = toks[pos].clone();
         pos += 1;
@@ -177,6 +190,7 @@ fn parse_dot(src: &str) -> Parsed {
         }
         if t == Token::Id("subgraph".to_owned()) {
             if peek(pos) != Some(&op("{")) {
+                depth.insert(id(&toks[pos]).to_owned(), frames.len());
                 pos += 1;
             }
             assert_eq!(toks[pos], op("{"));
@@ -186,7 +200,8 @@ fn parse_dot(src: &str) -> Parsed {
             continue;
         }
         let name = id(&t).to_owned();
-        if ["graph", "node", "edge"].contains(&name.as_str()) && peek(pos) == Some(&op("[")) {
+        if ["graph", "node", "edge"].contains(&name.as_str()) {
+            // `attr("node")` writes the keyword alone, which sets nothing.
             let attrs = attr_list(&mut pos);
             let frame = frames.last_mut().expect("a frame");
             match name.as_str() {
@@ -205,15 +220,31 @@ fn parse_dot(src: &str) -> Parsed {
         if matches!(peek(pos), Some(Token::Op(o)) if o == "->" || o == "--") {
             let target = id(&toks[pos + 1]).to_owned();
             pos += 2;
-            p.edges.push((name, target, attr_list(&mut pos)));
+            let mut attrs = attr_list(&mut pos);
+            for k in ["lhead", "ltail"] {
+                if let Some(v) = attrs.get_mut(k) {
+                    *v = format!("cluster@{}", depth[v.as_str()]);
+                }
+            }
+            p.edges.push((name, target, attrs));
             continue;
         }
         let (gattrs, defaults) = frames.last().expect("a frame");
         let mut attrs = defaults.clone();
         let subgraph = (frames.len() > 1).then(|| attrs_key(gattrs));
         attrs.extend(attr_list(&mut pos));
+        if let Some(image) = attrs.get_mut("image") {
+            *image = std::path::Path::new(image.as_str())
+                .file_name()
+                .and_then(|n| n.to_str())
+                .expect("image file name")
+                .to_owned();
+        }
         if let Some(s) = subgraph {
             attrs.insert("subgraph".to_owned(), s);
+        }
+        if frames.len() > 2 {
+            attrs.insert("subgraph_depth".to_owned(), (frames.len() - 1).to_string());
         }
         p.nodes.push((name, attrs));
     }
@@ -999,6 +1030,257 @@ fn heuristics_nets_match_pm4py() {
 }
 
 #[test]
+fn transition_systems_match_pm4py() {
+    for case in cases("viz")
+        .iter()
+        .filter(|c| c.starts_with("transition-system-"))
+    {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let mut ts = TransitionSystem::new("");
+        let states: Vec<_> = model["states"]
+            .as_array()
+            .expect("states")
+            .iter()
+            .map(|s| ts.add_state(s.as_str().expect("state name")))
+            .collect();
+        for t in model["transitions"].as_array().expect("transitions") {
+            let at = |k: usize| states[usize::try_from(as_u64(&t[k])).expect("index fits")];
+            ts.add_edge(t[2].as_str().expect("transition name"), at(0), at(1))
+                .expect("edge");
+        }
+        let dot = ichnos_viz::transition_system_dot(&ts, &TransitionSystemDotOptions::default());
+        assert_matches(&g, &dot);
+    }
+}
+
+#[test]
+fn prefix_trees_match_pm4py() {
+    for case in cases("viz")
+        .iter()
+        .filter(|c| c.starts_with("prefix-tree-"))
+    {
+        let g = golden("viz", case);
+        let mut tree = PrefixTree { nodes: Vec::new() };
+        for n in g.expected_at("/model/nodes").as_array().expect("nodes") {
+            let label = n["label"].as_str().map(Label::from);
+            let parent = n["parent"]
+                .as_u64()
+                .map(|p| usize::try_from(p).expect("index fits"));
+            if let (Some(parent), Some(label)) = (parent, &label) {
+                let index = tree.nodes.len();
+                tree.nodes[parent].children.insert(label.clone(), index);
+            }
+            tree.nodes.push(PrefixNode {
+                label,
+                parent,
+                children: BTreeMap::new(),
+                final_node: n["final"].as_bool().expect("final"),
+                depth: usize::try_from(as_u64(&n["depth"])).expect("depth fits"),
+            });
+        }
+        let dot = ichnos_viz::prefix_tree_dot(&tree, &PrefixTreeDotOptions::default());
+        assert_matches(&g, &dot);
+    }
+}
+
+fn build_footprints(v: &Value) -> Footprints {
+    let pairs = |key: &str| -> BTreeSet<(Label, Label)> {
+        v[key]
+            .as_array()
+            .expect("pairs")
+            .iter()
+            .map(|p| {
+                (
+                    Label::from(p[0].as_str().expect("activity")),
+                    Label::from(p[1].as_str().expect("activity")),
+                )
+            })
+            .collect()
+    };
+    Footprints {
+        sequence: pairs("sequence"),
+        parallel: pairs("parallel"),
+        ..Footprints::default()
+    }
+}
+
+#[test]
+fn footprints_match_pm4py() {
+    for case in cases("viz").iter().filter(|c| c.starts_with("footprints-")) {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let options = FootprintsDotOptions::default();
+        let dot = if model.get("first").is_some() {
+            ichnos_viz::footprints_comparison_dot(
+                &build_footprints(&model["first"]),
+                &build_footprints(&model["second"]),
+                &options,
+            )
+        } else {
+            ichnos_viz::footprints_dot(&build_footprints(model), &options)
+        };
+        assert_matches(&g, &dot);
+    }
+}
+
+#[test]
+fn alignment_tables_match_pm4py() {
+    for case in cases("viz").iter().filter(|c| c.starts_with("alignments-")) {
+        let g = golden("viz", case);
+        let rows: Vec<VariantAlignment> = g
+            .expected_at("/model/rows")
+            .as_array()
+            .expect("rows")
+            .iter()
+            .map(|r| VariantAlignment {
+                activities: r["activities"]
+                    .as_array()
+                    .expect("activities")
+                    .iter()
+                    .map(|a| a.as_str().expect("activity").to_owned())
+                    .collect(),
+                count: usize::try_from(as_u64(&r["count"])).expect("count fits"),
+                steps: Some(
+                    r["moves"]
+                        .as_array()
+                        .expect("moves")
+                        .iter()
+                        .map(|m| match (m[0].as_str(), m[1].as_str()) {
+                            (Some(">>"), model) => AlignmentStep::Model(model.map(str::to_owned)),
+                            (Some(log), Some(">>")) => AlignmentStep::Log(log.to_owned()),
+                            (Some(_), Some(model)) => AlignmentStep::Sync(model.to_owned()),
+                            _ => panic!("unexpected move {m}"),
+                        })
+                        .collect(),
+                ),
+            })
+            .collect();
+        let dot = ichnos_viz::alignment_table_dot(&rows, &AlignmentsDotOptions::default());
+        assert_matches(&g, &dot);
+    }
+}
+
+#[test]
+fn an_alignment_table_shows_variants_without_an_alignment() {
+    let row = |activities: &[&str], count, steps| VariantAlignment {
+        activities: activities.iter().map(|a| (*a).to_owned()).collect(),
+        count,
+        steps,
+    };
+    let dot = ichnos_viz::alignment_table_dot(
+        &[
+            row(&["b"], 1, None),
+            row(&["a"], 1, Some(vec![AlignmentStep::Sync("a".to_owned())])),
+            row(
+                &["c>d"],
+                2,
+                Some(vec![AlignmentStep::Log("c>d".to_owned())]),
+            ),
+        ],
+        &AlignmentsDotOptions::default(),
+    );
+    let p = parse_dot(&dot);
+    let label = &p.nodes[0].1["label"];
+    let variant = |n: usize| label.find(&format!("Variant {n} ")).expect("variant row");
+    assert!(label[variant(1)..].starts_with("Variant 1 (2 occurrences)"));
+    assert!(label.contains("<b>(LM)</b>c&gt;d</td>"), "{label}");
+    // Ties go in activity order; a missing alignment leaves the row empty.
+    assert!(
+        label[variant(2)..variant(3)].contains("lightgreen\">a<"),
+        "{label}"
+    );
+    assert!(label[variant(3)..].contains("<tr></tr>"), "{label}");
+}
+
+fn build_powl(v: &Value) -> Powl {
+    let children = || -> Vec<Powl> {
+        v["children"]
+            .as_array()
+            .expect("children")
+            .iter()
+            .map(build_powl)
+            .collect()
+    };
+    match str_field(v, "kind") {
+        "silent" => Powl::Silent,
+        "activity" => Powl::activity(str_field(v, "label")),
+        "frequent" => Powl::Frequent(FrequentTransition::new(
+            str_field(v, "activity"),
+            v["skippable"].as_bool().expect("skippable"),
+            v["selfloop"].as_bool().expect("selfloop"),
+        )),
+        "xor" => Powl::xor(children()),
+        "loop" => {
+            let [a, b]: [Powl; 2] = children().try_into().expect("two loop children");
+            Powl::looped(a, b)
+        }
+        "po" => {
+            let mut po = StrictPartialOrder::new(children());
+            for pair in v["order"].as_array().expect("order") {
+                let at = |k: usize| usize::try_from(as_u64(&pair[k])).expect("index fits");
+                po.add_edge(at(0), at(1));
+            }
+            Powl::PartialOrder(po)
+        }
+        other => panic!("unknown POWL kind {other}"),
+    }
+}
+
+#[test]
+fn powl_models_match_pm4py() {
+    for case in cases("viz").iter().filter(|c| c.starts_with("powl-")) {
+        let g = golden("viz", case);
+        let powl = build_powl(g.expected_at("/model"));
+        let p = params(&g);
+        let mut options = PowlDotOptions::default();
+        if let Some(v) = p["bgcolor"].as_str() {
+            options.bgcolor = v.to_owned();
+        }
+        if let Some(v) = p["rankdir"].as_str() {
+            options.rankdir = v.to_owned();
+        }
+        assert_matches(&g, &ichnos_viz::powl_dot(&powl, &options));
+    }
+}
+
+#[test]
+fn powl_icon_paths_use_the_icon_dir() {
+    let powl = Powl::xor([Powl::activity("a"), Powl::activity("b")]);
+    let options = PowlDotOptions {
+        icon_dir: Some("icons".into()),
+        ..PowlDotOptions::default()
+    };
+    let dot = ichnos_viz::powl_dot(&powl, &options);
+    let expected = std::path::Path::new("icons").join("xor.svg");
+    assert!(
+        dot.contains(&format!("image=\"{}\"", expected.display())),
+        "{dot}"
+    );
+    let dir = std::env::temp_dir().join(format!("ichnos-viz-icons-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).expect("temp dir");
+    ichnos_viz::write_powl_icons(&dir).expect("writes icons");
+    for (name, svg) in ichnos_viz::POWL_ICONS {
+        assert_eq!(std::fs::read_to_string(dir.join(name)).expect("icon"), svg);
+    }
+    std::fs::remove_dir_all(&dir).expect("cleanup");
+}
+
+#[test]
+fn empty_models_draw_empty_graphs() {
+    let p = parse_dot(&ichnos_viz::powl_dot(
+        &Powl::PartialOrder(StrictPartialOrder::new([])),
+        &PowlDotOptions::default(),
+    ));
+    assert!(p.nodes.is_empty() && p.edges.is_empty(), "{p:?}");
+    let p = parse_dot(&ichnos_viz::footprints_dot(
+        &Footprints::default(),
+        &FootprintsDotOptions::default(),
+    ));
+    assert_eq!(p.nodes.len(), 1, "{p:?}");
+}
+
+#[test]
 fn every_golden_is_checked() {
     let prefixes = [
         "petri-net-",
@@ -1007,6 +1289,17 @@ fn every_golden_is_checked() {
         "process-tree-",
         "bpmn-",
         "heuristics-net-",
+        "transition-system-",
+        "prefix-tree-",
+        "footprints-",
+        "alignments-",
+        "powl-",
+        "ocdfg-",
+        "ocpn-",
+        "object-graph-",
+        "network-analysis-",
+        "dotted-chart-",
+        "performance-spectrum-",
     ];
     for case in cases("viz") {
         assert!(
@@ -1055,7 +1348,7 @@ fn writing_dot_saves_the_text() {
     assert_eq!(text, ichnos_viz::process_tree_dot(&tree, &options));
     // Rendering needs Graphviz, which may be missing.
     match ichnos_viz::write_process_tree(&tree, &options, dir.join("tree.svg")) {
-        Ok(()) | Err(VizError::DotNotFound(_)) => {}
+        Ok(()) | Err(VizError::DotNotFound { .. }) => {}
         Err(e) => panic!("unexpected error {e}"),
     }
     std::fs::remove_dir_all(&dir).expect("cleanup");
@@ -1071,4 +1364,363 @@ fn an_empty_dfg_draws_no_nodes() {
         &PerformanceDfgDotOptions::default(),
     ));
     assert!(p.nodes.is_empty() && p.edges.is_empty(), "{p:?}");
+}
+
+/// `bgcolor`, `rankdir` and `graph_title` from a case's parameters.
+fn styled(p: &Value) -> (Option<String>, Option<String>, Option<String>) {
+    let field = |k: &str| p[k].as_str().map(str::to_owned);
+    (field("bgcolor"), field("rankdir"), field("graph_title"))
+}
+
+fn colors(model: &Value) -> BTreeMap<String, String> {
+    model["colors"]
+        .as_object()
+        .expect("colours")
+        .iter()
+        .map(|(k, v)| (k.clone(), v.as_str().expect("colour").to_owned()))
+        .collect()
+}
+
+fn ocdfg_counts(v: &Value) -> OcdfgCounts {
+    OcdfgCounts {
+        events: as_u64(&v[0]),
+        unique_objects: as_u64(&v[1]),
+        total_objects: as_u64(&v[2]),
+    }
+}
+
+fn ocdfg_sides(v: &Value) -> BTreeMap<String, BTreeMap<String, OcdfgCounts>> {
+    v.as_object()
+        .expect("object types")
+        .iter()
+        .map(|(ot, acts)| {
+            let acts = acts
+                .as_object()
+                .expect("activities")
+                .iter()
+                .map(|(a, c)| (a.clone(), ocdfg_counts(c)))
+                .collect();
+            (ot.clone(), acts)
+        })
+        .collect()
+}
+
+fn floats(v: &Value) -> Vec<f64> {
+    v.as_array().expect("numbers").iter().map(as_f64).collect()
+}
+
+#[test]
+fn ocdfgs_match_pm4py() {
+    for case in cases("viz").iter().filter(|c| c.starts_with("ocdfg-")) {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let mut ocdfg = Ocdfg {
+            activities: model["activities"]
+                .as_object()
+                .expect("activities")
+                .iter()
+                .map(|(a, c)| (a.clone(), ocdfg_counts(c)))
+                .collect(),
+            start_activities: ocdfg_sides(&model["start"]),
+            end_activities: ocdfg_sides(&model["end"]),
+            ..Ocdfg::default()
+        };
+        for (ot, edges) in model["edges"].as_object().expect("edges") {
+            let edges = edges
+                .as_array()
+                .expect("edges")
+                .iter()
+                .map(|e| {
+                    let key = (str_value(&e[0]), str_value(&e[1]));
+                    let c = ocdfg_counts(&e[2]);
+                    let edge = OcdfgEdge {
+                        event_couples: c.events,
+                        unique_objects: c.unique_objects,
+                        total_objects: c.total_objects,
+                        event_couples_durations: floats(&e[3]),
+                        total_objects_durations: floats(&e[4]),
+                    };
+                    (key, edge)
+                })
+                .collect();
+            ocdfg.edges.insert(ot.clone(), edges);
+        }
+        let p = params(&g);
+        let (bgcolor, rankdir, graph_title) = styled(&p);
+        let mut options = OcdfgDotOptions {
+            graph_title,
+            object_type_colors: colors(model),
+            ..OcdfgDotOptions::default()
+        };
+        if let Some(b) = bgcolor {
+            options.bgcolor = b;
+        }
+        if let Some(r) = rankdir {
+            options.rankdir = r;
+        }
+        if p["annotation"].as_str() == Some("performance") {
+            options.annotation = OcdfgAnnotation::Performance;
+        }
+        options.act_metric = match p["act_metric"].as_str() {
+            None | Some("events") => OcdfgActivityMetric::Events,
+            Some("unique_objects") => OcdfgActivityMetric::UniqueObjects,
+            Some("total_objects") => OcdfgActivityMetric::TotalObjects,
+            Some(other) => panic!("unknown metric {other}"),
+        };
+        options.edge_metric = match p["edge_metric"].as_str() {
+            None | Some("event_couples") => OcdfgEdgeMetric::EventCouples,
+            Some("unique_objects") => OcdfgEdgeMetric::UniqueObjects,
+            Some("total_objects") => OcdfgEdgeMetric::TotalObjects,
+            Some(other) => panic!("unknown metric {other}"),
+        };
+        options.act_threshold = p["act_threshold"].as_u64().unwrap_or(0);
+        options.edge_threshold = p["edge_threshold"].as_u64().unwrap_or(0);
+        if p["business_hours"].as_bool() == Some(true) {
+            options.business_hours = Some(BusinessHours::default());
+        }
+        assert_matches(&g, &ichnos_viz::ocdfg_dot(&ocdfg, &options));
+    }
+}
+
+fn str_value(v: &Value) -> String {
+    v.as_str()
+        .unwrap_or_else(|| panic!("{v} is not a string"))
+        .to_owned()
+}
+
+#[test]
+fn ocpns_match_pm4py() {
+    for case in cases("viz").iter().filter(|c| c.starts_with("ocpn-")) {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let mut ocpn = OcPetriNet {
+            activities: model["activities"]
+                .as_array()
+                .expect("activities")
+                .iter()
+                .map(str_value)
+                .collect(),
+            ..OcPetriNet::default()
+        };
+        for (ot, n) in model["nets"].as_object().expect("nets") {
+            let (net, initial, fin) = build_net(&n["net"]);
+            let diagnostics = n["diagnostics"].as_object().map(|d| OcpnDiagnostics {
+                places: d["places"]
+                    .as_object()
+                    .expect("places")
+                    .iter()
+                    .map(|(name, v)| {
+                        let place = net.place_by_name(name).expect("a place");
+                        let diag = PlaceDiagnostics {
+                            produced: as_u64(&v[0]),
+                            missing: as_u64(&v[1]),
+                            consumed: as_u64(&v[2]),
+                            remaining: as_u64(&v[3]),
+                        };
+                        (place, diag)
+                    })
+                    .collect(),
+                transitions: d["transitions"]
+                    .as_object()
+                    .expect("transitions")
+                    .iter()
+                    .map(|(name, v)| {
+                        (
+                            net.transition_by_name(name).expect("a transition"),
+                            as_u64(v),
+                        )
+                    })
+                    .collect(),
+            });
+            let double_arcs = n["double_arcs"]
+                .as_object()
+                .expect("double arcs")
+                .iter()
+                .map(|(a, v)| (a.clone(), v.as_bool().expect("a flag")))
+                .collect();
+            ocpn.nets.insert(
+                ot.clone(),
+                ObjectTypeNet {
+                    net,
+                    initial,
+                    fin,
+                    double_arcs,
+                    diagnostics,
+                },
+            );
+        }
+        let (bgcolor, rankdir, graph_title) = styled(&params(&g));
+        let mut options = OcpnDotOptions {
+            graph_title,
+            object_type_colors: colors(model),
+            ..OcpnDotOptions::default()
+        };
+        if let Some(b) = bgcolor {
+            options.bgcolor = b;
+        }
+        if let Some(r) = rankdir {
+            options.rankdir = r;
+        }
+        assert_matches(&g, &ichnos_viz::ocpn_dot(&ocpn, &options));
+    }
+}
+
+#[test]
+fn object_graphs_match_pm4py() {
+    for case in cases("viz")
+        .iter()
+        .filter(|c| c.starts_with("object-graph-"))
+    {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let mut ocel = Ocel::default();
+        for o in model["objects"].as_array().expect("objects") {
+            ocel.objects.push(OcelObject {
+                id: o[0].as_str().expect("an id").into(),
+                object_type: o[1].as_str().expect("a type").into(),
+                attributes: Default::default(),
+            });
+        }
+        let graph: BTreeSet<(String, String)> = model["graph"]
+            .as_array()
+            .expect("pairs")
+            .iter()
+            .map(|e| (str_value(&e[0]), str_value(&e[1])))
+            .collect();
+        let p = params(&g);
+        let (_, rankdir, graph_title) = styled(&p);
+        let mut options = ObjectGraphDotOptions {
+            graph_title,
+            object_type_colors: colors(model),
+            directed: p["directed"].as_bool().unwrap_or(true),
+            ..ObjectGraphDotOptions::default()
+        };
+        if let Some(r) = rankdir {
+            options.rankdir = r;
+        }
+        assert_matches(&g, &ichnos_viz::object_graph_dot(&ocel, &graph, &options));
+    }
+}
+
+#[test]
+fn network_analyses_match_pm4py() {
+    for case in cases("viz")
+        .iter()
+        .filter(|c| c.starts_with("network-analysis-"))
+    {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let p = params(&g);
+        let (_, _, graph_title) = styled(&p);
+        let mut options = NetworkAnalysisDotOptions {
+            graph_title,
+            ..NetworkAnalysisDotOptions::default()
+        };
+        if let Some(t) = p["activity_threshold"].as_u64() {
+            options.activity_threshold = t;
+        }
+        if let Some(t) = p["edge_threshold"].as_u64() {
+            options.edge_threshold = t;
+        }
+        if p["business_hours"].as_bool() == Some(true) {
+            options.business_hours = Some(BusinessHours::default());
+        }
+        fn edges<T>(model: &Value, value: impl Fn(&Value) -> T) -> Vec<NetworkAnalysisEdge<T>> {
+            model["edges"]
+                .as_array()
+                .expect("edges")
+                .iter()
+                .map(|e| NetworkAnalysisEdge {
+                    source: str_value(&e[0]),
+                    target: str_value(&e[1]),
+                    values: e[2]
+                        .as_array()
+                        .expect("values")
+                        .iter()
+                        .map(|v| (str_value(&v[0]), value(&v[1])))
+                        .collect(),
+                })
+                .collect()
+        }
+        let dot = if p["performance"].as_bool() == Some(true) {
+            ichnos_viz::network_analysis_performance_dot(&edges(model, floats), &options)
+        } else {
+            ichnos_viz::network_analysis_dot(&edges(model, as_u64), &options)
+        };
+        assert_matches(&g, &dot);
+    }
+}
+
+#[test]
+fn dotted_charts_match_pm4py() {
+    for case in cases("viz")
+        .iter()
+        .filter(|c| c.starts_with("dotted-chart-"))
+    {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let log = ichnos_io::read_xes(g.fixture("log"), &Default::default()).unwrap();
+        let names: Vec<String> = model["attributes"]
+            .as_array()
+            .expect("attributes")
+            .iter()
+            .map(str_value)
+            .collect();
+        let attributes = DottedChartAttributes {
+            x: names[0].clone(),
+            y: names[1].clone(),
+            color: names.get(2).cloned(),
+        };
+        let p = params(&g);
+        let options = DottedChartDotOptions {
+            graph_title: styled(&p).2,
+            show_legend: p["show_legend"].as_bool().unwrap_or(true),
+            colors: colors(model),
+            ..DottedChartDotOptions::default()
+        };
+        let points = ichnos_viz::dotted_chart_points(&log, &attributes);
+        assert_matches(
+            &g,
+            &ichnos_viz::dotted_chart_dot(&points, &attributes, &options),
+        );
+    }
+}
+
+#[test]
+fn performance_spectra_match_pm4py() {
+    for case in cases("viz")
+        .iter()
+        .filter(|c| c.starts_with("performance-spectrum-"))
+    {
+        let g = golden("viz", case);
+        let model = g.expected_at("/model");
+        let log = ichnos_io::read_xes(g.fixture("log"), &Default::default()).unwrap();
+        let activities: Vec<String> = model["activities"]
+            .as_array()
+            .expect("activities")
+            .iter()
+            .map(str_value)
+            .collect();
+        let p = params(&g);
+        let mut options = PerformanceSpectrumOptions::default();
+        if let Some(n) = p["sample_size"].as_u64() {
+            options.sample_size = usize::try_from(n).expect("sample size fits");
+        }
+        let spectrum = ichnos_viz::performance_spectrum(&log, &activities, &options);
+        let expected: Vec<Vec<f64>> = model["points"]
+            .as_array()
+            .expect("points")
+            .iter()
+            .map(floats)
+            .collect();
+        assert_eq!(spectrum.points, expected, "{case}: points");
+        let dot_options = PerformanceSpectrumDotOptions {
+            graph_title: styled(&p).2,
+            ..PerformanceSpectrumDotOptions::default()
+        };
+        assert_matches(
+            &g,
+            &ichnos_viz::performance_spectrum_dot(&spectrum, &dot_options),
+        );
+    }
 }

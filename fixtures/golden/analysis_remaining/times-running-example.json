@@ -1,0 +1,87 @@
+{
+  "expected": {
+    "cases": [
+      [
+        "1",
+        0.0,
+        703320.0,
+        703320.0,
+        0.0,
+        0.0
+      ],
+      [
+        "2",
+        0.0,
+        779580.0,
+        779580.0,
+        1800.0,
+        78060.0
+      ],
+      [
+        "3",
+        0.0,
+        1368780.0,
+        1368780.0,
+        10800.0,
+        241260.0
+      ],
+      [
+        "4",
+        0.0,
+        520920.0,
+        520920.0,
+        21600.0,
+        358740.0
+      ],
+      [
+        "5",
+        0.0,
+        1576440.0,
+        1576440.0,
+        585000.0,
+        702540.0
+      ],
+      [
+        "6",
+        0.0,
+        852300.0,
+        852300.0,
+        0.0,
+        90120.0
+      ]
+    ],
+    "labels": [
+      "check ticket",
+      "decide",
+      "examine casually",
+      "examine thoroughly",
+      "pay compensation",
+      "register request",
+      "reinitiate request",
+      "reject request"
+    ]
+  },
+  "meta": {
+    "area": "analysis_remaining",
+    "case": "times-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.insert_case_service_waiting_time",
+      "pm4py.insert_case_arrival_finish_rate",
+      "pm4py.get_activity_labels"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

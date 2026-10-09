@@ -7,3 +7,5 @@ pub mod cases;
 pub mod filters;
 pub mod time;
 pub mod variants;
+
+pub mod emd;
