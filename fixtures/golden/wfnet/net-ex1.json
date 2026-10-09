@@ -1,0 +1,151 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "A",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "A",
+          "name": "A"
+        },
+        {
+          "label": "B",
+          "name": "B"
+        },
+        {
+          "label": "C",
+          "name": "C"
+        },
+        {
+          "label": "D",
+          "name": "D"
+        },
+        {
+          "label": "E",
+          "name": "E"
+        }
+      ]
+    },
+    "tree": null
+  },
+  "meta": {
+    "area": "wfnet",
+    "case": "net-ex1",
+    "fixtures": {
+      "model": "fixtures/logs/ex1.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_process_tree"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
