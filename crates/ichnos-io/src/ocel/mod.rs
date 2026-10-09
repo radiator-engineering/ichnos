@@ -10,6 +10,7 @@
 //! So an event or object without a relation is not in the result. The CSV
 //! readers skip [`Ocel::retain_related`], as pm4py's do.
 
+mod bundle;
 mod csv;
 mod csv2;
 mod frame;
@@ -30,6 +31,7 @@ use ichnos_ocel::Ocel;
 
 use crate::error::{Error, Result};
 
+pub use bundle::{BundleStorage, read_ocel2_bundle, write_ocel2_bundle};
 pub use csv::{read_ocel_csv, read_ocel_csv_from_reader, write_ocel_csv, write_ocel_csv_to_writer};
 pub use csv2::{
     read_ocel2_csv, read_ocel2_csv_from_reader, write_ocel2_csv, write_ocel2_csv_to_writer,
@@ -90,8 +92,8 @@ pub fn read_ocel(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Oc
 /// `read_ocel2` does: a name ending in `xml` or `xmlocel` is XML and one
 /// ending in `json` or `jsonocel` is JSON, each optionally followed by `.gz`,
 /// one ending in `.ocel.csv` is CSV and one ending in `sqlite` is SQLite.
-/// pm4py's bundle (`.ocel.zip`) reader is not ported yet. `options` applies
-/// to XML.
+/// A name ending in `.ocel.zip`, or a directory that holds `ocel-meta.json`,
+/// is a bundle ([`read_ocel2_bundle`]). `options` applies to XML.
 pub fn read_ocel2(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
     let path = path.as_ref();
     let name = lower_name(path);
@@ -100,8 +102,8 @@ pub fn read_ocel2(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<O
             .iter()
             .any(|e| name.ends_with(e) || name.ends_with(&format!("{e}.gz")))
     };
-    if name.ends_with(".ocel.zip") {
-        Err(not_ported(path))
+    if name.ends_with(".ocel.zip") || (path.is_dir() && path.join("ocel-meta.json").exists()) {
+        read_ocel2_bundle(path)
     } else if name.ends_with("sqlite") {
         read_ocel2_sqlite(path)
     } else if name.ends_with(".ocel.csv") {
@@ -117,13 +119,6 @@ pub fn read_ocel2(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<O
 
 fn lower_name(path: &Path) -> String {
     path.to_string_lossy().to_lowercase()
-}
-
-fn not_ported(path: &Path) -> Error {
-    Error::Ocel(format!(
-        "reading this OCEL format is not ported yet: {}",
-        path.display()
-    ))
 }
 
 fn unsupported(path: &Path) -> Error {

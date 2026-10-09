@@ -25,6 +25,11 @@
 //! statements must match. A pm4py column with no values that ichnos does not
 //! write, and pm4py's leaked `@@cumcount` helper column, are left out.
 //!
+//! A bundle's `ocel-meta.json` and CSV tables are compared the same way.
+//! Its Parquet tables are compared by schema and rows, with the columns
+//! sorted by name, since pyarrow writes other bytes. Each bundle must also
+//! read back as pm4py reads back its own.
+//!
 //! A second test reads each fixture with the ichnos reader, writes it and
 //! compares the files with pm4py's read-then-write output in the same way.
 
@@ -32,16 +37,16 @@ use std::fmt;
 use std::io::Write;
 use std::sync::Arc;
 
-use chrono::DateTime;
+use chrono::{DateTime, SubsecRound};
 use ichnos_core::{AttributeValue, Attributes};
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
-    OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_json, read_ocel_sqlite, read_ocel_xml,
-    read_ocel2, read_ocel2_csv, read_ocel2_json, read_ocel2_sqlite, read_ocel2_xml, write_ocel,
-    write_ocel_csv_to_writer, write_ocel_json, write_ocel_json_to_writer, write_ocel_sqlite,
-    write_ocel_xml, write_ocel_xml_to_writer, write_ocel2, write_ocel2_csv,
-    write_ocel2_csv_to_writer, write_ocel2_json, write_ocel2_json_to_writer, write_ocel2_sqlite,
-    write_ocel2_xml, write_ocel2_xml_to_writer,
+    BundleStorage, OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_json, read_ocel_sqlite,
+    read_ocel_xml, read_ocel2, read_ocel2_bundle, read_ocel2_csv, read_ocel2_json,
+    read_ocel2_sqlite, read_ocel2_xml, write_ocel, write_ocel_csv_to_writer, write_ocel_json,
+    write_ocel_json_to_writer, write_ocel_sqlite, write_ocel_xml, write_ocel_xml_to_writer,
+    write_ocel2, write_ocel2_bundle, write_ocel2_csv, write_ocel2_csv_to_writer, write_ocel2_json,
+    write_ocel2_json_to_writer, write_ocel2_sqlite, write_ocel2_xml, write_ocel2_xml_to_writer,
 };
 use ichnos_ocel::{
     EventEvent, EventObject, ObjectChange, ObjectObject, Ocel, OcelEvent, OcelObject,
@@ -111,7 +116,12 @@ fn value(v: &Value) -> AttributeValue {
     match pair[0].as_str().expect("type") {
         "string" => AttributeValue::String(text(x)),
         "int" => AttributeValue::Int(x.as_i64().expect("int")),
-        "float" => AttributeValue::Float(x.as_f64().expect("float")),
+        "float" => AttributeValue::Float(match x.as_str() {
+            Some("Infinity") => f64::INFINITY,
+            Some("-Infinity") => f64::NEG_INFINITY,
+            Some("NaN") => f64::NAN,
+            _ => x.as_f64().expect("float"),
+        }),
         "boolean" => AttributeValue::Bool(x.as_bool().expect("bool")),
         "date" => AttributeValue::Date(
             DateTime::parse_from_rfc3339(x.as_str().expect("date")).expect("date"),
@@ -800,6 +810,7 @@ fn compare_writers(id: &str, expected: &Value, ocel: &Ocel, failures: &mut Vec<S
         );
         std::fs::remove_file(&path).unwrap();
     }
+    compare_bundles(id, expected, ocel, failures);
 }
 
 /// A database as the golden records it: per table its type, name, SQL and
@@ -1078,4 +1089,379 @@ fn files_read_back() {
     assert!(write_ocel2_csv(&ocel, dir.join("d.csv")).is_err());
     assert!(write_ocel2(&ocel, dir.join("d.txt")).is_err());
     std::fs::remove_dir_all(&dir).unwrap();
+}
+
+/// Where pm4py's bundle writer fails and ichnos writes the bundle: pm4py's
+/// OCEL 2.0 SQLite reader leaves its `@@cumcount` helper column in the
+/// object changes, and the bundle writer counts it as a second changed
+/// attribute.
+const BUNDLE_CUMCOUNT: &[&str] = &["write-ocel20-example-sqlite"];
+
+/// A new, empty directory in the temporary directory.
+fn temp_dir(name: &str) -> std::path::PathBuf {
+    static NEXT: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
+    let path = std::env::temp_dir().join(format!(
+        "ichnos-ocel-bundle-write-{}-{}-{name}",
+        std::process::id(),
+        NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed)
+    ));
+    let _ = std::fs::remove_dir_all(&path);
+    std::fs::create_dir_all(&path).unwrap();
+    path
+}
+
+/// Each file under `root`, by its path relative to `root`.
+fn files_under(root: &std::path::Path) -> std::collections::BTreeMap<String, Vec<u8>> {
+    let mut out = std::collections::BTreeMap::new();
+    let mut stack = vec![root.to_path_buf()];
+    while let Some(dir) = stack.pop() {
+        for entry in std::fs::read_dir(dir).unwrap() {
+            let path = entry.unwrap().path();
+            if path.is_dir() {
+                stack.push(path);
+            } else {
+                let name = path.strip_prefix(root).unwrap().to_string_lossy();
+                out.insert(name.replace('\\', "/"), std::fs::read(&path).unwrap());
+            }
+        }
+    }
+    out
+}
+
+/// `ocel-meta.json` with each type's attributes sorted by name.
+fn canon_meta(text: &str) -> J {
+    fn sort(j: &mut J) {
+        match j {
+            J::Obj(entries) => {
+                for (key, value) in entries.iter_mut() {
+                    if key == "attributes"
+                        && let J::Arr(items) = value
+                    {
+                        items.sort_by(|a, b| {
+                            a.get("name").map(J::str).cmp(&b.get("name").map(J::str))
+                        });
+                    }
+                    sort(value);
+                }
+            }
+            J::Arr(items) => items.iter_mut().for_each(sort),
+            _ => {}
+        }
+    }
+    let mut j: J = serde_json::from_str(text).expect("JSON");
+    sort(&mut j);
+    j
+}
+
+/// Compares `ocel-meta.json` with pm4py's: byte for byte when the
+/// attributes come in the same order, else with the attributes sorted.
+fn compare_meta(what: &str, ours: &[u8], theirs: &str, failures: &mut Vec<String>) {
+    let ours = std::str::from_utf8(ours).expect("UTF-8");
+    let same_order = serde_json::from_str::<J>(ours).ok() == serde_json::from_str::<J>(theirs).ok();
+    if same_order && let Some(diff) = first_difference(ours, theirs) {
+        failures.push(format!("{what} (bytes): {diff}"));
+    }
+    let (mut a, mut b) = (String::new(), String::new());
+    canon_meta(ours).render(0, &mut a);
+    canon_meta(theirs).render(0, &mut b);
+    if let Some(diff) = first_difference(&a, &b) {
+        failures.push(format!("{what}: {diff}"));
+    }
+}
+
+/// pyarrow's name for an Arrow type.
+fn arrow_name(t: &ichnos_core::arrow::datatypes::DataType) -> String {
+    use ichnos_core::arrow::datatypes::{DataType, TimeUnit};
+    match t {
+        DataType::Utf8 => "string".into(),
+        DataType::Int64 => "int64".into(),
+        DataType::Float64 => "double".into(),
+        DataType::Boolean => "bool".into(),
+        DataType::Timestamp(unit, tz) => {
+            let unit = match unit {
+                TimeUnit::Second => "s",
+                TimeUnit::Millisecond => "ms",
+                TimeUnit::Microsecond => "us",
+                TimeUnit::Nanosecond => "ns",
+            };
+            match tz {
+                Some(tz) => format!("timestamp[{unit}, tz={tz}]"),
+                None => format!("timestamp[{unit}]"),
+            }
+        }
+        other => format!("{other:?}"),
+    }
+}
+
+/// A Parquet file as the golden records it: `[name, type, nullable]` per
+/// column and the rows, with times as pandas' `isoformat`.
+fn parquet_table(data: Vec<u8>) -> Value {
+    use ichnos_core::arrow::array::{
+        Array, BooleanArray, Float64Array, Int64Array, StringArray, TimestampMicrosecondArray,
+    };
+    use parquet::arrow::arrow_reader::ParquetRecordBatchReaderBuilder;
+    let builder = ParquetRecordBatchReaderBuilder::try_new(bytes::Bytes::from(data)).unwrap();
+    let schema = builder.schema().clone();
+    let mut rows: Vec<Vec<Value>> = Vec::new();
+    for batch in builder.build().unwrap() {
+        let batch = batch.unwrap();
+        for i in 0..batch.num_rows() {
+            let row = batch
+                .columns()
+                .iter()
+                .map(|array| {
+                    if array.is_null(i) {
+                        return Value::Null;
+                    }
+                    let any = array.as_any();
+                    if let Some(a) = any.downcast_ref::<StringArray>() {
+                        Value::from(a.value(i))
+                    } else if let Some(a) = any.downcast_ref::<Int64Array>() {
+                        Value::from(a.value(i))
+                    } else if let Some(a) = any.downcast_ref::<Float64Array>() {
+                        Value::from(a.value(i))
+                    } else if let Some(a) = any.downcast_ref::<BooleanArray>() {
+                        Value::from(a.value(i))
+                    } else if let Some(a) = any.downcast_ref::<TimestampMicrosecondArray>() {
+                        let d = DateTime::from_timestamp_micros(a.value(i)).unwrap();
+                        let fraction = if d.timestamp_subsec_micros() == 0 {
+                            String::new()
+                        } else {
+                            format!(".{:06}", d.timestamp_subsec_micros())
+                        };
+                        Value::from(format!("{}{fraction}+00:00", d.format("%Y-%m-%dT%H:%M:%S")))
+                    } else {
+                        panic!("column type {:?}", array.data_type())
+                    }
+                })
+                .collect();
+            rows.push(row);
+        }
+    }
+    let columns: Vec<Value> = schema
+        .fields()
+        .iter()
+        .map(|f| serde_json::json!([f.name(), arrow_name(f.data_type()), f.is_nullable()]))
+        .collect();
+    serde_json::json!({"schema": columns, "rows": rows})
+}
+
+/// A Parquet table with its columns sorted by name.
+fn canon_table(table: &Value) -> Value {
+    let schema = table["schema"].as_array().unwrap();
+    let mut order: Vec<usize> = (0..schema.len()).collect();
+    order.sort_by_key(|&i| schema[i][0].as_str().unwrap().to_string());
+    let rows: Vec<Value> = table["rows"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|row| Value::from(order.iter().map(|&i| row[i].clone()).collect::<Vec<_>>()))
+        .collect();
+    let schema: Vec<Value> = order.iter().map(|&i| schema[i].clone()).collect();
+    serde_json::json!({"schema": schema, "rows": rows})
+}
+
+/// Checks a bundle writer's failure against pm4py's: the same `ValueError`
+/// message.
+fn check_bundle_error(what: &str, result: ichnos_io::Result<()>, want: &Value) {
+    let e = result
+        .err()
+        .unwrap_or_else(|| panic!("{what}: pm4py raises {}", want["error"]));
+    if let Some(message) = want["message"].as_str() {
+        assert_eq!(e.to_string(), format!("invalid OCEL: {message}"), "{what}");
+    }
+}
+
+/// Reads a written bundle back and compares it with what pm4py reads back
+/// from its own.
+fn compare_reread(what: &str, path: &std::path::Path, want: &Value, failures: &mut Vec<String>) {
+    let mut ours = read_ocel2_bundle(path).unwrap_or_else(|e| panic!("{what}: reread: {e}"));
+    // The golden records times to the microsecond.
+    let micros = |attributes: &mut Attributes| {
+        *attributes = attributes
+            .iter()
+            .map(|(k, v)| match v {
+                AttributeValue::Date(d) => (k.clone(), AttributeValue::Date(d.trunc_subsecs(6))),
+                v => (k.clone(), v.clone()),
+            })
+            .collect();
+    };
+    for e in &mut ours.events {
+        e.timestamp = e.timestamp.trunc_subsecs(6);
+        micros(&mut e.attributes);
+    }
+    for o in &mut ours.objects {
+        micros(&mut o.attributes);
+    }
+    for c in &mut ours.object_changes {
+        c.timestamp = c.timestamp.trunc_subsecs(6);
+        if let Some(AttributeValue::Date(d)) = &mut c.value {
+            *d = d.trunc_subsecs(6);
+        }
+    }
+    let theirs = build(&serde_json::json!({"input": want["ocel"], "globals": {}}));
+    if ours != theirs {
+        let diff = first_difference(&format!("{ours:#?}"), &format!("{theirs:#?}"));
+        failures.push(format!("{what} reread: {}", diff.unwrap_or_default()));
+    }
+}
+
+/// Writes `ocel` as a CSV bundle and as a Parquet `.ocel.zip` and compares
+/// them with pm4py's. CSV tables compare as `compare_csv` does. Parquet
+/// tables compare by schema and rows, with the columns sorted by name;
+/// pyarrow writes other bytes. Each bundle must also read back as pm4py
+/// reads its own.
+fn compare_bundles(id: &str, expected: &Value, ocel: &Ocel, failures: &mut Vec<String>) {
+    let what = format!("{id} bundle-csv");
+    let want = &expected["writers"]["bundle-csv"];
+    let root = temp_dir(&format!("{id}-csv"));
+    let dir = root.join("bundle");
+    let result = write_ocel2_bundle(ocel, &dir, BundleStorage::Csv);
+    if want.get("error").is_some() && !BUNDLE_CUMCOUNT.contains(&id) {
+        check_bundle_error(&what, result, want);
+    } else {
+        result.unwrap_or_else(|e| panic!("{what}: {e}"));
+        if want.get("error").is_none() {
+            let ours = files_under(&dir);
+            let theirs = want["files"].as_object().unwrap();
+            assert_eq!(
+                ours.keys().collect::<Vec<_>>(),
+                theirs.keys().collect::<Vec<_>>(),
+                "{what}: files"
+            );
+            for (name, text) in theirs {
+                let what = format!("{what} {name}");
+                if name == "ocel-meta.json" {
+                    compare_meta(&what, &ours[name], text.as_str().unwrap(), failures);
+                } else {
+                    compare_csv(&what, &ours[name], text, failures);
+                }
+            }
+            compare_reread(&what, &dir, &want["reread"], failures);
+        }
+    }
+    std::fs::remove_dir_all(&root).unwrap();
+
+    let what = format!("{id} bundle-parquet");
+    let want = &expected["writers"]["bundle-parquet"];
+    let root = temp_dir(&format!("{id}-parquet"));
+    let path = root.join("bundle.ocel.zip");
+    let result = write_ocel2(ocel, &path);
+    if want.get("error").is_some() && !BUNDLE_CUMCOUNT.contains(&id) {
+        check_bundle_error(&what, result, want);
+    } else {
+        result.unwrap_or_else(|e| panic!("{what}: {e}"));
+        if want.get("error").is_none() {
+            let mut archive = zip::ZipArchive::new(std::fs::File::open(&path).unwrap()).unwrap();
+            let mut entries = Vec::new();
+            let mut files = std::collections::BTreeMap::new();
+            for i in 0..archive.len() {
+                let mut entry = archive.by_index(i).unwrap();
+                let mut data = Vec::new();
+                std::io::Read::read_to_end(&mut entry, &mut data).unwrap();
+                let method = match entry.compression() {
+                    zip::CompressionMethod::Deflated => 8,
+                    zip::CompressionMethod::Stored => 0,
+                    other => panic!("{what}: {other:?}"),
+                };
+                let name = entry.name().unwrap().into_owned();
+                entries.push(serde_json::json!([name, method]));
+                files.insert(name, data);
+            }
+            assert_eq!(Value::from(entries), want["entries"], "{what}: entries");
+            compare_meta(
+                &format!("{what} ocel-meta.json"),
+                &files["ocel-meta.json"],
+                want["meta"].as_str().unwrap(),
+                failures,
+            );
+            for (name, table) in want["tables"].as_object().unwrap() {
+                let data = base64(want["files"][name]["base64"].as_str().unwrap());
+                assert_eq!(parquet_table(data), *table, "{what} {name}: pm4py's file");
+                let ours = canon_table(&parquet_table(files[name].clone()));
+                if ours != canon_table(table) {
+                    failures.push(format!(
+                        "{what} {name}:\n  ours:  {ours}\n  pm4py: {}",
+                        canon_table(table)
+                    ));
+                }
+            }
+            compare_reread(&what, &path, &want["reread"], failures);
+        }
+    }
+    std::fs::remove_dir_all(&root).unwrap();
+}
+
+fn base64(text: &str) -> Vec<u8> {
+    let digit = |c: u8| match c {
+        b'A'..=b'Z' => c - b'A',
+        b'a'..=b'z' => c - b'a' + 26,
+        b'0'..=b'9' => c - b'0' + 52,
+        b'+' => 62,
+        b'/' => 63,
+        _ => panic!("base64 {c}"),
+    };
+    let bits: Vec<u8> = text.bytes().filter(|&c| c != b'=').map(digit).collect();
+    bits.chunks(4)
+        .flat_map(|chunk| {
+            let n = chunk
+                .iter()
+                .enumerate()
+                .fold(0u32, |n, (i, &d)| n | (u32::from(d) << (18 - 6 * i)));
+            n.to_be_bytes()[1..chunk.len()].to_vec()
+        })
+        .collect()
+}
+
+/// The `bundle-write-*` goldens: logs that test the bundle writer's own
+/// rules, written as CSV and Parquet bundles.
+#[test]
+fn bundle_writers_match_pm4py() {
+    let ids: Vec<String> = cases("ocel")
+        .into_iter()
+        .filter(|c| c.starts_with("bundle-write-"))
+        .collect();
+    assert_eq!(ids.len(), 23, "cases: {ids:?}");
+    let mut failures = Vec::new();
+    for id in &ids {
+        let g = golden("ocel", id);
+        let mut ocel = build(&g.expected);
+        if id == "bundle-write-list-value" {
+            // The golden holds the list `["x"]` as its text.
+            let list = AttributeValue::List(vec![("".into(), AttributeValue::String("x".into()))]);
+            ocel.events[0].attributes.insert("l", list);
+        }
+        if id == "bundle-write-names" {
+            // The golden holds this time to the microsecond.
+            let e = ocel.events.iter_mut().find(|e| &*e.id == "e3").unwrap();
+            e.timestamp = DateTime::parse_from_rfc3339("2024-01-01T10:00:00.123456789Z").unwrap();
+        }
+        compare_bundles(id, &g.expected, &ocel, &mut failures);
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n\n"));
+}
+
+/// The bundle writer's targets, as pm4py's: a name ending in `.ocel.zip`
+/// in any case is an archive, another `.zip` name is an error, and a
+/// directory loses its old tables but keeps other files.
+#[test]
+fn bundle_targets_follow_pm4py() {
+    let ocel = build(&golden("ocel", "bundle-write-typed").expected);
+    let root = temp_dir("targets");
+    assert!(write_ocel2_bundle(&ocel, root.join("a.zip"), BundleStorage::Csv).is_err());
+    assert!(!root.join("a.zip").exists());
+    let archive = root.join("A.OCEL.ZIP");
+    write_ocel2_bundle(&ocel, &archive, BundleStorage::Csv).unwrap();
+    let dir = root.join("bundle");
+    std::fs::create_dir_all(dir.join("events")).unwrap();
+    std::fs::write(dir.join("events/event_old.parquet"), b"old").unwrap();
+    std::fs::write(dir.join("events/notes.txt"), b"keep").unwrap();
+    write_ocel2_bundle(&ocel, &dir, BundleStorage::Csv).unwrap();
+    assert!(!dir.join("events/event_old.parquet").exists());
+    assert!(dir.join("events/notes.txt").exists());
+    assert_eq!(
+        read_ocel2_bundle(&dir).unwrap(),
+        read_ocel2_bundle(&archive).unwrap()
+    );
+    std::fs::remove_dir_all(&root).unwrap();
 }

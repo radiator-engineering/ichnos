@@ -5,8 +5,10 @@
 //! `ocel/read-csv*` goldens hold the tables, or pm4py's error, for short CSV
 //! texts, and the `ocel/read-sqlite*` goldens the same for databases built
 //! from short SQL scripts. Each `ocel/write-*` golden also holds the
-//! databases pm4py's SQLite writers give and what pm4py's SQLite readers
-//! read from them; the test rebuilds each database and reads it. Goldens
+//! databases and bundles pm4py's SQLite and bundle writers give and what
+//! pm4py's readers read from them; the test rebuilds each one and reads it.
+//! The `ocel/read-bundle-*` goldens hold pm4py's tables, or its error, for
+//! short bundles, as directories and as archives. Goldens
 //! record times to the microsecond, so the test truncates
 //! ichnos' nanoseconds.
 
@@ -17,8 +19,8 @@ use ichnos_core::AttributeValue;
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
     OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_csv_from_reader, read_ocel_json,
-    read_ocel_json_from_reader, read_ocel_sqlite, read_ocel_xml, read_ocel2, read_ocel2_csv,
-    read_ocel2_csv_from_reader, read_ocel2_json, read_ocel2_sqlite, read_ocel2_xml,
+    read_ocel_json_from_reader, read_ocel_sqlite, read_ocel_xml, read_ocel2, read_ocel2_bundle,
+    read_ocel2_csv, read_ocel2_csv_from_reader, read_ocel2_json, read_ocel2_sqlite, read_ocel2_xml,
 };
 use ichnos_ocel::Ocel;
 use serde_json::Value;
@@ -568,4 +570,192 @@ fn xml_node_limit() {
     };
     assert!(read_ocel_xml(&path, &tight).is_err());
     assert!(read_ocel_xml(&path, &OcelReadOptions::default()).is_ok());
+}
+
+/// The bytes of a golden file: text, or `{"base64": ...}`.
+fn file_bytes(v: &Value) -> Vec<u8> {
+    match v {
+        Value::String(text) => text.as_bytes().to_vec(),
+        _ => base64(v["base64"].as_str().unwrap()),
+    }
+}
+
+fn base64(text: &str) -> Vec<u8> {
+    let digit = |c: u8| match c {
+        b'A'..=b'Z' => c - b'A',
+        b'a'..=b'z' => c - b'a' + 26,
+        b'0'..=b'9' => c - b'0' + 52,
+        b'+' => 62,
+        b'/' => 63,
+        _ => panic!("base64 {c}"),
+    };
+    let bits: Vec<u8> = text.bytes().filter(|&c| c != b'=').map(digit).collect();
+    bits.chunks(4)
+        .flat_map(|chunk| {
+            let n = chunk
+                .iter()
+                .enumerate()
+                .fold(0u32, |n, (i, &d)| n | (u32::from(d) << (18 - 6 * i)));
+            let bytes = n.to_be_bytes();
+            bytes[1..chunk.len()].to_vec()
+        })
+        .collect()
+}
+
+/// A new, empty directory in the temporary directory.
+fn temp_dir(name: &str) -> std::path::PathBuf {
+    let path =
+        std::env::temp_dir().join(format!("ichnos-ocel-bundle-{}-{name}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&path);
+    std::fs::create_dir_all(&path).unwrap();
+    path
+}
+
+/// Writes each golden file under `root`.
+fn write_files(root: &Path, files: &Value) {
+    for (name, content) in files.as_object().unwrap() {
+        let path = root.join(name);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(path, file_bytes(content)).unwrap();
+    }
+}
+
+/// Checks a bundle read against a golden result: pm4py's tables, or its
+/// error, with the message when pm4py raised a `ValueError`.
+fn check_bundle(result: ichnos_io::Result<Ocel>, case: &Value, what: &str) {
+    match case.get("error") {
+        Some(error) => {
+            let e = result
+                .err()
+                .unwrap_or_else(|| panic!("{what}: pm4py raises {error}"));
+            if let Some(message) = case["message"].as_str() {
+                assert_eq!(e.to_string(), format!("invalid OCEL: {message}"), "{what}");
+            }
+        }
+        None => {
+            let ocel = result.unwrap_or_else(|e| panic!("{what}: {e}"));
+            check(&ocel, &case["ocel"], what, true, false);
+        }
+    }
+}
+
+/// Bundles that ichnos reads differently from pm4py, as listed under
+/// Behaviour changes: the error ichnos returns, or `None` where ichnos
+/// reads the bundle and pm4py overwrites or rejects an `ocel:` attribute.
+const BUNDLE_DIFFERS: &[(&str, Option<&str>)] = &[
+    (
+        "integer-unicode-digit",
+        Some("events/event_create%20order.csv.cost is not a signed decimal integer."),
+    ),
+    (
+        "integer-too-large",
+        Some("events/event_create%20order.csv.cost does not fit in a 64-bit integer."),
+    ),
+    (
+        "timestamp-out-of-range",
+        Some(
+            "Parquet column 'events/event_pay%2Forder.parquet.ocel_time' holds a time \
+             outside the supported range.",
+        ),
+    ),
+    ("name-ocel-activity", None),
+    ("name-ocel-type", None),
+];
+
+/// The `read-bundle-directories` and `read-bundle-parquet` goldens: each
+/// bundle directory gives pm4py's tables or its error.
+#[test]
+fn bundle_directories_match_pm4py() {
+    let mut checked = 0;
+    for id in ["read-bundle-directories", "read-bundle-parquet"] {
+        let g = golden("ocel", id);
+        for (name, case) in g.expected["cases"].as_object().unwrap() {
+            let what = format!("{id} {name}");
+            let root = temp_dir(&format!("{id}-{name}"));
+            write_files(&root, &case["files"]);
+            if let Some((_, differs)) = BUNDLE_DIFFERS.iter().find(|(n, _)| n == name) {
+                let result = read_ocel2_bundle(&root);
+                match differs {
+                    Some(message) => assert_eq!(
+                        result.unwrap_err().to_string(),
+                        format!("invalid OCEL: {message}"),
+                        "{what}"
+                    ),
+                    None => {
+                        result.unwrap_or_else(|e| panic!("{what}: {e}"));
+                    }
+                }
+                std::fs::remove_dir_all(&root).unwrap();
+                checked += 1;
+                continue;
+            }
+            check_bundle(read_ocel2_bundle(&root), case, &what);
+            if case.get("error").is_none() {
+                let options = OcelReadOptions::default();
+                assert_eq!(
+                    read_ocel2(&root, &options).unwrap(),
+                    read_ocel2_bundle(&root).unwrap(),
+                    "{what}: read_ocel2"
+                );
+            }
+            std::fs::remove_dir_all(&root).unwrap();
+            checked += 1;
+        }
+    }
+    assert_eq!(checked, 105);
+}
+
+/// The `read-bundle-archives` golden: each archive, under its name, gives
+/// pm4py's tables or its error.
+#[test]
+fn bundle_archives_match_pm4py() {
+    let g = golden("ocel", "read-bundle-archives");
+    let cases = g.expected["cases"].as_object().unwrap();
+    for (name, case) in cases {
+        let what = format!("read-bundle-archives {name}");
+        let root = temp_dir(&format!("archive-{name}"));
+        let path = root.join(case["name"].as_str().unwrap());
+        std::fs::write(&path, file_bytes(&case["archive"])).unwrap();
+        check_bundle(read_ocel2_bundle(&path), case, &what);
+        if case.get("error").is_none() {
+            let options = OcelReadOptions::default();
+            assert_eq!(
+                read_ocel2(&path, &options).unwrap(),
+                read_ocel2_bundle(&path).unwrap(),
+                "{what}: read_ocel2"
+            );
+        }
+        std::fs::remove_dir_all(&root).unwrap();
+    }
+    assert_eq!(cases.len(), 11);
+}
+
+/// pm4py's bundles, rebuilt from the `write-*` and `bundle-write-*`
+/// goldens, read as pm4py reads them back.
+#[test]
+fn bundle_files_of_pm4py_read_back() {
+    let mut checked = 0;
+    for id in cases("ocel")
+        .into_iter()
+        .filter(|c| c.starts_with("write-") || c.starts_with("bundle-write-"))
+    {
+        let g = golden("ocel", &id);
+        for name in ["bundle-csv", "bundle-parquet"] {
+            let want = &g.expected["writers"][name];
+            if want.get("error").is_some() {
+                continue;
+            }
+            let what = format!("{id} {name}");
+            let root = temp_dir(&format!("{id}-{name}"));
+            write_files(&root, &want["files"]);
+            if name == "bundle-parquet" {
+                std::fs::write(root.join("ocel-meta.json"), want["meta"].as_str().unwrap())
+                    .unwrap();
+            }
+            check_bundle(read_ocel2_bundle(&root), &want["reread"], &what);
+            std::fs::remove_dir_all(&root).unwrap();
+            checked += 1;
+        }
+    }
+    assert_eq!(checked, 34);
 }

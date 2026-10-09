@@ -538,6 +538,1990 @@
       ]
     },
     "writers": {
+      "bundle-csv": {
+        "files": {
+          "events/event_Add%20Item%20to%20Order.csv": "ocel_id,ocel_time\r\ne15,1981-01-05T00:00:00+00:00\r\n",
+          "events/event_Cancel%20Order.csv": "ocel_id,ocel_time\r\ne13,1981-01-03T00:00:00+00:00\r\n",
+          "events/event_Confirm%20Order.csv": "ocel_id,ocel_time\r\ne2,1980-01-02T00:00:00+00:00\r\n",
+          "events/event_Create%20Delivery.csv": "ocel_id,ocel_time\r\ne4,1980-01-04T00:00:00+00:00\r\ne16,1981-01-06T00:00:00+00:00\r\ne18,1981-01-08T00:00:00+00:00\r\n",
+          "events/event_Create%20Order.csv": "ocel_id,ocel_time\r\ne1,1980-01-01T00:00:00+00:00\r\ne11,1981-01-01T00:00:00+00:00\r\ne14,1981-01-04T00:00:00+00:00\r\n",
+          "events/event_Delivery%20Failed.csv": "ocel_id,ocel_time\r\ne6,1980-01-08T00:00:00+00:00\r\n",
+          "events/event_Delivery%20Successful.csv": "ocel_id,ocel_time\r\ne8,1980-01-10T00:00:00+00:00\r\ne17,1981-01-07T00:00:00+00:00\r\ne19,1981-01-09T00:00:00+00:00\r\n",
+          "events/event_Invoice%20Sent.csv": "ocel_id,ocel_time\r\ne9,1980-01-11T00:00:00+00:00\r\ne20,1981-01-10T00:00:00+00:00\r\n",
+          "events/event_Item%20back%20in%20Stock.csv": "ocel_id,ocel_time\r\ne5,1980-01-05T00:00:00+00:00\r\n",
+          "events/event_Item%20out%20of%20Stock.csv": "ocel_id,ocel_time\r\ne3,1980-01-03T00:00:00+00:00\r\n",
+          "events/event_Pay%20Order.csv": "ocel_id,ocel_time\r\ne10,1980-01-12T00:00:00+00:00\r\n",
+          "events/event_Payment%20Reminder.csv": "ocel_id,ocel_time\r\ne21,1981-01-11T00:00:00+00:00\r\ne22,1981-01-11T00:00:00+00:00\r\n",
+          "events/event_Remove%20Item.csv": "ocel_id,ocel_time\r\ne12,1981-01-02T00:00:00+00:00\r\n",
+          "events/event_Retry%20Delivery.csv": "ocel_id,ocel_time\r\ne7,1980-01-09T00:00:00+00:00\r\n",
+          "events/event_Send%20for%20Credit%20Collection.csv": "ocel_id,ocel_time\r\ne23,1981-01-12T00:00:00+00:00\r\n",
+          "object_changes/object_changes_delivery.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "object_changes/object_changes_element.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "object_changes/object_changes_order.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_delivery.csv": "ocel_id\r\nd1\r\nd2\r\nd3\r\n",
+          "objects/object_element.csv": "ocel_id\r\ni1\r\ni2\r\ni3\r\ni4\r\ni5\r\ni6\r\ni7\r\ni8\r\ni9\r\n",
+          "objects/object_order.csv": "ocel_id\r\no1\r\no2\r\no3\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"Add Item to Order\": {\n      \"file\": \"events/event_Add%20Item%20to%20Order.csv\",\n      \"attributes\": []\n    },\n    \"Cancel Order\": {\n      \"file\": \"events/event_Cancel%20Order.csv\",\n      \"attributes\": []\n    },\n    \"Confirm Order\": {\n      \"file\": \"events/event_Confirm%20Order.csv\",\n      \"attributes\": []\n    },\n    \"Create Delivery\": {\n      \"file\": \"events/event_Create%20Delivery.csv\",\n      \"attributes\": []\n    },\n    \"Create Order\": {\n      \"file\": \"events/event_Create%20Order.csv\",\n      \"attributes\": []\n    },\n    \"Delivery Failed\": {\n      \"file\": \"events/event_Delivery%20Failed.csv\",\n      \"attributes\": []\n    },\n    \"Delivery Successful\": {\n      \"file\": \"events/event_Delivery%20Successful.csv\",\n      \"attributes\": []\n    },\n    \"Invoice Sent\": {\n      \"file\": \"events/event_Invoice%20Sent.csv\",\n      \"attributes\": []\n    },\n    \"Item back in Stock\": {\n      \"file\": \"events/event_Item%20back%20in%20Stock.csv\",\n      \"attributes\": []\n    },\n    \"Item out of Stock\": {\n      \"file\": \"events/event_Item%20out%20of%20Stock.csv\",\n      \"attributes\": []\n    },\n    \"Pay Order\": {\n      \"file\": \"events/event_Pay%20Order.csv\",\n      \"attributes\": []\n    },\n    \"Payment Reminder\": {\n      \"file\": \"events/event_Payment%20Reminder.csv\",\n      \"attributes\": []\n    },\n    \"Remove Item\": {\n      \"file\": \"events/event_Remove%20Item.csv\",\n      \"attributes\": []\n    },\n    \"Retry Delivery\": {\n      \"file\": \"events/event_Retry%20Delivery.csv\",\n      \"attributes\": []\n    },\n    \"Send for Credit Collection\": {\n      \"file\": \"events/event_Send%20for%20Credit%20Collection.csv\",\n      \"attributes\": []\n    }\n  },\n  \"objectTypes\": {\n    \"delivery\": {\n      \"file\": \"objects/object_delivery.csv\",\n      \"changesFile\": \"object_changes/object_changes_delivery.csv\",\n      \"attributes\": []\n    },\n    \"element\": {\n      \"file\": \"objects/object_element.csv\",\n      \"changesFile\": \"object_changes/object_changes_element.csv\",\n      \"attributes\": []\n    },\n    \"order\": {\n      \"file\": \"objects/object_order.csv\",\n      \"changesFile\": \"object_changes/object_changes_order.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,i4,\r\ne1,i1,\r\ne1,o1,\r\ne1,i3,\r\ne1,i2,\r\ne2,o1,\r\ne3,i3,\r\ne4,d1,\r\ne4,i2,\r\ne4,i1,\r\ne5,i3,\r\ne6,d1,\r\ne7,d1,\r\ne8,d1,\r\ne9,o1,\r\ne10,o1,\r\ne11,i6,\r\ne11,o2,\r\ne11,i5,\r\ne12,i5,\r\ne13,o2,\r\ne14,i8,\r\ne14,o3,\r\ne14,i7,\r\ne15,i9,\r\ne15,o3,\r\ne16,i3,\r\ne16,d2,\r\ne16,i4,\r\ne16,i7,\r\ne17,d2,\r\ne18,d3,\r\ne18,i8,\r\ne18,i9,\r\ne19,d3,\r\ne20,o3,\r\ne21,o3,\r\ne22,o3,\r\ne23,o3,\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "Create Order",
+                "attributes": {},
+                "id": "e1",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Confirm Order",
+                "attributes": {},
+                "id": "e2",
+                "timestamp": "1980-01-02T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Item out of Stock",
+                "attributes": {},
+                "id": "e3",
+                "timestamp": "1980-01-03T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Delivery",
+                "attributes": {},
+                "id": "e4",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Item back in Stock",
+                "attributes": {},
+                "id": "e5",
+                "timestamp": "1980-01-05T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Failed",
+                "attributes": {},
+                "id": "e6",
+                "timestamp": "1980-01-08T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Retry Delivery",
+                "attributes": {},
+                "id": "e7",
+                "timestamp": "1980-01-09T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Successful",
+                "attributes": {},
+                "id": "e8",
+                "timestamp": "1980-01-10T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Invoice Sent",
+                "attributes": {},
+                "id": "e9",
+                "timestamp": "1980-01-11T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Pay Order",
+                "attributes": {},
+                "id": "e10",
+                "timestamp": "1980-01-12T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Order",
+                "attributes": {},
+                "id": "e11",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Remove Item",
+                "attributes": {},
+                "id": "e12",
+                "timestamp": "1981-01-02T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Cancel Order",
+                "attributes": {},
+                "id": "e13",
+                "timestamp": "1981-01-03T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Order",
+                "attributes": {},
+                "id": "e14",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Add Item to Order",
+                "attributes": {},
+                "id": "e15",
+                "timestamp": "1981-01-05T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Delivery",
+                "attributes": {},
+                "id": "e16",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Successful",
+                "attributes": {},
+                "id": "e17",
+                "timestamp": "1981-01-07T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Delivery",
+                "attributes": {},
+                "id": "e18",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Successful",
+                "attributes": {},
+                "id": "e19",
+                "timestamp": "1981-01-09T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Invoice Sent",
+                "attributes": {},
+                "id": "e20",
+                "timestamp": "1981-01-10T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Payment Reminder",
+                "attributes": {},
+                "id": "e21",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Payment Reminder",
+                "attributes": {},
+                "id": "e22",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Send for Credit Collection",
+                "attributes": {},
+                "id": "e23",
+                "timestamp": "1981-01-12T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "d1",
+                "type": "delivery"
+              },
+              {
+                "attributes": {},
+                "id": "d2",
+                "type": "delivery"
+              },
+              {
+                "attributes": {},
+                "id": "d3",
+                "type": "delivery"
+              },
+              {
+                "attributes": {},
+                "id": "i1",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i2",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i3",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i4",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i5",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i6",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i7",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i8",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i9",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {},
+                "id": "o2",
+                "type": "order"
+              },
+              {
+                "attributes": {},
+                "id": "o3",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i4",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Confirm Order",
+                "event": "e2",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-02T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Item out of Stock",
+                "event": "e3",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1980-01-03T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e4",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e4",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e4",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Item back in Stock",
+                "event": "e5",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1980-01-05T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Delivery Failed",
+                "event": "e6",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-08T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Retry Delivery",
+                "event": "e7",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-09T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Delivery Successful",
+                "event": "e8",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-10T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Invoice Sent",
+                "event": "e9",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-11T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Pay Order",
+                "event": "e10",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-12T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e11",
+                "object": "i6",
+                "qualifier": "",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e11",
+                "object": "o2",
+                "qualifier": "",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e11",
+                "object": "i5",
+                "qualifier": "",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Remove Item",
+                "event": "e12",
+                "object": "i5",
+                "qualifier": "",
+                "timestamp": "1981-01-02T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Cancel Order",
+                "event": "e13",
+                "object": "o2",
+                "qualifier": "",
+                "timestamp": "1981-01-03T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e14",
+                "object": "i8",
+                "qualifier": "",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e14",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e14",
+                "object": "i7",
+                "qualifier": "",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Add Item to Order",
+                "event": "e15",
+                "object": "i9",
+                "qualifier": "",
+                "timestamp": "1981-01-05T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Add Item to Order",
+                "event": "e15",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-05T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "d2",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "i4",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "i7",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Delivery Successful",
+                "event": "e17",
+                "object": "d2",
+                "qualifier": "",
+                "timestamp": "1981-01-07T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e18",
+                "object": "d3",
+                "qualifier": "",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e18",
+                "object": "i8",
+                "qualifier": "",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e18",
+                "object": "i9",
+                "qualifier": "",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Delivery Successful",
+                "event": "e19",
+                "object": "d3",
+                "qualifier": "",
+                "timestamp": "1981-01-09T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Invoice Sent",
+                "event": "e20",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-10T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Payment Reminder",
+                "event": "e21",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Payment Reminder",
+                "event": "e22",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Send for Credit Collection",
+                "event": "e23",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-12T00:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "events/event_Add%20Item%20to%20Order.parquet",
+            8
+          ],
+          [
+            "events/event_Cancel%20Order.parquet",
+            8
+          ],
+          [
+            "events/event_Confirm%20Order.parquet",
+            8
+          ],
+          [
+            "events/event_Create%20Delivery.parquet",
+            8
+          ],
+          [
+            "events/event_Create%20Order.parquet",
+            8
+          ],
+          [
+            "events/event_Delivery%20Failed.parquet",
+            8
+          ],
+          [
+            "events/event_Delivery%20Successful.parquet",
+            8
+          ],
+          [
+            "events/event_Invoice%20Sent.parquet",
+            8
+          ],
+          [
+            "events/event_Item%20back%20in%20Stock.parquet",
+            8
+          ],
+          [
+            "events/event_Item%20out%20of%20Stock.parquet",
+            8
+          ],
+          [
+            "events/event_Pay%20Order.parquet",
+            8
+          ],
+          [
+            "events/event_Payment%20Reminder.parquet",
+            8
+          ],
+          [
+            "events/event_Remove%20Item.parquet",
+            8
+          ],
+          [
+            "events/event_Retry%20Delivery.parquet",
+            8
+          ],
+          [
+            "events/event_Send%20for%20Credit%20Collection.parquet",
+            8
+          ],
+          [
+            "objects/object_delivery.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_delivery.parquet",
+            8
+          ],
+          [
+            "objects/object_element.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_element.parquet",
+            8
+          ],
+          [
+            "objects/object_order.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_order.parquet",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "events/event_Add%20Item%20to%20Order.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTE1FQAVBhUKLBUCFRAVBhUGHDYAKANlMTUYA2UxNRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAEC+1Qw8AQAVABUGFQosFQIVEBUGFQYcGAgAQL7VDDwBABgIAEC+1Qw8AQAWACgIAEC+1Qw8AQAYCABAvtUMPAEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWchZ6JjYmCBw2ACgDZTE1GANlMTUREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYCFrABFrgBJrIBJoIBHBgIAEC+1Qw8AQAYCABAvtUMPAEAFgAoCABAvtUMPAEAGAgAQL7VDDwBABERABksFQQVABUCABUAFRAVAgAAABaiAhYCJggWsgIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAEACAABQQVIx"
+          },
+          "events/event_Cancel%20Order.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTEzFQAVBhUKLBUCFRAVBhUGHDYAKANlMTMYA2UxMxERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAIAPmuQ7AQAVABUGFQosFQIVEBUGFQYcGAgAgA+a5DsBABgIAIAPmuQ7AQAWACgIAIAPmuQ7AQAYCACAD5rkOwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWchZ6JjYmCBw2ACgDZTEzGANlMTMREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYCFrABFrgBJrIBJoIBHBgIAIAPmuQ7AQAYCACAD5rkOwEAFgAoCACAD5rkOwEAGAgAgA+a5DsBABERABksFQQVABUCABUAFRAVAgAAABaiAhYCJggWsgIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAEACAABQQVIx"
+          },
+          "events/event_Confirm%20Order.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTIVABUGFQosFQIVEBUGFQYcNgAoAmUyGAJlMhERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOBM0g0fAQAVABUGFQosFQIVEBUGFQYcGAgA4EzSDR8BABgIAOBM0g0fAQAWACgIAOBM0g0fAQAYCADgTNINHwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTIYAmUyEREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAOBM0g0fAQAYCADgTNINHwEAFgAoCADgTNINHwEAGAgA4EzSDR8BABERABksFQQVABUCABUAFRAVAgAAABacAhYCJggWrAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAD0CAABQQVIx"
+          },
+          "events/event_Create%20Delivery.parquet": {
+            "base64": "UEFSMRUEFSgVLEwVBhUAEgAAFEwCAAAAZTQDAAAAZTE2AwAAAGUxOBUAFQgVDCwVBhUQFQYVBhw2ACgCZTQYA2UxNhERAAAABAwCAyQAFQQVMBU0TBUGFQASAAAYXACg+w02HwEAAKCV8yA8AQAAYEQvSTwBABUAFQgVDCwVBhUQFQYVBhwYCABgRC9JPAEAGAgAoPsNNh8BABYAKAgAYEQvSTwBABgIAKD7DTYfAQAREQAAAAQMAgMkABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWBhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgYWjAEWlAEmUCYIHDYAKAJlNBgDZTE2EREAGSwVBBUAFQIAFQAVEBUCADwWEBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBhbSARbaASbsASacARwYCABgRC9JPAEAGAgAoPsNNh8BABYAKAgAYEQvSTwBABgIAKD7DTYfAQAREQAZLBUEFQAVAgAVABUQFQIAAAAW3gIWBiYIFu4CABkcGAxBUlJPVzpzY2hlbWEYgAIvLy8vLzdnQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBSUFBQUJjQUFBQUJBQUFBTHovLy84QUFBQUtFQUFBQUNRQUFBQUVBQUFBQUFBQUFBa0FBQUJ2WTJWc1gzUnBiV1VBQUFBSUFBd0FCZ0FJQUFnQUFBQUFBQUlBQkFBQUFBTUFBQUJWVkVNQUVBQVVBQWdBQUFBSEFBd0FBQUFRQUJBQUFBQUFBQUFGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQWNBQUFCdlkyVnNYMmxrQUFRQUJBQUVBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZLBwAABwAAABBAgAAUEFSMQ=="
+          },
+          "events/event_Create%20Order.parquet": {
+            "base64": "UEFSMRUEFSgVLEwVBhUAEgAAFEwCAAAAZTEDAAAAZTExAwAAAGUxNBUAFQgVDCwVBhUQFQYVBhw2ACgDZTE0GAJlMRERAAAABAwCAyQAFQQVMBU0TBUGFQASAAAYXACAdbT5HgEAAMBgXrw7AQAA4Oa3+DsBABUAFQgVDCwVBhUQFQYVBhwYCADg5rf4OwEAGAgAgHW0+R4BABYAKAgA4Oa3+DsBABgIAIB1tPkeAQAREQAAAAQMAgMkABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWBhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgYWjAEWlAEmUCYIHDYAKANlMTQYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWEBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBhbSARbaASbsASacARwYCADg5rf4OwEAGAgAgHW0+R4BABYAKAgA4Oa3+DsBABgIAIB1tPkeAQAREQAZLBUEFQAVAgAVABUQFQIAAAAW3gIWBiYIFu4CABkcGAxBUlJPVzpzY2hlbWEYgAIvLy8vLzdnQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBSUFBQUJjQUFBQUJBQUFBTHovLy84QUFBQUtFQUFBQUNRQUFBQUVBQUFBQUFBQUFBa0FBQUJ2WTJWc1gzUnBiV1VBQUFBSUFBd0FCZ0FJQUFnQUFBQUFBQUlBQkFBQUFBTUFBQUJWVkVNQUVBQVVBQWdBQUFBSEFBd0FBQUFRQUJBQUFBQUFBQUFGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQWNBQUFCdlkyVnNYMmxrQUFRQUJBQUVBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZLBwAABwAAABBAgAAUEFSMQ=="
+          },
+          "events/event_Delivery%20Failed.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTYVABUGFQosFQIVEBUGFQYcNgAoAmU2GAJlNhERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcACBZhYYfAQAVABUGFQosFQIVEBUGFQYcGAgAIFmFhh8BABgIACBZhYYfAQAWACgIACBZhYYfAQAYCAAgWYWGHwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTYYAmU2EREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIACBZhYYfAQAYCAAgWYWGHwEAFgAoCAAgWYWGHwEAGAgAIFmFhh8BABERABksFQQVABUCABUAFRAVAgAAABacAhYCJggWrAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAD0CAABQQVIx"
+          },
+          "events/event_Delivery%20Successful.parquet": {
+            "base64": "UEFSMRUEFSgVLEwVBhUAEgAAFEwCAAAAZTgDAAAAZTE3AwAAAGUxORUAFQgVDCwVBhUQFQYVBhw2ACgCZTgYA2UxNxERAAAABAwCAyQAFQQVMBU0TBUGFQASAAAYXADgB8GuHwEAAABtETU8AQAAwBtNXTwBABUAFQgVDCwVBhUQFQYVBhwYCADAG01dPAEAGAgA4AfBrh8BABYAKAgAwBtNXTwBABgIAOAHwa4fAQAREQAAAAQMAgMkABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWBhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgYWjAEWlAEmUCYIHDYAKAJlOBgDZTE3EREAGSwVBBUAFQIAFQAVEBUCADwWEBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBhbSARbaASbsASacARwYCADAG01dPAEAGAgA4AfBrh8BABYAKAgAwBtNXTwBABgIAOAHwa4fAQAREQAZLBUEFQAVAgAVABUQFQIAAAAW3gIWBiYIFu4CABkcGAxBUlJPVzpzY2hlbWEYgAIvLy8vLzdnQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBSUFBQUJjQUFBQUJBQUFBTHovLy84QUFBQUtFQUFBQUNRQUFBQUVBQUFBQUFBQUFBa0FBQUJ2WTJWc1gzUnBiV1VBQUFBSUFBd0FCZ0FJQUFnQUFBQUFBQUlBQkFBQUFBTUFBQUJWVkVNQUVBQVVBQWdBQUFBSEFBd0FBQUFRQUJBQUFBQUFBQUFGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQWNBQUFCdlkyVnNYMmxrQUFRQUJBQUVBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZLBwAABwAAABBAgAAUEFSMQ=="
+          },
+          "events/event_Invoice%20Sent.parquet": {
+            "base64": "UEFSMRUEFRoVHkwVBBUAEgAADTACAAAAZTkDAAAAZTIwFQAVBhUKLBUEFRAVBhUGHDYAKAJlORgDZTIwEREAAAADCAEDAhUEFSAVJEwVBBUAEgAAEDwAQN/ewh8BAAAg82pxPAEAFQAVBhUKLBUEFRAVBhUGHBgIACDzanE8AQAYCABA397CHwEAFgAoCAAg82pxPAEAGAgAQN/ewh8BABERAAAAAwgBAwIVBBk8NQAYBnNjaGVtYRUEABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFgQZHBksJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYEFnwWhAEmQiYIHDYAKAJlORgDZTIwEREAGSwVBBUAFQIAFQAVEBUCADwWChkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWBBbAARbIASbMASaMARwYCAAg82pxPAEAGAgAQN/ewh8BABYAKAgAIPNqcTwBABgIAEDf3sIfAQAREQAZLBUEFQAVAgAVABUQFQIAAAAWvAIWBCYIFswCABkcGAxBUlJPVzpzY2hlbWEYgAIvLy8vLzdnQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBSUFBQUJjQUFBQUJBQUFBTHovLy84QUFBQUtFQUFBQUNRQUFBQUVBQUFBQUFBQUFBa0FBQUJ2WTJWc1gzUnBiV1VBQUFBSUFBd0FCZ0FJQUFnQUFBQUFBQUlBQkFBQUFBTUFBQUJWVkVNQUVBQVVBQWdBQUFBSEFBd0FBQUFRQUJBQUFBQUFBQUFGRUFBQUFCd0FBQUFFQUFBQUFBQUFBQWNBQUFCdlkyVnNYMmxrQUFRQUJBQUVBQUFBABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZLBwAABwAAABAAgAAUEFSMQ=="
+          },
+          "events/event_Item%20back%20in%20Stock.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTUVABUGFQosFQIVEBUGFQYcNgAoAmU1GAJlNRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAADTK0ofAQAVABUGFQosFQIVEBUGFQYcGAgAANMrSh8BABgIAADTK0ofAQAWACgIAADTK0ofAQAYCAAA0ytKHwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTUYAmU1EREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAADTK0ofAQAYCAAA0ytKHwEAFgAoCAAA0ytKHwEAGAgAANMrSh8BABERABksFQQVABUCABUAFRAVAgAAABacAhYCJggWrAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAD0CAABQQVIx"
+          },
+          "events/event_Item%20out%20of%20Stock.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTMVABUGFQosFQIVEBUGFQYcNgAoAmUzGAJlMxERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAEAk8CEfAQAVABUGFQosFQIVEBUGFQYcGAgAQCTwIR8BABgIAEAk8CEfAQAWACgIAEAk8CEfAQAYCABAJPAhHwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTMYAmUzEREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAEAk8CEfAQAYCABAJPAhHwEAFgAoCABAJPAhHwEAGAgAQCTwIR8BABERABksFQQVABUCABUAFRAVAgAAABacAhYCJggWrAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAD0CAABQQVIx"
+          },
+          "events/event_Pay%20Order.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTEwFQAVBhUKLBUCFRAVBhUGHDYAKANlMTAYA2UxMBERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAKC2/NYfAQAVABUGFQosFQIVEBUGFQYcGAgAoLb81h8BABgIAKC2/NYfAQAWACgIAKC2/NYfAQAYCACgtvzWHwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWchZ6JjYmCBw2ACgDZTEwGANlMTAREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYCFrABFrgBJrIBJoIBHBgIAKC2/NYfAQAYCACgtvzWHwEAFgAoCACgtvzWHwEAGAgAoLb81h8BABERABksFQQVABUCABUAFRAVAgAAABaiAhYCJggWsgIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAEACAABQQVIx"
+          },
+          "events/event_Payment%20Reminder.parquet": {
+            "base64": "UEFSMRUEFRwVIEwVBBUAEgAADjQDAAAAZTIxAwAAAGUyMhUAFQYVCiwVBBUQFQYVBhw2ACgDZTIyGANlMjEREQAAAAMIAQMCFQQVEBUUTBUCFQASAAAIHACAyoiFPAEAFQAVBhUKLBUEFRAVBhUGHBgIAIDKiIU8AQAYCACAyoiFPAEAFgAoCACAyoiFPAEAGAgAgMqIhTwBABERAAAAAwgBBAAVBBk8NQAYBnNjaGVtYRUEABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFgQZHBksJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYEFoABFogBJkQmCBw2ACgDZTIyGANlMjEREQAZLBUEFQAVAgAVABUQFQIAPBYMGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYEFrABFrgBJsABJpABHBgIAIDKiIU8AQAYCACAyoiFPAEAFgAoCACAyoiFPAEAGAgAgMqIhTwBABERABksFQQVABUCABUAFRAVAgAAABawAhYEJggWwAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAEICAABQQVIx"
+          },
+          "events/event_Remove%20Item.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTEyFQAVBhUKLBUCFRAVBhUGHDYAKANlMTIYA2UxMhERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcACA4fNA7AQAVABUGFQosFQIVEBUGFQYcGAgAIDh80DsBABgIACA4fNA7AQAWACgIACA4fNA7AQAYCAAgOHzQOwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWchZ6JjYmCBw2ACgDZTEyGANlMTIREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYCFrABFrgBJrIBJoIBHBgIACA4fNA7AQAYCAAgOHzQOwEAFgAoCAAgOHzQOwEAGAgAIDh80DsBABERABksFQQVABUCABUAFRAVAgAAABaiAhYCJggWsgIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAEACAABQQVIx"
+          },
+          "events/event_Retry%20Delivery.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTcVABUGFQosFQIVEBUGFQYcNgAoAmU3GAJlNxERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAIAwo5ofAQAVABUGFQosFQIVEBUGFQYcGAgAgDCjmh8BABgIAIAwo5ofAQAWACgIAIAwo5ofAQAYCACAMKOaHwEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTcYAmU3EREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAIAwo5ofAQAYCACAMKOaHwEAFgAoCACAMKOaHwEAGAgAgDCjmh8BABERABksFQQVABUCABUAFRAVAgAAABacAhYCJggWrAIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAD0CAABQQVIx"
+          },
+          "events/event_Send%20for%20Credit%20Collection.parquet": {
+            "base64": "UEFSMRUEFQ4VEkwVAhUAEgAABxgDAAAAZTIzFQAVBhUKLBUCFRAVBhUGHDYAKANlMjMYA2UyMxERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOChppk8AQAVABUGFQosFQIVEBUGFQYcGAgA4KGmmTwBABgIAOChppk8AQAWACgIAOChppk8AQAYCADgoaaZPAEAEREAAAADCAECABUEGTw1ABgGc2NoZW1hFQQAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAWAhkcGSwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWchZ6JjYmCBw2ACgDZTIzGANlMjMREQAZLBUEFQAVAgAVABUQFQIAPBYGGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYCFrABFrgBJrIBJoIBHBgIAOChppk8AQAYCADgoaaZPAEAFgAoCADgoaaZPAEAGAgA4KGmmTwBABERABksFQQVABUCABUAFRAVAgAAABaiAhYCJggWsgIAGRwYDEFSUk9XOnNjaGVtYRiAAi8vLy8vN2dBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFJQUFBQmNBQUFBQkFBQUFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRksHAAAHAAAAEACAABQQVIx"
+          },
+          "object_changes/object_changes_delivery.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgHb2NlbF9pZBUCFgAWHBYeJgAmCCkcFQQVABUCAAAAJgAcFQQZJQAGGRgJb2NlbF90aW1lFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYzAIvLy8vLy9BQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNVQUFBQVBBQUFBQVFBQUFDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAhwIAAFBBUjE="
+          },
+          "object_changes/object_changes_element.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgHb2NlbF9pZBUCFgAWHBYeJgAmCCkcFQQVABUCAAAAJgAcFQQZJQAGGRgJb2NlbF90aW1lFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYzAIvLy8vLy9BQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNVQUFBQVBBQUFBQVFBQUFDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAhwIAAFBBUjE="
+          },
+          "object_changes/object_changes_order.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgHb2NlbF9pZBUCFgAWHBYeJgAmCCkcFQQVABUCAAAAJgAcFQQZJQAGGRgJb2NlbF90aW1lFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYzAIvLy8vLy9BQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNVQUFBQVBBQUFBQVFBQUFDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAhwIAAFBBUjE="
+          },
+          "objects/object_delivery.parquet": {
+            "base64": "UEFSMRUEFSQVKEwVBhUAEgAAEkQCAAAAZDECAAAAZDICAAAAZDMVABUIFQwsFQYVEBUGFQYcNgAoAmQzGAJkMRERAAAABAwCAyQAFQQZLDUAGAZzY2hlbWEVAgAVDCUAGAdvY2VsX2lkJQBMHAAAABYGGRwZHCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBhaGARaOASZMJggcNgAoAmQzGAJkMRERABksFQQVABUCABUAFRAVAgA8FgwZBhkGAAAAFoYBFgYmCBaOAQAZHBgMQVJST1c6c2NoZW1hGKABLy8vLy8zQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQUVBQUFBVUFBQUFFQUFVQUFnQUFBQUhBQXdBQUFBUUFCQUFBQUFBQUFBRkVBQUFBQndBQUFBRUFBQUFBQUFBQUFjQUFBQnZZMlZzWDJsa0FBUUFCQUFFQUFBQQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGRwcAAAAXAEAAFBBUjE="
+          },
+          "objects/object_element.parquet": {
+            "base64": "UEFSMRUEFWwVWkwVEhUAEgAANhQCAAAAaTEFBgAyBQYAMwUGADQFBgQ1AgEeADYFBjA3AgAAAGk4AgAAAGk5FQAVFBUYLBUSFRAVBhUGHDYAKAJpORgCaTEREQAAAAokBAUQMlR2CAAAABUEGSw1ABgGc2NoZW1hFQIAFQwlABgHb2NlbF9pZCUATBwAAAAWEhkcGRwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFhIW2gEWzAEmfiYIHDYAKAJpORgCaTEREQAZLBUEFQAVAgAVABUQFQIAPBYkGQYZBgAAABbaARYSJggWzAEAGRwYDEFSUk9XOnNjaGVtYRigAS8vLy8vM0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFFQUFBQVVBQUFBRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRkcHAAAAFwBAABQQVIx"
+          },
+          "objects/object_order.parquet": {
+            "base64": "UEFSMRUEFSQVKEwVBhUAEgAAEkQCAAAAbzECAAAAbzICAAAAbzMVABUIFQwsFQYVEBUGFQYcNgAoAm8zGAJvMRERAAAABAwCAyQAFQQZLDUAGAZzY2hlbWEVAgAVDCUAGAdvY2VsX2lkJQBMHAAAABYGGRwZHCYAHBUMGTUABhAZGAdvY2VsX2lkFQIWBhaGARaOASZMJggcNgAoAm8zGAJvMRERABksFQQVABUCABUAFRAVAgA8FgwZBhkGAAAAFoYBFgYmCBaOAQAZHBgMQVJST1c6c2NoZW1hGKABLy8vLy8zQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQUVBQUFBVUFBQUFFQUFVQUFnQUFBQUhBQXdBQUFBUUFCQUFBQUFBQUFBRkVBQUFBQndBQUFBRUFBQUFBQUFBQUFjQUFBQnZZMlZzWDJsa0FBUUFCQUFFQUFBQQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGRwcAAAAXAEAAFBBUjE="
+          },
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFbACFdIBTBUuFQASAACYARQCAAAAZTEFBgAyBQYAMwUGADQFBgQ1AgEeADYFBgA3BQYAOAUGBDkDARgEMTAJBwAxCQcAMgkHADMJBwA0CQcANQkHADYJBwA3CQcAOAkHCUYAMglGPDIxAwAAAGUyMgMAAABlMjMVABU2FTosFU4VEBUGFQYcNgAoAmU5GAJlMRERAAAAG2gFCwAAAIIYY5BiDkpKqcVaa8699x6MMcpJqwUVBBW0ARWSAUwVHhUAEgAAWhQCAAAAaTQFBgAxAQYAbwUGBGkzAQwEaTIBBgBkCRIANgEMAG8FEghpNQIBNgA4AQYAbwkqADcBDDRpOQIAAABkMgIAAABkMxUAFSwVMCwVThUQFQYVBhw2ACgCbzMYAmQxEREAAAAWVAQLEDIkUxRTVSJ2iJe6rNOw7cmuqgoVBBUIFQxMFQIVABIAAAQMAAAAABUAFQYVCiwVThUQFQYVBhw2ACgAGAAREQAAAAMIAU4AFQQZTDUAGAZzY2hlbWEVBgAVDCUAGA1vY2VsX2V2ZW50X2lkJQBMHAAAABUMJQAYDm9jZWxfb2JqZWN0X2lkJQBMHAAAABUMJQAYDm9jZWxfcXVhbGlmaWVyJQBMHAAAABZOGRwZPCYAHBUMGTUABhAZGA1vY2VsX2V2ZW50X2lkFQIWThbEAxbqAib6ASYIHDYAKAJlORgCZTEREQAZLBUEFQAVAgAVABUQFQIAPBbMARkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF9vYmplY3RfaWQVAhZOFr4CFqACJqQEJvICHDYAKAJvMxgCZDEREQAZLBUEFQAVAgAVABUQFQIAPBacARkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF9xdWFsaWZpZXIVAhZOFmAWaCa6BSaSBRw2ACgAGAAREQAZLBUEFQAVAgAVABUQFQIAPBYAGQYZBgAAABbiBhZOJggW8gUAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjl2WW1wbFkzUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRFFBQUFHOWpaV3hmWlhabGJuUmZhV1FBQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAA3wIAAFBBUjE="
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgOb2NlbF9zb3VyY2VfaWQlAEwcAAAAFQwlABgOb2NlbF90YXJnZXRfaWQlAEwcAAAAFQwlABgOb2NlbF9xdWFsaWZpZXIlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgOb2NlbF9zb3VyY2VfaWQVAhYAFhwWHiYAJggpHBUEFQAVAgAAACYAHBUMGSUABhkYDm9jZWxfdGFyZ2V0X2lkFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGA5vY2VsX3F1YWxpZmllchUCFgAWHBYeJgAmRCkcFQQVABUCAAAAFlQWACYIFloAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjkwWVhKblpYUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRGdBQUFHOWpaV3hmYzI5MWNtTmxYMmxrQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAfgIAAFBBUjE="
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {\n    \"Add Item to Order\": {\n      \"file\": \"events/event_Add%20Item%20to%20Order.parquet\",\n      \"attributes\": []\n    },\n    \"Cancel Order\": {\n      \"file\": \"events/event_Cancel%20Order.parquet\",\n      \"attributes\": []\n    },\n    \"Confirm Order\": {\n      \"file\": \"events/event_Confirm%20Order.parquet\",\n      \"attributes\": []\n    },\n    \"Create Delivery\": {\n      \"file\": \"events/event_Create%20Delivery.parquet\",\n      \"attributes\": []\n    },\n    \"Create Order\": {\n      \"file\": \"events/event_Create%20Order.parquet\",\n      \"attributes\": []\n    },\n    \"Delivery Failed\": {\n      \"file\": \"events/event_Delivery%20Failed.parquet\",\n      \"attributes\": []\n    },\n    \"Delivery Successful\": {\n      \"file\": \"events/event_Delivery%20Successful.parquet\",\n      \"attributes\": []\n    },\n    \"Invoice Sent\": {\n      \"file\": \"events/event_Invoice%20Sent.parquet\",\n      \"attributes\": []\n    },\n    \"Item back in Stock\": {\n      \"file\": \"events/event_Item%20back%20in%20Stock.parquet\",\n      \"attributes\": []\n    },\n    \"Item out of Stock\": {\n      \"file\": \"events/event_Item%20out%20of%20Stock.parquet\",\n      \"attributes\": []\n    },\n    \"Pay Order\": {\n      \"file\": \"events/event_Pay%20Order.parquet\",\n      \"attributes\": []\n    },\n    \"Payment Reminder\": {\n      \"file\": \"events/event_Payment%20Reminder.parquet\",\n      \"attributes\": []\n    },\n    \"Remove Item\": {\n      \"file\": \"events/event_Remove%20Item.parquet\",\n      \"attributes\": []\n    },\n    \"Retry Delivery\": {\n      \"file\": \"events/event_Retry%20Delivery.parquet\",\n      \"attributes\": []\n    },\n    \"Send for Credit Collection\": {\n      \"file\": \"events/event_Send%20for%20Credit%20Collection.parquet\",\n      \"attributes\": []\n    }\n  },\n  \"objectTypes\": {\n    \"delivery\": {\n      \"file\": \"objects/object_delivery.parquet\",\n      \"changesFile\": \"object_changes/object_changes_delivery.parquet\",\n      \"attributes\": []\n    },\n    \"element\": {\n      \"file\": \"objects/object_element.parquet\",\n      \"changesFile\": \"object_changes/object_changes_element.parquet\",\n      \"attributes\": []\n    },\n    \"order\": {\n      \"file\": \"objects/object_order.parquet\",\n      \"changesFile\": \"object_changes/object_changes_order.parquet\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "Create Order",
+                "attributes": {},
+                "id": "e1",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Confirm Order",
+                "attributes": {},
+                "id": "e2",
+                "timestamp": "1980-01-02T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Item out of Stock",
+                "attributes": {},
+                "id": "e3",
+                "timestamp": "1980-01-03T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Delivery",
+                "attributes": {},
+                "id": "e4",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Item back in Stock",
+                "attributes": {},
+                "id": "e5",
+                "timestamp": "1980-01-05T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Failed",
+                "attributes": {},
+                "id": "e6",
+                "timestamp": "1980-01-08T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Retry Delivery",
+                "attributes": {},
+                "id": "e7",
+                "timestamp": "1980-01-09T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Successful",
+                "attributes": {},
+                "id": "e8",
+                "timestamp": "1980-01-10T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Invoice Sent",
+                "attributes": {},
+                "id": "e9",
+                "timestamp": "1980-01-11T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Pay Order",
+                "attributes": {},
+                "id": "e10",
+                "timestamp": "1980-01-12T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Order",
+                "attributes": {},
+                "id": "e11",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Remove Item",
+                "attributes": {},
+                "id": "e12",
+                "timestamp": "1981-01-02T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Cancel Order",
+                "attributes": {},
+                "id": "e13",
+                "timestamp": "1981-01-03T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Order",
+                "attributes": {},
+                "id": "e14",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Add Item to Order",
+                "attributes": {},
+                "id": "e15",
+                "timestamp": "1981-01-05T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Delivery",
+                "attributes": {},
+                "id": "e16",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Successful",
+                "attributes": {},
+                "id": "e17",
+                "timestamp": "1981-01-07T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Create Delivery",
+                "attributes": {},
+                "id": "e18",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Delivery Successful",
+                "attributes": {},
+                "id": "e19",
+                "timestamp": "1981-01-09T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Invoice Sent",
+                "attributes": {},
+                "id": "e20",
+                "timestamp": "1981-01-10T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Payment Reminder",
+                "attributes": {},
+                "id": "e21",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Payment Reminder",
+                "attributes": {},
+                "id": "e22",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00"
+              },
+              {
+                "activity": "Send for Credit Collection",
+                "attributes": {},
+                "id": "e23",
+                "timestamp": "1981-01-12T00:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "d1",
+                "type": "delivery"
+              },
+              {
+                "attributes": {},
+                "id": "d2",
+                "type": "delivery"
+              },
+              {
+                "attributes": {},
+                "id": "d3",
+                "type": "delivery"
+              },
+              {
+                "attributes": {},
+                "id": "i1",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i2",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i3",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i4",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i5",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i6",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i7",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i8",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "i9",
+                "type": "element"
+              },
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {},
+                "id": "o2",
+                "type": "order"
+              },
+              {
+                "attributes": {},
+                "id": "o3",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i4",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e1",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "1980-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Confirm Order",
+                "event": "e2",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-02T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Item out of Stock",
+                "event": "e3",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1980-01-03T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e4",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e4",
+                "object": "i2",
+                "qualifier": "",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e4",
+                "object": "i1",
+                "qualifier": "",
+                "timestamp": "1980-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Item back in Stock",
+                "event": "e5",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1980-01-05T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Delivery Failed",
+                "event": "e6",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-08T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Retry Delivery",
+                "event": "e7",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-09T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Delivery Successful",
+                "event": "e8",
+                "object": "d1",
+                "qualifier": "",
+                "timestamp": "1980-01-10T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Invoice Sent",
+                "event": "e9",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-11T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Pay Order",
+                "event": "e10",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "1980-01-12T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e11",
+                "object": "i6",
+                "qualifier": "",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e11",
+                "object": "o2",
+                "qualifier": "",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e11",
+                "object": "i5",
+                "qualifier": "",
+                "timestamp": "1981-01-01T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Remove Item",
+                "event": "e12",
+                "object": "i5",
+                "qualifier": "",
+                "timestamp": "1981-01-02T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Cancel Order",
+                "event": "e13",
+                "object": "o2",
+                "qualifier": "",
+                "timestamp": "1981-01-03T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e14",
+                "object": "i8",
+                "qualifier": "",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e14",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Order",
+                "event": "e14",
+                "object": "i7",
+                "qualifier": "",
+                "timestamp": "1981-01-04T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Add Item to Order",
+                "event": "e15",
+                "object": "i9",
+                "qualifier": "",
+                "timestamp": "1981-01-05T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Add Item to Order",
+                "event": "e15",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-05T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "i3",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "d2",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "i4",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e16",
+                "object": "i7",
+                "qualifier": "",
+                "timestamp": "1981-01-06T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Delivery Successful",
+                "event": "e17",
+                "object": "d2",
+                "qualifier": "",
+                "timestamp": "1981-01-07T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e18",
+                "object": "d3",
+                "qualifier": "",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e18",
+                "object": "i8",
+                "qualifier": "",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Create Delivery",
+                "event": "e18",
+                "object": "i9",
+                "qualifier": "",
+                "timestamp": "1981-01-08T00:00:00.000000+00:00",
+                "type": "element"
+              },
+              {
+                "activity": "Delivery Successful",
+                "event": "e19",
+                "object": "d3",
+                "qualifier": "",
+                "timestamp": "1981-01-09T00:00:00.000000+00:00",
+                "type": "delivery"
+              },
+              {
+                "activity": "Invoice Sent",
+                "event": "e20",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-10T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Payment Reminder",
+                "event": "e21",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Payment Reminder",
+                "event": "e22",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-11T00:00:00.000000+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "Send for Credit Collection",
+                "event": "e23",
+                "object": "o3",
+                "qualifier": "",
+                "timestamp": "1981-01-12T00:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": {
+          "events/event_Add%20Item%20to%20Order.parquet": {
+            "rows": [
+              [
+                "e15",
+                "1981-01-05T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Cancel%20Order.parquet": {
+            "rows": [
+              [
+                "e13",
+                "1981-01-03T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Confirm%20Order.parquet": {
+            "rows": [
+              [
+                "e2",
+                "1980-01-02T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Create%20Delivery.parquet": {
+            "rows": [
+              [
+                "e4",
+                "1980-01-04T00:00:00+00:00"
+              ],
+              [
+                "e16",
+                "1981-01-06T00:00:00+00:00"
+              ],
+              [
+                "e18",
+                "1981-01-08T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Create%20Order.parquet": {
+            "rows": [
+              [
+                "e1",
+                "1980-01-01T00:00:00+00:00"
+              ],
+              [
+                "e11",
+                "1981-01-01T00:00:00+00:00"
+              ],
+              [
+                "e14",
+                "1981-01-04T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Delivery%20Failed.parquet": {
+            "rows": [
+              [
+                "e6",
+                "1980-01-08T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Delivery%20Successful.parquet": {
+            "rows": [
+              [
+                "e8",
+                "1980-01-10T00:00:00+00:00"
+              ],
+              [
+                "e17",
+                "1981-01-07T00:00:00+00:00"
+              ],
+              [
+                "e19",
+                "1981-01-09T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Invoice%20Sent.parquet": {
+            "rows": [
+              [
+                "e9",
+                "1980-01-11T00:00:00+00:00"
+              ],
+              [
+                "e20",
+                "1981-01-10T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Item%20back%20in%20Stock.parquet": {
+            "rows": [
+              [
+                "e5",
+                "1980-01-05T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Item%20out%20of%20Stock.parquet": {
+            "rows": [
+              [
+                "e3",
+                "1980-01-03T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Pay%20Order.parquet": {
+            "rows": [
+              [
+                "e10",
+                "1980-01-12T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Payment%20Reminder.parquet": {
+            "rows": [
+              [
+                "e21",
+                "1981-01-11T00:00:00+00:00"
+              ],
+              [
+                "e22",
+                "1981-01-11T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Remove%20Item.parquet": {
+            "rows": [
+              [
+                "e12",
+                "1981-01-02T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Retry%20Delivery.parquet": {
+            "rows": [
+              [
+                "e7",
+                "1980-01-09T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "events/event_Send%20for%20Credit%20Collection.parquet": {
+            "rows": [
+              [
+                "e23",
+                "1981-01-12T00:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ]
+            ]
+          },
+          "object_changes/object_changes_delivery.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ]
+            ]
+          },
+          "object_changes/object_changes_element.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ]
+            ]
+          },
+          "object_changes/object_changes_order.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ]
+            ]
+          },
+          "objects/object_delivery.parquet": {
+            "rows": [
+              [
+                "d1"
+              ],
+              [
+                "d2"
+              ],
+              [
+                "d3"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ]
+            ]
+          },
+          "objects/object_element.parquet": {
+            "rows": [
+              [
+                "i1"
+              ],
+              [
+                "i2"
+              ],
+              [
+                "i3"
+              ],
+              [
+                "i4"
+              ],
+              [
+                "i5"
+              ],
+              [
+                "i6"
+              ],
+              [
+                "i7"
+              ],
+              [
+                "i8"
+              ],
+              [
+                "i9"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ]
+            ]
+          },
+          "objects/object_order.parquet": {
+            "rows": [
+              [
+                "o1"
+              ],
+              [
+                "o2"
+              ],
+              [
+                "o3"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/e2o.parquet": {
+            "rows": [
+              [
+                "e1",
+                "i4",
+                ""
+              ],
+              [
+                "e1",
+                "i1",
+                ""
+              ],
+              [
+                "e1",
+                "o1",
+                ""
+              ],
+              [
+                "e1",
+                "i3",
+                ""
+              ],
+              [
+                "e1",
+                "i2",
+                ""
+              ],
+              [
+                "e2",
+                "o1",
+                ""
+              ],
+              [
+                "e3",
+                "i3",
+                ""
+              ],
+              [
+                "e4",
+                "d1",
+                ""
+              ],
+              [
+                "e4",
+                "i2",
+                ""
+              ],
+              [
+                "e4",
+                "i1",
+                ""
+              ],
+              [
+                "e5",
+                "i3",
+                ""
+              ],
+              [
+                "e6",
+                "d1",
+                ""
+              ],
+              [
+                "e7",
+                "d1",
+                ""
+              ],
+              [
+                "e8",
+                "d1",
+                ""
+              ],
+              [
+                "e9",
+                "o1",
+                ""
+              ],
+              [
+                "e10",
+                "o1",
+                ""
+              ],
+              [
+                "e11",
+                "i6",
+                ""
+              ],
+              [
+                "e11",
+                "o2",
+                ""
+              ],
+              [
+                "e11",
+                "i5",
+                ""
+              ],
+              [
+                "e12",
+                "i5",
+                ""
+              ],
+              [
+                "e13",
+                "o2",
+                ""
+              ],
+              [
+                "e14",
+                "i8",
+                ""
+              ],
+              [
+                "e14",
+                "o3",
+                ""
+              ],
+              [
+                "e14",
+                "i7",
+                ""
+              ],
+              [
+                "e15",
+                "i9",
+                ""
+              ],
+              [
+                "e15",
+                "o3",
+                ""
+              ],
+              [
+                "e16",
+                "i3",
+                ""
+              ],
+              [
+                "e16",
+                "d2",
+                ""
+              ],
+              [
+                "e16",
+                "i4",
+                ""
+              ],
+              [
+                "e16",
+                "i7",
+                ""
+              ],
+              [
+                "e17",
+                "d2",
+                ""
+              ],
+              [
+                "e18",
+                "d3",
+                ""
+              ],
+              [
+                "e18",
+                "i8",
+                ""
+              ],
+              [
+                "e18",
+                "i9",
+                ""
+              ],
+              [
+                "e19",
+                "d3",
+                ""
+              ],
+              [
+                "e20",
+                "o3",
+                ""
+              ],
+              [
+                "e21",
+                "o3",
+                ""
+              ],
+              [
+                "e22",
+                "o3",
+                ""
+              ],
+              [
+                "e23",
+                "o3",
+                ""
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type\no1,order\ni1,element\ni2,element\ni3,element\ni4,element\nd1,delivery\no2,order\ni5,element\ni6,element\no3,order\ni7,element\ni8,element\ni9,element\nd2,delivery\nd3,delivery\n",
         "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:element,ocel:type:order,ocel:type:delivery\ne1,Create Order,1980-01-01 00:00:00+00:00,\"['i4', 'i1', 'i3', 'i2']\",['o1'],\ne2,Confirm Order,1980-01-02 00:00:00+00:00,,['o1'],\ne3,Item out of Stock,1980-01-03 00:00:00+00:00,['i3'],,\ne4,Create Delivery,1980-01-04 00:00:00+00:00,\"['i2', 'i1']\",,['d1']\ne5,Item back in Stock,1980-01-05 00:00:00+00:00,['i3'],,\ne6,Delivery Failed,1980-01-08 00:00:00+00:00,,,['d1']\ne7,Retry Delivery,1980-01-09 00:00:00+00:00,,,['d1']\ne8,Delivery Successful,1980-01-10 00:00:00+00:00,,,['d1']\ne9,Invoice Sent,1980-01-11 00:00:00+00:00,,['o1'],\ne10,Pay Order,1980-01-12 00:00:00+00:00,,['o1'],\ne11,Create Order,1981-01-01 00:00:00+00:00,\"['i6', 'i5']\",['o2'],\ne12,Remove Item,1981-01-02 00:00:00+00:00,['i5'],,\ne13,Cancel Order,1981-01-03 00:00:00+00:00,,['o2'],\ne14,Create Order,1981-01-04 00:00:00+00:00,\"['i8', 'i7']\",['o3'],\ne15,Add Item to Order,1981-01-05 00:00:00+00:00,['i9'],['o3'],\ne16,Create Delivery,1981-01-06 00:00:00+00:00,\"['i3', 'i4', 'i7']\",,['d2']\ne17,Delivery Successful,1981-01-07 00:00:00+00:00,,,['d2']\ne18,Create Delivery,1981-01-08 00:00:00+00:00,\"['i8', 'i9']\",,['d3']\ne19,Delivery Successful,1981-01-09 00:00:00+00:00,,,['d3']\ne20,Invoice Sent,1981-01-10 00:00:00+00:00,,['o3'],\ne21,Payment Reminder,1981-01-11 00:00:00+00:00,,['o3'],\ne22,Payment Reminder,1981-01-11 00:00:00+00:00,,['o3'],\ne23,Send for Credit Collection,1981-01-12 00:00:00+00:00,,['o3'],\n"
@@ -4852,7 +6836,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {
       "log": {

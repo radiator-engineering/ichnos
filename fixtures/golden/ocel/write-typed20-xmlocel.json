@@ -189,6 +189,14 @@
       ]
     },
     "writers": {
+      "bundle-csv": {
+        "error": "ValueError",
+        "message": "Object 'i1' has conflicting time-0 values for attribute 'weight'."
+      },
+      "bundle-parquet": {
+        "error": "ValueError",
+        "message": "Object 'i1' has conflicting time-0 values for attribute 'weight'."
+      },
       "csv": {
         "objects": "ocel:oid,ocel:type,value,priority,express,due,label,weight\no1,order,120.5,2,false,2022-01-12T00:00:00+01:00,rush order,\ni1,item,,,,,,1.5\ni2,item,,,,,,\n",
         "text": "ocel:eid,ocel:activity,ocel:timestamp,cost,count,rush,slot,note,ocel:type:order,ocel:type:item\ne1,place order,2022-01-09 14:00:00.123456+00:00,10.0,7,true,2022-01-09T18:00:00Z,first,['o1'],\"['i1', 'i1']\"\ne2,pick item,2022-01-09 14:30:00+00:00,0.0,,,,,,['i1']\ne3,pick item,2022-01-09 14:30:00+00:00,2.5,,,,,,['i2']\ne4,ship,2022-01-10 08:00:00+00:00,,,,,,['o1'],\n"
@@ -1403,7 +1411,10 @@
       "pm4py.write_ocel_sqlite",
       "pm4py.write_ocel2_sqlite",
       "pm4py.read_ocel_sqlite",
-      "pm4py.read_ocel2_sqlite"
+      "pm4py.read_ocel2_sqlite",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
     ],
     "loaders": {
       "log": {
