@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 81; ported: 363; dropped: 182; total: 626.
+todo: 73; ported: 363; dropped: 190; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -401,19 +401,19 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.connectors.extract_log_windows_events` | `connectors.py` → `algo/connectors/variants/windows_events` | `ichnos::io::extract_log_windows_events` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
 | `pm4py.connectors.extract_log_chrome_history` | `connectors.py` → `algo/connectors/variants/chrome_history` | `ichnos::io::extract_log_chrome_history` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
 | `pm4py.connectors.extract_log_firefox_history` | `connectors.py` → `algo/connectors/variants/firefox_history` | `ichnos::io::extract_log_firefox_history` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
-| `pm4py.connectors.extract_log_github` | `connectors.py` → `algo/connectors/variants/github_repo` | `ichnos::io::extract_log_github` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
-| `pm4py.connectors.extract_log_camunda_workflow` | `connectors.py` → `algo/connectors/variants/camunda_workflow` | `ichnos::io::extract_log_camunda_workflow` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
-| `pm4py.connectors.extract_log_sap_o2c` | `connectors.py` → `algo/connectors/variants/sap_o2c` | `ichnos::io::extract_log_sap_o2c` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
-| `pm4py.connectors.extract_log_sap_accounting` | `connectors.py` → `algo/connectors/variants/sap_accounting` | `ichnos::io::extract_log_sap_accounting` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
+| `pm4py.connectors.extract_log_github` | `connectors.py` → `algo/connectors/variants/github_repo` | `ichnos::io::extract_log_github` (planned) | `ichnos-io` | dropped | Calls the GitHub REST API over the network, with its rate limits and an optional token. ichnos makes no network calls; save the API data as a table and read it with ichnos-io. |
+| `pm4py.connectors.extract_log_camunda_workflow` | `connectors.py` → `algo/connectors/variants/camunda_workflow` | `ichnos::io::extract_log_camunda_workflow` (planned) | `ichnos-io` | dropped | Queries the Camunda database through ODBC (`pyodbc`). ichnos has no database drivers; export the query result as a table and read it with ichnos-io. |
+| `pm4py.connectors.extract_log_sap_o2c` | `connectors.py` → `algo/connectors/variants/sap_o2c` | `ichnos::io::extract_log_sap_o2c` (planned) | `ichnos-io` | dropped | Queries the SAP database through ODBC (`pyodbc`). ichnos has no database drivers; export the query result as a table and read it with ichnos-io. |
+| `pm4py.connectors.extract_log_sap_accounting` | `connectors.py` → `algo/connectors/variants/sap_accounting` | `ichnos::io::extract_log_sap_accounting` (planned) | `ichnos-io` | dropped | Queries the SAP database through ODBC (`pyodbc`). ichnos has no database drivers; export the query result as a table and read it with ichnos-io. |
 | `pm4py.connectors.extract_ocel_outlook_mails` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_outlook_mails` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
 | `pm4py.connectors.extract_ocel_outlook_calendar` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_outlook_calendar` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
 | `pm4py.connectors.extract_ocel_windows_events` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_windows_events` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
 | `pm4py.connectors.extract_ocel_chrome_history` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_chrome_history` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
 | `pm4py.connectors.extract_ocel_firefox_history` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_firefox_history` (planned) | `ichnos-io` | dropped | Desktop application/OS profile extraction is outside the portable Rust library scope. |
-| `pm4py.connectors.extract_ocel_github` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_github` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
-| `pm4py.connectors.extract_ocel_camunda_workflow` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_camunda_workflow` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
-| `pm4py.connectors.extract_ocel_sap_o2c` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_sap_o2c` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
-| `pm4py.connectors.extract_ocel_sap_accounting` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_sap_accounting` (planned) | `ichnos-io` | todo | Single entry point; preserve source defaults. |
+| `pm4py.connectors.extract_ocel_github` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_github` (planned) | `ichnos-io` | dropped | Runs `extract_log_github` and then `convert_log_to_ocel`; the extraction needs the GitHub REST API. |
+| `pm4py.connectors.extract_ocel_camunda_workflow` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_camunda_workflow` (planned) | `ichnos-io` | dropped | Runs `extract_log_camunda_workflow` and then `convert_log_to_ocel`; the extraction needs an ODBC database connection. |
+| `pm4py.connectors.extract_ocel_sap_o2c` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_sap_o2c` (planned) | `ichnos-io` | dropped | Runs `extract_log_sap_o2c` and then `convert_log_to_ocel`; the extraction needs an ODBC database connection. |
+| `pm4py.connectors.extract_ocel_sap_accounting` | `connectors.py` → `objects/ocel/obj` | `ichnos::io::extract_ocel_sap_accounting` (planned) | `ichnos-io` | dropped | Runs `extract_log_sap_accounting` and then `convert_log_to_ocel`; the extraction needs an ODBC database connection. |
 
 ## cli
 
