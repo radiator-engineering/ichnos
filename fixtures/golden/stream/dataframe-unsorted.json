@@ -1,0 +1,174 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": "a"
+            },
+            "events": [
+              {
+                "concept:name": "z",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "attributes": {
+              "concept:name": "b"
+            },
+            "events": [
+              {
+                "concept:name": "x",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:02.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "y",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:01.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "088d5736c5960d1b3255f409b998b98d7067e89fcb666d9bfa75aa7b44136250"
+    },
+    "grouped_input": false,
+    "raw": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": "a"
+            },
+            "events": [
+              {
+                "concept:name": "z",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "attributes": {
+              "concept:name": "b"
+            },
+            "events": [
+              {
+                "concept:name": "x",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:02.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "y",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:01.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "088d5736c5960d1b3255f409b998b98d7067e89fcb666d9bfa75aa7b44136250"
+    },
+    "states": [
+      "inactive",
+      "active",
+      "finished"
+    ],
+    "traces": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": "a"
+            },
+            "events": [
+              {
+                "concept:name": "z",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "attributes": {
+              "concept:name": "b"
+            },
+            "events": [
+              {
+                "concept:name": "x",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:02.000000+00:00"
+                }
+              },
+              {
+                "concept:name": "y",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:01.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "088d5736c5960d1b3255f409b998b98d7067e89fcb666d9bfa75aa7b44136250"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dataframe-unsorted",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.conversion.from_pandas.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "custom": false,
+      "interleaved": false,
+      "rows": [
+        [
+          "b",
+          "x",
+          "2024-01-01T00:00:02+00:00"
+        ],
+        [
+          "b",
+          "y",
+          "2024-01-01T00:00:01+00:00"
+        ],
+        [
+          "a",
+          "z",
+          "2024-01-01T00:00:00+00:00"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

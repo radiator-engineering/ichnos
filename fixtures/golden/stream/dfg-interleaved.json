@@ -1,0 +1,220 @@
+{
+  "expected": {
+    "collected": {
+      "count": 5,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "x",
+            "concept:name": "a"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "y",
+            "concept:name": "b"
+          }
+        ],
+        [
+          4,
+          {
+            "case:concept:name": "x",
+            "concept:name": "b"
+          }
+        ]
+      ],
+      "sha256": "6f29653eb52c11ec8b33c92564dc1dc9cda88eca07b838786f56714597dc94d0"
+    },
+    "live_model": {
+      "activities": {
+        "a": 2,
+        "b": 2,
+        "c": 1
+      },
+      "edges": [
+        [
+          "a",
+          "a",
+          1
+        ],
+        [
+          "a",
+          "b",
+          1
+        ],
+        [
+          "b",
+          "c",
+          1
+        ]
+      ],
+      "ends": {
+        "b": 1,
+        "c": 1
+      },
+      "starts": {
+        "a": 1,
+        "b": 1
+      }
+    },
+    "removed_count": 0,
+    "snapshots": [
+      {
+        "at": 0,
+        "model": {
+          "activities": {},
+          "edges": [],
+          "ends": {},
+          "starts": {}
+        }
+      },
+      {
+        "at": 1,
+        "model": {
+          "activities": {
+            "a": 1
+          },
+          "edges": [],
+          "ends": {
+            "a": 1
+          },
+          "starts": {
+            "a": 1
+          }
+        }
+      },
+      {
+        "at": 2,
+        "model": {
+          "activities": {
+            "a": 1,
+            "b": 1
+          },
+          "edges": [],
+          "ends": {
+            "a": 1,
+            "b": 1
+          },
+          "starts": {
+            "a": 1,
+            "b": 1
+          }
+        }
+      },
+      {
+        "at": 4,
+        "model": {
+          "activities": {
+            "a": 2,
+            "b": 1,
+            "c": 1
+          },
+          "edges": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "b",
+              "c",
+              1
+            ]
+          ],
+          "ends": {
+            "a": 1,
+            "c": 1
+          },
+          "starts": {
+            "a": 1,
+            "b": 1
+          }
+        }
+      },
+      {
+        "at": 5,
+        "model": {
+          "activities": {
+            "a": 2,
+            "b": 2,
+            "c": 1
+          },
+          "edges": [
+            [
+              "a",
+              "a",
+              1
+            ],
+            [
+              "a",
+              "b",
+              1
+            ],
+            [
+              "b",
+              "c",
+              1
+            ]
+          ],
+          "ends": {
+            "b": 1,
+            "c": 1
+          },
+          "starts": {
+            "a": 1,
+            "b": 1
+          }
+        }
+      }
+    ],
+    "states": [
+      "inactive",
+      "active",
+      "finished"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dfg-interleaved",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.discovery.dfg.algorithm.apply",
+      "pm4py.streaming.algo.discovery.dfg.variants.frequency.apply",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.receive",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.get",
+      "pm4py.streaming.stream.live_event_stream.LiveEventStream",
+      "pm4py.streaming.util.live_to_static_stream.LiveToStaticStream"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "case_key": "case:concept:name",
+      "events": [
+        {
+          "case:concept:name": "x",
+          "concept:name": "a"
+        },
+        {
+          "case:concept:name": "y",
+          "concept:name": "b"
+        },
+        {
+          "case:concept:name": "x",
+          "concept:name": "a"
+        },
+        {
+          "case:concept:name": "y",
+          "concept:name": "c"
+        },
+        {
+          "case:concept:name": "x",
+          "concept:name": "b"
+        }
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

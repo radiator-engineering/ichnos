@@ -1,0 +1,170 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 42,
+      "samples": [
+        [
+          0,
+          {
+            "": "0",
+            "Activity": "register request",
+            "Costs": "50",
+            "Resource": "Pete",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "register request",
+            "org:resource": "Pete",
+            "time:timestamp": "2010-12-30 14:32:00+01:00"
+          }
+        ],
+        [
+          1,
+          {
+            "": "1",
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": "2010-12-30 15:06:00+01:00"
+          }
+        ],
+        [
+          41,
+          {
+            "": "41",
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": "2011-01-12 15:44:00+01:00"
+          }
+        ]
+      ],
+      "sha256": "db59b7c98a022d8327be870dc38834e8e2fffa21ed2bde48f9c2e26303c01f86"
+    },
+    "items": {
+      "count": 42,
+      "samples": [
+        [
+          0,
+          {
+            "": "0",
+            "Activity": "register request",
+            "Costs": "50",
+            "Resource": "Pete",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "register request",
+            "org:resource": "Pete",
+            "time:timestamp": "2010-12-30 14:32:00+01:00"
+          }
+        ],
+        [
+          1,
+          {
+            "": "1",
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": "2010-12-30 15:06:00+01:00"
+          }
+        ],
+        [
+          41,
+          {
+            "": "41",
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": "2011-01-12 15:44:00+01:00"
+          }
+        ]
+      ],
+      "sha256": "db59b7c98a022d8327be870dc38834e8e2fffa21ed2bde48f9c2e26303c01f86"
+    },
+    "reset": {
+      "count": 42,
+      "samples": [
+        [
+          0,
+          {
+            "": "0",
+            "Activity": "register request",
+            "Costs": "50",
+            "Resource": "Pete",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "register request",
+            "org:resource": "Pete",
+            "time:timestamp": "2010-12-30 14:32:00+01:00"
+          }
+        ],
+        [
+          1,
+          {
+            "": "1",
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": "2010-12-30 15:06:00+01:00"
+          }
+        ],
+        [
+          41,
+          {
+            "": "41",
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": "2011-01-12 15:44:00+01:00"
+          }
+        ]
+      ],
+      "sha256": "db59b7c98a022d8327be870dc38834e8e2fffa21ed2bde48f9c2e26303c01f86"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "csv-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.streaming.importer.csv.importer.apply",
+      "pm4py.streaming.importer.csv.variants.csv_event_stream.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "kind": "csv"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

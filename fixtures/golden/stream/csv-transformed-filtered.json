@@ -1,0 +1,63 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "c",
+            "concept:name": "b",
+            "copied": "yes"
+          }
+        ]
+      ],
+      "sha256": "3b037cd32d952aeb0c08235d36885024e6a1ec6eab15059a33a2c10acf5f8f5a"
+    },
+    "items": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "c",
+            "concept:name": "b",
+            "copied": "yes"
+          }
+        ]
+      ],
+      "sha256": "3b037cd32d952aeb0c08235d36885024e6a1ec6eab15059a33a2c10acf5f8f5a"
+    },
+    "reset": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "c",
+            "concept:name": "b",
+            "copied": "yes"
+          }
+        ]
+      ],
+      "sha256": "3b037cd32d952aeb0c08235d36885024e6a1ec6eab15059a33a2c10acf5f8f5a"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "csv-transformed-filtered",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.importer.csv.importer.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "csv_text": "concept:name,case:concept:name\na,c\nb,c\n",
+      "filter_activity": "a",
+      "kind": "csv",
+      "transform": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

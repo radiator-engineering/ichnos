@@ -1,0 +1,508 @@
+{
+  "expected": {
+    "collected": {
+      "count": 42,
+      "samples": [
+        [
+          0,
+          {
+            "Activity": "register request",
+            "Costs": "50",
+            "Resource": "Pete",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "register request",
+            "org:resource": "Pete",
+            "time:timestamp": {
+              "date": "2010-12-30T13:32:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          1,
+          {
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": {
+              "date": "2010-12-30T14:06:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          41,
+          {
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2011-01-12T14:44:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "dc5565df628d5f7aaba5601f30b5abd376ac6e9a74bb001144013ec2c1ae3d9f"
+    },
+    "live_model": {
+      "activities": {
+        "check ticket": 9,
+        "decide": 9,
+        "examine casually": 6,
+        "examine thoroughly": 3,
+        "pay compensation": 3,
+        "register request": 6,
+        "reinitiate request": 3,
+        "reject request": 3
+      },
+      "edges": [
+        [
+          "check ticket",
+          "decide",
+          6
+        ],
+        [
+          "check ticket",
+          "examine casually",
+          2
+        ],
+        [
+          "check ticket",
+          "examine thoroughly",
+          1
+        ],
+        [
+          "decide",
+          "pay compensation",
+          3
+        ],
+        [
+          "decide",
+          "reinitiate request",
+          3
+        ],
+        [
+          "decide",
+          "reject request",
+          3
+        ],
+        [
+          "examine casually",
+          "check ticket",
+          4
+        ],
+        [
+          "examine casually",
+          "decide",
+          2
+        ],
+        [
+          "examine thoroughly",
+          "check ticket",
+          2
+        ],
+        [
+          "examine thoroughly",
+          "decide",
+          1
+        ],
+        [
+          "register request",
+          "check ticket",
+          2
+        ],
+        [
+          "register request",
+          "examine casually",
+          3
+        ],
+        [
+          "register request",
+          "examine thoroughly",
+          1
+        ],
+        [
+          "reinitiate request",
+          "check ticket",
+          1
+        ],
+        [
+          "reinitiate request",
+          "examine casually",
+          1
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly",
+          1
+        ]
+      ],
+      "ends": {
+        "pay compensation": 3,
+        "reject request": 3
+      },
+      "starts": {
+        "register request": 6
+      }
+    },
+    "removed_count": 0,
+    "snapshots": [
+      {
+        "at": 0,
+        "model": {
+          "activities": {},
+          "edges": [],
+          "ends": {},
+          "starts": {}
+        }
+      },
+      {
+        "at": 1,
+        "model": {
+          "activities": {
+            "register request": 1
+          },
+          "edges": [],
+          "ends": {
+            "register request": 1
+          },
+          "starts": {
+            "register request": 1
+          }
+        }
+      },
+      {
+        "at": 21,
+        "model": {
+          "activities": {
+            "check ticket": 4,
+            "decide": 4,
+            "examine casually": 3,
+            "examine thoroughly": 2,
+            "pay compensation": 2,
+            "register request": 4,
+            "reinitiate request": 1,
+            "reject request": 1
+          },
+          "edges": [
+            [
+              "check ticket",
+              "decide",
+              3
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              2
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              1
+            ],
+            [
+              "decide",
+              "reject request",
+              1
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              1
+            ],
+            [
+              "examine casually",
+              "decide",
+              1
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "check ticket",
+              1
+            ],
+            [
+              "register request",
+              "examine casually",
+              2
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "ends": {
+            "examine casually": 1,
+            "pay compensation": 2,
+            "reject request": 1
+          },
+          "starts": {
+            "register request": 4
+          }
+        }
+      },
+      {
+        "at": 41,
+        "model": {
+          "activities": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 2
+          },
+          "edges": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              2
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "ends": {
+            "decide": 1,
+            "pay compensation": 3,
+            "reject request": 2
+          },
+          "starts": {
+            "register request": 6
+          }
+        }
+      },
+      {
+        "at": 42,
+        "model": {
+          "activities": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "edges": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "ends": {
+            "pay compensation": 3,
+            "reject request": 3
+          },
+          "starts": {
+            "register request": 6
+          }
+        }
+      }
+    ],
+    "states": [
+      "inactive",
+      "active",
+      "finished"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dfg-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.streaming.algo.discovery.dfg.algorithm.apply",
+      "pm4py.streaming.algo.discovery.dfg.variants.frequency.apply",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.receive",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.get",
+      "pm4py.streaming.stream.live_event_stream.LiveEventStream",
+      "pm4py.streaming.util.live_to_static_stream.LiveToStaticStream"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

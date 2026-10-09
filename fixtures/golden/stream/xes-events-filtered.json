@@ -1,0 +1,181 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 36,
+      "samples": [
+        [
+          0,
+          {
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": {
+              "date": "2010-12-30T14:06:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          1,
+          {
+            "Activity": "check ticket",
+            "Costs": "100",
+            "Resource": "Ellen",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "check ticket",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2010-12-30T15:34:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          35,
+          {
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2011-01-12T14:44:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "289e34c19a8f0c98be80bfe843d90fd17cb8325fdb4d065243e71298cf950eaa"
+    },
+    "items": {
+      "count": 36,
+      "samples": [
+        [
+          0,
+          {
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": {
+              "date": "2010-12-30T14:06:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          1,
+          {
+            "Activity": "check ticket",
+            "Costs": "100",
+            "Resource": "Ellen",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "check ticket",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2010-12-30T15:34:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          35,
+          {
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2011-01-12T14:44:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "289e34c19a8f0c98be80bfe843d90fd17cb8325fdb4d065243e71298cf950eaa"
+    },
+    "reset": {
+      "count": 36,
+      "samples": [
+        [
+          0,
+          {
+            "Activity": "examine casually",
+            "Costs": "400",
+            "Resource": "Mike",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "examine casually",
+            "org:resource": "Mike",
+            "time:timestamp": {
+              "date": "2010-12-30T14:06:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          1,
+          {
+            "Activity": "check ticket",
+            "Costs": "100",
+            "Resource": "Ellen",
+            "case:concept:name": "3",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "check ticket",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2010-12-30T15:34:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          35,
+          {
+            "Activity": "reject request",
+            "Costs": "200",
+            "Resource": "Ellen",
+            "case:concept:name": "4",
+            "case:creator": "Fluxicon Nitro",
+            "concept:name": "reject request",
+            "org:resource": "Ellen",
+            "time:timestamp": {
+              "date": "2011-01-12T14:44:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "289e34c19a8f0c98be80bfe843d90fd17cb8325fdb4d065243e71298cf950eaa"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "xes-events-filtered",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.streaming.importer.xes.importer.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "filter_activity": "register request",
+      "kind": "events"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
