@@ -7,6 +7,7 @@
 //! - [`footprints`]: footprint conformance of logs against Petri nets and
 //!   process trees, with footprints fitness and precision.
 //! - [`generalization`]: token-based generalization of Petri nets.
+//! - [`temporal_profile`]: deviations of traces from a temporal profile.
 //!
 //! Every module returns [`Error`].
 
@@ -14,6 +15,7 @@ pub mod alignments;
 mod error;
 pub mod footprints;
 pub mod generalization;
+pub mod temporal_profile;
 pub mod token_replay;
 
 pub use error::{Error, Result};
