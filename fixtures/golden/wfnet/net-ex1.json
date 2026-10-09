@@ -128,6 +128,70 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "kind": "activity",
+          "label": "A"
+        },
+        {
+          "kind": "activity",
+          "label": "B"
+        },
+        {
+          "kind": "activity",
+          "label": "C"
+        },
+        {
+          "kind": "activity",
+          "label": "D"
+        },
+        {
+          "kind": "activity",
+          "label": "E"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": null
   },
   "meta": {
@@ -137,7 +201,8 @@
       "model": "fixtures/logs/ex1.pnml"
     },
     "functions": [
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {
       "model": {

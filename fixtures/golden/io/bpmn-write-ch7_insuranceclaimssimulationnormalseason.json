@@ -1,0 +1,886 @@
+{
+  "expected": {
+    "flows": [
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-297FC920-DCB1-45B9-9652-C16BA45C93C9",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-1B1B1009-6DDC-45BF-9D09-C7C16C3E354E",
+        "target": "sid-AD0B4181-39B6-4F07-80EC-5FDD8CF57B0A"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-93C741B8-ACD0-4463-A608-59021A937AFF",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-1B1B1009-6DDC-45BF-9D09-C7C16C3E354E",
+        "target": "sid-C4A809E0-F83C-4B20-A049-490D01E3C85D"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-D0D686B5-0846-4FBB-AD18-2B28092AAE62",
+        "name": "claim is rejected (20% of cases)",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-1B3D4C14-7B5C-4A77-A81E-0A473EDB81E2",
+        "target": "sid-03294C2B-3043-48F6-B7C9-4DB3353309F9"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-01EC887B-304E-404B-A5EF-B0FBE67FC316",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-1B3D4C14-7B5C-4A77-A81E-0A473EDB81E2",
+        "target": "sid-3D5CBF38-67E0-4C87-BAD7-4026526D8BB7"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-D1124EE2-5A5C-4E68-81B2-68561962F7FD",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-3D5CBF38-67E0-4C87-BAD7-4026526D8BB7",
+        "target": "sid-1B1B1009-6DDC-45BF-9D09-C7C16C3E354E"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-8EFE09DA-E281-49F0-9045-C4C868DFCAD7",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-3D5CBF38-67E0-4C87-BAD7-4026526D8BB7",
+        "target": "sid-D989644E-017D-443E-8DE6-128FA5D3CEFF"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-AB1856FA-F858-4C8A-904F-06F0BB5655A7",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-3FB8D052-9021-4856-9D84-AD4899759E82",
+        "target": "sid-E28FCB0A-894F-4BBF-8237-E318B692A862"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-5916EF53-DE4C-4E3E-9983-A4317C580FB8",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-489A6301-3BBA-4CF0-BABB-603BCF5872FC",
+        "target": "sid-EB82118C-91E4-4C06-A21D-8D9A13FD2A0E"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-5EAA3B5C-1E4D-409D-8992-EAA69908278F",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-6C30642C-5796-4159-85E0-DE6AAEA46194",
+        "target": "sid-9D2DAA9A-FA0B-4EB0-8E7E-958FB81FCB2B"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-50DBD794-8CB6-4510-80BA-8A0C1FB42B26",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-6D0E2778-0628-474E-B069-A671899C51DE",
+        "target": "sid-1B3D4C14-7B5C-4A77-A81E-0A473EDB81E2"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-9B216D39-75A8-4AA4-9DF3-73589B9DD05B",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-6D0E2778-0628-474E-B069-A671899C51DE",
+        "target": "sid-FBAFFF78-6F20-45CF-ADD8-6A536E8D7169"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-879F566E-7782-40CE-BBBE-CEA40AD0A7C9",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-6E4ADA5B-D4CC-4B24-9EFD-8BC897A974D8",
+        "target": "sid-A7E4E8E3-ED37-4F34-85CF-7F1407AC3DCD"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-9BF39986-68C1-4FB4-B661-17F653855D2F",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-7303CAD1-2935-4E83-A338-9F6021051F2E",
+        "target": "sid-FA1DB0D0-35DB-4156-B832-CE83DFED9F8F"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-1E5C397B-0DF2-42F8-9A17-193CDF67A1E7",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-7C220904-0C28-413E-9749-AE73660FC03C",
+        "target": "sid-802CEA55-9C5D-4991-AAE0-AEB9286DB3BE"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-92B4FF93-7DAA-41F3-8C6B-E5F178BF9DE7",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-7C220904-0C28-413E-9749-AE73660FC03C",
+        "target": "sid-8C0CE541-AFA3-40FE-900E-0243272A206D"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-E92FA44C-ADC9-495D-88F8-0E32E8B0912A",
+        "name": "insured could  not be liable  (15% of cases)",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-802CEA55-9C5D-4991-AAE0-AEB9286DB3BE",
+        "target": "sid-3284020E-8BF9-4FA0-9D48-3A6DADE8529A"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-C6FE7351-EA19-4BA3-8102-AF6F6BEEA9BC",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-802CEA55-9C5D-4991-AAE0-AEB9286DB3BE",
+        "target": "sid-6D0E2778-0628-474E-B069-A671899C51DE"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-25A6E342-1EF1-4223-8D8C-306C888A2BC6",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-A5E6FE68-6BC1-47DA-98D2-F7F624C5BBFA",
+        "target": "sid-C88B5BE1-2267-46CB-BC70-FAEA6E301840"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-0B31805A-6CCB-4689-A49A-397ADD0D50D0",
+        "name": "missing info (10% of cases)",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-A7E4E8E3-ED37-4F34-85CF-7F1407AC3DCD",
+        "target": "sid-9AC82F14-A6EC-4BD5-BFF9-D3D367436181"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-1E60A6D5-BCA6-494D-BC1F-0DD40813F536",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-A7E4E8E3-ED37-4F34-85CF-7F1407AC3DCD",
+        "target": "sid-A5E6FE68-6BC1-47DA-98D2-F7F624C5BBFA"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-7E1D8322-2C3E-416A-94CA-A4143536D948",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-AD0B4181-39B6-4F07-80EC-5FDD8CF57B0A",
+        "target": "sid-6C30642C-5796-4159-85E0-DE6AAEA46194"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-3EA930CF-9BE6-4C66-ADAF-2F4DDD99F85B",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-C88B5BE1-2267-46CB-BC70-FAEA6E301840",
+        "target": "sid-7C220904-0C28-413E-9749-AE73660FC03C"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-C7B47A98-1647-4D3B-8917-615496C90B65",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-D989644E-017D-443E-8DE6-128FA5D3CEFF",
+        "target": "sid-AD0B4181-39B6-4F07-80EC-5FDD8CF57B0A"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-8047C9A3-B9A4-4944-AD51-A7CDA8B0642D",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-DD790499-8506-4B20-A7E9-6512738EC4EA",
+        "target": "sid-D989644E-017D-443E-8DE6-128FA5D3CEFF"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-A4AB57F8-9B93-4164-BC02-AA6BF01CD14A",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-E28FCB0A-894F-4BBF-8237-E318B692A862",
+        "target": "sid-C88B5BE1-2267-46CB-BC70-FAEA6E301840"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-FC31469F-40B2-4EBB-9A9B-55AE9FF3E6D6",
+        "name": "missing info (10% of cases)",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-E5DBA190-4F75-4885-82D7-16C7BD4C9A0D",
+        "target": "sid-1C1F1F90-82DE-4BD1-AFAE-F54681C8800E"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-175B8DB8-58B3-4F80-8487-EB5D2446A45A",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-E5DBA190-4F75-4885-82D7-16C7BD4C9A0D",
+        "target": "sid-E28FCB0A-894F-4BBF-8237-E318B692A862"
+      },
+      {
+        "class": "Association",
+        "id": "idsid-06DFCA65-B50D-4B88-A919-6D2129B5A437",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-E8C57A76-8861-4274-9C85-F95345E72A33",
+        "target": "sid-6E4ADA5B-D4CC-4B24-9EFD-8BC897A974D8"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-B6EA836B-5EFD-4F50-97A0-FC63FF31104E",
+        "name": "",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-EB82118C-91E4-4C06-A21D-8D9A13FD2A0E",
+        "target": "sid-E5DBA190-4F75-4885-82D7-16C7BD4C9A0D"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-795F9EA0-EF4C-4730-95F8-673B271B4B63",
+        "name": "Call Centre 1",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-FA1DB0D0-35DB-4156-B832-CE83DFED9F8F",
+        "target": "sid-6E4ADA5B-D4CC-4B24-9EFD-8BC897A974D8"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-C7F5302F-5E9E-4FBC-8000-F0CBDFC05745",
+        "name": "Call Centre 2",
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "source": "sid-FA1DB0D0-35DB-4156-B832-CE83DFED9F8F",
+        "target": "sid-EB82118C-91E4-4C06-A21D-8D9A13FD2A0E"
+      }
+    ],
+    "name": "",
+    "nodes": [
+      {
+        "activity": null,
+        "bounds": [
+          555.0,
+          981.0,
+          28.0,
+          28.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-03294C2B-3043-48F6-B7C9-4DB3353309F9",
+        "interrupting": null,
+        "name": "claim rejected",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          465.0,
+          1110.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-1B1B1009-6DDC-45BF-9D09-C7C16C3E354E",
+        "interrupting": null,
+        "name": "Advise Claimant on Reimbursement",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          975.0,
+          40.0,
+          40.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-1B3D4C14-7B5C-4A77-A81E-0A473EDB81E2",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          180.0,
+          441.0,
+          28.0,
+          28.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-1C1F1F90-82DE-4BD1-AFAE-F54681C8800E",
+        "interrupting": null,
+        "name": "Call ended",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          555.0,
+          801.0,
+          28.0,
+          28.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-3284020E-8BF9-4FA0-9D48-3A6DADE8529A",
+        "interrupting": null,
+        "name": "case closed",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          1050.0,
+          40.0,
+          40.0
+        ],
+        "class": "ParallelGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-3D5CBF38-67E0-4C87-BAD7-4026526D8BB7",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          185.0,
+          510.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-3FB8D052-9021-4856-9D84-AD4899759E82",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "520 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          201.0,
+          295.0,
+          119.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-489A6301-3BBA-4CF0-BABB-603BCF5872FC",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "\n30 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          589.0,
+          510.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-608FD5C8-8E50-4DA2-901B-3C9569672570",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "520 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          370.0,
+          1270.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-6C30642C-5796-4159-85E0-DE6AAEA46194",
+        "interrupting": null,
+        "name": "Close Claim",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          370.0,
+          870.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-6D0E2778-0628-474E-B069-A671899C51DE",
+        "interrupting": null,
+        "name": "Assess Claim",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          465.0,
+          330.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-6E4ADA5B-D4CC-4B24-9EFD-8BC897A974D8",
+        "interrupting": null,
+        "name": "Check if customer has all required information",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          405.0,
+          225.0,
+          30.0,
+          30.0
+        ],
+        "class": "NormalStartEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-7303CAD1-2935-4E83-A338-9F6021051F2E",
+        "interrupting": false,
+        "name": "Phone Call Received",
+        "parallel_multiple": false,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          370.0,
+          685.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-7C220904-0C28-413E-9749-AE73660FC03C",
+        "interrupting": null,
+        "name": "Determine likelihood of the claim",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          795.0,
+          40.0,
+          40.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-802CEA55-9C5D-4991-AAE0-AEB9286DB3BE",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          515.0,
+          675.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-8C0CE541-AFA3-40FE-900E-0243272A206D",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "80 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          645.0,
+          441.0,
+          28.0,
+          28.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-9AC82F14-A6EC-4BD5-BFF9-D3D367436181",
+        "interrupting": null,
+        "name": "Call ended",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          406.0,
+          1390.0,
+          28.0,
+          28.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-9D2DAA9A-FA0B-4EB0-8E7E-958FB81FCB2B",
+        "interrupting": null,
+        "name": "claim closed",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          465.0,
+          515.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-A5E6FE68-6BC1-47DA-98D2-F7F624C5BBFA",
+        "interrupting": null,
+        "name": "Register Claim",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          495.0,
+          435.0,
+          40.0,
+          40.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-A7E4E8E3-ED37-4F34-85CF-7F1407AC3DCD",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          1195.0,
+          40.0,
+          40.0
+        ],
+        "class": "ParallelGateway",
+        "depth": null,
+        "direction": "Converging",
+        "id": "sid-AD0B4181-39B6-4F07-80EC-5FDD8CF57B0A",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          589.0,
+          1095.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-C4A809E0-F83C-4B20-A049-490D01E3C85D",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "180 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          610.0,
+          40.0,
+          40.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Converging",
+        "id": "sid-C88B5BE1-2267-46CB-BC70-FAEA6E301840",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          285.0,
+          1110.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-D989644E-017D-443E-8DE6-128FA5D3CEFF",
+        "interrupting": null,
+        "name": "Initiate Payment",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          205.0,
+          1085.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-DD790499-8506-4B20-A7E9-6512738EC4EA",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "120 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          285.0,
+          515.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-E28FCB0A-894F-4BBF-8237-E318B692A862",
+        "interrupting": null,
+        "name": "Register Claim",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          540.0,
+          1260.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-E416FB21-45F7-46F0-97E6-2759A2C55461",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "30 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          315.0,
+          435.0,
+          40.0,
+          40.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-E5DBA190-4F75-4885-82D7-16C7BD4C9A0D",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          589.0,
+          280.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-E8C57A76-8861-4274-9C85-F95345E72A33",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "\n30 seconds"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          285.0,
+          330.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-EB82118C-91E4-4C06-A21D-8D9A13FD2A0E",
+        "interrupting": null,
+        "name": "Check if customer has all required information",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          285.0,
+          40.0,
+          40.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-FA1DB0D0-35DB-4156-B832-CE83DFED9F8F",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          519.0,
+          865.0,
+          100.0,
+          50.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "sid-FBAFFF78-6F20-45CF-ADD8-6A536E8D7169",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-f2565ff7-5e99-4b08-98e6-d43aa982b2fd",
+        "process_ref": null,
+        "text": "600 seconds"
+      }
+    ]
+  },
+  "meta": {
+    "area": "io",
+    "case": "bpmn-write-ch7_insuranceclaimssimulationnormalseason",
+    "fixtures": {
+      "model": "fixtures/logs/more_models/ch7_InsuranceClaimsSimulationNormalSeason.bpmn"
+    },
+    "functions": [
+      "pm4py.read_bpmn",
+      "pm4py.objects.bpmn.exporter.variants.etree.get_xml_string",
+      "pm4py.objects.bpmn.importer.variants.lxml.import_from_string"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_bpmn",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

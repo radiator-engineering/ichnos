@@ -1,0 +1,929 @@
+{
+  "expected": {
+    "extended_table": {
+      "object_types": [
+        "order",
+        "item",
+        "line",
+        "goodsissue",
+        "delivery",
+        "invoice",
+        "payment"
+      ],
+      "rows": [
+        {
+          "event": "e1",
+          "objects": {
+            "item": [
+              "i1",
+              "i2",
+              "i3"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e2",
+          "objects": {
+            "item": [
+              "i1"
+            ],
+            "line": [
+              "L1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e3",
+          "objects": {
+            "goodsissue": [
+              "gi1"
+            ],
+            "item": [
+              "i1"
+            ],
+            "line": [
+              "L1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e4",
+          "objects": {
+            "goodsissue": [
+              "gi1"
+            ],
+            "item": [
+              "i1"
+            ],
+            "line": [
+              "L1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e5",
+          "objects": {
+            "item": [
+              "i2"
+            ],
+            "line": [
+              "L1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e6",
+          "objects": {
+            "item": [
+              "i3"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e7",
+          "objects": {
+            "item": [
+              "i1",
+              "i2",
+              "i3"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e8",
+          "objects": {
+            "delivery": [
+              "d1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e9",
+          "objects": {
+            "invoice": [
+              "r1"
+            ],
+            "order": [
+              "o1"
+            ]
+          }
+        },
+        {
+          "event": "e10",
+          "objects": {
+            "delivery": [
+              "d1"
+            ]
+          }
+        },
+        {
+          "event": "e11",
+          "objects": {
+            "invoice": [
+              "r1",
+              "r2"
+            ]
+          }
+        },
+        {
+          "event": "e12",
+          "objects": {
+            "invoice": [
+              "r2"
+            ]
+          }
+        },
+        {
+          "event": "e13",
+          "objects": {
+            "item": [
+              "i4",
+              "i5"
+            ],
+            "order": [
+              "o2"
+            ]
+          }
+        },
+        {
+          "event": "e14",
+          "objects": {
+            "item": [
+              "i4"
+            ],
+            "line": [
+              "L1"
+            ],
+            "order": [
+              "o2"
+            ]
+          }
+        },
+        {
+          "event": "e15",
+          "objects": {
+            "item": [
+              "i5"
+            ],
+            "line": [
+              "L1"
+            ],
+            "order": [
+              "o2"
+            ]
+          }
+        },
+        {
+          "event": "e16",
+          "objects": {
+            "item": [
+              "i4",
+              "i5"
+            ],
+            "order": [
+              "o2"
+            ]
+          }
+        },
+        {
+          "event": "e17",
+          "objects": {
+            "delivery": [
+              "d2"
+            ],
+            "order": [
+              "o2"
+            ]
+          }
+        },
+        {
+          "event": "e18",
+          "objects": {
+            "delivery": [
+              "d2"
+            ]
+          }
+        },
+        {
+          "event": "e19",
+          "objects": {
+            "invoice": [
+              "r3"
+            ],
+            "order": [
+              "o2"
+            ]
+          }
+        },
+        {
+          "event": "e20",
+          "objects": {
+            "invoice": [
+              "r3"
+            ],
+            "payment": [
+              "pay1"
+            ]
+          }
+        }
+      ]
+    },
+    "is_ocel20": true,
+    "ocel": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {},
+          "id": "e1",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e2",
+          "timestamp": "1970-01-01T01:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item Issue",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "1970-01-01T02:00:00.000000+00:00"
+        },
+        {
+          "activity": "Replace Item",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "1970-01-01T03:00:00.000000+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "1970-01-01T04:00:00.000000+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e6",
+          "timestamp": "1970-01-01T05:00:00.000000+00:00"
+        },
+        {
+          "activity": "Collect Items",
+          "attributes": {},
+          "id": "e7",
+          "timestamp": "1970-01-01T06:00:00.000000+00:00"
+        },
+        {
+          "activity": "Start Delivery",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "1970-01-01T07:00:00.000000+00:00"
+        },
+        {
+          "activity": "Send Invoice",
+          "attributes": {},
+          "id": "e9",
+          "timestamp": "1970-01-01T08:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "1970-01-01T09:00:00.000000+00:00"
+        },
+        {
+          "activity": "Revert Invoice",
+          "attributes": {},
+          "id": "e11",
+          "timestamp": "1970-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "Send Invoice",
+          "attributes": {},
+          "id": "e12",
+          "timestamp": "1970-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {},
+          "id": "e13",
+          "timestamp": "1970-01-01T11:00:00.000000+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e14",
+          "timestamp": "1970-01-01T12:00:00.000000+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e15",
+          "timestamp": "1970-01-01T13:00:00.000000+00:00"
+        },
+        {
+          "activity": "Collect Items",
+          "attributes": {},
+          "id": "e16",
+          "timestamp": "1970-01-01T14:00:00.000000+00:00"
+        },
+        {
+          "activity": "Start Delivery",
+          "attributes": {},
+          "id": "e17",
+          "timestamp": "1970-01-01T15:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e18",
+          "timestamp": "1970-01-01T16:00:00.000000+00:00"
+        },
+        {
+          "activity": "Send Invoice",
+          "attributes": {},
+          "id": "e19",
+          "timestamp": "1970-01-01T17:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment",
+          "attributes": {},
+          "id": "e20",
+          "timestamp": "1970-01-01T18:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i3",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "L1",
+          "type": "line"
+        },
+        {
+          "attributes": {},
+          "id": "gi1",
+          "type": "goodsissue"
+        },
+        {
+          "attributes": {},
+          "id": "d1",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "r1",
+          "type": "invoice"
+        },
+        {
+          "attributes": {},
+          "id": "r2",
+          "type": "invoice"
+        },
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i4",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i5",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "d2",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "r3",
+          "type": "invoice"
+        },
+        {
+          "attributes": {},
+          "id": "pay1",
+          "type": "payment"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Purchase Order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e1",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e1",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e2",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T01:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T01:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e2",
+          "object": "L1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T01:00:00.000000+00:00",
+          "type": "line"
+        },
+        {
+          "activity": "Item Issue",
+          "event": "e3",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T02:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Item Issue",
+          "event": "e3",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T02:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Item Issue",
+          "event": "e3",
+          "object": "L1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T02:00:00.000000+00:00",
+          "type": "line"
+        },
+        {
+          "activity": "Item Issue",
+          "event": "e3",
+          "object": "gi1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T02:00:00.000000+00:00",
+          "type": "goodsissue"
+        },
+        {
+          "activity": "Replace Item",
+          "event": "e4",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T03:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Replace Item",
+          "event": "e4",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T03:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Replace Item",
+          "event": "e4",
+          "object": "L1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T03:00:00.000000+00:00",
+          "type": "line"
+        },
+        {
+          "activity": "Replace Item",
+          "event": "e4",
+          "object": "gi1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T03:00:00.000000+00:00",
+          "type": "goodsissue"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e5",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T04:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e5",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T04:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e5",
+          "object": "L1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T04:00:00.000000+00:00",
+          "type": "line"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e6",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T05:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e6",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1970-01-01T05:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e7",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T06:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e7",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T06:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e7",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T06:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e7",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1970-01-01T06:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Start Delivery",
+          "event": "e8",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T07:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Start Delivery",
+          "event": "e8",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T07:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Send Invoice",
+          "event": "e9",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T08:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Send Invoice",
+          "event": "e9",
+          "object": "r1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T08:00:00.000000+00:00",
+          "type": "invoice"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e10",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T09:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Revert Invoice",
+          "event": "e11",
+          "object": "r1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T10:00:00.000000+00:00",
+          "type": "invoice"
+        },
+        {
+          "activity": "Revert Invoice",
+          "event": "e11",
+          "object": "r2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T10:00:00.000000+00:00",
+          "type": "invoice"
+        },
+        {
+          "activity": "Send Invoice",
+          "event": "e12",
+          "object": "r2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T10:00:00.000000+00:00",
+          "type": "invoice"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e13",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T11:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e13",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1970-01-01T11:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "event": "e13",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1970-01-01T11:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e14",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T12:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e14",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1970-01-01T12:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e14",
+          "object": "L1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T12:00:00.000000+00:00",
+          "type": "line"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e15",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T13:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e15",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1970-01-01T13:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Produce Item",
+          "event": "e15",
+          "object": "L1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T13:00:00.000000+00:00",
+          "type": "line"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e16",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T14:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e16",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1970-01-01T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Collect Items",
+          "event": "e16",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1970-01-01T14:00:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "Start Delivery",
+          "event": "e17",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T15:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Start Delivery",
+          "event": "e17",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T15:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e18",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T16:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Send Invoice",
+          "event": "e19",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1970-01-01T17:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Send Invoice",
+          "event": "e19",
+          "object": "r3",
+          "qualifier": "",
+          "timestamp": "1970-01-01T17:00:00.000000+00:00",
+          "type": "invoice"
+        },
+        {
+          "activity": "Payment",
+          "event": "e20",
+          "object": "r3",
+          "qualifier": "",
+          "timestamp": "1970-01-01T18:00:00.000000+00:00",
+          "type": "invoice"
+        },
+        {
+          "activity": "Payment",
+          "event": "e20",
+          "object": "pay1",
+          "qualifier": "",
+          "timestamp": "1970-01-01T18:00:00.000000+00:00",
+          "type": "payment"
+        }
+      ]
+    },
+    "summary": {
+      "activities": 10,
+      "activities_per_object_type": {
+        "delivery": 2,
+        "goodsissue": 2,
+        "invoice": 3,
+        "item": 5,
+        "line": 3,
+        "order": 7,
+        "payment": 1
+      },
+      "activity_counts": {
+        "Collect Items": 2,
+        "Create Purchase Order": 2,
+        "Delivery Successful": 2,
+        "Item Issue": 1,
+        "Payment": 1,
+        "Produce Item": 5,
+        "Replace Item": 1,
+        "Revert Invoice": 1,
+        "Send Invoice": 3,
+        "Start Delivery": 2
+      },
+      "events": 20,
+      "object_type_counts": {
+        "delivery": 2,
+        "goodsissue": 1,
+        "invoice": 3,
+        "item": 5,
+        "line": 1,
+        "order": 2,
+        "payment": 1
+      },
+      "object_types": 7,
+      "objects": 15,
+      "relations": 51,
+      "text": "Object-Centric Event Log (number of events: 20, number of objects: 15, number of activities: 10, number of object types: 7, events-objects relationships: 51)\nActivities occurrences: Counter({'Produce Item': 5, 'Send Invoice': 3, 'Create Purchase Order': 2, 'Collect Items': 2, 'Start Delivery': 2, 'Delivery Successful': 2, 'Item Issue': 1, 'Replace Item': 1, 'Revert Invoice': 1, 'Payment': 1})\nObject types occurrences (number of objects): Counter({'item': 5, 'invoice': 3, 'order': 2, 'delivery': 2, 'line': 1, 'goodsissue': 1, 'payment': 1})\nUnique activities per object type: Counter({'order': 7, 'item': 5, 'invoice': 3, 'line': 3, 'delivery': 2, 'goodsissue': 2, 'payment': 1})\nPlease use <THIS>.get_extended_table() to get a dataframe representation of the events related to the objects."
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "model-newocel-jsonocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/newocel.jsonocel"
+    },
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.read_ocel_json"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

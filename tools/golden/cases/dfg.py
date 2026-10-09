@@ -8,7 +8,9 @@ Expected value:
 
 - ``input``: the DFG the filters start from;
 - ``results``: ``[{"filter": name, "param": value, "keep_all_activities":
-  bool or null, "output": dfg}]`` in a fixed order.
+  bool or null, "output": dfg}]`` in a fixed order;
+- ``petri_net``: ``pm4py.convert_to_petri_net`` of the input DFG with its
+  start and end activities, described as ``model.py`` does.
 
 A DFG is ``{"edges": {"a -> b": n}, "start_activities": {a: n},
 "end_activities": {a: n}, "activities_count": {a: n}}``. Edges are keyed by
@@ -40,6 +42,7 @@ FUNCTIONS = [
     "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_from_activity",
     "pm4py.algo.filtering.dfg.dfg_filtering.filter_dfg_contain_activity",
     "pm4py.algo.filtering.dfg.dfg_filtering.clean_dfg_based_on_noise_thresh",
+    "pm4py.convert_to_petri_net",
 ]
 
 PERCENTAGES = [0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 1.0]
@@ -100,7 +103,13 @@ def filters(fixtures: dict[str, Path]) -> dict[str, Any]:
     for t in NOISE_THRESHOLDS:
         out = f.clean_dfg_based_on_noise_thresh(dfg, list(ac), t)
         add("clean_noise", t, None, {"edges": edges(out)})
-    return {"input": describe(dfg, sa, ea, ac), "results": results}
+    from cases.model import describe_net
+
+    return {
+        "input": describe(dfg, sa, ea, ac),
+        "results": results,
+        "petri_net": describe_net(*pm4py.convert_to_petri_net(dfg, sa, ea)),
+    }
 
 
 for case_id, fixture in [
