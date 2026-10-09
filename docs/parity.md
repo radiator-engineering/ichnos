@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 275; ported: 221; dropped: 130; total: 626.
+todo: 205; ported: 262; dropped: 159; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -1052,48 +1052,48 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.discovery.dfg.algorithm.apply` | `streaming/algo/discovery/dfg/algorithm.py` | `ichnos::stream::algo::discovery::dfg::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.discovery.dfg.algorithm.apply` | `streaming/algo/discovery/dfg/algorithm.py` | `ichnos_stream::StreamingDfgDiscovery::new` | `ichnos-stream` | ported | `stream/dfg-running-example` compares initial/final graph counts and intermediate prefixes; `stream/dfg-empty` covers empty construction. |
 
 ## streaming.algo.discovery.dfg.variants.frequency
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery` | `streaming/algo/discovery/dfg/variants/frequency.py` → `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos::stream::algo::discovery::dfg::variants::frequency::StreamingDfgDiscovery` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.build_dictionaries` | `streaming/algo/discovery/dfg/variants/frequency.py` → `streaming/util/dictio/generator` | `ichnos::stream::algo::discovery::dfg::variants::frequency::StreamingDfgDiscovery::build_dictionaries` (planned) | `ichnos-stream` | todo | Variants: classic, redis, thread_safe. |
-| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.event_without_activity_or_case` | `streaming/algo/discovery/dfg/variants/frequency.py` | `ichnos::stream::algo::discovery::dfg::variants::frequency::StreamingDfgDiscovery::event_without_activity_or_case` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_str` | `streaming/algo/discovery/dfg/variants/frequency.py` | `ichnos::stream::algo::discovery::dfg::variants::frequency::StreamingDfgDiscovery::encode_str` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_tuple` | `streaming/algo/discovery/dfg/variants/frequency.py` | `ichnos::stream::algo::discovery::dfg::variants::frequency::StreamingDfgDiscovery::encode_tuple` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.discovery.dfg.variants.frequency.apply` | `streaming/algo/discovery/dfg/variants/frequency.py` | `ichnos::stream::algo::discovery::dfg::variants::frequency::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery` | `streaming/algo/discovery/dfg/variants/frequency.py` → `streaming/algo/interface`, `streaming/util/dictio/generator` | `ichnos_stream::StreamingDfgDiscovery::new` | `ichnos-stream` | ported | `stream/dfg-running-example` compares initial/final graph counts and intermediate prefixes; `stream/dfg-empty` covers empty construction. |
+| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.build_dictionaries` | `streaming/algo/discovery/dfg/variants/frequency.py` → `streaming/util/dictio/generator` | — | `ichnos-stream` | dropped | Internal dictionary/storage encoding helper; typed Dfg maps replace it. |
+| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.event_without_activity_or_case` | `streaming/algo/discovery/dfg/variants/frequency.py` | — | `ichnos-stream` | dropped | Python warning helper dropped; MissingEventPolicy controls skip/error behavior. |
+| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_str` | `streaming/algo/discovery/dfg/variants/frequency.py` | — | `ichnos-stream` | dropped | Internal dictionary/storage encoding helper; typed Dfg maps replace it. |
+| `pm4py.streaming.algo.discovery.dfg.variants.frequency.StreamingDfgDiscovery.encode_tuple` | `streaming/algo/discovery/dfg/variants/frequency.py` | — | `ichnos-stream` | dropped | Internal dictionary/storage encoding helper; typed Dfg maps replace it. |
+| `pm4py.streaming.algo.discovery.dfg.variants.frequency.apply` | `streaming/algo/discovery/dfg/variants/frequency.py` | `ichnos_stream::StreamingDfgDiscovery::new` | `ichnos-stream` | ported | `stream/dfg-running-example` compares initial/final graph counts and intermediate prefixes; `stream/dfg-empty` covers empty construction. |
 
 ## streaming.algo.interface
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.interface.StreamingAlgorithm` | `streaming/algo/interface.py` | `ichnos::stream::algo::interface::StreamingAlgorithm` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.interface.StreamingAlgorithm.get` | `streaming/algo/interface.py` | `ichnos::stream::algo::interface::StreamingAlgorithm::get` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.interface.StreamingAlgorithm.receive` | `streaming/algo/interface.py` | `ichnos::stream::algo::interface::StreamingAlgorithm::receive` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.interface.StreamingAlgorithm` | `streaming/algo/interface.py` | `ichnos_stream::StreamSink` | `ichnos-stream` | ported | `stream/dfg-interleaved` exercises a StreamSink algorithm registered with a live event stream. |
+| `pm4py.streaming.algo.interface.StreamingAlgorithm.get` | `streaming/algo/interface.py` | `ichnos_stream::StreamingDfgDiscovery::get` | `ichnos-stream` | ported | `stream/dfg-running-example` compares the typed get result at up to five prefixes and after live delivery. |
+| `pm4py.streaming.algo.interface.StreamingAlgorithm.receive` | `streaming/algo/interface.py` | `ichnos_stream::StreamSink::push` | `ichnos-stream` | ported | `stream/dfg-interleaved` compares push updates across interleaved cases; `stream/dfg-missing` covers incomplete events. |
 
 ## streaming.connectors.windows.click_key_logger
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger` | `streaming/connectors/windows/click_key_logger.py` → `objects/log/obj` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.run` | `streaming/connectors/windows/click_key_logger.py` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger::run` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.stop` | `streaming/connectors/windows/click_key_logger.py` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger::stop` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.get_process_name` | `streaming/connectors/windows/click_key_logger.py` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger::get_process_name` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.record` | `streaming/connectors/windows/click_key_logger.py` → `objects/log/obj` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger::record` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_click` | `streaming/connectors/windows/click_key_logger.py` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger::on_click` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_key_release` | `streaming/connectors/windows/click_key_logger.py` | `ichnos::stream::connectors::windows::click_key_logger::WindowsEventLogger::on_key_release` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger` | `streaming/connectors/windows/click_key_logger.py` → `objects/log/obj` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.run` | `streaming/connectors/windows/click_key_logger.py` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.stop` | `streaming/connectors/windows/click_key_logger.py` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.get_process_name` | `streaming/connectors/windows/click_key_logger.py` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.record` | `streaming/connectors/windows/click_key_logger.py` → `objects/log/obj` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_click` | `streaming/connectors/windows/click_key_logger.py` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
+| `pm4py.streaming.connectors.windows.click_key_logger.WindowsEventLogger.on_key_release` | `streaming/connectors/windows/click_key_logger.py` | — | `ichnos-stream` | dropped | Platform click/key capture connector omitted; supply canonical events to StreamSink. |
 
 ## streaming.conversion.from_pandas
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable` | `streaming/conversion/from_pandas.py` → `objects/log/obj`, `streaming/stream/live_trace_stream` | `ichnos::stream::conversion::from_pandas::PandasDataframeAsIterable` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.read_trace` | `streaming/conversion/from_pandas.py` → `objects/log/obj` | `ichnos::stream::conversion::from_pandas::PandasDataframeAsIterable::read_trace` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.reset` | `streaming/conversion/from_pandas.py` | `ichnos::stream::conversion::from_pandas::PandasDataframeAsIterable::reset` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.to_trace_stream` | `streaming/conversion/from_pandas.py` → `streaming/stream/live_trace_stream` | `ichnos::stream::conversion::from_pandas::PandasDataframeAsIterable::to_trace_stream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.conversion.from_pandas.apply` | `streaming/conversion/from_pandas.py` | `ichnos::stream::conversion::from_pandas::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable` | `streaming/conversion/from_pandas.py` → `objects/log/obj`, `streaming/stream/live_trace_stream` | `ichnos_stream::TraceIterator::from_record_batch` | `ichnos-stream` | ported | `stream/dataframe-numeric-integers` covers Arrow/event projection and numeric case ordering; `stream/dataframe-interleaved` records the corrected grouping. |
+| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.read_trace` | `streaming/conversion/from_pandas.py` → `objects/log/obj` | `ichnos_stream::TraceIterator::read_trace` | `ichnos-stream` | ported | `stream/dataframe-numeric-integers` covers typed projected traces; `stream/dataframe-interleaved` records the corrected grouping. |
+| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.reset` | `streaming/conversion/from_pandas.py` | `ichnos_stream::TraceIterator::reset` | `ichnos-stream` | ported | `stream/dataframe-numeric-integers` covers reset and unchanged repeated projection; `stream/dataframe-interleaved` records the corrected grouping. |
+| `pm4py.streaming.conversion.from_pandas.PandasDataframeAsIterable.to_trace_stream` | `streaming/conversion/from_pandas.py` → `streaming/stream/live_trace_stream` | `ichnos_stream::TraceIterator::to_trace_stream` | `ichnos-stream` | ported | `stream/dataframe-numeric-integers` covers forwarded trace digest; `stream/dataframe-interleaved` records the corrected grouping. |
+| `pm4py.streaming.conversion.from_pandas.apply` | `streaming/conversion/from_pandas.py` | `ichnos_stream::TraceIterator::from_record_batch` | `ichnos-stream` | ported | `stream/dataframe-numeric-integers` covers Arrow/event projection and numeric case ordering; `stream/dataframe-interleaved` records the corrected grouping. |
 
 ## streaming.conversion.ocel_flatts_distributor
 
@@ -1107,119 +1107,119 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.importer.csv.importer.apply` | `streaming/importer/csv/importer.py` | `ichnos::stream::importer::csv::importer::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.importer.csv.importer.apply` | `streaming/importer/csv/importer.py` | `ichnos_stream::CsvEventReader::open` | `ichnos-stream` | ported | `stream/csv-quoted` compares items content including quotes/newlines; `stream/csv-receipt` covers real-log CSV input. |
 
 ## streaming.importer.csv.variants.csv_event_stream
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos::stream::importer::csv::variants::csv_event_stream::CSVEventStreamReader` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.reset` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos::stream::importer::csv::variants::csv_event_stream::CSVEventStreamReader::reset` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.to_event_stream` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos::stream::importer::csv::variants::csv_event_stream::CSVEventStreamReader::to_event_stream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.read_event` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos::stream::importer::csv::variants::csv_event_stream::CSVEventStreamReader::read_event` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.csv.variants.csv_event_stream.apply` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos::stream::importer::csv::variants::csv_event_stream::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos_stream::CsvEventReader::open` | `ichnos-stream` | ported | `stream/csv-quoted` compares items content including quotes/newlines; `stream/csv-receipt` covers real-log CSV input. |
+| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.reset` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos_stream::CsvEventReader::reset` | `ichnos-stream` | ported | `stream/csv-quoted` compares reset content including quotes/newlines; `stream/csv-receipt` covers real-log CSV input. |
+| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.to_event_stream` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos_stream::CsvEventReader::to_event_stream` | `ichnos-stream` | ported | `stream/csv-quoted` compares forwarded content including quotes/newlines; `stream/csv-receipt` covers real-log CSV input. |
+| `pm4py.streaming.importer.csv.variants.csv_event_stream.CSVEventStreamReader.read_event` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos_stream::CsvEventReader::read_event` | `ichnos-stream` | ported | `stream/csv-quoted` compares items content including quotes/newlines; `stream/csv-receipt` covers real-log CSV input. |
+| `pm4py.streaming.importer.csv.variants.csv_event_stream.apply` | `streaming/importer/csv/variants/csv_event_stream.py` | `ichnos_stream::CsvEventReader::open` | `ichnos-stream` | ported | `stream/csv-quoted` compares items content including quotes/newlines; `stream/csv-receipt` covers real-log CSV input. |
 
 ## streaming.importer.xes.importer
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.importer.xes.importer.apply` | `streaming/importer/xes/importer.py` | `ichnos::stream::importer::xes::importer::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.importer.xes.importer.apply` | `streaming/importer/xes/importer.py` | `ichnos_stream::{XesEventReader, XesTraceReader}::open` | `ichnos-stream` | ported | `stream/xes-events-running-example` and `stream/xes-traces-running-example` cover both importer variants. |
 
 ## streaming.importer.xes.variants.xes_event_stream
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.importer.xes.variants.xes_event_stream.parse_attribute` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos::stream::importer::xes::variants::xes_event_stream::parse_attribute` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader` | `streaming/importer/xes/variants/xes_event_stream.py` → `objects/log/obj` | `ichnos::stream::importer::xes::variants::xes_event_stream::StreamingEventXesReader` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.to_event_stream` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos::stream::importer::xes::variants::xes_event_stream::StreamingEventXesReader::to_event_stream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.reset` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos::stream::importer::xes::variants::xes_event_stream::StreamingEventXesReader::reset` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.read_event` | `streaming/importer/xes/variants/xes_event_stream.py` → `objects/log/obj` | `ichnos::stream::importer::xes::variants::xes_event_stream::StreamingEventXesReader::read_event` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_event_stream.apply` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos::stream::importer::xes::variants::xes_event_stream::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.importer.xes.variants.xes_event_stream.parse_attribute` | `streaming/importer/xes/variants/xes_event_stream.py` | — | `ichnos-stream` | dropped | Internal XML helper; incremental readers reuse the canonical ichnos-io parser. |
+| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader` | `streaming/importer/xes/variants/xes_event_stream.py` → `objects/log/obj` | `ichnos_stream::XesEventReader::open` | `ichnos-stream` | ported | `stream/xes-events-typed` compares items content including nested attributes; `stream/xes-events-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.to_event_stream` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos_stream::XesEventReader::to_event_stream` | `ichnos-stream` | ported | `stream/xes-events-typed` compares forwarded content including nested attributes; `stream/xes-events-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.reset` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos_stream::XesEventReader::reset` | `ichnos-stream` | ported | `stream/xes-events-typed` compares reset content including nested attributes; `stream/xes-events-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_event_stream.StreamingEventXesReader.read_event` | `streaming/importer/xes/variants/xes_event_stream.py` → `objects/log/obj` | `ichnos_stream::XesEventReader::read_event` | `ichnos-stream` | ported | `stream/xes-events-typed` compares items content including nested attributes; `stream/xes-events-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_event_stream.apply` | `streaming/importer/xes/variants/xes_event_stream.py` | `ichnos_stream::XesEventReader::open` | `ichnos-stream` | ported | `stream/xes-events-typed` compares items content including nested attributes; `stream/xes-events-receipt` covers real-log input. |
 
 ## streaming.importer.xes.variants.xes_trace_stream
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.importer.xes.variants.xes_trace_stream.parse_attribute` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos::stream::importer::xes::variants::xes_trace_stream::parse_attribute` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader` | `streaming/importer/xes/variants/xes_trace_stream.py` → `objects/log/obj` | `ichnos::stream::importer::xes::variants::xes_trace_stream::StreamingTraceXesReader` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.to_trace_stream` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos::stream::importer::xes::variants::xes_trace_stream::StreamingTraceXesReader::to_trace_stream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.reset` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos::stream::importer::xes::variants::xes_trace_stream::StreamingTraceXesReader::reset` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.read_trace` | `streaming/importer/xes/variants/xes_trace_stream.py` → `objects/log/obj` | `ichnos::stream::importer::xes::variants::xes_trace_stream::StreamingTraceXesReader::read_trace` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.importer.xes.variants.xes_trace_stream.apply` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos::stream::importer::xes::variants::xes_trace_stream::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.importer.xes.variants.xes_trace_stream.parse_attribute` | `streaming/importer/xes/variants/xes_trace_stream.py` | — | `ichnos-stream` | dropped | Internal XML helper; incremental readers reuse the canonical ichnos-io parser. |
+| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader` | `streaming/importer/xes/variants/xes_trace_stream.py` → `objects/log/obj` | `ichnos_stream::XesTraceReader::open` | `ichnos-stream` | ported | `stream/xes-traces-typed` compares items content including nested attributes; `stream/xes-traces-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.to_trace_stream` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos_stream::XesTraceReader::to_trace_stream` | `ichnos-stream` | ported | `stream/xes-traces-typed` compares forwarded content including nested attributes; `stream/xes-traces-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.reset` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos_stream::XesTraceReader::reset` | `ichnos-stream` | ported | `stream/xes-traces-typed` compares reset content including nested attributes; `stream/xes-traces-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_trace_stream.StreamingTraceXesReader.read_trace` | `streaming/importer/xes/variants/xes_trace_stream.py` → `objects/log/obj` | `ichnos_stream::XesTraceReader::read_trace` | `ichnos-stream` | ported | `stream/xes-traces-typed` compares items content including nested attributes; `stream/xes-traces-receipt` covers real-log input. |
+| `pm4py.streaming.importer.xes.variants.xes_trace_stream.apply` | `streaming/importer/xes/variants/xes_trace_stream.py` | `ichnos_stream::XesTraceReader::open` | `ichnos-stream` | ported | `stream/xes-traces-typed` compares items content including nested attributes; `stream/xes-traces-receipt` covers real-log input. |
 
 ## streaming.stream.live_event_stream
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.stream.live_event_stream.StreamState` | `streaming/stream/live_event_stream.py` | `ichnos::stream::stream::live_event_stream::StreamState` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_event_stream.LiveEventStream` | `streaming/stream/live_event_stream.py` | `ichnos::stream::stream::live_event_stream::LiveEventStream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_event_stream.LiveEventStream.append` | `streaming/stream/live_event_stream.py` | `ichnos::stream::stream::live_event_stream::LiveEventStream::append` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_event_stream.LiveEventStream.start` | `streaming/stream/live_event_stream.py` | `ichnos::stream::stream::live_event_stream::LiveEventStream::start` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_event_stream.LiveEventStream.stop` | `streaming/stream/live_event_stream.py` | `ichnos::stream::stream::live_event_stream::LiveEventStream::stop` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_event_stream.LiveEventStream.register` | `streaming/stream/live_event_stream.py` | `ichnos::stream::stream::live_event_stream::LiveEventStream::register` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.stream.live_event_stream.StreamState` | `streaming/stream/live_event_stream.py` | `ichnos_stream::StreamState` | `ichnos-stream` | ported | `stream/dfg-running-example` covers inactive/active/finished states. |
+| `pm4py.streaming.stream.live_event_stream.LiveEventStream` | `streaming/stream/live_event_stream.py` | `ichnos_stream::LiveEventStream::new` | `ichnos-stream` | ported | `stream/dfg-running-example` covers event-stream construction and lifecycle. |
+| `pm4py.streaming.stream.live_event_stream.LiveEventStream.append` | `streaming/stream/live_event_stream.py` | `ichnos_stream::LiveEventStream::append` | `ichnos-stream` | ported | `stream/dfg-running-example` covers queued, active and ignored-after-finish appends. |
+| `pm4py.streaming.stream.live_event_stream.LiveEventStream.start` | `streaming/stream/live_event_stream.py` | `ichnos_stream::LiveEventStream::start` | `ichnos-stream` | ported | `stream/dfg-running-example` covers queued-item delivery at start. |
+| `pm4py.streaming.stream.live_event_stream.LiveEventStream.stop` | `streaming/stream/live_event_stream.py` | `ichnos_stream::LiveEventStream::stop` | `ichnos-stream` | ported | `stream/dfg-running-example` covers final graph and ignored late append. |
+| `pm4py.streaming.stream.live_event_stream.LiveEventStream.register` | `streaming/stream/live_event_stream.py` | `ichnos_stream::LiveEventStream::register` | `ichnos-stream` | ported | `stream/dfg-running-example` covers idempotent shared registration and collector delivery. |
 
 ## streaming.stream.live_trace_stream
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.stream.live_trace_stream.StreamState` | `streaming/stream/live_trace_stream.py` | `ichnos::stream::stream::live_trace_stream::StreamState` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream` | `streaming/stream/live_trace_stream.py` | `ichnos::stream::stream::live_trace_stream::LiveTraceStream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.append` | `streaming/stream/live_trace_stream.py` | `ichnos::stream::stream::live_trace_stream::LiveTraceStream::append` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.start` | `streaming/stream/live_trace_stream.py` | `ichnos::stream::stream::live_trace_stream::LiveTraceStream::start` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.stop` | `streaming/stream/live_trace_stream.py` | `ichnos::stream::stream::live_trace_stream::LiveTraceStream::stop` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.register` | `streaming/stream/live_trace_stream.py` | `ichnos::stream::stream::live_trace_stream::LiveTraceStream::register` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.stream.live_trace_stream.StreamState` | `streaming/stream/live_trace_stream.py` | `ichnos_stream::StreamState` | `ichnos-stream` | ported | `stream/dataframe-running-example` covers inactive/active/finished states. |
+| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream` | `streaming/stream/live_trace_stream.py` | `ichnos_stream::LiveTraceStream::new` | `ichnos-stream` | ported | `stream/dataframe-running-example` covers trace-stream construction and lifecycle. |
+| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.append` | `streaming/stream/live_trace_stream.py` | `ichnos_stream::LiveTraceStream::append` | `ichnos-stream` | ported | `stream/dataframe-running-example` covers queued and active trace delivery. |
+| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.start` | `streaming/stream/live_trace_stream.py` | `ichnos_stream::LiveTraceStream::start` | `ichnos-stream` | ported | `stream/dataframe-running-example` covers queued-trace delivery at start. |
+| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.stop` | `streaming/stream/live_trace_stream.py` | `ichnos_stream::LiveTraceStream::stop` | `ichnos-stream` | ported | `stream/dataframe-running-example` covers finished state and full forwarded trace digest. |
+| `pm4py.streaming.stream.live_trace_stream.LiveTraceStream.register` | `streaming/stream/live_trace_stream.py` | `ichnos_stream::LiveTraceStream::register` | `ichnos-stream` | ported | `stream/dataframe-running-example` covers idempotent shared trace-observer registration. |
 
 ## streaming.util.dictio.generator
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.dictio.generator.apply` | `streaming/util/dictio/generator.py` | `ichnos::stream::util::dictio::generator::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.dictio.generator.apply` | `streaming/util/dictio/generator.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
 
 ## streaming.util.dictio.versions.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.dictio.versions.classic.apply` | `streaming/util/dictio/versions/classic.py` | `ichnos::stream::util::dictio::versions::classic::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.dictio.versions.classic.apply` | `streaming/util/dictio/versions/classic.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
 
 ## streaming.util.dictio.versions.redis
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::ThreadSafeRedisDict` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.keys` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::ThreadSafeRedisDict::keys` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.values` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::ThreadSafeRedisDict::values` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.itervalues` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::ThreadSafeRedisDict::itervalues` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushdb` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::ThreadSafeRedisDict::flushdb` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushall` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::ThreadSafeRedisDict::flushall` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.redis.apply` | `streaming/util/dictio/versions/redis.py` | `ichnos::stream::util::dictio::versions::redis::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.keys` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.values` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.itervalues` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushdb` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.redis.ThreadSafeRedisDict.flushall` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.redis.apply` | `streaming/util/dictio/versions/redis.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
 
 ## streaming.util.dictio.versions.thread_safe
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict` | `streaming/util/dictio/versions/thread_safe.py` | `ichnos::stream::util::dictio::versions::thread_safe::ThreadSafeDict` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.keys` | `streaming/util/dictio/versions/thread_safe.py` | `ichnos::stream::util::dictio::versions::thread_safe::ThreadSafeDict::keys` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.values` | `streaming/util/dictio/versions/thread_safe.py` | `ichnos::stream::util::dictio::versions::thread_safe::ThreadSafeDict::values` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.itervalues` | `streaming/util/dictio/versions/thread_safe.py` | `ichnos::stream::util::dictio::versions::thread_safe::ThreadSafeDict::itervalues` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.util.dictio.versions.thread_safe.apply` | `streaming/util/dictio/versions/thread_safe.py` | `ichnos::stream::util::dictio::versions::thread_safe::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict` | `streaming/util/dictio/versions/thread_safe.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.keys` | `streaming/util/dictio/versions/thread_safe.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.values` | `streaming/util/dictio/versions/thread_safe.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.thread_safe.ThreadSafeDict.itervalues` | `streaming/util/dictio/versions/thread_safe.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
+| `pm4py.streaming.util.dictio.versions.thread_safe.apply` | `streaming/util/dictio/versions/thread_safe.py` | — | `ichnos-stream` | dropped | Internal classic/thread-safe/Redis storage backend; native typed maps replace it. |
 
 ## streaming.util.event_stream_printer
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.event_stream_printer.EventStreamPrinter` | `streaming/util/event_stream_printer.py` → `streaming/algo/interface` | `ichnos::stream::util::event_stream_printer::EventStreamPrinter` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.event_stream_printer.EventStreamPrinter` | `streaming/util/event_stream_printer.py` → `streaming/algo/interface` | — | `ichnos-stream` | dropped | Python stdout diagnostic observer omitted; applications can implement StreamSink logging. |
 
 ## streaming.util.live_to_static_stream
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.live_to_static_stream.LiveToStaticStream` | `streaming/util/live_to_static_stream.py` → `objects/log/obj`, `streaming/algo/interface` | `ichnos::stream::util::live_to_static_stream::LiveToStaticStream` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.live_to_static_stream.LiveToStaticStream` | `streaming/util/live_to_static_stream.py` → `objects/log/obj`, `streaming/algo/interface` | `ichnos_stream::Collector` | `ichnos-stream` | ported | `stream/dfg-running-example` compares collected events; `stream/dataframe-running-example` compares collected traces. |
 
 ## streaming.util.trace_stream_printer
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.util.trace_stream_printer.TraceStreamPrinter` | `streaming/util/trace_stream_printer.py` → `streaming/algo/interface` | `ichnos::stream::util::trace_stream_printer::TraceStreamPrinter` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.util.trace_stream_printer.TraceStreamPrinter` | `streaming/util/trace_stream_printer.py` → `streaming/algo/interface` | — | `ichnos-stream` | dropped | Python stdout diagnostic observer omitted; applications can implement StreamSink logging. |
 
 ## __init__
 
@@ -1488,6 +1488,69 @@ Rows cite these as `core-N`.
 - DFGs: a start or end activity without edges keeps its node; pm4py raises `KeyError`. An edge activity missing from `activities_count` gets a plain node. An empty DFG gives a graph with no nodes; pm4py fails on `min()` of an empty sequence. Start and end edges come in activity order; pm4py follows the insertion order of its start and end dictionaries.
 - BPMN: flows that tie in the breadth-first order keep the order of pm4py's networkx graph, by source node, but within a source they follow the file's flow elements. pm4py adds flows in the order of the diagram's edge shapes (`BPMNEdge`), which ichnos does not read, and flows without a shape in Python's set order.
 - Heuristics nets: pm4py also takes start and end activities without counts and draws an unlabelled arc to each. `HeuristicsNet` always holds counts, so every start and end arc follows the `min_dfg_occurrences` rule. pm4py reads `min_dfg_occurrences` from the net; `HeuristicsNet` does not store it, so callers pass the discovery value in `HeuristicsNetDotOptions::min_dfg_occurrences`. `HeuristicsNet` has no net names or per-net colours, so merged nets draw black arcs labelled with counts only. Performance heuristics nets are not supported.
+
+### ichnos-stream (live streams and DFG)
+
+- Live streams deliver synchronously in FIFO order instead of using pm4py's thread pool.
+- Observers receive items in registration order.
+- Appends buffer before start.
+- Appends after finish are ignored.
+- Stop drains an inactive queue, fixing the native hang in that state.
+- Repeated starts return a typed error.
+- Repeated stops are harmless.
+- Repeated registration of the same shared observer is idempotent.
+- Delivery continues after an observer error and returns the first error without rollback or retry.
+- Collectors clone canonical items instead of retaining mutable Python references.
+- StreamSink replaces the abstract StreamingAlgorithm interface.
+- Algorithms expose typed get results.
+- Delivering to an already borrowed shared observer returns a typed error.
+- Missing DFG activity/case fields are ignored and counted by default.
+- MissingEventPolicy::Reject returns an indexed error.
+- DFG activity/case values use core display rather than Python str.
+- Typed Dfg maps replace dictionary backends and string tuples/eval.
+- DFG ends count each case's current last activity rather than completed cases.
+- CSV readers retain string fields.
+- CSV readers preserve input order.
+- Unequal CSV record widths return a typed error instead of DictReader's missing/extra-field placeholders.
+- CSV options add a configurable delimiter to the comma default.
+- Path-backed reset reopens the file and closes its previous handle.
+- Arbitrary reader inputs have no resettable path.
+- Readers fuse after EOF or an error.
+- Iterator adapters replace transformation and acceptance callbacks.
+- CSV transformation adapters can run before filtering.
+- XES filters see inherited trace attributes, whereas native event filtering runs before inheritance.
+- XES event readers frame one event plus preceding trace metadata.
+- XES trace readers frame one complete trace, including empty traces.
+- XES attributes use the merged ichnos-io parser.
+- Trace attributes overwrite case-prefixed event fields.
+- Log declarations and globals are omitted from emitted items.
+- XES readers accept plain and gzip files.
+- XES readers preserve file order.
+- Typed XES options control nesting depth and the case prefix.
+- XES readers return errors for invalid XML/core values that native readers may log and skip.
+- TraceIterator accepts canonical EventStream or Arrow input instead of pandas.
+- TraceIterator projects case IDs and activity/timestamp values under standard XES keys.
+- TraceIterator orders homogeneous numeric case IDs numerically, as np.unique does.
+- TraceIterator orders homogeneous strings lexically, as np.unique does.
+- Mixed core case types retain distinct identities, so integer 1 and string "1" are separate cases.
+- Mixed-type ordering is an extension: booleans precede numbers, then strings, IDs, dates, lists, containers and metadata values.
+- Numerically equal mixed integer/float IDs remain distinct, with the integer first.
+- Floating signed zeros share a case, and NaNs share a case ordered after other floating values.
+- Integer case comparisons retain precision above 2^53.
+- TraceIterator preserves input order within cases rather than sorting timestamps.
+- Canonical grouping corrects native contiguous slicing of interleaved rows after its discarded sort_values result.
+- The interleaved golden records raw native output and native output on explicitly grouped input.
+- No oracle implementation is patched.
+- Missing projection columns return typed indexed errors.
+- Pandas attributes and index metadata are not retained.
+- Thirty-one goldens compare complete ordered content digests and typed samples.
+- Golden dates normalize to UTC microseconds while core timestamps retain their original precision.
+- DFG goldens compare up to five prefix snapshots.
+- Running-example, receipt and roadtraffic100traces cover real XES, conversion and DFG paths.
+- CSV goldens cover running-example, receipt, quoting, transforms and filters.
+- Native dictionary, Redis and thread helpers are dropped in favor of typed maps.
+- Platform click/key connectors are dropped because applications supply canonical events.
+- Python stdout observers are dropped in favor of application sinks.
 
 ## Proposed lanes
 
