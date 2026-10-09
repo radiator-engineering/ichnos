@@ -26,6 +26,9 @@ $PM4PY_PYTHON tools/golden/generate.py --check             # write nothing; exit
 The generator refuses to run against any pm4py other than 2.7.23.8 at commit
 24a3bf6.
 
+The stats `case-review-*` cases also call the Polars backends. Install
+`polars==1.35.2` in the oracle environment to reproduce those cases.
+
 `--check` exits 1 when a file would change, is missing, or is stale: a file on
 disk that no case registers. Delete stale files by hand.
 

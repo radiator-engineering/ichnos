@@ -1,0 +1,2501 @@
+{
+  "expected": {
+    "business_passed": {
+      "Add penalty": {
+        "post": [
+          [
+            "Send for Credit Collection",
+            11924000.0,
+            36
+          ],
+          [
+            "Payment",
+            3459600.0,
+            20
+          ],
+          [
+            "Send Appeal to Prefecture",
+            540000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 8754315.789473685,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            1534153.8461538462,
+            52
+          ],
+          [
+            "Payment",
+            837000.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            720000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1470947.3684210526
+      },
+      "Create Fine": {
+        "post": [
+          [
+            "Send Fine",
+            2151584.4155844157,
+            77
+          ],
+          [
+            "Payment",
+            225391.30434782608,
+            23
+          ]
+        ],
+        "post_avg_perf": 1708560.0,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "Insert Date Appeal to Prefecture": {
+        "post": [
+          [
+            "Add penalty",
+            720000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 720000.0,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            828000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 828000.0
+      },
+      "Insert Fine Notification": {
+        "post": [
+          [
+            "Add penalty",
+            1534153.8461538462,
+            52
+          ],
+          [
+            "Payment",
+            702000.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            828000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 1463368.4210526317,
+        "pre": [
+          [
+            "Send Fine",
+            486642.85714285716,
+            56
+          ],
+          [
+            "Payment",
+            72000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 479368.4210526316
+      },
+      "Notify Result Appeal to Offender": {
+        "post": [
+          [
+            "Payment",
+            468000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 468000.0,
+        "pre": [
+          [
+            "Receive Result Appeal from Prefecture",
+            72000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 72000.0
+      },
+      "Payment": {
+        "post": [
+          [
+            "Send Fine",
+            1296000.0,
+            1
+          ],
+          [
+            "Payment",
+            2505600.0,
+            5
+          ],
+          [
+            "Add penalty",
+            837000.0,
+            4
+          ],
+          [
+            "Insert Fine Notification",
+            72000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 1567636.3636363635,
+        "pre": [
+          [
+            "Create Fine",
+            225391.30434782608,
+            23
+          ],
+          [
+            "Add penalty",
+            3459600.0,
+            20
+          ],
+          [
+            "Payment",
+            2505600.0,
+            5
+          ],
+          [
+            "Insert Fine Notification",
+            702000.0,
+            4
+          ],
+          [
+            "Send Fine",
+            518400.0,
+            5
+          ],
+          [
+            "Notify Result Appeal to Offender",
+            468000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1599517.2413793104
+      },
+      "Receive Result Appeal from Prefecture": {
+        "post": [
+          [
+            "Notify Result Appeal to Offender",
+            72000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 72000.0,
+        "pre": [
+          [
+            "Send Appeal to Prefecture",
+            1548000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1548000.0
+      },
+      "Send Appeal to Prefecture": {
+        "post": [
+          [
+            "Receive Result Appeal from Prefecture",
+            1548000.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 1548000.0,
+        "pre": [
+          [
+            "Add penalty",
+            540000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 540000.0
+      },
+      "Send Fine": {
+        "post": [
+          [
+            "Insert Fine Notification",
+            486642.85714285716,
+            56
+          ],
+          [
+            "Payment",
+            518400.0,
+            5
+          ]
+        ],
+        "post_avg_perf": 489245.9016393443,
+        "pre": [
+          [
+            "Create Fine",
+            2151584.4155844157,
+            77
+          ],
+          [
+            "Payment",
+            1296000.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 2140615.3846153845
+      },
+      "Send for Credit Collection": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Add penalty",
+            11924000.0,
+            36
+          ]
+        ],
+        "pre_avg_perf": 11924000.0
+      }
+    },
+    "business_service": {
+      "Add penalty": 0.0,
+      "Create Fine": 0.0,
+      "Insert Date Appeal to Prefecture": 0.0,
+      "Insert Fine Notification": 0.0,
+      "Notify Result Appeal to Offender": 0.0,
+      "Payment": 0.0,
+      "Receive Result Appeal from Prefecture": 0.0,
+      "Send Appeal to Prefecture": 0.0,
+      "Send Fine": 0.0,
+      "Send for Credit Collection": 0.0
+    },
+    "concurrent": [
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Payment"
+      },
+      {
+        "count": 4,
+        "source": "Create Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 2,
+        "source": "Create Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 4,
+        "source": "Create Fine",
+        "target": "Send Fine"
+      },
+      {
+        "count": 5,
+        "source": "Insert Fine Notification",
+        "target": "Send Fine"
+      }
+    ],
+    "concurrent_strict": [],
+    "cycle": 0.0,
+    "cycle_values": [
+      0.0,
+      3.5
+    ],
+    "eventually": [
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 26,
+        "source": "Add penalty",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Add penalty",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 57,
+        "source": "Create Fine",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Create Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 58,
+        "source": "Create Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 78,
+        "source": "Create Fine",
+        "target": "Send Fine"
+      },
+      {
+        "count": 36,
+        "source": "Create Fine",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Insert Fine Notification",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 30,
+        "source": "Insert Fine Notification",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Insert Fine Notification",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 1,
+        "source": "Notify Result Appeal to Offender",
+        "target": "Payment"
+      },
+      {
+        "count": 5,
+        "source": "Payment",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 10,
+        "source": "Payment",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Send Fine"
+      },
+      {
+        "count": 1,
+        "source": "Receive Result Appeal from Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Receive Result Appeal from Prefecture",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Send Fine",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Send Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 35,
+        "source": "Send Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Send Fine",
+        "target": "Send for Credit Collection"
+      }
+    ],
+    "eventually_first": [
+      {
+        "count": 20,
+        "source": "Add penalty",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Add penalty",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 23,
+        "source": "Create Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 77,
+        "source": "Create Fine",
+        "target": "Send Fine"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Add penalty"
+      },
+      {
+        "count": 52,
+        "source": "Insert Fine Notification",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 4,
+        "source": "Insert Fine Notification",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Notify Result Appeal to Offender",
+        "target": "Payment"
+      },
+      {
+        "count": 4,
+        "source": "Payment",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 5,
+        "source": "Payment",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Send Fine"
+      },
+      {
+        "count": 1,
+        "source": "Receive Result Appeal from Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 56,
+        "source": "Send Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 5,
+        "source": "Send Fine",
+        "target": "Payment"
+      }
+    ],
+    "eventually_sequences": [
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 26,
+        "source": "Add penalty",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Add penalty",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 57,
+        "source": "Create Fine",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Create Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 58,
+        "source": "Create Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Create Fine",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 78,
+        "source": "Create Fine",
+        "target": "Send Fine"
+      },
+      {
+        "count": 36,
+        "source": "Create Fine",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Insert Fine Notification",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 30,
+        "source": "Insert Fine Notification",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Insert Fine Notification",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 1,
+        "source": "Notify Result Appeal to Offender",
+        "target": "Payment"
+      },
+      {
+        "count": 5,
+        "source": "Payment",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 10,
+        "source": "Payment",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Send Fine"
+      },
+      {
+        "count": 1,
+        "source": "Receive Result Appeal from Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Receive Result Appeal from Prefecture",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Send Fine",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 57,
+        "source": "Send Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 35,
+        "source": "Send Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 1,
+        "source": "Send Fine",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Send Fine",
+        "target": "Send for Credit Collection"
+      }
+    ],
+    "overlap_cases": [
+      23,
+      9,
+      21,
+      21,
+      9,
+      10,
+      19,
+      17,
+      21,
+      15,
+      7,
+      10,
+      8,
+      17,
+      23,
+      21,
+      12,
+      10,
+      19,
+      25,
+      10,
+      14,
+      21,
+      10,
+      2,
+      8,
+      17,
+      23,
+      13,
+      23,
+      17,
+      31,
+      9,
+      21,
+      27,
+      11,
+      17,
+      15,
+      16,
+      16,
+      13,
+      10,
+      24,
+      12,
+      22,
+      7,
+      7,
+      13,
+      9,
+      14,
+      14,
+      17,
+      15,
+      7,
+      10,
+      11,
+      17,
+      8,
+      10,
+      10,
+      6,
+      17,
+      9,
+      19,
+      6,
+      14,
+      5,
+      5,
+      11,
+      14,
+      7,
+      13,
+      13,
+      9,
+      19,
+      13,
+      25,
+      19,
+      13,
+      9,
+      11,
+      23,
+      15,
+      13,
+      22,
+      19,
+      12,
+      10,
+      18,
+      17,
+      18,
+      8,
+      8,
+      23,
+      7,
+      7,
+      14,
+      19,
+      19,
+      17
+    ],
+    "overlap_events": [
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      2,
+      1,
+      1,
+      5,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      3,
+      3,
+      3,
+      3,
+      1,
+      6,
+      4,
+      4,
+      4,
+      1,
+      5,
+      3,
+      3,
+      3,
+      1,
+      1,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      6,
+      1,
+      2,
+      1,
+      2,
+      6,
+      1,
+      2,
+      1,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1,
+      6,
+      1,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      1,
+      1,
+      3,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      5,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1,
+      5,
+      1,
+      4,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      4,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      3,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      4,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      6,
+      6,
+      1,
+      1,
+      2,
+      1,
+      1,
+      6,
+      1,
+      1,
+      1,
+      1,
+      6,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      6,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      6,
+      1,
+      3,
+      1,
+      1,
+      4,
+      1,
+      3,
+      1,
+      1,
+      1,
+      1,
+      3,
+      1,
+      1,
+      4,
+      1,
+      2,
+      2,
+      2,
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1,
+      1,
+      3,
+      1,
+      3,
+      1,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      6,
+      1,
+      2,
+      1,
+      1,
+      6,
+      1,
+      2,
+      2,
+      2,
+      4
+    ],
+    "overlap_values": [
+      3,
+      3,
+      3,
+      1
+    ],
+    "passed": {
+      "Add penalty": {
+        "post": [
+          [
+            "Send for Credit Collection",
+            40043000.0,
+            36
+          ],
+          [
+            "Payment",
+            11632860.0,
+            20
+          ],
+          [
+            "Send Appeal to Prefecture",
+            1900800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 29405368.42105263,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            5185038.461538462,
+            52
+          ],
+          [
+            "Payment",
+            2764800.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            2332800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 4965157.894736842
+      },
+      "Create Fine": {
+        "post": [
+          [
+            "Send Fine",
+            7217906.493506493,
+            77
+          ],
+          [
+            "Payment",
+            785269.5652173914,
+            23
+          ]
+        ],
+        "post_avg_perf": 5738400.0,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "Insert Date Appeal to Prefecture": {
+        "post": [
+          [
+            "Add penalty",
+            2332800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 2332800.0,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            2851200.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 2851200.0
+      },
+      "Insert Fine Notification": {
+        "post": [
+          [
+            "Add penalty",
+            5185038.461538462,
+            52
+          ],
+          [
+            "Payment",
+            2419200.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            2851200.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 4950000.0,
+        "pre": [
+          [
+            "Send Fine",
+            1643400.0,
+            56
+          ],
+          [
+            "Payment",
+            172800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1617600.0
+      },
+      "Notify Result Appeal to Offender": {
+        "post": [
+          [
+            "Payment",
+            1472400.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 1472400.0,
+        "pre": [
+          [
+            "Receive Result Appeal from Prefecture",
+            345600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 345600.0
+      },
+      "Payment": {
+        "post": [
+          [
+            "Send Fine",
+            4323600.0,
+            1
+          ],
+          [
+            "Payment",
+            8398080.0,
+            5
+          ],
+          [
+            "Add penalty",
+            2764800.0,
+            4
+          ],
+          [
+            "Insert Fine Notification",
+            172800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 5231454.545454546,
+        "pre": [
+          [
+            "Create Fine",
+            785269.5652173914,
+            23
+          ],
+          [
+            "Add penalty",
+            11632860.0,
+            20
+          ],
+          [
+            "Payment",
+            8398080.0,
+            5
+          ],
+          [
+            "Insert Fine Notification",
+            2419200.0,
+            4
+          ],
+          [
+            "Send Fine",
+            1762560.0,
+            5
+          ],
+          [
+            "Notify Result Appeal to Offender",
+            1472400.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 5390875.862068965
+      },
+      "Receive Result Appeal from Prefecture": {
+        "post": [
+          [
+            "Notify Result Appeal to Offender",
+            345600.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 345600.0,
+        "pre": [
+          [
+            "Send Appeal to Prefecture",
+            5097600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 5097600.0
+      },
+      "Send Appeal to Prefecture": {
+        "post": [
+          [
+            "Receive Result Appeal from Prefecture",
+            5097600.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 5097600.0,
+        "pre": [
+          [
+            "Add penalty",
+            1900800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1900800.0
+      },
+      "Send Fine": {
+        "post": [
+          [
+            "Insert Fine Notification",
+            1643400.0,
+            56
+          ],
+          [
+            "Payment",
+            1762560.0,
+            5
+          ]
+        ],
+        "post_avg_perf": 1653167.213114754,
+        "pre": [
+          [
+            "Create Fine",
+            7217906.493506493,
+            77
+          ],
+          [
+            "Payment",
+            4323600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 7180800.0
+      },
+      "Send for Credit Collection": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Add penalty",
+            40043000.0,
+            36
+          ]
+        ],
+        "pre_avg_perf": 40043000.0
+      }
+    },
+    "passed_median": {
+      "Add penalty": {
+        "post": [
+          [
+            "Send for Credit Collection",
+            39223800.0,
+            36
+          ],
+          [
+            "Payment",
+            8679600.0,
+            20
+          ],
+          [
+            "Send Appeal to Prefecture",
+            1900800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 27851747.36842105,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            5184000.0,
+            52
+          ],
+          [
+            "Payment",
+            2894400.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            2332800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 4973305.263157895
+      },
+      "Create Fine": {
+        "post": [
+          [
+            "Send Fine",
+            7520400.0,
+            77
+          ],
+          [
+            "Payment",
+            518400.0,
+            23
+          ]
+        ],
+        "post_avg_perf": 5909940.0,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "Insert Date Appeal to Prefecture": {
+        "post": [
+          [
+            "Add penalty",
+            2332800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 2332800.0,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            2851200.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 2851200.0
+      },
+      "Insert Fine Notification": {
+        "post": [
+          [
+            "Add penalty",
+            5184000.0,
+            52
+          ],
+          [
+            "Payment",
+            2289600.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            2851200.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 4939957.894736842,
+        "pre": [
+          [
+            "Send Fine",
+            1382400.0,
+            56
+          ],
+          [
+            "Payment",
+            172800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1361178.9473684211
+      },
+      "Notify Result Appeal to Offender": {
+        "post": [
+          [
+            "Payment",
+            1472400.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 1472400.0,
+        "pre": [
+          [
+            "Receive Result Appeal from Prefecture",
+            345600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 345600.0
+      },
+      "Payment": {
+        "post": [
+          [
+            "Send Fine",
+            4323600.0,
+            1
+          ],
+          [
+            "Payment",
+            3283200.0,
+            5
+          ],
+          [
+            "Add penalty",
+            2894400.0,
+            4
+          ],
+          [
+            "Insert Fine Notification",
+            172800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 2953636.3636363638,
+        "pre": [
+          [
+            "Create Fine",
+            518400.0,
+            23
+          ],
+          [
+            "Add penalty",
+            8679600.0,
+            20
+          ],
+          [
+            "Payment",
+            3283200.0,
+            5
+          ],
+          [
+            "Insert Fine Notification",
+            2289600.0,
+            4
+          ],
+          [
+            "Send Fine",
+            1641600.0,
+            5
+          ],
+          [
+            "Notify Result Appeal to Offender",
+            1472400.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 3806379.3103448274
+      },
+      "Receive Result Appeal from Prefecture": {
+        "post": [
+          [
+            "Notify Result Appeal to Offender",
+            345600.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 345600.0,
+        "pre": [
+          [
+            "Send Appeal to Prefecture",
+            5097600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 5097600.0
+      },
+      "Send Appeal to Prefecture": {
+        "post": [
+          [
+            "Receive Result Appeal from Prefecture",
+            5097600.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 5097600.0,
+        "pre": [
+          [
+            "Add penalty",
+            1900800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1900800.0
+      },
+      "Send Fine": {
+        "post": [
+          [
+            "Insert Fine Notification",
+            1382400.0,
+            56
+          ],
+          [
+            "Payment",
+            1641600.0,
+            5
+          ]
+        ],
+        "post_avg_perf": 1403645.9016393442,
+        "pre": [
+          [
+            "Create Fine",
+            7520400.0,
+            77
+          ],
+          [
+            "Payment",
+            4323600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 7479415.384615385
+      },
+      "Send for Credit Collection": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Add penalty",
+            39223800.0,
+            36
+          ]
+        ],
+        "pre_avg_perf": 39223800.0
+      }
+    },
+    "passed_stdev": {
+      "Add penalty": {
+        "post": [
+          [
+            "Send for Credit Collection",
+            9942416.845128035,
+            36
+          ],
+          [
+            "Payment",
+            10849112.035282208,
+            20
+          ],
+          [
+            "Send Appeal to Prefecture",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 10086127.142636025,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            1930.981041544797,
+            52
+          ],
+          [
+            "Payment",
+            1679807.9890273174,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 119642.85912753682
+      },
+      "Create Fine": {
+        "post": [
+          [
+            "Send Fine",
+            3612823.9946618835,
+            77
+          ],
+          [
+            "Payment",
+            958574.127846707,
+            23
+          ]
+        ],
+        "post_avg_perf": 3002346.525294393,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "Insert Date Appeal to Prefecture": {
+        "post": [
+          [
+            "Add penalty",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Insert Fine Notification",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 0.0
+      },
+      "Insert Fine Notification": {
+        "post": [
+          [
+            "Add penalty",
+            1930.981041544797,
+            52
+          ],
+          [
+            "Payment",
+            1679807.9890273174,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 119642.85912753682,
+        "pre": [
+          [
+            "Send Fine",
+            1411077.601370991,
+            56
+          ],
+          [
+            "Payment",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1386321.8539785175
+      },
+      "Notify Result Appeal to Offender": {
+        "post": [
+          [
+            "Payment",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Receive Result Appeal from Prefecture",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 0.0
+      },
+      "Payment": {
+        "post": [
+          [
+            "Send Fine",
+            0.0,
+            1
+          ],
+          [
+            "Payment",
+            10415841.620915709,
+            5
+          ],
+          [
+            "Add penalty",
+            1679807.9890273174,
+            4
+          ],
+          [
+            "Insert Fine Notification",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 5345312.732789801,
+        "pre": [
+          [
+            "Create Fine",
+            958574.127846707,
+            23
+          ],
+          [
+            "Add penalty",
+            10849112.035282208,
+            20
+          ],
+          [
+            "Payment",
+            10415841.620915709,
+            5
+          ],
+          [
+            "Insert Fine Notification",
+            1679807.9890273174,
+            4
+          ],
+          [
+            "Send Fine",
+            884492.9666198596,
+            5
+          ],
+          [
+            "Notify Result Appeal to Offender",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 5211212.940343199
+      },
+      "Receive Result Appeal from Prefecture": {
+        "post": [
+          [
+            "Notify Result Appeal to Offender",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Send Appeal to Prefecture",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 0.0
+      },
+      "Send Appeal to Prefecture": {
+        "post": [
+          [
+            "Receive Result Appeal from Prefecture",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Add penalty",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 0.0
+      },
+      "Send Fine": {
+        "post": [
+          [
+            "Insert Fine Notification",
+            1411077.601370991,
+            56
+          ],
+          [
+            "Payment",
+            884492.9666198596,
+            5
+          ]
+        ],
+        "post_avg_perf": 1367914.92639139,
+        "pre": [
+          [
+            "Create Fine",
+            3612823.9946618835,
+            77
+          ],
+          [
+            "Payment",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 3566505.7383200643
+      },
+      "Send for Credit Collection": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "Add penalty",
+            9942416.845128035,
+            36
+          ]
+        ],
+        "pre_avg_perf": 9942416.845128035
+      }
+    },
+    "post": {
+      "Add penalty": {
+        "post": [
+          [
+            "Send for Credit Collection",
+            40043000.0,
+            36
+          ],
+          [
+            "Payment",
+            11632860.0,
+            20
+          ],
+          [
+            "Send Appeal to Prefecture",
+            1900800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 29405368.42105263
+      },
+      "Create Fine": {
+        "post": [
+          [
+            "Send Fine",
+            7217906.493506493,
+            77
+          ],
+          [
+            "Payment",
+            785269.5652173914,
+            23
+          ]
+        ],
+        "post_avg_perf": 5738400.0
+      },
+      "Insert Date Appeal to Prefecture": {
+        "post": [
+          [
+            "Add penalty",
+            2332800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 2332800.0
+      },
+      "Insert Fine Notification": {
+        "post": [
+          [
+            "Add penalty",
+            5185038.461538462,
+            52
+          ],
+          [
+            "Payment",
+            2419200.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            2851200.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 4950000.0
+      },
+      "Notify Result Appeal to Offender": {
+        "post": [
+          [
+            "Payment",
+            1472400.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 1472400.0
+      },
+      "Payment": {
+        "post": [
+          [
+            "Send Fine",
+            4323600.0,
+            1
+          ],
+          [
+            "Payment",
+            8398080.0,
+            5
+          ],
+          [
+            "Add penalty",
+            2764800.0,
+            4
+          ],
+          [
+            "Insert Fine Notification",
+            172800.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 5231454.545454546
+      },
+      "Receive Result Appeal from Prefecture": {
+        "post": [
+          [
+            "Notify Result Appeal to Offender",
+            345600.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 345600.0
+      },
+      "Send Appeal to Prefecture": {
+        "post": [
+          [
+            "Receive Result Appeal from Prefecture",
+            5097600.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 5097600.0
+      },
+      "Send Fine": {
+        "post": [
+          [
+            "Insert Fine Notification",
+            1643400.0,
+            56
+          ],
+          [
+            "Payment",
+            1762560.0,
+            5
+          ]
+        ],
+        "post_avg_perf": 1653167.213114754
+      },
+      "Send for Credit Collection": {
+        "post": [],
+        "post_avg_perf": 0.0
+      }
+    },
+    "pre": {
+      "Add penalty": {
+        "pre": [
+          [
+            "Insert Fine Notification",
+            5185038.461538462,
+            52
+          ],
+          [
+            "Payment",
+            2764800.0,
+            4
+          ],
+          [
+            "Insert Date Appeal to Prefecture",
+            2332800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 4965157.894736842
+      },
+      "Create Fine": {
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "Insert Date Appeal to Prefecture": {
+        "pre": [
+          [
+            "Insert Fine Notification",
+            2851200.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 2851200.0
+      },
+      "Insert Fine Notification": {
+        "pre": [
+          [
+            "Send Fine",
+            1643400.0,
+            56
+          ],
+          [
+            "Payment",
+            172800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1617600.0
+      },
+      "Notify Result Appeal to Offender": {
+        "pre": [
+          [
+            "Receive Result Appeal from Prefecture",
+            345600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 345600.0
+      },
+      "Payment": {
+        "pre": [
+          [
+            "Create Fine",
+            785269.5652173914,
+            23
+          ],
+          [
+            "Add penalty",
+            11632860.0,
+            20
+          ],
+          [
+            "Payment",
+            8398080.0,
+            5
+          ],
+          [
+            "Insert Fine Notification",
+            2419200.0,
+            4
+          ],
+          [
+            "Send Fine",
+            1762560.0,
+            5
+          ],
+          [
+            "Notify Result Appeal to Offender",
+            1472400.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 5390875.862068965
+      },
+      "Receive Result Appeal from Prefecture": {
+        "pre": [
+          [
+            "Send Appeal to Prefecture",
+            5097600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 5097600.0
+      },
+      "Send Appeal to Prefecture": {
+        "pre": [
+          [
+            "Add penalty",
+            1900800.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 1900800.0
+      },
+      "Send Fine": {
+        "pre": [
+          [
+            "Create Fine",
+            7217906.493506493,
+            77
+          ],
+          [
+            "Payment",
+            4323600.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 7180800.0
+      },
+      "Send for Credit Collection": {
+        "pre": [
+          [
+            "Add penalty",
+            40043000.0,
+            36
+          ]
+        ],
+        "pre_avg_perf": 40043000.0
+      }
+    },
+    "service": {
+      "max": {
+        "Add penalty": 0.0,
+        "Create Fine": 0.0,
+        "Insert Date Appeal to Prefecture": 0.0,
+        "Insert Fine Notification": 0.0,
+        "Notify Result Appeal to Offender": 0.0,
+        "Payment": 0.0,
+        "Receive Result Appeal from Prefecture": 0.0,
+        "Send Appeal to Prefecture": 0.0,
+        "Send Fine": 0.0,
+        "Send for Credit Collection": 0.0
+      },
+      "mean": {
+        "Add penalty": 0.0,
+        "Create Fine": 0.0,
+        "Insert Date Appeal to Prefecture": 0.0,
+        "Insert Fine Notification": 0.0,
+        "Notify Result Appeal to Offender": 0.0,
+        "Payment": 0.0,
+        "Receive Result Appeal from Prefecture": 0.0,
+        "Send Appeal to Prefecture": 0.0,
+        "Send Fine": 0.0,
+        "Send for Credit Collection": 0.0
+      },
+      "median": {
+        "Add penalty": 0.0,
+        "Create Fine": 0.0,
+        "Insert Date Appeal to Prefecture": 0.0,
+        "Insert Fine Notification": 0.0,
+        "Notify Result Appeal to Offender": 0.0,
+        "Payment": 0.0,
+        "Receive Result Appeal from Prefecture": 0.0,
+        "Send Appeal to Prefecture": 0.0,
+        "Send Fine": 0.0,
+        "Send for Credit Collection": 0.0
+      },
+      "min": {
+        "Add penalty": 0.0,
+        "Create Fine": 0.0,
+        "Insert Date Appeal to Prefecture": 0.0,
+        "Insert Fine Notification": 0.0,
+        "Notify Result Appeal to Offender": 0.0,
+        "Payment": 0.0,
+        "Receive Result Appeal from Prefecture": 0.0,
+        "Send Appeal to Prefecture": 0.0,
+        "Send Fine": 0.0,
+        "Send for Credit Collection": 0.0
+      },
+      "sum": {
+        "Add penalty": 0.0,
+        "Create Fine": 0.0,
+        "Insert Date Appeal to Prefecture": 0.0,
+        "Insert Fine Notification": 0.0,
+        "Notify Result Appeal to Offender": 0.0,
+        "Payment": 0.0,
+        "Receive Result Appeal from Prefecture": 0.0,
+        "Send Appeal to Prefecture": 0.0,
+        "Send Fine": 0.0,
+        "Send for Credit Collection": 0.0
+      }
+    }
+  },
+  "meta": {
+    "area": "stats",
+    "case": "time-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.statistics.traces.cycle_time.log.get.apply",
+      "pm4py.statistics.traces.cycle_time.util.compute.cycle_time",
+      "pm4py.statistics.concurrent_activities.log.get.apply",
+      "pm4py.statistics.eventually_follows.log.get.apply",
+      "pm4py.statistics.eventually_follows.uvcl.get.apply",
+      "pm4py.statistics.overlap.cases.log.get.apply",
+      "pm4py.statistics.overlap.interval_events.log.get.apply",
+      "pm4py.statistics.overlap.utils.compute.apply",
+      "pm4py.statistics.service_time.log.get.apply",
+      "pm4py.statistics.passed_time.log.variants.prepost.apply",
+      "pm4py.statistics.passed_time.log.variants.pre.apply",
+      "pm4py.statistics.passed_time.log.variants.post.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "interval": false
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

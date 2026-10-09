@@ -1,0 +1,2112 @@
+{
+  "expected": [
+    {
+      "function": "filter_start_activities",
+      "params": {
+        "activities": [
+          "Add penalty"
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_end_activities",
+      "params": {
+        "activities": [
+          "Add penalty"
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "event",
+        "retain": true,
+        "values": [
+          "Add penalty",
+          "Create Fine"
+        ]
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "84036dca9b3866955543de51634f23dc3dc30de825cfa8998117d9f6fd45239b",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,3",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,10",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "case",
+        "retain": true,
+        "values": [
+          "Add penalty",
+          "Create Fine"
+        ]
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "retain": true,
+        "values": [
+          "A10466",
+          "A13415"
+        ]
+      },
+      "result": {
+        "case_count": 2,
+        "rows_sha256": "ce03a6f02ca0cbf75872951b7f072a021ea289d2d3ab868e7cdbbc89ec27fd6a",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants",
+      "params": {
+        "retain": true,
+        "variants": [
+          [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Send for Credit Collection"
+          ]
+        ]
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "cf3170715e9f5118fb8fb77666537e19d4f4f56e270236f802a98f60480253f7",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_directly_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Create Fine",
+            "Send Fine"
+          ]
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 77,
+        "rows_sha256": "1076c6d8bf35816a306eb6ba001448dff2bd7c19b9b73639cfb20a68e67c52c2",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_eventually_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Create Fine",
+            "Send Fine"
+          ],
+          [
+            "Add penalty",
+            "Create Fine",
+            "Add penalty"
+          ]
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 78,
+        "rows_sha256": "40769c2be305f75f699a92ad8d350fabc50b5ae5501232fc6d8810d6ee4666e4",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_paths_performance",
+      "params": {
+        "keep": true,
+        "max_performance": 23068800.0,
+        "min_performance": 0,
+        "path": [
+          "Create Fine",
+          "Send Fine"
+        ]
+      },
+      "result": {
+        "case_count": 77,
+        "rows_sha256": "1076c6d8bf35816a306eb6ba001448dff2bd7c19b9b73639cfb20a68e67c52c2",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_four_eyes_principle",
+      "params": {
+        "activity1": "Add penalty",
+        "activity2": "Create Fine",
+        "keep_violations": false
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_activity_done_different_resources",
+      "params": {
+        "activity": "Add penalty",
+        "keep_violations": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "Add penalty",
+            "...",
+            "Create Fine",
+            "..."
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Send for Credit Collection"
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "cf3170715e9f5118fb8fb77666537e19d4f4f56e270236f802a98f60480253f7",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Add penalty",
+            "..."
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "Create Fine"
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_start_activities",
+      "params": {
+        "activities": [
+          "Add penalty"
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_end_activities",
+      "params": {
+        "activities": [
+          "Add penalty"
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "event",
+        "retain": false,
+        "values": [
+          "Add penalty",
+          "Create Fine"
+        ]
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "0baad6cabe8efaf1f258f109d72d45f48a4527812426f9e5bdf2f0ce0d0316ec",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "1,2,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "8,9,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "case",
+        "retain": false,
+        "values": [
+          "Add penalty",
+          "Create Fine"
+        ]
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "retain": false,
+        "values": [
+          "A10466",
+          "A13415"
+        ]
+      },
+      "result": {
+        "case_count": 98,
+        "rows_sha256": "81f76e9d3cd792ce65540f4bc8446f2ec0c0f2f1fadbe7ffc8db813671d1a97d",
+        "sample": [
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          },
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants",
+      "params": {
+        "retain": false,
+        "variants": [
+          [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Send for Credit Collection"
+          ]
+        ]
+      },
+      "result": {
+        "case_count": 64,
+        "rows_sha256": "25e41163d458634281fe6d748e6319f890d98a1dbed63b742338827a716ea61c",
+        "sample": [
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "A17768",
+            "indices": "19,20",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_directly_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Create Fine",
+            "Send Fine"
+          ]
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 23,
+        "rows_sha256": "3800ba033f8b19abef1e55945d3319e68257e1fa870f56fc2347173d3f2d6eb4",
+        "sample": [
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "A34570",
+            "indices": "43,44",
+            "subcase": null
+          },
+          {
+            "id": "N36957",
+            "indices": "87,88,89",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_eventually_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Create Fine",
+            "Send Fine"
+          ],
+          [
+            "Add penalty",
+            "Create Fine",
+            "Add penalty"
+          ]
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 22,
+        "rows_sha256": "8ca1ea491d2c62dc7319e45c4497b2001cf5282ce9071231586025aba5230ea8",
+        "sample": [
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "A34570",
+            "indices": "43,44",
+            "subcase": null
+          },
+          {
+            "id": "N55940",
+            "indices": "101,102",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_paths_performance",
+      "params": {
+        "keep": false,
+        "max_performance": 23068800.0,
+        "min_performance": 0,
+        "path": [
+          "Create Fine",
+          "Send Fine"
+        ]
+      },
+      "result": {
+        "case_count": 23,
+        "rows_sha256": "3800ba033f8b19abef1e55945d3319e68257e1fa870f56fc2347173d3f2d6eb4",
+        "sample": [
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "A34570",
+            "indices": "43,44",
+            "subcase": null
+          },
+          {
+            "id": "N36957",
+            "indices": "87,88,89",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_four_eyes_principle",
+      "params": {
+        "activity1": "Add penalty",
+        "activity2": "Create Fine",
+        "keep_violations": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_activity_done_different_resources",
+      "params": {
+        "activity": "Add penalty",
+        "keep_violations": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "Add penalty",
+            "...",
+            "Create Fine",
+            "..."
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Create Fine",
+            "Send Fine",
+            "Insert Fine Notification",
+            "Add penalty",
+            "Send for Credit Collection"
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 64,
+        "rows_sha256": "25e41163d458634281fe6d748e6319f890d98a1dbed63b742338827a716ea61c",
+        "sample": [
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "A17768",
+            "indices": "19,20",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Add penalty",
+            "..."
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "Create Fine"
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_log_relative_occurrence_event_attribute",
+      "params": {
+        "level": "cases",
+        "min_relative_stake": 0.3
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "c82e6af05035ed06800add560cb6dfa42a23bcf3bb9024f50ea640ce0b4dd128",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_log_relative_occurrence_event_attribute",
+      "params": {
+        "level": "events",
+        "min_relative_stake": 0.3
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_case_size",
+      "params": {
+        "max_size": 5,
+        "min_size": 3
+      },
+      "result": {
+        "case_count": 51,
+        "rows_sha256": "9f4babfdb984fe1da0a4343ec49f9f7a10f51ffb92c1eaf5f049750b06bd0199",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_case_performance",
+      "params": {
+        "max_performance": 23068800.0,
+        "min_performance": 0
+      },
+      "result": {
+        "case_count": 51,
+        "rows_sha256": "b55aae0cfc481e049d4a3f77e6286cf06f0a40be2b1d2c119f8eb82f60e48f72",
+        "sample": [
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "A17768",
+            "indices": "19,20",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "Add penalty",
+        "min_occurrences": 1
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "d149927e019375394952961c3d7162abaccf163b9e34f10140d94ad56b636fc1",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "Add penalty",
+        "min_occurrences": 2
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "Add penalty",
+        "min_occurrences": 3
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 0
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 1
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "cf3170715e9f5118fb8fb77666537e19d4f4f56e270236f802a98f60480253f7",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 3
+      },
+      "result": {
+        "case_count": 74,
+        "rows_sha256": "0fc727bcaed6ad0ae4cd63797726315c4a38fa16937a66cb577b8a9f3b51dda3",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants_by_coverage_percentage",
+      "params": {
+        "min_coverage_percentage": 0.1
+      },
+      "result": {
+        "case_count": 84,
+        "rows_sha256": "42e3ff6d4438a32e110d5984f8da9535f49803c7e330e596721e4a36091f07ee",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants_by_coverage_percentage",
+      "params": {
+        "min_coverage_percentage": 0.5
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "fbcd319a12cbb317ddb9c7d3784473a8ccbbde1c2c74056cbb645b43fac4f792",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "c0edcb904a89925e4d5140765300fb21bdd36c3b547aa7a5a41f80cc50368f72",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "fbcd319a12cbb317ddb9c7d3784473a8ccbbde1c2c74056cbb645b43fac4f792",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "c0edcb904a89925e4d5140765300fb21bdd36c3b547aa7a5a41f80cc50368f72",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "a3e02456dddd64afc4225b8c121f2870b189927bd13e93420deb07bdf4175676",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "3af3ed3895b8f63fe888a9585d6beef563fbd07041d41741e6381eaa47ee50c8",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "a3e02456dddd64afc4225b8c121f2870b189927bd13e93420deb07bdf4175676",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Add penalty",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "3af3ed3895b8f63fe888a9585d6beef563fbd07041d41741e6381eaa47ee50c8",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a717fcfb14200037e4d2d682a6601adf46395ab13aba111b197af10d8bfba4ac",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "aa75441bec7c8d63253414732d42e8dd6b18598150ee006c46122e01c9e271c3",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a717fcfb14200037e4d2d682a6601adf46395ab13aba111b197af10d8bfba4ac",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "aa75441bec7c8d63253414732d42e8dd6b18598150ee006c46122e01c9e271c3",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "3847eedf79a5f363ab64fa9873923797193ea2d3968f78ead014fbb291a5ad8b",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "3847eedf79a5f363ab64fa9873923797193ea2d3968f78ead014fbb291a5ad8b",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Create Fine",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 100,
+        "rows_sha256": "a3e2f45d3f9a58fc1f0359f205801c6bb9df6b2486ba2cd664ee546f64b21a56",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "e50307afcd631576973f6f72d009c4ed26c4302ac94e279615d5e3083f34aa1a",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "56350de9af5bb23cf476f6292b8be03fb7313f2d0f1513329c0b18750d34e9b1",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "e50307afcd631576973f6f72d009c4ed26c4302ac94e279615d5e3083f34aa1a",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "56350de9af5bb23cf476f6292b8be03fb7313f2d0f1513329c0b18750d34e9b1",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "cf3170715e9f5118fb8fb77666537e19d4f4f56e270236f802a98f60480253f7",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "4bc68a06155aa35d617f9c9a03b09e8a978b2c8a977f093952c6693ebf502296",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "cf3170715e9f5118fb8fb77666537e19d4f4f56e270236f802a98f60480253f7",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15,16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Send for Credit Collection",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 36,
+        "rows_sha256": "4bc68a06155aa35d617f9c9a03b09e8a978b2c8a977f093952c6693ebf502296",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "11",
+            "subcase": null
+          },
+          {
+            "id": "A16409",
+            "indices": "16",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "Create Fine"
+        ],
+        "act2": [
+          "Send Fine"
+        ]
+      },
+      "result": {
+        "case_count": 78,
+        "rows_sha256": "d3202f2dfeecf514d1a9da66c09ef6ad88b60d000e54296d3a7fc83345551142",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1",
+            "subcase": "0##@@0"
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": "1##@@0"
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8",
+            "subcase": "2##@@0"
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "Add penalty"
+        ],
+        "act2": [
+          "Add penalty"
+        ]
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "Add penalty",
+          "Create Fine"
+        ],
+        "act2": [
+          "Add penalty",
+          "Create Fine"
+        ]
+      },
+      "result": {
+        "case_count": 57,
+        "rows_sha256": "de359bcd20d742a94a7ffab3bdc6aa793b158ce2685b1c7a9881fd6c56c7f379",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3",
+            "subcase": "0##@@0"
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10",
+            "subcase": "2##@@0"
+          },
+          {
+            "id": "A16409",
+            "indices": "12,13,14,15",
+            "subcase": "3##@@0"
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "events"
+      },
+      "result": {
+        "case_count": 39,
+        "rows_sha256": "2f83d3e44672e4c432f2d3f889a8f31c1926816a3a74805b4142576a41803543",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "traces_contained"
+      },
+      "result": {
+        "case_count": 23,
+        "rows_sha256": "11e1b09d0323d577115e0a6350b3f164398f6436a1cdfd961f1de0fe58c9b869",
+        "sample": [
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "C18200",
+            "indices": "60,61,62,63,64",
+            "subcase": null
+          },
+          {
+            "id": "C18702",
+            "indices": "65,66,67,68,69",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "traces_intersecting"
+      },
+      "result": {
+        "case_count": 39,
+        "rows_sha256": "9f06d9132399e4fd32714d8786e12e55cfe0a071378b1960dab5dc43b1ee36a6",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "traces_starting_in"
+      },
+      "result": {
+        "case_count": 32,
+        "rows_sha256": "aae5aca439bd26ef0224979c529c905e99739b8923c080d187ca21cbcc9fa500",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "traces_starting_in_exclude"
+      },
+      "result": {
+        "case_count": 68,
+        "rows_sha256": "df80ff7f6923c4fbc058bbc980582d93363148d784bd1903566ec2e1046632bb",
+        "sample": [
+          {
+            "id": "A23741",
+            "indices": "36,37,38,39,40",
+            "subcase": null
+          },
+          {
+            "id": "A26153",
+            "indices": "41,42",
+            "subcase": null
+          },
+          {
+            "id": "A34570",
+            "indices": "43,44",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "traces_completing_in"
+      },
+      "result": {
+        "case_count": 30,
+        "rows_sha256": "bd2eb17587ae7994125dc1611530626d732e16574fca2f7677f7846608a91f30",
+        "sample": [
+          {
+            "id": "A17641",
+            "indices": "17,18",
+            "subcase": null
+          },
+          {
+            "id": "C18200",
+            "indices": "60,61,62,63,64",
+            "subcase": null
+          },
+          {
+            "id": "C18702",
+            "indices": "65,66,67,68,69",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2004-11-22T23:00:00+00:00",
+        "dt2": "2007-10-11T22:00:00+00:00",
+        "mode": "traces_completing_in_exclude"
+      },
+      "result": {
+        "case_count": 70,
+        "rows_sha256": "aa2db1091701017b7b6df6055f1b527aaf5a1529b40324b8ff7c3e9431c44f55",
+        "sample": [
+          {
+            "id": "A10466",
+            "indices": "0,1,2,3,4",
+            "subcase": null
+          },
+          {
+            "id": "A13415",
+            "indices": "5,6",
+            "subcase": null
+          },
+          {
+            "id": "A14816",
+            "indices": "7,8,9,10,11",
+            "subcase": null
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {
+    "area": "stats",
+    "case": "filters-log-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.filter_log_relative_occurrence_event_attribute",
+      "pm4py.filter_start_activities",
+      "pm4py.filter_end_activities",
+      "pm4py.filter_event_attribute_values",
+      "pm4py.filter_trace_attribute_values",
+      "pm4py.filter_variants",
+      "pm4py.filter_directly_follows_relation",
+      "pm4py.filter_eventually_follows_relation",
+      "pm4py.filter_time_range",
+      "pm4py.filter_between",
+      "pm4py.filter_case_size",
+      "pm4py.filter_case_performance",
+      "pm4py.filter_activities_rework",
+      "pm4py.filter_paths_performance",
+      "pm4py.filter_variants_top_k",
+      "pm4py.filter_variants_by_coverage_percentage",
+      "pm4py.filter_prefixes",
+      "pm4py.filter_suffixes",
+      "pm4py.filter_four_eyes_principle",
+      "pm4py.filter_activity_done_different_resources",
+      "pm4py.filter_trace_segments"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

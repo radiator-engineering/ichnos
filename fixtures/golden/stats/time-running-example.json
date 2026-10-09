@@ -1,0 +1,1772 @@
+{
+  "expected": {
+    "business_passed": {
+      "check ticket": {
+        "post": [
+          [
+            "decide",
+            36740.0,
+            6
+          ],
+          [
+            "examine casually",
+            9930.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            21240.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 29060.0,
+        "pre": [
+          [
+            "examine thoroughly",
+            90000.0,
+            2
+          ],
+          [
+            "register request",
+            13920.0,
+            2
+          ],
+          [
+            "examine casually",
+            19740.0,
+            4
+          ],
+          [
+            "reinitiate request",
+            101700.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 43166.666666666664
+      },
+      "decide": {
+        "post": [
+          [
+            "reject request",
+            57320.0,
+            3
+          ],
+          [
+            "pay compensation",
+            153320.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            32800.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 81146.66666666667,
+        "pre": [
+          [
+            "check ticket",
+            36740.0,
+            6
+          ],
+          [
+            "examine casually",
+            108720.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 48653.333333333336
+      },
+      "examine casually": {
+        "post": [
+          [
+            "decide",
+            108720.0,
+            2
+          ],
+          [
+            "check ticket",
+            19740.0,
+            4
+          ]
+        ],
+        "post_avg_perf": 49400.0,
+        "pre": [
+          [
+            "check ticket",
+            9930.0,
+            2
+          ],
+          [
+            "register request",
+            15440.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            22680.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 14810.0
+      },
+      "examine thoroughly": {
+        "post": [
+          [
+            "check ticket",
+            90000.0,
+            2
+          ],
+          [
+            "decide",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 60000.0,
+        "pre": [
+          [
+            "register request",
+            32640.0,
+            1
+          ],
+          [
+            "reinitiate request",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            21240.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 18920.0
+      },
+      "pay compensation": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            153320.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 153320.0
+      },
+      "register request": {
+        "post": [
+          [
+            "examine thoroughly",
+            32640.0,
+            1
+          ],
+          [
+            "check ticket",
+            13920.0,
+            2
+          ],
+          [
+            "examine casually",
+            15440.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 17800.0,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "reinitiate request": {
+        "post": [
+          [
+            "examine thoroughly",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            101700.0,
+            1
+          ],
+          [
+            "examine casually",
+            22680.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 42420.0,
+        "pre": [
+          [
+            "decide",
+            32800.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 32800.0
+      },
+      "reject request": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            57320.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 57320.0
+      }
+    },
+    "business_service": {
+      "check ticket": 0.0,
+      "decide": 0.0,
+      "examine casually": 0.0,
+      "examine thoroughly": 0.0,
+      "pay compensation": 0.0,
+      "register request": 0.0,
+      "reinitiate request": 0.0,
+      "reject request": 0.0
+    },
+    "concurrent": [],
+    "concurrent_strict": [],
+    "cycle": 0.0,
+    "cycle_values": [
+      0.0,
+      3.5
+    ],
+    "eventually": [
+      {
+        "count": 4,
+        "source": "check ticket",
+        "target": "check ticket"
+      },
+      {
+        "count": 13,
+        "source": "check ticket",
+        "target": "decide"
+      },
+      {
+        "count": 5,
+        "source": "check ticket",
+        "target": "examine casually"
+      },
+      {
+        "count": 2,
+        "source": "check ticket",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 4,
+        "source": "check ticket",
+        "target": "pay compensation"
+      },
+      {
+        "count": 4,
+        "source": "check ticket",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 5,
+        "source": "check ticket",
+        "target": "reject request"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "check ticket"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "decide"
+      },
+      {
+        "count": 3,
+        "source": "decide",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "decide",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "pay compensation"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 5,
+        "source": "decide",
+        "target": "reject request"
+      },
+      {
+        "count": 8,
+        "source": "examine casually",
+        "target": "check ticket"
+      },
+      {
+        "count": 10,
+        "source": "examine casually",
+        "target": "decide"
+      },
+      {
+        "count": 3,
+        "source": "examine casually",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "examine casually",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 3,
+        "source": "examine casually",
+        "target": "pay compensation"
+      },
+      {
+        "count": 4,
+        "source": "examine casually",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 3,
+        "source": "examine casually",
+        "target": "reject request"
+      },
+      {
+        "count": 2,
+        "source": "examine thoroughly",
+        "target": "check ticket"
+      },
+      {
+        "count": 3,
+        "source": "examine thoroughly",
+        "target": "decide"
+      },
+      {
+        "count": 1,
+        "source": "examine thoroughly",
+        "target": "pay compensation"
+      },
+      {
+        "count": 2,
+        "source": "examine thoroughly",
+        "target": "reject request"
+      },
+      {
+        "count": 9,
+        "source": "register request",
+        "target": "check ticket"
+      },
+      {
+        "count": 9,
+        "source": "register request",
+        "target": "decide"
+      },
+      {
+        "count": 6,
+        "source": "register request",
+        "target": "examine casually"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "pay compensation"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "reject request"
+      },
+      {
+        "count": 4,
+        "source": "reinitiate request",
+        "target": "check ticket"
+      },
+      {
+        "count": 4,
+        "source": "reinitiate request",
+        "target": "decide"
+      },
+      {
+        "count": 3,
+        "source": "reinitiate request",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "pay compensation"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 2,
+        "source": "reinitiate request",
+        "target": "reject request"
+      }
+    ],
+    "eventually_first": [
+      {
+        "count": 6,
+        "source": "check ticket",
+        "target": "decide"
+      },
+      {
+        "count": 2,
+        "source": "check ticket",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "check ticket",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 3,
+        "source": "decide",
+        "target": "pay compensation"
+      },
+      {
+        "count": 3,
+        "source": "decide",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 3,
+        "source": "decide",
+        "target": "reject request"
+      },
+      {
+        "count": 4,
+        "source": "examine casually",
+        "target": "check ticket"
+      },
+      {
+        "count": 2,
+        "source": "examine casually",
+        "target": "decide"
+      },
+      {
+        "count": 2,
+        "source": "examine thoroughly",
+        "target": "check ticket"
+      },
+      {
+        "count": 1,
+        "source": "examine thoroughly",
+        "target": "decide"
+      },
+      {
+        "count": 2,
+        "source": "register request",
+        "target": "check ticket"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "register request",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "check ticket"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "examine thoroughly"
+      }
+    ],
+    "eventually_sequences": [
+      {
+        "count": 4,
+        "source": "check ticket",
+        "target": "check ticket"
+      },
+      {
+        "count": 13,
+        "source": "check ticket",
+        "target": "decide"
+      },
+      {
+        "count": 5,
+        "source": "check ticket",
+        "target": "examine casually"
+      },
+      {
+        "count": 2,
+        "source": "check ticket",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 4,
+        "source": "check ticket",
+        "target": "pay compensation"
+      },
+      {
+        "count": 4,
+        "source": "check ticket",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 5,
+        "source": "check ticket",
+        "target": "reject request"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "check ticket"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "decide"
+      },
+      {
+        "count": 3,
+        "source": "decide",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "decide",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "pay compensation"
+      },
+      {
+        "count": 4,
+        "source": "decide",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 5,
+        "source": "decide",
+        "target": "reject request"
+      },
+      {
+        "count": 8,
+        "source": "examine casually",
+        "target": "check ticket"
+      },
+      {
+        "count": 10,
+        "source": "examine casually",
+        "target": "decide"
+      },
+      {
+        "count": 3,
+        "source": "examine casually",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "examine casually",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 3,
+        "source": "examine casually",
+        "target": "pay compensation"
+      },
+      {
+        "count": 4,
+        "source": "examine casually",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 3,
+        "source": "examine casually",
+        "target": "reject request"
+      },
+      {
+        "count": 2,
+        "source": "examine thoroughly",
+        "target": "check ticket"
+      },
+      {
+        "count": 3,
+        "source": "examine thoroughly",
+        "target": "decide"
+      },
+      {
+        "count": 1,
+        "source": "examine thoroughly",
+        "target": "pay compensation"
+      },
+      {
+        "count": 2,
+        "source": "examine thoroughly",
+        "target": "reject request"
+      },
+      {
+        "count": 9,
+        "source": "register request",
+        "target": "check ticket"
+      },
+      {
+        "count": 9,
+        "source": "register request",
+        "target": "decide"
+      },
+      {
+        "count": 6,
+        "source": "register request",
+        "target": "examine casually"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "pay compensation"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 3,
+        "source": "register request",
+        "target": "reject request"
+      },
+      {
+        "count": 4,
+        "source": "reinitiate request",
+        "target": "check ticket"
+      },
+      {
+        "count": 4,
+        "source": "reinitiate request",
+        "target": "decide"
+      },
+      {
+        "count": 3,
+        "source": "reinitiate request",
+        "target": "examine casually"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "examine thoroughly"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "pay compensation"
+      },
+      {
+        "count": 1,
+        "source": "reinitiate request",
+        "target": "reinitiate request"
+      },
+      {
+        "count": 2,
+        "source": "reinitiate request",
+        "target": "reject request"
+      }
+    ],
+    "overlap_cases": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "overlap_events": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    "overlap_values": [
+      3,
+      3,
+      3,
+      1
+    ],
+    "passed": {
+      "check ticket": {
+        "post": [
+          [
+            "decide",
+            181960.0,
+            6
+          ],
+          [
+            "examine casually",
+            92430.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            95820.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 152493.33333333334,
+        "pre": [
+          [
+            "examine thoroughly",
+            309090.0,
+            2
+          ],
+          [
+            "register request",
+            39120.0,
+            2
+          ],
+          [
+            "examine casually",
+            47970.0,
+            4
+          ],
+          [
+            "reinitiate request",
+            252900.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 126800.0
+      },
+      "decide": {
+        "post": [
+          [
+            "reject request",
+            154240.0,
+            3
+          ],
+          [
+            "pay compensation",
+            514160.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            66400.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 244933.33333333334,
+        "pre": [
+          [
+            "check ticket",
+            181960.0,
+            6
+          ],
+          [
+            "examine casually",
+            375420.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            76740.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 213260.0
+      },
+      "examine casually": {
+        "post": [
+          [
+            "decide",
+            375420.0,
+            2
+          ],
+          [
+            "check ticket",
+            47970.0,
+            4
+          ]
+        ],
+        "post_avg_perf": 157120.0,
+        "pre": [
+          [
+            "check ticket",
+            92430.0,
+            2
+          ],
+          [
+            "register request",
+            32240.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            73080.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 59110.0
+      },
+      "examine thoroughly": {
+        "post": [
+          [
+            "check ticket",
+            309090.0,
+            2
+          ],
+          [
+            "decide",
+            76740.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 231640.0,
+        "pre": [
+          [
+            "register request",
+            83040.0,
+            1
+          ],
+          [
+            "reinitiate request",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            95820.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 60580.0
+      },
+      "pay compensation": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            514160.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 514160.0
+      },
+      "register request": {
+        "post": [
+          [
+            "examine thoroughly",
+            83040.0,
+            1
+          ],
+          [
+            "check ticket",
+            39120.0,
+            2
+          ],
+          [
+            "examine casually",
+            32240.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 43000.0,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "reinitiate request": {
+        "post": [
+          [
+            "examine thoroughly",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            252900.0,
+            1
+          ],
+          [
+            "examine casually",
+            73080.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 109620.0,
+        "pre": [
+          [
+            "decide",
+            66400.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 66400.0
+      },
+      "reject request": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            154240.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 154240.0
+      }
+    },
+    "passed_median": {
+      "check ticket": {
+        "post": [
+          [
+            "decide",
+            129300.0,
+            6
+          ],
+          [
+            "examine casually",
+            92430.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            95820.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 117386.66666666667,
+        "pre": [
+          [
+            "examine thoroughly",
+            309090.0,
+            2
+          ],
+          [
+            "register request",
+            39120.0,
+            2
+          ],
+          [
+            "examine casually",
+            48120.0,
+            4
+          ],
+          [
+            "reinitiate request",
+            252900.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 126866.66666666667
+      },
+      "decide": {
+        "post": [
+          [
+            "reject request",
+            97560.0,
+            3
+          ],
+          [
+            "pay compensation",
+            521400.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            91800.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 236920.0,
+        "pre": [
+          [
+            "check ticket",
+            129300.0,
+            6
+          ],
+          [
+            "examine casually",
+            375420.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            76740.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 178153.33333333334
+      },
+      "examine casually": {
+        "post": [
+          [
+            "decide",
+            375420.0,
+            2
+          ],
+          [
+            "check ticket",
+            48120.0,
+            4
+          ]
+        ],
+        "post_avg_perf": 157220.0,
+        "pre": [
+          [
+            "check ticket",
+            92430.0,
+            2
+          ],
+          [
+            "register request",
+            3840.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            73080.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 44910.0
+      },
+      "examine thoroughly": {
+        "post": [
+          [
+            "check ticket",
+            309090.0,
+            2
+          ],
+          [
+            "decide",
+            76740.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 231640.0,
+        "pre": [
+          [
+            "register request",
+            83040.0,
+            1
+          ],
+          [
+            "reinitiate request",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            95820.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 60580.0
+      },
+      "pay compensation": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            521400.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 521400.0
+      },
+      "register request": {
+        "post": [
+          [
+            "examine thoroughly",
+            83040.0,
+            1
+          ],
+          [
+            "check ticket",
+            39120.0,
+            2
+          ],
+          [
+            "examine casually",
+            3840.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 28800.0,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "reinitiate request": {
+        "post": [
+          [
+            "examine thoroughly",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            252900.0,
+            1
+          ],
+          [
+            "examine casually",
+            73080.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 109620.0,
+        "pre": [
+          [
+            "decide",
+            91800.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 91800.0
+      },
+      "reject request": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            97560.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 97560.0
+      }
+    },
+    "passed_stdev": {
+      "check ticket": {
+        "post": [
+          [
+            "decide",
+            206034.11756308711,
+            6
+          ],
+          [
+            "examine casually",
+            120194.01066608935,
+            2
+          ],
+          [
+            "examine thoroughly",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 164065.85852341127,
+        "pre": [
+          [
+            "examine thoroughly",
+            199785.94995644715,
+            2
+          ],
+          [
+            "register request",
+            51929.92201034005,
+            2
+          ],
+          [
+            "examine casually",
+            47254.44740974123,
+            4
+          ],
+          [
+            "reinitiate request",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 76938.83706361549
+      },
+      "decide": {
+        "post": [
+          [
+            "reject request",
+            102463.01967051333,
+            3
+          ],
+          [
+            "pay compensation",
+            248839.00578486486,
+            3
+          ],
+          [
+            "reinitiate request",
+            48210.78717465625,
+            3
+          ]
+        ],
+        "post_avg_perf": 133170.9375433448,
+        "pre": [
+          [
+            "check ticket",
+            206034.11756308711,
+            6
+          ],
+          [
+            "examine casually",
+            187439.86555693002,
+            2
+          ],
+          [
+            "examine thoroughly",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 179009.38183248695
+      },
+      "examine casually": {
+        "post": [
+          [
+            "decide",
+            187439.86555693002,
+            2
+          ],
+          [
+            "check ticket",
+            47254.44740974123,
+            4
+          ]
+        ],
+        "post_avg_perf": 93982.92012547083,
+        "pre": [
+          [
+            "check ticket",
+            120194.01066608935,
+            2
+          ],
+          [
+            "register request",
+            50757.06847326784,
+            3
+          ],
+          [
+            "reinitiate request",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 65443.204458663706
+      },
+      "examine thoroughly": {
+        "post": [
+          [
+            "check ticket",
+            199785.94995644715,
+            2
+          ],
+          [
+            "decide",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 133190.6333042981,
+        "pre": [
+          [
+            "register request",
+            0.0,
+            1
+          ],
+          [
+            "reinitiate request",
+            0.0,
+            1
+          ],
+          [
+            "check ticket",
+            0.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 0.0
+      },
+      "pay compensation": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            248839.00578486486,
+            3
+          ]
+        ],
+        "pre_avg_perf": 248839.00578486486
+      },
+      "register request": {
+        "post": [
+          [
+            "examine thoroughly",
+            0.0,
+            1
+          ],
+          [
+            "check ticket",
+            51929.92201034005,
+            2
+          ],
+          [
+            "examine casually",
+            50757.06847326784,
+            3
+          ]
+        ],
+        "post_avg_perf": 42688.508240080606,
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "reinitiate request": {
+        "post": [
+          [
+            "examine thoroughly",
+            0.0,
+            1
+          ],
+          [
+            "check ticket",
+            0.0,
+            1
+          ],
+          [
+            "examine casually",
+            0.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            48210.78717465625,
+            3
+          ]
+        ],
+        "pre_avg_perf": 48210.78717465625
+      },
+      "reject request": {
+        "post": [],
+        "post_avg_perf": 0.0,
+        "pre": [
+          [
+            "decide",
+            102463.01967051333,
+            3
+          ]
+        ],
+        "pre_avg_perf": 102463.01967051333
+      }
+    },
+    "post": {
+      "check ticket": {
+        "post": [
+          [
+            "decide",
+            181960.0,
+            6
+          ],
+          [
+            "examine casually",
+            92430.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            95820.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 152493.33333333334
+      },
+      "decide": {
+        "post": [
+          [
+            "reject request",
+            154240.0,
+            3
+          ],
+          [
+            "pay compensation",
+            514160.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            66400.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 244933.33333333334
+      },
+      "examine casually": {
+        "post": [
+          [
+            "decide",
+            375420.0,
+            2
+          ],
+          [
+            "check ticket",
+            47970.0,
+            4
+          ]
+        ],
+        "post_avg_perf": 157120.0
+      },
+      "examine thoroughly": {
+        "post": [
+          [
+            "check ticket",
+            309090.0,
+            2
+          ],
+          [
+            "decide",
+            76740.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 231640.0
+      },
+      "pay compensation": {
+        "post": [],
+        "post_avg_perf": 0.0
+      },
+      "register request": {
+        "post": [
+          [
+            "examine thoroughly",
+            83040.0,
+            1
+          ],
+          [
+            "check ticket",
+            39120.0,
+            2
+          ],
+          [
+            "examine casually",
+            32240.0,
+            3
+          ]
+        ],
+        "post_avg_perf": 43000.0
+      },
+      "reinitiate request": {
+        "post": [
+          [
+            "examine thoroughly",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            252900.0,
+            1
+          ],
+          [
+            "examine casually",
+            73080.0,
+            1
+          ]
+        ],
+        "post_avg_perf": 109620.0
+      },
+      "reject request": {
+        "post": [],
+        "post_avg_perf": 0.0
+      }
+    },
+    "pre": {
+      "check ticket": {
+        "pre": [
+          [
+            "examine thoroughly",
+            309090.0,
+            2
+          ],
+          [
+            "register request",
+            39120.0,
+            2
+          ],
+          [
+            "examine casually",
+            47970.0,
+            4
+          ],
+          [
+            "reinitiate request",
+            252900.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 126800.0
+      },
+      "decide": {
+        "pre": [
+          [
+            "check ticket",
+            181960.0,
+            6
+          ],
+          [
+            "examine casually",
+            375420.0,
+            2
+          ],
+          [
+            "examine thoroughly",
+            76740.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 213260.0
+      },
+      "examine casually": {
+        "pre": [
+          [
+            "check ticket",
+            92430.0,
+            2
+          ],
+          [
+            "register request",
+            32240.0,
+            3
+          ],
+          [
+            "reinitiate request",
+            73080.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 59110.0
+      },
+      "examine thoroughly": {
+        "pre": [
+          [
+            "register request",
+            83040.0,
+            1
+          ],
+          [
+            "reinitiate request",
+            2880.0,
+            1
+          ],
+          [
+            "check ticket",
+            95820.0,
+            1
+          ]
+        ],
+        "pre_avg_perf": 60580.0
+      },
+      "pay compensation": {
+        "pre": [
+          [
+            "decide",
+            514160.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 514160.0
+      },
+      "register request": {
+        "pre": [],
+        "pre_avg_perf": 0.0
+      },
+      "reinitiate request": {
+        "pre": [
+          [
+            "decide",
+            66400.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 66400.0
+      },
+      "reject request": {
+        "pre": [
+          [
+            "decide",
+            154240.0,
+            3
+          ]
+        ],
+        "pre_avg_perf": 154240.0
+      }
+    },
+    "service": {
+      "max": {
+        "check ticket": 0.0,
+        "decide": 0.0,
+        "examine casually": 0.0,
+        "examine thoroughly": 0.0,
+        "pay compensation": 0.0,
+        "register request": 0.0,
+        "reinitiate request": 0.0,
+        "reject request": 0.0
+      },
+      "mean": {
+        "check ticket": 0.0,
+        "decide": 0.0,
+        "examine casually": 0.0,
+        "examine thoroughly": 0.0,
+        "pay compensation": 0.0,
+        "register request": 0.0,
+        "reinitiate request": 0.0,
+        "reject request": 0.0
+      },
+      "median": {
+        "check ticket": 0.0,
+        "decide": 0.0,
+        "examine casually": 0.0,
+        "examine thoroughly": 0.0,
+        "pay compensation": 0.0,
+        "register request": 0.0,
+        "reinitiate request": 0.0,
+        "reject request": 0.0
+      },
+      "min": {
+        "check ticket": 0.0,
+        "decide": 0.0,
+        "examine casually": 0.0,
+        "examine thoroughly": 0.0,
+        "pay compensation": 0.0,
+        "register request": 0.0,
+        "reinitiate request": 0.0,
+        "reject request": 0.0
+      },
+      "sum": {
+        "check ticket": 0.0,
+        "decide": 0.0,
+        "examine casually": 0.0,
+        "examine thoroughly": 0.0,
+        "pay compensation": 0.0,
+        "register request": 0.0,
+        "reinitiate request": 0.0,
+        "reject request": 0.0
+      }
+    }
+  },
+  "meta": {
+    "area": "stats",
+    "case": "time-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.statistics.traces.cycle_time.log.get.apply",
+      "pm4py.statistics.traces.cycle_time.util.compute.cycle_time",
+      "pm4py.statistics.concurrent_activities.log.get.apply",
+      "pm4py.statistics.eventually_follows.log.get.apply",
+      "pm4py.statistics.eventually_follows.uvcl.get.apply",
+      "pm4py.statistics.overlap.cases.log.get.apply",
+      "pm4py.statistics.overlap.interval_events.log.get.apply",
+      "pm4py.statistics.overlap.utils.compute.apply",
+      "pm4py.statistics.service_time.log.get.apply",
+      "pm4py.statistics.passed_time.log.variants.prepost.apply",
+      "pm4py.statistics.passed_time.log.variants.pre.apply",
+      "pm4py.statistics.passed_time.log.variants.post.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "interval": false
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

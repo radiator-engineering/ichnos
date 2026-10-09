@@ -1,0 +1,605 @@
+{
+  "expected": {
+    "filters": [
+      {
+        "function": "filter_dfg_activities_percentage",
+        "percentage": 0,
+        "result": {
+          "edges": [
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ]
+          ],
+          "end": {
+            "Send Fine": 17
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_paths_percentage",
+        "percentage": 0,
+        "result": {
+          "edges": [
+            [
+              "Add penalty",
+              "Send for Credit Collection",
+              36
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty",
+              52
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification",
+              56
+            ]
+          ],
+          "end": {
+            "Send for Credit Collection": 36
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_activities_percentage",
+        "percentage": 0.2,
+        "result": {
+          "edges": [
+            [
+              "Create Fine",
+              "Payment",
+              23
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Payment",
+              "Payment",
+              5
+            ],
+            [
+              "Payment",
+              "Send Fine",
+              1
+            ],
+            [
+              "Send Fine",
+              "Payment",
+              5
+            ]
+          ],
+          "end": {
+            "Payment": 47,
+            "Send Fine": 17
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_paths_percentage",
+        "percentage": 0.2,
+        "result": {
+          "edges": [
+            [
+              "Add penalty",
+              "Send for Credit Collection",
+              36
+            ],
+            [
+              "Create Fine",
+              "Payment",
+              23
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty",
+              52
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification",
+              56
+            ]
+          ],
+          "end": {
+            "Payment": 47,
+            "Send for Credit Collection": 36
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_activities_percentage",
+        "percentage": 0.5,
+        "result": {
+          "edges": [
+            [
+              "Add penalty",
+              "Payment",
+              20
+            ],
+            [
+              "Add penalty",
+              "Send for Credit Collection",
+              36
+            ],
+            [
+              "Create Fine",
+              "Payment",
+              23
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty",
+              52
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment",
+              4
+            ],
+            [
+              "Payment",
+              "Add penalty",
+              4
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification",
+              1
+            ],
+            [
+              "Payment",
+              "Payment",
+              5
+            ],
+            [
+              "Payment",
+              "Send Fine",
+              1
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification",
+              56
+            ],
+            [
+              "Send Fine",
+              "Payment",
+              5
+            ]
+          ],
+          "end": {
+            "Payment": 47,
+            "Send Fine": 17,
+            "Send for Credit Collection": 36
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_paths_percentage",
+        "percentage": 0.5,
+        "result": {
+          "edges": [
+            [
+              "Add penalty",
+              "Payment",
+              20
+            ],
+            [
+              "Add penalty",
+              "Send for Credit Collection",
+              36
+            ],
+            [
+              "Create Fine",
+              "Payment",
+              23
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty",
+              52
+            ],
+            [
+              "Payment",
+              "Payment",
+              5
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification",
+              56
+            ],
+            [
+              "Send Fine",
+              "Payment",
+              5
+            ]
+          ],
+          "end": {
+            "Payment": 47,
+            "Send Fine": 17,
+            "Send for Credit Collection": 36
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_activities_percentage",
+        "percentage": 1,
+        "result": {
+          "edges": [
+            [
+              "Add penalty",
+              "Payment",
+              20
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture",
+              1
+            ],
+            [
+              "Add penalty",
+              "Send for Credit Collection",
+              36
+            ],
+            [
+              "Create Fine",
+              "Payment",
+              23
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty",
+              1
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty",
+              52
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture",
+              1
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment",
+              4
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment",
+              1
+            ],
+            [
+              "Payment",
+              "Add penalty",
+              4
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification",
+              1
+            ],
+            [
+              "Payment",
+              "Payment",
+              5
+            ],
+            [
+              "Payment",
+              "Send Fine",
+              1
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender",
+              1
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture",
+              1
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification",
+              56
+            ],
+            [
+              "Send Fine",
+              "Payment",
+              5
+            ]
+          ],
+          "end": {
+            "Payment": 47,
+            "Send Fine": 17,
+            "Send for Credit Collection": 36
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      },
+      {
+        "function": "filter_dfg_paths_percentage",
+        "percentage": 1,
+        "result": {
+          "edges": [
+            [
+              "Add penalty",
+              "Payment",
+              20
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture",
+              1
+            ],
+            [
+              "Add penalty",
+              "Send for Credit Collection",
+              36
+            ],
+            [
+              "Create Fine",
+              "Payment",
+              23
+            ],
+            [
+              "Create Fine",
+              "Send Fine",
+              77
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty",
+              1
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty",
+              52
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture",
+              1
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment",
+              4
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment",
+              1
+            ],
+            [
+              "Payment",
+              "Add penalty",
+              4
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification",
+              1
+            ],
+            [
+              "Payment",
+              "Payment",
+              5
+            ],
+            [
+              "Payment",
+              "Send Fine",
+              1
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender",
+              1
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture",
+              1
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification",
+              56
+            ],
+            [
+              "Send Fine",
+              "Payment",
+              5
+            ]
+          ],
+          "end": {
+            "Payment": 47,
+            "Send Fine": 17,
+            "Send for Credit Collection": 36
+          },
+          "start": {
+            "Create Fine": 100
+          }
+        }
+      }
+    ],
+    "input": {
+      "edges": [
+        [
+          "Add penalty",
+          "Payment",
+          20
+        ],
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          1
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection",
+          36
+        ],
+        [
+          "Create Fine",
+          "Payment",
+          23
+        ],
+        [
+          "Create Fine",
+          "Send Fine",
+          77
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          1
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty",
+          52
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          1
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment",
+          4
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment",
+          1
+        ],
+        [
+          "Payment",
+          "Add penalty",
+          4
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification",
+          1
+        ],
+        [
+          "Payment",
+          "Payment",
+          5
+        ],
+        [
+          "Payment",
+          "Send Fine",
+          1
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          1
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          1
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification",
+          56
+        ],
+        [
+          "Send Fine",
+          "Payment",
+          5
+        ]
+      ],
+      "end": {
+        "Payment": 47,
+        "Send Fine": 17,
+        "Send for Credit Collection": 36
+      },
+      "start": {
+        "Create Fine": 100
+      }
+    }
+  },
+  "meta": {
+    "area": "stats",
+    "case": "filters-dfg-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.filter_dfg_activities_percentage",
+      "pm4py.filter_dfg_paths_percentage"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

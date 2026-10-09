@@ -1,0 +1,163 @@
+{
+  "expected": [
+    {
+      "descriptions": [
+        {
+          "duration": 3.0,
+          "id": "1.0",
+          "type": "str"
+        },
+        {
+          "duration": 4.0,
+          "id": "True",
+          "type": "str"
+        },
+        {
+          "duration": 2.0,
+          "id": "2",
+          "type": "str"
+        },
+        {
+          "duration": 1.0,
+          "id": "10",
+          "type": "str"
+        }
+      ],
+      "ids": [
+        10,
+        2,
+        1.0,
+        true
+      ],
+      "indexed": [
+        {
+          "duration": 1.0,
+          "id": 10,
+          "type": "int"
+        },
+        {
+          "duration": 2.0,
+          "id": 2,
+          "type": "int"
+        },
+        {
+          "duration": 4.0,
+          "id": 1.0,
+          "type": "float"
+        }
+      ],
+      "sort": true,
+      "typed_descriptions": [
+        {
+          "duration": 4.0,
+          "id": 1.0,
+          "type": "float"
+        },
+        {
+          "duration": 2.0,
+          "id": 2,
+          "type": "int"
+        },
+        {
+          "duration": 1.0,
+          "id": 10,
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "descriptions": [
+        {
+          "duration": 2.0,
+          "id": "1",
+          "type": "str"
+        }
+      ],
+      "ids": [
+        1,
+        "1"
+      ],
+      "indexed": [
+        {
+          "duration": 1.0,
+          "id": 1,
+          "type": "int"
+        },
+        {
+          "duration": 2.0,
+          "id": "1",
+          "type": "str"
+        }
+      ],
+      "sort": false,
+      "typed_descriptions": [
+        {
+          "duration": 1.0,
+          "id": 1,
+          "type": "int"
+        },
+        {
+          "duration": 2.0,
+          "id": "1",
+          "type": "str"
+        }
+      ]
+    },
+    {
+      "descriptions": [
+        {
+          "duration": 2.0,
+          "id": "9007199254740992",
+          "type": "str"
+        },
+        {
+          "duration": 1.0,
+          "id": "9007199254740993",
+          "type": "str"
+        }
+      ],
+      "ids": [
+        9007199254740993,
+        9007199254740992
+      ],
+      "indexed": [
+        {
+          "duration": 1.0,
+          "id": 9007199254740993,
+          "type": "int"
+        },
+        {
+          "duration": 2.0,
+          "id": 9007199254740992,
+          "type": "int"
+        }
+      ],
+      "sort": true,
+      "typed_descriptions": [
+        {
+          "duration": 2.0,
+          "id": 9007199254740992,
+          "type": "int"
+        },
+        {
+          "duration": 1.0,
+          "id": 9007199254740993,
+          "type": "int"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "area": "stats",
+    "case": "case-typed-ids",
+    "fixtures": {},
+    "functions": [
+      "pm4py.statistics.traces.generic.log.case_statistics.get_cases_description",
+      "pm4py.statistics.traces.generic.log.case_statistics.index_log_caseid"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

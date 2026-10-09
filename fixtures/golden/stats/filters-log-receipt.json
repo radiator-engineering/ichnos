@@ -1,0 +1,2178 @@
+{
+  "expected": [
+    {
+      "function": "filter_start_activities",
+      "params": {
+        "activities": [
+          "Confirmation of receipt"
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_end_activities",
+      "params": {
+        "activities": [
+          "Confirmation of receipt"
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 116,
+        "rows_sha256": "0cf1b3de786e7e5bcc5ca576e4d10b5704a13e9670edafe96e5c78125d6ec4e5",
+        "sample": [
+          {
+            "id": "case-10062",
+            "indices": "47",
+            "subcase": null
+          },
+          {
+            "id": "case-10075",
+            "indices": "110",
+            "subcase": null
+          },
+          {
+            "id": "case-10095",
+            "indices": "136",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "event",
+        "retain": true,
+        "values": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "b4d56fdee508e951abb289e86140aec60c8cd3612a3a1d2062322ee10f2ca227",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,6,8,11",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "case",
+        "retain": true,
+        "values": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "retain": true,
+        "values": [
+          "case-10011",
+          "case-10017"
+        ]
+      },
+      "result": {
+        "case_count": 2,
+        "rows_sha256": "f0868c2da92709f03beac8f9293827f967de5cbf611dc25c0072ccb706aea19b",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants",
+      "params": {
+        "retain": true,
+        "variants": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "T03 Adjust confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ]
+        ]
+      },
+      "result": {
+        "case_count": 2,
+        "rows_sha256": "0d67c0ee75b307d7adcb28a4c2c2802cff764d8ec4adc736f7ae3d0c7170a373",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-8079",
+            "indices": "6327,6328,6329,6330",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_directly_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ]
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 1079,
+        "rows_sha256": "b517fb52632e730a0386adf5b7373a53b7df258f9178ffa8f840e3fccde816b1",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_eventually_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ],
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "Confirmation of receipt"
+          ]
+        ],
+        "retain": true
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "7eaed4b9c40af332c292154798e7a24afa4e6e174d6e2df2f7bde1e1b17dd954",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_paths_performance",
+      "params": {
+        "keep": true,
+        "max_performance": 2936.735,
+        "min_performance": 0,
+        "path": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 951,
+        "rows_sha256": "db9fcb2bc96918c4cc809c7e153c9f141d61cdc6b2e6f9b897d583a61eafbeff",
+        "sample": [
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          },
+          {
+            "id": "case-10028",
+            "indices": "25,26,27,28,29,30,31,32,33,34",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_four_eyes_principle",
+      "params": {
+        "activity1": "Confirmation of receipt",
+        "activity2": "T02 Check confirmation of receipt",
+        "keep_violations": false
+      },
+      "result": {
+        "case_count": 217,
+        "rows_sha256": "ef5a8c192e74d2677872d41e84c78d2c7a379896385ec742c1123e1636d50e56",
+        "sample": [
+          {
+            "id": "case-10164",
+            "indices": "228,229,230,231",
+            "subcase": null
+          },
+          {
+            "id": "case-10864",
+            "indices": "915,916,917,918,919,920",
+            "subcase": null
+          },
+          {
+            "id": "case-11399",
+            "indices": "1100,1101,1102,1103,1104,1105,1106,1107,1108,1109",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_activity_done_different_resources",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "keep_violations": true
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "Confirmation of receipt",
+            "...",
+            "T02 Check confirmation of receipt",
+            "..."
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "7eaed4b9c40af332c292154798e7a24afa4e6e174d6e2df2f7bde1e1b17dd954",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "T03 Adjust confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 2,
+        "rows_sha256": "0d67c0ee75b307d7adcb28a4c2c2802cff764d8ec4adc736f7ae3d0c7170a373",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-8079",
+            "indices": "6327,6328,6329,6330",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Confirmation of receipt",
+            "..."
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "T02 Check confirmation of receipt"
+          ]
+        ],
+        "positive": true
+      },
+      "result": {
+        "case_count": 8,
+        "rows_sha256": "61d83ddfef3897e96090c41ea79115330e145e9b494df13e008a8f84d96f16c8",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-6437",
+            "indices": "4454,4455,4456",
+            "subcase": null
+          },
+          {
+            "id": "case-8047",
+            "indices": "6290,6291,6292,6293,6294,6295,6296",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_start_activities",
+      "params": {
+        "activities": [
+          "Confirmation of receipt"
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_end_activities",
+      "params": {
+        "activities": [
+          "Confirmation of receipt"
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 1318,
+        "rows_sha256": "d32c97df75b3da5a92c72b7f32a5564cc379e69fcb1d99bc6d8dcf3ba42fff80",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "event",
+        "retain": false,
+        "values": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 1318,
+        "rows_sha256": "2160246d6fb5c1216ac0af7d642d504ab9f3a96f8e1aeb664d203cd3023e2e85",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "2",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "5,7,9,10,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_event_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "level": "case",
+        "retain": false,
+        "values": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_attribute_values",
+      "params": {
+        "attribute_key": "concept:name",
+        "retain": false,
+        "values": [
+          "case-10011",
+          "case-10017"
+        ]
+      },
+      "result": {
+        "case_count": 1432,
+        "rows_sha256": "f84b303c24a55e0f20bb101e994ddddda7ff7f02a48173834664d112958212ec",
+        "sample": [
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          },
+          {
+            "id": "case-10028",
+            "indices": "25,26,27,28,29,30,31,32,33,34",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants",
+      "params": {
+        "retain": false,
+        "variants": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "T03 Adjust confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ]
+        ]
+      },
+      "result": {
+        "case_count": 1432,
+        "rows_sha256": "721a511cb6b14b40bd80fd276ec9392fef439ee3149d5d1ce27e2d4af72bd1e2",
+        "sample": [
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_directly_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ]
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 355,
+        "rows_sha256": "eb2dcca83bdce7e2cc3a472a3c61cf24ca220dc00e2448dfb6d3b5847b843321",
+        "sample": [
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10061",
+            "indices": "41,42,43,44,45,46",
+            "subcase": null
+          },
+          {
+            "id": "case-10062",
+            "indices": "47",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_eventually_follows_relation",
+      "params": {
+        "relations": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ],
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "Confirmation of receipt"
+          ]
+        ],
+        "retain": false
+      },
+      "result": {
+        "case_count": 118,
+        "rows_sha256": "3e9bbb70188d1a6c4c38303780beed0c27209b4925b7590e1deb043c5f1acc04",
+        "sample": [
+          {
+            "id": "case-10062",
+            "indices": "47",
+            "subcase": null
+          },
+          {
+            "id": "case-10075",
+            "indices": "110",
+            "subcase": null
+          },
+          {
+            "id": "case-10095",
+            "indices": "136",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_paths_performance",
+      "params": {
+        "keep": false,
+        "max_performance": 2936.735,
+        "min_performance": 0,
+        "path": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 483,
+        "rows_sha256": "4fdd06ed8498c72913502f91ad2e06040a5a36c8b81f510dbd67baa973383e7d",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10061",
+            "indices": "41,42,43,44,45,46",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_four_eyes_principle",
+      "params": {
+        "activity1": "Confirmation of receipt",
+        "activity2": "T02 Check confirmation of receipt",
+        "keep_violations": true
+      },
+      "result": {
+        "case_count": 1099,
+        "rows_sha256": "eba070f0a9fc9d96a56f4308363533fd833d8509ce2e596dc21541ceec86d646",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_activity_done_different_resources",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "keep_violations": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "Confirmation of receipt",
+            "...",
+            "T02 Check confirmation of receipt",
+            "..."
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 118,
+        "rows_sha256": "3e9bbb70188d1a6c4c38303780beed0c27209b4925b7590e1deb043c5f1acc04",
+        "sample": [
+          {
+            "id": "case-10062",
+            "indices": "47",
+            "subcase": null
+          },
+          {
+            "id": "case-10075",
+            "indices": "110",
+            "subcase": null
+          },
+          {
+            "id": "case-10095",
+            "indices": "136",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "T03 Adjust confirmation of receipt",
+            "T02 Check confirmation of receipt"
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 1432,
+        "rows_sha256": "721a511cb6b14b40bd80fd276ec9392fef439ee3149d5d1ce27e2d4af72bd1e2",
+        "sample": [
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "Confirmation of receipt",
+            "..."
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_trace_segments",
+      "params": {
+        "admitted_traces": [
+          [
+            "...",
+            "T02 Check confirmation of receipt"
+          ]
+        ],
+        "positive": false
+      },
+      "result": {
+        "case_count": 1426,
+        "rows_sha256": "3890396d46787d3c66449e8fb6d87cf402b474068af5fb9cd667ac9836858bc8",
+        "sample": [
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_log_relative_occurrence_event_attribute",
+      "params": {
+        "level": "cases",
+        "min_relative_stake": 0.3
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "a5925268fca1d6b2b1922dc038cf7ccd844dafbf21e590f5b6a4e7f424cb1d3c",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,8,9,11",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_log_relative_occurrence_event_attribute",
+      "params": {
+        "level": "events",
+        "min_relative_stake": 0.3
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_case_size",
+      "params": {
+        "max_size": 4,
+        "min_size": 3
+      },
+      "result": {
+        "case_count": 20,
+        "rows_sha256": "0989ef5e5bcc71b292c38da3511f07fd4b1c8fc3ace80ae5c61b28a15ce7e239",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10164",
+            "indices": "228,229,230,231",
+            "subcase": null
+          },
+          {
+            "id": "case-10324",
+            "indices": "373,374,375",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_case_performance",
+      "params": {
+        "max_performance": 2936.735,
+        "min_performance": 0
+      },
+      "result": {
+        "case_count": 718,
+        "rows_sha256": "9e8348960bd1cd7260e6456aca581db495c8f726ab2fb89618b890631acd7be9",
+        "sample": [
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "min_occurrences": 1
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "min_occurrences": 2
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_activities_rework",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "min_occurrences": 3
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 0
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 1
+      },
+      "result": {
+        "case_count": 713,
+        "rows_sha256": "83b89cc25cb0b1f41e6f2ad35660bc3bd31139f272bc551f53eb235cc5224ca6",
+        "sample": [
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          },
+          {
+            "id": "case-10059",
+            "indices": "35,36,37,38,39,40",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants_top_k",
+      "params": {
+        "k": 3
+      },
+      "result": {
+        "case_count": 952,
+        "rows_sha256": "2594e0166a85eb2b4adb847a6235fe5889d385f4cfc2a9690ff9165bcf0dfdf4",
+        "sample": [
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          },
+          {
+            "id": "case-10059",
+            "indices": "35,36,37,38,39,40",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants_by_coverage_percentage",
+      "params": {
+        "min_coverage_percentage": 0.1
+      },
+      "result": {
+        "case_count": 713,
+        "rows_sha256": "83b89cc25cb0b1f41e6f2ad35660bc3bd31139f272bc551f53eb235cc5224ca6",
+        "sample": [
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          },
+          {
+            "id": "case-10025",
+            "indices": "19,20,21,22,23,24",
+            "subcase": null
+          },
+          {
+            "id": "case-10059",
+            "indices": "35,36,37,38,39,40",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_variants_by_coverage_percentage",
+      "params": {
+        "min_coverage_percentage": 0.5
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "67320445859146a8e5146d8ea88b9c9ed24f4daa1261e5e004bd2da008ec4616",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "5d767369a112d1a3bf3b579cc8b18c6682d941a3ef93703e62a375297ae35400",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "67320445859146a8e5146d8ea88b9c9ed24f4daa1261e5e004bd2da008ec4616",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "5d767369a112d1a3bf3b579cc8b18c6682d941a3ef93703e62a375297ae35400",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "27d9d13f9f0523000837d5aa287d50aaadc796ee474957d72b93261183183f1a",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "27d9d13f9f0523000837d5aa287d50aaadc796ee474957d72b93261183183f1a",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "67320445859146a8e5146d8ea88b9c9ed24f4daa1261e5e004bd2da008ec4616",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "5d767369a112d1a3bf3b579cc8b18c6682d941a3ef93703e62a375297ae35400",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "67320445859146a8e5146d8ea88b9c9ed24f4daa1261e5e004bd2da008ec4616",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "5d767369a112d1a3bf3b579cc8b18c6682d941a3ef93703e62a375297ae35400",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "27d9d13f9f0523000837d5aa287d50aaadc796ee474957d72b93261183183f1a",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "27d9d13f9f0523000837d5aa287d50aaadc796ee474957d72b93261183183f1a",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "Confirmation of receipt",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1434,
+        "rows_sha256": "d4c2f79fb685ad742c88608fe6cd2985ad43a88ccc0c0de5d0f2adbb9921bf12",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "ddafe8b8ed65d85cddab2dedbbb6df39053f78b0f6a7081895dfd9df32abb2f1",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "first",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "82f95486def00043d1c0ac6cf642d8a2e0932600ef53c6553b970eb25d1dea89",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "a2389fce3cb42828fc8518b449b53c68ad37991df246e07d6016da996f9c993e",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "last",
+        "strict": true
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "708647571189eb5025d06b8a4babbd1e45714f32d0483b77a15d54518b02b28e",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "3f89041bdb7faa05649ceb65f4418d47a148a3abd280bb4ba8e0b4661c27e437",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "first",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "88f8fa04634234d744c4ef46619da4ab67d4a6772874e1aa597ad31d40361d4e",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_prefixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "92a76ef230ca8c7bff1453b887a93e6e1429241720b4a65825eb3e412535eff5",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_suffixes",
+      "params": {
+        "activity": "T02 Check confirmation of receipt",
+        "first_or_last": "last",
+        "strict": false
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "cefb6ce7b1c688ba755332f82006e0b29409d3216ed939a69e5b8e901ab7d576",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "Confirmation of receipt"
+        ],
+        "act2": [
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 1316,
+        "rows_sha256": "5740c50a34c30ede02c096adff289122b5cf878a93483c72009ec4930bd18ea5",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1",
+            "subcase": "0##@@0"
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6",
+            "subcase": "1##@@0"
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14",
+            "subcase": "2##@@0"
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "Confirmation of receipt"
+        ],
+        "act2": [
+          "Confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 0,
+        "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sample": []
+      }
+    },
+    {
+      "function": "filter_between",
+      "params": {
+        "act1": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ],
+        "act2": [
+          "Confirmation of receipt",
+          "T02 Check confirmation of receipt"
+        ]
+      },
+      "result": {
+        "case_count": 1368,
+        "rows_sha256": "07def50b5da830f5448e9b7ad8382ad80d808334b4b527cd48bb57d628224dfc",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1",
+            "subcase": "0##@@0"
+          },
+          {
+            "id": "case-10011",
+            "indices": "1,2,3",
+            "subcase": "0##@@1"
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6",
+            "subcase": "1##@@0"
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "events"
+      },
+      "result": {
+        "case_count": 500,
+        "rows_sha256": "fa4f8cc0a07cf2a42ea72178790ec249f2f1bb3d9f297bc54492d9d45b0c133e",
+        "sample": [
+          {
+            "id": "case-3927",
+            "indices": "1212,1213",
+            "subcase": null
+          },
+          {
+            "id": "case-4346",
+            "indices": "1716,1717,1718,1719",
+            "subcase": null
+          },
+          {
+            "id": "case-5141",
+            "indices": "2915,2916,2917,2918,2919,2920,2921,2922",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "traces_contained"
+      },
+      "result": {
+        "case_count": 468,
+        "rows_sha256": "5645333671950ebe5610ed5655e292a8937e35d402a10f219b7f181842f9fb7e",
+        "sample": [
+          {
+            "id": "case-5469",
+            "indices": "3240",
+            "subcase": null
+          },
+          {
+            "id": "case-5545",
+            "indices": "3361,3362,3363,3364,3365,3366",
+            "subcase": null
+          },
+          {
+            "id": "case-5574",
+            "indices": "3458",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "traces_intersecting"
+      },
+      "result": {
+        "case_count": 501,
+        "rows_sha256": "356e0d0a6e8550962c898b4c0089bb4f2f459f87ca7061211e997f4b31663fa7",
+        "sample": [
+          {
+            "id": "case-3927",
+            "indices": "1208,1209,1210,1211,1212,1213",
+            "subcase": null
+          },
+          {
+            "id": "case-4346",
+            "indices": "1712,1713,1714,1715,1716,1717,1718,1719",
+            "subcase": null
+          },
+          {
+            "id": "case-4601",
+            "indices": "2120,2121,2122,2123,2124,2125",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "traces_starting_in"
+      },
+      "result": {
+        "case_count": 486,
+        "rows_sha256": "2b2218658f42d94b106d38ebe29963858a80363a06c9dc189765b5884e526f33",
+        "sample": [
+          {
+            "id": "case-5469",
+            "indices": "3240",
+            "subcase": null
+          },
+          {
+            "id": "case-5545",
+            "indices": "3361,3362,3363,3364,3365,3366",
+            "subcase": null
+          },
+          {
+            "id": "case-5574",
+            "indices": "3458",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "traces_starting_in_exclude"
+      },
+      "result": {
+        "case_count": 948,
+        "rows_sha256": "2329938fc316139d29e308ef54eddba45e5eac44b58004d84e7921fa8fed42fa",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "traces_completing_in"
+      },
+      "result": {
+        "case_count": 481,
+        "rows_sha256": "83d545de252fc0f1e43b14bf50033cb844937666f049c6f8fe721a78b262180a",
+        "sample": [
+          {
+            "id": "case-3927",
+            "indices": "1208,1209,1210,1211,1212,1213",
+            "subcase": null
+          },
+          {
+            "id": "case-4346",
+            "indices": "1712,1713,1714,1715,1716,1717,1718,1719",
+            "subcase": null
+          },
+          {
+            "id": "case-5141",
+            "indices": "2911,2912,2913,2914,2915,2916,2917,2918,2919,2920,2921,2922",
+            "subcase": null
+          }
+        ]
+      }
+    },
+    {
+      "function": "filter_time_range",
+      "params": {
+        "dt1": "2011-03-09T13:39:25.948000+00:00",
+        "dt2": "2011-07-28T12:17:29.758000+00:00",
+        "mode": "traces_completing_in_exclude"
+      },
+      "result": {
+        "case_count": 953,
+        "rows_sha256": "8acdf458376bb9544c653f4bed4601c46c4e9cb0657f7678edcf31d53ad9be42",
+        "sample": [
+          {
+            "id": "case-10011",
+            "indices": "0,1,2,3",
+            "subcase": null
+          },
+          {
+            "id": "case-10017",
+            "indices": "4,5,6,7,8,9,10,11,12",
+            "subcase": null
+          },
+          {
+            "id": "case-10024",
+            "indices": "13,14,15,16,17,18",
+            "subcase": null
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {
+    "area": "stats",
+    "case": "filters-log-receipt",
+    "fixtures": {
+      "log": "fixtures/logs/receipt.csv"
+    },
+    "functions": [
+      "pm4py.filter_log_relative_occurrence_event_attribute",
+      "pm4py.filter_start_activities",
+      "pm4py.filter_end_activities",
+      "pm4py.filter_event_attribute_values",
+      "pm4py.filter_trace_attribute_values",
+      "pm4py.filter_variants",
+      "pm4py.filter_directly_follows_relation",
+      "pm4py.filter_eventually_follows_relation",
+      "pm4py.filter_time_range",
+      "pm4py.filter_between",
+      "pm4py.filter_case_size",
+      "pm4py.filter_case_performance",
+      "pm4py.filter_activities_rework",
+      "pm4py.filter_paths_performance",
+      "pm4py.filter_variants_top_k",
+      "pm4py.filter_variants_by_coverage_percentage",
+      "pm4py.filter_prefixes",
+      "pm4py.filter_suffixes",
+      "pm4py.filter_four_eyes_principle",
+      "pm4py.filter_activity_done_different_resources",
+      "pm4py.filter_trace_segments"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
