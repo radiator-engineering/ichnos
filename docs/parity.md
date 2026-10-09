@@ -1301,7 +1301,7 @@ Lanes record each deliberate change from pm4py here.
 - **Zeta defaults to 1**, the default of `pm4py.conformance_temporal_profile`. pm4py's algorithm module defaults to 6.
 - **The start timestamp is an explicit option**, as in temporal profile discovery. pm4py's dataframe variant reads a `start_timestamp` column whenever the dataframe has one.
 - **No diagnostics dataframe.** pm4py's `return_diagnostics_dataframe` turns the result into a table with the case ID. ichnos returns one list of `TemporalDeviation` per trace, in log order.
-- **A missing or non-date timestamp is an error**, and so is an invalid business schedule.
+- **A missing or non-date timestamp is an error**, and so is an invalid business schedule. Only a trace's first event may lack a start timestamp, since no pair uses it; pm4py's log variant reads starts from the second event on too. pm4py's dataframe variant falls back to the completion timestamp only when the whole start column is missing.
 
 ### ichnos-io
 

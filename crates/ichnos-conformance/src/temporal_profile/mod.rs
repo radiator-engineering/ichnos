@@ -11,8 +11,9 @@
 use std::collections::BTreeMap;
 
 use ichnos_core::chrono::{DateTime, FixedOffset};
-use ichnos_core::{EventKeys, EventLog, Position, Trace};
+use ichnos_core::{ActivityId, EventKeys, EventLog, Position, Trace};
 use ichnos_stats::time::BusinessHours;
+use rustc_hash::FxHashMap;
 
 use crate::Result;
 
@@ -72,7 +73,8 @@ pub struct TemporalDeviation {
 /// order, ordered by `i` and then `j`.
 ///
 /// Fails if an event has no activity, or lacks a timestamp that the options
-/// read, or if the business schedule is invalid.
+/// read, or if the business schedule is invalid. The first event of a trace
+/// needs no start timestamp, since no pair starts there.
 pub fn conformance_temporal_profile(
     log: &EventLog,
     keys: &EventKeys,
@@ -86,27 +88,36 @@ pub fn conformance_temporal_profile(
         &keys.timestamp
     };
     let zeta = options.zeta;
+    // The profile by activity id, so that the pair loop does not allocate.
+    let profile: FxHashMap<(ActivityId, ActivityId), (f64, f64)> = profile
+        .iter()
+        .filter_map(|((from, to), &bounds)| {
+            let id = |name: &str| sequences.activities.get(name);
+            Some(((id(from)?, id(to)?), bounds))
+        })
+        .collect();
     log.traces
         .iter()
         .zip(&sequences.traces)
         .enumerate()
         .map(|(t, (trace, activities))| {
-            let completes = dates(trace, &keys.timestamp, t)?;
+            let completes = dates(trace, &keys.timestamp, t, 0)?;
             let starts = if start_key == &keys.timestamp {
                 completes.clone()
             } else {
-                dates(trace, start_key, t)?
+                // Only later events' starts count, so the first event need
+                // not have one, as in pm4py.
+                let mut starts = completes.first().copied().into_iter().collect::<Vec<_>>();
+                starts.extend(dates(trace, start_key, t, 1)?);
+                starts
             };
             let mut deviations = Vec::new();
             for (i, &complete) in completes.iter().enumerate() {
-                let from = sequences.activities.name(activities[i]);
                 for (j, &start) in starts.iter().enumerate().skip(i + 1) {
                     if start < complete {
                         continue;
                     }
-                    let to = sequences.activities.name(activities[j]);
-                    let Some(&(mean, stdev)) = profile.get(&(from.to_owned(), to.to_owned()))
-                    else {
+                    let Some(&(mean, stdev)) = profile.get(&(activities[i], activities[j])) else {
                         continue;
                     };
                     let seconds = match &options.business_hours {
@@ -118,8 +129,8 @@ pub fn conformance_temporal_profile(
                     };
                     if seconds < mean - zeta * stdev || seconds > mean + zeta * stdev {
                         deviations.push(TemporalDeviation {
-                            from: from.to_owned(),
-                            to: to.to_owned(),
+                            from: sequences.activities.name(activities[i]).to_owned(),
+                            to: sequences.activities.name(activities[j]).to_owned(),
                             seconds,
                             zeta: if stdev > 0.0 {
                                 (seconds - mean).abs() / stdev
@@ -135,12 +146,14 @@ pub fn conformance_temporal_profile(
         .collect()
 }
 
-/// The value of the date attribute `key` of each event of `trace`.
-fn dates(trace: &Trace, key: &str, t: usize) -> Result<Vec<DateTime<FixedOffset>>> {
+/// The value of the date attribute `key` of each event of `trace` from
+/// index `first` on.
+fn dates(trace: &Trace, key: &str, t: usize, first: usize) -> Result<Vec<DateTime<FixedOffset>>> {
     trace
         .events
         .iter()
         .enumerate()
+        .skip(first)
         .map(|(e, event)| {
             let position = Position::Event { trace: t, event: e };
             let value = event
@@ -159,4 +172,59 @@ fn dates(trace: &Trace, key: &str, t: usize) -> Result<Vec<DateTime<FixedOffset>
                 })?)
         })
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use ichnos_core::chrono::{TimeZone, Utc};
+    use ichnos_core::{Event, EventKeys, EventLog, Trace};
+
+    use super::*;
+
+    fn event(keys: &EventKeys, activity: &str, start: Option<i64>, complete: i64) -> Event {
+        let mut e = Event::new();
+        e.insert(keys.activity.as_str(), activity);
+        e.insert(
+            keys.timestamp.as_str(),
+            Utc.timestamp_opt(complete, 0).unwrap(),
+        );
+        if let Some(s) = start {
+            e.insert(
+                keys.start_timestamp.as_str(),
+                Utc.timestamp_opt(s, 0).unwrap(),
+            );
+        }
+        e
+    }
+
+    #[test]
+    fn first_event_needs_no_start_timestamp() {
+        let keys = EventKeys::default();
+        let mut trace = Trace::new();
+        trace.events = vec![
+            event(&keys, "a", None, 100),
+            event(&keys, "b", Some(400), 500),
+        ];
+        let mut log = EventLog::new();
+        log.traces.push(trace);
+        let profile: TemporalProfile = [(("a".into(), "b".into()), (100.0, 10.0))].into();
+        let options = TemporalProfileOptions {
+            use_start_timestamp: true,
+            ..TemporalProfileOptions::default()
+        };
+        let result = conformance_temporal_profile(&log, &keys, &profile, &options).unwrap();
+        assert_eq!(
+            result,
+            vec![vec![TemporalDeviation {
+                from: "a".into(),
+                to: "b".into(),
+                seconds: 300.0,
+                zeta: 20.0,
+            }]]
+        );
+
+        // A later event without a start timestamp still fails.
+        log.traces[0].events.push(event(&keys, "c", None, 600));
+        assert!(conformance_temporal_profile(&log, &keys, &profile, &options).is_err());
+    }
 }

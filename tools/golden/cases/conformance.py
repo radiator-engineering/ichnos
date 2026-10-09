@@ -85,9 +85,11 @@ that some pairs have a standard deviation of 0 and deviate. Each record holds:
 - ``profile``: the profile from pm4py's dataframe variant of
   ``discover_temporal_profile``, as ``[activity, activity, mean, stdev]`` rows.
 - ``dataframe``: the deviations from the dataframe variant of
-  ``pm4py.algo.conformance.temporal_profile``, one list per case in log
-  order, each sorted. A deviation is ``[activity, activity, seconds, zeta]``;
-  pm4py's ``zeta`` is ``sys.maxsize`` when the standard deviation is 0.
+  ``pm4py.algo.conformance.temporal_profile``. ``counts`` holds the number
+  of deviations of every case in log order; ``rows`` holds the deviations of
+  the first ``TEMPORAL_PROFILE_ROWS`` cases, one sorted list per case. A
+  deviation is ``[activity, activity, seconds, zeta]``; pm4py's ``zeta`` is
+  ``sys.maxsize`` when the standard deviation is 0.
 - ``log_extra``: the deviations that only the log variant reports, as
   ``[case index, activity, activity, seconds, zeta]``. The generator checks
   that the log variant reports every deviation of the dataframe variant, up
@@ -96,8 +98,9 @@ that some pairs have a standard deviation of 0 and deviate. Each record holds:
   own mean by float noise.
 
 The interval log passes ``start_timestamp_key="start_timestamp"``; the other
-logs use the completion timestamp as the start. The interval log skips the
-``half`` setting to keep its golden small.
+logs use the completion timestamp as the start. To keep its golden small,
+the interval log runs only ``zeta1`` and ``zeta3``: the other logs cover
+business hours and ``half``, and ``zeta6`` finds no deviation on it.
 """
 
 from __future__ import annotations
@@ -700,9 +703,13 @@ TEMPORAL_PROFILE_FUNCTIONS = [
     "pm4py.algo.discovery.temporal_profile.variants.dataframe.apply",
 ]
 
+# The cases whose deviation rows a golden records; it counts them for every case.
+TEMPORAL_PROFILE_ROWS = 100
+
 # Setting name -> (zeta, business hours, profile from every other case only).
 TEMPORAL_PROFILE_SETTINGS = {
     "zeta1": (1.0, False, False),
+    "zeta3": (3.0, False, False),
     "zeta6": (6.0, False, False),
     "business": (1.0, True, False),
     "half": (1.0, False, True),
@@ -765,6 +772,10 @@ def temporal_profile(
             ]
         }
         checks["log_extra"] = log_extra(checks.pop("log"), checks["dataframe"])
+        checks["dataframe"] = {
+            "counts": [len(trace) for trace in checks["dataframe"]],
+            "rows": checks["dataframe"][:TEMPORAL_PROFILE_ROWS],
+        }
         out[name] = {
             "zeta": zeta,
             "business_hours": business,
@@ -781,8 +792,8 @@ for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
         fixture=_rel,
         functions=TEMPORAL_PROFILE_FUNCTIONS,
         params=(
-            {"settings": ["zeta1", "zeta6", "business"], "start_timestamp_key": "start_timestamp"}
+            {"settings": ["zeta1", "zeta3"], "start_timestamp_key": "start_timestamp"}
             if _log_id == "interval-event-log"
-            else {"settings": list(TEMPORAL_PROFILE_SETTINGS)}
+            else {"settings": ["zeta1", "zeta6", "business", "half"]}
         ),
     )(temporal_profile)

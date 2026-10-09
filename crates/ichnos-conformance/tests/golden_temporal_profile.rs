@@ -3,7 +3,8 @@
 //!
 //! Each golden checks a log against profiles from pm4py's dataframe variant
 //! of `discover_temporal_profile`, under several settings. ichnos must report
-//! the deviations of pm4py's dataframe variant. pm4py's log variant reports
+//! the deviations of pm4py's dataframe variant: as many as pm4py for every
+//! trace, and the same ones for the traces whose rows the golden records. pm4py's log variant reports
 //! the same ones plus `log_extra`; the test checks that each of those comes
 //! from float noise on a pair with a standard deviation of 0.
 
@@ -101,9 +102,17 @@ fn temporal_profile_conformance_matches_pm4py() {
             let profile = profile(&e["profile"]);
             let result =
                 conformance_temporal_profile(&log, &keys, &profile, &options).expect("conformance");
-            let expected = e["dataframe"].as_array().expect("dataframe");
-            assert_eq!(result.len(), expected.len(), "{what}: traces");
-            for (t, (actual, expected)) in result.iter().zip(expected).enumerate() {
+            let counts = e["dataframe"]["counts"].as_array().expect("counts");
+            assert_eq!(result.len(), counts.len(), "{what}: traces");
+            for (t, (actual, count)) in result.iter().zip(counts).enumerate() {
+                assert_eq!(
+                    actual.len() as u64,
+                    count.as_u64().expect("count"),
+                    "{what}: trace {t}: deviation count"
+                );
+            }
+            let rows = e["dataframe"]["rows"].as_array().expect("rows");
+            for (t, (actual, expected)) in result.iter().zip(rows).enumerate() {
                 check_trace(actual, expected, &format!("{what}: trace {t}"));
             }
 
