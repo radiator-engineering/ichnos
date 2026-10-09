@@ -11,7 +11,9 @@ fn all_table_fixtures_match_oracle() {
     for entry in fs::read_dir(root.join("fixtures/golden/io")).unwrap() {
         let value: serde_json::Value =
             serde_json::from_slice(&fs::read(entry.unwrap().path()).unwrap()).unwrap();
-        let fixture = value["meta"]["fixtures"]["log"].as_str().unwrap();
+        let Some(fixture) = value["meta"]["fixtures"]["log"].as_str() else {
+            continue;
+        };
         let log = if fixture.ends_with(".csv") {
             read_csv(root.join(fixture), &Default::default())
         } else if fixture.ends_with(".parquet") {

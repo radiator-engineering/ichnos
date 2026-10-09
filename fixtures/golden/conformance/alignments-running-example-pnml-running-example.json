@@ -1,0 +1,274 @@
+{
+  "expected": {
+    "fitness": {
+      "averageFitness": 1.0,
+      "average_trace_fitness": 1.0,
+      "log_fitness": 0.9999791670138831,
+      "percFitTraces": 100.0,
+      "percentage_of_fitting_traces": 100.0
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t6",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t7",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t8",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t9",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p2": 1
+      },
+      "initial_marking": {
+        "p1": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
+      "transitions": [
+        {
+          "label": "examine thoroughly",
+          "name": "t0"
+        },
+        {
+          "label": "decide",
+          "name": "t1"
+        },
+        {
+          "label": "pay compensation",
+          "name": "t2"
+        },
+        {
+          "label": "reject request",
+          "name": "t3"
+        },
+        {
+          "label": null,
+          "name": "t4"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "t5"
+        },
+        {
+          "label": "examine casually",
+          "name": "t6"
+        },
+        {
+          "label": "register request",
+          "name": "t7"
+        },
+        {
+          "label": null,
+          "name": "t8"
+        },
+        {
+          "label": "check ticket",
+          "name": "t9"
+        }
+      ]
+    },
+    "precision": 0.7530864197530864,
+    "precision_complete_closure": 0.7530864197530864,
+    "traces": [
+      {
+        "bwc": 100002,
+        "case_id": "1",
+        "cost": 2,
+        "fitness": 1.0
+      },
+      {
+        "bwc": 100002,
+        "case_id": "2",
+        "cost": 2,
+        "fitness": 1.0
+      },
+      {
+        "bwc": 140002,
+        "case_id": "3",
+        "cost": 3,
+        "fitness": 1.0
+      },
+      {
+        "bwc": 100002,
+        "case_id": "4",
+        "cost": 2,
+        "fitness": 1.0
+      },
+      {
+        "bwc": 180002,
+        "case_id": "5",
+        "cost": 4,
+        "fitness": 1.0
+      },
+      {
+        "bwc": 100002,
+        "case_id": "6",
+        "cost": 2,
+        "fitness": 1.0
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-running-example-pnml-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv",
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.conformance_diagnostics_alignments",
+      "pm4py.fitness_alignments",
+      "pm4py.precision_alignments"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

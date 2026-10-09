@@ -1,0 +1,319 @@
+{
+  "expected": {
+    "arc_structure": [
+      [
+        "a1",
+        "branch_a_middle",
+        1,
+        "normal"
+      ],
+      [
+        "a2",
+        "branch_a_done",
+        1,
+        "normal"
+      ],
+      [
+        "authorize",
+        "branch_a_start",
+        1,
+        "normal"
+      ],
+      [
+        "authorize",
+        "branch_b_start",
+        1,
+        "normal"
+      ],
+      [
+        "authorized",
+        "authorize",
+        1,
+        "normal"
+      ],
+      [
+        "b1",
+        "branch_b_middle",
+        1,
+        "normal"
+      ],
+      [
+        "b2",
+        "branch_b_done",
+        1,
+        "normal"
+      ],
+      [
+        "branch_a_done",
+        "join",
+        1,
+        "normal"
+      ],
+      [
+        "branch_a_middle",
+        "a2",
+        1,
+        "normal"
+      ],
+      [
+        "branch_a_start",
+        "a1",
+        1,
+        "normal"
+      ],
+      [
+        "branch_b_done",
+        "join",
+        1,
+        "normal"
+      ],
+      [
+        "branch_b_middle",
+        "b2",
+        1,
+        "normal"
+      ],
+      [
+        "branch_b_start",
+        "b1",
+        1,
+        "normal"
+      ],
+      [
+        "check",
+        "checked",
+        1,
+        "normal"
+      ],
+      [
+        "checked",
+        "plan",
+        1,
+        "normal"
+      ],
+      [
+        "clean",
+        "authorized",
+        1,
+        "normal"
+      ],
+      [
+        "close",
+        "sink",
+        1,
+        "normal"
+      ],
+      [
+        "gate",
+        "clean",
+        1,
+        "normal"
+      ],
+      [
+        "gate",
+        "issue",
+        1,
+        "normal"
+      ],
+      [
+        "gate",
+        "reset",
+        1,
+        "normal"
+      ],
+      [
+        "issue",
+        "gate",
+        1,
+        "normal"
+      ],
+      [
+        "issue",
+        "open_items",
+        1,
+        "normal"
+      ],
+      [
+        "join",
+        "joined",
+        1,
+        "normal"
+      ],
+      [
+        "joined",
+        "review",
+        1,
+        "normal"
+      ],
+      [
+        "open_items",
+        "clean",
+        1,
+        "inhibitor"
+      ],
+      [
+        "open_items",
+        "reset",
+        1,
+        "reset"
+      ],
+      [
+        "plan",
+        "gate",
+        1,
+        "normal"
+      ],
+      [
+        "registered",
+        "check",
+        1,
+        "normal"
+      ],
+      [
+        "reset",
+        "authorized",
+        1,
+        "normal"
+      ],
+      [
+        "review",
+        "reviewed",
+        1,
+        "normal"
+      ],
+      [
+        "reviewed",
+        "close",
+        1,
+        "normal"
+      ],
+      [
+        "reviewed",
+        "revise",
+        1,
+        "normal"
+      ],
+      [
+        "revise",
+        "reviewed",
+        1,
+        "normal"
+      ],
+      [
+        "source",
+        "start",
+        1,
+        "normal"
+      ],
+      [
+        "start",
+        "registered",
+        1,
+        "normal"
+      ]
+    ],
+    "arcs": 35,
+    "final_marking": {
+      "sink": 1
+    },
+    "final_tokens": 1,
+    "footprints": null,
+    "footprints_status": "unbounded",
+    "inhibitor_arcs": 1,
+    "initial_marking": {
+      "source": 1
+    },
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 15,
+    "reset_arcs": 1,
+    "silent_transitions": 0,
+    "stochastic": [],
+    "transition_labels": [
+      [
+        "a1",
+        "Analyze Credit History"
+      ],
+      [
+        "a2",
+        "Calculate Affordability"
+      ],
+      [
+        "authorize",
+        "Authorize Underwriting"
+      ],
+      [
+        "b1",
+        "Appraise Collateral"
+      ],
+      [
+        "b2",
+        "Verify Income"
+      ],
+      [
+        "check",
+        "Validate Applicant Identity"
+      ],
+      [
+        "clean",
+        "Confirm Exception-Free File"
+      ],
+      [
+        "close",
+        "Issue Lending Decision"
+      ],
+      [
+        "issue",
+        "Raise Underwriting Exception"
+      ],
+      [
+        "join",
+        "Consolidate Underwriting File"
+      ],
+      [
+        "plan",
+        "Prepare Credit Assessment"
+      ],
+      [
+        "reset",
+        "Resolve Exceptions in Committee"
+      ],
+      [
+        "review",
+        "Perform Approval Review"
+      ],
+      [
+        "revise",
+        "Revise Loan Conditions"
+      ],
+      [
+        "start",
+        "Receive Loan Application"
+      ]
+    ],
+    "transitions": 15
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-inh_res_nets-loan_underwriting-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/inh_res_nets/loan_underwriting.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "expected": {
+    "arc_structure": [
+      [
+        "A",
+        "c1",
+        1,
+        "normal"
+      ],
+      [
+        "B",
+        "c2",
+        1,
+        "normal"
+      ],
+      [
+        "B",
+        "c5",
+        1,
+        "normal"
+      ],
+      [
+        "C",
+        "c2",
+        1,
+        "normal"
+      ],
+      [
+        "C",
+        "c6",
+        1,
+        "normal"
+      ],
+      [
+        "D",
+        "c3",
+        1,
+        "normal"
+      ],
+      [
+        "E",
+        "c4",
+        1,
+        "normal"
+      ],
+      [
+        "F",
+        "c4",
+        1,
+        "normal"
+      ],
+      [
+        "G",
+        "c7",
+        1,
+        "normal"
+      ],
+      [
+        "H",
+        "c8",
+        1,
+        "normal"
+      ],
+      [
+        "I",
+        "sink",
+        1,
+        "normal"
+      ],
+      [
+        "c1",
+        "B",
+        1,
+        "normal"
+      ],
+      [
+        "c1",
+        "C",
+        1,
+        "normal"
+      ],
+      [
+        "c2",
+        "D",
+        1,
+        "normal"
+      ],
+      [
+        "c3",
+        "E",
+        1,
+        "normal"
+      ],
+      [
+        "c3",
+        "F",
+        1,
+        "normal"
+      ],
+      [
+        "c4",
+        "I",
+        1,
+        "normal"
+      ],
+      [
+        "c5",
+        "E",
+        1,
+        "normal"
+      ],
+      [
+        "c6",
+        "G",
+        1,
+        "normal"
+      ],
+      [
+        "c7",
+        "H",
+        1,
+        "normal"
+      ],
+      [
+        "c8",
+        "F",
+        1,
+        "normal"
+      ],
+      [
+        "source",
+        "A",
+        1,
+        "normal"
+      ]
+    ],
+    "arcs": 22,
+    "final_marking": {
+      "sink": 1
+    },
+    "final_tokens": 1,
+    "footprints": {
+      "activities": [
+        "Check Liability",
+        "Check Policy",
+        "Compute High-value Claim",
+        "Compute Low-value Claim",
+        "Consult Expert",
+        "Register as High-Value Claim",
+        "Register as Low-Value Claim",
+        "Set Checkpoint"
+      ],
+      "parallel": [
+        [
+          "Check Liability",
+          "Check Policy"
+        ],
+        [
+          "Check Policy",
+          "Check Liability"
+        ],
+        [
+          "Check Policy",
+          "Consult Expert"
+        ],
+        [
+          "Consult Expert",
+          "Check Policy"
+        ]
+      ],
+      "sequence": [
+        [
+          "Check Liability",
+          "Compute High-value Claim"
+        ],
+        [
+          "Check Policy",
+          "Compute High-value Claim"
+        ],
+        [
+          "Check Policy",
+          "Compute Low-value Claim"
+        ],
+        [
+          "Compute High-value Claim",
+          "Set Checkpoint"
+        ],
+        [
+          "Compute Low-value Claim",
+          "Set Checkpoint"
+        ],
+        [
+          "Consult Expert",
+          "Check Liability"
+        ],
+        [
+          "Register as High-Value Claim",
+          "Check Policy"
+        ],
+        [
+          "Register as High-Value Claim",
+          "Consult Expert"
+        ],
+        [
+          "Register as Low-Value Claim",
+          "Check Policy"
+        ],
+        [
+          "Set Checkpoint",
+          "Register as High-Value Claim"
+        ],
+        [
+          "Set Checkpoint",
+          "Register as Low-Value Claim"
+        ]
+      ],
+      "start_activities": [
+        "Set Checkpoint"
+      ]
+    },
+    "footprints_status": "complete",
+    "inhibitor_arcs": 0,
+    "initial_marking": {
+      "source": 1
+    },
+    "initial_tokens": 1,
+    "model_kind": "petri_net",
+    "places": 10,
+    "reset_arcs": 0,
+    "silent_transitions": 0,
+    "stochastic": [],
+    "transition_labels": [
+      [
+        "A",
+        "Set Checkpoint"
+      ],
+      [
+        "B",
+        "Register as Low-Value Claim"
+      ],
+      [
+        "C",
+        "Register as High-Value Claim"
+      ],
+      [
+        "D",
+        "Check Policy"
+      ],
+      [
+        "E",
+        "Compute Low-value Claim"
+      ],
+      [
+        "F",
+        "Compute High-value Claim"
+      ],
+      [
+        "G",
+        "Consult Expert"
+      ],
+      [
+        "H",
+        "Check Liability"
+      ],
+      [
+        "I",
+        "Set Checkpoint"
+      ]
+    ],
+    "transitions": 9
+  },
+  "meta": {
+    "area": "io",
+    "case": "model-ex2-pnml",
+    "fixtures": {
+      "model": "fixtures/logs/ex2.pnml"
+    },
+    "functions": [
+      "pm4py.read_pnml",
+      "pm4py.objects.petri_net.importer.importer.apply",
+      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "max_markings": 10000
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

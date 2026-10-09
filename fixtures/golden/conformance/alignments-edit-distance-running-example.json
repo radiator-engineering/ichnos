@@ -1,0 +1,101 @@
+{
+  "expected": {
+    "model": [
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reinitiate request",
+        "examine thoroughly",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ],
+      [
+        "register request",
+        "examine thoroughly",
+        "check ticket",
+        "decide",
+        "reject request"
+      ]
+    ],
+    "traces": [
+      {
+        "bwc": 100000,
+        "case_id": "1",
+        "cost": 0,
+        "cost_choices": [
+          0
+        ],
+        "fitness": 1
+      },
+      {
+        "bwc": 100000,
+        "case_id": "2",
+        "cost": 40000,
+        "cost_choices": [
+          40000
+        ],
+        "fitness": 0.6
+      },
+      {
+        "bwc": 140000,
+        "case_id": "3",
+        "cost": 0,
+        "cost_choices": [
+          0
+        ],
+        "fitness": 1
+      },
+      {
+        "bwc": 100000,
+        "case_id": "4",
+        "cost": 20000,
+        "cost_choices": [
+          20000
+        ],
+        "fitness": 0.8
+      },
+      {
+        "bwc": 180000,
+        "case_id": "5",
+        "cost": 80000,
+        "cost_choices": [
+          80000
+        ],
+        "fitness": 0.5555555555555556
+      },
+      {
+        "bwc": 100000,
+        "case_id": "6",
+        "cost": 40000,
+        "cost_choices": [
+          40000
+        ],
+        "fitness": 0.6
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-edit-distance-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.filter_variants_top_k",
+      "pm4py.conformance_diagnostics_alignments"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

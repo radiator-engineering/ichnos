@@ -147,6 +147,45 @@ fn im_matches_pm4py() {
 }
 
 #[test]
+fn im_options_match_pm4py() {
+    let cases = [
+        (
+            "inductive-im-nofallthrough-receipt-csv",
+            InductiveOptions::default().with_fallthroughs_disabled(true),
+        ),
+        (
+            "inductive-im-plainsequence-receipt-csv",
+            InductiveOptions::default().with_strict_sequence_cut_disabled(true),
+        ),
+    ];
+    for (case, options) in cases {
+        let g = golden("discovery", case);
+        let tree = process_tree_inductive(&load(&g), &EventKeys::default(), &options).unwrap();
+        check(&g, case, &tree);
+        let default = process_tree_inductive(
+            &load(&g),
+            &EventKeys::default(),
+            &InductiveOptions::default(),
+        )
+        .unwrap();
+        assert_ne!(tree, default, "{case}: the option changes nothing");
+    }
+}
+
+/// The six logs never reach the activity-once-per-trace fall-through; this
+/// small log does.
+#[test]
+fn im_fall_throughs_match_pm4py() {
+    let case = "inductive-im-fallthroughs-synthetic";
+    let g = golden("discovery", case);
+    let traces: Vec<String> = serde_json::from_value(g.meta().params["traces"].clone()).unwrap();
+    let keys = EventKeys::default();
+    let log = EventLog::from_trace_strings(traces.iter().map(String::as_str), ",", &keys);
+    let tree = process_tree_inductive(&log, &keys, &InductiveOptions::default()).unwrap();
+    check(&g, case, &tree);
+}
+
+#[test]
 fn imf_matches_pm4py() {
     for log_id in LOGS {
         let case = format!("inductive-imf-{log_id}");

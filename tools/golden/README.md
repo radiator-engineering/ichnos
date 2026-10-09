@@ -163,6 +163,22 @@ model. Lists retain ordered key/value pairs, containers retain maps, and scalar
 meta-attributes retain both their value and children. Rust tests compare these
 samples with the oracle before checking the full XES write/read round trip.
 
+## Imported model I/O goldens
+
+The `io/model-*` cases store model counts and footprints for PNML, PTML and
+DFG fixtures. PNML additionally checks marking totals, special arc counts and
+stochastic distributions/weights/priorities; DFG keeps every edge and boundary
+frequency. Rust tests check full model/metadata write-read round trips.
+
+SampleNet is excluded from generation because its reachability graph is infinite;
+it still has an import/round-trip test. The seven inhibitor/reset fixtures also
+have unbounded counters: their goldens retain counts and mark footprints null
+with status `unbounded`. Ordinary Petri-net footprint exploration has a deterministic
+10,000-marking cap, recorded in case parameters. A42 exceeds it and records null
+with status `state_space_limit`, rather than a partial footprint. Finite nets use
+the oracle's ClassicSemantics. This preserves the distinction between importing
+special arc kinds and the footprint backend's interpretation of those kinds.
+
 ## Models: emit behaviour, not structure
 
 Some pm4py outputs are models: Petri nets, process trees, BPMN graphs. Their
