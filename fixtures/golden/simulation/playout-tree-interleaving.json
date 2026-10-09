@@ -1,0 +1,43 @@
+{
+  "expected": {
+    "case_attributes_empty": true,
+    "event_keys": [
+      "concept:name"
+    ],
+    "mean_length": 3.0,
+    "rates": [
+      [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        0.4955833333333333
+      ],
+      [
+        [
+          "c",
+          "a",
+          "b"
+        ],
+        0.5044166666666666
+      ]
+    ],
+    "traces": 12000,
+    "tree": "<>( ->( 'a', 'b' ), 'c' )"
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "playout-tree-interleaving",
+    "fixtures": {},
+    "functions": [
+      "pm4py.play_out"
+    ],
+    "loaders": {},
+    "params": {
+      "name": "interleaving"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -153,6 +153,9 @@ _READERS = {
     # rows and type inference in OCEL 2.0.
     "typed.csv": ("pm4py.read_ocel_csv", pm4py.read_ocel_csv),
     "typed20.ocel.csv": ("pm4py.read_ocel2_csv", pm4py.read_ocel2_csv),
+    "example_log.sqlite": ("pm4py.read_ocel_sqlite", pm4py.read_ocel_sqlite),
+    "newocel.sqlite": ("pm4py.read_ocel_sqlite", pm4py.read_ocel_sqlite),
+    "ocel20_example.sqlite": ("pm4py.read_ocel2_sqlite", pm4py.read_ocel2_sqlite),
 }
 
 
@@ -452,6 +455,193 @@ def _csv2_text_cases(fixtures):
     return _csv_cases(_CSV2_TEXTS, pm4py.read_ocel2_csv, ".ocel.csv")
 
 
+def _read_script(read, script):
+    """Builds a database from the SQL ``script`` and reads it like
+    ``_read_text``."""
+    import sqlite3
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "log.sqlite"
+        conn = sqlite3.connect(path)
+        conn.executescript(script)
+        conn.close()
+        try:
+            return {"ocel": _tables(read(str(path)))}
+        except Exception as e:
+            return {"error": type(e).__name__}
+
+
+_E1 = ('CREATE TABLE EVENTS ("ocel:eid" TEXT, "ocel:timestamp" TIMESTAMP, "ocel:activity" TEXT{});'
+       'CREATE TABLE OBJECTS ("ocel:oid" TEXT, "ocel:type" TEXT{});'
+       'CREATE TABLE RELATIONS ("ocel:eid" TEXT, "ocel:activity" TEXT, "ocel:timestamp" TIMESTAMP,'
+       ' "ocel:oid" TEXT, "ocel:type" TEXT, "ocel:qualifier" TEXT);')
+
+
+def _e1(events, objects, relations, event_columns="", object_columns=""):
+    rows = "".join(f"INSERT INTO EVENTS VALUES ({r});" for r in events)
+    rows += "".join(f"INSERT INTO OBJECTS VALUES ({r});" for r in objects)
+    rows += "".join(f"INSERT INTO RELATIONS VALUES ({r});" for r in relations)
+    return _E1.format(event_columns, object_columns) + rows
+
+
+_R1 = ["'e1','a','2022-01-09 14:00:00','o1','t',NULL", "'e2','b','2022-01-09 15:00:00','o1','t','q'"]
+
+# OCEL 1.0 databases: pandas' column types, timestamp forms, ids that are
+# numbers, missing tables and unrelated rows.
+_SQLITE_SCRIPTS = {
+    "types": _e1(["'e1','2022-01-09 14:00:00','a',1,1,1.5,'x',NULL,1", "'e2','2022-01-09 15:00:00','b',NULL,2,2,3,NULL,2.5"],
+                 ["'o1','t',7,NULL"], _R1, ", i INTEGER, j INTEGER, f REAL, m TEXT, n TEXT, k REAL",
+                 ", oi INTEGER, on2 TEXT"),
+    "ts-naive-then-offset": _e1(["'e1','2022-01-09 14:00:00','a'", "'e2','2022-01-09T15:00:00.5+01:00','b'"],
+                                ["'o1','t'"], _R1),
+    "ts-forms": _e1(["'e1','2022-01-09T14:00:00Z','a'", "'e2','2022-01-09T13:00:00Z','b'"],
+                    ["'o1','t'"], _R1),
+    "ts-date": _e1(["'e1','2022-01-09','a'", "'e2','2022-01-10','b'"], ["'o1','t'"], _R1),
+    "ts-integer": _e1(["'e1',1,'a'", "'e2',2,'b'"], ["'o1','t'"], _R1),
+    "ts-garbage": _e1(["'e1','soon','a'", "'e2','later','b'"], ["'o1','t'"], _R1),
+    "ids-numbers": _e1(["1,'2022-01-09 14:00:00','a'", "2.5,'2022-01-09 15:00:00','b'"], ["3,'t'"],
+                       ["1,'a','2022-01-09 14:00:00',3,'t',NULL", "2.5,'b','2022-01-09 15:00:00',3,'t',NULL"]),
+    "unrelated": _e1(["'e1','2022-01-09 14:00:00','a'", "'e2','2022-01-09 15:00:00','b'", "'e3','2022-01-09 16:00:00','c'"],
+                     ["'o1','t'", "'o2','t'"], _R1 + ["'e9','z','2022-01-09 15:00:00','o9','t',NULL"]),
+    "unsorted": _e1(["'e1','2022-01-09 16:00:00','a'", "'e2','2022-01-09 15:00:00','b'"],
+                    ["'o1','t'"], ["'e2','b','2022-01-09 15:00:00','o1','t',NULL", "'e1','a','2022-01-09 16:00:00','o1','t',NULL"]),
+    "no-qualifier": 'CREATE TABLE EVENTS ("ocel:eid", "ocel:timestamp", "ocel:activity");'
+                    'CREATE TABLE OBJECTS ("ocel:oid", "ocel:type");'
+                    'CREATE TABLE RELATIONS ("ocel:eid", "ocel:activity", "ocel:timestamp", "ocel:oid", "ocel:type");'
+                    "INSERT INTO EVENTS VALUES ('e1','2022-01-09 14:00:00','a');"
+                    "INSERT INTO OBJECTS VALUES ('o1','t');"
+                    "INSERT INTO RELATIONS VALUES ('e1','a','2022-01-09 14:00:00','o1','t');",
+    "no-objects-table": 'CREATE TABLE EVENTS ("ocel:eid", "ocel:timestamp", "ocel:activity");',
+    "empty": _e1([], [], []),
+}
+
+
+def _e2(events, objects, maps, tables, e2o, o2o=""):
+    """An OCEL 2.0 database: ``events`` and ``objects`` as (id, type) value
+    lists, ``maps`` as (event map, object map) value lists, ``tables`` as
+    SQL, ``e2o`` and ``o2o`` as value lists."""
+    script = ("CREATE TABLE event (ocel_id TEXT, ocel_type TEXT);"
+              "CREATE TABLE object (ocel_id TEXT, ocel_type TEXT);"
+              "CREATE TABLE event_map_type (ocel_type TEXT, ocel_type_map TEXT);"
+              "CREATE TABLE object_map_type (ocel_type TEXT, ocel_type_map TEXT);"
+              "CREATE TABLE event_object (ocel_event_id TEXT, ocel_object_id TEXT, ocel_qualifier TEXT);"
+              "CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);")
+    for table, rows in [("event", events), ("object", objects), ("event_map_type", maps[0]),
+                        ("object_map_type", maps[1]), ("event_object", e2o), ("object_object", o2o)]:
+        script += "".join(f"INSERT INTO {table} VALUES ({r});" for r in rows)
+    return script + tables
+
+
+_MAPS = (["'a','A'", "'b','B'"], ["'t','T'", "'u','U'"])
+_EV = ["'e1','a'", "'e2','b'"]
+_OB = ["'o1','t'", "'o2','u'"]
+_EO = ["'e1','o1','q'", "'e2','o2',NULL", "'e2','o1','r'"]
+_TA = ("CREATE TABLE event_A (ocel_id TEXT, ocel_time TIMESTAMP{});"
+       "CREATE TABLE event_B (ocel_id TEXT, ocel_time TIMESTAMP{});")
+_TO = ("CREATE TABLE object_T (ocel_id TEXT{}, ocel_time TIMESTAMP, ocel_changed_field TEXT);"
+       "CREATE TABLE object_U (ocel_id TEXT{}, ocel_time TIMESTAMP, ocel_changed_field TEXT);")
+
+
+def _rows(table, rows):
+    return "".join(f"INSERT INTO {table} VALUES ({r});" for r in rows)
+
+
+_BASIC_TABLES = (_TA.format("", "") + _TO.format("", "")
+                 + _rows("event_A", ["'e1','2022-01-09 14:00:00'"])
+                 + _rows("event_B", ["'e2','2022-01-09 15:00:00'"])
+                 + _rows("object_T", ["'o1',NULL,NULL"]) + _rows("object_U", ["'o2',NULL,NULL"]))
+
+# OCEL 2.0 databases: the type tables, ids that are numbers, column types
+# across tables, the two ways objects and changes split, sorting and
+# missing tables.
+_SQLITE2_SCRIPTS = {
+    "basic": _e2(_EV, _OB, _MAPS, _BASIC_TABLES, _EO, ["'o1','o2','part'", "'o2','o1',NULL"]),
+    "types-across-tables": _e2(
+        _EV + ["'e3','a'"], _OB + ["'o3','t'"], _MAPS,
+        _TA.format(", i INTEGER, s TEXT, f REAL, n TEXT", ", i REAL, s INTEGER, g INTEGER")
+        + _TO.format(", w INTEGER, v TEXT", ", w REAL, z INTEGER")
+        + _rows("event_A", ["'e1','2022-01-09 14:00:00',1,'x',NULL,NULL", "'e3','2022-01-09 16:00:00',2,'y',NULL,NULL"])
+        + _rows("event_B", ["'e2','2022-01-09 15:00:00',2.5,7,1"])
+        + _rows("object_T", ["'o1',1,'p',NULL,NULL", "'o3',2,NULL,NULL,NULL", "'o1',3,NULL,'2022-01-09 15:30:00','w'",
+                             "'o1',NULL,'p2','2022-01-09 14:30:00','v'"])
+        + _rows("object_U", ["'o2',1.5,4,NULL,NULL"]),
+        _EO + ["'e3','o3',NULL"]),
+    "ids-numbers": _e2(
+        ["1.0,'a'", "2,'b'"], ["10,'t'", "'1.5','u'"], _MAPS,
+        _TA.format("", "") + _TO.format("", "")
+        + _rows("event_A", ["1.0,'2022-01-09 14:00:00'"]) + _rows("event_B", ["2,'2022-01-09 15:00:00'"])
+        + _rows("object_T", ["10,NULL,NULL"]) + _rows("object_U", ["'1.5',NULL,NULL"]),
+        ["1.0,10,NULL", "'2','1.5',NULL", "'1','10','x'"], ["10.0,'1.5','y'"]),
+    "id-escape-suffix": _e2(
+        ["'e\\x0','a'", "'e2','b'"], _OB, _MAPS,
+        _TA.format("", "") + _TO.format("", "")
+        + _rows("event_A", ["'e\\x0','2022-01-09 14:00:00'"]) + _rows("event_B", ["'e2','2022-01-09 15:00:00'"])
+        + _rows("object_T", ["'o1',NULL,NULL"]) + _rows("object_U", ["'o2',NULL,NULL"]),
+        ["'e\\x0','o1',NULL", "'e2','o2',NULL"]),
+    "no-changed-field": _e2(
+        _EV, _OB, _MAPS,
+        _TA.format("", "") + "CREATE TABLE object_T (ocel_id TEXT, a INTEGER, ocel_time TIMESTAMP);"
+        "CREATE TABLE object_U (ocel_id TEXT, ocel_time TIMESTAMP);"
+        + _rows("event_A", ["'e1','2022-01-09 14:00:00'"]) + _rows("event_B", ["'e2','2022-01-09 15:00:00'"])
+        + _rows("object_T", ["'o1',5,'2022-01-01 00:00:00'", "'o1',6,'2022-01-02 00:00:00'"])
+        + _rows("object_U", ["'o2',NULL"]),
+        _EO),
+    "all-changes": _e2(
+        _EV, _OB, _MAPS,
+        _TA.format("", "") + _TO.format(", a INTEGER", ", a INTEGER")
+        + _rows("event_A", ["'e1','2022-01-09 14:00:00'"]) + _rows("event_B", ["'e2','2022-01-09 15:00:00'"])
+        + _rows("object_T", ["'o1',5,'2022-01-02 00:00:00','a'", "'o1',6,'2022-01-01 00:00:00','a'"])
+        + _rows("object_U", ["'o2',7,'2022-01-01 00:00:00','a'"]),
+        _EO),
+    "sorting": _e2(
+        ["'e1','a'", "'e2','b'", "'e3','a'", "'e4','b'"], _OB, _MAPS,
+        _TA.format("", "") + _TO.format("", "")
+        + _rows("event_A", ["'e3','2022-01-09 15:00:00'", "'e1','2022-01-09 14:00:00'"])
+        + _rows("event_B", ["'e2','2022-01-09 14:00:00'", "'e4','2022-01-09 13:00:00'"])
+        + _rows("object_T", ["'o1',NULL,NULL", "'o1','2022-01-09 12:00:00','x'", "'o1','2022-01-09 11:00:00','y'"])
+        + _rows("object_U", ["'o2',NULL,NULL", "'o2','2022-01-09 11:00:00','z'"]),
+        ["'e4','o2',NULL", "'e3','o1',NULL", "'e1','o1',NULL", "'e2','o2',NULL"]),
+    "ts-mixed-forms": _e2(
+        _EV, _OB, _MAPS,
+        _TA.format("", "") + _TO.format("", "")
+        + _rows("event_A", ["'e1','2022-01-09 14:00:00.5+00:00'"]) + _rows("event_B", ["'e2','2022-01-09 15:00:00+00:00'"])
+        + _rows("object_T", ["'o1',NULL,NULL"]) + _rows("object_U", ["'o2',NULL,NULL"]),
+        _EO),
+    "unrelated": _e2(
+        _EV + ["'e3','a'"], _OB + ["'o3','t'"], _MAPS,
+        _TA.format("", "") + _TO.format("", "")
+        + _rows("event_A", ["'e1','2022-01-09 14:00:00'", "'e3','2022-01-09 16:00:00'"])
+        + _rows("event_B", ["'e2','2022-01-09 15:00:00'"])
+        + _rows("object_T", ["'o1',NULL,NULL", "'o3',NULL,NULL"]) + _rows("object_U", ["'o2',NULL,NULL"]),
+        _EO + ["'e9','o1',NULL", "'e1','o9',NULL"], ["'o1','o9',NULL"]),
+    "quoted-map": _e2(
+        ["'e1','a'"], ["'o1','t'"], (["'a','A\"x'"], ["'t','T'"]),
+        'CREATE TABLE "event_A""x" (ocel_id TEXT, ocel_time TIMESTAMP);'
+        + _TO.format("", "").split(";")[0] + ";"
+        + "INSERT INTO \"event_A\"\"x\" VALUES ('e1','2022-01-09 14:00:00');"
+        + _rows("object_T", ["'o1',NULL,NULL"]),
+        ["'e1','o1',NULL"]),
+    "missing-map": _e2(_EV, _OB, (["'a','A'"], _MAPS[1]), _BASIC_TABLES, _EO),
+    "missing-type-table": _e2(_EV, _OB, _MAPS, _BASIC_TABLES.replace("event_B", "event_C"), _EO),
+    "no-o2o-table": _e2(_EV, _OB, _MAPS, _BASIC_TABLES, _EO).replace(
+        "CREATE TABLE object_object (ocel_source_id TEXT, ocel_target_id TEXT, ocel_qualifier TEXT);", ""),
+    "empty": _e2([], [], ([], []), "", []),
+}
+
+
+@case("read-sqlite-scripts", functions=["pm4py.read_ocel_sqlite"])
+def _sqlite_scripts(fixtures):
+    return {"cases": {name: _read_script(pm4py.read_ocel_sqlite, script) | {"script": script}
+                      for name, script in _SQLITE_SCRIPTS.items()}}
+
+
+@case("read-sqlite2-scripts", functions=["pm4py.read_ocel2_sqlite"])
+def _sqlite2_scripts(fixtures):
+    return {"cases": {name: _read_script(pm4py.read_ocel2_sqlite, script) | {"script": script}
+                      for name, script in _SQLITE2_SCRIPTS.items()}}
+
+
 # The writers, keyed by the name the golden uses. ``json`` is pm4py's
 # ``write_ocel_json``, which picks the ``ocel20`` variant for a log with OCEL
 # 2.0 features and ``classic`` otherwise.
@@ -471,7 +661,56 @@ def _write_csv(ocel, path):
     return objects.read_bytes().decode("utf-8")
 
 
-_WRITER_FUNCTIONS = [w[0] for w in _WRITERS.values()] + ["pm4py.write_ocel_csv"]
+# The SQLite writers, keyed by the name the golden uses, each with the
+# reader that reads its file back.
+_SQLITE_WRITERS = {
+    "sqlite": ("pm4py.write_ocel_sqlite", pm4py.write_ocel_sqlite, pm4py.read_ocel_sqlite),
+    "sqlite2": ("pm4py.write_ocel2_sqlite", pm4py.write_ocel2_sqlite, pm4py.read_ocel2_sqlite),
+}
+
+_WRITER_FUNCTIONS = ([w[0] for w in _WRITERS.values()] + ["pm4py.write_ocel_csv"]
+                     + [w[0] for w in _SQLITE_WRITERS.values()]
+                     + ["pm4py.read_ocel_sqlite", "pm4py.read_ocel2_sqlite"])
+
+
+def _cell(value):
+    """A SQLite value as ``[storage class, value]``, or null."""
+    if value is None:
+        return None
+    if isinstance(value, int):
+        return ["integer", value]
+    if isinstance(value, float):
+        return ["real", value]
+    if isinstance(value, bytes):
+        return ["blob", value.hex()]
+    return ["text", value]
+
+
+def dump_sqlite(path):
+    """Each schema entry of the database in ``sqlite_master`` order: its
+    type, name and SQL, and for a table its rows in rowid order."""
+    import sqlite3
+
+    conn = sqlite3.connect(path)
+    try:
+        out = []
+        for kind, name, sql in conn.execute("SELECT type, name, sql FROM sqlite_master ORDER BY rowid"):
+            entry = {"type": kind, "name": name, "sql": sql}
+            if kind == "table":
+                quoted = '"' + name.replace('"', '""') + '"'
+                entry["rows"] = [[_cell(v) for v in row]
+                                 for row in conn.execute(f"SELECT * FROM {quoted} ORDER BY rowid")]
+            out.append(entry)
+        return out
+    finally:
+        conn.close()
+
+
+def _reread(read, path):
+    try:
+        return {"ocel": _tables(read(str(path)))}
+    except Exception as e:
+        return {"error": type(e).__name__}
 
 
 def write_all(ocel):
@@ -500,6 +739,16 @@ def write_all(ocel):
             out["csv"] = {"text": path.read_bytes().decode("utf-8"), "objects": objects}
         except Exception as e:
             out["csv"] = {"error": type(e).__name__}
+        # The database's tables, and what pm4py's matching reader reads
+        # from it.
+        for name, (_, write, read) in _SQLITE_WRITERS.items():
+            path = Path(tmp) / f"{name}.sqlite"
+            try:
+                write(copy.deepcopy(ocel), str(path))
+            except Exception as e:
+                out[name] = {"error": type(e).__name__}
+                continue
+            out[name] = {"tables": dump_sqlite(path), "reread": _reread(read, path)}
     result = {"input": tables, "globals": ocel.globals, "writers": out}
     times = ocel.events[ocel.event_timestamp]
     if len(times) and getattr(times.dt, "tz", None) is None:

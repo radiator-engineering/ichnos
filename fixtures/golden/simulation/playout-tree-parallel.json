@@ -1,0 +1,51 @@
+{
+  "expected": {
+    "case_attributes_empty": true,
+    "event_keys": [
+      "concept:name"
+    ],
+    "mean_length": 3.0,
+    "rates": [
+      [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        0.33708333333333335
+      ],
+      [
+        [
+          "a",
+          "c",
+          "b"
+        ],
+        0.33066666666666666
+      ],
+      [
+        [
+          "c",
+          "a",
+          "b"
+        ],
+        0.33225
+      ]
+    ],
+    "traces": 12000,
+    "tree": "+( ->( 'a', 'b' ), 'c' )"
+  },
+  "meta": {
+    "area": "simulation",
+    "case": "playout-tree-parallel",
+    "fixtures": {},
+    "functions": [
+      "pm4py.play_out"
+    ],
+    "loaders": {},
+    "params": {
+      "name": "parallel"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

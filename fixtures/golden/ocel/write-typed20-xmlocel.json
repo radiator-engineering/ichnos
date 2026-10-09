@@ -202,6 +202,1182 @@
       "json2": {
         "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"weight\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"value\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"priority\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"express\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"label\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"pick item\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    {\n      \"name\": \"place order\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"count\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"slot\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"ship\",\n      \"attributes\": []\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"value\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 120.5\n        },\n        {\n          \"name\": \"priority\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"2\"\n        },\n        {\n          \"name\": \"express\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"false\"\n        },\n        {\n          \"name\": \"due\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"2022-01-12T00:00:00+01:00\"\n        },\n        {\n          \"name\": \"label\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"rush order\"\n        },\n        {\n          \"name\": \"value\",\n          \"time\": \"2022-01-09T17:00:00.500000+00:00\",\n          \"value\": 130.0\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"contains\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"contains\"\n        }\n      ]\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"weight\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 1.5\n        },\n        {\n          \"name\": \"weight\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 1.25\n        }\n      ]\n    },\n    {\n      \"id\": \"i2\",\n      \"type\": \"item\"\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"place order\",\n      \"time\": \"2022-01-09T14:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": 10.0\n        },\n        {\n          \"name\": \"count\",\n          \"value\": \"7\"\n        },\n        {\n          \"name\": \"rush\",\n          \"value\": \"true\"\n        },\n        {\n          \"name\": \"slot\",\n          \"value\": \"2022-01-09T18:00:00Z\"\n        },\n        {\n          \"name\": \"note\",\n          \"value\": \"first\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"placer\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"ordered\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"reordered\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"pick item\",\n      \"time\": \"2022-01-09T14:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": 0.0\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"picked\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"pick item\",\n      \"time\": \"2022-01-09T14:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"cost\",\n          \"value\": 2.5\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"picked\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e4\",\n      \"type\": \"ship\",\n      \"time\": \"2022-01-10T08:00:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"shipped\"\n        }\n      ]\n    }\n  ]\n}"
       },
+      "sqlite": {
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    10.0
+                  ],
+                  "count": [
+                    "string",
+                    "7"
+                  ],
+                  "note": [
+                    "string",
+                    "first"
+                  ],
+                  "rush": [
+                    "string",
+                    "true"
+                  ],
+                  "slot": [
+                    "string",
+                    "2022-01-09T18:00:00Z"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    0.0
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    2.5
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "ship",
+                "attributes": {},
+                "id": "e4",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {
+                  "due": [
+                    "string",
+                    "2022-01-12T00:00:00+01:00"
+                  ],
+                  "express": [
+                    "string",
+                    "false"
+                  ],
+                  "label": [
+                    "string",
+                    "rush order"
+                  ],
+                  "priority": [
+                    "string",
+                    "2"
+                  ],
+                  "value": [
+                    "float",
+                    120.5
+                  ]
+                },
+                "id": "o1",
+                "type": "order"
+              },
+              {
+                "attributes": {
+                  "weight": [
+                    "float",
+                    1.5
+                  ]
+                },
+                "id": "i1",
+                "type": "item"
+              },
+              {
+                "attributes": {},
+                "id": "i2",
+                "type": "item"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "placer",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "ordered",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "reordered",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick item",
+                "event": "e2",
+                "object": "i1",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick item",
+                "event": "e3",
+                "object": "i2",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "ship",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "shipped",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": [
+          {
+            "name": "EVENTS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00.123456+00:00"
+                ],
+                [
+                  "real",
+                  10.0
+                ],
+                [
+                  "text",
+                  "7"
+                ],
+                [
+                  "text",
+                  "true"
+                ],
+                [
+                  "text",
+                  "2022-01-09T18:00:00Z"
+                ],
+                [
+                  "text",
+                  "first"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00+00:00"
+                ],
+                [
+                  "real",
+                  0.0
+                ],
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00+00:00"
+                ],
+                [
+                  "real",
+                  2.5
+                ],
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "2022-01-10 08:00:00+00:00"
+                ],
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ],
+            "sql": "CREATE TABLE \"EVENTS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"cost\" REAL,\n  \"count\" TEXT,\n  \"rush\" TEXT,\n  \"slot\" TEXT,\n  \"note\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "RELATIONS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00.123456+00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  "placer"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00.123456+00:00"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  "ordered"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00.123456+00:00"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  "reordered"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00+00:00"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  "picked"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00+00:00"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  "picked"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "2022-01-10 08:00:00+00:00"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  "shipped"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"RELATIONS\" (\n\"ocel:eid\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel:timestamp\" TIMESTAMP,\n  \"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"ocel:qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "OBJECTS",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "real",
+                  120.5
+                ],
+                [
+                  "text",
+                  "2"
+                ],
+                [
+                  "text",
+                  "false"
+                ],
+                [
+                  "text",
+                  "2022-01-12T00:00:00+01:00"
+                ],
+                [
+                  "text",
+                  "rush order"
+                ],
+                null
+              ],
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                null,
+                null,
+                null,
+                null,
+                null,
+                [
+                  "real",
+                  1.5
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "item"
+                ],
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ],
+            "sql": "CREATE TABLE \"OBJECTS\" (\n\"ocel:oid\" TEXT,\n  \"ocel:type\" TEXT,\n  \"value\" REAL,\n  \"priority\" TEXT,\n  \"express\" TEXT,\n  \"due\" TEXT,\n  \"label\" TEXT,\n  \"weight\" REAL\n)",
+            "type": "table"
+          }
+        ]
+      },
+      "sqlite2": {
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "place order",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    10.0
+                  ],
+                  "count": [
+                    "string",
+                    "7"
+                  ],
+                  "note": [
+                    "string",
+                    "first"
+                  ],
+                  "rush": [
+                    "string",
+                    "true"
+                  ],
+                  "slot": [
+                    "string",
+                    "2022-01-09T18:00:00Z"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    0.0
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "pick item",
+                "attributes": {
+                  "cost": [
+                    "float",
+                    2.5
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00"
+              },
+              {
+                "activity": "ship",
+                "attributes": {},
+                "id": "e4",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [
+              {
+                "qualifier": "contains",
+                "source": "o1",
+                "target": "i1"
+              },
+              {
+                "qualifier": "contains",
+                "source": "o1",
+                "target": "i2"
+              }
+            ],
+            "object_changes": [
+              {
+                "field": "weight",
+                "object": "i1",
+                "timestamp": "1970-01-01T00:00:00.000000+00:00",
+                "type": "item",
+                "value": [
+                  "float",
+                  1.25
+                ]
+              },
+              {
+                "field": "value",
+                "object": "o1",
+                "timestamp": "2022-01-09T17:00:00.500000+00:00",
+                "type": "order",
+                "value": [
+                  "float",
+                  130.0
+                ]
+              }
+            ],
+            "objects": [
+              {
+                "attributes": {
+                  "weight": [
+                    "float",
+                    1.5
+                  ]
+                },
+                "id": "i1",
+                "type": "item"
+              },
+              {
+                "attributes": {},
+                "id": "i2",
+                "type": "item"
+              },
+              {
+                "attributes": {
+                  "due": [
+                    "string",
+                    "2022-01-12T00:00:00+01:00"
+                  ],
+                  "express": [
+                    "string",
+                    "false"
+                  ],
+                  "label": [
+                    "string",
+                    "rush order"
+                  ],
+                  "priority": [
+                    "string",
+                    "2"
+                  ],
+                  "value": [
+                    "float",
+                    120.5
+                  ]
+                },
+                "id": "o1",
+                "type": "order"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "placer",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00",
+                "type": "order"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "ordered",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "place order",
+                "event": "e1",
+                "object": "i1",
+                "qualifier": "reordered",
+                "timestamp": "2022-01-09T14:00:00.123456+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick item",
+                "event": "e2",
+                "object": "i1",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "pick item",
+                "event": "e3",
+                "object": "i2",
+                "qualifier": "picked",
+                "timestamp": "2022-01-09T14:30:00.000000+00:00",
+                "type": "item"
+              },
+              {
+                "activity": "ship",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "shipped",
+                "timestamp": "2022-01-10T08:00:00.000000+00:00",
+                "type": "order"
+              }
+            ]
+          }
+        },
+        "tables": [
+          {
+            "name": "event",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event\" (\n\"ocel_id\" TEXT,\n  \"ocel_type\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "order"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "item"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "item"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object\" (\n\"ocel_id\" TEXT,\n  \"ocel_type\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_map_type",
+            "rows": [
+              [
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "PickItem"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "PlaceOrder"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "Ship"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_map_type\" (\n\"ocel_type\" TEXT,\n  \"ocel_type_map\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_map_type",
+            "rows": [
+              [
+                [
+                  "text",
+                  "item"
+                ],
+                [
+                  "text",
+                  "Item"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "order"
+                ],
+                [
+                  "text",
+                  "Order"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_map_type\" (\n\"ocel_type\" TEXT,\n  \"ocel_type_map\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "placer"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "ordered"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "reordered"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "picked"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "picked"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "shipped"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_object\" (\n\"ocel_event_id\" TEXT,\n  \"ocel_object_id\" TEXT,\n  \"ocel_qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_object",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "text",
+                  "contains"
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "text",
+                  "i2"
+                ],
+                [
+                  "text",
+                  "contains"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_object\" (\n\"ocel_source_id\" TEXT,\n  \"ocel_target_id\" TEXT,\n  \"ocel_qualifier\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_PickItem",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e2"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00+00:00"
+                ],
+                [
+                  "real",
+                  0.0
+                ]
+              ],
+              [
+                [
+                  "text",
+                  "e3"
+                ],
+                [
+                  "text",
+                  "pick item"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:30:00+00:00"
+                ],
+                [
+                  "real",
+                  2.5
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_PickItem\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"cost\" REAL\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_PlaceOrder",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e1"
+                ],
+                [
+                  "text",
+                  "place order"
+                ],
+                [
+                  "text",
+                  "2022-01-09 14:00:00.123456+00:00"
+                ],
+                [
+                  "real",
+                  10.0
+                ],
+                [
+                  "text",
+                  "7"
+                ],
+                [
+                  "text",
+                  "true"
+                ],
+                [
+                  "text",
+                  "2022-01-09T18:00:00Z"
+                ],
+                [
+                  "text",
+                  "first"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_PlaceOrder\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP,\n  \"cost\" REAL,\n  \"count\" TEXT,\n  \"rush\" TEXT,\n  \"slot\" TEXT,\n  \"note\" TEXT\n)",
+            "type": "table"
+          },
+          {
+            "name": "event_Ship",
+            "rows": [
+              [
+                [
+                  "text",
+                  "e4"
+                ],
+                [
+                  "text",
+                  "ship"
+                ],
+                [
+                  "text",
+                  "2022-01-10 08:00:00+00:00"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"event_Ship\" (\n\"ocel_id\" TEXT,\n  \"ocel:activity\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_Item",
+            "rows": [
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "real",
+                  1.5
+                ],
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "i2"
+                ],
+                null,
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "i1"
+                ],
+                [
+                  "real",
+                  1.25
+                ],
+                [
+                  "text",
+                  "weight"
+                ],
+                [
+                  "text",
+                  "1970-01-01 00:00:00+00:00"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_Item\" (\n\"ocel_id\" TEXT,\n  \"weight\" REAL,\n  \"ocel_changed_field\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "type": "table"
+          },
+          {
+            "name": "object_Order",
+            "rows": [
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "real",
+                  120.5
+                ],
+                [
+                  "text",
+                  "2"
+                ],
+                [
+                  "text",
+                  "false"
+                ],
+                [
+                  "text",
+                  "2022-01-12T00:00:00+01:00"
+                ],
+                [
+                  "text",
+                  "rush order"
+                ],
+                null,
+                null
+              ],
+              [
+                [
+                  "text",
+                  "o1"
+                ],
+                [
+                  "real",
+                  130.0
+                ],
+                null,
+                null,
+                null,
+                null,
+                [
+                  "text",
+                  "value"
+                ],
+                [
+                  "text",
+                  "2022-01-09 17:00:00.500000+00:00"
+                ]
+              ]
+            ],
+            "sql": "CREATE TABLE \"object_Order\" (\n\"ocel_id\" TEXT,\n  \"value\" REAL,\n  \"priority\" TEXT,\n  \"express\" TEXT,\n  \"due\" TEXT,\n  \"label\" TEXT,\n  \"ocel_changed_field\" TEXT,\n  \"ocel_time\" TIMESTAMP\n)",
+            "type": "table"
+          }
+        ]
+      },
       "xml": {
         "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"cost\"/>\n      <string key=\"attribute-name\" value=\"count\"/>\n      <string key=\"attribute-name\" value=\"due\"/>\n      <string key=\"attribute-name\" value=\"express\"/>\n      <string key=\"attribute-name\" value=\"label\"/>\n      <string key=\"attribute-name\" value=\"note\"/>\n      <string key=\"attribute-name\" value=\"priority\"/>\n      <string key=\"attribute-name\" value=\"rush\"/>\n      <string key=\"attribute-name\" value=\"slot\"/>\n      <string key=\"attribute-name\" value=\"value\"/>\n      <string key=\"attribute-name\" value=\"weight\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"item\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <string key=\"activity\" value=\"place order\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"cost\" value=\"10.0\"/>\n        <string key=\"count\" value=\"7\"/>\n        <string key=\"rush\" value=\"true\"/>\n        <string key=\"slot\" value=\"2022-01-09T18:00:00Z\"/>\n        <string key=\"note\" value=\"first\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <string key=\"activity\" value=\"pick item\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i1\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"cost\" value=\"0.0\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <string key=\"activity\" value=\"pick item\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i2\"/>\n      </list>\n      <list key=\"vmap\">\n        <float key=\"cost\" value=\"2.5\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e4\"/>\n      <string key=\"activity\" value=\"ship\"/>\n      <date key=\"timestamp\" value=\"2022-01-10T08:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\">\n        <float key=\"value\" value=\"120.5\"/>\n        <string key=\"priority\" value=\"2\"/>\n        <string key=\"express\" value=\"false\"/>\n        <string key=\"due\" value=\"2022-01-12T00:00:00+01:00\"/>\n        <string key=\"label\" value=\"rush order\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\">\n        <float key=\"weight\" value=\"1.5\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i2\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n  </objects>\n</log>\n"
       },
@@ -223,7 +1399,11 @@
       "pm4py.write_ocel2_json",
       "pm4py.write_ocel2_xml",
       "pm4py.write_ocel2_csv",
-      "pm4py.write_ocel_csv"
+      "pm4py.write_ocel_csv",
+      "pm4py.write_ocel_sqlite",
+      "pm4py.write_ocel2_sqlite",
+      "pm4py.read_ocel_sqlite",
+      "pm4py.read_ocel2_sqlite"
     ],
     "loaders": {
       "log": {
