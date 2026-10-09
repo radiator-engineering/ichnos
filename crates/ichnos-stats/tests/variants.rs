@@ -153,6 +153,14 @@ fn empty_and_invalid_logs() {
             .is_empty()
     );
     assert!(get_frequent_trace_segments(&log, &keys, 0).is_err());
+    let missing = EventLog {
+        traces: vec![ichnos_core::Trace::new()],
+        ..Default::default()
+    };
+    assert!(matches!(
+        get_rework_cases(&missing, &keys),
+        Err(ichnos_stats::Error::MissingCaseId(0))
+    ));
     let log = EventLog::from_trace_strings(["A,B,A", "A,A", ""], ",", &keys);
     assert_eq!(get_rework(&log, &keys).unwrap()["A"], 2);
     assert!(get_chaotic_activities(&log, &keys, Some(-1.0)).is_err());

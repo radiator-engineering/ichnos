@@ -189,9 +189,7 @@ pub fn get_rework_cases(
     let seq = log.activity_sequences(keys)?;
     let mut result = IndexMap::new();
     for (i, t) in seq.traces.iter().enumerate() {
-        let id = log.traces[i]
-            .case_id()
-            .ok_or(ichnos_core::Error::MissingCaseId(i))?;
+        let id = log.traces[i].case_id().ok_or(Error::MissingCaseId(i))?;
         let id = super::attributes::Scalar::from_value(id).ok_or_else(|| Error::NonScalar {
             key: "concept:name".to_owned(),
         })?;

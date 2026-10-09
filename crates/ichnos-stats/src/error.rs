@@ -5,6 +5,9 @@ pub enum Error {
     /// A core log validation error.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),
+    /// A case-based statistic needs a trace identifier.
+    #[error("trace {0} has no case identifier")]
+    MissingCaseId(usize),
     /// An unsupported attribute value cannot be counted.
     #[error("attribute {key} is not scalar")]
     NonScalar {
