@@ -1,0 +1,97 @@
+{
+  "expected": [
+    {
+      "activities": [
+        "check ticket",
+        "register request",
+        "examine casually",
+        "pay compensation",
+        "reject request",
+        "check ticket",
+        "pay compensation"
+      ],
+      "case_id": "Ellen"
+    },
+    {
+      "activities": [
+        "register request",
+        "check ticket",
+        "examine casually",
+        "check ticket",
+        "register request",
+        "examine casually",
+        "check ticket",
+        "check ticket",
+        "pay compensation",
+        "examine casually",
+        "reject request"
+      ],
+      "case_id": "Mike"
+    },
+    {
+      "activities": [
+        "register request",
+        "register request",
+        "register request",
+        "reject request",
+        "check ticket",
+        "check ticket",
+        "check ticket"
+      ],
+      "case_id": "Pete"
+    },
+    {
+      "activities": [
+        "decide",
+        "decide",
+        "decide",
+        "reinitiate request",
+        "decide",
+        "decide",
+        "decide",
+        "decide",
+        "reinitiate request",
+        "decide",
+        "reinitiate request",
+        "decide"
+      ],
+      "case_id": "Sara"
+    },
+    {
+      "activities": [
+        "examine casually",
+        "examine thoroughly",
+        "examine thoroughly"
+      ],
+      "case_id": "Sean"
+    },
+    {
+      "activities": [
+        "examine thoroughly",
+        "examine casually"
+      ],
+      "case_id": "Sue"
+    }
+  ],
+  "meta": {
+    "area": "core",
+    "case": "rebase-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.rebase"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "case_id": "org:resource"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

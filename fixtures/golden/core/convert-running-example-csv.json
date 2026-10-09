@@ -1,0 +1,196 @@
+{
+  "expected": {
+    "dataframe_columns": [
+      "Unnamed: 0",
+      "concept:name",
+      "org:resource",
+      "time:timestamp",
+      "Activity",
+      "Resource",
+      "Costs",
+      "@@index",
+      "@@case_index",
+      "case:concept:name",
+      "case:creator"
+    ],
+    "dataframe_rows": 42,
+    "round_trip_case_ids": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "stream_case_ids": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "4",
+      "4",
+      "4",
+      "4",
+      "4",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "6",
+      "6",
+      "6",
+      "6",
+      "6"
+    ],
+    "stream_first_event": {
+      "@@case_index": 0,
+      "@@index": 0,
+      "Activity": "register request",
+      "Costs": 50,
+      "Resource": "Pete",
+      "Unnamed: 0": 14,
+      "case:concept:name": "1",
+      "case:creator": "Fluxicon Nitro",
+      "concept:name": "register request",
+      "org:resource": "Pete",
+      "time:timestamp": "2010-12-30T10:02:00Z"
+    },
+    "traces": [
+      {
+        "activities": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "attributes": {
+          "concept:name": "1",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        "attributes": {
+          "concept:name": "2",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "attributes": {
+          "concept:name": "3",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ],
+        "attributes": {
+          "concept:name": "4",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "attributes": {
+          "concept:name": "5",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "attributes": {
+          "concept:name": "6",
+          "creator": "Fluxicon Nitro"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "core",
+    "case": "convert-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.convert_to_event_stream",
+      "pm4py.convert_to_dataframe"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

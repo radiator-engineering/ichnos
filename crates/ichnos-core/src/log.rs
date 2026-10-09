@@ -567,7 +567,7 @@ impl<'a> IntoIterator for &'a EventStream {
 /// A hashable case ID. Strings and IDs with the same text are one case, and
 /// so are an int and an integral float, as with Python dict keys.
 #[derive(Debug, PartialEq, Eq, Hash)]
-enum CaseKey {
+pub(crate) enum CaseKey {
     Text(Arc<str>),
     Int(i64),
     Float(u64),
@@ -576,7 +576,7 @@ enum CaseKey {
 }
 
 impl CaseKey {
-    fn new(value: &AttributeValue) -> Option<Self> {
+    pub(crate) fn new(value: &AttributeValue) -> Option<Self> {
         Some(match value.plain() {
             AttributeValue::String(s) | AttributeValue::Id(s) => Self::Text(s.clone()),
             AttributeValue::Int(v) => Self::Int(*v),

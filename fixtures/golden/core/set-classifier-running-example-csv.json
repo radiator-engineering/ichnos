@@ -1,0 +1,135 @@
+{
+  "expected": {
+    "activity_and_costs": [
+      [
+        "register request+50",
+        "examine thoroughly+400",
+        "check ticket+100",
+        "decide+200",
+        "reject request+200"
+      ],
+      [
+        "register request+50",
+        "check ticket+100",
+        "examine casually+400",
+        "decide+200",
+        "pay compensation+200"
+      ],
+      [
+        "register request+50",
+        "examine casually+400",
+        "check ticket+100",
+        "decide+200",
+        "reinitiate request+200",
+        "examine thoroughly+400",
+        "check ticket+100",
+        "decide+200",
+        "pay compensation+200"
+      ],
+      [
+        "register request+50",
+        "check ticket+100",
+        "examine thoroughly+400",
+        "decide+200",
+        "reject request+200"
+      ],
+      [
+        "register request+50",
+        "examine casually+400",
+        "check ticket+100",
+        "decide+200",
+        "reinitiate request+200",
+        "check ticket+100",
+        "examine casually+400",
+        "decide+200",
+        "reinitiate request+200",
+        "examine casually+400",
+        "check ticket+100",
+        "decide+200",
+        "reject request+200"
+      ],
+      [
+        "register request+50",
+        "examine casually+400",
+        "check ticket+100",
+        "decide+200",
+        "pay compensation+200"
+      ]
+    ],
+    "resource": [
+      [
+        "Pete",
+        "Sue",
+        "Mike",
+        "Sara",
+        "Pete"
+      ],
+      [
+        "Mike",
+        "Mike",
+        "Sean",
+        "Sara",
+        "Ellen"
+      ],
+      [
+        "Pete",
+        "Mike",
+        "Ellen",
+        "Sara",
+        "Sara",
+        "Sean",
+        "Pete",
+        "Sara",
+        "Ellen"
+      ],
+      [
+        "Pete",
+        "Mike",
+        "Sean",
+        "Sara",
+        "Ellen"
+      ],
+      [
+        "Ellen",
+        "Mike",
+        "Pete",
+        "Sara",
+        "Sara",
+        "Ellen",
+        "Mike",
+        "Sara",
+        "Sara",
+        "Sue",
+        "Pete",
+        "Sara",
+        "Mike"
+      ],
+      [
+        "Mike",
+        "Ellen",
+        "Mike",
+        "Sara",
+        "Mike"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "core",
+    "case": "set-classifier-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.set_classifier"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -29,6 +29,9 @@ pub enum Error {
         /// The XES type name of the value found.
         found: &'static str,
     },
+    /// A trace has no case ID (trace attribute `concept:name`).
+    #[error("trace {0} has no case ID (attribute `concept:name`)")]
+    MissingCaseId(usize),
     /// The log defines no classifier with this name.
     #[error("the log defines no classifier named `{0}`")]
     UnknownClassifier(String),
