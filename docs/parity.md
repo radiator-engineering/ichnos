@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 10; ported: 422; dropped: 194; total: 626.
+todo: 9; ported: 423; dropped: 194; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -287,7 +287,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.ocel_objects_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::objects_summary` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
 | `pm4py.ocel_objects_interactions_summary` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::objects_interactions_summary` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
 | `pm4py.discover_ocdfg` | `ocel.py` → `algo/discovery/ocel/ocdfg/algorithm`, `objects/ocel/constants`, `objects/ocel/obj` | `ichnos::ocel::discover_ocdfg` (planned) | `ichnos-ocel` | todo | Variants: classic. |
-| `pm4py.discover_oc_petri_net` | `ocel.py` → `algo/discovery/ocel/ocpn/algorithm`, `objects/ocel/obj`, `objects/ocpn/obj` | `ichnos::ocel::discover_oc_petri_net` (planned) | `ichnos-ocel` | todo | Variants: classic, wo_annotation. |
+| `pm4py.discover_oc_petri_net` | `ocel.py` → `algo/discovery/ocel/ocpn/algorithm`, `objects/ocel/obj`, `objects/ocpn/obj` | `ichnos_discovery::discover_oc_petri_net` | `ichnos-discovery` | ported | Returns `OcPetriNet`: the activities and, for each object type, the inductive miner's tree, its accepting Petri net, the double arcs and the object ids. `OcpnOptions` sets the inductive miner (IM, IMf or IMd, fall-throughs, strict sequence cut) and `double_arc_threshold`. Goldens `discovery/ocpn-*` on example_log, ocel20_example and recruiting-red: IM, IMf at noise 0.2 (hash seeds 0 to 7), IMd, IM with fall-throughs and the strict sequence cut on, and a double-arc threshold of 0.6. Each type's tree equals pm4py's up to child order, and the footprints of the tree and the net equal pm4py's. `diagnostics_with_tbr` is not ported. Variants: classic, wo_annotation (one implementation in pm4py). See ichnos-discovery (object-centric Petri nets) Behaviour changes. |
 | `pm4py.discover_objects_graph` | `ocel.py` → `algo/transformation/ocel/graphs/object_cobirth_graph`, `algo/transformation/ocel/graphs/object_codeath_graph`, `algo/transformation/ocel/graphs/object_descendants_graph`, `algo/transformation/ocel/graphs/object_inheritance_graph`, `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj` | `ichnos_ocel::discover_objects_graph` | `ichnos-ocel` | ported | All five graph types (`ObjectGraphKind`). Goldens `convert/objects-graph-{example-log,ocel20-example}-object-{interaction,descendants,inheritance,cobirth,codeath}`: pairs equal. See the ichnos-ocel (conversions and object graphs) Behaviour changes. |
 | `pm4py.ocel_o2o_enrichment` | `ocel.py` → `algo/transformation/ocel/graphs/ocel20_computation`, `objects/ocel/obj` | `ichnos_ocel::ocel_o2o_enrichment` | `ichnos-ocel` | ported | Appends qualified graph edges to existing O2O rows; defaults to all five graphs. Golden: `ocel_transformations/ocel-o2o-enrichment`. See OCEL transformations below. |
 | `pm4py.ocel_e2o_lifecycle_enrichment` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/e2o_qualification` | `ichnos_ocel::ocel_e2o_lifecycle_enrichment` | `ichnos-ocel` | ported | Assigns creation, termination and other qualifiers from relation order. Golden: `ocel_transformations/ocel-e2o-lifecycle-enrichment`. See OCEL transformations below. |
@@ -1295,6 +1295,16 @@ Lanes record each deliberate change from pm4py here.
 - **POWL brute force is not checked on receipt and receipt_even.** pm4py takes too long there. The other four logs and the synthetic logs cover it.
 - **POWL options are checked before mining.** A `filtering_weight_factor` outside [0, 1) or an `order_frequency_ratio` outside (0.5, 1] is an error up front. pm4py raises only when the miner first reads the option.
 - **POWL orders hold the pairs transitivity implies**, as `Powl::simplify` does. pm4py's can leave them out. Children of a choice or a partial order can come in a different order, because pm4py's cuts list groups in Python's set order.
+
+### ichnos-discovery (object-centric Petri nets)
+
+- **The miner lives in ichnos-discovery, not ichnos-ocel.** It calls the inductive miner, and ichnos-ocel cannot depend on ichnos-discovery, which already depends on ichnos-ocel through ichnos-conformance and ichnos-stats.
+- **The result holds the nets, not the OC-DFG.** pm4py returns an `OCPetriNet` built from a dictionary that also carries the whole OC-DFG (`edges`, `activities_indep`, `activities_ot`, `start_activities`, `end_activities`). `OcPetriNet` holds the activities and, per object type, the net, the double arcs and the object ids. `discover_ocdfg` gives the OC-DFG. ichnos does not build pm4py's merged net, whose places are named `<type>_<place>`, whose labelled transitions are shared, and whose markings hold object ids; the per-type nets carry the same information.
+- **Each type keeps its process tree.** pm4py converts the tree to a net and drops it.
+- **`diagnostics_with_tbr` is not ported.** It needs token replay with place-level counts (pm4py's `enable_pltr_fitness`), which ichnos-conformance does not port.
+- **The miner is chosen by `InductiveVariant`**, not by the `inductive_miner_variant` string and `noise_threshold`. pm4py runs IMf for `"imf"`, or for `"im"` with a threshold above 0. `multi_processing` is dropped, as in the inductive miner.
+- **A type with objects but no relations gets the inductive miner's tree for an empty log.** pm4py raises `KeyError`.
+- **A relation to an absent event or object is an error**, as in ichnos-stats' OCEL statistics. pm4py's flattening drops such relations.
 
 ### ichnos-discovery (footprints)
 

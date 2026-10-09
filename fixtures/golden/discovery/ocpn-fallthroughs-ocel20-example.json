@@ -1,0 +1,349 @@
+{
+  "expected": {
+    "activities": [
+      "Approve Purchase Requisition",
+      "Change PO Quantity",
+      "Create Purchase Order",
+      "Create Purchase Requisition",
+      "Insert Invoice",
+      "Insert Payment",
+      "Remove Payment Block",
+      "Set Payment Block"
+    ],
+    "nets": {
+      "Invoice": {
+        "double_arcs": {
+          "Create Purchase Order": true,
+          "Insert Invoice": false,
+          "Insert Payment": false,
+          "Remove Payment Block": false,
+          "Set Payment Block": false
+        },
+        "object_ids": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Create Purchase Order",
+                "Insert Invoice",
+                "Insert Payment",
+                "Remove Payment Block",
+                "Set Payment Block"
+              ],
+              "parallel": [],
+              "sequence": [
+                [
+                  "Create Purchase Order",
+                  "Set Payment Block"
+                ],
+                [
+                  "Insert Invoice",
+                  "Create Purchase Order"
+                ],
+                [
+                  "Insert Invoice",
+                  "Insert Payment"
+                ],
+                [
+                  "Remove Payment Block",
+                  "Insert Payment"
+                ],
+                [
+                  "Set Payment Block",
+                  "Remove Payment Block"
+                ]
+              ],
+              "start_activities": [
+                "Insert Invoice"
+              ]
+            },
+            "seeds": [
+              0,
+              1
+            ],
+            "tree": "->( 'Insert Invoice', X( tau, ->( 'Create Purchase Order', 'Set Payment Block', 'Remove Payment Block' ) ), 'Insert Payment' )",
+            "tree_footprints": {
+              "activities": [
+                "Create Purchase Order",
+                "Insert Invoice",
+                "Insert Payment",
+                "Remove Payment Block",
+                "Set Payment Block"
+              ],
+              "activities_always_happening": [
+                "Insert Invoice",
+                "Insert Payment"
+              ],
+              "end_activities": [
+                "Insert Payment"
+              ],
+              "max_trace_length_wo_loops": 5,
+              "min_trace_length": 2,
+              "parallel": [],
+              "sequence": [
+                [
+                  "Create Purchase Order",
+                  "Set Payment Block"
+                ],
+                [
+                  "Insert Invoice",
+                  "Create Purchase Order"
+                ],
+                [
+                  "Insert Invoice",
+                  "Insert Payment"
+                ],
+                [
+                  "Remove Payment Block",
+                  "Insert Payment"
+                ],
+                [
+                  "Set Payment Block",
+                  "Remove Payment Block"
+                ]
+              ],
+              "skippable": false,
+              "start_activities": [
+                "Insert Invoice"
+              ]
+            }
+          }
+        ]
+      },
+      "Payment": {
+        "double_arcs": {
+          "Insert Payment": false
+        },
+        "object_ids": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Insert Payment"
+              ],
+              "parallel": [],
+              "sequence": [],
+              "start_activities": [
+                "Insert Payment"
+              ]
+            },
+            "seeds": [
+              0,
+              1
+            ],
+            "tree": "'Insert Payment'",
+            "tree_footprints": {
+              "activities": [
+                "Insert Payment"
+              ],
+              "activities_always_happening": [
+                "Insert Payment"
+              ],
+              "end_activities": [
+                "Insert Payment"
+              ],
+              "max_trace_length_wo_loops": 1,
+              "min_trace_length": 1,
+              "parallel": [],
+              "sequence": [],
+              "skippable": false,
+              "start_activities": [
+                "Insert Payment"
+              ]
+            }
+          }
+        ]
+      },
+      "Purchase Order": {
+        "double_arcs": {
+          "Change PO Quantity": false,
+          "Create Purchase Order": false,
+          "Insert Invoice": true
+        },
+        "object_ids": [
+          "PO1",
+          "PO2"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Change PO Quantity",
+                "Create Purchase Order",
+                "Insert Invoice"
+              ],
+              "parallel": [
+                [
+                  "Insert Invoice",
+                  "Insert Invoice"
+                ]
+              ],
+              "sequence": [
+                [
+                  "Change PO Quantity",
+                  "Insert Invoice"
+                ],
+                [
+                  "Create Purchase Order",
+                  "Change PO Quantity"
+                ]
+              ],
+              "start_activities": [
+                "Create Purchase Order"
+              ]
+            },
+            "seeds": [
+              0,
+              1
+            ],
+            "tree": "->( 'Create Purchase Order', X( tau, ->( 'Change PO Quantity', *( 'Insert Invoice', tau ) ) ) )",
+            "tree_footprints": {
+              "activities": [
+                "Change PO Quantity",
+                "Create Purchase Order",
+                "Insert Invoice"
+              ],
+              "activities_always_happening": [
+                "Create Purchase Order"
+              ],
+              "end_activities": [
+                "Create Purchase Order",
+                "Insert Invoice"
+              ],
+              "max_trace_length_wo_loops": 3,
+              "min_trace_length": 1,
+              "parallel": [
+                [
+                  "Insert Invoice",
+                  "Insert Invoice"
+                ]
+              ],
+              "sequence": [
+                [
+                  "Change PO Quantity",
+                  "Insert Invoice"
+                ],
+                [
+                  "Create Purchase Order",
+                  "Change PO Quantity"
+                ]
+              ],
+              "skippable": false,
+              "start_activities": [
+                "Create Purchase Order"
+              ]
+            }
+          }
+        ]
+      },
+      "Purchase Requisition": {
+        "double_arcs": {
+          "Approve Purchase Requisition": false,
+          "Create Purchase Order": true,
+          "Create Purchase Requisition": false
+        },
+        "object_ids": [
+          "PR1"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Approve Purchase Requisition",
+                "Create Purchase Order",
+                "Create Purchase Requisition"
+              ],
+              "parallel": [],
+              "sequence": [
+                [
+                  "Approve Purchase Requisition",
+                  "Create Purchase Order"
+                ],
+                [
+                  "Create Purchase Requisition",
+                  "Approve Purchase Requisition"
+                ]
+              ],
+              "start_activities": [
+                "Create Purchase Requisition"
+              ]
+            },
+            "seeds": [
+              0,
+              1
+            ],
+            "tree": "->( 'Create Purchase Requisition', 'Approve Purchase Requisition', 'Create Purchase Order' )",
+            "tree_footprints": {
+              "activities": [
+                "Approve Purchase Requisition",
+                "Create Purchase Order",
+                "Create Purchase Requisition"
+              ],
+              "activities_always_happening": [
+                "Approve Purchase Requisition",
+                "Create Purchase Order",
+                "Create Purchase Requisition"
+              ],
+              "end_activities": [
+                "Create Purchase Order"
+              ],
+              "max_trace_length_wo_loops": 3,
+              "min_trace_length": 3,
+              "parallel": [],
+              "sequence": [
+                [
+                  "Approve Purchase Requisition",
+                  "Create Purchase Order"
+                ],
+                [
+                  "Create Purchase Requisition",
+                  "Approve Purchase Requisition"
+                ]
+              ],
+              "skippable": false,
+              "start_activities": [
+                "Create Purchase Requisition"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "object_types": [
+      "Invoice",
+      "Payment",
+      "Purchase Order",
+      "Purchase Requisition"
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "ocpn-fallthroughs-ocel20-example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_oc_petri_net",
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "run": "fallthroughs"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

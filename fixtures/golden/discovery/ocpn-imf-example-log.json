@@ -1,0 +1,461 @@
+{
+  "expected": {
+    "activities": [
+      "Add Item to Order",
+      "Cancel Order",
+      "Confirm Order",
+      "Create Delivery",
+      "Create Order",
+      "Delivery Failed",
+      "Delivery Successful",
+      "Invoice Sent",
+      "Item back in Stock",
+      "Item out of Stock",
+      "Pay Order",
+      "Payment Reminder",
+      "Remove Item",
+      "Retry Delivery",
+      "Send for Credit Collection"
+    ],
+    "nets": {
+      "delivery": {
+        "double_arcs": {
+          "Create Delivery": false,
+          "Delivery Failed": false,
+          "Delivery Successful": false,
+          "Retry Delivery": false
+        },
+        "object_ids": [
+          "d1",
+          "d2",
+          "d3"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Create Delivery",
+                "Delivery Failed",
+                "Delivery Successful",
+                "Retry Delivery"
+              ],
+              "parallel": [],
+              "sequence": [
+                [
+                  "Create Delivery",
+                  "Delivery Failed"
+                ],
+                [
+                  "Create Delivery",
+                  "Delivery Successful"
+                ],
+                [
+                  "Create Delivery",
+                  "Retry Delivery"
+                ],
+                [
+                  "Delivery Failed",
+                  "Delivery Successful"
+                ],
+                [
+                  "Delivery Failed",
+                  "Retry Delivery"
+                ],
+                [
+                  "Retry Delivery",
+                  "Delivery Successful"
+                ]
+              ],
+              "start_activities": [
+                "Create Delivery"
+              ]
+            },
+            "seeds": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "tree": "->( 'Create Delivery', X( tau, 'Delivery Failed' ), X( tau, 'Retry Delivery' ), 'Delivery Successful' )",
+            "tree_footprints": {
+              "activities": [
+                "Create Delivery",
+                "Delivery Failed",
+                "Delivery Successful",
+                "Retry Delivery"
+              ],
+              "activities_always_happening": [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              "end_activities": [
+                "Delivery Successful"
+              ],
+              "max_trace_length_wo_loops": 4,
+              "min_trace_length": 2,
+              "parallel": [],
+              "sequence": [
+                [
+                  "Create Delivery",
+                  "Delivery Failed"
+                ],
+                [
+                  "Create Delivery",
+                  "Delivery Successful"
+                ],
+                [
+                  "Create Delivery",
+                  "Retry Delivery"
+                ],
+                [
+                  "Delivery Failed",
+                  "Delivery Successful"
+                ],
+                [
+                  "Delivery Failed",
+                  "Retry Delivery"
+                ],
+                [
+                  "Retry Delivery",
+                  "Delivery Successful"
+                ]
+              ],
+              "skippable": false,
+              "start_activities": [
+                "Create Delivery"
+              ]
+            }
+          }
+        ]
+      },
+      "element": {
+        "double_arcs": {
+          "Add Item to Order": false,
+          "Create Delivery": true,
+          "Create Order": true,
+          "Item back in Stock": false,
+          "Item out of Stock": false,
+          "Remove Item": false
+        },
+        "object_ids": [
+          "i1",
+          "i2",
+          "i3",
+          "i4",
+          "i5",
+          "i6",
+          "i7",
+          "i8",
+          "i9"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Add Item to Order",
+                "Create Delivery",
+                "Create Order",
+                "Item back in Stock",
+                "Item out of Stock",
+                "Remove Item"
+              ],
+              "parallel": [],
+              "sequence": [
+                [
+                  "Add Item to Order",
+                  "Create Delivery"
+                ],
+                [
+                  "Create Order",
+                  "Create Delivery"
+                ],
+                [
+                  "Create Order",
+                  "Item back in Stock"
+                ],
+                [
+                  "Create Order",
+                  "Item out of Stock"
+                ],
+                [
+                  "Item back in Stock",
+                  "Create Delivery"
+                ],
+                [
+                  "Item out of Stock",
+                  "Create Delivery"
+                ],
+                [
+                  "Item out of Stock",
+                  "Item back in Stock"
+                ]
+              ],
+              "start_activities": [
+                "Add Item to Order",
+                "Create Order",
+                "Remove Item"
+              ]
+            },
+            "seeds": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "tree": "X( 'Remove Item', ->( X( 'Add Item to Order', ->( 'Create Order', X( tau, 'Item out of Stock' ), X( tau, 'Item back in Stock' ) ) ), 'Create Delivery' ) )",
+            "tree_footprints": {
+              "activities": [
+                "Add Item to Order",
+                "Create Delivery",
+                "Create Order",
+                "Item back in Stock",
+                "Item out of Stock",
+                "Remove Item"
+              ],
+              "activities_always_happening": [],
+              "end_activities": [
+                "Create Delivery",
+                "Remove Item"
+              ],
+              "max_trace_length_wo_loops": 4,
+              "min_trace_length": 1,
+              "parallel": [],
+              "sequence": [
+                [
+                  "Add Item to Order",
+                  "Create Delivery"
+                ],
+                [
+                  "Create Order",
+                  "Create Delivery"
+                ],
+                [
+                  "Create Order",
+                  "Item back in Stock"
+                ],
+                [
+                  "Create Order",
+                  "Item out of Stock"
+                ],
+                [
+                  "Item back in Stock",
+                  "Create Delivery"
+                ],
+                [
+                  "Item out of Stock",
+                  "Create Delivery"
+                ],
+                [
+                  "Item out of Stock",
+                  "Item back in Stock"
+                ]
+              ],
+              "skippable": false,
+              "start_activities": [
+                "Add Item to Order",
+                "Create Order",
+                "Remove Item"
+              ]
+            }
+          }
+        ]
+      },
+      "order": {
+        "double_arcs": {
+          "Add Item to Order": false,
+          "Cancel Order": false,
+          "Confirm Order": false,
+          "Create Order": false,
+          "Invoice Sent": false,
+          "Pay Order": false,
+          "Payment Reminder": false,
+          "Send for Credit Collection": false
+        },
+        "object_ids": [
+          "o1",
+          "o2",
+          "o3"
+        ],
+        "runs": [
+          {
+            "petri_net_footprints": {
+              "activities": [
+                "Add Item to Order",
+                "Cancel Order",
+                "Confirm Order",
+                "Create Order",
+                "Invoice Sent",
+                "Pay Order",
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              "parallel": [
+                [
+                  "Payment Reminder",
+                  "Payment Reminder"
+                ]
+              ],
+              "sequence": [
+                [
+                  "Add Item to Order",
+                  "Invoice Sent"
+                ],
+                [
+                  "Confirm Order",
+                  "Invoice Sent"
+                ],
+                [
+                  "Create Order",
+                  "Add Item to Order"
+                ],
+                [
+                  "Create Order",
+                  "Cancel Order"
+                ],
+                [
+                  "Create Order",
+                  "Confirm Order"
+                ],
+                [
+                  "Invoice Sent",
+                  "Pay Order"
+                ],
+                [
+                  "Invoice Sent",
+                  "Payment Reminder"
+                ],
+                [
+                  "Invoice Sent",
+                  "Send for Credit Collection"
+                ],
+                [
+                  "Payment Reminder",
+                  "Send for Credit Collection"
+                ]
+              ],
+              "start_activities": [
+                "Create Order"
+              ]
+            },
+            "seeds": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "tree": "->( 'Create Order', X( 'Cancel Order', ->( X( 'Add Item to Order', 'Confirm Order' ), 'Invoice Sent', X( 'Pay Order', ->( *( tau, 'Payment Reminder' ), 'Send for Credit Collection' ) ) ) ) )",
+            "tree_footprints": {
+              "activities": [
+                "Add Item to Order",
+                "Cancel Order",
+                "Confirm Order",
+                "Create Order",
+                "Invoice Sent",
+                "Pay Order",
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              "activities_always_happening": [
+                "Create Order"
+              ],
+              "end_activities": [
+                "Cancel Order",
+                "Pay Order",
+                "Send for Credit Collection"
+              ],
+              "max_trace_length_wo_loops": 4,
+              "min_trace_length": 2,
+              "parallel": [
+                [
+                  "Payment Reminder",
+                  "Payment Reminder"
+                ]
+              ],
+              "sequence": [
+                [
+                  "Add Item to Order",
+                  "Invoice Sent"
+                ],
+                [
+                  "Confirm Order",
+                  "Invoice Sent"
+                ],
+                [
+                  "Create Order",
+                  "Add Item to Order"
+                ],
+                [
+                  "Create Order",
+                  "Cancel Order"
+                ],
+                [
+                  "Create Order",
+                  "Confirm Order"
+                ],
+                [
+                  "Invoice Sent",
+                  "Pay Order"
+                ],
+                [
+                  "Invoice Sent",
+                  "Payment Reminder"
+                ],
+                [
+                  "Invoice Sent",
+                  "Send for Credit Collection"
+                ],
+                [
+                  "Payment Reminder",
+                  "Send for Credit Collection"
+                ]
+              ],
+              "skippable": false,
+              "start_activities": [
+                "Create Order"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "object_types": [
+      "delivery",
+      "element",
+      "order"
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "ocpn-imf-example-log",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_oc_petri_net",
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "run": "imf"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
