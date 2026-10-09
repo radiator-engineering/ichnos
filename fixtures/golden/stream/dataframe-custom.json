@@ -1,0 +1,93 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": "c"
+            },
+            "events": [
+              {
+                "concept:name": "λ",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "103c45203f227e541f9dd7eccdef09009be1454cb7785c813632957de9eb0d7b"
+    },
+    "grouped_input": false,
+    "raw": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": "c"
+            },
+            "events": [
+              {
+                "concept:name": "λ",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "103c45203f227e541f9dd7eccdef09009be1454cb7785c813632957de9eb0d7b"
+    },
+    "traces": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "attributes": {
+              "concept:name": "c"
+            },
+            "events": [
+              {
+                "concept:name": "λ",
+                "time:timestamp": {
+                  "date": "2024-01-01T00:00:00.000000+00:00"
+                }
+              }
+            ]
+          }
+        ]
+      ],
+      "sha256": "103c45203f227e541f9dd7eccdef09009be1454cb7785c813632957de9eb0d7b"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dataframe-custom",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.conversion.from_pandas.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "custom": true,
+      "interleaved": false,
+      "rows": [
+        [
+          "c",
+          "λ",
+          "2024-01-01T00:00:00+00:00"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

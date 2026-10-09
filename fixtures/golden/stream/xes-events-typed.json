@@ -1,0 +1,133 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "b": true,
+            "case:concept:name": "c",
+            "case:owner": "λ",
+            "concept:name": {
+              "meta": {
+                "nested": "v"
+              },
+              "value": "a"
+            },
+            "f": 2.5,
+            "id": "α",
+            "items": {
+              "list": [
+                [
+                  "k",
+                  "v"
+                ],
+                [
+                  "k",
+                  2
+                ]
+              ]
+            },
+            "n": 3,
+            "time:timestamp": {
+              "date": "2024-01-01T00:00:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "f4a1d73567269d70ed080252c9761935078a4783f348f9a74b04b8c3cc8d0c19"
+    },
+    "items": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "b": true,
+            "case:concept:name": "c",
+            "case:owner": "λ",
+            "concept:name": {
+              "meta": {
+                "nested": "v"
+              },
+              "value": "a"
+            },
+            "f": 2.5,
+            "id": "α",
+            "items": {
+              "list": [
+                [
+                  "k",
+                  "v"
+                ],
+                [
+                  "k",
+                  2
+                ]
+              ]
+            },
+            "n": 3,
+            "time:timestamp": {
+              "date": "2024-01-01T00:00:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "f4a1d73567269d70ed080252c9761935078a4783f348f9a74b04b8c3cc8d0c19"
+    },
+    "reset": {
+      "count": 1,
+      "samples": [
+        [
+          0,
+          {
+            "b": true,
+            "case:concept:name": "c",
+            "case:owner": "λ",
+            "concept:name": {
+              "meta": {
+                "nested": "v"
+              },
+              "value": "a"
+            },
+            "f": 2.5,
+            "id": "α",
+            "items": {
+              "list": [
+                [
+                  "k",
+                  "v"
+                ],
+                [
+                  "k",
+                  2
+                ]
+              ]
+            },
+            "n": 3,
+            "time:timestamp": {
+              "date": "2024-01-01T00:00:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "f4a1d73567269d70ed080252c9761935078a4783f348f9a74b04b8c3cc8d0c19"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "xes-events-typed",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.importer.xes.importer.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "kind": "events",
+      "xml": "<log><trace><string key=\"concept:name\" value=\"c\"/><string key=\"owner\" value=\"λ\"/>\n<event><string key=\"concept:name\" value=\"a\"><string key=\"nested\" value=\"v\"/></string>\n<string key=\"case:concept:name\" value=\"overwritten\"/><int key=\"n\" value=\"3\"/><float key=\"f\" value=\"2.5\"/>\n<boolean key=\"b\" value=\"true\"/><date key=\"time:timestamp\" value=\"2024-01-01T02:00:00+02:00\"/>\n<id key=\"id\" value=\"α\"/><list key=\"items\"><values><string key=\"k\" value=\"v\"/><int key=\"k\" value=\"2\"/></values></list>\n</event></trace><trace><string key=\"concept:name\" value=\"empty\"/></trace></log>"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

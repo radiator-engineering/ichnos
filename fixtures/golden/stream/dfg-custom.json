@@ -1,0 +1,158 @@
+{
+  "expected": {
+    "collected": {
+      "count": 3,
+      "samples": [
+        [
+          0,
+          {
+            "case": "1",
+            "task": "α"
+          }
+        ],
+        [
+          1,
+          {
+            "case": "2",
+            "task": "β"
+          }
+        ],
+        [
+          2,
+          {
+            "case": "1",
+            "task": "β"
+          }
+        ]
+      ],
+      "sha256": "355ea0b5c64835379d697e38122599853d93712d9c27b9f183909d0d76014c1d"
+    },
+    "live_model": {
+      "activities": {
+        "α": 1,
+        "β": 2
+      },
+      "edges": [
+        [
+          "α",
+          "β",
+          1
+        ]
+      ],
+      "ends": {
+        "β": 2
+      },
+      "starts": {
+        "α": 1,
+        "β": 1
+      }
+    },
+    "removed_count": 0,
+    "snapshots": [
+      {
+        "at": 0,
+        "model": {
+          "activities": {},
+          "edges": [],
+          "ends": {},
+          "starts": {}
+        }
+      },
+      {
+        "at": 1,
+        "model": {
+          "activities": {
+            "α": 1
+          },
+          "edges": [],
+          "ends": {
+            "α": 1
+          },
+          "starts": {
+            "α": 1
+          }
+        }
+      },
+      {
+        "at": 2,
+        "model": {
+          "activities": {
+            "α": 1,
+            "β": 1
+          },
+          "edges": [],
+          "ends": {
+            "α": 1,
+            "β": 1
+          },
+          "starts": {
+            "α": 1,
+            "β": 1
+          }
+        }
+      },
+      {
+        "at": 3,
+        "model": {
+          "activities": {
+            "α": 1,
+            "β": 2
+          },
+          "edges": [
+            [
+              "α",
+              "β",
+              1
+            ]
+          ],
+          "ends": {
+            "β": 2
+          },
+          "starts": {
+            "α": 1,
+            "β": 1
+          }
+        }
+      }
+    ],
+    "states": [
+      "inactive",
+      "active",
+      "finished"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dfg-custom",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.discovery.dfg.algorithm.apply",
+      "pm4py.streaming.algo.discovery.dfg.variants.frequency.apply",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.receive",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.get",
+      "pm4py.streaming.stream.live_event_stream.LiveEventStream",
+      "pm4py.streaming.util.live_to_static_stream.LiveToStaticStream"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "task",
+      "case_key": "case",
+      "events": [
+        {
+          "case": "1",
+          "task": "α"
+        },
+        {
+          "case": "2",
+          "task": "β"
+        },
+        {
+          "case": "1",
+          "task": "β"
+        }
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -17,3 +17,6 @@ pub use ichnos_model as model;
 /// Conformance checking: alignments, fitness and precision. See
 /// [`ichnos_conformance`].
 pub use ichnos_conformance as conformance;
+
+/// Live streams, incremental readers and online mining. See [`ichnos_stream`].
+pub use ichnos_stream as stream;

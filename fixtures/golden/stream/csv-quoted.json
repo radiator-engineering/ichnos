@@ -1,0 +1,85 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "c1",
+            "concept:name": "a,b",
+            "extra": "line one\nline two"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "c1",
+            "concept:name": "a\"b",
+            "extra": ""
+          }
+        ]
+      ],
+      "sha256": "a56346ac112ac7c6062f09c5a469598b60d584147bef61d95116c1c9cc11f169"
+    },
+    "items": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "c1",
+            "concept:name": "a,b",
+            "extra": "line one\nline two"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "c1",
+            "concept:name": "a\"b",
+            "extra": ""
+          }
+        ]
+      ],
+      "sha256": "a56346ac112ac7c6062f09c5a469598b60d584147bef61d95116c1c9cc11f169"
+    },
+    "reset": {
+      "count": 2,
+      "samples": [
+        [
+          0,
+          {
+            "case:concept:name": "c1",
+            "concept:name": "a,b",
+            "extra": "line one\nline two"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "c1",
+            "concept:name": "a\"b",
+            "extra": ""
+          }
+        ]
+      ],
+      "sha256": "a56346ac112ac7c6062f09c5a469598b60d584147bef61d95116c1c9cc11f169"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "csv-quoted",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.importer.csv.importer.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "csv_text": "case:concept:name,concept:name,extra\nc1,\"a,b\",\"line one\nline two\"\nc1,\"a\"\"b\",\n",
+      "kind": "csv"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
