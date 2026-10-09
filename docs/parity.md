@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 307; ported: 190; dropped: 129; total: 626.
+todo: 306; ported: 191; dropped: 129; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -72,7 +72,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.discover_footprints` | `discovery.py` → `algo/discovery/footprints/algorithm`, `objects/log/obj`, `objects/petri_net/obj`, `objects/powl/obj`, `objects/process_tree/obj` | `ichnos::discovery::footprints` (planned) | `ichnos-discovery` | todo | Variants: dfg, entire_dataframe, entire_event_log, petri_reach_graph, polars_lazyframes, powl, process_tree, trace_by_trace. |
 | `pm4py.discover_eventually_follows_graph` | `discovery.py` → `objects/log/obj`, `statistics/eventually_follows/log/get`, `statistics/eventually_follows/pandas/get`, `statistics/eventually_follows/polars/get` | `ichnos_discovery::eventually_follows_graph` | `ichnos-discovery` | ported | Seven goldens compare temporal pair counts exactly, including overlaps, timestamp ties, and interval starts. Reuses stats temporal relations. Typed first-eligible-follower option exposes the log backend’s extension. Starts use completion timestamps by default, including custom keys; pm4py’s custom-key wrapper needs an explicit start-key property. Missing or non-date timestamps return positional core errors. |
 | `pm4py.discover_bpmn_inductive` | `discovery.py` → `algo/discovery/inductive/algorithm`, `objects/bpmn/obj`, `objects/dfg/obj`, `objects/log/obj` | `ichnos::discovery::bpmn_inductive` (planned) | `ichnos-discovery` | todo | Variants: abc, im, imd, imf, instances. |
-| `pm4py.discover_bpmn_split_miner` | `discovery.py` → `algo/discovery/split_miner/algorithm`, `algo/discovery/split_miner/variants/classic`, `algo/discovery/split_miner/variants/sm2`, `objects/bpmn/obj`, `objects/log/obj` | `ichnos::discovery::bpmn_split_miner` (planned) | `ichnos-discovery` | todo | Variants: abc, classic, sm2. |
+| `pm4py.discover_bpmn_split_miner` | `discovery.py` → `algo/discovery/split_miner/algorithm`, `algo/discovery/split_miner/variants/classic`, `algo/discovery/split_miner/variants/sm2`, `objects/bpmn/obj`, `objects/log/obj` | `ichnos_discovery::bpmn_split_miner` | `ichnos-discovery` | ported | Classic and lifecycle-aware SM2 follow pm4py classic.apply and sm2.apply. 33 pm4py goldens compare complete typed graph isomorphism across nine distinct variant settings, including OR-split promotion. See ichnos-discovery (split miner) Behaviour changes. |
 | `pm4py.discover_transition_system` | `discovery.py` → `algo/discovery/transition_system/algorithm`, `objects/log/obj`, `objects/transition_system/obj` | `ichnos::discovery::transition_system` (planned) | `ichnos-discovery` | todo | Variants: view_based. |
 | `pm4py.discover_prefix_tree` | `discovery.py` → `algo/transformation/log_to_trie/algorithm`, `objects/log/obj`, `objects/trie/obj` | `ichnos::discovery::prefix_tree` (planned) | `ichnos-discovery` | todo | Single entry point; preserve source defaults. |
 | `pm4py.discover_temporal_profile` | `discovery.py` → `algo/discovery/temporal_profile/algorithm`, `objects/log/obj` | `ichnos_discovery::discover_temporal_profile` | `ichnos-discovery` | ported | Golden discovery cases `temporal-profile-*` on running-example, receipt, roadtraffic100traces and interval_event_log CSV, with elapsed time and default business hours. One implementation matches both pm4py variants (log and dataframe). `TemporalProfileOptions::use_start_timestamp` picks the start timestamp explicitly; the interval log case covers it. See the ichnos-discovery (temporal profile) Behaviour changes. |
@@ -1410,6 +1410,15 @@ Rows cite these as `core-N`.
 7. **`extended_cyclomatic` is ported as pm4py computes it.** pm4py's graph joins each state to the name of each transition leaving it, not to the next state, so the metric is the number of distinct (state, transition name) pairs, not the cyclomatic number of the reachability graph.
 8. **Synchronous products keep the model's arc weights and kinds.** pm4py copies every arc as a normal arc of weight 1. Product nodes are named `"(x, y)"` strings, not tuples.
 9. **`marking_from_names` returns `AnalysisError::UnknownPlace`** for a name no place has; pm4py raises `KeyError`.
+
+### ichnos-discovery (split miner)
+
+- One native Rust pipeline shares frequency filtering, split hierarchy, ordered triconnected-component/RPST joins and gateway normalization across classic and SM2. No Python runtime dependency. Defaults remain classic, epsilon 0.1, eta 0.4 and inclusive-join minimization enabled; SM2 fixes eta to one and always handles OR gateways.
+- Input is canonical EventLog/EventKeys. Core activity coercion and positional errors replace pm4py activity skipping; classic uses recorded event order and ignores empty traces. SM2 uses lifecycle transitions, stable completion-timestamp sorting at Python datetime microsecond precision when every event has a timestamp, and recorded order otherwise. Empty logs are typed errors; SM2 retains empty traces as a start/end path. Thresholds must be finite fractions in [0,1], except eta is ignored for SM2 as in pm4py.
+- Arena identities keep synthetic boundaries/gateways separate from equally named activities. Stable arena identities replace pm4py task-label, gateway-counter and loop naming schemes; deterministic flow IDs replace UUID flow IDs (RPST virtual edges also use UUIDs in pm4py). Complete BPMN node kinds, task labels, flow multiplicities and SM2 loop markers are checked up to graph isomorphism, rather than comparing IDs or layout. A detailed result exposes informational self-loop task IDs instead of Python's private _sm_looped attribute; those markers do not add flows.
+- Both public variants are covered on all five real fixtures and synthetic empty, sequence, XOR/parallel, self/short-loop, nested/rigid, Unicode/custom-key, lifecycle overlap/OR/sorting/fallback cases and eight deterministic generated trace sets. The precomputed-DFG discovery entry point is not ported; paths can be loaded separately through reader APIs; no soundness or boundedness guarantee is added.
+
+- Thirty-three pm4py goldens compare complete graphs for five classic settings (including eta varied independently at epsilon 0.1) and four distinct SM2 epsilon settings (0, 0.1, 0.5 and 1). A three-branch lifecycle case reaches SM2 OR-split promotion and matching inclusive join; SM2 ignores eta and join-minimization settings.
 
 ## Proposed lanes
 
