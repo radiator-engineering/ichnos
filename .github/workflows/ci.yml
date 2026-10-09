@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_BUILD_JOBS: "6"
+
+jobs:
+  check:
+    # The org's self-hosted DGX runners serve every private repo in the org.
+    runs-on: [self-hosted, Linux, ARM64, dgx]
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up cargo
+        # Keep build output outside the checkout: actions/checkout cleans
+        # ignored files, which would make every build cold. One target dir
+        # per runner, so parallel jobs never share one.
+        run: |
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          echo "CARGO_TARGET_DIR=$HOME/.cache/ichnos-ci/$RUNNER_NAME" >> "$GITHUB_ENV"
+      - name: Toolchain
+        run: rustup show active-toolchain && cargo --version
+      - name: fmt
+        run: cargo fmt --all --check
+      - name: clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: test
+        run: cargo test --workspace
