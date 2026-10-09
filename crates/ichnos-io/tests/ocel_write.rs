@@ -1,4 +1,4 @@
-//! The OCEL JSON, XML and CSV writers against pm4py's.
+//! The OCEL JSON, XML, CSV and SQLite writers against pm4py's.
 //!
 //! Each `ocel/write-*` golden holds the tables pm4py's writers start from
 //! (`input`), the log's globals, and the file each writer gives. This test
@@ -18,6 +18,13 @@
 //! name. When both headers are the same, the files must agree byte for
 //! byte.
 //!
+//! A SQLite database is compared table by table: each table's name, its
+//! columns with their types and its rows with their storage classes. pm4py's
+//! column order follows the data frame its reader built, so the columns may
+//! come in another order; when the order is the same, the `CREATE TABLE`
+//! statements must match. A pm4py column with no values that ichnos does not
+//! write, and pm4py's leaked `@@cumcount` helper column, are left out.
+//!
 //! A second test reads each fixture with the ichnos reader, writes it and
 //! compares the files with pm4py's read-then-write output in the same way.
 
@@ -29,11 +36,12 @@ use chrono::DateTime;
 use ichnos_core::{AttributeValue, Attributes};
 use ichnos_golden::{cases, golden};
 use ichnos_io::{
-    OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_json, read_ocel_xml, read_ocel2,
-    read_ocel2_csv, read_ocel2_json, read_ocel2_xml, write_ocel, write_ocel_csv_to_writer,
-    write_ocel_json, write_ocel_json_to_writer, write_ocel_xml, write_ocel_xml_to_writer,
-    write_ocel2, write_ocel2_csv, write_ocel2_csv_to_writer, write_ocel2_json,
-    write_ocel2_json_to_writer, write_ocel2_xml, write_ocel2_xml_to_writer,
+    OcelReadOptions, read_ocel, read_ocel_csv, read_ocel_json, read_ocel_sqlite, read_ocel_xml,
+    read_ocel2, read_ocel2_csv, read_ocel2_json, read_ocel2_sqlite, read_ocel2_xml, write_ocel,
+    write_ocel_csv_to_writer, write_ocel_json, write_ocel_json_to_writer, write_ocel_sqlite,
+    write_ocel_xml, write_ocel_xml_to_writer, write_ocel2, write_ocel2_csv,
+    write_ocel2_csv_to_writer, write_ocel2_json, write_ocel2_json_to_writer, write_ocel2_sqlite,
+    write_ocel2_xml, write_ocel2_xml_to_writer,
 };
 use ichnos_ocel::{
     EventEvent, EventObject, ObjectChange, ObjectObject, Ocel, OcelEvent, OcelObject,
@@ -70,6 +78,15 @@ const PM4PY_FAILS: &[(&str, &str)] = &[("write-typed20-xmlocel", "xml2")];
 /// and ichnos writes the time as pandas formats it. These cases compare
 /// times as instants.
 const TEXT_TIMES: &[&str] = &["write-typed20-xmlocel"];
+
+/// Where pm4py's OCEL 2.0 SQLite reader leaves its `@@cumcount` helper
+/// column in the object changes, so pm4py writes it as an attribute.
+/// ichnos drops the helper column; these files are not compared.
+const CUMCOUNT_LEAK: &[(&str, &str)] = &[
+    ("write-ocel20-example-sqlite", "json"),
+    ("write-ocel20-example-sqlite", "json2"),
+    ("write-ocel20-example-sqlite", "xml2"),
+];
 
 /// Where pm4py's reader leaves the object attribute columns as pandas
 /// `object` columns, so its OCEL 1.0 XML writer tags every object value as
@@ -634,7 +651,7 @@ fn write_cases() -> Vec<String> {
 #[test]
 fn writers_match_pm4py() {
     let ids = write_cases();
-    assert_eq!(ids.len(), 15, "cases: {ids:?}");
+    assert_eq!(ids.len(), 18, "cases: {ids:?}");
     let mut failures = Vec::new();
     for id in &ids {
         let g = golden("ocel", id);
@@ -674,6 +691,8 @@ fn writers_match_pm4py_from_files() {
             "pm4py.read_ocel2_json" => read_ocel2_json(&path),
             "pm4py.read_ocel2_xml" => read_ocel2_xml(&path, &options),
             "pm4py.read_ocel2_csv" => read_ocel2_csv(&path),
+            "pm4py.read_ocel_sqlite" => read_ocel_sqlite(&path),
+            "pm4py.read_ocel2_sqlite" => read_ocel2_sqlite(&path),
             "pm4py.read_ocel_csv" => read_ocel_csv(&path, Some(&g.fixture("objects"))),
             other => panic!("{id}: unknown reader {other}"),
         }
@@ -687,7 +706,7 @@ fn writers_match_pm4py_from_files() {
         compare_writers(id, &g.expected, &ocel, &mut failures);
         checked += 1;
     }
-    assert_eq!(checked, 9);
+    assert_eq!(checked, 12);
     assert!(failures.is_empty(), "{}", failures.join("\n\n"));
 }
 
@@ -707,6 +726,9 @@ fn compare_writers(id: &str, expected: &Value, ocel: &Ocel, failures: &mut Vec<S
             continue;
         }
         result.unwrap_or_else(|e| panic!("{id} {name}: {e}"));
+        if CUMCOUNT_LEAK.contains(&(id, name)) {
+            continue;
+        }
         let ours = String::from_utf8(out).expect("UTF-8");
         let theirs = want["text"].as_str().expect("text");
         if BYTE_EXACT
@@ -750,6 +772,173 @@ fn compare_writers(id: &str, expected: &Value, ocel: &Ocel, failures: &mut Vec<S
     } else {
         result.unwrap_or_else(|e| panic!("{id} csv2: {e}"));
         compare_csv(&format!("{id} csv2"), &out, &want["text"], failures);
+    }
+    type SqliteWriter = fn(&Ocel, &std::path::Path) -> ichnos_io::Result<()>;
+    let sqlite: [(&str, SqliteWriter); 2] = [
+        ("sqlite", |o, p| write_ocel_sqlite(o, p)),
+        ("sqlite2", |o, p| write_ocel2_sqlite(o, p)),
+    ];
+    for (name, write) in sqlite {
+        let want = &expected["writers"][name];
+        static NEXT: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
+        let path = std::env::temp_dir().join(format!(
+            "ichnos-ocel-write-{}-{}-{id}-{name}.sqlite",
+            std::process::id(),
+            NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed)
+        ));
+        let result = write(ocel, &path);
+        if let Some(error) = want.get("error") {
+            assert!(result.is_err(), "{id} {name}: pm4py raises {error}");
+            continue;
+        }
+        result.unwrap_or_else(|e| panic!("{id} {name}: {e}"));
+        compare_sqlite(
+            &format!("{id} {name}"),
+            &dump_sqlite(&path),
+            &want["tables"],
+            failures,
+        );
+        std::fs::remove_file(&path).unwrap();
+    }
+}
+
+/// A database as the golden records it: per table its type, name, SQL and
+/// rows of `[storage class, value]` cells.
+fn dump_sqlite(path: &std::path::Path) -> Value {
+    use rusqlite::types::ValueRef;
+    let conn = rusqlite::Connection::open(path).unwrap();
+    let mut out = Vec::new();
+    let mut master = conn
+        .prepare("SELECT type, name, sql FROM sqlite_master ORDER BY rowid")
+        .unwrap();
+    let entries: Vec<(String, String, String)> = master
+        .query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    for (kind, name, sql) in entries {
+        let quoted = name.replace('"', "\"\"");
+        let mut select = conn
+            .prepare(&format!("SELECT * FROM \"{quoted}\" ORDER BY rowid"))
+            .unwrap();
+        let n = select.column_count();
+        let rows: Vec<Value> = select
+            .query_map([], |r| {
+                Ok(Value::Array(
+                    (0..n)
+                        .map(|i| match r.get_ref(i).unwrap() {
+                            ValueRef::Null => Value::Null,
+                            ValueRef::Integer(v) => serde_json::json!(["integer", v]),
+                            ValueRef::Real(v) => serde_json::json!(["real", v]),
+                            ValueRef::Text(v) => {
+                                serde_json::json!(["text", std::str::from_utf8(v).unwrap()])
+                            }
+                            ValueRef::Blob(_) => panic!("blob"),
+                        })
+                        .collect(),
+                ))
+            })
+            .unwrap()
+            .map(Result::unwrap)
+            .collect();
+        out.push(serde_json::json!({"type": kind, "name": name, "sql": sql, "rows": rows}));
+    }
+    Value::Array(out)
+}
+
+/// The column names and types of pandas' `CREATE TABLE "t" (\n"a" TEXT,\n  "b" REAL\n)`.
+fn sql_columns(sql: &str) -> Vec<(String, String)> {
+    let body = &sql[sql.find("(\n").expect("columns") + 2..sql.rfind("\n)").expect("end")];
+    body.split(",\n")
+        .map(|line| {
+            let line = line.trim_start();
+            let end = line.rfind(' ').expect("type");
+            let name = &line[1..end - 1];
+            (name.replace("\"\"", "\""), line[end + 1..].to_string())
+        })
+        .collect()
+}
+
+fn compare_sqlite(what: &str, ours: &Value, theirs: &Value, failures: &mut Vec<String>) {
+    let names = |v: &Value| -> Vec<String> {
+        v.as_array()
+            .unwrap()
+            .iter()
+            .map(|t| t["name"].as_str().unwrap().to_string())
+            .collect()
+    };
+    if names(ours) != names(theirs) {
+        failures.push(format!(
+            "{what}: tables {:?}, pm4py {:?}",
+            names(ours),
+            names(theirs)
+        ));
+        return;
+    }
+    for (a, b) in ours
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(theirs.as_array().unwrap())
+    {
+        let table = format!("{what} {}", a["name"]);
+        let (ca, cb) = (
+            sql_columns(a["sql"].as_str().unwrap()),
+            sql_columns(b["sql"].as_str().unwrap()),
+        );
+        let all_rows_b = b["rows"].as_array().unwrap();
+        // pm4py's leaked helper column, and columns with no values that
+        // ichnos does not write.
+        let keep: Vec<usize> = (0..cb.len())
+            .filter(|&i| {
+                cb[i].0 != "@@cumcount"
+                    && (ca.iter().any(|c| c.0 == cb[i].0)
+                        || all_rows_b.iter().any(|r| !r[i].is_null()))
+            })
+            .collect();
+        let dropped = keep.len() != cb.len();
+        let cb: Vec<(String, String)> = keep.iter().map(|&i| cb[i].clone()).collect();
+        let mut rows_b: Vec<Value> = all_rows_b
+            .iter()
+            .map(|r| Value::Array(keep.iter().map(|&i| r[i].clone()).collect()))
+            .collect();
+        if ca != cb {
+            let mut sa = ca.clone();
+            let mut sb = cb.clone();
+            sa.sort();
+            sb.sort();
+            if sa != sb {
+                failures.push(format!("{table}: columns {ca:?}, pm4py {cb:?}"));
+                continue;
+            }
+            let at: Vec<usize> = ca
+                .iter()
+                .map(|c| cb.iter().position(|d| d == c).unwrap())
+                .collect();
+            rows_b = rows_b
+                .iter()
+                .map(|r| Value::Array(at.iter().map(|&i| r[i].clone()).collect()))
+                .collect();
+        } else if !dropped && a["sql"] != b["sql"] {
+            failures.push(format!("{table}: SQL {}, pm4py {}", a["sql"], b["sql"]));
+        }
+        let rows_a = a["rows"].as_array().unwrap();
+        if rows_a.len() != rows_b.len() {
+            failures.push(format!(
+                "{table}: {} rows, pm4py {}",
+                rows_a.len(),
+                rows_b.len()
+            ));
+            continue;
+        }
+        if let Some((i, (x, y))) = rows_a
+            .iter()
+            .zip(&rows_b)
+            .enumerate()
+            .find(|(_, (x, y))| x != y)
+        {
+            failures.push(format!("{table}: row {i}\n  ours:  {x}\n  pm4py: {y}"));
+        }
     }
 }
 
@@ -829,6 +1018,29 @@ fn files_read_back() {
         read_ocel_xml(&path, &options).unwrap().events.len(),
         ocel.events.len()
     );
+
+    // SQLite: `.sqlite` is added to a name that does not end in `sqlite`.
+    write_ocel2_sqlite(&ocel, dir.join("e")).unwrap();
+    assert_eq!(
+        read_ocel2_sqlite(dir.join("e.sqlite")).unwrap().relations,
+        ocel.relations
+    );
+    write_ocel2(&ocel, dir.join("f.SQLITE")).unwrap();
+    assert_eq!(
+        read_ocel2_sqlite(dir.join("f.SQLITE"))
+            .unwrap()
+            .events
+            .len(),
+        ocel.events.len()
+    );
+    write_ocel_sqlite(&ocel, dir.join("g.sqlite")).unwrap();
+    write_ocel_sqlite(&ocel, dir.join("g.sqlite")).unwrap();
+    assert_eq!(
+        read_ocel_sqlite(dir.join("g.sqlite")).unwrap().relations,
+        ocel.relations
+    );
+    write_ocel(&ocel, dir.join("h.sqlite")).unwrap();
+    assert!(dir.join("h.sqlite").exists());
 
     // `write_ocel`: `jsonocel`, `xmlocel` and `csv`.
     write_ocel(&ocel, dir.join("c.JSONOCEL")).unwrap();

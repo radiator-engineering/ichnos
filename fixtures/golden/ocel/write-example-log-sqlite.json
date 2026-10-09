@@ -1,23 +1,6 @@
 {
   "expected": {
-    "globals": {
-      "ocel:global-event": {
-        "ocel:activity": "__INVALID__"
-      },
-      "ocel:global-log": {
-        "ocel:attribute-names": [],
-        "ocel:object-types": [
-          "delivery",
-          "element",
-          "order"
-        ],
-        "ocel:ordering": "timestamp",
-        "ocel:version": "1.0"
-      },
-      "ocel:global-object": {
-        "ocel:type": "__INVALID__"
-      }
-    },
+    "globals": {},
     "input": {
       "e2e": [],
       "events": [
@@ -5177,12 +5160,12 @@
   },
   "meta": {
     "area": "ocel",
-    "case": "write-example-log-jsonocel",
+    "case": "write-example-log-sqlite",
     "fixtures": {
-      "log": "fixtures/logs/ocel/example_log.jsonocel"
+      "log": "fixtures/logs/ocel/example_log.sqlite"
     },
     "functions": [
-      "pm4py.read_ocel_json",
+      "pm4py.read_ocel_sqlite",
       "pm4py.write_ocel_json",
       "pm4py.write_ocel_xml",
       "pm4py.write_ocel2_json",
