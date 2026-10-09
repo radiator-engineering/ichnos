@@ -101,8 +101,8 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.precision_footprints` | `conformance.py` → `algo/conformance/footprints/util/evaluation` | `ichnos::conformance::footprints::precision_footprints` | `ichnos-conformance` | ported | Goldens `conformance/footprints-*`, from the `EventLog` and from whole-log footprints (same value). Single entry point; preserve source defaults. |
 | `pm4py.check_is_fitting` | `conformance.py` → `objects/log/obj`, `objects/petri_net/obj`, `objects/process_tree/obj` | `ichnos::conformance::token_replay::check_is_fitting` | `ichnos-conformance` | ported | Goldens `conformance/footprints-*` (every variant, nets and trees). `check_is_fitting` takes a net, `check_is_fitting_tree` a tree. pm4py first tries to turn a net into a tree; ichnos always checks a net as a net, which gives the same answer. |
 | `pm4py.conformance_temporal_profile` | `conformance.py` → `algo/conformance/temporal_profile/algorithm`, `objects/log/obj` | `ichnos_conformance::temporal_profile::conformance_temporal_profile` | `ichnos-conformance` | ported | Golden conformance cases `temporal-profile-*` on running-example, receipt, roadtraffic100traces and interval_event_log CSV: zeta 1 and 6, default business hours, and a profile from every other case, so that pairs with a standard deviation of 0 deviate. One implementation matches pm4py's dataframe variant. The log variant adds deviations from float noise, which the test checks. Zeta defaults to 1, as in the pm4py wrapper. See the ichnos-conformance (temporal profile) Behaviour changes. |
-| `pm4py.conformance_declare` | `conformance.py` → `algo/conformance/declare/algorithm`, `objects/log/obj` | `ichnos::conformance::conformance_declare` (planned) | `ichnos-conformance` | todo | Variants: classic. |
-| `pm4py.conformance_log_skeleton` | `conformance.py` → `algo/conformance/log_skeleton/algorithm`, `objects/log/obj` | `ichnos::conformance::conformance_log_skeleton` (planned) | `ichnos-conformance` | todo | Variants: classic. |
+| `pm4py.conformance_declare` | `conformance.py` → `algo/conformance/declare/algorithm`, `objects/log/obj` | `ichnos::discovery::conformance_declare` | `ichnos-discovery` | ported | Goldens `conformance/declare-*` on running-example, receipt, reviewing and synthetic traces, against models `pm4py.discover_declare` finds on the whole log or its first traces. In ichnos-discovery, next to the DECLARE model, because ichnos-discovery depends on ichnos-conformance. See the ichnos-conformance (declare and log skeleton) Behaviour changes. Variants: classic. |
+| `pm4py.conformance_log_skeleton` | `conformance.py` → `algo/conformance/log_skeleton/algorithm`, `objects/log/obj` | `ichnos::discovery::conformance_log_skeleton` | `ichnos-discovery` | ported | Goldens `conformance/log-skeleton-*` on running-example, receipt, reviewing and synthetic traces, against models `pm4py.discover_log_skeleton` finds at several noise thresholds, also with a subset of the constraints. In ichnos-discovery, next to the log-skeleton model, because ichnos-discovery depends on ichnos-conformance. See the ichnos-conformance (declare and log skeleton) Behaviour changes. Variants: classic. |
 | `pm4py.conformance_ocdfg` | `conformance.py` → `algo/conformance/ocel/ocdfg/algorithm`, `objects/ocel/obj` | `ichnos::conformance::conformance_ocdfg` (planned) | `ichnos-conformance` | todo | Variants: graph_comparison. |
 | `pm4py.conformance_otg` | `conformance.py` → `algo/conformance/ocel/otg/algorithm`, `objects/ocel/obj` | `ichnos::conformance::conformance_otg` (planned) | `ichnos-conformance` | todo | Variants: graph_comparison. |
 | `pm4py.conformance_etot` | `conformance.py` → `algo/conformance/ocel/etot/algorithm`, `objects/ocel/obj` | `ichnos::conformance::conformance_etot` (planned) | `ichnos-conformance` | todo | Variants: graph_comparison. |
@@ -1329,6 +1329,15 @@ Lanes record each deliberate change from pm4py here.
 - **No diagnostics dataframe.** pm4py's `return_diagnostics_dataframe` turns the result into a table with the case ID. ichnos returns one list of `TemporalDeviation` per trace, in log order.
 - **A missing or non-date timestamp is an error**, and so is an invalid business schedule. Only a trace's first event may lack a start timestamp, since no pair uses it; pm4py's log variant reads starts from the second event on too. pm4py's dataframe variant falls back to the completion timestamp only when the whole start column is missing.
 
+### ichnos-conformance (declare and log skeleton)
+
+- **The functions live in ichnos-discovery**, as `conformance_declare` and `conformance_log_skeleton`, next to the models they check. ichnos-discovery depends on ichnos-conformance, so ichnos-conformance cannot take those models.
+- **DECLARE deviations of one template come in activity order.** pm4py lists them in the order of the model's dict; an ichnos `DeclareModel` keeps its rules sorted.
+- **A DECLARE rule with the wrong number of activities for its template is an error.** pm4py's model is a plain dict, so it fails or misreads such a rule.
+- **Log-skeleton pairs of one relation come in pair order.** pm4py lists them in set order, which changes with Python's hash seed.
+- **No diagnostics dataframe.** pm4py's `return_diagnostics_dataframe` turns the result into a table with the case ID. ichnos returns one result per trace, in log order, with pm4py's fields.
+- **Activities are read as text.** A non-string activity is compared in its Python `str` form, as in discovery; pm4py compares the raw values.
+
 ### ichnos-conformance (alignments)
 
 - **`dijkstra_less_memory` is not ported, nor its generator and version forms.** It makes some silent moves free, which changes alignment costs, and its fitness leaves out the trace's log moves. `Heuristic::None` gives the costs of `dijkstra_no_heuristics`.
@@ -2185,13 +2194,13 @@ Port sources: `pm4py/algo/conformance/footprints/algorithm`, `pm4py/algo/conform
 
 ### declare-conformance
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_declare`.
+Crate: `ichnos-discovery`. Rows: `pm4py.conformance_declare`.
 
 Port sources: `pm4py/algo/conformance/declare/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`.
 
 ### log-skeleton-conformance
 
-Crate: `ichnos-conformance`. Rows: `pm4py.conformance_log_skeleton`.
+Crate: `ichnos-discovery`. Rows: `pm4py.conformance_log_skeleton`.
 
 Port sources: `pm4py/algo/conformance/log_skeleton/algorithm`, `pm4py/conformance.py`, `pm4py/objects/log/obj`.
 
