@@ -39,6 +39,14 @@ So each ``imf`` case mines the log once per seed in ``IMF_SEEDS``, each in a
 fresh interpreter, and emits ``runs``: one entry per distinct tree, with the
 three fields above and the ``seeds`` that produced it, sorted by tree.
 
+Cases ``bpmn-inductive-<variant>-<log>`` run
+``pm4py.discover_bpmn_inductive`` with the same arguments and logs as the
+``inductive`` cases. Each emits ``tree`` (the tree
+``pm4py.discover_process_tree_inductive`` gives for the same arguments) and
+``bpmn``: :func:`cases.bpmn.canonical_bpmn` of the diagram, which a Rust
+test compares up to isomorphism. The ``imf`` cases emit ``runs`` over
+``IMF_SEEDS``, grouped by tree, as above.
+
 Logs are CSV only until ichnos can read XES in the discovery tests.
 
 Temporal profile (lane ``miner-temporal-profile``), cases
@@ -130,8 +138,8 @@ def _inductive_run(path: Path, variant: str) -> dict[str, Any]:
     }
 
 
-def _inductive_seeds(path: Path, variant: str) -> dict[str, Any]:
-    """Runs :func:`_inductive_run` once per seed in ``IMF_SEEDS`` and groups
+def _inductive_seeds(path: Path, variant: str, kind: str = "tree") -> dict[str, Any]:
+    """Runs ``SEEDED_RUNS[kind]`` once per seed in ``IMF_SEEDS`` and groups
     the runs by tree."""
     golden_tools = str(Path(__file__).resolve().parents[1])
     runs: dict[str, dict[str, Any]] = {}
@@ -139,7 +147,7 @@ def _inductive_seeds(path: Path, variant: str) -> dict[str, Any]:
         env = dict(os.environ, PYTHONHASHSEED=str(seed))
         env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
         out = subprocess.run(
-            [sys.executable, __file__, str(path), variant],
+            [sys.executable, __file__, str(path), variant, kind],
             env=env,
             check=True,
             capture_output=True,
@@ -334,8 +342,52 @@ for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
     )(temporal_profile)
 
 
+BPMN_INDUCTIVE_FUNCTIONS = [
+    "pm4py.discover_bpmn_inductive",
+    "pm4py.discover_process_tree_inductive",
+]
+
+
+def bpmn_inductive(fixtures: dict[str, Path], variant: str) -> dict[str, Any]:
+    """Runs ``pm4py.discover_bpmn_inductive`` with one inductive variant on
+    the log in ``fixtures``."""
+    if variant == "imf":
+        return _inductive_seeds(fixtures["log"], variant, "bpmn")
+    return _bpmn_inductive_run(fixtures["log"], variant)
+
+
+def _bpmn_inductive_run(path: Path, variant: str) -> dict[str, Any]:
+    from cases.bpmn import canonical_bpmn
+
+    kwargs, on_dfg = INDUCTIVE_VARIANTS[variant]
+    log = load_log(path)
+    source = DFG(*pm4py.discover_dfg(log)) if on_dfg else log
+    return {
+        "tree": str(pm4py.discover_process_tree_inductive(source, **kwargs)),
+        "bpmn": canonical_bpmn(pm4py.discover_bpmn_inductive(source, **kwargs)),
+    }
+
+
+def _register_bpmn_inductive() -> None:
+    for variant in INDUCTIVE_VARIANTS:
+        for log_id, rel in INDUCTIVE_LOGS.items():
+            case(
+                f"bpmn-inductive-{variant}-{log_id}",
+                fixture=rel,
+                functions=BPMN_INDUCTIVE_FUNCTIONS,
+                params={"variant": variant},
+            )(bpmn_inductive)
+
+
+_register_bpmn_inductive()
+
+# What one seeded run of _inductive_seeds computes, by kind.
+SEEDED_RUNS = {"tree": _inductive_run, "bpmn": _bpmn_inductive_run}
+
+
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical
 
-    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
+    path, variant, kind = Path(sys.argv[1]), sys.argv[2], sys.argv[3]
+    print(json.dumps(canonical.normalize(SEEDED_RUNS[kind](path, variant))))

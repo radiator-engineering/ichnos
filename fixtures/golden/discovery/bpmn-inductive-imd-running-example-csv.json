@@ -1,0 +1,246 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n17",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n15",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n6",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n9",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "check ticket"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "decide"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "examine casually"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "examine thoroughly"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "pay compensation"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "register request"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "reinitiate request"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n17",
+          "name": "reject request"
+        }
+      ]
+    },
+    "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-imd-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imd"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

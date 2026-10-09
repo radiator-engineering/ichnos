@@ -2,6 +2,10 @@
 //! `algo/discovery/inductive/` and the inductive functions of
 //! `pm4py/discovery.py`.
 //!
+//! [`petri_net_inductive`] and [`bpmn_inductive`] convert the tree to a
+//! Petri net or a BPMN diagram, as pm4py's `discover_petri_net_inductive`
+//! and `discover_bpmn_inductive` do.
+//!
 //! The miner splits the input recursively. At each step it tries base cases,
 //! then four cuts on the directly-follows graph (exclusive choice, sequence,
 //! concurrency, loop), then fall-throughs. The result is a
@@ -62,7 +66,7 @@ mod tests;
 use std::collections::BTreeMap;
 
 use ichnos_core::{EventKeys, EventLog, Variants};
-use ichnos_model::{AcceptingPetriNet, Label, ProcessTree};
+use ichnos_model::{AcceptingPetriNet, Bpmn, Label, ProcessTree};
 
 use crate::{Error, Result};
 use data::{Act, Dfg, Uvcl, add_trace};
@@ -252,6 +256,32 @@ pub fn petri_net_inductive_dfg(
     options: &InductiveOptions,
 ) -> AcceptingPetriNet {
     process_tree_inductive_dfg(dfg, options).to_petri_net()
+}
+
+/// Discovers a BPMN diagram with the inductive miner: the tree of
+/// [`process_tree_inductive`], converted with [`ProcessTree::to_bpmn`]
+/// (pm4py's `discover_bpmn_inductive`).
+///
+/// Fails if an event has no activity or the noise threshold is not in
+/// `[0, 1]`.
+pub fn bpmn_inductive(
+    log: &EventLog,
+    keys: &EventKeys,
+    options: &InductiveOptions,
+) -> Result<Bpmn> {
+    Ok(to_bpmn(&process_tree_inductive(log, keys, options)?))
+}
+
+/// Discovers a BPMN diagram from a directly-follows graph: the tree of
+/// [`process_tree_inductive_dfg`], converted with [`ProcessTree::to_bpmn`]
+/// (pm4py's `discover_bpmn_inductive` on a `DFG`).
+pub fn bpmn_inductive_dfg(dfg: &ichnos_model::Dfg, options: &InductiveOptions) -> Bpmn {
+    to_bpmn(&process_tree_inductive_dfg(dfg, options))
+}
+
+fn to_bpmn(tree: &ProcessTree) -> Bpmn {
+    tree.to_bpmn()
+        .expect("the inductive miner builds no interleaving nodes")
 }
 
 /// Numbers the distinct `names` in sorted order. Returns the labels by

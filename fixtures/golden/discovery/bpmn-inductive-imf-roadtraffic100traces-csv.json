@@ -1,0 +1,363 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "bpmn": {
+          "flows": [
+            [
+              "n0",
+              "n2",
+              "SequenceFlow"
+            ],
+            [
+              "n1",
+              "n0",
+              "SequenceFlow"
+            ],
+            [
+              "n10",
+              "n0",
+              "SequenceFlow"
+            ],
+            [
+              "n10",
+              "n19",
+              "SequenceFlow"
+            ],
+            [
+              "n11",
+              "n1",
+              "SequenceFlow"
+            ],
+            [
+              "n11",
+              "n23",
+              "SequenceFlow"
+            ],
+            [
+              "n12",
+              "n2",
+              "SequenceFlow"
+            ],
+            [
+              "n12",
+              "n24",
+              "SequenceFlow"
+            ],
+            [
+              "n13",
+              "n25",
+              "SequenceFlow"
+            ],
+            [
+              "n13",
+              "n4",
+              "SequenceFlow"
+            ],
+            [
+              "n15",
+              "n17",
+              "SequenceFlow"
+            ],
+            [
+              "n16",
+              "n11",
+              "SequenceFlow"
+            ],
+            [
+              "n17",
+              "n12",
+              "SequenceFlow"
+            ],
+            [
+              "n18",
+              "n5",
+              "SequenceFlow"
+            ],
+            [
+              "n19",
+              "n9",
+              "SequenceFlow"
+            ],
+            [
+              "n2",
+              "n7",
+              "SequenceFlow"
+            ],
+            [
+              "n20",
+              "n1",
+              "SequenceFlow"
+            ],
+            [
+              "n21",
+              "n8",
+              "SequenceFlow"
+            ],
+            [
+              "n22",
+              "n20",
+              "SequenceFlow"
+            ],
+            [
+              "n23",
+              "n22",
+              "SequenceFlow"
+            ],
+            [
+              "n24",
+              "n10",
+              "SequenceFlow"
+            ],
+            [
+              "n25",
+              "n4",
+              "SequenceFlow"
+            ],
+            [
+              "n3",
+              "n13",
+              "SequenceFlow"
+            ],
+            [
+              "n4",
+              "n14",
+              "SequenceFlow"
+            ],
+            [
+              "n5",
+              "n16",
+              "SequenceFlow"
+            ],
+            [
+              "n6",
+              "n21",
+              "SequenceFlow"
+            ],
+            [
+              "n7",
+              "n3",
+              "SequenceFlow"
+            ],
+            [
+              "n7",
+              "n6",
+              "SequenceFlow"
+            ],
+            [
+              "n8",
+              "n3",
+              "SequenceFlow"
+            ],
+            [
+              "n8",
+              "n6",
+              "SequenceFlow"
+            ],
+            [
+              "n9",
+              "n18",
+              "SequenceFlow"
+            ],
+            [
+              "n9",
+              "n5",
+              "SequenceFlow"
+            ]
+          ],
+          "nodes": [
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n0",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n1",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n2",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n3",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n4",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n5",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Converging",
+              "key": "n6",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n7",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n8",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n9",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n10",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n11",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n12",
+              "name": ""
+            },
+            {
+              "class": "ExclusiveGateway",
+              "direction": "Diverging",
+              "key": "n13",
+              "name": ""
+            },
+            {
+              "class": "NormalEndEvent",
+              "direction": null,
+              "key": "n14",
+              "name": "end"
+            },
+            {
+              "class": "StartEvent",
+              "direction": null,
+              "key": "n15",
+              "name": "start"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n16",
+              "name": "Add penalty"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n17",
+              "name": "Create Fine"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n18",
+              "name": "Insert Date Appeal to Prefecture"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n19",
+              "name": "Insert Fine Notification"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n20",
+              "name": "Notify Result Appeal to Offender"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n21",
+              "name": "Payment"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n22",
+              "name": "Receive Result Appeal from Prefecture"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n23",
+              "name": "Send Appeal to Prefecture"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n24",
+              "name": "Send Fine"
+            },
+            {
+              "class": "Task",
+              "direction": null,
+              "key": "n25",
+              "name": "Send for Credit Collection"
+            }
+          ]
+        },
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "tree": "->( 'Create Fine', X( tau, ->( 'Send Fine', X( tau, ->( 'Insert Fine Notification', X( tau, 'Insert Date Appeal to Prefecture' ), 'Add penalty', X( tau, ->( 'Send Appeal to Prefecture', 'Receive Result Appeal from Prefecture', 'Notify Result Appeal to Offender' ) ) ) ) ) ), X( tau, *( 'Payment', tau ) ), X( tau, 'Send for Credit Collection' ) )"
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-imf-roadtraffic100traces-csv",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imf"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
