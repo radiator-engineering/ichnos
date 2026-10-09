@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <bpmn:process id="idmain" isClosed="false" isExecutable="false" processType="None">
+    <bpmn:startEvent id="id_0" isInterrupting="true" name="go" parallelMultiple="false">
+      <bpmn:outgoing>idflow_0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="id_1" name="a &amp; &quot;b&quot; &lt;c&gt;">
+      <bpmn:incoming>idflow_0</bpmn:incoming>
+      <bpmn:outgoing>idflow_1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id_2" gatewayDirection="Diverging" name="">
+      <bpmn:incoming>idflow_1</bpmn:incoming>
+      <bpmn:outgoing>idflow_2</bpmn:outgoing>
+      <bpmn:outgoing>idflow_3</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="id_3" name="left">
+      <bpmn:incoming>idflow_2</bpmn:incoming>
+      <bpmn:outgoing>idflow_4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sendTask id="id_4" name="right">
+      <bpmn:incoming>idflow_3</bpmn:incoming>
+      <bpmn:outgoing>idflow_5</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:exclusiveGateway id="id_5" gatewayDirection="Converging" name="">
+      <bpmn:incoming>idflow_4</bpmn:incoming>
+      <bpmn:incoming>idflow_5</bpmn:incoming>
+      <bpmn:outgoing>idflow_6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="id_6" name="done">
+      <bpmn:incoming>idflow_6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="idflow_0" name="" sourceRef="id_0" targetRef="id_1"/>
+    <bpmn:sequenceFlow id="idflow_1" name="" sourceRef="id_1" targetRef="id_2"/>
+    <bpmn:sequenceFlow id="idflow_2" name="yes" sourceRef="id_2" targetRef="id_3"/>
+    <bpmn:sequenceFlow id="idflow_3" name="" sourceRef="id_2" targetRef="id_4"/>
+    <bpmn:sequenceFlow id="idflow_4" name="" sourceRef="id_3" targetRef="id_5"/>
+    <bpmn:sequenceFlow id="idflow_5" name="" sourceRef="id_4" targetRef="id_5"/>
+    <bpmn:sequenceFlow id="idflow_6" name="" sourceRef="id_5" targetRef="id_6"/>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="id_diagram" name="diagram">
+    <bpmndi:BPMNPlane bpmnElement="idmain" id="id_plane">
+      <bpmndi:BPMNShape bpmnElement="id_0" id="id_0_gui">
+        <omgdc:Bounds height="100" width="100" x="0" y="0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id_1" id="id_1_gui">
+        <omgdc:Bounds height="80" width="100" x="120.5" y="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id_2" id="id_2_gui">
+        <omgdc:Bounds height="100" width="100" x="0" y="0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id_3" id="id_3_gui">
+        <omgdc:Bounds height="100" width="100" x="0" y="0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id_4" id="id_4_gui">
+        <omgdc:Bounds height="100" width="100" x="0" y="0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id_5" id="id_5_gui">
+        <omgdc:Bounds height="100" width="100" x="0" y="0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id_6" id="id_6_gui">
+        <omgdc:Bounds height="100" width="100" x="0" y="0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="idflow_0" id="idflow_0_gui">
+        <omgdi:waypoint x="36" y="80"/>
+        <omgdi:waypoint x="120.5" y="80"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idflow_1" id="idflow_1_gui">
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idflow_2" id="idflow_2_gui">
+        <omgdi:waypoint x="0" y="0"/>
+        <omgdi:waypoint x="0" y="0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idflow_3" id="idflow_3_gui">
+        <omgdi:waypoint x="0" y="0"/>
+        <omgdi:waypoint x="0" y="0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idflow_4" id="idflow_4_gui">
+        <omgdi:waypoint x="0" y="0"/>
+        <omgdi:waypoint x="0" y="0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idflow_5" id="idflow_5_gui">
+        <omgdi:waypoint x="0" y="0"/>
+        <omgdi:waypoint x="0" y="0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idflow_6" id="idflow_6_gui">
+        <omgdi:waypoint x="0" y="0"/>
+        <omgdi:waypoint x="0" y="0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,6 +1,7 @@
 //! Readers and writers for event logs, object-centric event logs, tables, Petri nets, process
-//! trees and DFGs.
+//! trees, DFGs and BPMN diagrams.
 
+pub mod bpmn;
 pub mod csv;
 pub mod dfg;
 mod error;
@@ -12,6 +13,10 @@ pub mod ptml;
 mod table;
 pub mod xes;
 
+pub use bpmn::{
+    Bounds, BpmnDocument, BpmnReadOptions, BpmnWriteOptions, read_bpmn, read_bpmn_from_reader,
+    write_bpmn, write_bpmn_to_writer,
+};
 pub use csv::{
     CsvReadOptions, CsvWriteOptions, read_csv, read_csv_from_reader, write_csv, write_csv_to_writer,
 };
