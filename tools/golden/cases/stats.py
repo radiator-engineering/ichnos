@@ -13,6 +13,125 @@ from pm4py.statistics.start_activities.common import get as start_common
 from pm4py.statistics.end_activities.common import get as end_common
 
 
+def _filters_rows(log):
+    return [{"id": str(t.attributes.get("concept:name", "")),
+             "subcase": t.attributes.get("case:concept:name"),
+             "indices": ",".join(str(int(e["@@index"])) for e in t)} for t in log]
+
+
+def filters_log(fixtures):
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
+    return _filters_compute(log)
+
+
+def _filters_compute(log):
+    names = sorted({e["concept:name"] for t in log for e in t})
+    a, b = names[:2]
+    first = [e["concept:name"] for e in log[0]]
+    path = first[:2]
+    times = sorted(e["time:timestamp"] for t in log for e in t)
+    lo, hi = times[len(times)//3], times[len(times)*2//3]
+    durations = sorted((t[-1]["time:timestamp"]-t[0]["time:timestamp"]).total_seconds() for t in log if t)
+    maximum = durations[len(durations)//2]
+    results = []
+
+    def add(function, params):
+        call_params = dict(params)
+        if function == "filter_variants":
+            call_params["variants"] = [tuple(v) for v in params["variants"]]
+        if function == "filter_directly_follows_relation":
+            call_params["relations"] = [tuple(v) for v in params["relations"]]
+        if function == "filter_time_range":
+            from datetime import datetime
+            for key in ["dt1", "dt2"]:
+                call_params[key] = datetime.fromisoformat(params[key])
+        filtered = getattr(pm4py, function)(log, **call_params)
+        results.append({"function": function, "params": params, "result": _filters_rows(filtered)})
+
+    for retain in [True, False]:
+        for function in ["filter_start_activities", "filter_end_activities"]:
+            add(function, {"activities": [a], "retain": retain})
+        for level in ["event", "case"]:
+            add("filter_event_attribute_values", {"attribute_key": "concept:name", "values": [a,b], "level":level, "retain":retain})
+        add("filter_trace_attribute_values", {"attribute_key":"concept:name", "values":[t.attributes["concept:name"] for t in log[:2]], "retain":retain})
+        add("filter_variants", {"variants":[first], "retain":retain})
+        add("filter_directly_follows_relation", {"relations":[path], "retain":retain})
+        add("filter_eventually_follows_relation", {"relations":[path,[a,b,a]], "retain":retain})
+        add("filter_paths_performance", {"path":path, "min_performance":0, "max_performance":maximum, "keep":retain})
+        add("filter_four_eyes_principle", {"activity1":a,"activity2":b,"keep_violations":not retain})
+        add("filter_activity_done_different_resources", {"activity":a,"keep_violations":retain})
+        for pattern in [["...",a,"...",b,"..."], first, [a,"..."], ["...",b]]:
+            add("filter_trace_segments", {"admitted_traces":[pattern], "positive":retain})
+    for level in ["cases","events"]:
+        add("filter_log_relative_occurrence_event_attribute", {"min_relative_stake":0.3,"level":level})
+    add("filter_case_size", {"min_size":3,"max_size":len(first)})
+    add("filter_case_performance", {"min_performance":0,"max_performance":maximum})
+    for minimum in [1,2,3]:
+        add("filter_activities_rework", {"activity":a,"min_occurrences":minimum})
+    for k in [0,1,3]:
+        add("filter_variants_top_k", {"k":k})
+    for coverage in [0.1,0.5]:
+        add("filter_variants_by_coverage_percentage", {"min_coverage_percentage":coverage})
+    for activity in [a,first[0],first[-1]]:
+        for strict in [True,False]:
+            for occurrence in ["first","last"]:
+                for function in ["filter_prefixes","filter_suffixes"]:
+                    add(function,{"activity":activity,"strict":strict,"first_or_last":occurrence})
+    for starts,ends in [(path[:1],path[1:]),([a],[a]),([a,b],[a,b])]:
+        add("filter_between", {"act1":starts,"act2":ends})
+    for mode in ["events","traces_contained","traces_intersecting","traces_starting_in","traces_starting_in_exclude","traces_completing_in","traces_completing_in_exclude"]:
+        add("filter_time_range", {"dt1":lo.isoformat(),"dt2":hi.isoformat(),"mode":mode})
+    return results
+
+
+def filters_edges(fixtures):
+    from pm4py.objects.log.obj import Event, EventLog, Trace
+    from datetime import datetime, timedelta, timezone
+    log = EventLog()
+    index = 0
+    for i, (activities, resources) in enumerate([
+        (["A","B","A","B"], ["r1","r2","r2","r1"]),
+        (["A","A","B"], ["r1","r1","r1"]),
+        (["B"], [None]),
+        (["A","B"], ["r1","r2"]),
+        ([], []),
+    ]):
+        trace = Trace(attributes={"concept:name":f"s{i}", "marker":"kept"})
+        for activity, resource in zip(activities, resources):
+            event = Event({"concept:name":activity, "@@index":index,
+                "time:timestamp":datetime(2024,1,1,tzinfo=timezone.utc)+timedelta(seconds=index*5)})
+            if resource is not None:
+                event["org:resource"] = resource
+            trace.append(event)
+            index += 1
+        log.append(trace)
+    return _filters_compute(log)
+
+
+def filters_dfg(fixtures):
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
+    dfg, starts, ends = pm4py.discover_dfg(log)
+    def describe(graph, sa, ea):
+        return {"edges":[[a,b,n] for (a,b),n in sorted(graph.items())], "start":sa,"end":ea}
+    rows = []
+    for percentage in [0,0.2,0.5,1]:
+        for function in ["filter_dfg_activities_percentage","filter_dfg_paths_percentage"]:
+            rows.append({"function":function,"percentage":percentage,"result":describe(*getattr(pm4py,function)(dfg,starts,ends,percentage))})
+    return {"input":describe(dfg,starts,ends),"filters":rows}
+
+
+_FILTER_FUNCTIONS = ["pm4py."+name for name in (
+    "filter_log_relative_occurrence_event_attribute filter_start_activities filter_end_activities "
+    "filter_event_attribute_values filter_trace_attribute_values filter_variants filter_directly_follows_relation "
+    "filter_eventually_follows_relation filter_time_range filter_between filter_case_size filter_case_performance "
+    "filter_activities_rework filter_paths_performance filter_variants_top_k filter_variants_by_coverage_percentage "
+    "filter_prefixes filter_suffixes filter_four_eyes_principle filter_activity_done_different_resources filter_trace_segments").split()]
+case("filters-log-edges",fixture="running-example.csv",functions=_FILTER_FUNCTIONS)(filters_edges)
+for _name in ["running-example","receipt","roadtraffic100traces"]:
+    case(f"filters-log-{_name}",fixture=f"{_name}.csv",functions=_FILTER_FUNCTIONS)(filters_log)
+    case(f"filters-dfg-{_name}",fixture=f"{_name}.csv",functions=["pm4py.filter_dfg_activities_percentage","pm4py.filter_dfg_paths_percentage"])(filters_dfg)
+
+
 def attributes(fixtures: dict[str, Path]):
     log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
     names = sorted(get.get_all_event_attributes_from_log(log))
