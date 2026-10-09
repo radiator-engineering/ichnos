@@ -1,0 +1,156 @@
+{
+  "expected": {
+    "collected": {
+      "count": 4,
+      "samples": [
+        [
+          0,
+          {
+            "concept:name": "ignored"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "c"
+          }
+        ],
+        [
+          3,
+          {
+            "case:concept:name": "c",
+            "concept:name": "a'\\λ"
+          }
+        ]
+      ],
+      "sha256": "cd03b87f5fd89fb7154e3323eba4e989739df667b96e7195700adbe55f4c0e38"
+    },
+    "live_model": {
+      "activities": {
+        "": 1,
+        "a'\\λ": 1
+      },
+      "edges": [
+        [
+          "",
+          "a'\\λ",
+          1
+        ]
+      ],
+      "ends": {
+        "a'\\λ": 1
+      },
+      "starts": {
+        "": 1
+      }
+    },
+    "removed_count": 0,
+    "snapshots": [
+      {
+        "at": 0,
+        "model": {
+          "activities": {},
+          "edges": [],
+          "ends": {},
+          "starts": {}
+        }
+      },
+      {
+        "at": 1,
+        "model": {
+          "activities": {},
+          "edges": [],
+          "ends": {},
+          "starts": {}
+        }
+      },
+      {
+        "at": 2,
+        "model": {
+          "activities": {},
+          "edges": [],
+          "ends": {},
+          "starts": {}
+        }
+      },
+      {
+        "at": 3,
+        "model": {
+          "activities": {
+            "": 1
+          },
+          "edges": [],
+          "ends": {
+            "": 1
+          },
+          "starts": {
+            "": 1
+          }
+        }
+      },
+      {
+        "at": 4,
+        "model": {
+          "activities": {
+            "": 1,
+            "a'\\λ": 1
+          },
+          "edges": [
+            [
+              "",
+              "a'\\λ",
+              1
+            ]
+          ],
+          "ends": {
+            "a'\\λ": 1
+          },
+          "starts": {
+            "": 1
+          }
+        }
+      }
+    ],
+    "states": [
+      "inactive",
+      "active",
+      "finished"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "dfg-missing",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.discovery.dfg.algorithm.apply",
+      "pm4py.streaming.algo.discovery.dfg.variants.frequency.apply",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.receive",
+      "pm4py.streaming.algo.interface.StreamingAlgorithm.get",
+      "pm4py.streaming.stream.live_event_stream.LiveEventStream",
+      "pm4py.streaming.util.live_to_static_stream.LiveToStaticStream"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "case_key": "case:concept:name",
+      "events": [
+        {
+          "concept:name": "ignored"
+        },
+        {
+          "case:concept:name": "c"
+        },
+        {
+          "case:concept:name": "c",
+          "concept:name": ""
+        },
+        {
+          "case:concept:name": "c",
+          "concept:name": "a'\\λ"
+        }
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

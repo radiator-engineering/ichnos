@@ -18,5 +18,8 @@ pub use ichnos_model as model;
 /// [`ichnos_conformance`].
 pub use ichnos_conformance as conformance;
 
+/// Live streams, incremental readers and online mining. See [`ichnos_stream`].
+pub use ichnos_stream as stream;
+
 /// Object-centric event logs. See [`ichnos_ocel`].
 pub use ichnos_ocel as ocel;

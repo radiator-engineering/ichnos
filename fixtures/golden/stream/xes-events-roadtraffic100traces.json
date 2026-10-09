@@ -1,0 +1,169 @@
+{
+  "expected": {
+    "forwarded": {
+      "count": 390,
+      "samples": [
+        [
+          0,
+          {
+            "amount": 35.0,
+            "article": 157,
+            "case:concept:name": "N77802",
+            "concept:name": "Create Fine",
+            "dismissal": "NIL",
+            "lifecycle:transition": "complete",
+            "org:resource": "537",
+            "points": 0,
+            "time:timestamp": {
+              "date": "2005-03-22T23:00:00.000000+00:00"
+            },
+            "totalPaymentAmount": 0.0,
+            "vehicleClass": "A"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "N77802",
+            "concept:name": "Send Fine",
+            "expense": 11.0,
+            "lifecycle:transition": "complete",
+            "time:timestamp": {
+              "date": "2005-07-21T22:00:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          389,
+          {
+            "case:concept:name": "V6627",
+            "concept:name": "Send for Credit Collection",
+            "lifecycle:transition": "complete",
+            "time:timestamp": {
+              "date": "2002-04-09T22:00:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "a64f0047c85f018423f5a473946f732daae7fe0fe6f2dda7bcf271d79fb080da"
+    },
+    "items": {
+      "count": 390,
+      "samples": [
+        [
+          0,
+          {
+            "amount": 35.0,
+            "article": 157,
+            "case:concept:name": "N77802",
+            "concept:name": "Create Fine",
+            "dismissal": "NIL",
+            "lifecycle:transition": "complete",
+            "org:resource": "537",
+            "points": 0,
+            "time:timestamp": {
+              "date": "2005-03-22T23:00:00.000000+00:00"
+            },
+            "totalPaymentAmount": 0.0,
+            "vehicleClass": "A"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "N77802",
+            "concept:name": "Send Fine",
+            "expense": 11.0,
+            "lifecycle:transition": "complete",
+            "time:timestamp": {
+              "date": "2005-07-21T22:00:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          389,
+          {
+            "case:concept:name": "V6627",
+            "concept:name": "Send for Credit Collection",
+            "lifecycle:transition": "complete",
+            "time:timestamp": {
+              "date": "2002-04-09T22:00:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "a64f0047c85f018423f5a473946f732daae7fe0fe6f2dda7bcf271d79fb080da"
+    },
+    "reset": {
+      "count": 390,
+      "samples": [
+        [
+          0,
+          {
+            "amount": 35.0,
+            "article": 157,
+            "case:concept:name": "N77802",
+            "concept:name": "Create Fine",
+            "dismissal": "NIL",
+            "lifecycle:transition": "complete",
+            "org:resource": "537",
+            "points": 0,
+            "time:timestamp": {
+              "date": "2005-03-22T23:00:00.000000+00:00"
+            },
+            "totalPaymentAmount": 0.0,
+            "vehicleClass": "A"
+          }
+        ],
+        [
+          1,
+          {
+            "case:concept:name": "N77802",
+            "concept:name": "Send Fine",
+            "expense": 11.0,
+            "lifecycle:transition": "complete",
+            "time:timestamp": {
+              "date": "2005-07-21T22:00:00.000000+00:00"
+            }
+          }
+        ],
+        [
+          389,
+          {
+            "case:concept:name": "V6627",
+            "concept:name": "Send for Credit Collection",
+            "lifecycle:transition": "complete",
+            "time:timestamp": {
+              "date": "2002-04-09T22:00:00.000000+00:00"
+            }
+          }
+        ]
+      ],
+      "sha256": "a64f0047c85f018423f5a473946f732daae7fe0fe6f2dda7bcf271d79fb080da"
+    }
+  },
+  "meta": {
+    "area": "stream",
+    "case": "xes-events-roadtraffic100traces",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.streaming.importer.xes.importer.apply",
+      "pm4py.streaming.importer.xes.variants.xes_event_stream.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "kind": "events"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
