@@ -7,6 +7,7 @@
 //!   reachability graphs.
 //! - [`process_tree`]: process trees, pm4py's string syntax, simplification
 //!   and random playout.
+//! - [`bpmn`]: BPMN diagrams, their gateway reductions and token semantics.
 //! - [`dfg`]: directly-follows graphs and their filters.
 //! - [`heuristics_net`]: heuristics nets and their AND and loop measures.
 //! - [`transition_system`]: transition systems and reachability graphs as
@@ -22,6 +23,7 @@
 //!   [`TreeFootprints`]. Footprints serialize in the JSON shape of pm4py's
 //!   `discover_footprints`, as the golden files store it.
 
+pub mod bpmn;
 pub mod conversion;
 pub mod dfg;
 mod error;
@@ -32,6 +34,7 @@ pub mod petri;
 pub mod process_tree;
 pub mod transition_system;
 
+pub use bpmn::Bpmn;
 pub use dfg::Dfg;
 pub use error::Error;
 pub use footprints::{Footprints, TreeFootprints};

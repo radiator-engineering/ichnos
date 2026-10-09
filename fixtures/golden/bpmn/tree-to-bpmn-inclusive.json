@@ -1,0 +1,144 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n2",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "InclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "InclusiveGateway",
+          "direction": "Diverging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n2",
+          "name": "end"
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n3",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n4",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n5",
+          "name": "b"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n6",
+          "name": "c"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n7",
+          "name": "d"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n8",
+          "name": "e"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n9",
+          "name": "f"
+        }
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "->( 'a', O( 'b', 'c', ->( 'd', 'e' ) ), 'f' )"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "tree-to-bpmn-inclusive",
+    "fixtures": {},
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {},
+    "params": {
+      "tree": "->( 'a', O( 'b', 'c', ->( 'd', 'e' ) ), 'f' )"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n0",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n18",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n18",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n17",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Unspecified",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Unspecified",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Unspecified",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Unspecified",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n4",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n6",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n9",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "Check Liability"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "Check Policy"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "Compute High-value Claim"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "Compute Low-value Claim"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "Consult Expert"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "Register as High-Value Claim"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "Register as Low-Value Claim"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n17",
+          "name": "Set Checkpoint"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n18",
+          "name": "Set Checkpoint"
+        }
+      ]
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "c1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "c3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "F",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "G",
+          "target": "c7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "H",
+          "target": "c8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "I",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c2",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c4",
+          "target": "I",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c6",
+          "target": "G",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c7",
+          "target": "H",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c8",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Set Checkpoint",
+          "name": "A"
+        },
+        {
+          "label": "Register as Low-Value Claim",
+          "name": "B"
+        },
+        {
+          "label": "Register as High-Value Claim",
+          "name": "C"
+        },
+        {
+          "label": "Check Policy",
+          "name": "D"
+        },
+        {
+          "label": "Compute Low-value Claim",
+          "name": "E"
+        },
+        {
+          "label": "Compute High-value Claim",
+          "name": "F"
+        },
+        {
+          "label": "Consult Expert",
+          "name": "G"
+        },
+        {
+          "label": "Check Liability",
+          "name": "H"
+        },
+        {
+          "label": "Set Checkpoint",
+          "name": "I"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "petri-to-bpmn-ex2",
+    "fixtures": {
+      "model": "fixtures/logs/ex2.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

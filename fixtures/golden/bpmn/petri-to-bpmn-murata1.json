@@ -1,0 +1,347 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n0",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n0",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Unspecified",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Unspecified",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n2",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n5",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n6",
+          "name": "End"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n7",
+          "name": "Start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n8",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n9",
+          "name": "c"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "d"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n11",
+          "name": "e"
+        }
+      ]
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "End",
+          "target": "p9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "Start",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "d",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "e",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "end_tau",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "d",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "tau_0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "End",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "e",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "c",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "Start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p9",
+          "target": "end_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start_tau",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start_tau",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_0",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p8",
+        "p9",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "End",
+          "name": "End"
+        },
+        {
+          "label": "Start",
+          "name": "Start"
+        },
+        {
+          "label": "a",
+          "name": "a"
+        },
+        {
+          "label": "c",
+          "name": "c"
+        },
+        {
+          "label": "d",
+          "name": "d"
+        },
+        {
+          "label": "e",
+          "name": "e"
+        },
+        {
+          "label": null,
+          "name": "end_tau"
+        },
+        {
+          "label": null,
+          "name": "start_tau"
+        },
+        {
+          "label": null,
+          "name": "tau_0"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "petri-to-bpmn-murata1",
+    "fixtures": {
+      "model": "fixtures/logs/murata1.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

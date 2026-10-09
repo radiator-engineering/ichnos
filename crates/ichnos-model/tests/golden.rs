@@ -12,57 +12,12 @@ use ichnos_model::heuristics_net::{
     DEFAULT_AND_MEASURE_THRESH, DEFAULT_LOOP_LENGTH_TWO_THRESH, HeuristicsEdge, HeuristicsNet,
     Matrix,
 };
-use ichnos_model::petri::{ArcEnds, ArcKind, ReachabilityOptions};
-use ichnos_model::{
-    AcceptingPetriNet, Footprints, Label, Marking, PetriNet, ProcessTree, TreeFootprints,
-};
+use ichnos_model::petri::ReachabilityOptions;
+use ichnos_model::{AcceptingPetriNet, Footprints, Label, Marking, ProcessTree, TreeFootprints};
 use serde_json::Value;
 
-fn str_field<'a>(v: &'a Value, key: &str) -> &'a str {
-    v[key]
-        .as_str()
-        .unwrap_or_else(|| panic!("`{key}` is not a string in {v}"))
-}
-
-fn build_net(model: &Value) -> (PetriNet, Marking) {
-    let mut net = PetriNet::new("golden");
-    let mut places = BTreeMap::new();
-    for p in model["places"].as_array().expect("places") {
-        let name = p.as_str().expect("place name");
-        places.insert(name.to_owned(), net.add_place(name));
-    }
-    let mut transitions = BTreeMap::new();
-    for t in model["transitions"].as_array().expect("transitions") {
-        let name = str_field(t, "name");
-        let label = t["label"].as_str().map(Label::from);
-        transitions.insert(name.to_owned(), net.add_transition(name, label));
-    }
-    for a in model["arcs"].as_array().expect("arcs") {
-        let (source, target) = (str_field(a, "source"), str_field(a, "target"));
-        let ends = match (places.get(source), transitions.get(target)) {
-            (Some(&p), Some(&t)) => ArcEnds::PlaceToTransition(p, t),
-            _ => ArcEnds::TransitionToPlace(transitions[source], places[target]),
-        };
-        let kind = match str_field(a, "type") {
-            "normal" => ArcKind::Normal,
-            "inhibitor" => ArcKind::Inhibitor,
-            "reset" => ArcKind::Reset,
-            other => panic!("unknown arc type {other}"),
-        };
-        let weight = u32::try_from(a["weight"].as_u64().expect("weight")).expect("weight fits");
-        net.add_arc(ends, weight, kind).expect("valid arc");
-    }
-    let initial = model["initial_marking"]
-        .as_object()
-        .expect("initial marking")
-        .iter()
-        .map(|(p, n)| {
-            let n = u32::try_from(n.as_u64().expect("token count")).expect("count fits");
-            (places[p], n)
-        })
-        .collect();
-    (net, initial)
-}
+mod common;
+use common::{build_net, str_field};
 
 fn check(g: &Golden) {
     let model = g.expected_at("/model");

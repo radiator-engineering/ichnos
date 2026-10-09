@@ -1,0 +1,432 @@
+{
+  "expected": {
+    "model": {
+      "flows": [
+        {
+          "class": "SequenceFlow",
+          "id": "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+          "target": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-48E4E779-BCC2-4E46-B2C9-83156BDF97C2",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+          "target": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-BE62AD05-D926-4653-A40A-1CC7CED6A6BD",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+          "target": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-79308AF7-DD27-408C-8BC6-EB4A15C9698E",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+          "target": "sid-B0A4DE1B-3BD5-44F2-82CF-2FADACB84925"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-80DD74D4-6206-4E25-8B3B-72B24404992E",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+          "target": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+          "target": "sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-AF631568-14A8-4DF9-9985-D702924CA6A2",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+          "target": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+        },
+        {
+          "class": "SequenceFlow",
+          "id": "sid-65DCD431-FE91-42E6-889D-743F31AD74A0",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258",
+          "source": "sid-B0A4DE1B-3BD5-44F2-82CF-2FADACB84925",
+          "target": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+        }
+      ],
+      "nodes": [
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+          "name": "Bachelor Studies",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Diverging",
+          "id": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        },
+        {
+          "activity": null,
+          "class": "NormalStartEvent",
+          "depth": null,
+          "direction": null,
+          "id": "sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        },
+        {
+          "activity": null,
+          "class": "ParallelGateway",
+          "depth": null,
+          "direction": "Converging",
+          "id": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        },
+        {
+          "activity": null,
+          "class": "Task",
+          "depth": null,
+          "direction": null,
+          "id": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+          "name": "Volunteer Work",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        },
+        {
+          "activity": null,
+          "class": "SubProcess",
+          "depth": 2,
+          "direction": null,
+          "id": "sid-B0A4DE1B-3BD5-44F2-82CF-2FADACB84925",
+          "name": "TestTask",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        },
+        {
+          "activity": null,
+          "class": "NormalEndEvent",
+          "depth": null,
+          "direction": null,
+          "id": "sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38",
+          "name": "",
+          "process": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+        }
+      ],
+      "process_id": "sid-97909c8d-3311-46af-a4a5-18dd4accf258"
+    },
+    "petri_net": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "ent_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+        "ent_sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+        "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+        "sid-AF631568-14A8-4DF9-9985-D702924CA6A2",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "name": null,
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+            "sid-AF631568-14A8-4DF9-9985-D702924CA6A2"
+          ]
+        },
+        {
+          "label": null,
+          "name": null,
+          "postset": [
+            "ent_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+            "ent_sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+          ],
+          "preset": [
+            "source"
+          ]
+        },
+        {
+          "label": "Bachelor Studies",
+          "name": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+          "postset": [
+            "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A"
+          ],
+          "preset": [
+            "ent_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+          ]
+        },
+        {
+          "label": "Volunteer Work",
+          "name": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+          "postset": [
+            "sid-AF631568-14A8-4DF9-9985-D702924CA6A2"
+          ],
+          "preset": [
+            "ent_sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+          ]
+        }
+      ]
+    },
+    "petri_net_unreduced": {
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "places": [
+        "ent_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+        "ent_sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+        "ent_sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+        "ent_sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+        "ent_sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+        "ent_sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38",
+        "exi_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+        "exi_sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+        "exi_sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+        "exi_sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+        "exi_sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+        "exi_sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38",
+        "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+        "sid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1",
+        "sid-48E4E779-BCC2-4E46-B2C9-83156BDF97C2",
+        "sid-80DD74D4-6206-4E25-8B3B-72B24404992E",
+        "sid-AF631568-14A8-4DF9-9985-D702924CA6A2",
+        "sid-BE62AD05-D926-4653-A40A-1CC7CED6A6BD",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": null,
+          "name": null,
+          "postset": [
+            "sid-48E4E779-BCC2-4E46-B2C9-83156BDF97C2",
+            "sid-BE62AD05-D926-4653-A40A-1CC7CED6A6BD"
+          ],
+          "preset": [
+            "exi_sid-524913C7-505D-401C-8F09-EA3A44C19F3D"
+          ]
+        },
+        {
+          "label": null,
+          "name": null,
+          "postset": [
+            "sink"
+          ],
+          "preset": [
+            "exi_sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38"
+          ]
+        },
+        {
+          "label": null,
+          "name": null,
+          "postset": [
+            "ent_sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+          ],
+          "preset": [
+            "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+            "sid-AF631568-14A8-4DF9-9985-D702924CA6A2"
+          ]
+        },
+        {
+          "label": null,
+          "name": null,
+          "postset": [
+            "ent_sid-9454C19A-21B3-42D5-B7DD-3993F49E1409"
+          ],
+          "preset": [
+            "source"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sfl_sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+          "postset": [
+            "sid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A"
+          ],
+          "preset": [
+            "exi_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sfl_sid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1",
+          "postset": [
+            "sid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1"
+          ],
+          "preset": [
+            "exi_sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sfl_sid-80DD74D4-6206-4E25-8B3B-72B24404992E",
+          "postset": [
+            "sid-80DD74D4-6206-4E25-8B3B-72B24404992E"
+          ],
+          "preset": [
+            "exi_sid-9454C19A-21B3-42D5-B7DD-3993F49E1409"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sfl_sid-AF631568-14A8-4DF9-9985-D702924CA6A2",
+          "postset": [
+            "sid-AF631568-14A8-4DF9-9985-D702924CA6A2"
+          ],
+          "preset": [
+            "exi_sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+          ]
+        },
+        {
+          "label": "Bachelor Studies",
+          "name": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+          "postset": [
+            "exi_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+          ],
+          "preset": [
+            "ent_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+          "postset": [
+            "exi_sid-524913C7-505D-401C-8F09-EA3A44C19F3D"
+          ],
+          "preset": [
+            "ent_sid-524913C7-505D-401C-8F09-EA3A44C19F3D"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+          "postset": [
+            "exi_sid-9454C19A-21B3-42D5-B7DD-3993F49E1409"
+          ],
+          "preset": [
+            "ent_sid-9454C19A-21B3-42D5-B7DD-3993F49E1409"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+          "postset": [
+            "exi_sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+          ],
+          "preset": [
+            "ent_sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+          ]
+        },
+        {
+          "label": "Volunteer Work",
+          "name": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+          "postset": [
+            "exi_sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+          ],
+          "preset": [
+            "ent_sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+          ]
+        },
+        {
+          "label": null,
+          "name": "sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38",
+          "postset": [
+            "exi_sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38"
+          ],
+          "preset": [
+            "ent_sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tfl_sid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1",
+          "postset": [
+            "ent_sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38"
+          ],
+          "preset": [
+            "sid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tfl_sid-48E4E779-BCC2-4E46-B2C9-83156BDF97C2",
+          "postset": [
+            "ent_sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+          ],
+          "preset": [
+            "sid-48E4E779-BCC2-4E46-B2C9-83156BDF97C2"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tfl_sid-80DD74D4-6206-4E25-8B3B-72B24404992E",
+          "postset": [
+            "ent_sid-524913C7-505D-401C-8F09-EA3A44C19F3D"
+          ],
+          "preset": [
+            "sid-80DD74D4-6206-4E25-8B3B-72B24404992E"
+          ]
+        },
+        {
+          "label": null,
+          "name": "tfl_sid-BE62AD05-D926-4653-A40A-1CC7CED6A6BD",
+          "postset": [
+            "ent_sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+          ],
+          "preset": [
+            "sid-BE62AD05-D926-4653-A40A-1CC7CED6A6BD"
+          ]
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "bpmn-to-petri-simple-model",
+    "fixtures": {
+      "model": "fixtures/logs/more_models/simple_model.bpmn"
+    },
+    "functions": [
+      "pm4py.convert_to_petri_net",
+      "pm4py.objects.conversion.bpmn.variants.to_petri_net.apply"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_bpmn",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

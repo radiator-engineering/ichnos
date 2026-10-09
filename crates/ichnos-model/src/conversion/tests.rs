@@ -59,7 +59,7 @@ fn permutations(n: usize) -> Vec<Vec<usize>> {
 }
 
 /// All traces of the tree with at most `max` activities.
-fn tree_language(tree: &ProcessTree, max: usize) -> Language {
+pub(crate) fn tree_language(tree: &ProcessTree, max: usize) -> Language {
     match tree {
         ProcessTree::Tau => Language::from([vec![]]),
         ProcessTree::Activity(l) => Language::from([vec![l.clone()]]),

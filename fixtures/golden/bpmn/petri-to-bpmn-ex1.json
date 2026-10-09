@@ -1,0 +1,282 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n1",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n2",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n0",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n5",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n6",
+          "name": "A"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n7",
+          "name": "B"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n8",
+          "name": "C"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n9",
+          "name": "D"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n10",
+          "name": "E"
+        }
+      ]
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "A",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "A",
+          "name": "A"
+        },
+        {
+          "label": "B",
+          "name": "B"
+        },
+        {
+          "label": "C",
+          "name": "C"
+        },
+        {
+          "label": "D",
+          "name": "D"
+        },
+        {
+          "label": "E",
+          "name": "E"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "petri-to-bpmn-ex1",
+    "fixtures": {
+      "model": "fixtures/logs/ex1.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

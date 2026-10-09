@@ -1,0 +1,306 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n20",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n18",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n19",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n18",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n19",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n21",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n20",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n21",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n17",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n4",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n6",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n9",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n10",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n11",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "a"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "b"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "c"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "d"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "d"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n17",
+          "name": "e"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n18",
+          "name": "f"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n19",
+          "name": "g"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n20",
+          "name": "h"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n21",
+          "name": "i"
+        }
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "->( *( 'h', 'i' ), +( 'a', 'b', X( 'c', 'd' ) ), +( 'd', 'e', +( 'f', 'g' ) ) )"
+    }
+  },
+  "meta": {
+    "area": "bpmn",
+    "case": "tree-to-bpmn-tree_ex_with_loops",
+    "fixtures": {
+      "model": "fixtures/logs/tree_ex_with_loops.ptml"
+    },
+    "functions": [
+      "pm4py.parse_process_tree",
+      "pm4py.convert_to_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
