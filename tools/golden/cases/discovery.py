@@ -333,12 +333,6 @@ for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
         params={"start_timestamp_key": "start_timestamp"} if _log_id == "interval-event-log" else {},
     )(temporal_profile)
 
-
-if __name__ == "__main__":
-    # One seeded run for _inductive_seeds: prints the result as one JSON line.
-    from harness import canonical
-
-    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
 # miners-classic alpha and heuristics discovery cases.
 def _classic_language(model, depth=3):
     """Exact executable visible prefixes up to depth, with silent closure.
@@ -614,3 +608,128 @@ for _id, _traces in {
     case(f"skeleton-declare-{_id}", functions=SKELETON_DECLARE_FUNCTIONS,
          params={"traces": _traces, "activity_key": "task" if _id == "custom-key" else "concept:name",
                  "declare_options": SKELETON_DECLARE_SYNTHETIC_OPTIONS})(skeleton_declare)
+
+# miners-classic batch and correlation discovery cases.
+def batches_correlation(fixtures, traces=None, activity_key="concept:name", interval=False, fill_missing_resource=None, oracle_solver="default"):
+    from datetime import datetime
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    from pm4py.algo.discovery.correlation_mining.variants import classic
+    from pm4py.algo.discovery.correlation_mining import util as cm_util
+    from pm4py.algo.discovery.batches.variants import log as batch_log
+    from pm4py.util.lp import solver
+    if traces is None:
+        log = pm4py.convert_to_event_log(load_log(fixtures["log"]), stream_postprocessing=True)
+        # Resource-less fixtures exercise an explicit single-resource projection.
+        for trace in log:
+            for event in trace:
+                if "org:resource" not in event:
+                    event["org:resource"] = "unassigned"
+    else:
+        log = EventLog([Trace([Event({activity_key: row[0], "org:resource": row[1],
+            "time:timestamp": datetime.fromisoformat(row[3]), "start_timestamp": datetime.fromisoformat(row[2])})
+            for row in events], attributes={"concept:name": case_id}) for case_id, events in traces])
+    params = {"pm4py:param:activity_key": activity_key, "pm4py:param:timestamp_key": "time:timestamp",
+              "pm4py:param:start_timestamp_key": "start_timestamp" if interval else "time:timestamp"}
+    def edges(mapping):
+        return [[a, b, value] for (a,b), value in sorted(mapping.items())]
+    def normalize_batches(groups):
+        return [{"activity": pair[0], "resource": pair[1], "count": count,
+                 "batches": {kind: sorted([[start,end,sorted([list(ev) for ev in events])] for start,end,events in batches])
+                             for kind,batches in kinds.items()}} for pair,count,kinds in groups]
+    def compact_batches(model):
+        import copy
+        import hashlib
+        micro = copy.deepcopy(model)
+        samples = []
+        for group in micro:
+            for kind,batches in group["batches"].items():
+                for batch in batches:
+                    batch[0],batch[1] = round(batch[0]*1e6),round(batch[1]*1e6)
+                    for event in batch[2]:
+                        event[0],event[1] = round(event[0]*1e6),round(event[1]*1e6)
+                        samples.append([group["activity"],group["resource"],kind,batch[0],batch[1],*event])
+        encoded = json.dumps(micro,sort_keys=True,separators=(",",":"),ensure_ascii=False).encode()
+        return {"format":"batch-identities-microseconds-sha256","groups":len(micro),
+                "batches":sum(group["count"] for group in micro),"events":len(samples),
+                "sha256":hashlib.sha256(encoded).hexdigest(),"samples":sorted(samples)[:3]}
+    batch_runs = []
+    for distance,size in [(900,2),(0,2),(60,3),(0,1)]:
+        options = {**params,"merge_distance":distance,"min_batch_size":size}
+        actual = batch_log.apply(log,parameters=options)
+        if not interval:
+            public = pm4py.discover_batches(log, merge_distance=distance, min_batch_size=size, activity_key=activity_key)
+            assert normalize_batches(public) == normalize_batches(actual)
+        batch_runs.append({"distance":distance,"size":size,"model":compact_batches(normalize_batches(actual)) if sum(map(len,log))>1000 else normalize_batches(actual)})
+    correlation_runs = []
+    if sum(map(len,log)):
+        frame = pm4py.convert_to_dataframe(log)
+        for exact in ([False, True] if traces is not None or "running-example" in str(fixtures.get("log","")) else [False]):
+            options = {**params,"exact_time_matching":exact}
+            _,grouped,activities = classic.preprocess_log(log,parameters=options)
+            ps,duration = classic.get_PS_dur_matrix(grouped,activities,parameters=options)
+            counts = {a:len(events) for a,events in grouped.items()}
+            cost = cm_util.get_c_matrix(ps,duration,activities,counts)
+            default_freq,default_perf = classic.apply(log,parameters=options)
+            freq,perf = default_freq,default_perf
+            if oracle_solver == "highs":
+                from unittest.mock import patch
+                from pm4py.util.lp.variants import scipy_solver
+                original_apply = scipy_solver.apply
+                def highs_apply(*args, **kwargs):
+                    return original_apply(*args, parameters={"method":"highs"})
+                with patch.object(solver,"DEFAULT_LP_SOLVER_VARIANT",solver.SCIPY), patch.dict(solver.VERSIONS_APPLY,{solver.SCIPY:highs_apply}):
+                    freq,perf = classic.apply(log,parameters=options)
+            uniform_cost = bool((cost == cost[0,0]).all())
+            selected_freq = {(a,a):counts[a] for a in activities} if uniform_cost else freq
+            selected_perf = {(a,b):float(duration[activities.index(a),activities.index(b)]) for a,b in selected_freq}
+            if not exact and not interval:
+                public,starts,ends = pm4py.correlation_miner(frame,activity_key=activity_key)
+                assert public == default_freq
+                public_perf,psa,pea = pm4py.correlation_miner(frame,annotation="performance",activity_key=activity_key)
+                assert public_perf == default_perf and psa == starts and pea == ends
+            else:
+                input_labels = [ev[activity_key] for trace in log for ev in trace]
+                first,last = input_labels[0],input_labels[-1]
+                starts,ends = {first:counts[first]}, {last:counts[last]}
+            stats = [[a,b,float(ps[i,j]),float(duration[i,j]),float(cost[i,j])] for i,a in enumerate(activities) for j,b in enumerate(activities)]
+            objective = sum(count * cost[activities.index(a),activities.index(b)] for (a,b),count in freq.items())
+            correlation_runs.append({"exact":exact,"frequency":edges(selected_freq),"performance":edges(selected_perf),"uniform_cost":uniform_cost,
+                                     "default_frequency":edges(default_freq),"default_performance":edges(default_perf),"native_frequency":edges(freq),"native_performance":edges(perf),"starts":starts,"ends":ends,
+                                     "counts":counts,"statistics":stats,"objective":float(objective),"solver": "scipy/highs" if oracle_solver == "highs" else solver.DEFAULT_LP_SOLVER_VARIANT})
+    return {"batches":batch_runs,"correlation":correlation_runs}
+
+BATCHES_CORRELATION_FUNCTIONS = ["pm4py.discover_batches", "pm4py.correlation_miner",
+                   "pm4py.algo.discovery.batches.variants.log.apply",
+                   "pm4py.algo.discovery.correlation_mining.variants.classic.apply"]
+for _fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes", "interleavings/receipt_even.csv","interleavings/receipt_odd.csv"]:
+    case("batches-correlation-"+_fixture.replace("/","-").replace(".","-"),
+         functions=BATCHES_CORRELATION_FUNCTIONS,fixtures={"log":_fixture},params={"fill_missing_resource":"unassigned","oracle_solver":"highs" if _fixture=="receipt.xes" else "default"})(batches_correlation)
+
+def _batches_correlation_rows(rows):
+    from datetime import datetime, timedelta, timezone
+    epoch=datetime(2024,1,1,tzinfo=timezone.utc)
+    return [[case_id, [[activity,resource,(epoch+timedelta(seconds=start)).isoformat(),(epoch+timedelta(seconds=end)).isoformat()]
+                      for activity,resource,start,end in events]] for case_id,events in rows]
+
+BATCHES_CORRELATION_SYNTHETIC = {
+    "equal-endpoints": ([[f"case-{i % 32:02}", [("a", "r", 0, 10)]] for i in range(40)], True),
+    "microseconds": ([["c1", [("a", "r", 0.000001, 0.000001)]], ["c2", [("a", "r", 1.000001, 1.000001)]]], False),
+    "empty": ([],False),
+    "empty-traces": ([["empty",[]]],False),
+    "five-types": ([["c1",[("sim","r",0,10),("start","r",0,10),("end","r",0,20),("seq","r",0,10),("conc","r",0,10)]],
+                    ["c2",[("sim","r",0,10),("start","r",0,20),("end","r",10,20),("seq","r",10,20),("conc","r",5,15)]]],True),
+    "duplicates": ([["same",[("a","r",0,0),("a","r",0,0),("b","r",1,1)]],["same",[("a","r",0,0)]],["other",[("a","r",0,0),("b","r",2,2)]]],False),
+    "heap-order": ([["c",[("a","r",s,s+1) for s in [90,0,60,30,120,15,45,75,105]]]],True),
+    "intervals": ([["c1",[("a","r",0,20),("b","r",5,10),("a","r",10,11),("c","s",30,40)]],
+                   ["c2",[("b","r",20,21),("c","s",21,22),("a","r",25,24)]]],True),
+    "custom-key": ([["c1",[("α","r",0,0),("β","s",10,10)]],["c2",[("α","r",1,1),("β","s",12,12)]]],False),
+}
+for _name,(_rows,_interval) in BATCHES_CORRELATION_SYNTHETIC.items():
+    _params={"traces":_batches_correlation_rows(_rows),"interval":_interval,"activity_key":"task" if _name=="custom-key" else "concept:name"}
+    case("batches-correlation-"+_name,functions=BATCHES_CORRELATION_FUNCTIONS,params=_params)(batches_correlation)
+
+if __name__ == "__main__":
+    # One seeded run for _inductive_seeds: prints the result as one JSON line.
+    from harness import canonical
+
+    print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))

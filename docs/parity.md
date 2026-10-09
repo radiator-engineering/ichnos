@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 347; ported: 150; dropped: 129; total: 626.
+todo: 311; ported: 186; dropped: 129; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -79,8 +79,8 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.discover_log_skeleton` | `discovery.py` → `algo/discovery/log_skeleton/algorithm`, `objects/log/obj` | `ichnos_discovery::log_skeleton` | `ichnos-discovery` | ported | `LogSkeletonOptions` over ordered EventLog input; typed `LogSkeleton` with all six relation/frequency components. Preserves source occurrence-count denominators, per-trace after/before incidence, positive-only never-together subtraction, event-count frequency-coverage target and first-variant frequency ties. Validates finite noise in [0,1], preserves core label/error rules, needs no timestamps and handles empty input. Thirteen `skeleton-declare-*` goldens cover five noise levels and every returned relation/count; label-index encoding is lossless. |
 | `pm4py.discover_declare` | `discovery.py` → `algo/discovery/declare/algorithm`, `objects/log/obj` | `ichnos_discovery::declare` | `ichnos-discovery` | ported | `DeclareOptions`, eighteen typed `DeclareTemplate` variants and a typed `DeclareModel` of unary/ordered-binary arguments plus support/confidence counts. Preserves projection before evaluation, case-weighted counts, zero/vacuous binary support, unary violations, derived-template prerequisites, source negative-template formulas, automatic 0.8 selection and descending name/activity tie-breaking; a missing single ratio means zero. Validates finite selection fractions in [0,1]; binary empty target labels remain binary instead of the source key collapse. Thirteen `skeleton-declare-*` goldens cover defaults, explicit/partial ratios, multiplier 0/1, projection, absent activities and template subsets; label-index encoding retains every rule/count. |
 | `pm4py.discover_powl` | `discovery.py` → `algo/discovery/powl/algorithm`, `algo/discovery/powl/inductive/variants/dynamic_clustering_frequency/dynamic_clustering_frequency_partial_order_cut`, `algo/discovery/powl/inductive/variants/powl_discovery_varaints`, `objects/log/obj`, `objects/powl/obj` | `ichnos::discovery::powl` (planned) | `ichnos-discovery` | todo | Variants: brute_force, dynamic_clustering, maximal, tree. |
-| `pm4py.discover_batches` | `discovery.py` → `algo/discovery/batches/algorithm`, `objects/log/obj` | `ichnos::discovery::batches` (planned) | `ichnos-discovery` | todo | Variants: log, pandas, polars. |
-| `pm4py.correlation_miner` | `discovery.py` → `algo/discovery/correlation_mining/algorithm` | `ichnos::discovery::correlation_miner` (planned) | `ichnos-discovery` | todo | Variants: classic, classic_split, trace_based. |
+| `pm4py.discover_batches` | `discovery.py` → `algo/discovery/batches/algorithm`, `objects/log/obj` | `ichnos_discovery::discover_batches` | `ichnos-discovery` | ported | EventLog path; five real logs and nine synthetic inputs cover all five categories and event identities, including 40 equal-endpoint observations with duplicates. Heap comparisons follow pm4py; overlap sorting uses a total order. See "ichnos-discovery (batches and correlation)" for typed inputs, precision and other changes. |
+| `pm4py.correlation_miner` | `discovery.py` → `algo/discovery/correlation_mining/algorithm` | `ichnos_discovery::correlation_miner` | `ichnos-discovery` | ported | Classic only, with complete statistics, boundaries, marginal counts and LP objectives. Uses microlp; non-integral solutions return an error. Receipt compares to pm4py with SciPy HiGHS, retaining the default backend result too. See "ichnos-discovery (batches and correlation)" for solver ties and other changes. |
 | `pm4py.discover_otg` | `discovery.py` → `algo/discovery/ocel/otg/algorithm`, `objects/ocel/obj` | `ichnos::discovery::otg` (planned) | `ichnos-discovery` | todo | Variants: classic. |
 | `pm4py.discover_etot` | `discovery.py` → `algo/discovery/ocel/etot/algorithm`, `objects/ocel/obj` | `ichnos::discovery::etot` (planned) | `ichnos-discovery` | todo | Variants: classic. |
 
@@ -1331,6 +1331,14 @@ Lanes record each deliberate change from pm4py here.
 - Completion timestamps are the default starts even for custom keys; interval options explicitly enable the start key.
 - Typed weekly `BusinessHours` slots and excluded dates replace Python work-calendar objects.
 - Elapsed performance gaps retain nanosecond precision.
+
+### ichnos-discovery (batches and correlation)
+
+- Both APIs accept canonical EventLog/EventKeys and typed options/results, with positional errors for missing event fields. Starts default to completions even with custom keys; interval options enable the start key. Timestamp arithmetic shares `ichnos_stats::time::datetime_timestamp`: integer microseconds are converted once, as in Python `datetime.timestamp()`. Submicrosecond digits are truncated; other nanosecond duration APIs keep their precision. Temporal discovery/conformance already share exact duration subtraction and do not convert epoch timestamps.
+- Overlap sorting uses endpoints followed by sorted event identities as a total order; Python proper-subset ties remain only in heap operations. Equal positive-length intervals overlap regardless of tie order.
+- Batch resources and trace case IDs must be strings or IDs. Case identity defaults to the trace concept:name attribute. Batch distance must be finite/nonnegative and minimum size positive. Empty traces need no case attribute.
+- Correlation empty input returns empty graphs instead of a wrapper indexing error. The implemented variant is classic; split and trace-based variants are deferred.
+- Correlation uses microlp continuous transportation solving. Uniform-cost matrices choose the diagonal optimal vertex. General tied optima can have backend-dependent edges. Non-integral solver values return `Error::CorrelationSolver` rather than pm4py's unconditional rounding. Receipt goldens retain the default Python backend's higher-cost flow and compare exact maps to the same pm4py miner configured with SciPy HiGHS, whose optimum agrees with ichnos.
 
 ### ichnos-core
 

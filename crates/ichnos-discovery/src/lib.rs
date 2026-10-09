@@ -16,6 +16,10 @@
 //! from `ichnos-model` or a typed summary. Errors are this crate's [`Error`].
 
 pub mod alpha;
+/// Batch detection by activity and resource.
+pub mod batches;
+/// Classic case-independent correlation mining.
+pub mod correlation;
 pub mod declare;
 pub mod dfg;
 mod error;
@@ -25,6 +29,8 @@ pub mod log_skeleton;
 pub mod temporal_profile;
 
 pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha_plus};
+pub use batches::{Batch, BatchEvent, BatchGroup, BatchOptions, BatchType, discover_batches};
+pub use correlation::{CorrelationEdge, CorrelationOptions, CorrelationResult, correlation_miner};
 pub use declare::{
     DeclareActivities, DeclareCounts, DeclareModel, DeclareOptions, DeclareTemplate, declare,
 };

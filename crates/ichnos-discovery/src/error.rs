@@ -7,6 +7,17 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    /// A nonempty batch trace lacks a string/ID case attribute.
+    #[error("trace {trace} has no string/ID case attribute {key}")]
+    BatchCase {
+        /// Trace index.
+        trace: usize,
+        /// Configured trace attribute.
+        key: String,
+    },
+    /// Correlation transportation solving failed or produced an invalid solution.
+    #[error("correlation solver: {0}")]
+    CorrelationSolver(String),
     /// A DECLARE selection fraction must be finite and in `[0, 1]`.
     #[error("DECLARE threshold {option}={value} is not in [0, 1]")]
     DeclareThreshold {
