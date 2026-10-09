@@ -76,6 +76,10 @@ fn graph(label: String, options: &FootprintsDotOptions) -> String {
 /// activity, `<` for the reverse, `||` when they are parallel and `#`
 /// otherwise. Activity names go into the HTML label unescaped, as in
 /// pm4py.
+///
+/// When both orders of a pair are in `sequence` and neither is in
+/// `parallel`, both cells show `>`; pm4py's cell then depends on Python's
+/// set order. pm4py's own footprints never hold such a pair.
 pub fn footprints_dot(fp: &Footprints, options: &FootprintsDotOptions) -> String {
     let symbol = |a1: &str, a2: &str| {
         let pair = |a: &str, b: &str| (a.into(), b.into());

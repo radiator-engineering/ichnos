@@ -1496,6 +1496,7 @@ Rows cite these as `core-N`.
   - pm4py turns a choice or loop between two silent steps into an activity labelled `None`; ichnos keeps and draws it.
   - An empty partial order has no node for an edge to point at, so it gets no edge; pm4py fails on it.
   - The icons ship inside the crate. `PowlDotOptions::icon_dir` sets the directory the image paths point into; pm4py points them into its install directory. `write_powl` writes the icons to a temporary directory for Graphviz and inlines them into `.svg` output.
+  - pm4py's `save_vis_powl` renders SVG and converts it to PNG or PDF with `cairosvg`; it accepts no other format. `write_powl` runs `dot -T<format>` for any format. For PNG, PDF and the other non-SVG formats Graphviz needs an SVG image loader, such as the rsvg plugin, to draw the icons. Without one Graphviz warns and draws the model without them, and `write_powl` fails with `VizError::IconsNotLoaded`.
   - The goldens draw a copy of pm4py's model with the children of choices and partial orders sorted, because pm4py orders them by Python's set order and an edge into a cluster joins its first child.
 
 ### ichnos-stream (live streams and DFG)
