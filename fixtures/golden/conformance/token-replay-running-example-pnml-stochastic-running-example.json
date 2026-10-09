@@ -6,6 +6,7 @@
       "perc_fit_traces": 100.0,
       "percentage_of_fitting_traces": 100.0
     },
+    "generalization": 0.5058241441400624,
     "model": {
       "arcs": [
         {
@@ -685,6 +686,69 @@
         ]
       }
     },
+    "precision": 0.33333333333333337,
+    "prefixes": [
+      {
+        "prefix": [
+          "register request",
+          "examine thoroughly"
+        ],
+        "reached": {
+          "p6": 1
+        }
+      },
+      {
+        "prefix": [
+          "register request",
+          "check ticket"
+        ],
+        "reached": {
+          "p0": 1
+        }
+      },
+      {
+        "prefix": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide"
+        ],
+        "reached": {
+          "p2": 1
+        }
+      },
+      {
+        "prefix": [
+          "register request",
+          "check ticket"
+        ],
+        "reached": {
+          "p0": 1
+        }
+      },
+      {
+        "prefix": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket"
+        ],
+        "reached": {
+          "p0": 1
+        }
+      },
+      {
+        "prefix": [
+          "register request",
+          "examine casually"
+        ],
+        "reached": {
+          "p6": 1
+        }
+      }
+    ],
     "traces": [
       {
         "case_id": "1",
@@ -892,7 +956,10 @@
     "functions": [
       "pm4py.convert_to_event_log",
       "pm4py.conformance_diagnostics_token_based_replay",
-      "pm4py.fitness_token_based_replay"
+      "pm4py.fitness_token_based_replay",
+      "pm4py.precision_token_based_replay",
+      "pm4py.generalization_tbr",
+      "pm4py.replay_prefix_tbr"
     ],
     "loaders": {
       "log": {

@@ -1,6 +1,6 @@
 [package]
 name = "ichnos"
-description = "Process mining in Rust, at parity with pm4py. Re-exports the public API of every ichnos crate."
+description = "Process mining in Rust. Re-exports the public API of every ichnos crate."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -11,6 +11,7 @@ repository.workspace = true
 workspace = true
 
 [dependencies]
+ichnos-conformance = { workspace = true }
 ichnos-discovery = { workspace = true }
 ichnos-core = { workspace = true }
 ichnos-model = { workspace = true }

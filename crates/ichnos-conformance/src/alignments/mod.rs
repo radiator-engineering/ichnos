@@ -46,6 +46,10 @@
 //! [`align_log`], [`fitness_alignments`] and [`precision_alignments`] are
 //! the log-level entry points of pm4py's simplified interface.
 //!
+//! [`Aligner::align_discounted`] runs pm4py's discounted variant, where a
+//! deviation after `l` moves costs `exponent^-l`. Unlike the searches
+//! above it is not exact; see [`DiscountedAlignment`].
+//!
 //! [`ApproximateAligner`] runs pm4py's approximate methods for long traces:
 //! tandem-repeat reduction, sliding windows and fixed horizon. Their
 //! alignments are valid but not always optimal. [`align_log_subset`]
@@ -69,6 +73,7 @@ mod approximate;
 pub mod costs;
 mod decomposed;
 mod dfg;
+mod discounted;
 mod edit_distance;
 mod marking;
 mod petri_net;
@@ -90,6 +95,7 @@ pub use approximate::{
 pub use costs::ModelCosts;
 pub use decomposed::{DecomposedAligner, DecomposedAlignment, DecomposedOptions};
 pub use dfg::{DfgAligner, align_log_dfg};
+pub use discounted::{DEFAULT_DISCOUNT_EXPONENT, DiscountedAlignment};
 pub use edit_distance::{EditDistanceAligner, align_log_edit_distance};
 pub use petri_net::{Aligner, AlignmentOptions, Heuristic, align_log, fitness_alignments};
 pub use precision::precision_alignments;
