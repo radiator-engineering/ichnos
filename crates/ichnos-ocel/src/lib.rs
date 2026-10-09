@@ -2,6 +2,7 @@
 
 mod consistency;
 pub mod constants;
+pub mod filtering;
 mod ocel;
 mod summary;
 
@@ -10,3 +11,5 @@ pub use ocel::{
     OcelEvent, OcelObject,
 };
 pub use summary::OcelSummary;
+
+pub use filtering::*;
