@@ -12,7 +12,8 @@ mod common;
 
 use common::load_csv_log;
 use ichnos_conformance::temporal_profile::{
-    TemporalDeviation, TemporalProfile, TemporalProfileOptions, conformance_temporal_profile,
+    TemporalConformanceOptions, TemporalDeviation, TemporalProfile, TemporalProfileOptions,
+    conformance_temporal_profile,
 };
 use ichnos_core::EventKeys;
 use ichnos_golden::{Tolerance, cases, compare_close, golden};
@@ -91,13 +92,15 @@ fn temporal_profile_conformance_matches_pm4py() {
         let settings = g.expected.as_object().expect("settings");
         for (name, e) in settings {
             let what = format!("{id} {name}");
-            let options = TemporalProfileOptions {
+            let options = TemporalConformanceOptions {
                 zeta: e["zeta"].as_f64().expect("zeta"),
-                use_start_timestamp,
-                business_hours: e["business_hours"]
-                    .as_bool()
-                    .expect("business_hours")
-                    .then(BusinessHours::default),
+                time: TemporalProfileOptions {
+                    use_start_timestamp,
+                    business_hours: e["business_hours"]
+                        .as_bool()
+                        .expect("business_hours")
+                        .then(BusinessHours::default),
+                },
             };
             let profile = profile(&e["profile"]);
             let result =
