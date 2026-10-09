@@ -1,0 +1,227 @@
+{
+  "expected": {
+    "flows": [
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-32092D59-5D5F-46CD-8D4A-2939BAD84E3A",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+        "target": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-48E4E779-BCC2-4E46-B2C9-83156BDF97C2",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+        "target": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-BE62AD05-D926-4653-A40A-1CC7CED6A6BD",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+        "target": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-79308AF7-DD27-408C-8BC6-EB4A15C9698E",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+        "target": "sid-B0A4DE1B-3BD5-44F2-82CF-2FADACB84925"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-80DD74D4-6206-4E25-8B3B-72B24404992E",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+        "target": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-436A4357-413C-4AA7-B8CF-4A9247F4ADF1",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+        "target": "sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-AF631568-14A8-4DF9-9985-D702924CA6A2",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+        "target": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idsid-65DCD431-FE91-42E6-889D-743F31AD74A0",
+        "name": "",
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "source": "sid-B0A4DE1B-3BD5-44F2-82CF-2FADACB84925",
+        "target": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45"
+      }
+    ],
+    "name": "",
+    "nodes": [
+      {
+        "activity": null,
+        "bounds": [
+          700.0,
+          195.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-33AFA1D2-55DA-4867-900A-9DE2CEE0010C",
+        "interrupting": null,
+        "name": "Bachelor Studies",
+        "parallel_multiple": null,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          562.5,
+          215.0,
+          40.0,
+          40.0
+        ],
+        "class": "ParallelGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "sid-524913C7-505D-401C-8F09-EA3A44C19F3D",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          450.0,
+          220.0,
+          30.0,
+          30.0
+        ],
+        "class": "NormalStartEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-9454C19A-21B3-42D5-B7DD-3993F49E1409",
+        "interrupting": false,
+        "name": "",
+        "parallel_multiple": false,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          897.5,
+          215.0,
+          40.0,
+          40.0
+        ],
+        "class": "ParallelGateway",
+        "depth": null,
+        "direction": "Converging",
+        "id": "sid-9CD19166-013B-4DCC-A2A1-CE8F1872BC45",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          700.0,
+          90.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "sid-A304C49B-4E63-41AB-8C69-68CA829D128E",
+        "interrupting": null,
+        "name": "Volunteer Work",
+        "parallel_multiple": null,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          700.0,
+          350.0,
+          100.06999999999994,
+          80.0
+        ],
+        "class": "SubProcess",
+        "depth": 2,
+        "direction": null,
+        "id": "sid-B0A4DE1B-3BD5-44F2-82CF-2FADACB84925",
+        "interrupting": null,
+        "name": "TestTask",
+        "parallel_multiple": null,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          1030.0,
+          221.0,
+          28.0,
+          28.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sid-E64E909C-CEEE-4908-9B1F-F4AD549DCE38",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idsid-97909c8d-3311-46af-a4a5-18dd4accf258",
+        "process_ref": null,
+        "text": null
+      }
+    ]
+  },
+  "meta": {
+    "area": "io",
+    "case": "bpmn-write-simple_model",
+    "fixtures": {
+      "model": "fixtures/logs/more_models/simple_model.bpmn"
+    },
+    "functions": [
+      "pm4py.read_bpmn",
+      "pm4py.objects.bpmn.exporter.variants.etree.get_xml_string",
+      "pm4py.objects.bpmn.importer.variants.lxml.import_from_string"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_bpmn",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

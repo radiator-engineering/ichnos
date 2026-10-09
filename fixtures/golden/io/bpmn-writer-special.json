@@ -1,0 +1,218 @@
+{
+  "expected": {
+    "flows": [
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_0",
+        "name": "",
+        "process": "idmain",
+        "source": "id_0",
+        "target": "id_1"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_1",
+        "name": "",
+        "process": "idmain",
+        "source": "id_1",
+        "target": "id_2"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_2",
+        "name": "yes",
+        "process": "idmain",
+        "source": "id_2",
+        "target": "id_3"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_3",
+        "name": "",
+        "process": "idmain",
+        "source": "id_2",
+        "target": "id_4"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_4",
+        "name": "",
+        "process": "idmain",
+        "source": "id_3",
+        "target": "id_5"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_5",
+        "name": "",
+        "process": "idmain",
+        "source": "id_4",
+        "target": "id_5"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "idflow_6",
+        "name": "",
+        "process": "idmain",
+        "source": "id_5",
+        "target": "id_6"
+      }
+    ],
+    "name": "",
+    "nodes": [
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalStartEvent",
+        "depth": null,
+        "direction": null,
+        "id": "id_0",
+        "interrupting": false,
+        "name": "go",
+        "parallel_multiple": false,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          120.5,
+          40.0,
+          100.0,
+          80.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "id_1",
+        "interrupting": null,
+        "name": "a & \"b\" <c>",
+        "parallel_multiple": null,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "id_2",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "UserTask",
+        "depth": null,
+        "direction": null,
+        "id": "id_3",
+        "interrupting": null,
+        "name": "left",
+        "parallel_multiple": null,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "SendTask",
+        "depth": null,
+        "direction": null,
+        "id": "id_4",
+        "interrupting": null,
+        "name": "right",
+        "parallel_multiple": null,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Converging",
+        "id": "id_5",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "id_6",
+        "interrupting": null,
+        "name": "done",
+        "parallel_multiple": null,
+        "process": "idmain",
+        "process_ref": null,
+        "text": null
+      }
+    ],
+    "process_id": "idmain"
+  },
+  "meta": {
+    "area": "io",
+    "case": "bpmn-writer-special",
+    "fixtures": {
+      "model": "fixtures/logs/writer-output/special.bpmn"
+    },
+    "functions": [
+      "pm4py.read_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_bpmn",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
