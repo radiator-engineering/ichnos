@@ -32,7 +32,6 @@ import pm4py
 from pm4py.objects.ocel import constants
 
 
-
 def _missing(value):
     if value is None:
         return True
@@ -139,6 +138,7 @@ _READERS = {
     "ocel20_example.jsonocel": ("pm4py.read_ocel2_json", pm4py.read_ocel2_json),
     "ocel20_example.xmlocel": ("pm4py.read_ocel2_xml", pm4py.read_ocel2_xml),
 }
+
 
 def _read_pinned(rel, path):
     """Reads ``path`` with the reader for ``rel`` under ``PYTHONHASHSEED=0``."""

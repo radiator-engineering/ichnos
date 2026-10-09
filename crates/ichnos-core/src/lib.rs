@@ -34,6 +34,7 @@ pub mod hof;
 pub mod keys;
 pub mod lifecycle;
 pub mod log;
+pub mod python;
 pub mod sample;
 pub mod sort;
 

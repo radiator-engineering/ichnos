@@ -1268,7 +1268,7 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.OCEL` | `objects/ocel/obj.py` → `objects/ocel/constants` | `ichnos::ocel::Ocel` | `ichnos-ocel` | ported | `Ocel` with `is_ocel20`, `summary` (pm4py's `get_summary` text through `Display`) and `extended_table`; default column names and JSON keys in `ichnos_ocel::constants`. Goldens `ocel/model-*` (6 fixtures and the empty log) compare each against pm4py. See the ichnos-ocel Behaviour changes. |
+| `pm4py.OCEL` | `objects/ocel/obj.py` → `objects/ocel/constants` | `ichnos_ocel::Ocel` | `ichnos-ocel` | ported | `Ocel` with `is_ocel20`, `summary` (pm4py's `get_summary` text through `Display`) and `extended_table`; default column names and JSON keys in `ichnos_ocel::constants`. Goldens `ocel/model-*` (6 fixtures and the empty log) compare each against pm4py. The goldens leave `globals` empty; the ichnos-io OCEL readers fill it and test it. See the ichnos-ocel Behaviour changes. |
 
 ## objects.bpmn.obj
 
@@ -1325,8 +1325,10 @@ Lanes record each deliberate change from pm4py here.
 
 - **Tables are typed rows, not data frames.** pm4py's `OCEL` holds pandas data frames whose column names are constructor parameters. `Ocel` holds lists of events, objects, relations, object-to-object and event-to-event relations and object changes. Column names matter only to the readers and writers.
 - **Relations keep ids only.** pm4py's `relations` table repeats each event's activity and timestamp and each object's type. `EventObject` keeps the event id, the object id and the qualifier. `summary` and `extended_table` look up the rest, and leave out a relation whose event or object is not in the log.
+  - pm4py uses the relation's own activity and type columns, so it keeps such a relation. Two effects follow. First, the summary's `events-objects relationships` count includes every relation, but its `Unique activities per object type` line counts only relations whose event and object are both in the log. Second, a type that appears only on relations to missing objects has no extended-table column and is missing from that line.
+- **Repeated event or object ids resolve to the first.** `event_index` and `object_index` map a repeated id to its first event or object. With repeated event ids, pm4py's `get_extended_table` raises and gives no table. `extended_table` gives the first such event all the objects related to that id, and the later events empty lists.
 - **The extended table is typed.** `get_extended_table` returns a data frame with one `ocel:type:<type>` column per object type, holding a list or a missing value. `extended_table` returns the object types and, for each event, one list per type, empty where pandas has a missing value.
-- **`OcelSummary` is a struct.** Its `Display` gives pm4py's `get_summary` text.
+- **`OcelSummary` is a struct.** Its `Display` gives pm4py's `get_summary` text. `Ocel`'s `Display` gives the same text, as pm4py's `OCEL.__str__` and `__repr__` do.
 - **No column-name parameters, `__hash__` or copy methods.** `Ocel` derives `Clone` and `PartialEq`.
 
 ### ichnos-io
