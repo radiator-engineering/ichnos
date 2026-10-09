@@ -2,9 +2,11 @@
 mod business;
 mod matching;
 mod relations;
+mod temporal_profile;
 pub use business::*;
 pub use matching::*;
 pub use relations::*;
+pub use temporal_profile::*;
 
 use crate::{Error, Result};
 use ichnos_core::{
