@@ -172,3 +172,68 @@ fn eventually_enabled_passes_silent_transitions() {
     let ev = net.visible_transitions_eventually_enabled(&Marking::from([(p[0], 1)]));
     assert_eq!(ev.into_iter().collect::<Vec<_>>(), vec![a, b]);
 }
+
+#[test]
+fn removal_and_compaction() {
+    let (mut net, p, [a, b, skip]) = chain();
+    net.remove_transition(skip);
+    assert_eq!(net.transition_count(), 2);
+    assert_eq!(net.arc_count(), 4);
+    assert!(!net.contains_transition(skip));
+    assert_eq!(net.place_postset(p[0]).collect::<Vec<_>>(), vec![a]);
+    net.remove_place(p[1]);
+    assert_eq!(net.place_count(), 2);
+    assert_eq!(net.arc_count(), 2);
+    assert!(net.transition(b).in_arcs().is_empty());
+    // Removing twice is a no-op.
+    net.remove_place(p[1]);
+    assert_eq!(net.place_count(), 2);
+
+    let map = net.compact();
+    assert_eq!(net.place_index_bound(), 2);
+    assert_eq!(map.place(p[1]), None);
+    let new_p2 = map.place(p[2]).unwrap();
+    assert_eq!(net.place(new_p2).name, "p2");
+    assert_eq!(map.transition(skip), None);
+    let new_b = map.transition(b).unwrap();
+    assert_eq!(net.postset(new_b).collect::<Vec<_>>(), vec![new_p2]);
+    assert_eq!(
+        map.marking(&Marking::from([(p[1], 1), (p[2], 2)])),
+        Marking::from([(new_p2, 2)])
+    );
+}
+
+#[test]
+fn simple_reduction_merges_silent_chain() {
+    // i -a-> p1 -tau-> p2 -b-> o  reduces to  i -a-> p2 -b-> o.
+    let mut net = PetriNet::new("r");
+    let i = net.add_place("i");
+    let p1 = net.add_place("p1");
+    let p2 = net.add_place("p2");
+    let o = net.add_place("o");
+    let a = net.add_transition("a", Some("a"));
+    let tau = net.add_transition("tau", None::<Label>);
+    let b = net.add_transition("b", Some("b"));
+    net.add_input_arc(i, a).unwrap();
+    net.add_output_arc(a, p1).unwrap();
+    net.add_input_arc(p1, tau).unwrap();
+    net.add_output_arc(tau, p2).unwrap();
+    net.add_input_arc(p2, b).unwrap();
+    net.add_output_arc(b, o).unwrap();
+    net.apply_simple_reduction();
+    assert_eq!(net.transition_count(), 2);
+    assert_eq!(net.place_count(), 3);
+    assert_eq!(net.postset(a).collect::<Vec<_>>(), vec![p2]);
+}
+
+#[test]
+fn incidence_matrix_skips_removed_elements() {
+    let (mut net, p, [a, _, skip]) = chain();
+    net.remove_transition(skip);
+    net.remove_place(p[2]);
+    let inc = IncidenceMatrix::new(&net);
+    assert_eq!(inc.places(), &[p[0], p[1]]);
+    assert_eq!(inc.transitions().len(), 2);
+    assert_eq!(inc.rows(), &[vec![-1, 0], vec![1, -1]]);
+    assert_eq!(inc.transitions()[0], a);
+}
