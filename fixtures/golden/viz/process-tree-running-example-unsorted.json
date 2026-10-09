@@ -1,0 +1,291 @@
+{
+  "expected": {
+    "dot": {
+      "directed": false,
+      "edges": [
+        [
+          "n0",
+          "n1",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n0",
+          "n12",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n10",
+          "n11",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n10",
+          "n13",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n10",
+          "n6",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n11",
+          "n7",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n11",
+          "n9",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n12",
+          "n3",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n12",
+          "n4",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n13",
+          "n5",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n13",
+          "n8",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n9",
+          "n0",
+          {
+            "dirType": "none"
+          }
+        ],
+        [
+          "n9",
+          "n2",
+          {
+            "dirType": "none"
+          }
+        ]
+      ],
+      "graph": {
+        "bgcolor": "white",
+        "overlap": "false",
+        "rankdir": "LR",
+        "splines": "false"
+      },
+      "nodes": [
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "and",
+            "shape": "ellipse"
+          },
+          "key": "n0"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "check ticket",
+            "shape": "ellipse"
+          },
+          "key": "n1"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "decide",
+            "shape": "ellipse"
+          },
+          "key": "n2"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "examine casually",
+            "shape": "ellipse"
+          },
+          "key": "n3"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "examine thoroughly",
+            "shape": "ellipse"
+          },
+          "key": "n4"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "pay compensation",
+            "shape": "ellipse"
+          },
+          "key": "n5"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "register request",
+            "shape": "ellipse"
+          },
+          "key": "n6"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "reinitiate request",
+            "shape": "ellipse"
+          },
+          "key": "n7"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "reject request",
+            "shape": "ellipse"
+          },
+          "key": "n8"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "seq",
+            "shape": "ellipse"
+          },
+          "key": "n9"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "seq",
+            "shape": "ellipse"
+          },
+          "key": "n10"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "xor loop",
+            "shape": "ellipse"
+          },
+          "key": "n11"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "xor",
+            "shape": "ellipse"
+          },
+          "key": "n12"
+        },
+        {
+          "attrs": {
+            "color": "black",
+            "fixedsize": "false",
+            "fontcolor": "black",
+            "fontsize": "20",
+            "label": "xor",
+            "shape": "ellipse"
+          },
+          "key": "n13"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )"
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "process-tree-running-example-unsorted",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_process_tree_inductive",
+      "pm4py.visualization.process_tree.visualizer.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "enable_deepcopy": false,
+      "font_size": 20
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
