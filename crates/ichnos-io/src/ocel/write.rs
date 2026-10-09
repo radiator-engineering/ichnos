@@ -961,7 +961,7 @@ impl Prepared {
                 El::new("event")
                     .attr("id", &*e.id)
                     .attr("type", &*e.activity)
-                    .attr("time", isoformat(&e.timestamp))
+                    .attr("time", event_time(&e.timestamp, self.ocel.naive_times))
                     .child(attributes)
                     .child(objects),
             );
@@ -1081,6 +1081,17 @@ fn strftime_z(d: &DateTime<FixedOffset>) -> String {
     d.with_timezone(&Utc)
         .format("%Y-%m-%dT%H:%M:%SZ")
         .to_string()
+}
+
+/// An event time as pm4py's OCEL 2.0 XML writer writes it: without an
+/// offset when the log's times are naive.
+fn event_time(d: &DateTime<FixedOffset>, naive: bool) -> String {
+    let text = isoformat(d);
+    if naive {
+        text.strip_suffix("+00:00").unwrap_or(&text).to_string()
+    } else {
+        text
+    }
 }
 
 /// A UTC time as pandas' `Timestamp.isoformat` writes it: fractional

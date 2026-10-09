@@ -143,8 +143,12 @@ fn timestamp(v: &Value) -> chrono::DateTime<chrono::FixedOffset> {
     DateTime::parse_from_rfc3339(v.as_str().expect("timestamp")).expect("timestamp")
 }
 
-fn build(v: &Value, globals: &Value) -> Ocel {
+/// The log a write golden starts from: its `input` tables, `globals` and,
+/// when pm4py's event times are naive, `naive_times`.
+fn build(expected: &Value) -> Ocel {
+    let (v, globals) = (&expected["input"], &expected["globals"]);
     Ocel {
+        naive_times: expected["naive_times"].as_bool().unwrap_or(false),
         events: rows(v, "events")
             .iter()
             .map(|e| OcelEvent {
@@ -630,11 +634,11 @@ fn write_cases() -> Vec<String> {
 #[test]
 fn writers_match_pm4py() {
     let ids = write_cases();
-    assert_eq!(ids.len(), 14, "cases: {ids:?}");
+    assert_eq!(ids.len(), 15, "cases: {ids:?}");
     let mut failures = Vec::new();
     for id in &ids {
         let g = golden("ocel", id);
-        let ocel = build(&g.expected["input"], &g.expected["globals"]);
+        let ocel = build(&g.expected);
         compare_writers(id, &g.expected, &ocel, &mut failures);
     }
     assert!(failures.is_empty(), "{}", failures.join("\n\n"));
@@ -670,11 +674,12 @@ fn writers_match_pm4py_from_files() {
             "pm4py.read_ocel2_json" => read_ocel2_json(&path),
             "pm4py.read_ocel2_xml" => read_ocel2_xml(&path, &options),
             "pm4py.read_ocel2_csv" => read_ocel2_csv(&path),
+            "pm4py.read_ocel_csv" => read_ocel_csv(&path, Some(&g.fixture("objects"))),
             other => panic!("{id}: unknown reader {other}"),
         }
         .unwrap_or_else(|e| panic!("{id}: {e}"));
         if READER_RELATION_ORDER.contains(&id.as_str()) {
-            let order = build(&g.expected["input"], &g.expected["globals"]).relations;
+            let order = build(&g.expected).relations;
             let position = |r: &EventObject| order.iter().position(|o| o == r);
             assert!(ocel.relations.iter().all(|r| position(r).is_some()), "{id}");
             ocel.relations.sort_by_key(position);
@@ -682,7 +687,7 @@ fn writers_match_pm4py_from_files() {
         compare_writers(id, &g.expected, &ocel, &mut failures);
         checked += 1;
     }
-    assert_eq!(checked, 8);
+    assert_eq!(checked, 9);
     assert!(failures.is_empty(), "{}", failures.join("\n\n"));
 }
 
@@ -767,14 +772,14 @@ fn first_difference(ours: &str, theirs: &str) -> Option<String> {
 #[test]
 fn json_layout_follows_ocel20_features() {
     let g = golden("ocel", "write-synthetic");
-    let ocel = build(&g.expected["input"], &g.expected["globals"]);
+    let ocel = build(&g.expected);
     assert!(!ocel.is_ocel20());
     let mut out = Vec::new();
     write_ocel_json_to_writer(&ocel, &mut out).unwrap();
     let text = String::from_utf8(out).unwrap();
     assert!(!text.contains("ocel:typedOmap"), "{text}");
     let g = golden("ocel", "write-synthetic20");
-    let ocel = build(&g.expected["input"], &g.expected["globals"]);
+    let ocel = build(&g.expected);
     let mut out = Vec::new();
     write_ocel_json_to_writer(&ocel, &mut out).unwrap();
     assert!(String::from_utf8(out).unwrap().contains("ocel:typedOmap"));
@@ -785,7 +790,7 @@ fn json_layout_follows_ocel20_features() {
 #[test]
 fn xml_refuses_control_characters() {
     let g = golden("ocel", "write-synthetic20");
-    let mut ocel = build(&g.expected["input"], &g.expected["globals"]);
+    let mut ocel = build(&g.expected);
     ocel.events[0]
         .attributes
         .insert("c_text", AttributeValue::String("a\u{1}b".into()));

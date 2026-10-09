@@ -76,7 +76,10 @@ def _tables(ocel):
     events = [{"id": str(r[eid]), "activity": str(r[act]), "timestamp": _date(r[ts]),
                "attributes": _attributes(r, {eid, act, ts})}
               for r in ocel.events.to_dict("records")]
-    objects = [{"id": str(r[oid]), "type": str(r[otype]), "attributes": _attributes(r, {oid, otype})}
+    # A column the objects table lacks is null.
+    objects = [{"id": str(r[oid]) if oid in r else None,
+                "type": str(r[otype]) if otype in r else None,
+                "attributes": _attributes(r, {oid, otype})}
                for r in ocel.objects.to_dict("records")]
     relations = [{"event": str(r[eid]), "object": str(r[oid]), "qualifier": _qualifier(r.get(qual)),
                   "activity": str(r[act]), "timestamp": _date(r[ts]), "type": str(r[otype])}
@@ -399,6 +402,46 @@ def _csv_cases(texts, read, suffix):
                       for name, text in texts.items()}}
 
 
+_OBJECTS_LOG = (
+    "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:order,ocel:type:item\n"
+    "e1,place,2022-01-09 14:00:00,['o1'],\"['i1', 'i2']\"\n"
+    "e2,pick,2022-01-09 15:00:00,,['i1']\n"
+)
+
+# OCEL 1.0 CSV objects tables, each read with ``_OBJECTS_LOG``. pm4py does
+# not check the objects table against the relations.
+_CSV_OBJECTS_TEXTS = {
+    "basic": "ocel:oid,ocel:type,price\no1,order,12.5\ni1,item,\ni2,item,3\n",
+    "no-type-column": "ocel:oid,price\no1,12.5\ni1,\n",
+    "no-oid-column": "ocel:type,price\norder,12.5\n",
+    "repeated-object": "ocel:oid,ocel:type\no1,order\no1,item\ni1,item\n",
+    "unlisted-object": "ocel:oid,ocel:type\no1,order\n",
+    "other-type": "ocel:oid,ocel:type\no1,item\ni1,order\n",
+    "na-id": "ocel:oid,ocel:type\nNA,order\no1,order\n,item\n",
+    "na-type": "ocel:oid,ocel:type\no1,NA\ni1,\ni2,item\n",
+    "extra-columns-only": "ocel:oid,ocel:type,a,b\no1,order,,\n",
+    "empty": "ocel:oid,ocel:type\n",
+}
+
+
+@case("read-csv-objects-texts", functions=["pm4py.read_ocel_csv"])
+def _csv_objects_text_cases(fixtures):
+    import tempfile
+
+    out = {}
+    for name, text in _CSV_OBJECTS_TEXTS.items():
+        with tempfile.TemporaryDirectory() as tmp:
+            log, objects = Path(tmp) / "log.csv", Path(tmp) / "objects.csv"
+            log.write_text(_OBJECTS_LOG, encoding="utf-8")
+            objects.write_text(text, encoding="utf-8")
+            try:
+                result = {"ocel": _tables(pm4py.read_ocel_csv(str(log), str(objects)))}
+            except Exception as e:
+                result = {"error": type(e).__name__}
+        out[name] = result | {"objects_text": text}
+    return {"log": _OBJECTS_LOG, "cases": out}
+
+
 @case("read-csv-texts", functions=["pm4py.read_ocel_csv"])
 def _csv_text_cases(fixtures):
     return _csv_cases(_CSV_TEXTS, pm4py.read_ocel_csv, ".csv")
@@ -457,7 +500,12 @@ def write_all(ocel):
             out["csv"] = {"text": path.read_bytes().decode("utf-8"), "objects": objects}
         except Exception as e:
             out["csv"] = {"error": type(e).__name__}
-    return {"input": tables, "globals": ocel.globals, "writers": out}
+    result = {"input": tables, "globals": ocel.globals, "writers": out}
+    times = ocel.events[ocel.event_timestamp]
+    if len(times) and getattr(times.dt, "tz", None) is None:
+        # The tables hold the times as UTC; pm4py's own times are naive.
+        result["naive_times"] = True
+    return result
 
 
 def _write_pinned(rel, path):
@@ -480,6 +528,15 @@ for _rel in _WRITTEN:
 
     case("write-" + _rel.replace(".", "-").replace("_", "-"), fixture="ocel/" + _rel,
          functions=[_READERS[_rel][0]] + _WRITER_FUNCTIONS)(_run_write)
+
+
+@case("write-typed-csv-objects",
+      fixtures={"log": "ocel/typed.csv", "objects": "ocel/typed-objects.csv"},
+      functions=["pm4py.read_ocel_csv"] + _WRITER_FUNCTIONS)
+def _write_typed_csv_objects(fixtures):
+    # An OCEL 1.0 CSV log with naive times, read with an objects file so
+    # that the object order is fixed.
+    return write_all(pm4py.read_ocel_csv(str(fixtures["log"]), str(fixtures["objects"])))
 
 
 @case("write-empty", functions=_WRITER_FUNCTIONS)

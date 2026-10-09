@@ -282,6 +282,42 @@ fn csv_texts_match_pm4py() {
     assert!(checked > 100, "{checked} texts");
 }
 
+/// Objects tables where ichnos returns an error and pm4py reads objects
+/// without an id.
+const CSV_OBJECTS_REFUSED: &[&str] = &["no-oid-column"];
+
+/// The `read-csv-objects-texts` golden: one log read with each objects
+/// table. pm4py does not check the table against the relations, and an
+/// object from a table without `ocel:type` has no type, which ichnos gives
+/// as the empty type.
+#[test]
+fn csv_objects_texts_match_pm4py() {
+    let g = golden("ocel", "read-csv-objects-texts");
+    let log = g.expected["log"].as_str().unwrap();
+    let mut checked = 0;
+    for (name, case) in g.expected["cases"].as_object().unwrap() {
+        let what = format!("read-csv-objects-texts {name}");
+        let mut objects = case["objects_text"].as_str().unwrap().as_bytes();
+        let result = read_ocel_csv_from_reader(log.as_bytes(), Some(&mut objects));
+        if CSV_OBJECTS_REFUSED.contains(&name.as_str()) {
+            assert!(result.is_err(), "{what}: refused");
+        } else if case.get("error").is_some() {
+            assert!(result.is_err(), "{what}: pm4py raises {}", case["error"]);
+        } else {
+            let ocel = result.unwrap_or_else(|e| panic!("{what}: {e}"));
+            let mut want = case["ocel"].clone();
+            for o in want["objects"].as_array_mut().unwrap() {
+                if o["type"].is_null() {
+                    o["type"] = Value::from("");
+                }
+            }
+            check(&ocel, &want, &what, true, false);
+        }
+        checked += 1;
+    }
+    assert_eq!(checked, 10);
+}
+
 /// pm4py's OCEL 1.0 CSV reader with an objects table takes the objects, in
 /// file order, from it.
 #[test]
