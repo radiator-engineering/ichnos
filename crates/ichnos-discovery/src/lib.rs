@@ -27,3 +27,7 @@ pub use inductive::{
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
+
+/// Prefix-tree discovery.
+pub mod prefix_tree;
+pub use prefix_tree::{PrefixNode, PrefixTree, PrefixTreeOptions, prefix_tree};
