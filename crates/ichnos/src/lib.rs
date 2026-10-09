@@ -1,6 +1,7 @@
 //! Process mining in Rust. Re-exports the public API of every ichnos crate.
 
-/// Process discovery: the inductive miner family. See [`ichnos_discovery`].
+/// Process discovery: the inductive miner family and the temporal profile.
+/// See [`ichnos_discovery`].
 pub use ichnos_discovery as discovery;
 
 pub use ichnos_core::{

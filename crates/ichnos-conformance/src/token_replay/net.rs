@@ -9,9 +9,13 @@
 
 use std::cmp::Reverse;
 use std::collections::{BTreeSet, HashMap};
+use std::rc::Rc;
 
+use ichnos_model::petri::{ReachabilityError, ReachabilityOptions};
 use ichnos_model::{Marking, PetriNet, PlaceId, TransitionId};
 use rustc_hash::{FxHashMap, FxHashSet};
+
+use crate::error::Result;
 
 /// pm4py's `MAX_REC_DEPTH`: the depth limit of the shortest-path search.
 const MAX_PATH_DEPTH: usize = 50;
@@ -51,6 +55,13 @@ pub(crate) struct ReplayNet {
 
 impl ReplayNet {
     pub fn new(net: &PetriNet) -> Self {
+        let mut this = Self::structure(net);
+        this.paths = this.shortest_hidden_paths(net);
+        this
+    }
+
+    /// The net without the shortest silent paths, which only replay needs.
+    pub fn structure(net: &PetriNet) -> Self {
         let tb = net.transition_index_bound();
         let pb = net.place_index_bound();
         let mut pre = vec![Vec::new(); tb];
@@ -93,7 +104,7 @@ impl ReplayNet {
         }
         let mut transitions_by_name: Vec<TransitionId> = net.transition_ids().collect();
         transitions_by_name.sort_by(|&a, &b| net.transition(a).name.cmp(&net.transition(b).name));
-        let mut this = Self {
+        Self {
             pre,
             post,
             consumed,
@@ -104,9 +115,7 @@ impl ReplayNet {
             place_rank,
             transitions_by_name,
             paths: Vec::new(),
-        };
-        this.paths = this.shortest_hidden_paths(net);
-        this
+        }
     }
 
     /// Dense token counts of `m`.
@@ -156,6 +165,47 @@ impl ReplayNet {
             .iter()
             .copied()
             .filter(move |&p| m[p] > 0)
+    }
+
+    /// pm4py's `get_visible_transitions_eventually_enabled_by_marking`,
+    /// including its quirk: each transition keeps only the last marking it
+    /// was found enabled in, so a transition queued twice is expanded from
+    /// that marking both times.
+    pub fn eventually_enabled(&self, marking: &[u32]) -> Result<BTreeSet<TransitionId>> {
+        let limit = ReachabilityOptions::default().max_markings;
+        let mut queue: Vec<TransitionId> = self.enabled_by_name(marking).collect();
+        let mut latest: FxHashMap<TransitionId, Rc<Tokens>> = Default::default();
+        let start = Rc::new(marking.to_vec());
+        for &t in &queue {
+            latest.insert(t, start.clone());
+        }
+        let mut visible = BTreeSet::new();
+        let mut seen: FxHashSet<(TransitionId, Rc<Tokens>)> = FxHashSet::default();
+        let mut i = 0;
+        while i < queue.len() {
+            let t = queue[i];
+            i += 1;
+            let m = latest[&t].clone();
+            if seen.contains(&(t, m.clone())) {
+                continue;
+            }
+            if !self.silent[t.index()] {
+                visible.insert(t);
+            } else if self.is_enabled(t, &m) {
+                let mut next = (*m).clone();
+                self.fire(t, &mut next);
+                let next = Rc::new(next);
+                for t2 in self.enabled_by_name(&next) {
+                    queue.push(t2);
+                    latest.insert(t2, next.clone());
+                }
+            }
+            seen.insert((t, m));
+            if seen.len() > limit {
+                return Err(ReachabilityError::TooManyMarkings(limit).into());
+            }
+        }
+        Ok(visible)
     }
 
     /// The hidden paths from each place in `sources` to each place in
