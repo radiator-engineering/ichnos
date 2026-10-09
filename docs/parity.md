@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 163; ported: 284; dropped: 179; total: 626.
+todo: 154; ported: 291; dropped: 181; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -951,17 +951,17 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.alignments.algorithm.apply` | `streaming/algo/conformance/alignments/algorithm.py` | `ichnos::stream::algo::conformance::alignments::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.alignments.algorithm.apply` | `streaming/algo/conformance/alignments/algorithm.py` | `ichnos_stream::StreamingAlignments::new` | `ichnos-stream` | ported | Default IWS entry point. Golden `stream/iws-automatic-chain` checks model preparation and all prefix/completion diagnostics; real-log cases `iws-running-example`, `iws-receipt`, `iws-roadtraffic100traces` check every event using controlled proxies. |
 
 ## streaming.algo.conformance.alignments.variants.approx_iws
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._TrieNode` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `objects/petri_net/obj` | `ichnos::stream::algo::conformance::alignments::variants::approx_iws::_TrieNode` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._State` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `algo/conformance/alignments/petri_net/utils/approx_utils` | `ichnos::stream::algo::conformance::alignments::variants::approx_iws::_State` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `algo/conformance/alignments/petri_net/utils/approx_utils`, `objects/petri_net/obj`, `objects/petri_net/utils/align_utils`, `streaming/algo/interface` | `ichnos::stream::algo::conformance::alignments::variants::approx_iws::IWSStreamingAlignments` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments.finish` | `streaming/algo/conformance/alignments/variants/approx_iws.py` | `ichnos::stream::algo::conformance::alignments::variants::approx_iws::IWSStreamingAlignments::finish` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.apply` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `objects/petri_net/obj` | `ichnos::stream::algo::conformance::alignments::variants::approx_iws::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._TrieNode` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `objects/petri_net/obj` | — | `ichnos-stream` | dropped | Private trie representation; internal indexed Rust nodes are not public API. |
+| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws._State` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `algo/conformance/alignments/petri_net/utils/approx_utils` | — | `ichnos-stream` | dropped | Private candidate representation; typed public alignment results expose diagnostics without internal mutable states. |
+| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `algo/conformance/alignments/petri_net/utils/approx_utils`, `objects/petri_net/obj`, `objects/petri_net/utils/align_utils`, `streaming/algo/interface` | `ichnos_stream::StreamingAlignments` | `ichnos-stream` | ported | Goldens `stream/iws-silent-lookahead`, `iws-lookahead-one`, `iws-decay-fallback`, `iws-state-cap`, `iws-branching-proxy` check prefix moves/costs, decay, candidate counts and trie nodes. All three real-log cases check complete ordered state digests and samples; `iws-running-example-pnml` uses a real PNML model with silent transitions; `iws-duplicate-labels` preserves transition identity. |
+| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.IWSStreamingAlignments.finish` | `streaming/algo/conformance/alignments/variants/approx_iws.py` | `ichnos_stream::StreamingAlignments::finish` | `ichnos-stream` | ported | Goldens `stream/iws-silent-lookahead`, `iws-branching-proxy`, `iws-completion-custom` check final suffixes, costs, validity and completed-result overlay; `iws-empty` checks no cases. |
+| `pm4py.streaming.algo.conformance.alignments.variants.approx_iws.apply` | `streaming/algo/conformance/alignments/variants/approx_iws.py` → `objects/petri_net/obj` | `ichnos_stream::StreamingAlignments::{new,from_proxy_traces,with_proxy_sequences}` | `ichnos-stream` | ported | Goldens `stream/iws-automatic-chain`, `iws-branching-proxy`, `iws-silent-lookahead` exercise deterministic generation, merged-aligner proxy preparation and supplied complete runs respectively. |
 
 ## streaming.algo.conformance.declare.algorithm
 
@@ -1099,9 +1099,9 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor` | `streaming/conversion/ocel_flatts_distributor.py` → `objects/ocel/constants`, `streaming/stream/live_event_stream` | `ichnos::stream::conversion::ocel_flatts_distributor::OcelFlattsDistributor` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register` | `streaming/conversion/ocel_flatts_distributor.py` → `streaming/stream/live_event_stream` | `ichnos::stream::conversion::ocel_flatts_distributor::OcelFlattsDistributor::register` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append` | `streaming/conversion/ocel_flatts_distributor.py` | `ichnos::stream::conversion::ocel_flatts_distributor::OcelFlattsDistributor::append` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor` | `streaming/conversion/ocel_flatts_distributor.py` → `objects/ocel/constants`, `streaming/stream/live_event_stream` | `ichnos_stream::OcelFlatteningDistributor` | `ichnos-stream` | ported | Golden `stream/ocel-example` checks all flattened event contents from a real OCEL fixture; `ocel-custom` checks source/destination keys and object prefix; `ocel-empty` checks empty input. |
+| `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register` | `streaming/conversion/ocel_flatts_distributor.py` → `streaming/stream/live_event_stream` | `ichnos_stream::OcelFlatteningDistributor::register` | `ichnos-stream` | ported | Goldens `stream/ocel-example`, `ocel-duplicates` check per-type routing, repeated listener registration and unregistered/empty types through live streams. |
+| `pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append` | `streaming/conversion/ocel_flatts_distributor.py` | `ichnos_stream::OcelFlatteningDistributor::append` | `ichnos-stream` | ported | Goldens `stream/ocel-example`, `ocel-duplicates`, `ocel-custom` check copied attributes, renamed activity/timestamp, overwritten case IDs, list order and duplicate object delivery. |
 
 ## streaming.importer.csv.importer
 
@@ -1627,6 +1627,49 @@ Rows cite these as `core-N`.
 ## Proposed lanes
 
 Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.
+
+### ichnos-stream (IWS alignments and OCEL distribution)
+
+- IWS aligns against a finite proxy of complete model runs; valid completed paths provide upper bounds without establishing optimality or complete model coverage.
+- Bounded deterministic breadth-first exploration ordered by transition name/ID replaces native seeded random simulation, so automatic proxies can differ.
+- Rust automatic proxy/path/expansion limits default to 100/100/100000 and must be positive.
+- Native path length defaults to max(100, four times the transition count); Rust's default path length is 100.
+- Native simulation attempts default to max(1000, twenty times the requested proxy count); Rust bounds expanded and queued paths instead.
+- No random seed or simulation-attempt option is exposed.
+- `from_proxy_traces` reuses the merged exact Dijkstra aligner and does not reproduce native approximate-search expansion/time cutoffs or equal-cost heap ordering.
+- `with_proxy_sequences` accepts validated complete transition runs for reproducible comparisons.
+- Proxy preparation retains the first run per distinct visible trace, matching native deduplication.
+- Matching trie paths, candidate ties and cheapest final suffixes follow proxy insertion order.
+- `StreamingAlignmentStep` uses optional log activities and transition IDs instead of sentinel strings, preserving silent/duplicate transition identity.
+- One result cost serves native cost, standard_cost and upper_bound.
+- Typed results omit runtime measurements and redundant method/bound strings.
+- One constructor family replaces variant dispatch because IWS is the sole alignment variant.
+- Direct visible matches reset lifetime; log/look-ahead moves discount it according to native IWS rules.
+- Candidate deduplication, caps and exhausted-state fallback retain native IWS rules.
+- Floating settings must be finite; Rust allows a positive fractional decay lifetime.
+- IWS rejects missing case/activity by default with an indexed typed error; native receive logs/swallows the exception.
+- Optional Ignore counts incomplete-event skips.
+- Core display canonicalizes case IDs and activities instead of Python value/string conventions.
+- Truthy completion attributes finish after consuming the event.
+- Completed results shadow later prefixes for that case, and finish retains active candidates, as native IWS does.
+- Finishing an unknown case returns None instead of KeyError.
+- Alignment histories grow with their case; the `remove_case` extension releases active/completed history and allows a clean restart.
+- Invalid marking membership, special arcs and invalid/non-final supplied runs return typed errors.
+- An empty complete proxy run is supported when initial equals final marking.
+- The OCEL distributor accepts canonical iterator-style Event rows, without importing OCEL tables itself.
+- Each object-type field is a typed List whose child values are object IDs; child keys are ignored.
+- Object IDs and ordinary payload attributes retain core types.
+- Object types route lexically instead of native dictionary insertion order.
+- Objects keep List order and listeners keep registration order.
+- Repeated IDs and listener registrations deliberately deliver repeatedly.
+- Unregistered types produce no events.
+- Required source fields and every object-type List are checked before any delivery; native unregistered values are unchecked.
+- Destination keys must be distinct and the object prefix nonempty.
+- Source activity/timestamp are removed before destination insertion, preserving values when keys coincide; native rename-then-delete loses them.
+- Object-type names remove one leading prefix instead of native split indexing, preserving any repeated prefix in the type name.
+- Synchronous delivery continues after sink errors and reports the first without rollback.
+- Listeners can be shared live streams or any StreamSink.
+- Seventeen new goldens cover all three required logs, a real PNML net with silent transitions, IWS boundary cases and OCEL routing.
 
 ### log-model-utils
 
