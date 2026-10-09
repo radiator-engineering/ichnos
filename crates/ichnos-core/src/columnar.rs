@@ -56,6 +56,10 @@ impl EventLog {
     /// Builds a log from an Arrow table: rows become events, grouped into
     /// traces by `keys.case_id` as [`EventStream::into_event_log`] describes.
     /// See [`EventStream::from_arrow`] for how Arrow types map to values.
+    ///
+    /// If `keys.case_id` starts with the case prefix (for example `case:id`),
+    /// that column also becomes a trace attribute (`id`) holding the case ID,
+    /// as in pm4py's `to_event_log`.
     pub fn from_arrow(batch: &RecordBatch, keys: &EventKeys) -> Result<Self> {
         EventStream::from_arrow(batch)?.into_event_log(keys)
     }

@@ -1,0 +1,191 @@
+{
+  "expected": {
+    "Costs": [
+      [
+        50,
+        400,
+        100,
+        200,
+        200
+      ],
+      [
+        50,
+        100,
+        400,
+        200,
+        200
+      ],
+      [
+        50,
+        400,
+        100,
+        200,
+        200,
+        400,
+        100,
+        200,
+        200
+      ],
+      [
+        50,
+        100,
+        400,
+        200,
+        200
+      ],
+      [
+        50,
+        400,
+        100,
+        200,
+        200,
+        100,
+        400,
+        200,
+        200,
+        400,
+        100,
+        200,
+        200
+      ],
+      [
+        50,
+        400,
+        100,
+        200,
+        200
+      ]
+    ],
+    "concept:name": [
+      [
+        "register request",
+        "examine thoroughly",
+        "check ticket",
+        "decide",
+        "reject request"
+      ],
+      [
+        "register request",
+        "check ticket",
+        "examine casually",
+        "decide",
+        "pay compensation"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reinitiate request",
+        "examine thoroughly",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ],
+      [
+        "register request",
+        "check ticket",
+        "examine thoroughly",
+        "decide",
+        "reject request"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reinitiate request",
+        "check ticket",
+        "examine casually",
+        "decide",
+        "reinitiate request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "reject request"
+      ],
+      [
+        "register request",
+        "examine casually",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ]
+    ],
+    "org:resource": [
+      [
+        "Pete",
+        "Sue",
+        "Mike",
+        "Sara",
+        "Pete"
+      ],
+      [
+        "Mike",
+        "Mike",
+        "Sean",
+        "Sara",
+        "Ellen"
+      ],
+      [
+        "Pete",
+        "Mike",
+        "Ellen",
+        "Sara",
+        "Sara",
+        "Sean",
+        "Pete",
+        "Sara",
+        "Ellen"
+      ],
+      [
+        "Pete",
+        "Mike",
+        "Sean",
+        "Sara",
+        "Ellen"
+      ],
+      [
+        "Ellen",
+        "Mike",
+        "Pete",
+        "Sara",
+        "Sara",
+        "Ellen",
+        "Mike",
+        "Sara",
+        "Sara",
+        "Sue",
+        "Pete",
+        "Sara",
+        "Mike"
+      ],
+      [
+        "Mike",
+        "Ellen",
+        "Mike",
+        "Sara",
+        "Mike"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "core",
+    "case": "project-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.project_on_event_attribute"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

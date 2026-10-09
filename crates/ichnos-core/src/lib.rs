@@ -24,10 +24,13 @@
 //! ```
 
 pub mod activity;
+pub mod artificial;
 pub mod attribute;
 pub mod columnar;
 pub mod error;
 pub mod format;
+pub mod graph;
+pub mod hof;
 pub mod keys;
 pub mod lifecycle;
 pub mod log;
@@ -36,11 +39,13 @@ pub mod sort;
 
 pub use arrow;
 pub use chrono;
+pub use petgraph;
 
 pub use activity::{ActivityId, ActivityIndex, ActivitySequences, Variant, Variants};
 pub use attribute::{AttributeValue, Attributes, MetaValue};
 pub use error::{Error, Position, Result};
 pub use format::format_batch;
+pub use graph::{LogEdge, LogGraph, LogNode};
 pub use keys::EventKeys;
 pub use log::{Classifier, Event, EventLog, EventStream, Extension, Globals, Trace, XesExtension};
 pub use sort::SortOrder;

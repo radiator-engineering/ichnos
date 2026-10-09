@@ -1,0 +1,67 @@
+{
+  "expected": {
+    "filter_log_longer_than_5": [
+      "3",
+      "5"
+    ],
+    "filter_trace_without_pete": {
+      "activities": [
+        "examine thoroughly",
+        "check ticket",
+        "decide"
+      ],
+      "attributes": {
+        "concept:name": "1",
+        "creator": "Fluxicon Nitro"
+      }
+    },
+    "sort_log_by_length": [
+      "1",
+      "2",
+      "4",
+      "6",
+      "3",
+      "5"
+    ],
+    "sort_log_by_length_reverse": [
+      "5",
+      "3",
+      "1",
+      "2",
+      "4",
+      "6"
+    ],
+    "sort_trace_by_activity_reverse": {
+      "activities": [
+        "reject request",
+        "register request",
+        "examine thoroughly",
+        "decide",
+        "check ticket"
+      ],
+      "attributes": {}
+    }
+  },
+  "meta": {
+    "area": "core",
+    "case": "hof-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.hof.filter_log",
+      "pm4py.hof.filter_trace",
+      "pm4py.hof.sort_log",
+      "pm4py.hof.sort_trace"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

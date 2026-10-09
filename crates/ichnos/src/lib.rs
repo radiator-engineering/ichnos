@@ -2,6 +2,6 @@
 
 pub use ichnos_core::{
     ActivityId, ActivityIndex, ActivitySequences, AttributeValue, Attributes, Classifier, Event,
-    EventKeys, EventLog, EventStream, Extension, Globals, MetaValue, Position, SortOrder, Trace,
-    Variant, Variants, XesExtension,
+    EventKeys, EventLog, EventStream, Extension, Globals, LogEdge, LogGraph, LogNode, MetaValue,
+    Position, SortOrder, Trace, Variant, Variants, XesExtension, format_batch,
 };

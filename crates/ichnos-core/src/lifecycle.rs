@@ -11,7 +11,7 @@ use rustc_hash::FxHashMap;
 use crate::attribute::AttributeValue;
 use crate::error::{Error, Position, Result};
 use crate::keys::{self, EventKeys};
-use crate::log::{Event, EventLog, Trace};
+use crate::log::{CaseKey, Event, EventLog, Trace};
 use crate::sort::SortOrder;
 
 /// Log attribute that marks a log as `interval` or `lifecycle`, as in pm4py.
@@ -24,6 +24,14 @@ pub const DURATION_KEY: &str = "@@duration";
 pub const LIFECYCLE_ID_KEY: &str = "@@custom_lif_id";
 /// Lifecycle event attribute: index of the interval event it came from.
 pub const ORIGIN_EVENT_KEY: &str = "@@origin_ev_idx";
+
+/// A value as a hash key, as Python compares dict keys.
+fn hashable(key: &str, value: &AttributeValue) -> Result<CaseKey> {
+    CaseKey::new(value).ok_or_else(|| Error::NestedAttribute {
+        key: key.to_owned(),
+        kind: value.type_name(),
+    })
+}
 
 fn date(event: &Event, key: &str, position: Position) -> Result<DateTime<FixedOffset>> {
     let value = event.get(key).ok_or_else(|| Error::MissingAttribute {
@@ -80,7 +88,9 @@ impl EventLog {
     ///
     /// Each `complete` event (or event without `keys.transition`) becomes one
     /// interval event. It is paired with the oldest unmatched `start` event of
-    /// the same activity and `concept:instance`. The interval event keeps the
+    /// the same activity and `concept:instance`, compared as values with
+    /// Python dict semantics (the int `1` and the string `"1"` differ). The
+    /// interval event keeps the
     /// complete event's attributes, gets the start event's attributes under
     /// [`START_EVENT_PREFIX`], `keys.start_timestamp`, `keys.timestamp` and
     /// [`DURATION_KEY`] in seconds. An unpaired complete event starts when it
@@ -88,8 +98,9 @@ impl EventLog {
     /// sorted by start timestamp. The log gets `PM4PY_TYPE = interval`.
     ///
     /// Returns a copy unchanged if the log is empty, is already marked
-    /// `interval`, or its first event has `keys.start_timestamp`. pm4py's
-    /// business-hours option is not ported here.
+    /// `interval`, or its first event has `keys.start_timestamp`. Fails if an
+    /// activity or instance is a list or container, which pm4py cannot hash
+    /// either. pm4py's business-hours option is not ported here.
     pub fn to_interval(&self, keys: &EventKeys) -> Result<EventLog> {
         if self.is_empty()
             || is_type(self, "interval")
@@ -105,7 +116,7 @@ impl EventLog {
                 attributes: trace.attributes.clone(),
                 events: Vec::new(),
             };
-            let mut open: FxHashMap<(String, Option<String>), VecDeque<&Event>> =
+            let mut open: FxHashMap<(CaseKey, Option<CaseKey>), VecDeque<&Event>> =
                 FxHashMap::default();
             for (e, event) in trace.events.iter().enumerate() {
                 let position = Position::Event { trace: t, event: e };
@@ -116,8 +127,11 @@ impl EventLog {
                             key: keys.activity.clone(),
                             position,
                         })?;
-                let instance = event.get(keys::CONCEPT_INSTANCE).map(ToString::to_string);
-                let slot = (activity.to_string(), instance);
+                let instance = event
+                    .get(keys::CONCEPT_INSTANCE)
+                    .map(|v| hashable(keys::CONCEPT_INSTANCE, v))
+                    .transpose()?;
+                let slot = (hashable(&keys.activity, activity)?, instance);
                 let transition = event
                     .get(&keys.transition)
                     .map_or_else(|| "complete".to_owned(), |v| v.to_string().to_lowercase());
@@ -325,5 +339,22 @@ mod tests {
                 ..
             })
         ));
+    }
+
+    #[test]
+    fn to_interval_pairs_by_value_not_text() {
+        let keys = EventKeys::default();
+        let mut start = ev("a", Some("start"), 0);
+        start.insert("concept:instance", 1);
+        let mut complete = ev("a", Some("complete"), 5);
+        complete.insert("concept:instance", "1");
+        let log = EventLog::from_traces(vec![Trace {
+            events: vec![start, complete],
+            ..Trace::with_case_id("1")
+        }]);
+        let out = log.to_interval(&keys).unwrap();
+        let event = &out.traces[0].events[0];
+        // The int 1 and the string "1" differ, so the complete event is unpaired.
+        assert_eq!(get(event, "@@duration").as_f64(), Some(0.0));
     }
 }

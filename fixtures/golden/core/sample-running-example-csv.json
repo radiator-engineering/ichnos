@@ -1,0 +1,28 @@
+{
+  "expected": {
+    "cases_100": 6,
+    "cases_3": 3,
+    "events_10": 10,
+    "events_100": 42
+  },
+  "meta": {
+    "area": "core",
+    "case": "sample-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.sample_cases",
+      "pm4py.sample_events"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

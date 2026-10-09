@@ -1,0 +1,276 @@
+{
+  "expected": {
+    "dataframe_columns": [
+      "Unnamed: 0",
+      "concept:name",
+      "org:resource",
+      "time:timestamp",
+      "Activity",
+      "Resource",
+      "Costs",
+      "@@index",
+      "@@case_index",
+      "case:concept:name",
+      "case:creator"
+    ],
+    "dataframe_dtypes": {
+      "@@case_index": "int64",
+      "@@index": "int64",
+      "Activity": "str",
+      "Costs": "int64",
+      "Resource": "str",
+      "Unnamed: 0": "int64",
+      "case:concept:name": "str",
+      "case:creator": "str",
+      "concept:name": "str",
+      "org:resource": "str",
+      "time:timestamp": "datetime64[us, UTC]"
+    },
+    "dataframe_head": [
+      {
+        "@@case_index": 0,
+        "@@index": 0,
+        "Activity": "register request",
+        "Costs": 50,
+        "Resource": "Pete",
+        "Unnamed: 0": 14,
+        "case:concept:name": "1",
+        "case:creator": "Fluxicon Nitro",
+        "concept:name": "register request",
+        "org:resource": "Pete",
+        "time:timestamp": "2010-12-30T10:02:00Z"
+      },
+      {
+        "@@case_index": 0,
+        "@@index": 1,
+        "Activity": "examine thoroughly",
+        "Costs": 400,
+        "Resource": "Sue",
+        "Unnamed: 0": 15,
+        "case:concept:name": "1",
+        "case:creator": "Fluxicon Nitro",
+        "concept:name": "examine thoroughly",
+        "org:resource": "Sue",
+        "time:timestamp": "2010-12-31T09:06:00Z"
+      },
+      {
+        "@@case_index": 0,
+        "@@index": 2,
+        "Activity": "check ticket",
+        "Costs": 100,
+        "Resource": "Mike",
+        "Unnamed: 0": 16,
+        "case:concept:name": "1",
+        "case:creator": "Fluxicon Nitro",
+        "concept:name": "check ticket",
+        "org:resource": "Mike",
+        "time:timestamp": "2011-01-05T14:12:00Z"
+      },
+      {
+        "@@case_index": 0,
+        "@@index": 3,
+        "Activity": "decide",
+        "Costs": 200,
+        "Resource": "Sara",
+        "Unnamed: 0": 17,
+        "case:concept:name": "1",
+        "case:creator": "Fluxicon Nitro",
+        "concept:name": "decide",
+        "org:resource": "Sara",
+        "time:timestamp": "2011-01-06T10:18:00Z"
+      },
+      {
+        "@@case_index": 0,
+        "@@index": 4,
+        "Activity": "reject request",
+        "Costs": 200,
+        "Resource": "Pete",
+        "Unnamed: 0": 18,
+        "case:concept:name": "1",
+        "case:creator": "Fluxicon Nitro",
+        "concept:name": "reject request",
+        "org:resource": "Pete",
+        "time:timestamp": "2011-01-07T13:24:00Z"
+      }
+    ],
+    "dataframe_rows": 42,
+    "round_trip_case_ids": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "stream_case_ids": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "4",
+      "4",
+      "4",
+      "4",
+      "4",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "6",
+      "6",
+      "6",
+      "6",
+      "6"
+    ],
+    "stream_first_event": {
+      "@@case_index": 0,
+      "@@index": 0,
+      "Activity": "register request",
+      "Costs": 50,
+      "Resource": "Pete",
+      "Unnamed: 0": 14,
+      "case:concept:name": "1",
+      "case:creator": "Fluxicon Nitro",
+      "concept:name": "register request",
+      "org:resource": "Pete",
+      "time:timestamp": "2010-12-30T10:02:00Z"
+    },
+    "traces": [
+      {
+        "activities": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "attributes": {
+          "concept:name": "1",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ],
+        "attributes": {
+          "concept:name": "2",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "attributes": {
+          "concept:name": "3",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ],
+        "attributes": {
+          "concept:name": "4",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ],
+        "attributes": {
+          "concept:name": "5",
+          "creator": "Fluxicon Nitro"
+        }
+      },
+      {
+        "activities": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ],
+        "attributes": {
+          "concept:name": "6",
+          "creator": "Fluxicon Nitro"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "core",
+    "case": "convert-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.convert_to_event_stream",
+      "pm4py.convert_to_dataframe"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

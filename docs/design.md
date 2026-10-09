@@ -109,12 +109,25 @@ Other ichnos crates follow one pattern. Each crate defines its own `thiserror` `
 
 `format_batch(batch, &keys, timestamp_format)` is the Arrow form of pm4py's `format_dataframe`. It copies the case, activity and timestamp columns to the standard names, converts timestamps to UTC, drops rows without a case ID, activity or timestamp, casts the case ID and activity to strings, sorts by case, timestamp and input order, and adds `@@index` and `@@case_index`. Running `format_batch` before `from_arrow` gives pm4py's trace and event order for a CSV table. `EventLog::rebase` and `EventStream::rebase` flatten, format and regroup, as pm4py's `rebase` does.
 
-Two differences from pandas:
+Three differences from pandas:
 
 - pandas tries to parse every string column as a date. `format_batch` parses only the timestamp and start-timestamp columns, so a column of short numeric strings never turns into dates by accident.
+- pandas leaves a numeric timestamp column as numbers. `format_batch` returns `Error::UnsupportedColumn`, because a cast would read the numbers as nanoseconds since 1970.
 - pandas leaves a column as strings when a value fails to parse. `format_batch` returns `Error::UnparseableTimestamp`. Without an explicit format it accepts ISO 8601 and RFC 3339 forms. Other layouts need `timestamp_format` in chrono syntax, which avoids pandas's day-first and month-first guessing.
+
+### Closures over traces and events
+
+pm4py's `hof` module filters and sorts with Python callables. ichnos takes Rust closures over `&Trace` and `&Event`: `EventLog::filter_traces`, `EventStream::filter_events` and `Trace::filter_events` return a new value with the metadata copied, as pm4py does. `sort_traces_by_key` and `sort_events_by_key` sort in place, stably in both orders, like `sort_by_timestamp`. The sort key must be `Ord`. Floats are not, so wrap a float key in a type that orders with `f64::total_cmp`. pm4py's `sort_trace` drops the trace attributes; ichnos keeps them. With an owned log, `log.traces.retain(...)` filters in place without cloning.
+
+### Artificial start and end events
+
+`EventLog::insert_artificial_start_end(&keys, start, end)` ports pm4py's event-log version: one event before and one after each trace, one second before the first and after the last timestamp. `artificial::ARTIFICIAL_START` (`▶`) and `ARTIFICIAL_END` (`■`) are pm4py's defaults. pm4py's DataFrame version differs: it shifts by one millisecond and sorts the table. ichnos has one version, on `EventLog`; a table goes through `from_arrow` first.
+
+### The log as a graph
+
+`EventLog::to_graph` ports `convert_log_to_networkx` with a petgraph `DiGraph<LogNode, LogEdge>` (`LogGraph`). Nodes are cases, events and attribute values; edges are `BelongsTo`, `DirectlyFollows` and `Attribute(key)`. `LogNode::id` gives pm4py's node names (`CASE=1`, `EVENT=1_0`, the value's `str()`), so graphs can be compared. NetworkX keys every node by its name, so in pm4py an attribute value whose text is `CASE=1` merges with that case node. ichnos keys cases, events and attribute values apart. The case ID is always the trace's `concept:name`; pm4py lets the caller name another trace attribute.
 
 ### Not ported, and why
 
-- `serialize` / `deserialize` (pickle). Parquet, Arrow IPC and XES, through `ichnos-io`, cover persistence.
+- `serialize` / `deserialize`. pm4py's versions dispatch on the object type and return a `(type tag, bytes)` pair: XES for logs, Parquet for DataFrames, PNML, PTML, BPMN or DFG files for models. In Rust the caller knows the type, so each writer and reader in `ichnos-io` (XES, Parquet, Arrow IPC, PNML and the others) already gives the bytes, and values move between threads without serialising. A `serde` feature adds a second, unversioned format for every type and is not worth its cost until a lane needs it.
 - `parse_process_tree` belongs to the model crate.
