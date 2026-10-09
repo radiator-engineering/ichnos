@@ -42,6 +42,7 @@ fn entry_point_real_projections_and_synthetic() {
         s.starts_with("privacy-")
             && !s.starts_with("privacy-mechanisms")
             && s != "privacy-epsilon-one-distribution"
+            && s != "privacy-timestamp-sensitivity"
             && s != "privacy-behavioral-relations"
     }) {
         let g = golden("simulation", &id);

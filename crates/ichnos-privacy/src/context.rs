@@ -45,6 +45,7 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
     let mut pools: Pools = BTreeMap::new();
     let mut structures: BTreeMap<String, Vec<String>> = BTreeMap::new();
     let mut times = Vec::new();
+    let mut timestamp_bounds: Option<(i64, i64)> = None;
     let mut delays = Vec::new();
     let mut pair_delays: BTreeMap<(String, String), Vec<i64>> = BTreeMap::new();
     for trace in &mut source.traces {
@@ -53,6 +54,10 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
         for event in &mut trace.events {
             let a = activity(event).to_string();
             let time = timestamp(event)?;
+            timestamp_bounds = Some(match timestamp_bounds {
+                Some((low, high)) => (low.min(time), high.max(time)),
+                None => (time, time),
+            });
             let keys: Vec<_> = event
                 .attributes
                 .iter()
@@ -123,6 +128,8 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
     let mut output = EventLog::default();
     let min = *times.iter().min().expect("timestamps");
     let max = *times.iter().max().expect("timestamps");
+    let (first, last) = timestamp_bounds.expect("timestamps validated nonempty");
+    let shift_sensitivity = (last - first) as f64 / 1e6;
     for (id, sequence) in query.iter().enumerate() {
         let mut stacks: BTreeMap<String, VecDeque<Event>> = BTreeMap::new();
         if let Some(i) = matches[id] {
@@ -220,11 +227,10 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
                 event.insert(key.as_str(), noisy);
             }
         }
-        // PRIPEL shifts the whole trace and retains its resolved inter-event gaps.
-        // Recalibrate to each shift interval instead of reusing a cached scale
-        // from the first trace as pm4py's LaplaceBoundedDomain does.
-        // Sensitivity is the admissible interval width, smaller than pm4py's
-        // whole-log range: this can yield less noise for the same epsilon.
+        // PRIPEL shifts the whole trace and retains resolved inter-event gaps.
+        // Sensitivity covers the whole input log, including first events.
+        // Recompute each conditional distribution instead of reusing pm4py's
+        // cached first-trace LaplaceBoundedDomain scale.
         let begin = timestamp(&trace.events[0])?;
         let end = timestamp(trace.events.last().expect("nonempty query"))?;
         let lo = (min - begin) as f64 / 1e6;
@@ -232,7 +238,9 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
         if lo >= hi {
             hi = ((max - begin) as f64 / 1e6).abs();
         }
-        let shift = mechanisms::bounded(0., lo, hi, o.epsilon, rng) * 1e6;
+        let shift =
+            mechanisms::bounded_with_sensitivity(0., lo, hi, shift_sensitivity, o.epsilon, rng)
+                * 1e6;
         for event in &mut trace.events {
             let time = timestamp(event)?;
             set_timestamp(event, (time as f64 + shift).round_ties_even() as i64)?;
@@ -240,4 +248,53 @@ pub(crate) fn enrich<R: Rng + ?Sized>(
         output.traces.push(trace);
     }
     Ok(output)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_chacha::ChaCha8Rng;
+
+    #[test]
+    fn timestamp_shift_uses_the_whole_log_range() {
+        let g = ichnos_golden::golden("simulation", "privacy-timestamp-sensitivity");
+        let e = &g.expected;
+        let mut log = EventLog::default();
+        for pair in e["input_times"].as_array().unwrap() {
+            let mut trace = Trace::new();
+            for (label, time) in ["a", "b"].into_iter().zip(pair.as_array().unwrap()) {
+                let mut event = Event::new();
+                event.insert("concept:name", label);
+                set_timestamp(&mut event, (time.as_f64().unwrap() * 1e6) as i64).unwrap();
+                trace.events.push(event);
+            }
+            log.traces.push(trace);
+        }
+        let query: Vec<Vec<String>> = serde_json::from_value(e["query"].clone()).unwrap();
+        let options = PrivacyOptions {
+            epsilon: e["epsilon"].as_f64().unwrap(),
+            ..Default::default()
+        };
+        let mut rng = ChaCha8Rng::seed_from_u64(1729);
+        let mut sum = 0.;
+        let mut squares = 0.;
+        let n = 4000;
+        for _ in 0..n {
+            let output = enrich(&log, &query, &options, &mut rng).unwrap();
+            let first = timestamp(&output.traces[0].events[0]).unwrap() as f64 / 1e6;
+            let last = timestamp(&output.traces[0].events[1]).unwrap() as f64 / 1e6;
+            assert!((90. ..=100.).contains(&first));
+            assert!((last - first - 90.).abs() < 1e-6);
+            sum += first;
+            squares += first * first;
+        }
+        let mean = sum / n as f64;
+        let std = (squares / n as f64 - mean * mean).sqrt();
+        assert!(
+            (mean - e["mean"].as_f64().unwrap()).abs() < 0.15,
+            "mean {mean}"
+        );
+        assert!((std - e["std"].as_f64().unwrap()).abs() < 0.15, "std {std}");
+    }
 }

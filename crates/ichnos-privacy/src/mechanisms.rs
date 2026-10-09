@@ -13,13 +13,27 @@ pub(crate) fn bounded<R: Rng + ?Sized>(
     epsilon: f64,
     rng: &mut R,
 ) -> f64 {
+    bounded_with_sensitivity(value, lo, hi, hi - lo, epsilon, rng)
+}
+
+// Explicit sensitivity for timestamp shifts. Never reduce it below the
+// admissible domain diameter, including fallback intervals wider than the log.
+pub(crate) fn bounded_with_sensitivity<R: Rng + ?Sized>(
+    value: f64,
+    lo: f64,
+    hi: f64,
+    sensitivity: f64,
+    epsilon: f64,
+    rng: &mut R,
+) -> f64 {
     if lo == hi {
         return lo;
     }
     let value = value.clamp(lo, hi);
-    // PRIPEL numeric sensitivity equals the diameter. In that case the
-    // bounded-domain calibration factor is one and scale=diameter/epsilon.
-    let scale = (hi - lo) / epsilon;
+    // At or above the diameter, use the supplied conservative sensitivity.
+    // This preserves the conditional Laplace law without reducing the noise
+    // scale to the narrower admissible timestamp interval.
+    let scale = sensitivity.max(hi - lo) / epsilon;
     let cdf = |x: f64| {
         if x < value {
             0.5 * ((x - value) / scale).exp()

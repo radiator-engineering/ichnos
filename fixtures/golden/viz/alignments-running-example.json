@@ -1,0 +1,344 @@
+{
+  "expected": {
+    "dot": {
+      "directed": true,
+      "edges": [],
+      "graph": {},
+      "nodes": [
+        {
+          "attrs": {
+            "label": "<\n<table border='0' cellborder='1' color='blue' cellspacing='0'>\n<tr><td>Variant</td><td>Alignment</td></tr>\n<tr><td><font point-size='9'>Variant 1 (1 occurrences)</font></td><td><font point-size='6'><table border='0'><tr><td bgcolor=\"orange\"><b>(LM)</b>register request</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"lightgreen\">examine casually</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"lightgreen\">pay compensation</td><td bgcolor=\"violet\"><b>(MM)</b>None</td><td bgcolor=\"violet\"><b>(MM)</b>end &gt; model</td></tr></table></font></td></tr><tr><td><font point-size='9'>Variant 2 (1 occurrences)</font></td><td><font point-size='6'><table border='0'><tr><td bgcolor=\"orange\"><b>(LM)</b>register request</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>examine thoroughly</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"orange\"><b>(LM)</b>reject request</td><td bgcolor=\"violet\"><b>(MM)</b>None</td><td bgcolor=\"violet\"><b>(MM)</b>end &gt; model</td></tr></table></font></td></tr><tr><td><font point-size='9'>Variant 3 (1 occurrences)</font></td><td><font point-size='6'><table border='0'><tr><td bgcolor=\"orange\"><b>(LM)</b>register request</td><td bgcolor=\"lightgreen\">examine casually</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"lightgreen\">pay compensation</td><td bgcolor=\"violet\"><b>(MM)</b>None</td><td bgcolor=\"violet\"><b>(MM)</b>end &gt; model</td></tr></table></font></td></tr><tr><td><font point-size='9'>Variant 4 (1 occurrences)</font></td><td><font point-size='6'><table border='0'><tr><td bgcolor=\"orange\"><b>(LM)</b>register request</td><td bgcolor=\"lightgreen\">examine casually</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"lightgreen\">reinitiate request</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"lightgreen\">examine casually</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"lightgreen\">reinitiate request</td><td bgcolor=\"lightgreen\">examine casually</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"orange\"><b>(LM)</b>reject request</td><td bgcolor=\"violet\"><b>(MM)</b>None</td><td bgcolor=\"violet\"><b>(MM)</b>end &gt; model</td></tr></table></font></td></tr><tr><td><font point-size='9'>Variant 5 (1 occurrences)</font></td><td><font point-size='6'><table border='0'><tr><td bgcolor=\"orange\"><b>(LM)</b>register request</td><td bgcolor=\"lightgreen\">examine casually</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"lightgreen\">reinitiate request</td><td bgcolor=\"orange\"><b>(LM)</b>examine thoroughly</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"lightgreen\">pay compensation</td><td bgcolor=\"violet\"><b>(MM)</b>None</td><td bgcolor=\"violet\"><b>(MM)</b>end &gt; model</td></tr></table></font></td></tr><tr><td><font point-size='9'>Variant 6 (1 occurrences)</font></td><td><font point-size='6'><table border='0'><tr><td bgcolor=\"orange\"><b>(LM)</b>register request</td><td bgcolor=\"orange\"><b>(LM)</b>examine thoroughly</td><td bgcolor=\"lightgreen\">check ticket</td><td bgcolor=\"orange\"><b>(LM)</b>decide</td><td bgcolor=\"orange\"><b>(LM)</b>reject request</td><td bgcolor=\"violet\"><b>(MM)</b>None</td><td bgcolor=\"violet\"><b>(MM)</b>end &gt; model</td></tr></table></font></td></tr></table>\n>",
+            "shape": "plaintext"
+          },
+          "key": "n0"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "rows": [
+        {
+          "activities": [
+            "register request",
+            "examine casually",
+            "check ticket",
+            "decide",
+            "reinitiate request",
+            "examine thoroughly",
+            "check ticket",
+            "decide",
+            "pay compensation"
+          ],
+          "count": 1,
+          "moves": [
+            [
+              "register request",
+              ">>"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              "examine thoroughly",
+              ">>"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              ">>",
+              null
+            ],
+            [
+              ">>",
+              "end > model"
+            ]
+          ]
+        },
+        {
+          "activities": [
+            "register request",
+            "check ticket",
+            "examine casually",
+            "decide",
+            "pay compensation"
+          ],
+          "count": 1,
+          "moves": [
+            [
+              "register request",
+              ">>"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              ">>",
+              null
+            ],
+            [
+              ">>",
+              "end > model"
+            ]
+          ]
+        },
+        {
+          "activities": [
+            "register request",
+            "examine thoroughly",
+            "check ticket",
+            "decide",
+            "reject request"
+          ],
+          "count": 1,
+          "moves": [
+            [
+              "register request",
+              ">>"
+            ],
+            [
+              "examine thoroughly",
+              ">>"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "reject request",
+              ">>"
+            ],
+            [
+              ">>",
+              null
+            ],
+            [
+              ">>",
+              "end > model"
+            ]
+          ]
+        },
+        {
+          "activities": [
+            "register request",
+            "examine casually",
+            "check ticket",
+            "decide",
+            "pay compensation"
+          ],
+          "count": 1,
+          "moves": [
+            [
+              "register request",
+              ">>"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              ">>",
+              null
+            ],
+            [
+              ">>",
+              "end > model"
+            ]
+          ]
+        },
+        {
+          "activities": [
+            "register request",
+            "examine casually",
+            "check ticket",
+            "decide",
+            "reinitiate request",
+            "check ticket",
+            "examine casually",
+            "decide",
+            "reinitiate request",
+            "examine casually",
+            "check ticket",
+            "decide",
+            "reject request"
+          ],
+          "count": 1,
+          "moves": [
+            [
+              "register request",
+              ">>"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "reject request",
+              ">>"
+            ],
+            [
+              ">>",
+              null
+            ],
+            [
+              ">>",
+              "end > model"
+            ]
+          ]
+        },
+        {
+          "activities": [
+            "register request",
+            "check ticket",
+            "examine thoroughly",
+            "decide",
+            "reject request"
+          ],
+          "count": 1,
+          "moves": [
+            [
+              "register request",
+              ">>"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              ">>"
+            ],
+            [
+              "decide",
+              ">>"
+            ],
+            [
+              "reject request",
+              ">>"
+            ],
+            [
+              ">>",
+              null
+            ],
+            [
+              ">>",
+              "end > model"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "alignments-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.save_vis_alignments"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

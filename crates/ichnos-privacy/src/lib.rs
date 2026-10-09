@@ -75,6 +75,8 @@ pub(crate) fn validate(o: &PrivacyOptions) -> Result<(), PrivacyError> {
 /// Generates noisy variants, optimally matches them to source traces, samples
 /// missing context, randomizes scalar attributes and shifts timestamps.
 ///
+/// Timestamp-shift sensitivity is at least the full input timestamp range.
+/// A wider admissible interval raises it; a narrower interval never reduces it.
 /// Original trace attributes are discarded. The input log is never mutated.
 pub fn anonymize_differential_privacy<R: Rng + ?Sized>(
     log: &EventLog,

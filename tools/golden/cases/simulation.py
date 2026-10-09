@@ -800,3 +800,32 @@ def _privacy_distribution(fixtures):
         "flag_rate": float(np.mean(flags)),
         "category_red": float(np.mean(categories)),
     }
+
+
+@case(
+    "privacy-timestamp-sensitivity",
+    functions=[
+        "diffprivlib.mechanisms.Laplace",
+    ],
+)
+def timestamp_sensitivity(fixtures):
+    from diffprivlib.mechanisms import Laplace
+
+    # Conservative whole-log sensitivity with a much narrower fallback interval.
+    # Observe the conditional Laplace law independently through rejection.
+    mechanism = Laplace(epsilon=2.0, sensitivity=100.0, random_state=SEED)
+    samples = []
+    while len(samples) < N:
+        value = mechanism.randomise(90.0)
+        if 90.0 <= value <= 100.0:
+            samples.append(value)
+    return {
+        "epsilon": 2.0,
+        "sensitivity": 100.0,
+        "bounds": [90.0, 100.0],
+        "samples": N,
+        "mean": float(np.mean(samples)),
+        "std": float(np.std(samples)),
+        "input_times": [[0.0, 90.0], [10.0, 100.0]],
+        "query": [["a", "b"]],
+    }
