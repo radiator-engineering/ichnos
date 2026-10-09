@@ -1,0 +1,1353 @@
+{
+  "expected": {
+    "expected": {
+      "activities": [
+        "Approve Purchase Requisition",
+        "Change PO Quantity",
+        "Create Purchase Order",
+        "Create Purchase Requisition",
+        "Insert Invoice",
+        "Insert Payment",
+        "Remove Payment Block",
+        "Set Payment Block"
+      ],
+      "activities_indep": {
+        "Approve Purchase Requisition": {
+          "events": [
+            "e2"
+          ],
+          "total_objects": [
+            [
+              "e2",
+              "PR1"
+            ]
+          ],
+          "unique_objects": [
+            "PR1"
+          ]
+        },
+        "Change PO Quantity": {
+          "events": [
+            "e4"
+          ],
+          "total_objects": [
+            [
+              "e4",
+              "PO1"
+            ]
+          ],
+          "unique_objects": [
+            "PO1"
+          ]
+        },
+        "Create Purchase Order": {
+          "events": [
+            "e10",
+            "e3"
+          ],
+          "total_objects": [
+            [
+              "e10",
+              "PO2"
+            ],
+            [
+              "e10",
+              "R3"
+            ],
+            [
+              "e3",
+              "PO1"
+            ],
+            [
+              "e3",
+              "PR1"
+            ]
+          ],
+          "unique_objects": [
+            "PO1",
+            "PO2",
+            "PR1",
+            "R3"
+          ]
+        },
+        "Create Purchase Requisition": {
+          "events": [
+            "e1"
+          ],
+          "total_objects": [
+            [
+              "e1",
+              "PR1"
+            ]
+          ],
+          "unique_objects": [
+            "PR1"
+          ]
+        },
+        "Insert Invoice": {
+          "events": [
+            "e5",
+            "e6",
+            "e9"
+          ],
+          "total_objects": [
+            [
+              "e5",
+              "PO1"
+            ],
+            [
+              "e5",
+              "R1"
+            ],
+            [
+              "e6",
+              "PO1"
+            ],
+            [
+              "e6",
+              "R2"
+            ],
+            [
+              "e9",
+              "R3"
+            ]
+          ],
+          "unique_objects": [
+            "PO1",
+            "R1",
+            "R2",
+            "R3"
+          ]
+        },
+        "Insert Payment": {
+          "events": [
+            "e13",
+            "e7",
+            "e8"
+          ],
+          "total_objects": [
+            [
+              "e13",
+              "P3"
+            ],
+            [
+              "e13",
+              "R3"
+            ],
+            [
+              "e7",
+              "P1"
+            ],
+            [
+              "e7",
+              "R1"
+            ],
+            [
+              "e8",
+              "P2"
+            ],
+            [
+              "e8",
+              "R2"
+            ]
+          ],
+          "unique_objects": [
+            "P1",
+            "P2",
+            "P3",
+            "R1",
+            "R2",
+            "R3"
+          ]
+        },
+        "Remove Payment Block": {
+          "events": [
+            "e12"
+          ],
+          "total_objects": [
+            [
+              "e12",
+              "R3"
+            ]
+          ],
+          "unique_objects": [
+            "R3"
+          ]
+        },
+        "Set Payment Block": {
+          "events": [
+            "e11"
+          ],
+          "total_objects": [
+            [
+              "e11",
+              "R3"
+            ]
+          ],
+          "unique_objects": [
+            "R3"
+          ]
+        }
+      },
+      "activities_ot": {
+        "Invoice": {
+          "Create Purchase Order": {
+            "events": [
+              "e10"
+            ],
+            "total_objects": [
+              [
+                "e10",
+                "R3"
+              ]
+            ],
+            "unique_objects": [
+              "R3"
+            ]
+          },
+          "Insert Invoice": {
+            "events": [
+              "e5",
+              "e6",
+              "e9"
+            ],
+            "total_objects": [
+              [
+                "e5",
+                "R1"
+              ],
+              [
+                "e6",
+                "R2"
+              ],
+              [
+                "e9",
+                "R3"
+              ]
+            ],
+            "unique_objects": [
+              "R1",
+              "R2",
+              "R3"
+            ]
+          },
+          "Insert Payment": {
+            "events": [
+              "e13",
+              "e7",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e13",
+                "R3"
+              ],
+              [
+                "e7",
+                "R1"
+              ],
+              [
+                "e8",
+                "R2"
+              ]
+            ],
+            "unique_objects": [
+              "R1",
+              "R2",
+              "R3"
+            ]
+          },
+          "Remove Payment Block": {
+            "events": [
+              "e12"
+            ],
+            "total_objects": [
+              [
+                "e12",
+                "R3"
+              ]
+            ],
+            "unique_objects": [
+              "R3"
+            ]
+          },
+          "Set Payment Block": {
+            "events": [
+              "e11"
+            ],
+            "total_objects": [
+              [
+                "e11",
+                "R3"
+              ]
+            ],
+            "unique_objects": [
+              "R3"
+            ]
+          }
+        },
+        "Payment": {
+          "Insert Payment": {
+            "events": [
+              "e13",
+              "e7",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e13",
+                "P3"
+              ],
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ]
+            ],
+            "unique_objects": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          }
+        },
+        "Purchase Order": {
+          "Change PO Quantity": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "PO1"
+              ]
+            ],
+            "unique_objects": [
+              "PO1"
+            ]
+          },
+          "Create Purchase Order": {
+            "events": [
+              "e10",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e10",
+                "PO2"
+              ],
+              [
+                "e3",
+                "PO1"
+              ]
+            ],
+            "unique_objects": [
+              "PO1",
+              "PO2"
+            ]
+          },
+          "Insert Invoice": {
+            "events": [
+              "e5",
+              "e6"
+            ],
+            "total_objects": [
+              [
+                "e5",
+                "PO1"
+              ],
+              [
+                "e6",
+                "PO1"
+              ]
+            ],
+            "unique_objects": [
+              "PO1"
+            ]
+          }
+        },
+        "Purchase Requisition": {
+          "Approve Purchase Requisition": {
+            "events": [
+              "e2"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "PR1"
+              ]
+            ],
+            "unique_objects": [
+              "PR1"
+            ]
+          },
+          "Create Purchase Order": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "PR1"
+              ]
+            ],
+            "unique_objects": [
+              "PR1"
+            ]
+          },
+          "Create Purchase Requisition": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "PR1"
+              ]
+            ],
+            "unique_objects": [
+              "PR1"
+            ]
+          }
+        }
+      },
+      "edges": {
+        "Invoice": [
+          [
+            "Create Purchase Order",
+            "Set Payment Block",
+            {
+              "event_couples": [
+                [
+                  "e10",
+                  "e11"
+                ]
+              ],
+              "event_couples_durations": [
+                52200.0
+              ],
+              "total_objects": [
+                [
+                  "e10",
+                  "e11",
+                  "R3"
+                ]
+              ],
+              "total_objects_durations": [
+                52200.0
+              ],
+              "unique_objects": [
+                "R3"
+              ]
+            }
+          ],
+          [
+            "Insert Invoice",
+            "Create Purchase Order",
+            {
+              "event_couples": [
+                [
+                  "e9",
+                  "e10"
+                ]
+              ],
+              "event_couples_durations": [
+                28800.0
+              ],
+              "total_objects": [
+                [
+                  "e9",
+                  "e10",
+                  "R3"
+                ]
+              ],
+              "total_objects_durations": [
+                28800.0
+              ],
+              "unique_objects": [
+                "R3"
+              ]
+            }
+          ],
+          [
+            "Insert Invoice",
+            "Insert Payment",
+            {
+              "event_couples": [
+                [
+                  "e5",
+                  "e7"
+                ],
+                [
+                  "e6",
+                  "e8"
+                ]
+              ],
+              "event_couples_durations": [
+                1335600.0,
+                1422000.0
+              ],
+              "total_objects": [
+                [
+                  "e5",
+                  "e7",
+                  "R1"
+                ],
+                [
+                  "e6",
+                  "e8",
+                  "R2"
+                ]
+              ],
+              "total_objects_durations": [
+                1335600.0,
+                1422000.0
+              ],
+              "unique_objects": [
+                "R1",
+                "R2"
+              ]
+            }
+          ],
+          [
+            "Remove Payment Block",
+            "Insert Payment",
+            {
+              "event_couples": [
+                [
+                  "e12",
+                  "e13"
+                ]
+              ],
+              "event_couples_durations": [
+                2158200.0
+              ],
+              "total_objects": [
+                [
+                  "e12",
+                  "e13",
+                  "R3"
+                ]
+              ],
+              "total_objects_durations": [
+                2158200.0
+              ],
+              "unique_objects": [
+                "R3"
+              ]
+            }
+          ],
+          [
+            "Set Payment Block",
+            "Remove Payment Block",
+            {
+              "event_couples": [
+                [
+                  "e11",
+                  "e12"
+                ]
+              ],
+              "event_couples_durations": [
+                57600.0
+              ],
+              "total_objects": [
+                [
+                  "e11",
+                  "e12",
+                  "R3"
+                ]
+              ],
+              "total_objects_durations": [
+                57600.0
+              ],
+              "unique_objects": [
+                "R3"
+              ]
+            }
+          ]
+        ],
+        "Purchase Order": [
+          [
+            "Change PO Quantity",
+            "Insert Invoice",
+            {
+              "event_couples": [
+                [
+                  "e4",
+                  "e5"
+                ]
+              ],
+              "event_couples_durations": [
+                86400.0
+              ],
+              "total_objects": [
+                [
+                  "e4",
+                  "e5",
+                  "PO1"
+                ]
+              ],
+              "total_objects_durations": [
+                86400.0
+              ],
+              "unique_objects": [
+                "PO1"
+              ]
+            }
+          ],
+          [
+            "Create Purchase Order",
+            "Change PO Quantity",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                269100.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e4",
+                  "PO1"
+                ]
+              ],
+              "total_objects_durations": [
+                269100.0
+              ],
+              "unique_objects": [
+                "PO1"
+              ]
+            }
+          ],
+          [
+            "Insert Invoice",
+            "Insert Invoice",
+            {
+              "event_couples": [
+                [
+                  "e5",
+                  "e6"
+                ]
+              ],
+              "event_couples_durations": [
+                169200.0
+              ],
+              "total_objects": [
+                [
+                  "e5",
+                  "e6",
+                  "PO1"
+                ]
+              ],
+              "total_objects_durations": [
+                169200.0
+              ],
+              "unique_objects": [
+                "PO1"
+              ]
+            }
+          ]
+        ],
+        "Purchase Requisition": [
+          [
+            "Approve Purchase Requisition",
+            "Create Purchase Order",
+            {
+              "event_couples": [
+                [
+                  "e2",
+                  "e3"
+                ]
+              ],
+              "event_couples_durations": [
+                60300.0
+              ],
+              "total_objects": [
+                [
+                  "e2",
+                  "e3",
+                  "PR1"
+                ]
+              ],
+              "total_objects_durations": [
+                60300.0
+              ],
+              "unique_objects": [
+                "PR1"
+              ]
+            }
+          ],
+          [
+            "Create Purchase Requisition",
+            "Approve Purchase Requisition",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e2"
+                ]
+              ],
+              "event_couples_durations": [
+                5400.0
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e2",
+                  "PR1"
+                ]
+              ],
+              "total_objects_durations": [
+                5400.0
+              ],
+              "unique_objects": [
+                "PR1"
+              ]
+            }
+          ]
+        ]
+      },
+      "end_activities": {
+        "Invoice": {
+          "Insert Payment": {
+            "events": [
+              "e13",
+              "e7",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e13",
+                "R3"
+              ],
+              [
+                "e7",
+                "R1"
+              ],
+              [
+                "e8",
+                "R2"
+              ]
+            ],
+            "unique_objects": [
+              "R1",
+              "R2",
+              "R3"
+            ]
+          }
+        },
+        "Payment": {
+          "Insert Payment": {
+            "events": [
+              "e13",
+              "e7",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e13",
+                "P3"
+              ],
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ]
+            ],
+            "unique_objects": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          }
+        },
+        "Purchase Order": {
+          "Create Purchase Order": {
+            "events": [
+              "e10"
+            ],
+            "total_objects": [
+              [
+                "e10",
+                "PO2"
+              ]
+            ],
+            "unique_objects": [
+              "PO2"
+            ]
+          },
+          "Insert Invoice": {
+            "events": [
+              "e6"
+            ],
+            "total_objects": [
+              [
+                "e6",
+                "PO1"
+              ]
+            ],
+            "unique_objects": [
+              "PO1"
+            ]
+          }
+        },
+        "Purchase Requisition": {
+          "Create Purchase Order": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "PR1"
+              ]
+            ],
+            "unique_objects": [
+              "PR1"
+            ]
+          }
+        }
+      },
+      "object_types": [
+        "Invoice",
+        "Payment",
+        "Purchase Order",
+        "Purchase Requisition"
+      ],
+      "start_activities": {
+        "Invoice": {
+          "Insert Invoice": {
+            "events": [
+              "e5",
+              "e6",
+              "e9"
+            ],
+            "total_objects": [
+              [
+                "e5",
+                "R1"
+              ],
+              [
+                "e6",
+                "R2"
+              ],
+              [
+                "e9",
+                "R3"
+              ]
+            ],
+            "unique_objects": [
+              "R1",
+              "R2",
+              "R3"
+            ]
+          }
+        },
+        "Payment": {
+          "Insert Payment": {
+            "events": [
+              "e13",
+              "e7",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e13",
+                "P3"
+              ],
+              [
+                "e7",
+                "P1"
+              ],
+              [
+                "e8",
+                "P2"
+              ]
+            ],
+            "unique_objects": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          }
+        },
+        "Purchase Order": {
+          "Create Purchase Order": {
+            "events": [
+              "e10",
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e10",
+                "PO2"
+              ],
+              [
+                "e3",
+                "PO1"
+              ]
+            ],
+            "unique_objects": [
+              "PO1",
+              "PO2"
+            ]
+          }
+        },
+        "Purchase Requisition": {
+          "Create Purchase Requisition": {
+            "events": [
+              "e1"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "PR1"
+              ]
+            ],
+            "unique_objects": [
+              "PR1"
+            ]
+          }
+        }
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Purchase Requisition",
+          "attributes": {
+            "pr_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00+00:00"
+        },
+        {
+          "activity": "Approve Purchase Requisition",
+          "attributes": {
+            "pr_approver": [
+              "string",
+              "Tania"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T15:30:00+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2022-01-10T08:15:00+00:00"
+        },
+        {
+          "activity": "Change PO Quantity",
+          "attributes": {
+            "po_editor": [
+              "string",
+              "Mike"
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2022-01-13T11:00:00+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2022-01-14T11:00:00+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Luke"
+            ]
+          },
+          "id": "e6",
+          "timestamp": "2022-01-16T10:00:00+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2022-01-30T22:00:00+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e8",
+          "timestamp": "2022-01-31T21:00:00+00:00"
+        },
+        {
+          "activity": "Insert Invoice",
+          "attributes": {
+            "invoice_inserter": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e9",
+          "timestamp": "2022-02-02T08:00:00+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {
+            "po_creator": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e10",
+          "timestamp": "2022-02-02T16:00:00+00:00"
+        },
+        {
+          "activity": "Set Payment Block",
+          "attributes": {
+            "invoice_blocker": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e11",
+          "timestamp": "2022-02-03T06:30:00+00:00"
+        },
+        {
+          "activity": "Remove Payment Block",
+          "attributes": {
+            "invoice_block_rem": [
+              "string",
+              "Mario"
+            ]
+          },
+          "id": "e12",
+          "timestamp": "2022-02-03T22:30:00+00:00"
+        },
+        {
+          "activity": "Insert Payment",
+          "attributes": {
+            "payment_inserter": [
+              "string",
+              "Robot"
+            ]
+          },
+          "id": "e13",
+          "timestamp": "2022-02-28T22:00:00+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R1",
+          "target": "P1"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R2",
+          "target": "P2"
+        },
+        {
+          "qualifier": "Payment from invoice",
+          "source": "R3",
+          "target": "P3"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R1"
+        },
+        {
+          "qualifier": "Invoice from PO",
+          "source": "PO1",
+          "target": "R2"
+        },
+        {
+          "qualifier": "Maverick buying",
+          "source": "PO2",
+          "target": "R3"
+        },
+        {
+          "qualifier": "PO from PR",
+          "source": "PR1",
+          "target": "PO1"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T06:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "Yes"
+          ]
+        },
+        {
+          "field": "is_blocked",
+          "object": "R3",
+          "timestamp": "2022-02-03T22:30:00.000000+00:00",
+          "type": "Invoice",
+          "value": [
+            "string",
+            "No"
+          ]
+        },
+        {
+          "field": "po_quantity",
+          "object": "PO1",
+          "timestamp": "2022-01-13T11:00:00.000000+00:00",
+          "type": "Purchase Order",
+          "value": [
+            "string",
+            "600"
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R1",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R2",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {
+            "is_blocked": [
+              "string",
+              "No"
+            ]
+          },
+          "id": "R3",
+          "type": "Invoice"
+        },
+        {
+          "attributes": {},
+          "id": "P1",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P2",
+          "type": "Payment"
+        },
+        {
+          "attributes": {},
+          "id": "P3",
+          "type": "Payment"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Cows"
+            ],
+            "po_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PO1",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "po_product": [
+              "string",
+              "Notebooks"
+            ],
+            "po_quantity": [
+              "string",
+              "1"
+            ]
+          },
+          "id": "PO2",
+          "type": "Purchase Order"
+        },
+        {
+          "attributes": {
+            "pr_product": [
+              "string",
+              "Cows"
+            ],
+            "pr_quantity": [
+              "string",
+              "500"
+            ]
+          },
+          "id": "PR1",
+          "type": "Purchase Requisition"
+        }
+      ],
+      "relations": [
+        {
+          "event": "e1",
+          "object": "PR1",
+          "qualifier": "Regular placement of PR"
+        },
+        {
+          "event": "e2",
+          "object": "PR1",
+          "qualifier": "Regular approval of PR"
+        },
+        {
+          "event": "e3",
+          "object": "PO1",
+          "qualifier": "Created order with identifier"
+        },
+        {
+          "event": "e3",
+          "object": "PR1",
+          "qualifier": "Created order from PR"
+        },
+        {
+          "event": "e4",
+          "object": "PO1",
+          "qualifier": "Change of quantity"
+        },
+        {
+          "event": "e5",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO"
+        },
+        {
+          "event": "e5",
+          "object": "R1",
+          "qualifier": "Invoice created with identifier"
+        },
+        {
+          "event": "e6",
+          "object": "PO1",
+          "qualifier": "Invoice created starting from the PO"
+        },
+        {
+          "event": "e6",
+          "object": "R2",
+          "qualifier": "Invoice created with identifier"
+        },
+        {
+          "event": "e7",
+          "object": "P1",
+          "qualifier": "Payment inserted with identifier"
+        },
+        {
+          "event": "e7",
+          "object": "R1",
+          "qualifier": "Payment for the invoice"
+        },
+        {
+          "event": "e8",
+          "object": "R2",
+          "qualifier": "Payment for the invoice"
+        },
+        {
+          "event": "e8",
+          "object": "P2",
+          "qualifier": "Payment created with identifier"
+        },
+        {
+          "event": "e9",
+          "object": "R3",
+          "qualifier": "Invoice created with identifier"
+        },
+        {
+          "event": "e10",
+          "object": "PO2",
+          "qualifier": "Purhcase order created with identifier"
+        },
+        {
+          "event": "e10",
+          "object": "R3",
+          "qualifier": "Purchase order created with maverick buying from"
+        },
+        {
+          "event": "e11",
+          "object": "R3",
+          "qualifier": "Payment block due to unethical maverick buying"
+        },
+        {
+          "event": "e12",
+          "object": "R3",
+          "qualifier": "Payment block removed ..."
+        },
+        {
+          "event": "e13",
+          "object": "R3",
+          "qualifier": "Payment for the invoice"
+        },
+        {
+          "event": "e13",
+          "object": "P3",
+          "qualifier": "Payment inserted with identifier"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_discovery",
+    "case": "ocdfg-ocel20-example-jsonocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.read_ocel2_json",
+      "pm4py.discover_ocdfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,2491 @@
+{
+  "expected": {
+    "expected": {
+      "activities": [
+        "Collect Items",
+        "Create Purchase Order",
+        "Delivery Successful",
+        "Item Issue",
+        "Payment",
+        "Produce Item",
+        "Replace Item",
+        "Revert Invoice",
+        "Send Invoice",
+        "Start Delivery"
+      ],
+      "activities_indep": {
+        "Collect Items": {
+          "events": [
+            "e16",
+            "e7"
+          ],
+          "total_objects": [
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i5"
+            ],
+            [
+              "e16",
+              "o2"
+            ],
+            [
+              "e7",
+              "i1"
+            ],
+            [
+              "e7",
+              "i2"
+            ],
+            [
+              "e7",
+              "i3"
+            ],
+            [
+              "e7",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i5",
+            "o1",
+            "o2"
+          ]
+        },
+        "Create Purchase Order": {
+          "events": [
+            "e1",
+            "e13"
+          ],
+          "total_objects": [
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e13",
+              "i4"
+            ],
+            [
+              "e13",
+              "i5"
+            ],
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "unique_objects": [
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i5",
+            "o1",
+            "o2"
+          ]
+        },
+        "Delivery Successful": {
+          "events": [
+            "e10",
+            "e18"
+          ],
+          "total_objects": [
+            [
+              "e10",
+              "d1"
+            ],
+            [
+              "e18",
+              "d2"
+            ]
+          ],
+          "unique_objects": [
+            "d1",
+            "d2"
+          ]
+        },
+        "Item Issue": {
+          "events": [
+            "e3"
+          ],
+          "total_objects": [
+            [
+              "e3",
+              "L1"
+            ],
+            [
+              "e3",
+              "gi1"
+            ],
+            [
+              "e3",
+              "i1"
+            ],
+            [
+              "e3",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "L1",
+            "gi1",
+            "i1",
+            "o1"
+          ]
+        },
+        "Payment": {
+          "events": [
+            "e20"
+          ],
+          "total_objects": [
+            [
+              "e20",
+              "pay1"
+            ],
+            [
+              "e20",
+              "r3"
+            ]
+          ],
+          "unique_objects": [
+            "pay1",
+            "r3"
+          ]
+        },
+        "Produce Item": {
+          "events": [
+            "e14",
+            "e15",
+            "e2",
+            "e5",
+            "e6"
+          ],
+          "total_objects": [
+            [
+              "e14",
+              "L1"
+            ],
+            [
+              "e14",
+              "i4"
+            ],
+            [
+              "e14",
+              "o2"
+            ],
+            [
+              "e15",
+              "L1"
+            ],
+            [
+              "e15",
+              "i5"
+            ],
+            [
+              "e15",
+              "o2"
+            ],
+            [
+              "e2",
+              "L1"
+            ],
+            [
+              "e2",
+              "i1"
+            ],
+            [
+              "e2",
+              "o1"
+            ],
+            [
+              "e5",
+              "L1"
+            ],
+            [
+              "e5",
+              "i2"
+            ],
+            [
+              "e5",
+              "o1"
+            ],
+            [
+              "e6",
+              "i3"
+            ],
+            [
+              "e6",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "L1",
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i5",
+            "o1",
+            "o2"
+          ]
+        },
+        "Replace Item": {
+          "events": [
+            "e4"
+          ],
+          "total_objects": [
+            [
+              "e4",
+              "L1"
+            ],
+            [
+              "e4",
+              "gi1"
+            ],
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e4",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "L1",
+            "gi1",
+            "i1",
+            "o1"
+          ]
+        },
+        "Revert Invoice": {
+          "events": [
+            "e11"
+          ],
+          "total_objects": [
+            [
+              "e11",
+              "r1"
+            ],
+            [
+              "e11",
+              "r2"
+            ]
+          ],
+          "unique_objects": [
+            "r1",
+            "r2"
+          ]
+        },
+        "Send Invoice": {
+          "events": [
+            "e12",
+            "e19",
+            "e9"
+          ],
+          "total_objects": [
+            [
+              "e12",
+              "r2"
+            ],
+            [
+              "e19",
+              "o2"
+            ],
+            [
+              "e19",
+              "r3"
+            ],
+            [
+              "e9",
+              "o1"
+            ],
+            [
+              "e9",
+              "r1"
+            ]
+          ],
+          "unique_objects": [
+            "o1",
+            "o2",
+            "r1",
+            "r2",
+            "r3"
+          ]
+        },
+        "Start Delivery": {
+          "events": [
+            "e17",
+            "e8"
+          ],
+          "total_objects": [
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e17",
+              "o2"
+            ],
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e8",
+              "o1"
+            ]
+          ],
+          "unique_objects": [
+            "d1",
+            "d2",
+            "o1",
+            "o2"
+          ]
+        }
+      },
+      "activities_ot": {
+        "delivery": {
+          "Delivery Successful": {
+            "events": [
+              "e10",
+              "e18"
+            ],
+            "total_objects": [
+              [
+                "e10",
+                "d1"
+              ],
+              [
+                "e18",
+                "d2"
+              ]
+            ],
+            "unique_objects": [
+              "d1",
+              "d2"
+            ]
+          },
+          "Start Delivery": {
+            "events": [
+              "e17",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e17",
+                "d2"
+              ],
+              [
+                "e8",
+                "d1"
+              ]
+            ],
+            "unique_objects": [
+              "d1",
+              "d2"
+            ]
+          }
+        },
+        "goodsissue": {
+          "Item Issue": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "gi1"
+              ]
+            ],
+            "unique_objects": [
+              "gi1"
+            ]
+          },
+          "Replace Item": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "gi1"
+              ]
+            ],
+            "unique_objects": [
+              "gi1"
+            ]
+          }
+        },
+        "invoice": {
+          "Payment": {
+            "events": [
+              "e20"
+            ],
+            "total_objects": [
+              [
+                "e20",
+                "r3"
+              ]
+            ],
+            "unique_objects": [
+              "r3"
+            ]
+          },
+          "Revert Invoice": {
+            "events": [
+              "e11"
+            ],
+            "total_objects": [
+              [
+                "e11",
+                "r1"
+              ],
+              [
+                "e11",
+                "r2"
+              ]
+            ],
+            "unique_objects": [
+              "r1",
+              "r2"
+            ]
+          },
+          "Send Invoice": {
+            "events": [
+              "e12",
+              "e19",
+              "e9"
+            ],
+            "total_objects": [
+              [
+                "e12",
+                "r2"
+              ],
+              [
+                "e19",
+                "r3"
+              ],
+              [
+                "e9",
+                "r1"
+              ]
+            ],
+            "unique_objects": [
+              "r1",
+              "r2",
+              "r3"
+            ]
+          }
+        },
+        "item": {
+          "Collect Items": {
+            "events": [
+              "e16",
+              "e7"
+            ],
+            "total_objects": [
+              [
+                "e16",
+                "i4"
+              ],
+              [
+                "e16",
+                "i5"
+              ],
+              [
+                "e7",
+                "i1"
+              ],
+              [
+                "e7",
+                "i2"
+              ],
+              [
+                "e7",
+                "i3"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5"
+            ]
+          },
+          "Create Purchase Order": {
+            "events": [
+              "e1",
+              "e13"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "i1"
+              ],
+              [
+                "e1",
+                "i2"
+              ],
+              [
+                "e1",
+                "i3"
+              ],
+              [
+                "e13",
+                "i4"
+              ],
+              [
+                "e13",
+                "i5"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5"
+            ]
+          },
+          "Item Issue": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "i1"
+              ]
+            ],
+            "unique_objects": [
+              "i1"
+            ]
+          },
+          "Produce Item": {
+            "events": [
+              "e14",
+              "e15",
+              "e2",
+              "e5",
+              "e6"
+            ],
+            "total_objects": [
+              [
+                "e14",
+                "i4"
+              ],
+              [
+                "e15",
+                "i5"
+              ],
+              [
+                "e2",
+                "i1"
+              ],
+              [
+                "e5",
+                "i2"
+              ],
+              [
+                "e6",
+                "i3"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5"
+            ]
+          },
+          "Replace Item": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "i1"
+              ]
+            ],
+            "unique_objects": [
+              "i1"
+            ]
+          }
+        },
+        "line": {
+          "Item Issue": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "L1"
+              ]
+            ],
+            "unique_objects": [
+              "L1"
+            ]
+          },
+          "Produce Item": {
+            "events": [
+              "e14",
+              "e15",
+              "e2",
+              "e5"
+            ],
+            "total_objects": [
+              [
+                "e14",
+                "L1"
+              ],
+              [
+                "e15",
+                "L1"
+              ],
+              [
+                "e2",
+                "L1"
+              ],
+              [
+                "e5",
+                "L1"
+              ]
+            ],
+            "unique_objects": [
+              "L1"
+            ]
+          },
+          "Replace Item": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "L1"
+              ]
+            ],
+            "unique_objects": [
+              "L1"
+            ]
+          }
+        },
+        "order": {
+          "Collect Items": {
+            "events": [
+              "e16",
+              "e7"
+            ],
+            "total_objects": [
+              [
+                "e16",
+                "o2"
+              ],
+              [
+                "e7",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          },
+          "Create Purchase Order": {
+            "events": [
+              "e1",
+              "e13"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "o1"
+              ],
+              [
+                "e13",
+                "o2"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          },
+          "Item Issue": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          },
+          "Produce Item": {
+            "events": [
+              "e14",
+              "e15",
+              "e2",
+              "e5",
+              "e6"
+            ],
+            "total_objects": [
+              [
+                "e14",
+                "o2"
+              ],
+              [
+                "e15",
+                "o2"
+              ],
+              [
+                "e2",
+                "o1"
+              ],
+              [
+                "e5",
+                "o1"
+              ],
+              [
+                "e6",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          },
+          "Replace Item": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1"
+            ]
+          },
+          "Send Invoice": {
+            "events": [
+              "e19",
+              "e9"
+            ],
+            "total_objects": [
+              [
+                "e19",
+                "o2"
+              ],
+              [
+                "e9",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          },
+          "Start Delivery": {
+            "events": [
+              "e17",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e17",
+                "o2"
+              ],
+              [
+                "e8",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          }
+        },
+        "payment": {
+          "Payment": {
+            "events": [
+              "e20"
+            ],
+            "total_objects": [
+              [
+                "e20",
+                "pay1"
+              ]
+            ],
+            "unique_objects": [
+              "pay1"
+            ]
+          }
+        }
+      },
+      "edges": {
+        "delivery": [
+          [
+            "Start Delivery",
+            "Delivery Successful",
+            {
+              "event_couples": [
+                [
+                  "e17",
+                  "e18"
+                ],
+                [
+                  "e8",
+                  "e10"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                7200.0
+              ],
+              "total_objects": [
+                [
+                  "e17",
+                  "e18",
+                  "d2"
+                ],
+                [
+                  "e8",
+                  "e10",
+                  "d1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                7200.0
+              ],
+              "unique_objects": [
+                "d1",
+                "d2"
+              ]
+            }
+          ]
+        ],
+        "goodsissue": [
+          [
+            "Item Issue",
+            "Replace Item",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e4",
+                  "gi1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "gi1"
+              ]
+            }
+          ]
+        ],
+        "invoice": [
+          [
+            "Revert Invoice",
+            "Send Invoice",
+            {
+              "event_couples": [
+                [
+                  "e11",
+                  "e12"
+                ]
+              ],
+              "event_couples_durations": [
+                0.0
+              ],
+              "total_objects": [
+                [
+                  "e11",
+                  "e12",
+                  "r2"
+                ]
+              ],
+              "total_objects_durations": [
+                0.0
+              ],
+              "unique_objects": [
+                "r2"
+              ]
+            }
+          ],
+          [
+            "Send Invoice",
+            "Payment",
+            {
+              "event_couples": [
+                [
+                  "e19",
+                  "e20"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e19",
+                  "e20",
+                  "r3"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "r3"
+              ]
+            }
+          ],
+          [
+            "Send Invoice",
+            "Revert Invoice",
+            {
+              "event_couples": [
+                [
+                  "e9",
+                  "e11"
+                ]
+              ],
+              "event_couples_durations": [
+                7200.0
+              ],
+              "total_objects": [
+                [
+                  "e9",
+                  "e11",
+                  "r1"
+                ]
+              ],
+              "total_objects_durations": [
+                7200.0
+              ],
+              "unique_objects": [
+                "r1"
+              ]
+            }
+          ]
+        ],
+        "item": [
+          [
+            "Create Purchase Order",
+            "Produce Item",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e2"
+                ],
+                [
+                  "e1",
+                  "e5"
+                ],
+                [
+                  "e1",
+                  "e6"
+                ],
+                [
+                  "e13",
+                  "e14"
+                ],
+                [
+                  "e13",
+                  "e15"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                3600.0,
+                7200.0,
+                14400.0,
+                18000.0
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e2",
+                  "i1"
+                ],
+                [
+                  "e1",
+                  "e5",
+                  "i2"
+                ],
+                [
+                  "e1",
+                  "e6",
+                  "i3"
+                ],
+                [
+                  "e13",
+                  "e14",
+                  "i4"
+                ],
+                [
+                  "e13",
+                  "e15",
+                  "i5"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                3600.0,
+                7200.0,
+                14400.0,
+                18000.0
+              ],
+              "unique_objects": [
+                "i1",
+                "i2",
+                "i3",
+                "i4",
+                "i5"
+              ]
+            }
+          ],
+          [
+            "Item Issue",
+            "Replace Item",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e4",
+                  "i1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "i1"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Collect Items",
+            {
+              "event_couples": [
+                [
+                  "e14",
+                  "e16"
+                ],
+                [
+                  "e15",
+                  "e16"
+                ],
+                [
+                  "e5",
+                  "e7"
+                ],
+                [
+                  "e6",
+                  "e7"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                3600.0,
+                7200.0,
+                7200.0
+              ],
+              "total_objects": [
+                [
+                  "e14",
+                  "e16",
+                  "i4"
+                ],
+                [
+                  "e15",
+                  "e16",
+                  "i5"
+                ],
+                [
+                  "e5",
+                  "e7",
+                  "i2"
+                ],
+                [
+                  "e6",
+                  "e7",
+                  "i3"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                3600.0,
+                7200.0,
+                7200.0
+              ],
+              "unique_objects": [
+                "i2",
+                "i3",
+                "i4",
+                "i5"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Item Issue",
+            {
+              "event_couples": [
+                [
+                  "e2",
+                  "e3"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e2",
+                  "e3",
+                  "i1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "i1"
+              ]
+            }
+          ],
+          [
+            "Replace Item",
+            "Collect Items",
+            {
+              "event_couples": [
+                [
+                  "e4",
+                  "e7"
+                ]
+              ],
+              "event_couples_durations": [
+                10800.0
+              ],
+              "total_objects": [
+                [
+                  "e4",
+                  "e7",
+                  "i1"
+                ]
+              ],
+              "total_objects_durations": [
+                10800.0
+              ],
+              "unique_objects": [
+                "i1"
+              ]
+            }
+          ]
+        ],
+        "line": [
+          [
+            "Item Issue",
+            "Replace Item",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e4",
+                  "L1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "L1"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Item Issue",
+            {
+              "event_couples": [
+                [
+                  "e2",
+                  "e3"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e2",
+                  "e3",
+                  "L1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "L1"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Produce Item",
+            {
+              "event_couples": [
+                [
+                  "e14",
+                  "e15"
+                ],
+                [
+                  "e5",
+                  "e14"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                28800.0
+              ],
+              "total_objects": [
+                [
+                  "e14",
+                  "e15",
+                  "L1"
+                ],
+                [
+                  "e5",
+                  "e14",
+                  "L1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                28800.0
+              ],
+              "unique_objects": [
+                "L1"
+              ]
+            }
+          ],
+          [
+            "Replace Item",
+            "Produce Item",
+            {
+              "event_couples": [
+                [
+                  "e4",
+                  "e5"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e4",
+                  "e5",
+                  "L1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "L1"
+              ]
+            }
+          ]
+        ],
+        "order": [
+          [
+            "Collect Items",
+            "Start Delivery",
+            {
+              "event_couples": [
+                [
+                  "e16",
+                  "e17"
+                ],
+                [
+                  "e7",
+                  "e8"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e16",
+                  "e17",
+                  "o2"
+                ],
+                [
+                  "e7",
+                  "e8",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                3600.0
+              ],
+              "unique_objects": [
+                "o1",
+                "o2"
+              ]
+            }
+          ],
+          [
+            "Create Purchase Order",
+            "Produce Item",
+            {
+              "event_couples": [
+                [
+                  "e1",
+                  "e2"
+                ],
+                [
+                  "e13",
+                  "e14"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e1",
+                  "e2",
+                  "o1"
+                ],
+                [
+                  "e13",
+                  "e14",
+                  "o2"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                3600.0
+              ],
+              "unique_objects": [
+                "o1",
+                "o2"
+              ]
+            }
+          ],
+          [
+            "Item Issue",
+            "Replace Item",
+            {
+              "event_couples": [
+                [
+                  "e3",
+                  "e4"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e3",
+                  "e4",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "o1"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Collect Items",
+            {
+              "event_couples": [
+                [
+                  "e15",
+                  "e16"
+                ],
+                [
+                  "e6",
+                  "e7"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e15",
+                  "e16",
+                  "o2"
+                ],
+                [
+                  "e6",
+                  "e7",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                3600.0
+              ],
+              "unique_objects": [
+                "o1",
+                "o2"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Item Issue",
+            {
+              "event_couples": [
+                [
+                  "e2",
+                  "e3"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e2",
+                  "e3",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "o1"
+              ]
+            }
+          ],
+          [
+            "Produce Item",
+            "Produce Item",
+            {
+              "event_couples": [
+                [
+                  "e14",
+                  "e15"
+                ],
+                [
+                  "e5",
+                  "e6"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e14",
+                  "e15",
+                  "o2"
+                ],
+                [
+                  "e5",
+                  "e6",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                3600.0
+              ],
+              "unique_objects": [
+                "o1",
+                "o2"
+              ]
+            }
+          ],
+          [
+            "Replace Item",
+            "Produce Item",
+            {
+              "event_couples": [
+                [
+                  "e4",
+                  "e5"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0
+              ],
+              "total_objects": [
+                [
+                  "e4",
+                  "e5",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0
+              ],
+              "unique_objects": [
+                "o1"
+              ]
+            }
+          ],
+          [
+            "Start Delivery",
+            "Send Invoice",
+            {
+              "event_couples": [
+                [
+                  "e17",
+                  "e19"
+                ],
+                [
+                  "e8",
+                  "e9"
+                ]
+              ],
+              "event_couples_durations": [
+                3600.0,
+                7200.0
+              ],
+              "total_objects": [
+                [
+                  "e17",
+                  "e19",
+                  "o2"
+                ],
+                [
+                  "e8",
+                  "e9",
+                  "o1"
+                ]
+              ],
+              "total_objects_durations": [
+                3600.0,
+                7200.0
+              ],
+              "unique_objects": [
+                "o1",
+                "o2"
+              ]
+            }
+          ]
+        ]
+      },
+      "end_activities": {
+        "delivery": {
+          "Delivery Successful": {
+            "events": [
+              "e10",
+              "e18"
+            ],
+            "total_objects": [
+              [
+                "e10",
+                "d1"
+              ],
+              [
+                "e18",
+                "d2"
+              ]
+            ],
+            "unique_objects": [
+              "d1",
+              "d2"
+            ]
+          }
+        },
+        "goodsissue": {
+          "Replace Item": {
+            "events": [
+              "e4"
+            ],
+            "total_objects": [
+              [
+                "e4",
+                "gi1"
+              ]
+            ],
+            "unique_objects": [
+              "gi1"
+            ]
+          }
+        },
+        "invoice": {
+          "Payment": {
+            "events": [
+              "e20"
+            ],
+            "total_objects": [
+              [
+                "e20",
+                "r3"
+              ]
+            ],
+            "unique_objects": [
+              "r3"
+            ]
+          },
+          "Revert Invoice": {
+            "events": [
+              "e11"
+            ],
+            "total_objects": [
+              [
+                "e11",
+                "r1"
+              ]
+            ],
+            "unique_objects": [
+              "r1"
+            ]
+          },
+          "Send Invoice": {
+            "events": [
+              "e12"
+            ],
+            "total_objects": [
+              [
+                "e12",
+                "r2"
+              ]
+            ],
+            "unique_objects": [
+              "r2"
+            ]
+          }
+        },
+        "item": {
+          "Collect Items": {
+            "events": [
+              "e16",
+              "e7"
+            ],
+            "total_objects": [
+              [
+                "e16",
+                "i4"
+              ],
+              [
+                "e16",
+                "i5"
+              ],
+              [
+                "e7",
+                "i1"
+              ],
+              [
+                "e7",
+                "i2"
+              ],
+              [
+                "e7",
+                "i3"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5"
+            ]
+          }
+        },
+        "line": {
+          "Produce Item": {
+            "events": [
+              "e15"
+            ],
+            "total_objects": [
+              [
+                "e15",
+                "L1"
+              ]
+            ],
+            "unique_objects": [
+              "L1"
+            ]
+          }
+        },
+        "order": {
+          "Send Invoice": {
+            "events": [
+              "e19",
+              "e9"
+            ],
+            "total_objects": [
+              [
+                "e19",
+                "o2"
+              ],
+              [
+                "e9",
+                "o1"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          }
+        },
+        "payment": {
+          "Payment": {
+            "events": [
+              "e20"
+            ],
+            "total_objects": [
+              [
+                "e20",
+                "pay1"
+              ]
+            ],
+            "unique_objects": [
+              "pay1"
+            ]
+          }
+        }
+      },
+      "object_types": [
+        "delivery",
+        "goodsissue",
+        "invoice",
+        "item",
+        "line",
+        "order",
+        "payment"
+      ],
+      "start_activities": {
+        "delivery": {
+          "Start Delivery": {
+            "events": [
+              "e17",
+              "e8"
+            ],
+            "total_objects": [
+              [
+                "e17",
+                "d2"
+              ],
+              [
+                "e8",
+                "d1"
+              ]
+            ],
+            "unique_objects": [
+              "d1",
+              "d2"
+            ]
+          }
+        },
+        "goodsissue": {
+          "Item Issue": {
+            "events": [
+              "e3"
+            ],
+            "total_objects": [
+              [
+                "e3",
+                "gi1"
+              ]
+            ],
+            "unique_objects": [
+              "gi1"
+            ]
+          }
+        },
+        "invoice": {
+          "Revert Invoice": {
+            "events": [
+              "e11"
+            ],
+            "total_objects": [
+              [
+                "e11",
+                "r2"
+              ]
+            ],
+            "unique_objects": [
+              "r2"
+            ]
+          },
+          "Send Invoice": {
+            "events": [
+              "e19",
+              "e9"
+            ],
+            "total_objects": [
+              [
+                "e19",
+                "r3"
+              ],
+              [
+                "e9",
+                "r1"
+              ]
+            ],
+            "unique_objects": [
+              "r1",
+              "r3"
+            ]
+          }
+        },
+        "item": {
+          "Create Purchase Order": {
+            "events": [
+              "e1",
+              "e13"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "i1"
+              ],
+              [
+                "e1",
+                "i2"
+              ],
+              [
+                "e1",
+                "i3"
+              ],
+              [
+                "e13",
+                "i4"
+              ],
+              [
+                "e13",
+                "i5"
+              ]
+            ],
+            "unique_objects": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5"
+            ]
+          }
+        },
+        "line": {
+          "Produce Item": {
+            "events": [
+              "e2"
+            ],
+            "total_objects": [
+              [
+                "e2",
+                "L1"
+              ]
+            ],
+            "unique_objects": [
+              "L1"
+            ]
+          }
+        },
+        "order": {
+          "Create Purchase Order": {
+            "events": [
+              "e1",
+              "e13"
+            ],
+            "total_objects": [
+              [
+                "e1",
+                "o1"
+              ],
+              [
+                "e13",
+                "o2"
+              ]
+            ],
+            "unique_objects": [
+              "o1",
+              "o2"
+            ]
+          }
+        },
+        "payment": {
+          "Payment": {
+            "events": [
+              "e20"
+            ],
+            "total_objects": [
+              [
+                "e20",
+                "pay1"
+              ]
+            ],
+            "unique_objects": [
+              "pay1"
+            ]
+          }
+        }
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {},
+          "id": "e1",
+          "timestamp": "1970-01-01T00:00:00+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e2",
+          "timestamp": "1970-01-01T01:00:00+00:00"
+        },
+        {
+          "activity": "Item Issue",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "1970-01-01T02:00:00+00:00"
+        },
+        {
+          "activity": "Replace Item",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "1970-01-01T03:00:00+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "1970-01-01T04:00:00+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e6",
+          "timestamp": "1970-01-01T05:00:00+00:00"
+        },
+        {
+          "activity": "Collect Items",
+          "attributes": {},
+          "id": "e7",
+          "timestamp": "1970-01-01T06:00:00+00:00"
+        },
+        {
+          "activity": "Start Delivery",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "1970-01-01T07:00:00+00:00"
+        },
+        {
+          "activity": "Send Invoice",
+          "attributes": {},
+          "id": "e9",
+          "timestamp": "1970-01-01T08:00:00+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "1970-01-01T09:00:00+00:00"
+        },
+        {
+          "activity": "Revert Invoice",
+          "attributes": {},
+          "id": "e11",
+          "timestamp": "1970-01-01T10:00:00+00:00"
+        },
+        {
+          "activity": "Send Invoice",
+          "attributes": {},
+          "id": "e12",
+          "timestamp": "1970-01-01T10:00:00+00:00"
+        },
+        {
+          "activity": "Create Purchase Order",
+          "attributes": {},
+          "id": "e13",
+          "timestamp": "1970-01-01T11:00:00+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e14",
+          "timestamp": "1970-01-01T12:00:00+00:00"
+        },
+        {
+          "activity": "Produce Item",
+          "attributes": {},
+          "id": "e15",
+          "timestamp": "1970-01-01T13:00:00+00:00"
+        },
+        {
+          "activity": "Collect Items",
+          "attributes": {},
+          "id": "e16",
+          "timestamp": "1970-01-01T14:00:00+00:00"
+        },
+        {
+          "activity": "Start Delivery",
+          "attributes": {},
+          "id": "e17",
+          "timestamp": "1970-01-01T15:00:00+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e18",
+          "timestamp": "1970-01-01T16:00:00+00:00"
+        },
+        {
+          "activity": "Send Invoice",
+          "attributes": {},
+          "id": "e19",
+          "timestamp": "1970-01-01T17:00:00+00:00"
+        },
+        {
+          "activity": "Payment",
+          "attributes": {},
+          "id": "e20",
+          "timestamp": "1970-01-01T18:00:00+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i3",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "L1",
+          "type": "line"
+        },
+        {
+          "attributes": {},
+          "id": "gi1",
+          "type": "goodsissue"
+        },
+        {
+          "attributes": {},
+          "id": "d1",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "r1",
+          "type": "invoice"
+        },
+        {
+          "attributes": {},
+          "id": "r2",
+          "type": "invoice"
+        },
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i4",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i5",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "d2",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "r3",
+          "type": "invoice"
+        },
+        {
+          "attributes": {},
+          "id": "pay1",
+          "type": "payment"
+        }
+      ],
+      "relations": [
+        {
+          "event": "e1",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e1",
+          "object": "i1",
+          "qualifier": ""
+        },
+        {
+          "event": "e1",
+          "object": "i2",
+          "qualifier": ""
+        },
+        {
+          "event": "e1",
+          "object": "i3",
+          "qualifier": ""
+        },
+        {
+          "event": "e2",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e2",
+          "object": "i1",
+          "qualifier": ""
+        },
+        {
+          "event": "e2",
+          "object": "L1",
+          "qualifier": ""
+        },
+        {
+          "event": "e3",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e3",
+          "object": "i1",
+          "qualifier": ""
+        },
+        {
+          "event": "e3",
+          "object": "L1",
+          "qualifier": ""
+        },
+        {
+          "event": "e3",
+          "object": "gi1",
+          "qualifier": ""
+        },
+        {
+          "event": "e4",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e4",
+          "object": "i1",
+          "qualifier": ""
+        },
+        {
+          "event": "e4",
+          "object": "L1",
+          "qualifier": ""
+        },
+        {
+          "event": "e4",
+          "object": "gi1",
+          "qualifier": ""
+        },
+        {
+          "event": "e5",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e5",
+          "object": "i2",
+          "qualifier": ""
+        },
+        {
+          "event": "e5",
+          "object": "L1",
+          "qualifier": ""
+        },
+        {
+          "event": "e6",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e6",
+          "object": "i3",
+          "qualifier": ""
+        },
+        {
+          "event": "e7",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e7",
+          "object": "i1",
+          "qualifier": ""
+        },
+        {
+          "event": "e7",
+          "object": "i2",
+          "qualifier": ""
+        },
+        {
+          "event": "e7",
+          "object": "i3",
+          "qualifier": ""
+        },
+        {
+          "event": "e8",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e8",
+          "object": "d1",
+          "qualifier": ""
+        },
+        {
+          "event": "e9",
+          "object": "o1",
+          "qualifier": ""
+        },
+        {
+          "event": "e9",
+          "object": "r1",
+          "qualifier": ""
+        },
+        {
+          "event": "e10",
+          "object": "d1",
+          "qualifier": ""
+        },
+        {
+          "event": "e11",
+          "object": "r1",
+          "qualifier": ""
+        },
+        {
+          "event": "e11",
+          "object": "r2",
+          "qualifier": ""
+        },
+        {
+          "event": "e12",
+          "object": "r2",
+          "qualifier": ""
+        },
+        {
+          "event": "e13",
+          "object": "o2",
+          "qualifier": ""
+        },
+        {
+          "event": "e13",
+          "object": "i4",
+          "qualifier": ""
+        },
+        {
+          "event": "e13",
+          "object": "i5",
+          "qualifier": ""
+        },
+        {
+          "event": "e14",
+          "object": "o2",
+          "qualifier": ""
+        },
+        {
+          "event": "e14",
+          "object": "i4",
+          "qualifier": ""
+        },
+        {
+          "event": "e14",
+          "object": "L1",
+          "qualifier": ""
+        },
+        {
+          "event": "e15",
+          "object": "o2",
+          "qualifier": ""
+        },
+        {
+          "event": "e15",
+          "object": "i5",
+          "qualifier": ""
+        },
+        {
+          "event": "e15",
+          "object": "L1",
+          "qualifier": ""
+        },
+        {
+          "event": "e16",
+          "object": "o2",
+          "qualifier": ""
+        },
+        {
+          "event": "e16",
+          "object": "i4",
+          "qualifier": ""
+        },
+        {
+          "event": "e16",
+          "object": "i5",
+          "qualifier": ""
+        },
+        {
+          "event": "e17",
+          "object": "o2",
+          "qualifier": ""
+        },
+        {
+          "event": "e17",
+          "object": "d2",
+          "qualifier": ""
+        },
+        {
+          "event": "e18",
+          "object": "d2",
+          "qualifier": ""
+        },
+        {
+          "event": "e19",
+          "object": "o2",
+          "qualifier": ""
+        },
+        {
+          "event": "e19",
+          "object": "r3",
+          "qualifier": ""
+        },
+        {
+          "event": "e20",
+          "object": "r3",
+          "qualifier": ""
+        },
+        {
+          "event": "e20",
+          "object": "pay1",
+          "qualifier": ""
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_discovery",
+    "case": "ocdfg-newocel-jsonocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/newocel.jsonocel"
+    },
+    "functions": [
+      "pm4py.read_ocel_json",
+      "pm4py.discover_ocdfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
