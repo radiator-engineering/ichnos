@@ -383,550 +383,555 @@
         "register request"
       ]
     },
-    "traces": [
-      {
-        "activities": [
-          "check ticket",
-          "decide",
-          "examine casually",
-          "examine thoroughly",
-          "pay compensation",
-          "register request",
-          "reinitiate request"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+    "traces": {
+      "first": [
+        {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "check ticket",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "decide",
+                "pay compensation"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "reinitiate request"
+              ],
+              1
+            ],
+            [
+              [
+                "examine casually",
+                "check ticket"
+              ],
+              1
+            ],
+            [
+              [
+                "examine thoroughly",
+                "check ticket"
+              ],
+              1
+            ],
+            [
+              [
+                "register request",
+                "examine casually"
+              ],
+              1
+            ],
+            [
+              [
+                "reinitiate request",
+                "examine thoroughly"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "pay compensation"
+          ],
+          "min_trace_length": 9,
+          "parallel": [],
+          "sequence": [
             [
               "check ticket",
               "decide"
             ],
-            2
-          ],
-          [
             [
               "decide",
               "pay compensation"
             ],
-            1
-          ],
-          [
             [
               "decide",
               "reinitiate request"
             ],
-            1
-          ],
-          [
             [
               "examine casually",
               "check ticket"
             ],
-            1
-          ],
-          [
             [
               "examine thoroughly",
               "check ticket"
             ],
-            1
-          ],
-          [
             [
               "register request",
               "examine casually"
             ],
-            1
-          ],
-          [
             [
               "reinitiate request",
               "examine thoroughly"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "pay compensation"
-        ],
-        "min_trace_length": 9,
-        "parallel": [],
-        "sequence": [
-          [
-            "check ticket",
-            "decide"
+            ]
           ],
-          [
-            "decide",
-            "pay compensation"
+          "start_activities": [
+            "register request"
           ],
-          [
-            "decide",
-            "reinitiate request"
-          ],
-          [
-            "examine casually",
-            "check ticket"
-          ],
-          [
-            "examine thoroughly",
-            "check ticket"
-          ],
-          [
+          "trace": [
             "register request",
-            "examine casually"
-          ],
-          [
+            "examine casually",
+            "check ticket",
+            "decide",
             "reinitiate request",
-            "examine thoroughly"
+            "examine thoroughly",
+            "check ticket",
+            "decide",
+            "pay compensation"
           ]
-        ],
-        "start_activities": [
-          "register request"
-        ],
-        "trace": [
-          "register request",
-          "examine casually",
-          "check ticket",
-          "decide",
-          "reinitiate request",
-          "examine thoroughly",
-          "check ticket",
-          "decide",
-          "pay compensation"
-        ]
-      },
-      {
-        "activities": [
-          "check ticket",
-          "decide",
-          "examine casually",
-          "pay compensation",
-          "register request"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "pay compensation",
+            "register request"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "check ticket",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "pay compensation"
+              ],
+              1
+            ],
+            [
+              [
+                "examine casually",
+                "check ticket"
+              ],
+              1
+            ],
+            [
+              [
+                "register request",
+                "examine casually"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "pay compensation"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "check ticket",
               "decide"
             ],
-            1
-          ],
-          [
             [
               "decide",
               "pay compensation"
             ],
-            1
-          ],
-          [
             [
               "examine casually",
               "check ticket"
             ],
-            1
-          ],
-          [
             [
               "register request",
               "examine casually"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "pay compensation"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "check ticket",
-            "decide"
+            ]
           ],
-          [
+          "start_activities": [
+            "register request"
+          ],
+          "trace": [
+            "register request",
+            "examine casually",
+            "check ticket",
             "decide",
             "pay compensation"
-          ],
-          [
-            "examine casually",
-            "check ticket"
-          ],
-          [
-            "register request",
-            "examine casually"
           ]
-        ],
-        "start_activities": [
-          "register request"
-        ],
-        "trace": [
-          "register request",
-          "examine casually",
-          "check ticket",
-          "decide",
-          "pay compensation"
-        ]
-      },
-      {
-        "activities": [
-          "check ticket",
-          "decide",
-          "examine casually",
-          "pay compensation",
-          "register request"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "pay compensation",
+            "register request"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "pay compensation"
+              ],
+              1
+            ],
+            [
+              [
+                "examine casually",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "register request",
+                "check ticket"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "pay compensation"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "check ticket",
               "examine casually"
             ],
-            1
-          ],
-          [
             [
               "decide",
               "pay compensation"
             ],
-            1
-          ],
-          [
             [
               "examine casually",
               "decide"
             ],
-            1
-          ],
-          [
             [
               "register request",
               "check ticket"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "pay compensation"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "check ticket",
-            "examine casually"
+            ]
           ],
-          [
+          "start_activities": [
+            "register request"
+          ],
+          "trace": [
+            "register request",
+            "check ticket",
+            "examine casually",
             "decide",
             "pay compensation"
-          ],
-          [
-            "examine casually",
-            "decide"
-          ],
-          [
-            "register request",
-            "check ticket"
           ]
-        ],
-        "start_activities": [
-          "register request"
-        ],
-        "trace": [
-          "register request",
-          "check ticket",
-          "examine casually",
-          "decide",
-          "pay compensation"
-        ]
-      },
-      {
-        "activities": [
-          "check ticket",
-          "decide",
-          "examine casually",
-          "register request",
-          "reinitiate request",
-          "reject request"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "check ticket",
-              "decide"
-            ],
-            2
+        },
+        {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "register request",
+            "reinitiate request",
+            "reject request"
           ],
-          [
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "check ticket",
+                "decide"
+              ],
+              2
+            ],
+            [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "reinitiate request"
+              ],
+              2
+            ],
+            [
+              [
+                "decide",
+                "reject request"
+              ],
+              1
+            ],
+            [
+              [
+                "examine casually",
+                "check ticket"
+              ],
+              2
+            ],
+            [
+              [
+                "examine casually",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "register request",
+                "examine casually"
+              ],
+              1
+            ],
+            [
+              [
+                "reinitiate request",
+                "check ticket"
+              ],
+              1
+            ],
+            [
+              [
+                "reinitiate request",
+                "examine casually"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "reject request"
+          ],
+          "min_trace_length": 13,
+          "parallel": [
             [
               "check ticket",
               "examine casually"
             ],
-            1
+            [
+              "examine casually",
+              "check ticket"
+            ]
           ],
-          [
+          "sequence": [
+            [
+              "check ticket",
+              "decide"
+            ],
             [
               "decide",
               "reinitiate request"
             ],
-            2
-          ],
-          [
             [
               "decide",
               "reject request"
             ],
-            1
-          ],
-          [
-            [
-              "examine casually",
-              "check ticket"
-            ],
-            2
-          ],
-          [
             [
               "examine casually",
               "decide"
             ],
-            1
-          ],
-          [
             [
               "register request",
               "examine casually"
             ],
-            1
-          ],
-          [
             [
               "reinitiate request",
               "check ticket"
             ],
-            1
-          ],
-          [
             [
               "reinitiate request",
               "examine casually"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "reject request"
-        ],
-        "min_trace_length": 13,
-        "parallel": [
-          [
-            "check ticket",
-            "examine casually"
+            ]
           ],
-          [
+          "start_activities": [
+            "register request"
+          ],
+          "trace": [
+            "register request",
             "examine casually",
-            "check ticket"
-          ]
-        ],
-        "sequence": [
-          [
             "check ticket",
-            "decide"
-          ],
-          [
             "decide",
-            "reinitiate request"
-          ],
-          [
+            "reinitiate request",
+            "check ticket",
+            "examine casually",
+            "decide",
+            "reinitiate request",
+            "examine casually",
+            "check ticket",
             "decide",
             "reject request"
-          ],
-          [
-            "examine casually",
-            "decide"
-          ],
-          [
-            "register request",
-            "examine casually"
-          ],
-          [
-            "reinitiate request",
-            "check ticket"
-          ],
-          [
-            "reinitiate request",
-            "examine casually"
           ]
-        ],
-        "start_activities": [
-          "register request"
-        ],
-        "trace": [
-          "register request",
-          "examine casually",
-          "check ticket",
-          "decide",
-          "reinitiate request",
-          "check ticket",
-          "examine casually",
-          "decide",
-          "reinitiate request",
-          "examine casually",
-          "check ticket",
-          "decide",
-          "reject request"
-        ]
-      },
-      {
-        "activities": [
-          "check ticket",
-          "decide",
-          "examine thoroughly",
-          "register request",
-          "reject request"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine thoroughly",
+            "register request",
+            "reject request"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "check ticket",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "reject request"
+              ],
+              1
+            ],
+            [
+              [
+                "examine thoroughly",
+                "check ticket"
+              ],
+              1
+            ],
+            [
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "reject request"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "check ticket",
               "decide"
             ],
-            1
-          ],
-          [
             [
               "decide",
               "reject request"
             ],
-            1
-          ],
-          [
             [
               "examine thoroughly",
               "check ticket"
             ],
-            1
-          ],
-          [
             [
               "register request",
               "examine thoroughly"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "reject request"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "check ticket",
-            "decide"
+            ]
           ],
-          [
+          "start_activities": [
+            "register request"
+          ],
+          "trace": [
+            "register request",
+            "examine thoroughly",
+            "check ticket",
             "decide",
             "reject request"
-          ],
-          [
-            "examine thoroughly",
-            "check ticket"
-          ],
-          [
-            "register request",
-            "examine thoroughly"
           ]
-        ],
-        "start_activities": [
-          "register request"
-        ],
-        "trace": [
-          "register request",
-          "examine thoroughly",
-          "check ticket",
-          "decide",
-          "reject request"
-        ]
-      },
-      {
-        "activities": [
-          "check ticket",
-          "decide",
-          "examine thoroughly",
-          "register request",
-          "reject request"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine thoroughly",
+            "register request",
+            "reject request"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              1
+            ],
+            [
+              [
+                "decide",
+                "reject request"
+              ],
+              1
+            ],
+            [
+              [
+                "examine thoroughly",
+                "decide"
+              ],
+              1
+            ],
+            [
+              [
+                "register request",
+                "check ticket"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "reject request"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "check ticket",
               "examine thoroughly"
             ],
-            1
-          ],
-          [
             [
               "decide",
               "reject request"
             ],
-            1
-          ],
-          [
             [
               "examine thoroughly",
               "decide"
             ],
-            1
-          ],
-          [
             [
               "register request",
               "check ticket"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "reject request"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "check ticket",
-            "examine thoroughly"
+            ]
           ],
-          [
+          "start_activities": [
+            "register request"
+          ],
+          "trace": [
+            "register request",
+            "check ticket",
+            "examine thoroughly",
             "decide",
             "reject request"
-          ],
-          [
-            "examine thoroughly",
-            "decide"
-          ],
-          [
-            "register request",
-            "check ticket"
           ]
-        ],
-        "start_activities": [
-          "register request"
-        ],
-        "trace": [
-          "register request",
-          "check ticket",
-          "examine thoroughly",
-          "decide",
-          "reject request"
-        ]
-      }
-    ]
+        }
+      ],
+      "groups": 6,
+      "rest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "traces": 6
+    }
   },
   "meta": {
     "area": "discovery",

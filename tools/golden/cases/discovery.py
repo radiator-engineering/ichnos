@@ -59,8 +59,12 @@ sorted lists, pairs as ``[a, b]`` and the DFG as sorted ``[[a, b], count]``:
 
 - ``footprints-log-<log>``: ``entire`` is ``pm4py.discover_footprints`` of
   the DataFrame (``entire_dataframe``); ``traces`` is the same on
-  ``pm4py.convert_to_event_log`` of it (``trace_by_trace``), one entry per
-  distinct result with its ``count``, sorted; ``dfg`` is the same on the dict
+  ``pm4py.convert_to_event_log`` of it (``trace_by_trace``): one entry per
+  distinct result with its ``count``, sorted by its JSON with sorted keys and
+  no spaces. ``first`` keeps the first ``FOOTPRINTS_TRACE_ROWS`` entries in
+  full; ``traces`` and ``groups`` count all traces and entries, and
+  ``rest_sha256`` is the SHA-256 of the remaining entries in that JSON
+  form; ``dfg`` is the same on the dict
   of ``pm4py.discover_dfg``; ``powl`` is the same on
   ``pm4py.discover_powl`` of the DataFrame.
 - ``footprints-log-synthetic-emptytraces``: ``entire`` (``entire_event_log``,
@@ -86,6 +90,7 @@ timestamp as the start. Each profile is a list of
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -1427,12 +1432,28 @@ def footprints_json(fp: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
-def _traces_footprints(log: Any) -> list[dict[str, Any]]:
+FOOTPRINTS_TRACE_ROWS = 20
+"""How many distinct per-trace footprints a golden keeps in full."""
+
+
+def _compact(value: Any) -> str:
+    """JSON with sorted keys and no spaces, as serde_json writes it."""
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+
+
+def _traces_footprints(log: Any) -> dict[str, Any]:
     groups: dict[str, dict[str, Any]] = {}
     for fp in pm4py.discover_footprints(log):
         j = footprints_json(fp)
-        groups.setdefault(json.dumps(j, sort_keys=True), {**j, "count": 0})["count"] += 1
-    return [groups[k] for k in sorted(groups)]
+        groups.setdefault(_compact(j), {**j, "count": 0})["count"] += 1
+    rows = [groups[k] for k in sorted(groups)]
+    rest = rows[FOOTPRINTS_TRACE_ROWS:]
+    return {
+        "traces": sum(r["count"] for r in rows),
+        "groups": len(rows),
+        "first": rows[:FOOTPRINTS_TRACE_ROWS],
+        "rest_sha256": hashlib.sha256(_compact(rest).encode("utf-8")).hexdigest(),
+    }
 
 
 def footprints_log(

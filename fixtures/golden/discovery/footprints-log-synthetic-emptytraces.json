@@ -42,106 +42,111 @@
         "b"
       ]
     },
-    "traces": [
-      {
-        "activities": [
-          "a",
-          "b"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+    "traces": {
+      "first": [
+        {
+          "activities": [
+            "a",
+            "b"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "b"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
             [
               "a",
               "b"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "b"
-        ],
-        "min_trace_length": 2,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "a"
+          ],
+          "trace": [
             "a",
             "b"
           ]
-        ],
-        "start_activities": [
-          "a"
-        ],
-        "trace": [
-          "a",
-          "b"
-        ]
-      },
-      {
-        "activities": [
-          "a",
-          "b"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "a",
+            "b"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "b",
+                "a"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "a"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
             [
               "b",
               "a"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "a"
-        ],
-        "min_trace_length": 2,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "b"
+          ],
+          "trace": [
             "b",
             "a"
           ]
-        ],
-        "start_activities": [
-          "b"
-        ],
-        "trace": [
-          "b",
-          "a"
-        ]
-      },
-      {
-        "activities": [
-          "a"
-        ],
-        "count": 1,
-        "dfg": [],
-        "end_activities": [
-          "a"
-        ],
-        "min_trace_length": 1,
-        "parallel": [],
-        "sequence": [],
-        "start_activities": [
-          "a"
-        ],
-        "trace": [
-          "a"
-        ]
-      },
-      {
-        "activities": [],
-        "count": 2,
-        "dfg": [],
-        "end_activities": [],
-        "min_trace_length": 0,
-        "parallel": [],
-        "sequence": [],
-        "start_activities": [],
-        "trace": []
-      }
-    ]
+        },
+        {
+          "activities": [
+            "a"
+          ],
+          "count": 1,
+          "dfg": [],
+          "end_activities": [
+            "a"
+          ],
+          "min_trace_length": 1,
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [
+            "a"
+          ],
+          "trace": [
+            "a"
+          ]
+        },
+        {
+          "activities": [],
+          "count": 2,
+          "dfg": [],
+          "end_activities": [],
+          "min_trace_length": 0,
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [],
+          "trace": []
+        }
+      ],
+      "groups": 4,
+      "rest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "traces": 5
+    }
   },
   "meta": {
     "area": "discovery",

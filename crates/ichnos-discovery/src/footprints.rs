@@ -46,6 +46,10 @@ use crate::Result;
 
 /// Footprints of a whole log (pm4py's `entire_event_log` and
 /// `entire_dataframe` variants).
+///
+/// `ichnos_conformance::footprints::LogFootprints` has the same name and
+/// content but flat fields (no [`Footprints`]) and no trace list; it is the
+/// input of footprint conformance. This type is the discovery result.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct LogFootprints {
     /// How often the second activity directly follows the first.
@@ -60,6 +64,10 @@ pub struct LogFootprints {
 }
 
 /// Footprints of one trace (pm4py's `trace_by_trace` variant).
+///
+/// `ichnos_conformance::footprints::LogFootprints::of_trace` gives the same
+/// footprints in the conformance type, with flat fields and without
+/// [`TraceFootprints::trace`].
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct TraceFootprints {
     /// How often the second activity directly follows the first.

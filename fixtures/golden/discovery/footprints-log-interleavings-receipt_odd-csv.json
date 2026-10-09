@@ -914,3557 +914,1440 @@
         "T17 Check report Y to stop indication"
       ]
     },
-    "traces": [
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T09-4 Process or receive external advice from party 4"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+    "traces": {
+      "first": [
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T09-4 Process or receive external advice from party 4"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T07-1 Draft intern advice aspect 1"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T09-1 Process or receive external advice from party 1"
             ],
-            1
-          ],
-          [
             [
               "T09-1 Process or receive external advice from party 1",
               "T09-4 Process or receive external advice from party 4"
             ],
-            1
-          ],
-          [
             [
               "T09-4 Process or receive external advice from party 4",
               "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
             "T05 Print and send confirmation of receipt",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
             "T09-1 Process or receive external advice from party 1",
-            "T09-4 Process or receive external advice from party 4"
-          ],
-          [
             "T09-4 Process or receive external advice from party 4",
             "T07-1 Draft intern advice aspect 1"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-1 Process or receive external advice from party 1",
-          "T09-4 Process or receive external advice from party 4",
-          "T07-1 Draft intern advice aspect 1"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T09-1 Process or receive external advice from party 1"
-            ],
-            1
-          ],
-          [
-            [
-              "T09-1 Process or receive external advice from party 1",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 6,
-        "parallel": [
-          [
+        },
+        {
+          "activities": [
             "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
+            "T05 Print and send confirmation of receipt",
             "T07-1 Draft intern advice aspect 1",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
             "T09-1 Process or receive external advice from party 1",
             "T10 Determine necessity to stop indication"
           ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "trace": [
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T02 Check confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 6,
+          "parallel": [
+            [
+              "T02 Check confirmation of receipt",
+              "T02 Check confirmation of receipt"
+            ]
+          ],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T09-1 Process or receive external advice from party 1"
             ],
-            1
-          ],
-          [
             [
               "T09-1 Process or receive external advice from party 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ]
           ],
-          [
-            "T05 Print and send confirmation of receipt",
+          "start_activities": [
             "T07-1 Draft intern advice aspect 1"
           ],
-          [
+          "trace": [
             "T07-1 Draft intern advice aspect 1",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
             "T09-1 Process or receive external advice from party 1",
-            "T10 Determine necessity to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T09-1 Process or receive external advice from party 1"
-            ],
-            1
-          ],
-          [
-            [
-              "T09-1 Process or receive external advice from party 1",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
-            "T09-1 Process or receive external advice from party 1",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "trace": [
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T09-1 Process or receive external advice from party 1"
-            ],
-            1
-          ],
-          [
-            [
-              "T09-1 Process or receive external advice from party 1",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
-            "T09-1 Process or receive external advice from party 1",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
             "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
+            "T02 Check confirmation of receipt",
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt"
           ]
-        ],
-        "start_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "trace": [
-          "T07-1 Draft intern advice aspect 1",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication"
+            ]
           ],
-          [
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication"
+          ]
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T02 Check confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T02 Check confirmation of receipt"
+            ]
+          ],
+          "start_activities": [
+            "T07-1 Draft intern advice aspect 1"
+          ],
+          "trace": [
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T10 Determine necessity to stop indication"
+          ]
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T09-1 Process or receive external advice from party 1"
+            ],
+            [
+              "T09-1 Process or receive external advice from party 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ]
+          ],
+          "start_activities": [
+            "T07-1 Draft intern advice aspect 1"
+          ],
+          "trace": [
+            "T07-1 Draft intern advice aspect 1",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication",
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt"
+          ]
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
             [
               "T07-1 Draft intern advice aspect 1",
               "T09-4 Process or receive external advice from party 4"
             ],
-            1
-          ],
-          [
             [
               "T09-4 Process or receive external advice from party 4",
               "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
             "T05 Print and send confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
             "T07-1 Draft intern advice aspect 1",
-            "T09-4 Process or receive external advice from party 4"
-          ],
-          [
             "T09-4 Process or receive external advice from party 4",
             "T10 Determine necessity to stop indication"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 5,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T09-4 Process or receive external advice from party 4"
             ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T09-4 Process or receive external advice from party 4",
               "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
             "T05 Print and send confirmation of receipt",
-            "T09-4 Process or receive external advice from party 4"
-          ],
-          [
+            "T09-4 Process or receive external advice from party 4",
             "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T09-4 Process or receive external advice from party 4",
-            "T07-1 Draft intern advice aspect 1"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-4 Process or receive external advice from party 4",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication",
+            "T12 Check document X request unlicensed",
+            "T15 Print document X request unlicensed"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T02 Check confirmation of receipt"
+              ],
+              2
+            ],
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T12 Check document X request unlicensed"
+              ],
+              1
+            ],
+            [
+              [
+                "T12 Check document X request unlicensed",
+                "T15 Print document X request unlicensed"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T15 Print document X request unlicensed"
+          ],
+          "min_trace_length": 9,
+          "parallel": [
             [
               "T02 Check confirmation of receipt",
               "T02 Check confirmation of receipt"
             ],
-            2
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ]
           ],
-          [
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T10 Determine necessity to stop indication",
               "T12 Check document X request unlicensed"
             ],
-            1
-          ],
-          [
             [
               "T12 Check document X request unlicensed",
               "T15 Print document X request unlicensed"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T15 Print document X request unlicensed"
-        ],
-        "min_trace_length": 9,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
+            ]
+          ],
+          "start_activities": [
             "T02 Check confirmation of receipt"
           ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T07-1 Draft intern advice aspect 1"
-          ]
-        ],
-        "sequence": [
-          [
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
+            "T02 Check confirmation of receipt",
+            "T02 Check confirmation of receipt",
             "T05 Print and send confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
             "T07-1 Draft intern advice aspect 1",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
+            "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication",
-            "T12 Check document X request unlicensed"
-          ],
-          [
             "T12 Check document X request unlicensed",
             "T15 Print document X request unlicensed"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 5,
+          "parallel": [
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ]
+          ],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T07-1 Draft intern advice aspect 1"
-          ]
-        ],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
             "T05 Print and send confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
+            "T07-1 Draft intern advice aspect 1",
             "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 3,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 3,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
             "T05 Print and send confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
             "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 4,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 4,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T10 Determine necessity to stop indication",
               "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T07-1 Draft intern advice aspect 1"
+          ],
+          "trace": [
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication",
             "T02 Check confirmation of receipt",
             "T05 Print and send confirmation of receipt"
-          ],
-          [
+          ]
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
             "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication"
           ],
-          [
-            "T10 Determine necessity to stop indication",
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              7
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 12,
+          "parallel": [
+            [
+              "T05 Print and send confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T05 Print and send confirmation of receipt"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ]
+          ],
+          "sequence": [
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ]
+          ],
+          "start_activities": [
             "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "trace": [
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
           ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            7
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 12,
-        "parallel": [
-          [
-            "T05 Print and send confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T07-1 Draft intern advice aspect 1"
-          ]
-        ],
-        "sequence": [
-          [
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
+            "T07-1 Draft intern advice aspect 1",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
             "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
+            ]
           ],
-          [
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
+            "T02 Check confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
             "T05 Print and send confirmation of receipt",
             "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T05 Print and send confirmation of receipt"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 3,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 3,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 5,
+          "parallel": [
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ]
+          ],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T10 Determine necessity to stop indication",
               "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 5,
-        "parallel": [
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T07-1 Draft intern advice aspect 1"
-          ]
-        ],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
             "T07-1 Draft intern advice aspect 1",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
+            "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication",
             "T05 Print and send confirmation of receipt"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              2
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 6,
+          "parallel": [
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T07-1 Draft intern advice aspect 1"
+            ]
+          ],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T07-1 Draft intern advice aspect 1"
             ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            2
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 6,
-        "parallel": [
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T07-1 Draft intern advice aspect 1"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 5,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ],
-          [
             [
               "T07-1 Draft intern advice aspect 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T10 Determine necessity to stop indication",
               "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T07-1 Draft intern advice aspect 1"
-          ],
-          [
             "T07-1 Draft intern advice aspect 1",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
+            "T07-1 Draft intern advice aspect 1",
+            "T07-1 Draft intern advice aspect 1",
             "T10 Determine necessity to stop indication",
             "T05 Print and send confirmation of receipt"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 5,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T07-1 Draft intern advice aspect 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T07-1 Draft intern advice aspect 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
+            [
+              "T02 Check confirmation of receipt",
+              "T07-1 Draft intern advice aspect 1"
+            ],
+            [
+              "T07-1 Draft intern advice aspect 1",
+              "T10 Determine necessity to stop indication"
+            ],
+            [
+              "T10 Determine necessity to stop indication",
+              "T05 Print and send confirmation of receipt"
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
+            "T02 Check confirmation of receipt",
+            "T07-1 Draft intern advice aspect 1",
+            "T10 Determine necessity to stop indication",
+            "T05 Print and send confirmation of receipt"
+          ]
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T09-1 Process or receive external advice from party 1"
             ],
-            1
-          ],
-          [
             [
               "T09-1 Process or receive external advice from party 1",
               "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
             "T05 Print and send confirmation of receipt",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
             "T09-1 Process or receive external advice from party 1",
             "T10 Determine necessity to stop indication"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T09-1 Process or receive external advice from party 1",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T09-1 Process or receive external advice from party 1"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-1 Process or receive external advice from party 1",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T09-1 Process or receive external advice from party 1"
             ],
-            1
-          ],
-          [
             [
               "T09-1 Process or receive external advice from party 1",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ],
-          [
             [
               "T10 Determine necessity to stop indication",
               "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
+            ]
+          ],
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
             "T02 Check confirmation of receipt",
-            "T09-1 Process or receive external advice from party 1"
-          ],
-          [
             "T09-1 Process or receive external advice from party 1",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
             "T10 Determine necessity to stop indication",
             "T05 Print and send confirmation of receipt"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T09-1 Process or receive external advice from party 1",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T05 Print and send confirmation of receipt",
+                "T09-4 Process or receive external advice from party 4"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T10 Determine necessity to stop indication"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
             [
               "T02 Check confirmation of receipt",
               "T05 Print and send confirmation of receipt"
             ],
-            1
-          ],
-          [
             [
               "T05 Print and send confirmation of receipt",
               "T09-4 Process or receive external advice from party 4"
             ],
-            1
+            [
+              "T09-4 Process or receive external advice from party 4",
+              "T10 Determine necessity to stop indication"
+            ]
           ],
-          [
+          "start_activities": [
+            "T02 Check confirmation of receipt"
+          ],
+          "trace": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication"
+          ]
+        },
+        {
+          "activities": [
+            "T02 Check confirmation of receipt",
+            "T05 Print and send confirmation of receipt",
+            "T09-4 Process or receive external advice from party 4",
+            "T10 Determine necessity to stop indication"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "T02 Check confirmation of receipt",
+                "T05 Print and send confirmation of receipt"
+              ],
+              1
+            ],
+            [
+              [
+                "T09-4 Process or receive external advice from party 4",
+                "T10 Determine necessity to stop indication"
+              ],
+              1
+            ],
+            [
+              [
+                "T10 Determine necessity to stop indication",
+                "T02 Check confirmation of receipt"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "T05 Print and send confirmation of receipt"
+          ],
+          "min_trace_length": 4,
+          "parallel": [],
+          "sequence": [
+            [
+              "T02 Check confirmation of receipt",
+              "T05 Print and send confirmation of receipt"
+            ],
             [
               "T09-4 Process or receive external advice from party 4",
               "T10 Determine necessity to stop indication"
             ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
+            [
+              "T10 Determine necessity to stop indication",
+              "T02 Check confirmation of receipt"
+            ]
           ],
-          [
-            "T05 Print and send confirmation of receipt",
+          "start_activities": [
             "T09-4 Process or receive external advice from party 4"
           ],
-          [
+          "trace": [
             "T09-4 Process or receive external advice from party 4",
-            "T10 Determine necessity to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T09-4 Process or receive external advice from party 4",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T09-4 Process or receive external advice from party 4",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
             "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T09-4 Process or receive external advice from party 4"
-        ],
-        "trace": [
-          "T09-4 Process or receive external advice from party 4",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ],
-        "count": 28,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T15 Print document X request unlicensed"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T15 Print document X request unlicensed"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T15 Print document X request unlicensed"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T15 Print document X request unlicensed"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T15 Print document X request unlicensed"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T15 Print document X request unlicensed"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T15 Print document X request unlicensed"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T15 Print document X request unlicensed"
-        ],
-        "min_trace_length": 6,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T02 Check confirmation of receipt"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T15 Print document X request unlicensed"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ],
-        "count": 6,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T15 Print document X request unlicensed"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T15 Print document X request unlicensed"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T15 Print document X request unlicensed"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T15 Print document X request unlicensed"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T15 Print document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T15 Print document X request unlicensed"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T15 Print document X request unlicensed"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T05 Print and send confirmation of receipt",
-          "T15 Print document X request unlicensed"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T12 Check document X request unlicensed"
-            ],
-            1
-          ],
-          [
-            [
-              "T12 Check document X request unlicensed",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T12 Check document X request unlicensed"
-          ],
-          [
-            "T12 Check document X request unlicensed",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T12 Check document X request unlicensed",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T20 Print report Y to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 6,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ],
-          [
-            "T20 Print report Y to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            2
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T20 Print report Y to stop indication"
-        ],
-        "min_trace_length": 7,
-        "parallel": [
-          [
-            "T17 Check report Y to stop indication",
-            "T17 Check report Y to stop indication"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T17 Check report Y to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            4
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T20 Print report Y to stop indication"
-        ],
-        "min_trace_length": 9,
-        "parallel": [
-          [
-            "T17 Check report Y to stop indication",
-            "T17 Check report Y to stop indication"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T17 Check report Y to stop indication",
-          "T17 Check report Y to stop indication",
-          "T17 Check report Y to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 12,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T20 Print report Y to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T20 Print report Y to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T20 Print report Y to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ],
-          [
-            "T20 Print report Y to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T17 Check report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T17 Check report Y to stop indication",
-              "T20 Print report Y to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T20 Print report Y to stop indication",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 5,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T17 Check report Y to stop indication"
-          ],
-          [
-            "T17 Check report Y to stop indication",
-            "T20 Print report Y to stop indication"
-          ],
-          [
-            "T20 Print report Y to stop indication",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T17 Check report Y to stop indication",
-          "T20 Print report Y to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 5,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ],
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
             "T02 Check confirmation of receipt",
             "T05 Print and send confirmation of receipt"
           ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 7,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 4,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 8,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            2
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 6,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ],
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            2
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 5,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            2
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 5,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            3
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 6,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            5
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 8,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 807,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T05 Print and send confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 3,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T05 Print and send confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 131,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 3,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 224,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 3,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            2
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ],
-        "count": 20,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T05 Print and send confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T05 Print and send confirmation of receipt"
-        ],
-        "min_trace_length": 2,
-        "parallel": [],
-        "sequence": [
-          [
-            "T02 Check confirmation of receipt",
-            "T05 Print and send confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T05 Print and send confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T07-1 Draft intern advice aspect 1",
-              "T07-1 Draft intern advice aspect 1"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "min_trace_length": 3,
-        "parallel": [
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T07-1 Draft intern advice aspect 1"
-          ]
-        ],
-        "sequence": [
-          [
-            "T07-1 Draft intern advice aspect 1",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "trace": [
-          "T07-1 Draft intern advice aspect 1",
-          "T07-1 Draft intern advice aspect 1",
-          "T02 Check confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ],
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "min_trace_length": 4,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ],
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T10 Determine necessity to stop indication"
-            ],
-            1
-          ],
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "min_trace_length": 3,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T10 Determine necessity to stop indication"
-          ],
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt",
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T10 Determine necessity to stop indication",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "min_trace_length": 2,
-        "parallel": [],
-        "sequence": [
-          [
-            "T10 Determine necessity to stop indication",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication",
-          "T02 Check confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "count": 2,
-        "dfg": [
-          [
-            [
-              "T02 Check confirmation of receipt",
-              "T02 Check confirmation of receipt"
-            ],
-            1
-          ]
-        ],
-        "end_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "min_trace_length": 2,
-        "parallel": [
-          [
-            "T02 Check confirmation of receipt",
-            "T02 Check confirmation of receipt"
-          ]
-        ],
-        "sequence": [],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt",
-          "T02 Check confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "count": 9,
-        "dfg": [],
-        "end_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "min_trace_length": 1,
-        "parallel": [],
-        "sequence": [],
-        "start_activities": [
-          "T02 Check confirmation of receipt"
-        ],
-        "trace": [
-          "T02 Check confirmation of receipt"
-        ]
-      },
-      {
-        "activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "count": 1,
-        "dfg": [],
-        "end_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "min_trace_length": 1,
-        "parallel": [],
-        "sequence": [],
-        "start_activities": [
-          "T07-1 Draft intern advice aspect 1"
-        ],
-        "trace": [
-          "T07-1 Draft intern advice aspect 1"
-        ]
-      },
-      {
-        "activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "count": 1,
-        "dfg": [],
-        "end_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "min_trace_length": 1,
-        "parallel": [],
-        "sequence": [],
-        "start_activities": [
-          "T10 Determine necessity to stop indication"
-        ],
-        "trace": [
-          "T10 Determine necessity to stop indication"
-        ]
-      }
-    ]
+        }
+      ],
+      "groups": 56,
+      "rest_sha256": "1131f24198c125d3c65ff301904b207cac1bc501699be66512661a1e81c0f76e",
+      "traces": 1318
+    }
   },
   "meta": {
     "area": "discovery",

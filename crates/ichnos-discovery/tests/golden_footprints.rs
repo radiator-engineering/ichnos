@@ -18,6 +18,7 @@ use ichnos_golden::{Golden, cases, golden};
 use ichnos_model::footprints::LabelPair;
 use ichnos_model::{Footprints, Label, Powl, PowlFootprints};
 use serde_json::{Map, Value, json};
+use sha2::{Digest, Sha256};
 
 const LOGS: [&str; 6] = [
     "running-example-csv",
@@ -89,34 +90,51 @@ fn powl_json(fp: &PowlFootprints) -> Value {
     Value::Object(m)
 }
 
-/// The per-trace footprints as a multiset of their JSON forms.
-fn trace_multiset(fps: impl IntoIterator<Item = (Value, u64)>) -> BTreeMap<String, u64> {
-    let mut m = BTreeMap::new();
-    for (v, n) in fps {
-        *m.entry(v.to_string()).or_insert(0) += n;
-    }
-    m
-}
+/// How many distinct per-trace footprints a golden keeps in full
+/// (`FOOTPRINTS_TRACE_ROWS` in the generator).
+const TRACE_ROWS: usize = 20;
 
+/// Groups the per-trace footprints as the generator does: one entry per
+/// distinct JSON form with its `count`, sorted by that form. Then checks the
+/// first [`TRACE_ROWS`] entries, the totals and the SHA-256 of the rest.
 fn check_traces(g: &Golden, case: &str, fps: &[TraceFootprints]) {
-    let expected = trace_multiset(
-        g.expected_at("/traces")
-            .as_array()
-            .expect("traces")
-            .iter()
-            .map(|t| {
-                let mut t = t.clone();
-                let n = t
-                    .as_object_mut()
-                    .expect("object")
-                    .remove("count")
-                    .and_then(|c| c.as_u64())
-                    .expect("count");
-                (t, n)
-            }),
+    let mut groups: BTreeMap<String, (Value, u64)> = BTreeMap::new();
+    for fp in fps {
+        let v = trace_json(fp);
+        groups.entry(v.to_string()).or_insert((v, 0)).1 += 1;
+    }
+    let rows: Vec<Value> = groups
+        .into_values()
+        .map(|(mut v, n)| {
+            v.as_object_mut()
+                .expect("object")
+                .insert("count".into(), json!(n));
+            v
+        })
+        .collect();
+    let expected = g.expected_at("/traces");
+    assert_eq!(
+        json!(fps.len()),
+        expected["traces"],
+        "{case}: number of traces"
     );
-    let actual = trace_multiset(fps.iter().map(|fp| (trace_json(fp), 1)));
-    assert_eq!(actual, expected, "{case}: traces");
+    assert_eq!(
+        json!(rows.len()),
+        expected["groups"],
+        "{case}: number of distinct trace footprints"
+    );
+    let split = rows.len().min(TRACE_ROWS);
+    assert_eq!(
+        Value::Array(rows[..split].to_vec()),
+        expected["first"],
+        "{case}: first trace footprints"
+    );
+    let rest = serde_json::to_vec(&Value::Array(rows[split..].to_vec())).unwrap();
+    assert_eq!(
+        json!(format!("{:x}", Sha256::digest(rest))),
+        expected["rest_sha256"],
+        "{case}: remaining trace footprints"
+    );
 }
 
 #[test]
