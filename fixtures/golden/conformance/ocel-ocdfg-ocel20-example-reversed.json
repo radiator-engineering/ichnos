@@ -1,0 +1,190 @@
+{
+  "expected": {
+    "activity_measure_differences": {
+      "Approve Purchase Requisition": 0,
+      "Change PO Quantity": 0,
+      "Create Purchase Order": 1,
+      "Create Purchase Requisition": 0,
+      "Insert Invoice": 1,
+      "Insert Payment": 3,
+      "Remove Payment Block": 1,
+      "Set Payment Block": 1
+    },
+    "additional_activities": [],
+    "additional_flows": [],
+    "fitness": 0.5,
+    "flow_measure_differences": [
+      {
+        "difference": 0,
+        "source": "Approve Purchase Requisition",
+        "target": "Create Purchase Order"
+      },
+      {
+        "difference": 0,
+        "source": "Change PO Quantity",
+        "target": "Insert Invoice"
+      },
+      {
+        "difference": 0,
+        "source": "Create Purchase Order",
+        "target": "Change PO Quantity"
+      },
+      {
+        "difference": 1,
+        "source": "Create Purchase Order",
+        "target": "Set Payment Block"
+      },
+      {
+        "difference": 0,
+        "source": "Create Purchase Requisition",
+        "target": "Approve Purchase Requisition"
+      },
+      {
+        "difference": 1,
+        "source": "Insert Invoice",
+        "target": "Create Purchase Order"
+      },
+      {
+        "difference": 0,
+        "source": "Insert Invoice",
+        "target": "Insert Invoice"
+      },
+      {
+        "difference": 2,
+        "source": "Insert Invoice",
+        "target": "Insert Payment"
+      },
+      {
+        "difference": 1,
+        "source": "Remove Payment Block",
+        "target": "Insert Payment"
+      },
+      {
+        "difference": 1,
+        "source": "Set Payment Block",
+        "target": "Remove Payment Block"
+      }
+    ],
+    "missing_activities": [
+      "Insert Payment",
+      "Remove Payment Block",
+      "Set Payment Block"
+    ],
+    "missing_flows": [
+      [
+        "Create Purchase Order",
+        "Set Payment Block"
+      ],
+      [
+        "Insert Invoice",
+        "Create Purchase Order"
+      ],
+      [
+        "Insert Invoice",
+        "Insert Payment"
+      ],
+      [
+        "Remove Payment Block",
+        "Insert Payment"
+      ],
+      [
+        "Set Payment Block",
+        "Remove Payment Block"
+      ]
+    ],
+    "non_conforming_activities_in_measure": [
+      "Create Purchase Order",
+      "Insert Invoice",
+      "Insert Payment",
+      "Remove Payment Block",
+      "Set Payment Block"
+    ],
+    "non_conforming_flows_in_measure": [
+      [
+        "Create Purchase Order",
+        "Set Payment Block"
+      ],
+      [
+        "Insert Invoice",
+        "Create Purchase Order"
+      ],
+      [
+        "Insert Invoice",
+        "Insert Payment"
+      ],
+      [
+        "Remove Payment Block",
+        "Insert Payment"
+      ],
+      [
+        "Set Payment Block",
+        "Remove Payment Block"
+      ]
+    ],
+    "real": {
+      "activities": [
+        "Approve Purchase Requisition",
+        "Change PO Quantity",
+        "Create Purchase Order",
+        "Create Purchase Requisition",
+        "Insert Invoice"
+      ],
+      "events": {
+        "Approve Purchase Requisition": 1,
+        "Change PO Quantity": 1,
+        "Create Purchase Order": 1,
+        "Create Purchase Requisition": 1,
+        "Insert Invoice": 2
+      },
+      "flows": [
+        {
+          "count": 1,
+          "source": "Approve Purchase Requisition",
+          "target": "Create Purchase Order"
+        },
+        {
+          "count": 1,
+          "source": "Change PO Quantity",
+          "target": "Insert Invoice"
+        },
+        {
+          "count": 1,
+          "source": "Create Purchase Order",
+          "target": "Change PO Quantity"
+        },
+        {
+          "count": 1,
+          "source": "Create Purchase Requisition",
+          "target": "Approve Purchase Requisition"
+        },
+        {
+          "count": 1,
+          "source": "Insert Invoice",
+          "target": "Insert Invoice"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "ocel-ocdfg-ocel20-example-reversed",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_ocdfg",
+      "pm4py.conformance_ocdfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "reversed": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "expected": {
+    "activities": [
+      "Approve Purchase Requisition",
+      "Change PO Quantity",
+      "Create Purchase Order",
+      "Create Purchase Requisition",
+      "Insert Invoice",
+      "Insert Payment",
+      "Remove Payment Block",
+      "Set Payment Block"
+    ],
+    "edges": [
+      {
+        "activity": "Approve Purchase Requisition",
+        "count": 1,
+        "object_type": "Purchase Requisition"
+      },
+      {
+        "activity": "Change PO Quantity",
+        "count": 1,
+        "object_type": "Purchase Order"
+      },
+      {
+        "activity": "Create Purchase Order",
+        "count": 1,
+        "object_type": "Invoice"
+      },
+      {
+        "activity": "Create Purchase Order",
+        "count": 2,
+        "object_type": "Purchase Order"
+      },
+      {
+        "activity": "Create Purchase Order",
+        "count": 1,
+        "object_type": "Purchase Requisition"
+      },
+      {
+        "activity": "Create Purchase Requisition",
+        "count": 1,
+        "object_type": "Purchase Requisition"
+      },
+      {
+        "activity": "Insert Invoice",
+        "count": 3,
+        "object_type": "Invoice"
+      },
+      {
+        "activity": "Insert Invoice",
+        "count": 2,
+        "object_type": "Purchase Order"
+      },
+      {
+        "activity": "Insert Payment",
+        "count": 3,
+        "object_type": "Invoice"
+      },
+      {
+        "activity": "Insert Payment",
+        "count": 3,
+        "object_type": "Payment"
+      },
+      {
+        "activity": "Remove Payment Block",
+        "count": 1,
+        "object_type": "Invoice"
+      },
+      {
+        "activity": "Set Payment Block",
+        "count": 1,
+        "object_type": "Invoice"
+      }
+    ],
+    "object_types": [
+      "Invoice",
+      "Payment",
+      "Purchase Order",
+      "Purchase Requisition"
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "etot-ocel20-example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_etot"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

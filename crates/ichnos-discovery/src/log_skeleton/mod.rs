@@ -1,6 +1,13 @@
 //! Classic log-skeleton discovery, including the pinned occurrence-count
 //! denominators and event-count frequency coverage used by pm4py.
 
+mod conformance;
+
+pub use conformance::{
+    SkeletonConformanceOptions, SkeletonConstraint, SkeletonDeviation, SkeletonTraceConformance,
+    conformance_log_skeleton,
+};
+
 use crate::{Error, Result};
 use ichnos_core::{EventKeys, EventLog};
 use ichnos_model::Label;

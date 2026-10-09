@@ -7,8 +7,10 @@
 //! - [`temporal_profile`]: the temporal profile, the mean and standard
 //!   deviation of the time between each pair of activities.
 //! - [`footprints`]: footprints of logs, traces and DFGs.
-//! - [`mod@log_skeleton`]: classic log-skeleton relations and frequencies.
-//! - [`mod@declare`]: classic DECLARE constraints and count summaries.
+//! - [`mod@log_skeleton`]: classic log-skeleton relations and frequencies,
+//!   and conformance checking against them.
+//! - [`mod@declare`]: classic DECLARE constraints and count summaries, and
+//!   conformance checking against them.
 //! - [`alpha`]: classic alpha and alpha+ Petri-net discovery.
 //! - [`heuristics`]: classic heuristics nets and their Petri nets.
 //!
@@ -41,7 +43,8 @@ pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha
 pub use batches::{Batch, BatchEvent, BatchGroup, BatchOptions, BatchType, discover_batches};
 pub use correlation::{CorrelationEdge, CorrelationOptions, CorrelationResult, correlation_miner};
 pub use declare::{
-    DeclareActivities, DeclareCounts, DeclareModel, DeclareOptions, DeclareTemplate, declare,
+    DeclareActivities, DeclareCounts, DeclareDeviation, DeclareModel, DeclareOptions,
+    DeclareTemplate, DeclareTraceConformance, conformance_declare, declare,
 };
 pub use dfg::{
     DfgOptions, EventuallyFollowsOptions, PerformanceDfg, PerformanceDfgOptions,
@@ -57,6 +60,11 @@ pub use genetic::{
     petri_net_genetic,
 };
 pub use heuristics::{HeuristicsOptions, heuristics_net, petri_net_heuristics};
+/// Object-type graphs and event type–object type graphs of object-centric
+/// event logs. They live in ichnos-conformance, which compares them.
+pub use ichnos_conformance::ocel::{
+    Etot, ObjectRelation, Otg, OtgEdge, discover_etot, discover_otg,
+};
 pub use ilp::{IlpActivity, IlpOptions, petri_net_ilp};
 pub use inductive::{
     InductiveOptions, InductiveVariant, PowlOptions, PowlVariant, bpmn_inductive,
@@ -64,7 +72,11 @@ pub use inductive::{
     powl_inductive_variants, process_tree_inductive, process_tree_inductive_dfg,
     process_tree_inductive_variants,
 };
-pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
+pub use log_skeleton::{
+    LogSkeleton, LogSkeletonOptions, SkeletonConformanceOptions, SkeletonConstraint,
+    SkeletonDeviation, SkeletonRelation, SkeletonTraceConformance, conformance_log_skeleton,
+    log_skeleton,
+};
 pub use prefix_tree::{PrefixNode, PrefixTree, PrefixTreeOptions, prefix_tree};
 pub use split_miner::{
     SplitMinerOptions, SplitMinerResult, SplitMinerVariant, bpmn_split_miner, discover_split_miner,

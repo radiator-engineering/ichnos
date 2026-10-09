@@ -2057,6 +2057,56 @@ for _name, _traces in {
             "activity_key": "work" if _name == "custom-key" else "concept:name",
         },
     )(transition_system_case)
+
+# OCEL graphs: object-type graphs (OTG) and event type-object type graphs
+# (ET-OT). Edge lists are sorted; the Rust tests compare them unordered.
+
+OCEL_GRAPH_LOGS = {
+    "example-log": "ocel/example_log.jsonocel",
+    "ocel20-example": "ocel/ocel20_example.jsonocel",
+}
+
+
+def _read_ocel(fixtures):
+    path = str(fixtures["log"])
+    return pm4py.read_ocel2(path) if "ocel20" in path else pm4py.read_ocel(path)
+
+
+def _otg_json(otg):
+    types, edges = otg
+    return {
+        "object_types": sorted(types),
+        "edges": [{"source": a, "relation": r, "target": b, "count": n}
+                  for (a, r, b), n in sorted(edges.items())],
+    }
+
+
+def _etot_json(etot):
+    activities, types, relations, weights = etot
+    assert set(relations) == set(weights)
+    return {
+        "activities": sorted(activities),
+        "object_types": sorted(types),
+        "edges": [{"activity": a, "object_type": ot, "count": n}
+                  for (a, ot), n in sorted(weights.items())],
+    }
+
+
+def otg_case(fixtures):
+    return _otg_json(pm4py.discover_otg(_read_ocel(fixtures)))
+
+
+def etot_case(fixtures):
+    return _etot_json(pm4py.discover_etot(_read_ocel(fixtures)))
+
+
+for _id, _fixture in OCEL_GRAPH_LOGS.items():
+    case(f"otg-{_id}", fixture=_fixture,
+         functions=["pm4py.discover_otg"])(otg_case)
+    case(f"etot-{_id}", fixture=_fixture,
+         functions=["pm4py.discover_etot"])(etot_case)
+
+
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical

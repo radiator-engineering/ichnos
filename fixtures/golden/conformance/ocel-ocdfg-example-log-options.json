@@ -1,0 +1,418 @@
+{
+  "expected": {
+    "activity_measure_differences": {
+      "Add Item to Order": 1,
+      "Cancel Order": 1,
+      "Confirm Order": 0,
+      "Create Delivery": 2,
+      "Create Order": 1,
+      "Delivery Failed": 0,
+      "Delivery Successful": 2,
+      "Invoice Sent": 1,
+      "Item back in Stock": 0,
+      "Item out of Stock": 0,
+      "Pay Order": 0,
+      "Payment Reminder": 2,
+      "Remove Item": 1,
+      "Retry Delivery": 0,
+      "Send for Credit Collection": 1
+    },
+    "additional_activities": [
+      "Add Item to Order",
+      "Cancel Order",
+      "Payment Reminder",
+      "Remove Item",
+      "Send for Credit Collection"
+    ],
+    "additional_flows": [
+      [
+        "Add Item to Order",
+        "Create Delivery"
+      ],
+      [
+        "Add Item to Order",
+        "Invoice Sent"
+      ],
+      [
+        "Create Delivery",
+        "Delivery Successful"
+      ],
+      [
+        "Create Order",
+        "Add Item to Order"
+      ],
+      [
+        "Create Order",
+        "Cancel Order"
+      ],
+      [
+        "Create Order",
+        "Remove Item"
+      ],
+      [
+        "Invoice Sent",
+        "Payment Reminder"
+      ],
+      [
+        "Item back in Stock",
+        "Create Delivery"
+      ],
+      [
+        "Payment Reminder",
+        "Payment Reminder"
+      ],
+      [
+        "Payment Reminder",
+        "Send for Credit Collection"
+      ]
+    ],
+    "fitness": 0.9455782312925171,
+    "flow_measure_differences": [
+      {
+        "difference": 1,
+        "source": "Add Item to Order",
+        "target": "Create Delivery"
+      },
+      {
+        "difference": 1,
+        "source": "Add Item to Order",
+        "target": "Invoice Sent"
+      },
+      {
+        "difference": 0,
+        "source": "Confirm Order",
+        "target": "Invoice Sent"
+      },
+      {
+        "difference": 0,
+        "source": "Create Delivery",
+        "target": "Delivery Failed"
+      },
+      {
+        "difference": 2,
+        "source": "Create Delivery",
+        "target": "Delivery Successful"
+      },
+      {
+        "difference": 1,
+        "source": "Create Order",
+        "target": "Add Item to Order"
+      },
+      {
+        "difference": 1,
+        "source": "Create Order",
+        "target": "Cancel Order"
+      },
+      {
+        "difference": 0,
+        "source": "Create Order",
+        "target": "Confirm Order"
+      },
+      {
+        "difference": 3,
+        "source": "Create Order",
+        "target": "Create Delivery"
+      },
+      {
+        "difference": 0,
+        "source": "Create Order",
+        "target": "Item out of Stock"
+      },
+      {
+        "difference": 1,
+        "source": "Create Order",
+        "target": "Remove Item"
+      },
+      {
+        "difference": 0,
+        "source": "Delivery Failed",
+        "target": "Retry Delivery"
+      },
+      {
+        "difference": 0,
+        "source": "Invoice Sent",
+        "target": "Pay Order"
+      },
+      {
+        "difference": 1,
+        "source": "Invoice Sent",
+        "target": "Payment Reminder"
+      },
+      {
+        "difference": 1,
+        "source": "Item back in Stock",
+        "target": "Create Delivery"
+      },
+      {
+        "difference": 0,
+        "source": "Item out of Stock",
+        "target": "Item back in Stock"
+      },
+      {
+        "difference": 1,
+        "source": "Payment Reminder",
+        "target": "Payment Reminder"
+      },
+      {
+        "difference": 1,
+        "source": "Payment Reminder",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "difference": 0,
+        "source": "Retry Delivery",
+        "target": "Delivery Successful"
+      }
+    ],
+    "log": {
+      "activities": [
+        "Add Item to Order",
+        "Cancel Order",
+        "Confirm Order",
+        "Create Delivery",
+        "Create Order",
+        "Delivery Failed",
+        "Delivery Successful",
+        "Invoice Sent",
+        "Item back in Stock",
+        "Item out of Stock",
+        "Pay Order",
+        "Payment Reminder",
+        "Remove Item",
+        "Retry Delivery",
+        "Send for Credit Collection"
+      ],
+      "events": {
+        "Add Item to Order": 1,
+        "Cancel Order": 1,
+        "Confirm Order": 1,
+        "Create Delivery": 3,
+        "Create Order": 3,
+        "Delivery Failed": 1,
+        "Delivery Successful": 3,
+        "Invoice Sent": 2,
+        "Item back in Stock": 1,
+        "Item out of Stock": 1,
+        "Pay Order": 1,
+        "Payment Reminder": 2,
+        "Remove Item": 1,
+        "Retry Delivery": 1,
+        "Send for Credit Collection": 1
+      },
+      "flows": [
+        {
+          "count": 1,
+          "source": "Add Item to Order",
+          "target": "Create Delivery"
+        },
+        {
+          "count": 1,
+          "source": "Add Item to Order",
+          "target": "Invoice Sent"
+        },
+        {
+          "count": 1,
+          "source": "Confirm Order",
+          "target": "Invoice Sent"
+        },
+        {
+          "count": 1,
+          "source": "Create Delivery",
+          "target": "Delivery Failed"
+        },
+        {
+          "count": 2,
+          "source": "Create Delivery",
+          "target": "Delivery Successful"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Add Item to Order"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Cancel Order"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Confirm Order"
+        },
+        {
+          "count": 4,
+          "source": "Create Order",
+          "target": "Create Delivery"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Item out of Stock"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Remove Item"
+        },
+        {
+          "count": 1,
+          "source": "Delivery Failed",
+          "target": "Retry Delivery"
+        },
+        {
+          "count": 1,
+          "source": "Invoice Sent",
+          "target": "Pay Order"
+        },
+        {
+          "count": 1,
+          "source": "Invoice Sent",
+          "target": "Payment Reminder"
+        },
+        {
+          "count": 1,
+          "source": "Item back in Stock",
+          "target": "Create Delivery"
+        },
+        {
+          "count": 1,
+          "source": "Item out of Stock",
+          "target": "Item back in Stock"
+        },
+        {
+          "count": 1,
+          "source": "Payment Reminder",
+          "target": "Payment Reminder"
+        },
+        {
+          "count": 1,
+          "source": "Payment Reminder",
+          "target": "Send for Credit Collection"
+        },
+        {
+          "count": 1,
+          "source": "Retry Delivery",
+          "target": "Delivery Successful"
+        }
+      ]
+    },
+    "missing_activities": [],
+    "missing_flows": [],
+    "model": {
+      "activities": [
+        "Confirm Order",
+        "Create Delivery",
+        "Create Order",
+        "Delivery Failed",
+        "Delivery Successful",
+        "Invoice Sent",
+        "Item back in Stock",
+        "Item out of Stock",
+        "Pay Order",
+        "Retry Delivery"
+      ],
+      "events": {
+        "Confirm Order": 1,
+        "Create Delivery": 1,
+        "Create Order": 2,
+        "Delivery Failed": 1,
+        "Delivery Successful": 1,
+        "Invoice Sent": 1,
+        "Item back in Stock": 1,
+        "Item out of Stock": 1,
+        "Pay Order": 1,
+        "Retry Delivery": 1
+      },
+      "flows": [
+        {
+          "count": 1,
+          "source": "Confirm Order",
+          "target": "Invoice Sent"
+        },
+        {
+          "count": 1,
+          "source": "Create Delivery",
+          "target": "Delivery Failed"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Confirm Order"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Create Delivery"
+        },
+        {
+          "count": 1,
+          "source": "Create Order",
+          "target": "Item out of Stock"
+        },
+        {
+          "count": 1,
+          "source": "Delivery Failed",
+          "target": "Retry Delivery"
+        },
+        {
+          "count": 1,
+          "source": "Invoice Sent",
+          "target": "Pay Order"
+        },
+        {
+          "count": 1,
+          "source": "Item out of Stock",
+          "target": "Item back in Stock"
+        },
+        {
+          "count": 1,
+          "source": "Retry Delivery",
+          "target": "Delivery Successful"
+        }
+      ]
+    },
+    "non_conforming_activities_in_measure": [
+      "Create Delivery",
+      "Delivery Successful",
+      "Payment Reminder"
+    ],
+    "non_conforming_flows_in_measure": [
+      [
+        "Create Delivery",
+        "Delivery Successful"
+      ],
+      [
+        "Create Order",
+        "Create Delivery"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "ocel-ocdfg-example-log-options",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_ocdfg",
+      "pm4py.conformance_ocdfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "parameters": {
+        "alpha": 2,
+        "delta": 0.5,
+        "theta_act": 1,
+        "theta_flow": 1
+      }
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
