@@ -26,6 +26,8 @@ mod error;
 pub mod heuristics;
 pub mod inductive;
 pub mod log_skeleton;
+/// Classic and lifecycle-aware SM2 BPMN discovery.
+pub mod split_miner;
 pub mod temporal_profile;
 
 pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha_plus};
@@ -46,4 +48,7 @@ pub use inductive::{
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
+pub use split_miner::{
+    SplitMinerOptions, SplitMinerResult, SplitMinerVariant, bpmn_split_miner, discover_split_miner,
+};
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};

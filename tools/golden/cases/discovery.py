@@ -728,6 +728,105 @@ for _name,(_rows,_interval) in BATCHES_CORRELATION_SYNTHETIC.items():
     _params={"traces":_batches_correlation_rows(_rows),"interval":_interval,"activity_key":"task" if _name=="custom-key" else "concept:name"}
     case("batches-correlation-"+_name,functions=BATCHES_CORRELATION_FUNCTIONS,params=_params)(batches_correlation)
 
+# Classic Split Miner BPMN discovery cases.
+_SPLIT_MINER_FUNCTIONS = ["pm4py.discover_bpmn_split_miner", "pm4py.algo.discovery.split_miner.variants.classic.apply", "pm4py.algo.discovery.split_miner.variants.sm2.apply"]
+
+
+def _split_graph(model):
+    from pm4py.objects.bpmn.obj import BPMN
+    nodes = sorted(model.get_nodes(), key=lambda n: n.get_id())
+    index = {node: i for i, node in enumerate(nodes)}
+    def kind(n):
+        for cls, name in [(BPMN.StartEvent,"start"),(BPMN.EndEvent,"end"),(BPMN.Task,"task"),
+                          (BPMN.ExclusiveGateway,"xor"),(BPMN.ParallelGateway,"and"),(BPMN.InclusiveGateway,"or")]:
+            if isinstance(n, cls): return name
+        raise ValueError(type(n).__name__)
+    return {"nodes": [[kind(n), n.get_name(), bool(getattr(n,"_sm_looped",False))] for n in nodes],
+            "edges": sorted([index[f.get_source()],index[f.get_target()]] for f in model.get_flows())}
+
+
+def split_miner(fixtures, traces=None, activity_key="concept:name", events=None, transition_key="lifecycle:transition", timestamp_key="time:timestamp"):
+    from pm4py.objects.log.obj import EventLog, Trace, Event
+    log = (pm4py.convert_to_event_log(load_log(fixtures["log"])) if traces is None and events is None else
+           EventLog([Trace([Event({activity_key:a}) for a in t]) for t in (traces or [])]))
+    if events is not None:
+        from datetime import datetime
+        log=EventLog([Trace([Event({activity_key:a, transition_key:phase, **({timestamp_key:datetime.fromisoformat(stamp)} if stamp is not None else {})}) for a,phase,stamp in t]) for t in events])
+    models=[]
+    for variant,epsilon, eta, minimize in [(v,e,t,m) for v in ["classic","sm2"] for e,t,m in [(0.1,0.4,True),(0.1,0.4,False),(0.0,0.0,True),(0.5,1.0,True)]]:
+        options={"variant":variant,"epsilon":epsilon,"eta":eta,"minimize_or_joins":minimize}
+        try:
+            if variant=="sm2" and transition_key!="lifecycle:transition":
+                from pm4py.algo.discovery.split_miner.variants import sm2
+                model=sm2.apply(log,parameters={"pm4py:param:activity_key":activity_key,"pm4py:param:transition_key":transition_key,"pm4py:param:timestamp_key":timestamp_key,"split_miner_epsilon":epsilon})
+            else:
+                model=pm4py.discover_bpmn_split_miner(log,activity_key=activity_key,timestamp_key=timestamp_key,**options)
+            value=_split_graph(model);error=None
+        except ValueError as exc:
+            if sum(map(len,log)): raise
+            value=None;error=type(exc).__name__
+        models.append({"options":options,"graph":value,"error":error})
+    return models
+
+
+for _id,_fixture in {
+    "running-example-xes":"running-example.xes", "receipt-xes":"receipt.xes",
+    "roadtraffic100traces-xes":"roadtraffic100traces.xes",
+    "interleavings-receipt_even-csv":"interleavings/receipt_even.csv",
+    "interleavings-receipt_odd-csv":"interleavings/receipt_odd.csv",
+}.items():
+    case("split-miner-"+_id,fixture=_fixture,functions=_SPLIT_MINER_FUNCTIONS)(split_miner)
+
+for _id,_traces in {
+    "empty":[],"empty-traces":[[],[]],"single":[["a"]],
+    "sequence":[["a","b","c"]],"xor":[["s","a","e"],["s","b","e"]],
+    "parallel":[["s","a","b","e"]]*4+[["s","b","a","e"]]*4,
+    "self-loop":[["a","a","b"],["a","b"]],
+    "short-loop":[["s","a","b","a","e"],["s","a","e"]],
+    "nested":[["s","a","b","c","e"],["s","b","a","c","e"],["s","d","c","e"]],
+    "rigid":[["s","a","c","e"],["s","b","c","e"],["s","a","d","e"],["s","b","d","e"],["s","c","d","e"],["s","d","c","e"]],
+    "custom-key":[["α","β","γ"],["α","δ","γ"]],
+}.items():
+    case("split-miner-"+_id,functions=_SPLIT_MINER_FUNCTIONS,params={"traces":_traces,"activity_key":"task" if _id=="custom-key" else "concept:name"})(split_miner)
+
+
+def _split_lifecycle_rows(rows):
+    from datetime import datetime,timedelta,timezone
+    epoch=datetime(2024,1,1,tzinfo=timezone.utc)
+    return [[[a,phase,(epoch+timedelta(seconds=t)).isoformat() if t is not None else None] for a,phase,t in trace] for trace in rows]
+
+for _id,_events in {
+    "overlap":[[("s","complete",0),("a","start",1),("b","start",2),("a","complete",3),("b","complete",4),("e","complete",5)],
+               [("s","complete",0),("b","start",1),("a","start",2),("b","complete",3),("a","complete",4),("e","complete",5)]],
+    "or-lifecycle":[[("s","complete",0),("a","start",1),("b","start",2),("c","start",3),("a","complete",4),("b","complete",5),("c","complete",6),("e","complete",7)],
+                    [("s","complete",0),("c","start",1),("b","start",2),("a","start",3),("c","complete",4),("b","complete",5),("a","complete",6),("e","complete",7)]]*4+
+                   [[("s","complete",0),(a,"start",1),(a,"complete",2),("e","complete",3)] for a in ["a","b","c"]],
+    "lifecycle-sorting":[[("b"," COMPLETE ",4),("a","complete",2),("a","start",1),("b","start",3)]],
+    "lifecycle-fallback":[[("a","start",None),("b","start",1),("a","complete",2),("b","complete",3)]],
+    "start-only":[[("a","start",0)]],
+    "ignored-lifecycle":[[("a","schedule",0),("b","suspend",1)]],
+}.items():
+    case("split-miner-"+_id,functions=_SPLIT_MINER_FUNCTIONS,params={"events":_split_lifecycle_rows(_events)})(split_miner)
+case("split-miner-custom-lifecycle",functions=_SPLIT_MINER_FUNCTIONS,params={"events":_split_lifecycle_rows([[("α","start",0),("β","start",1),("α","complete",2),("β","complete",3)]]),"activity_key":"task","transition_key":"phase","timestamp_key":"stamp"})(split_miner)
+
+
+# Fixed seeds generate repeatable dense/looping trace graphs. Store the traces
+# with each oracle result.
+def _split_seeded_traces(seed):
+    import random
+    rng = random.Random(seed)
+    return [[rng.choice("abcdef") for _ in range(rng.randint(1, 12))] for _ in range(20)]
+
+for _seed in range(8):
+    case("split-miner-seeded-"+str(_seed), functions=_SPLIT_MINER_FUNCTIONS,
+         params={"traces": _split_seeded_traces(_seed)})(split_miner)
+
+
+case("split-miner-submicroseconds", functions=_SPLIT_MINER_FUNCTIONS,
+     params={"events": [[["b","complete","2024-01-01T00:00:00.000000900+00:00"],
+                        ["a","complete","2024-01-01T00:00:00.000000100+00:00"]]]})(split_miner)
+
+
 if __name__ == "__main__":
     # One seeded run for _inductive_seeds: prints the result as one JSON line.
     from harness import canonical
