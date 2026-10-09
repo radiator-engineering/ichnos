@@ -1,0 +1,295 @@
+{
+  "expected": {
+    "footprints": {
+      "activities": [
+        "Check Liability",
+        "Check Policy",
+        "Compute High-value Claim",
+        "Compute Low-value Claim",
+        "Consult Expert",
+        "Register as High-Value Claim",
+        "Register as Low-Value Claim",
+        "Set Checkpoint"
+      ],
+      "parallel": [
+        [
+          "Check Liability",
+          "Check Policy"
+        ],
+        [
+          "Check Policy",
+          "Check Liability"
+        ],
+        [
+          "Check Policy",
+          "Consult Expert"
+        ],
+        [
+          "Consult Expert",
+          "Check Policy"
+        ]
+      ],
+      "sequence": [
+        [
+          "Check Liability",
+          "Compute High-value Claim"
+        ],
+        [
+          "Check Policy",
+          "Compute High-value Claim"
+        ],
+        [
+          "Check Policy",
+          "Compute Low-value Claim"
+        ],
+        [
+          "Compute High-value Claim",
+          "Set Checkpoint"
+        ],
+        [
+          "Compute Low-value Claim",
+          "Set Checkpoint"
+        ],
+        [
+          "Consult Expert",
+          "Check Liability"
+        ],
+        [
+          "Register as High-Value Claim",
+          "Check Policy"
+        ],
+        [
+          "Register as High-Value Claim",
+          "Consult Expert"
+        ],
+        [
+          "Register as Low-Value Claim",
+          "Check Policy"
+        ],
+        [
+          "Set Checkpoint",
+          "Register as High-Value Claim"
+        ],
+        [
+          "Set Checkpoint",
+          "Register as Low-Value Claim"
+        ]
+      ],
+      "start_activities": [
+        "Set Checkpoint"
+      ]
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "A",
+          "target": "c1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "B",
+          "target": "c5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "C",
+          "target": "c6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "D",
+          "target": "c3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "E",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "F",
+          "target": "c4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "G",
+          "target": "c7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "H",
+          "target": "c8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "I",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "B",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c1",
+          "target": "C",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c2",
+          "target": "D",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c3",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c4",
+          "target": "I",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c5",
+          "target": "E",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c6",
+          "target": "G",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c7",
+          "target": "H",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "c8",
+          "target": "F",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "A",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Set Checkpoint",
+          "name": "A"
+        },
+        {
+          "label": "Register as Low-Value Claim",
+          "name": "B"
+        },
+        {
+          "label": "Register as High-Value Claim",
+          "name": "C"
+        },
+        {
+          "label": "Check Policy",
+          "name": "D"
+        },
+        {
+          "label": "Compute Low-value Claim",
+          "name": "E"
+        },
+        {
+          "label": "Compute High-value Claim",
+          "name": "F"
+        },
+        {
+          "label": "Consult Expert",
+          "name": "G"
+        },
+        {
+          "label": "Check Liability",
+          "name": "H"
+        },
+        {
+          "label": "Set Checkpoint",
+          "name": "I"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "model",
+    "case": "footprints-net-ex2",
+    "fixtures": {
+      "model": "fixtures/logs/ex2.pnml"
+    },
+    "functions": [
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

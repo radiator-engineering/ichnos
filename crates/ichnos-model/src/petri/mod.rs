@@ -123,7 +123,7 @@ pub enum ArcEnds {
 
 /// An arc of a Petri net.
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Arc {
+pub struct PetriArc {
     /// The source and target of the arc.
     pub ends: ArcEnds,
     /// The arc weight, at least 1.
@@ -133,7 +133,7 @@ pub struct Arc {
     pub kind: ArcKind,
 }
 
-impl Arc {
+impl PetriArc {
     /// Returns the place this arc touches.
     pub fn place(&self) -> PlaceId {
         match self.ends {
@@ -168,13 +168,18 @@ pub enum PetriNetError {
 /// Removing an element leaves a hole in its arena, so the ids of the other
 /// elements stay valid. [`PetriNet::compact`] closes the holes and returns
 /// the old-to-new id mapping.
+///
+/// Equality is structural on the arenas: it compares names, labels, arcs
+/// and the positions of holes. A net with holes is not equal to its
+/// compacted copy, nor to the same net built fresh; compact both sides
+/// first to compare nets built in different ways.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct PetriNet {
     /// The net name.
     pub name: String,
     places: Vec<Option<Place>>,
     transitions: Vec<Option<Transition>>,
-    arcs: Vec<Option<Arc>>,
+    arcs: Vec<Option<PetriArc>>,
     live_places: usize,
     live_transitions: usize,
     live_arcs: usize,
@@ -186,6 +191,7 @@ pub struct PetriNet {
 pub struct Compaction {
     places: Vec<Option<PlaceId>>,
     transitions: Vec<Option<TransitionId>>,
+    arcs: Vec<Option<ArcId>>,
 }
 
 impl Compaction {
@@ -197,6 +203,11 @@ impl Compaction {
     /// The new id of a transition, or `None` if it was removed.
     pub fn transition(&self, old: TransitionId) -> Option<TransitionId> {
         self.transitions.get(old.index()).copied().flatten()
+    }
+
+    /// The new id of an arc, or `None` if it was removed.
+    pub fn arc(&self, old: ArcId) -> Option<ArcId> {
+        self.arcs.get(old.index()).copied().flatten()
     }
 
     /// Rewrites a marking to the new place ids, dropping removed places.
@@ -309,7 +320,7 @@ impl PetriNet {
                 self.place_entry(p).in_arcs.push(id);
             }
         }
-        self.arcs.push(Some(Arc { ends, weight, kind }));
+        self.arcs.push(Some(PetriArc { ends, weight, kind }));
         self.live_arcs += 1;
         Ok(id)
     }
@@ -377,8 +388,9 @@ impl PetriNet {
         self.live_places -= 1;
     }
 
-    /// Renumbers the remaining elements densely, in their current order, and
-    /// returns the mapping from old to new ids.
+    /// Renumbers the remaining places, transitions and arcs densely, in their
+    /// current order, and returns the mapping from old to new ids. Every id
+    /// held from before the call must be mapped through it.
     pub fn compact(&mut self) -> Compaction {
         fn remap<T, I: Copy>(items: &[Option<T>], make: impl Fn(u32) -> I) -> Vec<Option<I>> {
             let mut next = 0u32;
@@ -396,6 +408,9 @@ impl PetriNet {
         let map = Compaction {
             places: remap(&self.places, PlaceId),
             transitions: remap(&self.transitions, TransitionId),
+            // Arcs are re-added below in their current order, so they get
+            // these ids.
+            arcs: remap(&self.arcs, ArcId),
         };
         let name = std::mem::take(&mut self.name);
         let old = std::mem::replace(self, PetriNet::new(name));
@@ -475,7 +490,7 @@ impl PetriNet {
     /// # Panics
     ///
     /// Panics if the id does not belong to this net or the arc was removed.
-    pub fn arc(&self, id: ArcId) -> &Arc {
+    pub fn arc(&self, id: ArcId) -> &PetriArc {
         self.arcs[id.index()].as_ref().expect("arc was removed")
     }
 
@@ -538,7 +553,7 @@ impl PetriNet {
     }
 
     /// Iterates over `(id, arc)` pairs.
-    pub fn arcs(&self) -> impl Iterator<Item = (ArcId, &Arc)> {
+    pub fn arcs(&self) -> impl Iterator<Item = (ArcId, &PetriArc)> {
         self.arcs
             .iter()
             .enumerate()

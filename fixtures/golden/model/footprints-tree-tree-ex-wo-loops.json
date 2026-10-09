@@ -1,0 +1,197 @@
+{
+  "expected": {
+    "footprints": {
+      "activities": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g"
+      ],
+      "activities_always_happening": [
+        "a",
+        "b",
+        "d",
+        "e",
+        "f",
+        "g"
+      ],
+      "end_activities": [
+        "d",
+        "e",
+        "f",
+        "g"
+      ],
+      "max_trace_length_wo_loops": 7,
+      "min_trace_length": 7,
+      "parallel": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "c"
+        ],
+        [
+          "a",
+          "d"
+        ],
+        [
+          "b",
+          "a"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "a"
+        ],
+        [
+          "c",
+          "b"
+        ],
+        [
+          "d",
+          "a"
+        ],
+        [
+          "d",
+          "b"
+        ],
+        [
+          "d",
+          "d"
+        ],
+        [
+          "d",
+          "e"
+        ],
+        [
+          "d",
+          "f"
+        ],
+        [
+          "d",
+          "g"
+        ],
+        [
+          "e",
+          "d"
+        ],
+        [
+          "e",
+          "f"
+        ],
+        [
+          "e",
+          "g"
+        ],
+        [
+          "f",
+          "d"
+        ],
+        [
+          "f",
+          "e"
+        ],
+        [
+          "f",
+          "g"
+        ],
+        [
+          "g",
+          "d"
+        ],
+        [
+          "g",
+          "e"
+        ],
+        [
+          "g",
+          "f"
+        ]
+      ],
+      "sequence": [
+        [
+          "a",
+          "e"
+        ],
+        [
+          "a",
+          "f"
+        ],
+        [
+          "a",
+          "g"
+        ],
+        [
+          "b",
+          "e"
+        ],
+        [
+          "b",
+          "f"
+        ],
+        [
+          "b",
+          "g"
+        ],
+        [
+          "c",
+          "d"
+        ],
+        [
+          "c",
+          "e"
+        ],
+        [
+          "c",
+          "f"
+        ],
+        [
+          "c",
+          "g"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "->( +( 'a', 'b', X( 'c', 'd' ) ), +( 'd', 'e', +( 'f', 'g' ) ) )"
+    }
+  },
+  "meta": {
+    "area": "model",
+    "case": "footprints-tree-tree-ex-wo-loops",
+    "fixtures": {
+      "model": "fixtures/logs/tree_ex_wo_loops.ptml"
+    },
+    "functions": [
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "expected": {
+    "footprints": {
+      "activities": [
+        "check ticket",
+        "decide",
+        "examine casually",
+        "examine thoroughly",
+        "pay compensation",
+        "register request",
+        "reinitiate request",
+        "reject request"
+      ],
+      "activities_always_happening": [
+        "check ticket",
+        "decide",
+        "register request"
+      ],
+      "end_activities": [
+        "pay compensation",
+        "reject request"
+      ],
+      "max_trace_length_wo_loops": 5,
+      "min_trace_length": 5,
+      "parallel": [
+        [
+          "check ticket",
+          "examine casually"
+        ],
+        [
+          "check ticket",
+          "examine thoroughly"
+        ],
+        [
+          "examine casually",
+          "check ticket"
+        ],
+        [
+          "examine thoroughly",
+          "check ticket"
+        ]
+      ],
+      "sequence": [
+        [
+          "check ticket",
+          "decide"
+        ],
+        [
+          "decide",
+          "pay compensation"
+        ],
+        [
+          "decide",
+          "reinitiate request"
+        ],
+        [
+          "decide",
+          "reject request"
+        ],
+        [
+          "examine casually",
+          "decide"
+        ],
+        [
+          "examine thoroughly",
+          "decide"
+        ],
+        [
+          "register request",
+          "check ticket"
+        ],
+        [
+          "register request",
+          "examine casually"
+        ],
+        [
+          "register request",
+          "examine thoroughly"
+        ],
+        [
+          "reinitiate request",
+          "check ticket"
+        ],
+        [
+          "reinitiate request",
+          "examine casually"
+        ],
+        [
+          "reinitiate request",
+          "examine thoroughly"
+        ]
+      ],
+      "skippable": false,
+      "start_activities": [
+        "register request"
+      ]
+    },
+    "model": {
+      "kind": "process_tree",
+      "tree": "->( 'register request', *( ->( +( 'check ticket', X( 'examine thoroughly', 'examine casually' ) ), 'decide' ), 'reinitiate request' ), X( 'reject request', 'pay compensation' ) )"
+    }
+  },
+  "meta": {
+    "area": "model",
+    "case": "footprints-tree-running-example",
+    "fixtures": {
+      "model": "fixtures/logs/running-example.ptml"
+    },
+    "functions": [
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

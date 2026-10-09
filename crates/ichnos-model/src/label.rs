@@ -10,6 +10,11 @@ use std::ops::Deref;
 /// `Label` is a thin owned string. A later release can add conversions to the
 /// interned activity ids of `ichnos-core`.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[cfg_attr(
+    feature = "serde",
+    derive(serde::Serialize, serde::Deserialize),
+    serde(transparent)
+)]
 pub struct Label(String);
 
 impl Label {

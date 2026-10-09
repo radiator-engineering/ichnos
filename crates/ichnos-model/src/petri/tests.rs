@@ -169,8 +169,31 @@ fn reachability_limit_on_unbounded_net() {
 #[test]
 fn eventually_enabled_passes_silent_transitions() {
     let (net, p, [a, b, _]) = chain();
-    let ev = net.visible_transitions_eventually_enabled(&Marking::from([(p[0], 1)]));
+    let ev = net
+        .visible_transitions_eventually_enabled(
+            &Marking::from([(p[0], 1)]),
+            ReachabilityOptions::default(),
+        )
+        .unwrap();
     assert_eq!(ev.into_iter().collect::<Vec<_>>(), vec![a, b]);
+}
+
+#[test]
+fn eventually_enabled_stops_on_unbounded_silent_loop() {
+    // A silent transition that keeps adding tokens to its own input place.
+    let mut net = PetriNet::new("silent_pump");
+    let p = net.add_place("p");
+    let t = net.add_transition("t", None::<Label>);
+    net.add_input_arc(p, t).unwrap();
+    net.add_arc(ArcEnds::TransitionToPlace(t, p), 2, ArcKind::Normal)
+        .unwrap();
+    let err = net
+        .visible_transitions_eventually_enabled(
+            &Marking::from([(p, 1)]),
+            ReachabilityOptions { max_markings: 20 },
+        )
+        .unwrap_err();
+    assert_eq!(err, ReachabilityError::TooManyMarkings(20));
 }
 
 #[test]
@@ -224,6 +247,76 @@ fn simple_reduction_merges_silent_chain() {
     assert_eq!(net.transition_count(), 2);
     assert_eq!(net.place_count(), 3);
     assert_eq!(net.postset(a).collect::<Vec<_>>(), vec![p2]);
+}
+
+#[test]
+fn simple_reduction_keeps_inhibitor_and_weighted_arcs() {
+    // i -u-> p, and p inhibits the silent t: t can never fire after u.
+    let mut net = PetriNet::new("r");
+    let i = net.add_place("i");
+    let p = net.add_place("p");
+    let q = net.add_place("q");
+    let u = net.add_transition("u", Some("u"));
+    let t = net.add_transition("t", None::<Label>);
+    net.add_input_arc(i, u).unwrap();
+    net.add_output_arc(u, p).unwrap();
+    net.add_arc(ArcEnds::PlaceToTransition(p, t), 1, ArcKind::Inhibitor)
+        .unwrap();
+    net.add_output_arc(t, q).unwrap();
+    let before = net.clone();
+    net.apply_simple_reduction();
+    assert_eq!(net, before);
+
+    // The same chain with a weight-2 arc into t is not merged either.
+    let mut net = PetriNet::new("w");
+    let i = net.add_place("i");
+    let p = net.add_place("p");
+    let q = net.add_place("q");
+    let u = net.add_transition("u", Some("u"));
+    let t = net.add_transition("t", None::<Label>);
+    net.add_input_arc(i, u).unwrap();
+    net.add_output_arc(u, p).unwrap();
+    net.add_arc(ArcEnds::PlaceToTransition(p, t), 2, ArcKind::Normal)
+        .unwrap();
+    net.add_output_arc(t, q).unwrap();
+    let before = net.clone();
+    net.apply_simple_reduction();
+    assert_eq!(net, before);
+}
+
+#[test]
+fn simple_reduction_carries_output_weights() {
+    // i -a-> p1 -tau-(2)-> p2: a now puts 2 tokens into p2.
+    let mut net = PetriNet::new("r");
+    let i = net.add_place("i");
+    let p1 = net.add_place("p1");
+    let p2 = net.add_place("p2");
+    let a = net.add_transition("a", Some("a"));
+    let tau = net.add_transition("tau", None::<Label>);
+    net.add_input_arc(i, a).unwrap();
+    net.add_output_arc(a, p1).unwrap();
+    net.add_input_arc(p1, tau).unwrap();
+    net.add_arc(ArcEnds::TransitionToPlace(tau, p2), 2, ArcKind::Normal)
+        .unwrap();
+    net.apply_simple_reduction();
+    assert_eq!(net.transition_count(), 1);
+    let m = net.fire(a, &Marking::from([(i, 1)])).unwrap();
+    assert_eq!(m, Marking::from([(p2, 2)]));
+}
+
+#[test]
+fn compaction_maps_arc_ids() {
+    // b's arcs come before skip's, so removing b shifts skip's arc ids.
+    let (mut net, p, [_, b, skip]) = chain();
+    let kept = net.transition(skip).out_arcs()[0];
+    let gone = net.transition(b).in_arcs()[0];
+    net.remove_transition(b);
+    let map = net.compact();
+    assert_eq!(map.arc(gone), None);
+    let new = map.arc(kept).unwrap();
+    assert_ne!(new, kept);
+    assert_eq!(net.arc(new).place(), map.place(p[1]).unwrap());
+    assert_eq!(net.arc(new).transition(), map.transition(skip).unwrap());
 }
 
 #[test]
