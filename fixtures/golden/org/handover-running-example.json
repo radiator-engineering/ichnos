@@ -1,0 +1,126 @@
+{
+  "expected": {
+    "connections": [
+      {
+        "from": "Ellen",
+        "to": "Mike",
+        "value": 0.08333333333333333
+      },
+      {
+        "from": "Ellen",
+        "to": "Sara",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Mike",
+        "to": "Ellen",
+        "value": 0.05555555555555555
+      },
+      {
+        "from": "Mike",
+        "to": "Mike",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Mike",
+        "to": "Pete",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Mike",
+        "to": "Sara",
+        "value": 0.08333333333333333
+      },
+      {
+        "from": "Mike",
+        "to": "Sean",
+        "value": 0.05555555555555555
+      },
+      {
+        "from": "Pete",
+        "to": "Mike",
+        "value": 0.05555555555555555
+      },
+      {
+        "from": "Pete",
+        "to": "Sara",
+        "value": 0.08333333333333333
+      },
+      {
+        "from": "Pete",
+        "to": "Sue",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Sara",
+        "to": "Ellen",
+        "value": 0.1111111111111111
+      },
+      {
+        "from": "Sara",
+        "to": "Mike",
+        "value": 0.05555555555555555
+      },
+      {
+        "from": "Sara",
+        "to": "Pete",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Sara",
+        "to": "Sara",
+        "value": 0.08333333333333333
+      },
+      {
+        "from": "Sara",
+        "to": "Sean",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Sara",
+        "to": "Sue",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Sean",
+        "to": "Pete",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Sean",
+        "to": "Sara",
+        "value": 0.05555555555555555
+      },
+      {
+        "from": "Sue",
+        "to": "Mike",
+        "value": 0.027777777777777776
+      },
+      {
+        "from": "Sue",
+        "to": "Pete",
+        "value": 0.027777777777777776
+      }
+    ],
+    "directed": true
+  },
+  "meta": {
+    "area": "org",
+    "case": "handover-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_handover_of_work_network"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

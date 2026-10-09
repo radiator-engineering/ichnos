@@ -1,0 +1,249 @@
+{
+  "expected": [
+    {
+      "edge": "check ticket",
+      "source": "Ellen",
+      "target": "Mike",
+      "value": [
+        177420.0
+      ]
+    },
+    {
+      "edge": "examine casually",
+      "source": "Ellen",
+      "target": "Mike",
+      "value": [
+        87360.0
+      ]
+    },
+    {
+      "edge": "register request",
+      "source": "Ellen",
+      "target": "Mike",
+      "value": [
+        90840.0
+      ]
+    },
+    {
+      "edge": "check ticket",
+      "source": "Ellen",
+      "target": "Sara",
+      "value": [
+        578640.0
+      ]
+    },
+    {
+      "edge": "examine casually",
+      "source": "Mike",
+      "target": "Ellen",
+      "value": [
+        5280.0
+      ]
+    },
+    {
+      "edge": "register request",
+      "source": "Mike",
+      "target": "Ellen",
+      "value": [
+        3840.0
+      ]
+    },
+    {
+      "edge": "register request",
+      "source": "Mike",
+      "target": "Mike",
+      "value": [
+        2400.0
+      ]
+    },
+    {
+      "edge": "examine casually",
+      "source": "Mike",
+      "target": "Pete",
+      "value": [
+        90360.0
+      ]
+    },
+    {
+      "edge": "check ticket",
+      "source": "Mike",
+      "target": "Sara",
+      "value": [
+        1800.0,
+        72360.0
+      ]
+    },
+    {
+      "edge": "examine casually",
+      "source": "Mike",
+      "target": "Sara",
+      "value": [
+        242880.0
+      ]
+    },
+    {
+      "edge": "check ticket",
+      "source": "Mike",
+      "target": "Sean",
+      "value": [
+        7440.0,
+        95820.0
+      ]
+    },
+    {
+      "edge": "register request",
+      "source": "Pete",
+      "target": "Mike",
+      "value": [
+        2040.0,
+        75840.0
+      ]
+    },
+    {
+      "edge": "check ticket",
+      "source": "Pete",
+      "target": "Sara",
+      "value": [
+        79920.0,
+        178680.0,
+        180360.0
+      ]
+    },
+    {
+      "edge": "register request",
+      "source": "Pete",
+      "target": "Sue",
+      "value": [
+        83040.0
+      ]
+    },
+    {
+      "edge": "decide",
+      "source": "Sara",
+      "target": "Ellen",
+      "value": [
+        261780.0,
+        272520.0,
+        521400.0
+      ]
+    },
+    {
+      "edge": "reinitiate request",
+      "source": "Sara",
+      "target": "Ellen",
+      "value": [
+        252900.0
+      ]
+    },
+    {
+      "edge": "decide",
+      "source": "Sara",
+      "target": "Mike",
+      "value": [
+        92640.0,
+        759300.0
+      ]
+    },
+    {
+      "edge": "decide",
+      "source": "Sara",
+      "target": "Pete",
+      "value": [
+        97560.0
+      ]
+    },
+    {
+      "edge": "decide",
+      "source": "Sara",
+      "target": "Sara",
+      "value": [
+        10800.0,
+        91800.0,
+        96600.0
+      ]
+    },
+    {
+      "edge": "reinitiate request",
+      "source": "Sara",
+      "target": "Sean",
+      "value": [
+        2880.0
+      ]
+    },
+    {
+      "edge": "reinitiate request",
+      "source": "Sara",
+      "target": "Sue",
+      "value": [
+        73080.0
+      ]
+    },
+    {
+      "edge": "examine thoroughly",
+      "source": "Sean",
+      "target": "Pete",
+      "value": [
+        167820.0
+      ]
+    },
+    {
+      "edge": "examine casually",
+      "source": "Sean",
+      "target": "Sara",
+      "value": [
+        507960.0
+      ]
+    },
+    {
+      "edge": "examine thoroughly",
+      "source": "Sean",
+      "target": "Sara",
+      "value": [
+        76740.0
+      ]
+    },
+    {
+      "edge": "examine thoroughly",
+      "source": "Sue",
+      "target": "Mike",
+      "value": [
+        450360.0
+      ]
+    },
+    {
+      "edge": "examine casually",
+      "source": "Sue",
+      "target": "Pete",
+      "value": [
+        8880.0
+      ]
+    }
+  ],
+  "meta": {
+    "area": "org",
+    "case": "network-analysis-running-example-performance",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_network_analysis"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "edge_column": "concept:name",
+      "edge_reference": "_out",
+      "in_column": "case:concept:name",
+      "node_column_source": "org:resource",
+      "node_column_target": "org:resource",
+      "out_column": "case:concept:name",
+      "performance": true
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
