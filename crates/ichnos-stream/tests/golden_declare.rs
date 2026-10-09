@@ -1,4 +1,4 @@
-//! Native Declare prefix diagnostics, including all eighteen automata.
+//! pm4py Declare prefix diagnostics, including all eighteen automata.
 use ichnos_core::{AttributeValue, Event, EventKeys, chrono::DateTime};
 use ichnos_discovery::declare::DeclareCounts;
 use ichnos_golden::{JsonCompare, assert_json_eq, golden};
@@ -56,7 +56,10 @@ fn attribute(v: &AttributeValue) -> Value {
         AttributeValue::Float(v) => json!(v),
         AttributeValue::Bool(v) => json!(v),
         AttributeValue::Date(v) => {
-            json!({"date":v.with_timezone(&ichnos_core::chrono::Utc).to_rfc3339_opts(ichnos_core::chrono::SecondsFormat::Micros,false)})
+            let timestamp = v
+                .with_timezone(&ichnos_core::chrono::Utc)
+                .to_rfc3339_opts(ichnos_core::chrono::SecondsFormat::Micros, false);
+            json!({ "date": timestamp })
         }
         _ => panic!("unsupported fixture timestamp"),
     }
@@ -75,7 +78,11 @@ fn case_state(case: &StreamingDeclareCase) -> Value {
         })
         .collect();
     constraints.sort();
-    json!({"events":case.events,"deviations":case.deviations,"constraints_state":constraints})
+    json!({
+        "events": case.events,
+        "deviations": case.deviations,
+        "constraints_state": constraints,
+    })
 }
 
 fn summary(rows: Vec<Value>) -> Value {
@@ -83,7 +90,13 @@ fn summary(rows: Vec<Value>) -> Value {
         .into_iter()
         .filter(|&i| i < rows.len())
         .collect();
-    json!({"count":rows.len(),"sha256":format!("{:x}",Sha256::digest(serde_json::to_vec(&rows).unwrap())),"samples":indices.into_iter().map(|i|json!([i,rows[i]])).collect::<Vec<_>>()})
+    let digest = format!("{:x}", Sha256::digest(serde_json::to_vec(&rows).unwrap()));
+    let samples: Vec<_> = indices.into_iter().map(|i| json!([i, rows[i]])).collect();
+    json!({
+        "count": rows.len(),
+        "sha256": digest,
+        "samples": samples,
+    })
 }
 
 fn state(algo: &StreamingDeclareConformance, compact: bool) -> Value {
@@ -121,7 +134,17 @@ fn state(algo: &StreamingDeclareConformance, compact: bool) -> Value {
     } else {
         cases
     };
-    json!({"total_events_processed":snapshot.total_events_processed,"total_deviations":snapshot.total_deviations,"deviations_per_time":if compact{summary(history)}else{json!(history)},"cases":cases})
+    let history = if compact {
+        summary(history)
+    } else {
+        json!(history)
+    };
+    json!({
+        "total_events_processed": snapshot.total_events_processed,
+        "total_deviations": snapshot.total_deviations,
+        "deviations_per_time": history,
+        "cases": cases,
+    })
 }
 
 fn event(row: &Value) -> Event {
@@ -162,11 +185,17 @@ fn check(name: &str) {
         .iter()
         .map(|s| s["at"].as_u64().unwrap() as usize)
         .collect();
-    let mut snapshots = vec![json!({"at":0,"state":state(&algo,compact)})];
+    let mut snapshots = vec![json!({
+        "at": 0,
+        "state": state(&algo, compact),
+    })];
     for (i, event) in events.iter().enumerate() {
         algo.push(event).unwrap();
         if points.contains(&(i + 1)) {
-            snapshots.push(json!({"at":i+1,"state":state(&algo,compact)}));
+            snapshots.push(json!({
+                "at": i + 1,
+                "state": state(&algo, compact),
+            }));
         }
     }
     compare(&json!(snapshots), &g.expected["snapshots"]);
@@ -188,10 +217,31 @@ fn check(name: &str) {
     assert_eq!(events, before);
 }
 
-macro_rules! cases {($($id:ident=>$name:literal),* $(,)?)=>{$(#[test]fn $id(){check($name);})*};}
-cases! {running=>"running-example",receipt=>"receipt",traffic=>"roadtraffic100traces",all_templates=>"all-templates",
-pending=>"pending",interleaved=>"interleaved",missing=>"missing",timestamps=>"timestamps",empty=>"empty",
-self_pairs=>"self-pairs",empty_model=>"empty-model",special_labels=>"special-labels"}
+macro_rules! cases {
+    ($($id:ident => $name:literal),* $(,)?) => {
+        $(
+            #[test]
+            fn $id() {
+                check($name);
+            }
+        )*
+    };
+}
+
+cases! {
+    running => "running-example",
+    receipt => "receipt",
+    traffic => "roadtraffic100traces",
+    all_templates => "all-templates",
+    pending => "pending",
+    interleaved => "interleaved",
+    missing => "missing",
+    timestamps => "timestamps",
+    empty => "empty",
+    self_pairs => "self-pairs",
+    empty_model => "empty-model",
+    special_labels => "special-labels",
+}
 
 #[test]
 fn rejects_wrong_arity_and_exposes_explicit_missing_policies() {

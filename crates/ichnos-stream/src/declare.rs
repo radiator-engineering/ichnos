@@ -9,7 +9,7 @@ use std::collections::BTreeMap;
 /// Handling of incomplete Declare events.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub enum DeclareMissingPolicy {
-    /// Native defaults: missing case uses "undefined_case", missing activity
+    /// pm4py defaults: missing case uses "undefined_case", missing activity
     /// advances each monitor with no matching label.
     #[default]
     NativeDefaults,
@@ -22,10 +22,10 @@ pub enum DeclareMissingPolicy {
 /// Event keys and incomplete-event policy for Declare monitoring.
 #[derive(Debug, Clone, Default)]
 pub struct StreamingDeclareOptions {
-    /// Canonical activity/case/timestamp keys. Native hardcodes these defaults;
+    /// Canonical activity/case/timestamp keys. pm4py hardcodes these defaults;
     /// custom keys are a Rust extension.
     pub keys: EventKeys,
-    /// Defaults to the native missing-field behavior.
+    /// Defaults to pm4py's missing-field behavior.
     pub missing: DeclareMissingPolicy,
 }
 
@@ -38,7 +38,7 @@ pub struct DeclareConstraint {
     pub activities: DeclareActivities,
 }
 
-/// The current native automaton state name, without serialized tuple keys.
+/// The current pm4py automaton state name, without serialized tuple keys.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub enum DeclareAutomatonState {
     /// Initial/pending monitor state.
@@ -55,7 +55,7 @@ pub enum DeclareAutomatonState {
 }
 
 impl DeclareAutomatonState {
-    /// Name used by the pinned native monitor.
+    /// Name used by pm4py's DeclareStreamingConformance.
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Initial => "init",
@@ -312,7 +312,7 @@ struct Case {
 
 /// Streaming automata for the merged typed Declare model.
 ///
-/// This is prefix monitoring, not completed-trace Declare conformance. Native
+/// This is prefix monitoring, not completed-trace Declare conformance. pm4py's
 /// streaming semantics perform no end-of-case checks: pending responses and
 /// unseen existence requirements do not contribute violations. Every monitor
 /// reports at most one immediate violation per case and remains absorbing.
@@ -445,7 +445,7 @@ impl StreamingDeclareConformance {
     }
 
     /// Release event-level history, preserving totals and per-case monitors.
-    /// An explicit memory-management extension to native streaming Declare.
+    /// An explicit memory-management extension to pm4py streaming Declare.
     pub fn clear_history(&mut self) {
         self.history.clear();
     }

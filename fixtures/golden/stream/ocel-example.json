@@ -1,0 +1,665 @@
+{
+  "expected": {
+    "events": [
+      {
+        "ocel:activity": "Create Order",
+        "ocel:eid": "e1",
+        "ocel:timestamp": {
+          "date": "1980-01-01T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i4",
+          "i1",
+          "i3",
+          "i2"
+        ],
+        "ocel:type:order": [
+          "o1"
+        ],
+        "prova": "ciao",
+        "prova2": 456
+      },
+      {
+        "ocel:activity": "Confirm Order",
+        "ocel:eid": "e2",
+        "ocel:timestamp": {
+          "date": "1980-01-02T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o1"
+        ],
+        "prova": "ciao2"
+      },
+      {
+        "ocel:activity": "Item out of Stock",
+        "ocel:eid": "e3",
+        "ocel:timestamp": {
+          "date": "1980-01-03T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i3"
+        ],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Create Delivery",
+        "ocel:eid": "e4",
+        "ocel:timestamp": {
+          "date": "1980-01-04T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d1"
+        ],
+        "ocel:type:element": [
+          "i2",
+          "i1"
+        ],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Item back in Stock",
+        "ocel:eid": "e5",
+        "ocel:timestamp": {
+          "date": "1980-01-05T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i3"
+        ],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Delivery Failed",
+        "ocel:eid": "e6",
+        "ocel:timestamp": {
+          "date": "1980-01-08T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d1"
+        ],
+        "ocel:type:element": [],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Retry Delivery",
+        "ocel:eid": "e7",
+        "ocel:timestamp": {
+          "date": "1980-01-09T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d1"
+        ],
+        "ocel:type:element": [],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Delivery Successful",
+        "ocel:eid": "e8",
+        "ocel:timestamp": {
+          "date": "1980-01-10T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d1"
+        ],
+        "ocel:type:element": [],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Invoice Sent",
+        "ocel:eid": "e9",
+        "ocel:timestamp": {
+          "date": "1980-01-11T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o1"
+        ]
+      },
+      {
+        "ocel:activity": "Pay Order",
+        "ocel:eid": "e10",
+        "ocel:timestamp": {
+          "date": "1980-01-12T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o1"
+        ]
+      },
+      {
+        "ocel:activity": "Create Order",
+        "ocel:eid": "e11",
+        "ocel:timestamp": {
+          "date": "1981-01-01T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i6",
+          "i5"
+        ],
+        "ocel:type:order": [
+          "o2"
+        ]
+      },
+      {
+        "ocel:activity": "Remove Item",
+        "ocel:eid": "e12",
+        "ocel:timestamp": {
+          "date": "1981-01-02T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i5"
+        ],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Cancel Order",
+        "ocel:eid": "e13",
+        "ocel:timestamp": {
+          "date": "1981-01-03T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o2"
+        ]
+      },
+      {
+        "ocel:activity": "Create Order",
+        "ocel:eid": "e14",
+        "ocel:timestamp": {
+          "date": "1981-01-04T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i8",
+          "i7"
+        ],
+        "ocel:type:order": [
+          "o3"
+        ]
+      },
+      {
+        "ocel:activity": "Add Item to Order",
+        "ocel:eid": "e15",
+        "ocel:timestamp": {
+          "date": "1981-01-05T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [
+          "i9"
+        ],
+        "ocel:type:order": [
+          "o3"
+        ]
+      },
+      {
+        "ocel:activity": "Create Delivery",
+        "ocel:eid": "e16",
+        "ocel:timestamp": {
+          "date": "1981-01-06T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d2"
+        ],
+        "ocel:type:element": [
+          "i3",
+          "i4",
+          "i7"
+        ],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Delivery Successful",
+        "ocel:eid": "e17",
+        "ocel:timestamp": {
+          "date": "1981-01-07T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d2"
+        ],
+        "ocel:type:element": [],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Create Delivery",
+        "ocel:eid": "e18",
+        "ocel:timestamp": {
+          "date": "1981-01-08T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d3"
+        ],
+        "ocel:type:element": [
+          "i8",
+          "i9"
+        ],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Delivery Successful",
+        "ocel:eid": "e19",
+        "ocel:timestamp": {
+          "date": "1981-01-09T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [
+          "d3"
+        ],
+        "ocel:type:element": [],
+        "ocel:type:order": []
+      },
+      {
+        "ocel:activity": "Invoice Sent",
+        "ocel:eid": "e20",
+        "ocel:timestamp": {
+          "date": "1981-01-10T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o3"
+        ]
+      },
+      {
+        "ocel:activity": "Payment Reminder",
+        "ocel:eid": "e21",
+        "ocel:timestamp": {
+          "date": "1981-01-11T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o3"
+        ]
+      },
+      {
+        "ocel:activity": "Payment Reminder",
+        "ocel:eid": "e22",
+        "ocel:timestamp": {
+          "date": "1981-01-11T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o3"
+        ]
+      },
+      {
+        "ocel:activity": "Send for Credit Collection",
+        "ocel:eid": "e23",
+        "ocel:timestamp": {
+          "date": "1981-01-12T00:00:00.000000+00:00"
+        },
+        "ocel:type:delivery": [],
+        "ocel:type:element": [],
+        "ocel:type:order": [
+          "o3"
+        ]
+      }
+    ],
+    "flattened": {
+      "delivery": [
+        {
+          "case:concept:name": "d1",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e4",
+          "time:timestamp": {
+            "date": "1980-01-04T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d1",
+          "concept:name": "Delivery Failed",
+          "ocel:eid": "e6",
+          "time:timestamp": {
+            "date": "1980-01-08T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d1",
+          "concept:name": "Retry Delivery",
+          "ocel:eid": "e7",
+          "time:timestamp": {
+            "date": "1980-01-09T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d1",
+          "concept:name": "Delivery Successful",
+          "ocel:eid": "e8",
+          "time:timestamp": {
+            "date": "1980-01-10T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d2",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e16",
+          "time:timestamp": {
+            "date": "1981-01-06T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d2",
+          "concept:name": "Delivery Successful",
+          "ocel:eid": "e17",
+          "time:timestamp": {
+            "date": "1981-01-07T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d3",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e18",
+          "time:timestamp": {
+            "date": "1981-01-08T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "d3",
+          "concept:name": "Delivery Successful",
+          "ocel:eid": "e19",
+          "time:timestamp": {
+            "date": "1981-01-09T00:00:00.000000+00:00"
+          }
+        }
+      ],
+      "element": [
+        {
+          "case:concept:name": "i4",
+          "concept:name": "Create Order",
+          "ocel:eid": "e1",
+          "prova": "ciao",
+          "prova2": 456,
+          "time:timestamp": {
+            "date": "1980-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i1",
+          "concept:name": "Create Order",
+          "ocel:eid": "e1",
+          "prova": "ciao",
+          "prova2": 456,
+          "time:timestamp": {
+            "date": "1980-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i3",
+          "concept:name": "Create Order",
+          "ocel:eid": "e1",
+          "prova": "ciao",
+          "prova2": 456,
+          "time:timestamp": {
+            "date": "1980-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i2",
+          "concept:name": "Create Order",
+          "ocel:eid": "e1",
+          "prova": "ciao",
+          "prova2": 456,
+          "time:timestamp": {
+            "date": "1980-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i3",
+          "concept:name": "Item out of Stock",
+          "ocel:eid": "e3",
+          "time:timestamp": {
+            "date": "1980-01-03T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i2",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e4",
+          "time:timestamp": {
+            "date": "1980-01-04T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i1",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e4",
+          "time:timestamp": {
+            "date": "1980-01-04T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i3",
+          "concept:name": "Item back in Stock",
+          "ocel:eid": "e5",
+          "time:timestamp": {
+            "date": "1980-01-05T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i6",
+          "concept:name": "Create Order",
+          "ocel:eid": "e11",
+          "time:timestamp": {
+            "date": "1981-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i5",
+          "concept:name": "Create Order",
+          "ocel:eid": "e11",
+          "time:timestamp": {
+            "date": "1981-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i5",
+          "concept:name": "Remove Item",
+          "ocel:eid": "e12",
+          "time:timestamp": {
+            "date": "1981-01-02T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i8",
+          "concept:name": "Create Order",
+          "ocel:eid": "e14",
+          "time:timestamp": {
+            "date": "1981-01-04T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i7",
+          "concept:name": "Create Order",
+          "ocel:eid": "e14",
+          "time:timestamp": {
+            "date": "1981-01-04T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i9",
+          "concept:name": "Add Item to Order",
+          "ocel:eid": "e15",
+          "time:timestamp": {
+            "date": "1981-01-05T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i3",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e16",
+          "time:timestamp": {
+            "date": "1981-01-06T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i4",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e16",
+          "time:timestamp": {
+            "date": "1981-01-06T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i7",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e16",
+          "time:timestamp": {
+            "date": "1981-01-06T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i8",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e18",
+          "time:timestamp": {
+            "date": "1981-01-08T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "i9",
+          "concept:name": "Create Delivery",
+          "ocel:eid": "e18",
+          "time:timestamp": {
+            "date": "1981-01-08T00:00:00.000000+00:00"
+          }
+        }
+      ],
+      "order": [
+        {
+          "case:concept:name": "o1",
+          "concept:name": "Create Order",
+          "ocel:eid": "e1",
+          "prova": "ciao",
+          "prova2": 456,
+          "time:timestamp": {
+            "date": "1980-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o1",
+          "concept:name": "Confirm Order",
+          "ocel:eid": "e2",
+          "prova": "ciao2",
+          "time:timestamp": {
+            "date": "1980-01-02T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o1",
+          "concept:name": "Invoice Sent",
+          "ocel:eid": "e9",
+          "time:timestamp": {
+            "date": "1980-01-11T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o1",
+          "concept:name": "Pay Order",
+          "ocel:eid": "e10",
+          "time:timestamp": {
+            "date": "1980-01-12T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o2",
+          "concept:name": "Create Order",
+          "ocel:eid": "e11",
+          "time:timestamp": {
+            "date": "1981-01-01T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o2",
+          "concept:name": "Cancel Order",
+          "ocel:eid": "e13",
+          "time:timestamp": {
+            "date": "1981-01-03T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o3",
+          "concept:name": "Create Order",
+          "ocel:eid": "e14",
+          "time:timestamp": {
+            "date": "1981-01-04T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o3",
+          "concept:name": "Add Item to Order",
+          "ocel:eid": "e15",
+          "time:timestamp": {
+            "date": "1981-01-05T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o3",
+          "concept:name": "Invoice Sent",
+          "ocel:eid": "e20",
+          "time:timestamp": {
+            "date": "1981-01-10T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o3",
+          "concept:name": "Payment Reminder",
+          "ocel:eid": "e21",
+          "time:timestamp": {
+            "date": "1981-01-11T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o3",
+          "concept:name": "Payment Reminder",
+          "ocel:eid": "e22",
+          "time:timestamp": {
+            "date": "1981-01-11T00:00:00.000000+00:00"
+          }
+        },
+        {
+          "case:concept:name": "o3",
+          "concept:name": "Send for Credit Collection",
+          "ocel:eid": "e23",
+          "time:timestamp": {
+            "date": "1981-01-12T00:00:00.000000+00:00"
+          }
+        }
+      ]
+    },
+    "types": [
+      "delivery",
+      "element",
+      "order"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "ocel-example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor",
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register",
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
