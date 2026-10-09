@@ -1,0 +1,393 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "alpha": 1.0,
+        "model": {
+          "footprints": {
+            "status": "state_space_limit",
+            "value": null
+          },
+          "language": {
+            "accepted": [
+              [
+                "Create Fine"
+              ],
+              [
+                "Create Fine",
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              [
+                "Create Fine",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Send for Credit Collection"
+              ]
+            ],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "Create Fine"
+              ],
+              [
+                "Create Fine",
+                "Insert Fine Notification"
+              ],
+              [
+                "Create Fine",
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              [
+                "Create Fine",
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              [
+                "Create Fine",
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Insert Fine Notification"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Payment",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Create Fine",
+                "Send Appeal to Prefecture",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ],
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Insert Fine Notification"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Payment"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send for Credit Collection",
+                "Send for Credit Collection"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "alpha": 0.2,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "Add penalty",
+                "Create Fine",
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification",
+                "Notify Result Appeal to Offender",
+                "Payment",
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture",
+                "Send Fine",
+                "Send for Credit Collection"
+              ],
+              "parallel": [],
+              "sequence": [
+                [
+                  "Add penalty",
+                  "Send Appeal to Prefecture"
+                ],
+                [
+                  "Add penalty",
+                  "Send for Credit Collection"
+                ],
+                [
+                  "Create Fine",
+                  "Send Fine"
+                ],
+                [
+                  "Insert Fine Notification",
+                  "Add penalty"
+                ],
+                [
+                  "Insert Fine Notification",
+                  "Insert Date Appeal to Prefecture"
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  "Notify Result Appeal to Offender"
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  "Receive Result Appeal from Prefecture"
+                ],
+                [
+                  "Send Fine",
+                  "Insert Fine Notification"
+                ]
+              ],
+              "start_activities": [
+                "Create Fine"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "Create Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "alpha": 0.0,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "Add penalty",
+                "Create Fine",
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification",
+                "Notify Result Appeal to Offender",
+                "Payment",
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture",
+                "Send Fine",
+                "Send for Credit Collection"
+              ],
+              "parallel": [],
+              "sequence": [
+                [
+                  "Add penalty",
+                  "Send Appeal to Prefecture"
+                ],
+                [
+                  "Add penalty",
+                  "Send for Credit Collection"
+                ],
+                [
+                  "Create Fine",
+                  "Send Fine"
+                ],
+                [
+                  "Insert Fine Notification",
+                  "Add penalty"
+                ],
+                [
+                  "Insert Fine Notification",
+                  "Insert Date Appeal to Prefecture"
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  "Notify Result Appeal to Offender"
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  "Receive Result Appeal from Prefecture"
+                ],
+                [
+                  "Send Fine",
+                  "Insert Fine Notification"
+                ]
+              ],
+              "start_activities": [
+                "Create Fine"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "Create Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine"
+              ],
+              [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification"
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "solver": "scipy/highs/integer/lexicographic"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "ilp-miner-roadtraffic100traces-xes",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.discover_petri_net_ilp",
+      "pm4py.algo.discovery.ilp.variants.classic.apply",
+      "pm4py.util.lp.variants.scipy_solver.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

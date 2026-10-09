@@ -82,11 +82,17 @@ def powl_of(net: Any, im: Any, fm: Any) -> dict[str, Any]:
     """``pm4py.convert_to_powl`` on a copy of the net, which pm4py changes.
 
     ``powl_error`` is ``special_arcs`` for any failure on a net with
-    inhibitor or reset arcs: pm4py treats them as normal arcs and fails in a
-    way that follows set order, often with a ``TypeError``. Otherwise it is
+    inhibitor or reset arcs: pm4py treats them as normal arcs, and on the
+    seven ``inh_res_nets`` fixtures it finds no structure. Otherwise it is
     ``no_structure`` when pm4py finds no structure (its own message, or a
     ``KeyError`` or ``IndexError`` on the way), or a value of
     ``POWL_ERRORS``.
+
+    pm4py's places and transitions hash by ``id()``, so its set order
+    follows object addresses, not ``PYTHONHASHSEED``. Runs under several
+    hash seeds therefore do not vary it. The goldens store canonical POWL,
+    and the nets here gave one canonical result in 40 runs each with
+    shifted object addresses.
     """
     from cases.powl import describe_powl
 

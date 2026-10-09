@@ -18,8 +18,8 @@ use crate::{Label, Powl};
 /// Why a net could not be converted to POWL.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
 pub enum WfNetToPowlError {
-    /// The net has inhibitor or reset arcs. pm4py fails on such nets with a
-    /// `TypeError`.
+    /// The net has inhibitor or reset arcs. pm4py treats them as normal arcs;
+    /// on the seven `inh_res_nets` fixtures it finds no structure.
     #[error("the Petri net has inhibitor or reset arcs")]
     SpecialArcs,
     /// The net is not a workflow net (see [`PetriNet::is_workflow_net`]).

@@ -122,6 +122,40 @@ The interval log passes ``start_timestamp_key="start_timestamp"``; the other
 logs use the completion timestamp as the start. To keep its golden small,
 the interval log runs only ``zeta1`` and ``zeta3``: the other logs cover
 business hours and ``half``, and ``zeta6`` finds no deviation on it.
+
+Approximate alignments (lane ``alignments``), cases
+``alignments-approx-<log>-<model>`` over the same logs and nets as the Petri
+net alignments. pm4py aligns on the net rebuilt from ``model``, because the
+approximate variants break ties by transition name. Per variant of the log,
+in order of first trace up to :data:`ALIGNMENT_VARIANT_LIMIT`, ``variants`` holds the ``trace`` and one record per
+run in :data:`APPROX_RUNS`: a pm4py variant of
+``algo/conformance/alignments/petri_net`` with some parameters, called
+through ``algorithm.apply_trace``. A record holds the ``moves`` (pairs of
+event index or null and transition name or null), ``cost``,
+``standard_cost``, ``fitness``, ``bwc``, ``visited``, ``queued``,
+``traversed``, ``is_valid`` and the variant's own diagnostics. A run that
+finds no alignment records null.
+
+Subset alignments (lane ``alignments``), cases
+``alignments-subset-<log>-<model>``: pm4py's ``approx_subset`` variant of
+``algo/conformance/alignments/edit_distance`` on the same logs and nets, for
+each run in :data:`SUBSET_RUNS`. Per run, ``variants`` holds one record per
+variant of the log, in order of first trace (the record of that trace), and
+``summary`` holds ``apply_with_summary``'s means and move counts.
+
+Decomposed alignments (lane ``alignments``), cases
+``alignments-decomposed-<log>-<model>``: pm4py's ``recompos_maximal``
+variant of ``algo/conformance/alignments/decomposed`` on the same logs and
+nets. Its component order, component alignments and merges depend on
+object-id hashes, so :func:`seeded_node_hashes` replaces those hashes with
+:data:`DECOMPOSED_SEEDS` seeded random orders and the net is rebuilt under
+each. Each seed runs in its own process with ``PYTHONHASHSEED`` set to the
+seed, because pm4py also iterates sets of label strings. Per variant, in order of first trace up to
+:data:`ALIGNMENT_VARIANT_LIMIT`, ``cost_choices`` lists the
+distinct costs, sorted, and ``alignment_choices`` the distinct alignments
+(label pairs, with null for ``>>`` and for a silent label), ``bwc`` the
+best worst cost, which does not vary, and ``fitness_choices`` the distinct
+fitness values, sorted. pm4py reports no bwc or fitness for an empty trace.
 """
 
 from __future__ import annotations
@@ -129,7 +163,10 @@ from __future__ import annotations
 import difflib
 import hashlib
 import json
+import os
 import random
+import subprocess
+import sys
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
@@ -935,3 +972,296 @@ for _log_id, _rel in TEMPORAL_PROFILE_LOGS.items():
             else {"settings": ["zeta1", "zeta6", "business", "half"]}
         ),
     )(temporal_profile)
+
+
+# The approximate and decomposed cases keep the first variants only, to
+# bound the size of the goldens.
+ALIGNMENT_VARIANT_LIMIT = 40
+
+# Run name -> (variant module name, parameters).
+APPROX_RUNS: dict[str, tuple[str, dict[str, Any]]] = {
+    "tandem_repeats": ("approx_tandem_repeats", {}),
+    "sliding_window": ("approx_sliding_window", {}),
+    "sliding_window_small": ("approx_sliding_window", {"window_size": 3, "max_candidates": 2}),
+    "fixed_horizon": ("approx_fixed_horizon", {}),
+    "fixed_horizon_small": ("approx_fixed_horizon", {"horizon": 2}),
+}
+
+APPROX_DIAGNOSTICS = {
+    "approx_tandem_repeats": [
+        "reduced_trace_length",
+        "tandem_repeats",
+        "removed_events",
+        "model_loop_expansions",
+    ],
+    "approx_sliding_window": ["window_count", "retained_candidates", "fallback_used"],
+    "approx_fixed_horizon": ["committed_horizons", "lp_solved", "fallback_reason"],
+}
+
+
+def _approx_moves(alignment: list[Any], trace: tuple[str, ...]) -> list[list[Any]]:
+    """Moves as ``[event index or None, transition name or None]``."""
+    moves = []
+    event = 0
+    for (_log_name, model_name), (log_label, _model_label) in alignment:
+        index = None
+        if log_label != ">>":
+            assert log_label == trace[event]
+            index = event
+            event += 1
+        moves.append([index, None if model_name == ">>" else model_name])
+    assert event == len(trace)
+    return moves
+
+
+def alignments_approximate(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Approximate alignments of each variant of the log against its model."""
+    import importlib
+
+    from pm4py.algo.conformance.alignments.petri_net import algorithm as alignments_algorithm
+    from pm4py.objects.log.obj import Event, Trace
+
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    if "model" in fixtures:
+        net, im, fm = load_model(fixtures["model"])
+    else:
+        net, im, fm = pm4py.discover_petri_net_inductive(log)
+    model = describe_canonical_net(net, im, fm)
+    net, im, fm = net_from_description(model)
+    variants = list(dict.fromkeys(tuple(e["concept:name"] for e in t) for t in log))[:ALIGNMENT_VARIANT_LIMIT]
+    records = []
+    for trace in variants:
+        record: dict[str, Any] = {"trace": list(trace)}
+        for run, (module, params) in APPROX_RUNS.items():
+            variant = importlib.import_module(f"pm4py.algo.conformance.alignments.petri_net.variants.{module}")
+            parameters = {**params, "ret_tuple_as_trans_desc": True}
+            result = alignments_algorithm.apply_trace(
+                Trace([Event({"concept:name": a}) for a in trace]),
+                net,
+                im,
+                fm,
+                parameters=parameters,
+                variant=variant,
+            )
+            if result is None:
+                record[run] = None
+                continue
+            record[run] = {
+                "moves": _approx_moves(result["alignment"], trace),
+                "cost": result["cost"],
+                "standard_cost": result["standard_cost"],
+                "fitness": result["fitness"],
+                "bwc": result["bwc"],
+                "visited": result["visited_states"],
+                "queued": result["queued_states"],
+                "traversed": result["traversed_arcs"],
+                "is_valid": result["is_valid"],
+                **{key: result[key] for key in APPROX_DIAGNOSTICS[module]},
+            }
+        records.append(record)
+    return {"model": model, "runs": {run: params for run, (_, params) in APPROX_RUNS.items()}, "variants": records}
+
+
+APPROX_FUNCTIONS = [
+    "pm4py.convert_to_event_log",
+    "pm4py.algo.conformance.alignments.petri_net.algorithm.apply_trace",
+    *(f"pm4py.algo.conformance.alignments.petri_net.variants.{m}.apply" for m in APPROX_DIAGNOSTICS),
+]
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"alignments-approx-{_log_id}-im",
+        fixture=_log,
+        functions=["pm4py.discover_petri_net_inductive", *APPROX_FUNCTIONS],
+    )(alignments_approximate)
+    for _net in ALIGNMENT_NETS[_log_id]:
+        _net_id = Path(_net).stem.replace("_", "-").lower()
+        case(
+            f"alignments-approx-{_log_id}-pnml-{_net_id}",
+            fixtures={"log": _log, "model": _net},
+            functions=APPROX_FUNCTIONS,
+        )(alignments_approximate)
+
+
+# Run name -> parameters of ``approx_subset``.
+SUBSET_RUNS: dict[str, dict[str, Any]] = {
+    "frequency": {},
+    "frequency_3": {"subset_size": 3},
+    "k_medoids": {"selection_method": "k_medoids", "subset_fraction": 0.2},
+}
+
+
+def alignments_subset(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Subset and edit-distance alignments of the log against its model."""
+    from pm4py.algo.conformance.alignments.edit_distance.variants import approx_subset
+
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    if "model" in fixtures:
+        net, im, fm = load_model(fixtures["model"])
+    else:
+        net, im, fm = pm4py.discover_petri_net_inductive(log)
+    model = describe_canonical_net(net, im, fm)
+    net, im, fm = net_from_description(model)
+    traces = [tuple(e["concept:name"] for e in t) for t in log]
+    first = list(dict.fromkeys(traces))
+    runs = {}
+    for run, params in SUBSET_RUNS.items():
+        parameters = {**params, "ret_tuple_as_trans_desc": True}
+        summary = approx_subset.apply_with_summary(log, net, im, fm, parameters=parameters)
+        records = []
+        for variant in first:
+            a = summary["alignments"][traces.index(variant)]
+            records.append(
+                {
+                    "trace": list(variant),
+                    "moves": _approx_moves(a["alignment"], variant),
+                    "cost": a["cost"],
+                    "fitness": a["fitness"],
+                    "bwc": a["bwc"],
+                    "lower_bound_cost": a["lower_bound_cost"],
+                    "fitness_upper_bound": a["fitness_upper_bound"],
+                    "fitness_bounds_guaranteed": a["fitness_bounds_guaranteed"],
+                    "approximated_fitness": a["approximated_fitness"],
+                    "selected_exact": a["selected_exact"],
+                    "representative": list(a["representative_variant"]),
+                    "deviation_counts": a["deviation_counts"],
+                    "visited": a["visited_states"],
+                    "queued": a["queued_states"],
+                    "traversed": a["traversed_arcs"],
+                    "is_valid": a["is_valid"],
+                    "subset_size": a["subset_size"],
+                }
+            )
+        runs[run] = {
+            "params": params,
+            "variants": records,
+            "summary": {key: summary[key] for key in ["log_fitness", "fitness_lower_bound", "fitness_upper_bound", "deviation_counts"]},
+        }
+    return {"model": model, "runs": runs}
+
+
+SUBSET_FUNCTIONS = [
+    "pm4py.convert_to_event_log",
+    "pm4py.algo.conformance.alignments.edit_distance.variants.approx_subset.apply_with_summary",
+]
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"alignments-subset-{_log_id}-im",
+        fixture=_log,
+        functions=["pm4py.discover_petri_net_inductive", *SUBSET_FUNCTIONS],
+    )(alignments_subset)
+    for _net in ALIGNMENT_NETS[_log_id]:
+        _net_id = Path(_net).stem.replace("_", "-").lower()
+        case(
+            f"alignments-subset-{_log_id}-pnml-{_net_id}",
+            fixtures={"log": _log, "model": _net},
+            functions=SUBSET_FUNCTIONS,
+        )(alignments_subset)
+
+
+DECOMPOSED_SEEDS = 32
+
+
+def _label_pair(move: Any) -> list[Any]:
+    return [None if x == ">>" else x for x in move]
+
+
+def _decomposed_run(model: dict[str, Any], variants: list[list[str]], seed: int) -> list[dict[str, Any]]:
+    """One seeded run of ``recompos_maximal``: cost, label pairs, bwc and fitness per variant."""
+    from pm4py.algo.conformance.alignments.decomposed.variants import recompos_maximal
+    from pm4py.objects.log.obj import EventLog
+
+    with seeded_node_hashes(seed):
+        net, im, fm = net_from_description(model)
+        variant_log = EventLog([Trace([Event({"concept:name": a}) for a in v]) for v in variants])
+        results = recompos_maximal.apply(variant_log, net, im, fm, parameters={"show_progress_bar": False})
+    return [
+        {
+            "cost": r["cost"],
+            "alignment": [_label_pair(m) for m in r["alignment"]],
+            "bwc": r.get("bwc"),
+            "fitness": r.get("fitness"),
+        }
+        for r in results
+    ]
+
+
+def alignments_decomposed(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Decomposed alignments of each variant under seeded hash orders.
+
+    pm4py also iterates sets of label strings, whose order depends on
+    ``PYTHONHASHSEED``. So each seed runs :func:`_decomposed_run` in its own
+    process, with ``PYTHONHASHSEED`` set to the seed.
+    """
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    if "model" in fixtures:
+        net, im, fm = load_model(fixtures["model"])
+    else:
+        net, im, fm = pm4py.discover_petri_net_inductive(log)
+    model = describe_canonical_net(net, im, fm)
+    variants = list(dict.fromkeys(tuple(e["concept:name"] for e in t) for t in log))[:ALIGNMENT_VARIANT_LIMIT]
+    costs: list[set[int]] = [set() for _ in variants]
+    alignments: list[dict[str, Any]] = [{} for _ in variants]
+    bwcs: list[set[int]] = [set() for _ in variants]
+    fitnesses: list[set[float]] = [set() for _ in variants]
+    golden_tools = str(Path(__file__).resolve().parents[1])
+    request = json.dumps({"model": model, "variants": [list(v) for v in variants]})
+    for seed in range(DECOMPOSED_SEEDS):
+        env = dict(os.environ, PYTHONHASHSEED=str(seed))
+        env["PYTHONPATH"] = os.pathsep.join(filter(None, [golden_tools, env.get("PYTHONPATH")]))
+        out = subprocess.run(
+            [sys.executable, __file__, "decomposed", str(seed)],
+            input=request,
+            env=env,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout
+        for i, r in enumerate(json.loads(out.strip().splitlines()[-1])):
+            costs[i].add(r["cost"])
+            alignments[i][json.dumps(r["alignment"])] = r["alignment"]
+            if r["bwc"] is not None:
+                bwcs[i].add(r["bwc"])
+            if r["fitness"] is not None:
+                fitnesses[i].add(r["fitness"])
+    records = []
+    for v, c, a, b, f in zip(variants, costs, alignments, bwcs, fitnesses):
+        assert len(b) <= 1, b
+        records.append(
+            {
+                "trace": list(v),
+                "cost_choices": sorted(c),
+                "alignment_choices": [a[k] for k in sorted(a)],
+                "bwc": next(iter(b), None),
+                "fitness_choices": sorted(f),
+            }
+        )
+    return {"model": model, "variants": records}
+
+
+DECOMPOSED_FUNCTIONS = [
+    "pm4py.convert_to_event_log",
+    "pm4py.algo.conformance.alignments.decomposed.variants.recompos_maximal.apply",
+]
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"alignments-decomposed-{_log_id}-im",
+        fixture=_log,
+        functions=["pm4py.discover_petri_net_inductive", *DECOMPOSED_FUNCTIONS],
+    )(alignments_decomposed)
+    for _net in ALIGNMENT_NETS[_log_id]:
+        _net_id = Path(_net).stem.replace("_", "-").lower()
+        case(
+            f"alignments-decomposed-{_log_id}-pnml-{_net_id}",
+            fixtures={"log": _log, "model": _net},
+            functions=DECOMPOSED_FUNCTIONS,
+        )(alignments_decomposed)
+
+
+if __name__ == "__main__":
+    # One seeded run for alignments_decomposed: reads the model and variants
+    # as JSON on stdin and prints the results as one JSON line.
+    _request = json.load(sys.stdin)
+    print(json.dumps(_decomposed_run(_request["model"], _request["variants"], int(sys.argv[2]))))
