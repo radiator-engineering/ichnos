@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 73; ported: 363; dropped: 190; total: 626.
+todo: 51; ported: 381; dropped: 194; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -129,24 +129,24 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.filter_variants_by_coverage_percentage` | `filtering.py` → `algo/filtering/log/variants/variants_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos_stats::filters::filter_variants_by_coverage_percentage` | `ichnos-stats` | ported | Coverage is tested per variant, not cumulatively. |
 | `pm4py.filter_prefixes` | `filtering.py` → `algo/filtering/log/prefixes/prefix_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos_stats::filters::filter_prefixes` | `ichnos-stats` | ported | Strict slices exclude the boundary event and retain empty traces; first/last occurrence is typed. |
 | `pm4py.filter_suffixes` | `filtering.py` → `algo/filtering/log/suffixes/suffix_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos_stats::filters::filter_suffixes` | `ichnos-stats` | ported | Strict slices exclude the boundary event and retain empty traces; first/last occurrence is typed. |
-| `pm4py.filter_ocel_event_attribute` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_event_attribute` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_object_attribute` | `filtering.py` → `algo/filtering/ocel/object_attributes`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_object_attribute` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_object_types_allowed_activities` | `filtering.py` → `algo/filtering/ocel/activity_type_matching`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_object_types_allowed_activities` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_object_per_type_count` | `filtering.py` → `algo/filtering/ocel/objects_ot_count`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_object_per_type_count` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_start_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_start_events_per_object_type` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_end_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_end_events_per_object_type` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_events_timestamp` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos::ocel::filter_ocel_events_timestamp` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_event_attribute` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_event_attribute` | `ichnos-ocel` | ported | Keeps events whose chosen value is in the given set. Remove keeps the rest, including events with no value. Golden `ocel_filters/event-attribute`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_object_attribute` | `filtering.py` → `algo/filtering/ocel/object_attributes`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_object_attribute` | `ichnos-ocel` | ported | Keeps objects whose chosen value is in the given set. Remove keeps the rest, including objects with no value. Golden `ocel_filters/object-attribute`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_object_types_allowed_activities` | `filtering.py` → `algo/filtering/ocel/activity_type_matching`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_object_types_allowed_activities` | `ichnos-ocel` | ported | Keeps a relation when the given list for its object type allows the event activity. Golden `ocel_filters/object-types-allowed-activities`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_object_per_type_count` | `filtering.py` → `algo/filtering/ocel/objects_ot_count`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_object_per_type_count` | `ichnos-ocel` | ported | Keeps events with at least the requested number of relations for each given type. Repeated relations count separately. Golden `ocel_filters/object-per-type-count`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_start_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_start_events_per_object_type` | `ichnos-ocel` | ported | Keeps the first related event of each object of the given type, using relation order. Golden `ocel_filters/start-events-per-object-type`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_end_events_per_object_type` | `filtering.py` → `algo/filtering/ocel/ot_endpoints`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_end_events_per_object_type` | `ichnos-ocel` | ported | Keeps the last related event of each object of the given type, using relation order. Golden `ocel_filters/end-events-per-object-type`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_events_timestamp` | `filtering.py` → `algo/filtering/ocel/event_attributes`, `objects/ocel/obj` | `ichnos_ocel::filter_ocel_events_timestamp` | `ichnos-ocel` | ported | Keeps events whose timestamp or chosen date attribute is between the two bounds, including both bounds. EventTimeField permits only these time fields. Golden `ocel_filters/events-timestamp`. See OCEL-filter Behaviour changes. |
 | `pm4py.filter_four_eyes_principle` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos_stats::filters::filter_four_eyes_principle` | `ichnos-stats` | ported | Goldens `filters-log-*`; the log-filters package notes give the shared conventions. |
 | `pm4py.filter_activity_done_different_resources` | `filtering.py` → `algo/filtering/log/ltl/ltl_checker`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos_stats::filters::filter_activity_done_different_resources` | `ichnos-stats` | ported | Goldens `filters-log-*`; the log-filters package notes give the shared conventions. |
 | `pm4py.filter_trace_segments` | `filtering.py` → `algo/filtering/log/traces/trace_filter`, `algo/filtering/pandas`, `algo/filtering/polars`, `objects/log/obj` | `ichnos_stats::filters::filter_trace_segments` | `ichnos-stats` | ported | Typed activity/wildcard patterns replace comma-delimited regexes; commas and punctuation are literal activities, wildcard-only patterns match any trace, and an empty pattern list matches none. |
-| `pm4py.filter_ocel_object_types` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_object_types` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_objects` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_objects` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_events` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_events` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_activities_connected_object_type` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_activities_connected_object_type` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_object` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_object` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_length` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_length` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_otype` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_otype` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.filter_ocel_cc_activity` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::filter_ocel_cc_activity` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
+| `pm4py.filter_ocel_object_types` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_object_types` | `ichnos-ocel` | ported | Selects objects of the given types. Each level above one also adds objects sharing an event with selected objects; Keep or Remove is applied afterward. Golden `ocel_filters/object-types`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_objects` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_objects` | `ichnos-ocel` | ported | Selects the given object ids. Each level above one also adds objects sharing an event with selected objects; Keep or Remove is applied afterward. Golden `ocel_filters/objects`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_events` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_events` | `ichnos-ocel` | ported | Keeps or removes the given event ids. Selected events with no relations stay in the result. Golden `ocel_filters/events`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_activities_connected_object_type` | `filtering.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_activities_connected_object_type` | `ichnos-ocel` | ported | Finds activities performed with the given object type, then keeps all events of those activities and their relations to every type. Golden `ocel_filters/activities-connected-object-type`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_cc_object` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_cc_object` | `ichnos-ocel` | ported | Keeps the group of objects connected to the given object through shared events. If it shares no event, selects that object alone. Golden `ocel_filters/cc-object`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_cc_length` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_cc_length` | `ichnos-ocel` | ported | Keeps groups of objects connected through shared events whose size is between the two bounds, including both bounds. Objects sharing no event are in no group. Golden `ocel_filters/cc-length`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_cc_otype` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_cc_otype` | `ichnos-ocel` | ported | Keep selects groups containing the given object type. Remove selects groups containing any other type, including groups containing both. Golden `ocel_filters/cc-otype`. See OCEL-filter Behaviour changes. |
+| `pm4py.filter_ocel_cc_activity` | `filtering.py` → `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::filter_ocel_cc_activity` | `ichnos-ocel` | ported | Keeps groups of objects connected through shared events when an object in the group occurs in an event with the given activity. Golden `ocel_filters/cc-activity`. See OCEL-filter Behaviour changes. |
 | `pm4py.filter_dfg_activities_percentage` | `filtering.py` → `algo/filtering/dfg/dfg_filtering` | `ichnos_stats::filters::filter_dfg_activities_percentage` | `ichnos-stats` | ported | Goldens filters-dfg-* cover three logs at percentages 0, 0.2, 0.5 and 1. Thin wrapper over ichnos-model Dfg filtering; maximum incoming/outgoing totals supply activity frequencies. Fractions outside [0,1] return typed errors. |
 | `pm4py.filter_dfg_paths_percentage` | `filtering.py` → `algo/filtering/dfg/dfg_filtering` | `ichnos_stats::filters::filter_dfg_paths_percentage` | `ichnos-stats` | ported | Goldens filters-dfg-* cover three logs at percentages 0, 0.2, 0.5 and 1. Thin wrapper over ichnos-model Dfg filtering; maximum incoming/outgoing totals supply activity frequencies. Fractions outside [0,1] return typed errors. |
 
@@ -720,25 +720,25 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.pandas.algorithm.apply` | `statistics/process_cube/pandas/algorithm.py` | `ichnos::stats::process_cube::pandas::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.pandas.algorithm.apply` | `statistics/process_cube/pandas/algorithm.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Consolidated into the ported `pm4py.get_process_cube` row; this backend dispatcher/classic implementation adds no separate Rust API. Existing goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}`, `cube-real-{running-example,receipt,roadtraffic100traces}` and `cube-top-edge` exercise its pandas semantics. See process-cube Behaviour changes. |
 
 ## statistics.process_cube.pandas.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.pandas.variants.classic.apply` | `statistics/process_cube/pandas/variants/classic.py` | `ichnos::stats::process_cube::pandas::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.pandas.variants.classic.apply` | `statistics/process_cube/pandas/variants/classic.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Consolidated into the ported `pm4py.get_process_cube` row; this backend dispatcher/classic implementation adds no separate Rust API. Existing goldens `simulation/cube-{nn,np,pn,pp}-{mean,sum,min,max}`, `cube-real-{running-example,receipt,roadtraffic100traces}` and `cube-top-edge` exercise its pandas semantics. See process-cube Behaviour changes. |
 
 ## statistics.process_cube.polars.algorithm
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.polars.algorithm.apply` | `statistics/process_cube/polars/algorithm.py` | `ichnos::stats::process_cube::polars::algorithm::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.polars.algorithm.apply` | `statistics/process_cube/polars/algorithm.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Backend entry point consolidated into `pm4py.get_process_cube`, using the canonical pandas semantics and its existing `simulation/cube-*` goldens. Polars composite/categorical axes and median/first/last/count aggregation are not supported; bin closure and case-id join semantics also differ. These gaps are recorded under process-cube Behaviour changes, rather than claiming the Polars implementation is ported. |
 
 ## statistics.process_cube.polars.variants.classic
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.statistics.process_cube.polars.variants.classic.apply` | `statistics/process_cube/polars/variants/classic.py` | `ichnos::stats::process_cube::polars::variants::classic::apply` (planned) | `ichnos-stats` | todo | Single entry point; preserve source defaults. No log/common counterpart exists; retain this operation as todo. Rust uses one implementation across dataframe backends. |
+| `pm4py.statistics.process_cube.polars.variants.classic.apply` | `statistics/process_cube/polars/variants/classic.py` | `ichnos_stats::cube::get_process_cube` | `ichnos-stats` | dropped | Backend entry point consolidated into `pm4py.get_process_cube`, using the canonical pandas semantics and its existing `simulation/cube-*` goldens. Polars composite/categorical axes and median/first/last/count aggregation are not supported; bin closure and case-id join semantics also differ. These gaps are recorded under process-cube Behaviour changes, rather than claiming the Polars implementation is ported. |
 
 ## statistics.rework.cases.log.get
 
@@ -1255,14 +1255,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.PetriNet` | `objects/petri_net/obj.py` → `objects/petri_net/utils/petri_utils` | `ichnos::model::PetriNet` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
-| `pm4py.Marking` | `objects/petri_net/obj.py` | `ichnos::model::Marking` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.PetriNet` | `objects/petri_net/obj.py` → `objects/petri_net/utils/petri_utils` | `ichnos_model::PetriNet` | `ichnos-model` | ported | Arena-backed typed places/transitions and weighted normal/inhibitor/reset arcs. Existing goldens `model/footprints-net-*`, `model/networkx-net-*`, `wfnet/tree-*` and PNML `io/model-*`; see model object Behaviour changes for identity and metadata gaps. |
+| `pm4py.Marking` | `objects/petri_net/obj.py` | `ichnos_model::Marking` | `ichnos-model` | ported | PlaceId-to-u32 token counts; get/set/add/remove, addition and `is_covered_by` for componentwise coverage. Existing goldens `model/reachability-graph-net-*` and `wfnet/tree-*` compare reachable state names and initial/final markings. See model object Behaviour changes for zero/negative counts and ordering. |
 
 ## objects.process_tree.obj
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.ProcessTree` | `objects/process_tree/obj.py` | `ichnos::model::ProcessTree` (planned) | `ichnos-model` | todo | Single entry point; preserve source defaults. |
+| `pm4py.ProcessTree` | `objects/process_tree/obj.py` | `ichnos_model::ProcessTree` | `ichnos-model` | ported | Owned Tau/Activity/Node enum with six typed operators; constructors, parse, validation, folding and conversions. Existing goldens `model/footprints-tree-*`, `wfnet/tree-*` and PTML `io/model-*`. See model object Behaviour changes for parent links, properties and loop arity. |
 
 ## objects.ocel.obj
 
@@ -1460,6 +1460,17 @@ Rows cite these as `core-N`.
 28. **`project` gives `None` for a missing attribute.** pm4py raises `KeyError`.
 29. **`set_classifier` is two methods**: `insert_classifier_attribute` takes attribute keys and `insert_named_classifier_attribute` takes a log classifier name. Neither records the activity key on the log (see core-4).
 30. **`serialize` and `deserialize` are not ported.** The `ichnos-io` readers and writers give and take the bytes for each format.
+
+### ichnos-model (model objects)
+
+- `PetriNet` uses net-local arena ids and stable insertion order in place of Python object identities and sets.
+- Petri net names and transition labels are strings; arbitrary Python objects are not accepted.
+- Arbitrary Python property dictionaries on nets, places, transitions, arcs and process-tree nodes are not model fields. PNML metadata that the readers preserve belongs to the I/O document.
+- `Marking` stores nonzero `u32` counts. Python's Counter-based marking can retain explicit zeros, negative counts and larger integers; those states are not represented here.
+- `Marking::remove` saturates at zero; Python marking subtraction can produce negative counts.
+- `Marking::is_covered_by` implements componentwise coverage. Rust's derived ordering sorts markings lexicographically and does not replace pm4py's componentwise `<=` operator.
+- `ProcessTree` owns its children without mutable parent links or shared/cyclic Python nodes.
+- Process-tree loops are validated as two children (do/redo), and the parser rejects other loop arities. Algorithms that consume manually constructed trees handle one or more than two children as described in the type documentation.
 
 ### ichnos-model (BPMN)
 
@@ -1748,6 +1759,13 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - An all-NaN numeric cube axis yields an empty cube; pm4py raises a non-increasing-bins error.
 - Aggregations are the typed choices mean, sum, min and max. Arbitrary pandas aggregation strings/callables are not exposed.
 - Constant numeric columns get a single half-unit interval. Manual boundaries are sorted and deduplicated; invalid boundaries return a typed error.
+- Separate pandas and Polars cube entry points are consolidated into `get_process_cube`; existing cube goldens validate the canonical pandas behavior.
+- Polars composite dimensions (tuples of attributes) are not exposed.
+- Polars categorical string axes are not exposed; the typed feature table carries numeric and one-hot columns.
+- Polars median, first, last and count/len aggregations are not exposed.
+- Numeric bins follow pandas' right-closed intervals with an inclusive lowest edge. Polars uses left-closed bins and an inclusive maximum with a near-maximum tolerance.
+- Cube values are aggregated row by row. Polars joins dimensions and values by case id, which can multiply observations for repeated ids.
+- Auto-binning uses exact equality for constant columns and requires 1..=10000 divisions. Polars treats near-equal extrema as constant and clamps divisions to at least one.
 
 ### SaCoFa and PRIPEL entry point (`ichnos-privacy`)
 
@@ -1816,6 +1834,22 @@ The Declare model types are reused from `ichnos-discovery`; moving them to `ichn
 - Empty logs return an empty copy; pm4py's DataFrame arrival helper fails on no cases.
 - Enrichment requires date-valued timestamps.
 - Computed durations use microsecond resolution; submicrosecond detail is not retained in the enrichment values.
+
+### OCEL filters (`ichnos-ocel`)
+
+- Callers choose an event id, activity, timestamp or extra attribute with `EventField`, and an object id, type or extra attribute with `ObjectField`. pm4py lets callers change dataframe column names.
+- Each filter returns an independent log. It keeps row order, attributes, relation qualifiers, log metadata and the flag recording whether the original times had no time zone. pm4py's wrappers make shallow or deep copies depending on the filter.
+- An extra attribute missing from the whole log does not match. pm4py raises an error when the corresponding dataframe column is absent.
+- An event or object with no value for the chosen attribute does not match: Keep drops it and Remove keeps it. Rust has no stored missing-value marker to put in the matching set; pandas allows matching missing values explicitly.
+- Lists and containers are compared by their contents. pandas' membership checks depend on how a container is represented.
+- Allowed object types and activities are compared separately. pm4py joins their strings with `@#@#`, which can confuse different pairs containing that separator.
+- Timestamp filtering takes `EventTimeField::Timestamp` or `EventTimeField::DateAttribute`, and two date/time values. Callers parse strings and decide their time zones before calling it.
+- A missing date attribute or a value of another type does not match. pandas may raise an error when comparing incompatible values.
+- Expanding an object selection ignores unknown object ids. pm4py can raise an error for an unknown id at levels above one.
+- Objects in each connected group are sorted by id, and groups are ordered by their first id. pm4py's order depends on graph insertion and set iteration.
+- `object_connected_components` returns groups that can be reused in later calls. pm4py optionally returns the filtered log and those groups together from `filter_ocel_cc_object`.
+- Start/end filters find an object's type in the objects table and skip a relation whose object is absent there. A hand-built `Ocel` can contain such a relation; pm4py can still use the type stored on its relations table.
+- Each filter has its own named golden. The goldens `ocel_filters/all-{example-log,newocel,ocel20-example}-jsonocel` also run all fifteen filters on the three complete logs and compare every retained table row.
 
 ## Proposed lanes
 
