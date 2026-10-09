@@ -182,7 +182,8 @@ pub fn heuristics_net(
         .collect();
     let mut added = BTreeSet::new();
     for (a, b) in loops {
-        if eligible(&a, &b, &h)
+        if h.dfg_matrix.get(&a).is_some_and(|row| row.contains_key(&b))
+            && eligible(&a, &b, &h)
             && get(&h.dependency_matrix, &a, &b) < options.dependency_threshold
             && get(&h.dependency_matrix, &b, &a) < options.dependency_threshold
         {

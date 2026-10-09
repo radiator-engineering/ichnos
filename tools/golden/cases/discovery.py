@@ -376,3 +376,6 @@ for _id, _traces in {
 }.items():
     case(f"classic-miners-{_id}", functions=CLASSIC_MINER_FUNCTIONS,
          params={"traces": _traces, "activity_key": "task" if _id == "custom-key" else "concept:name"})(classic_miners)
+
+
+case("classic-miners-cleaned-loop",functions=CLASSIC_MINER_FUNCTIONS,params={"traces":[["a","c","b"]]*20+[["a","b","a","c","b"]],"variants":[{"min_dfg_occurrences":0}]})(classic_miners)

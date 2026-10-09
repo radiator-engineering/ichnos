@@ -270,3 +270,8 @@ fn validates_keys_thresholds_and_boundary_collisions() {
     log.traces[0].events[1].attributes.remove("time:timestamp");
     heuristics_net(&log, &keys, &Default::default()).unwrap();
 }
+
+#[test]
+fn cleaned_loop_with_zero_minimum() {
+    check_case("cleaned-loop");
+}
