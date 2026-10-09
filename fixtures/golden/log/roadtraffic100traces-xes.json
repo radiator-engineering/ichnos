@@ -1,0 +1,242 @@
+{
+  "expected": {
+    "activities": {
+      "Add penalty": 57,
+      "Create Fine": 100,
+      "Insert Date Appeal to Prefecture": 1,
+      "Insert Fine Notification": 57,
+      "Notify Result Appeal to Offender": 1,
+      "Payment": 58,
+      "Receive Result Appeal from Prefecture": 1,
+      "Send Appeal to Prefecture": 1,
+      "Send Fine": 78,
+      "Send for Credit Collection": 36
+    },
+    "dfg": [
+      {
+        "count": 20,
+        "source": "Add penalty",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Add penalty",
+        "target": "Send Appeal to Prefecture"
+      },
+      {
+        "count": 36,
+        "source": "Add penalty",
+        "target": "Send for Credit Collection"
+      },
+      {
+        "count": 23,
+        "source": "Create Fine",
+        "target": "Payment"
+      },
+      {
+        "count": 77,
+        "source": "Create Fine",
+        "target": "Send Fine"
+      },
+      {
+        "count": 1,
+        "source": "Insert Date Appeal to Prefecture",
+        "target": "Add penalty"
+      },
+      {
+        "count": 52,
+        "source": "Insert Fine Notification",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Insert Fine Notification",
+        "target": "Insert Date Appeal to Prefecture"
+      },
+      {
+        "count": 4,
+        "source": "Insert Fine Notification",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Notify Result Appeal to Offender",
+        "target": "Payment"
+      },
+      {
+        "count": 4,
+        "source": "Payment",
+        "target": "Add penalty"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 5,
+        "source": "Payment",
+        "target": "Payment"
+      },
+      {
+        "count": 1,
+        "source": "Payment",
+        "target": "Send Fine"
+      },
+      {
+        "count": 1,
+        "source": "Receive Result Appeal from Prefecture",
+        "target": "Notify Result Appeal to Offender"
+      },
+      {
+        "count": 1,
+        "source": "Send Appeal to Prefecture",
+        "target": "Receive Result Appeal from Prefecture"
+      },
+      {
+        "count": 56,
+        "source": "Send Fine",
+        "target": "Insert Fine Notification"
+      },
+      {
+        "count": 5,
+        "source": "Send Fine",
+        "target": "Payment"
+      }
+    ],
+    "end_activities": {
+      "Payment": 47,
+      "Send Fine": 17,
+      "Send for Credit Collection": 36
+    },
+    "n_cases": 100,
+    "n_events": 390,
+    "start_activities": {
+      "Create Fine": 100
+    },
+    "variants": [
+      {
+        "activities": [
+          "Create Fine",
+          "Payment"
+        ],
+        "count": 22
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Payment",
+          "Send Fine"
+        ],
+        "count": 1
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine"
+        ],
+        "count": 16
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment"
+        ],
+        "count": 10
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment",
+          "Payment"
+        ],
+        "count": 5
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        "count": 36
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        "count": 1
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Insert Fine Notification",
+          "Payment",
+          "Add penalty",
+          "Payment"
+        ],
+        "count": 4
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Payment"
+        ],
+        "count": 4
+      },
+      {
+        "activities": [
+          "Create Fine",
+          "Send Fine",
+          "Payment",
+          "Insert Fine Notification",
+          "Add penalty",
+          "Payment"
+        ],
+        "count": 1
+      }
+    ]
+  },
+  "meta": {
+    "area": "log",
+    "case": "roadtraffic100traces-xes",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.get_event_attribute_values",
+      "pm4py.get_start_activities",
+      "pm4py.get_end_activities",
+      "pm4py.get_variants",
+      "pm4py.discover_dfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
