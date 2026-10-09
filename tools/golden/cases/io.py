@@ -275,3 +275,99 @@ for rel in MODEL_FIXTURES:
 for rel in ["special.pnml", "loop.ptml", "boundary.dfg"]:
     case("writer-" + rel.replace(".", "-"), fixtures={"model": "writer-output/" + rel},
          functions=["pm4py.read_" + rel.rsplit(".", 1)[1], "pm4py.discover_footprints"])(summarize_model)
+
+
+# BPMN diagrams. ``bpmn-read-*`` is pm4py.read_bpmn of a fixture;
+# ``bpmn-write-*`` reads the fixture, writes it with the etree exporter (what
+# pm4py.write_bpmn does with auto_layout=False) and reads the XML back.
+# ``bpmn-writer-*`` reads a file that ichnos's writer produced. pm4py gives
+# nodes outside any process a random DEFAULT_PROCESS, which is removed from
+# every process name here. The process id of a written diagram is the last
+# process element, whose order in pm4py's output depends on hashing, so
+# write cases leave it out. Failures are recorded as {"error": class name,
+# "stage": "read" or "write"}.
+def describe_bpmn_io(b, with_process_id=True):
+    from pm4py.objects.bpmn.obj import BPMN, DEFAULT_PROCESS
+    from cases.bpmn import describe_bpmn
+
+    def process(p):
+        return str(p).replace(DEFAULT_PROCESS, "")
+
+    layout = b.get_layout()
+    nodes = {str(n.get_id()): n for n in b.get_nodes()}
+    described = describe_bpmn(b)
+    for d in described["nodes"]:
+        n = nodes[d["id"]]
+        start = isinstance(n, BPMN.StartEvent)
+        lay = layout.get(n)
+        d.update({
+            "process": process(d["process"]),
+            "text": n.text if isinstance(n, BPMN.TextAnnotation) else None,
+            "process_ref": n.process_ref if isinstance(n, BPMN.Participant) else None,
+            "interrupting": n.get_isInterrupting() if start else None,
+            "parallel_multiple": n.get_parallelMultiple() if start else None,
+            "bounds": [float(lay.get_x()), float(lay.get_y()),
+                       float(lay.get_width()), float(lay.get_height())],
+        })
+    for f in described["flows"]:
+        f["process"] = process(f["process"])
+    described["name"] = b.get_name()
+    if not with_process_id:
+        del described["process_id"]
+    return described
+
+
+def bpmn_read(fixtures):
+    try:
+        b = pm4py.read_bpmn(str(fixtures["model"]))
+    except Exception as e:
+        return {"error": type(e).__name__, "stage": "read"}
+    return describe_bpmn_io(b)
+
+
+def bpmn_write(fixtures, plane=True, incoming_outgoing=True):
+    from pm4py.objects.bpmn.exporter.variants import etree
+    from pm4py.objects.bpmn.importer.variants import lxml
+
+    try:
+        b = pm4py.read_bpmn(str(fixtures["model"]))
+    except Exception as e:
+        return {"error": type(e).__name__, "stage": "read"}
+    try:
+        xml = etree.get_xml_string(b, parameters={
+            etree.Parameters.ENABLE_BPMN_PLANE_EXPORTING: plane,
+            etree.Parameters.ENABLE_INCOMING_OUTGOING_EXPORTING: incoming_outgoing,
+        })
+    except Exception as e:
+        return {"error": type(e).__name__, "stage": "write"}
+    return describe_bpmn_io(lxml.import_from_string(xml), with_process_id=False)
+
+
+BPMN_FIXTURES = [
+    'a32f0n00.bpmn',
+    'more_models/SimpleParallel.bpmn',
+    'more_models/Subprocess1.bpmn',
+    'more_models/Subprocess3.bpmn',
+    'more_models/ch7_CreditAppSimulation.bpmn',
+    'more_models/ch7_InsuranceClaimsSimulationNormalSeason.bpmn',
+    'more_models/simple_model.bpmn',
+    'receipt.bpmn',
+    'running-example.bpmn',
+    'synthetic-bpmn/all_kinds.bpmn',
+]
+BPMN_WRITE_FUNCTIONS = [
+    "pm4py.read_bpmn",
+    "pm4py.objects.bpmn.exporter.variants.etree.get_xml_string",
+    "pm4py.objects.bpmn.importer.variants.lxml.import_from_string",
+]
+for rel in BPMN_FIXTURES:
+    stem = re.sub(r"[^a-z0-9_-]", "-", rel.rsplit("/", 1)[-1].rsplit(".", 1)[0].lower())
+    case(f"bpmn-read-{stem}", fixtures={"model": rel}, functions=["pm4py.read_bpmn"])(bpmn_read)
+    case(f"bpmn-write-{stem}", fixtures={"model": rel}, functions=BPMN_WRITE_FUNCTIONS)(bpmn_write)
+case("bpmn-writer-special", fixtures={"model": "writer-output/special.bpmn"},
+     functions=["pm4py.read_bpmn"])(bpmn_read)
+# ``bpmn-options-*`` writes with both of pm4py's export switches off: no
+# diagram plane and no ``incoming``/``outgoing`` children.
+case("bpmn-options-all_kinds", fixtures={"model": "synthetic-bpmn/all_kinds.bpmn"},
+     functions=BPMN_WRITE_FUNCTIONS,
+     params={"plane": False, "incoming_outgoing": False})(bpmn_write)

@@ -1,0 +1,875 @@
+{
+  "expected": {
+    "flows": [
+      {
+        "class": "SequenceFlow",
+        "id": "sf12",
+        "name": "",
+        "process": "proc_a",
+        "source": "and",
+        "target": "throw_msg"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf18",
+        "name": "",
+        "process": "proc_a",
+        "source": "b_cancel",
+        "target": "end_cancel"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf17",
+        "name": "",
+        "process": "proc_a",
+        "source": "b_err",
+        "target": "end_term"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf19",
+        "name": "",
+        "process": "proc_a",
+        "source": "b_msg",
+        "target": "catch_err"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf_refs",
+        "name": "",
+        "process": "proc_b",
+        "source": "b_start",
+        "target": "b_task"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf20",
+        "name": "",
+        "process": "proc_a",
+        "source": "b_timer",
+        "target": "catch_cancel"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf7",
+        "name": "",
+        "process": "proc_a",
+        "source": "bill",
+        "target": "evg"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf11",
+        "name": "",
+        "process": "proc_a",
+        "source": "catch_msg",
+        "target": "and"
+      },
+      {
+        "class": "Association",
+        "id": "assoc",
+        "name": "",
+        "process": "proc_a",
+        "source": "check",
+        "target": "note"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf2",
+        "name": "",
+        "process": "proc_a",
+        "source": "check",
+        "target": "xor"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf9",
+        "name": "",
+        "process": "proc_a",
+        "source": "evg",
+        "target": "catch_msg"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf8",
+        "name": "",
+        "process": "proc_a",
+        "source": "evg",
+        "target": "timer"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf14",
+        "name": "",
+        "process": "proc_a",
+        "source": "or",
+        "target": "end"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf15",
+        "name": "",
+        "process": "proc_a",
+        "source": "or",
+        "target": "throw"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf_sub2",
+        "name": "",
+        "process": "sub",
+        "source": "pack",
+        "target": "sub_end"
+      },
+      {
+        "class": "MessageFlow",
+        "id": "mf",
+        "name": "order",
+        "process": "collab",
+        "source": "send",
+        "target": "b_start"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf5",
+        "name": "",
+        "process": "proc_a",
+        "source": "send",
+        "target": "sub"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf1",
+        "name": "goon",
+        "process": "proc_a",
+        "source": "start",
+        "target": "check"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf6",
+        "name": "",
+        "process": "proc_a",
+        "source": "sub",
+        "target": "bill"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf_sub1",
+        "name": "",
+        "process": "sub",
+        "source": "sub_start",
+        "target": "pack"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf16",
+        "name": "",
+        "process": "proc_a",
+        "source": "throw",
+        "target": "end_msg"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf13",
+        "name": "",
+        "process": "proc_a",
+        "source": "throw_msg",
+        "target": "or"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf10",
+        "name": "",
+        "process": "proc_a",
+        "source": "timer",
+        "target": "and"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf4",
+        "name": "no",
+        "process": "proc_a",
+        "source": "xor",
+        "target": "end_err"
+      },
+      {
+        "class": "SequenceFlow",
+        "id": "sf3",
+        "name": "yes",
+        "process": "proc_a",
+        "source": "xor",
+        "target": "send"
+      }
+    ],
+    "name": "Process B",
+    "nodes": [
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ParallelGateway",
+        "depth": null,
+        "direction": "Converging",
+        "id": "and",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": "sub",
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "CancelBoundaryEvent",
+        "depth": null,
+        "direction": null,
+        "id": "b_cancel",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": "check",
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ErrorBoundaryEvent",
+        "depth": null,
+        "direction": null,
+        "id": "b_err",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": "check",
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "MessageBoundaryEvent",
+        "depth": null,
+        "direction": null,
+        "id": "b_msg",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalStartEvent",
+        "depth": null,
+        "direction": null,
+        "id": "b_start",
+        "interrupting": false,
+        "name": "",
+        "parallel_multiple": false,
+        "process": "proc_b",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "b_task",
+        "interrupting": null,
+        "name": "Receive",
+        "parallel_multiple": null,
+        "process": "proc_b",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": "bill",
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "BoundaryEvent",
+        "depth": null,
+        "direction": null,
+        "id": "b_timer",
+        "interrupting": null,
+        "name": "late",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "bill",
+        "interrupting": null,
+        "name": "Bill",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "CancelIntermediateCatchEvent",
+        "depth": null,
+        "direction": null,
+        "id": "catch_cancel",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ErrorIntermediateCatchEvent",
+        "depth": null,
+        "direction": null,
+        "id": "catch_err",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "MessageIntermediateCatchEvent",
+        "depth": null,
+        "direction": null,
+        "id": "catch_msg",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          120.0,
+          78.0,
+          100.0,
+          80.0
+        ],
+        "class": "UserTask",
+        "depth": null,
+        "direction": null,
+        "id": "check",
+        "interrupting": null,
+        "name": "Checkorder",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "Collaboration",
+        "depth": null,
+        "direction": null,
+        "id": "collab",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "collab",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "empty_note",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": ""
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "end",
+        "interrupting": null,
+        "name": "Done",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "CancelEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "end_cancel",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ErrorEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "end_err",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "MessageEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "end_msg",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "TerminateEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "end_term",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "EventBasedGateway",
+        "depth": null,
+        "direction": "Unspecified",
+        "id": "evg",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          120.0,
+          10.0,
+          140.0,
+          30.0
+        ],
+        "class": "TextAnnotation",
+        "depth": null,
+        "direction": null,
+        "id": "note",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": "Checks take <1 day"
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "InclusiveGateway",
+        "depth": null,
+        "direction": "Unspecified",
+        "id": "or",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "Task",
+        "depth": null,
+        "direction": null,
+        "id": "pack",
+        "interrupting": null,
+        "name": "Pack",
+        "parallel_multiple": null,
+        "process": "sub",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          1200.0,
+          400.0
+        ],
+        "class": "Participant",
+        "depth": null,
+        "direction": null,
+        "id": "pool_a",
+        "interrupting": null,
+        "name": "PoolA",
+        "parallel_multiple": null,
+        "process": "",
+        "process_ref": "proc_a",
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "Participant",
+        "depth": null,
+        "direction": null,
+        "id": "pool_b",
+        "interrupting": null,
+        "name": "Pool B",
+        "parallel_multiple": null,
+        "process": "",
+        "process_ref": "proc_b",
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "SendTask",
+        "depth": null,
+        "direction": null,
+        "id": "send",
+        "interrupting": null,
+        "name": "Send order",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          40.5,
+          100.0,
+          36.0,
+          36.0
+        ],
+        "class": "MessageStartEvent",
+        "depth": null,
+        "direction": null,
+        "id": "start",
+        "interrupting": false,
+        "name": "Order received",
+        "parallel_multiple": false,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          400.0,
+          60.0,
+          300.0,
+          200.0
+        ],
+        "class": "SubProcess",
+        "depth": 2,
+        "direction": null,
+        "id": "sub",
+        "interrupting": null,
+        "name": "Ship",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalEndEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sub_end",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "sub",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalStartEvent",
+        "depth": null,
+        "direction": null,
+        "id": "sub_start",
+        "interrupting": false,
+        "name": "",
+        "parallel_multiple": false,
+        "process": "sub",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "NormalIntermediateThrowEvent",
+        "depth": null,
+        "direction": null,
+        "id": "throw",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "MessageIntermediateThrowEvent",
+        "depth": null,
+        "direction": null,
+        "id": "throw_msg",
+        "interrupting": null,
+        "name": "",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "IntermediateCatchEvent",
+        "depth": null,
+        "direction": null,
+        "id": "timer",
+        "interrupting": null,
+        "name": "wait",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      },
+      {
+        "activity": null,
+        "bounds": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ],
+        "class": "ExclusiveGateway",
+        "depth": null,
+        "direction": "Diverging",
+        "id": "xor",
+        "interrupting": null,
+        "name": "ok?",
+        "parallel_multiple": null,
+        "process": "proc_a",
+        "process_ref": null,
+        "text": null
+      }
+    ],
+    "process_id": "proc_b"
+  },
+  "meta": {
+    "area": "io",
+    "case": "bpmn-read-all_kinds",
+    "fixtures": {
+      "model": "fixtures/logs/synthetic-bpmn/all_kinds.bpmn"
+    },
+    "functions": [
+      "pm4py.read_bpmn"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_bpmn",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
