@@ -27,3 +27,7 @@ pub use inductive::{
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
+
+/// Binary-region ILP process discovery.
+pub mod ilp;
+pub use ilp::{IlpActivity, IlpOptions, petri_net_ilp};

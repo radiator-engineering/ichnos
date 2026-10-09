@@ -1,0 +1,429 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "alpha": 1.0,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "check ticket",
+                "decide",
+                "examine casually",
+                "examine thoroughly",
+                "pay compensation",
+                "register request",
+                "reinitiate request",
+                "reject request"
+              ],
+              "parallel": [
+                [
+                  "check ticket",
+                  "examine casually"
+                ],
+                [
+                  "check ticket",
+                  "examine thoroughly"
+                ],
+                [
+                  "examine casually",
+                  "check ticket"
+                ],
+                [
+                  "examine thoroughly",
+                  "check ticket"
+                ]
+              ],
+              "sequence": [
+                [
+                  "check ticket",
+                  "decide"
+                ],
+                [
+                  "decide",
+                  "pay compensation"
+                ],
+                [
+                  "decide",
+                  "reinitiate request"
+                ],
+                [
+                  "decide",
+                  "reject request"
+                ],
+                [
+                  "examine casually",
+                  "decide"
+                ],
+                [
+                  "examine thoroughly",
+                  "decide"
+                ],
+                [
+                  "register request",
+                  "check ticket"
+                ],
+                [
+                  "register request",
+                  "examine casually"
+                ],
+                [
+                  "register request",
+                  "examine thoroughly"
+                ],
+                [
+                  "reinitiate request",
+                  "check ticket"
+                ],
+                [
+                  "reinitiate request",
+                  "examine casually"
+                ],
+                [
+                  "reinitiate request",
+                  "examine thoroughly"
+                ]
+              ],
+              "start_activities": [
+                "register request"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "register request"
+              ],
+              [
+                "register request",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "check ticket",
+                "examine thoroughly"
+              ],
+              [
+                "register request",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "examine casually",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              [
+                "register request",
+                "examine thoroughly",
+                "check ticket"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "alpha": 0.2,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "check ticket",
+                "decide",
+                "examine casually",
+                "examine thoroughly",
+                "pay compensation",
+                "register request",
+                "reinitiate request",
+                "reject request"
+              ],
+              "parallel": [
+                [
+                  "check ticket",
+                  "examine casually"
+                ],
+                [
+                  "check ticket",
+                  "examine thoroughly"
+                ],
+                [
+                  "examine casually",
+                  "check ticket"
+                ],
+                [
+                  "examine thoroughly",
+                  "check ticket"
+                ]
+              ],
+              "sequence": [
+                [
+                  "check ticket",
+                  "decide"
+                ],
+                [
+                  "decide",
+                  "pay compensation"
+                ],
+                [
+                  "decide",
+                  "reinitiate request"
+                ],
+                [
+                  "decide",
+                  "reject request"
+                ],
+                [
+                  "examine casually",
+                  "decide"
+                ],
+                [
+                  "examine thoroughly",
+                  "decide"
+                ],
+                [
+                  "register request",
+                  "check ticket"
+                ],
+                [
+                  "register request",
+                  "examine casually"
+                ],
+                [
+                  "register request",
+                  "examine thoroughly"
+                ],
+                [
+                  "reinitiate request",
+                  "check ticket"
+                ],
+                [
+                  "reinitiate request",
+                  "examine casually"
+                ],
+                [
+                  "reinitiate request",
+                  "examine thoroughly"
+                ]
+              ],
+              "start_activities": [
+                "register request"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "register request"
+              ],
+              [
+                "register request",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "check ticket",
+                "examine thoroughly"
+              ],
+              [
+                "register request",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "examine casually",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              [
+                "register request",
+                "examine thoroughly",
+                "check ticket"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "alpha": 0.0,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "check ticket",
+                "decide",
+                "examine casually",
+                "examine thoroughly",
+                "pay compensation",
+                "register request",
+                "reinitiate request",
+                "reject request"
+              ],
+              "parallel": [
+                [
+                  "check ticket",
+                  "examine casually"
+                ],
+                [
+                  "check ticket",
+                  "examine thoroughly"
+                ],
+                [
+                  "examine casually",
+                  "check ticket"
+                ],
+                [
+                  "examine thoroughly",
+                  "check ticket"
+                ]
+              ],
+              "sequence": [
+                [
+                  "check ticket",
+                  "decide"
+                ],
+                [
+                  "decide",
+                  "pay compensation"
+                ],
+                [
+                  "decide",
+                  "reinitiate request"
+                ],
+                [
+                  "decide",
+                  "reject request"
+                ],
+                [
+                  "examine casually",
+                  "decide"
+                ],
+                [
+                  "examine thoroughly",
+                  "decide"
+                ],
+                [
+                  "register request",
+                  "check ticket"
+                ],
+                [
+                  "register request",
+                  "examine casually"
+                ],
+                [
+                  "register request",
+                  "examine thoroughly"
+                ],
+                [
+                  "reinitiate request",
+                  "check ticket"
+                ],
+                [
+                  "reinitiate request",
+                  "examine casually"
+                ],
+                [
+                  "reinitiate request",
+                  "examine thoroughly"
+                ]
+              ],
+              "start_activities": [
+                "register request"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "register request"
+              ],
+              [
+                "register request",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "check ticket",
+                "examine thoroughly"
+              ],
+              [
+                "register request",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "examine casually",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              [
+                "register request",
+                "examine thoroughly",
+                "check ticket"
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "solver": "scipy/highs/integer/lexicographic"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "ilp-miner-running-example-xes",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_petri_net_ilp",
+      "pm4py.algo.discovery.ilp.variants.classic.apply",
+      "pm4py.util.lp.variants.scipy_solver.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
