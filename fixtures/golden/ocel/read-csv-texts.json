@@ -1,0 +1,2015 @@
+{
+  "expected": {
+    "cases": {
+      "blank-lines": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\n\ne1,a,2022-01-09 14:00:00,['o1'],,\n\n\n"
+      },
+      "bom": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "﻿ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,\n"
+      },
+      "crlf": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "x\r\ny"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\r\ne1,a,2022-01-09 14:00:00,['o1'],,\"x\r\ny\"\r\n"
+      },
+      "duplicate-columns": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "Unnamed: 7": [
+                  "string",
+                  "3"
+                ],
+                "x": [
+                  "string",
+                  "1"
+                ],
+                "x.1": [
+                  "string",
+                  "2"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "o2",
+              "type": "a.1"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o2",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a.1"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:a,x,x,\ne1,a,2022-01-09 14:00:00,['o1'],['o2'],1,2,3\n"
+      },
+      "empty": {
+        "error": "EmptyDataError",
+        "text": ""
+      },
+      "header-only": {
+        "ocel": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\n"
+      },
+      "list-bad": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"['a' 1]\",[,\n"
+      },
+      "list-bad-bytes": {
+        "error": "ArrowInvalid",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[b'\\xff']\",,\n"
+      },
+      "list-binop": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[1+2]\",\"['a'] + ['b']\",\n"
+      },
+      "list-bool": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,[True],,\n"
+      },
+      "list-bytes": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "x",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "x",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[b'x']\",,\n"
+      },
+      "list-complex": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[1+2j]\",,\n"
+      },
+      "list-dict": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[{'a': 1}]\",,\n"
+      },
+      "list-forms": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "A",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "A",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "J",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "\\'",
+              "type": "b"
+            },
+            {
+              "attributes": {},
+              "id": "\\q",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "a",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "bc",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "d",
+              "type": "b"
+            },
+            {
+              "attributes": {},
+              "id": "e",
+              "type": "b"
+            },
+            {
+              "attributes": {},
+              "id": "f",
+              "type": "b"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "a",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "bc",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "d",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "b"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "e",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "b"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "\\q",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "A",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "J",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "A",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "\\'",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "b"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "f",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "b"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[('a'), ('b' 'c'),]  # note\",\"[\n 'd',  \\\n'e']\",\ne2,a,2022-01-09 15:00:00,\"['\\q', '\\101', '\\x4a', b'\\x41', '\\\n']\",\"[R'\\'', Rb'f']\",\n"
+      },
+      "list-fstring": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[f'a']\",\"['a' b'b']\",\n"
+      },
+      "list-named-escape": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "•",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "•",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"['\\N{BULLET}']\",,\n"
+      },
+      "list-nested": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[['a']]\",,\n"
+      },
+      "list-none": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "a",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "a",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"['a', None]\",,\n"
+      },
+      "list-numbers": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[1, 2.5]\",,\n"
+      },
+      "list-surrogate": {
+        "error": "UnicodeEncodeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"['\\ud800']\",,\n"
+      },
+      "list-tuple": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[('a',)]\",,\n"
+      },
+      "lists": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e3",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e4",
+              "timestamp": "2022-01-09T17:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e5",
+              "timestamp": "2022-01-09T18:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e6",
+              "timestamp": "2022-01-09T19:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "\\\n",
+              "type": "b"
+            },
+            {
+              "attributes": {},
+              "id": "\\n",
+              "type": "b"
+            },
+            {
+              "attributes": {},
+              "id": "a",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "a",
+              "type": "b"
+            },
+            {
+              "attributes": {},
+              "id": "b",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "cd",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "t",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "x",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "y",
+              "type": "b"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "a",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "b",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "a",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "a",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "a",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "b"
+            },
+            {
+              "activity": "a",
+              "event": "e3",
+              "object": "cd",
+              "qualifier": "",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e3",
+              "object": "\\n",
+              "qualifier": "",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00",
+              "type": "b"
+            },
+            {
+              "activity": "a",
+              "event": "e5",
+              "object": "x",
+              "qualifier": "",
+              "timestamp": "2022-01-09T18:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e5",
+              "object": "y",
+              "qualifier": "",
+              "timestamp": "2022-01-09T18:00:00.000000+00:00",
+              "type": "b"
+            },
+            {
+              "activity": "a",
+              "event": "e6",
+              "object": "t",
+              "qualifier": "",
+              "timestamp": "2022-01-09T19:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e6",
+              "object": "\\\n",
+              "qualifier": "",
+              "timestamp": "2022-01-09T19:00:00.000000+00:00",
+              "type": "b"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,\"[ 'a' , \"\"b\"\" ]\",\"['a\\tb', '\\x41\\u00e9', 'q\\\\'s']\",\ne2,a,2022-01-09 15:00:00,\"['a', 'a']\",['a'],\ne3,a,2022-01-09 16:00:00,\"[u'c' \"\"d\"\"]\",\"[r'\\n']\",\ne4,a,2022-01-09 17:00:00,\"('t',)\",\"[]\",\ne5,a,2022-01-09 18:00:00,\"['x',]\",\"['y'] \",\ne6,a,2022-01-09 19:00:00,\"['''t''']\",\"['\\\\\\n']\",\n"
+      },
+      "lone-cr": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "x"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\re1,a,2022-01-09 14:00:00,['o1'],,x\re2,a,2022-01-09 15:00:00,['o1'],,\r"
+      },
+      "long-row-first": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,1,2\n"
+      },
+      "long-row-first-empty": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,1,\n"
+      },
+      "long-row-first-two": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,1,2,3\ne2,a,2022-01-09 15:00:00,['o1'],,1,2\n"
+      },
+      "long-row-later": {
+        "error": "ParserError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,1\ne2,a,2022-01-09 15:00:00,['o1'],,1,2\n"
+      },
+      "long-row-later-empty": {
+        "error": "ParserError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,1\ne2,a,2022-01-09 15:00:00,['o1'],,1,\n"
+      },
+      "long-rows-empty": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,1,\ne2,a,2022-01-09 15:00:00,['o1'],,1,\n"
+      },
+      "missing-columns": {
+        "error": "KeyError",
+        "text": "ocel:eid,ocel:type:a\ne1,['o1']\n"
+      },
+      "na-activity": {
+        "error": "ArrowTypeError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,NA,2022-01-09 14:00:00,['o1'],,\n"
+      },
+      "na-activity-unrelated": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,n/a,2022-01-09 14:00:00,,,\ne2,b,2022-01-09 15:00:00,['o1'],,\n"
+      },
+      "na-attributes": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "b",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            },
+            {
+              "activity": "c",
+              "attributes": {},
+              "id": "e3",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00"
+            },
+            {
+              "activity": "d",
+              "attributes": {
+                "x": [
+                  "string",
+                  " NA"
+                ]
+              },
+              "id": "e4",
+              "timestamp": "2022-01-09T17:00:00.000000+00:00"
+            },
+            {
+              "activity": "e",
+              "attributes": {},
+              "id": "e5",
+              "timestamp": "2022-01-09T18:00:00.000000+00:00"
+            },
+            {
+              "activity": "f",
+              "attributes": {},
+              "id": "e6",
+              "timestamp": "2022-01-09T19:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "b",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "c",
+              "event": "e3",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T16:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "d",
+              "event": "e4",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T17:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "e",
+              "event": "e5",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T18:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "f",
+              "event": "e6",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T19:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,null\ne2,b,2022-01-09 15:00:00,['o1'],,#N/A\ne3,c,2022-01-09 16:00:00,['o1'],,None\ne4,d,2022-01-09 17:00:00,['o1'],, NA\ne5,e,2022-01-09 18:00:00,['o1'],,<NA>\ne6,f,2022-01-09 19:00:00,['o1'],,nan\n"
+      },
+      "no-type-columns": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,x\ne1,a,2022-01-09 14:00:00,1\n"
+      },
+      "quote-then-text": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "ax"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,\"a\"x\n"
+      },
+      "quoted-na": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,\"NA\"\n"
+      },
+      "quotes": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "a\"b"
+                ]
+              },
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "a\"b\""
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,a\"b\ne2,a,2022-01-09 15:00:00,['o1'],,\"a\"\"b\"\"\"\n"
+      },
+      "same-id-two-types": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "x",
+              "type": "a"
+            },
+            {
+              "attributes": {},
+              "id": "x",
+              "type": "b"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "x",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "x",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "b"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['x'],['x'],\n"
+      },
+      "short-row": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {
+                "x": [
+                  "string",
+                  "1"
+                ]
+              },
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1']\ne2,a,2022-01-09 15:00:00,['o1'],,1\n"
+      },
+      "space-line": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\n \t \ne1,a,2022-01-09 14:00:00,['o1'],,\n"
+      },
+      "ts-date": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-08T00:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T00:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-08T00:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T00:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09,['o1'],,\ne2,a,2022-01-08,['o1'],,\n"
+      },
+      "ts-date-then-time": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09,['o1'],,\ne2,a,2022-01-09 15:00:00,['o1'],,\n"
+      },
+      "ts-day-first": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2019-05-20T07:07:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2019-05-20T07:07:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,20/05/2019 07:07,['o1'],,\n"
+      },
+      "ts-fraction": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.500000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.123456+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.500000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.123456+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00.5,['o1'],,\ne2,a,2022-01-09 15:00:00.123456,['o1'],,\n"
+      },
+      "ts-fraction-then-none": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00.5,['o1'],,\ne2,a,2022-01-09 15:00:00,['o1'],,\n"
+      },
+      "ts-garbage": {
+        "error": "DateParseError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,yesterday,['o1'],,\n"
+      },
+      "ts-hours": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14,['o1'],,\ne2,a,2022-01-09 15,['o1'],,\n"
+      },
+      "ts-invalid-date": {
+        "error": "DateParseError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-02-30 00:00:00,['o1'],,\n"
+      },
+      "ts-minutes": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:30:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:30:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00,['o1'],,\ne2,a,2022-01-09 15:30,['o1'],,\n"
+      },
+      "ts-missing": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,,['o1'],,\ne2,a,2022-01-09 15:00:00,['o1'],,\n"
+      },
+      "ts-mixed-offsets": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00+01:00,['o1'],,\ne2,a,2022-01-09T15:00:00+02:00,['o1'],,\n"
+      },
+      "ts-naive-then-z": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00,['o1'],,\ne2,a,2022-01-09T15:00:00Z,['o1'],,\n"
+      },
+      "ts-nanoseconds": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.123456+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.123456+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00.123456789,['o1'],,\n"
+      },
+      "ts-none-then-fraction": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,\ne2,a,2022-01-09 15:00:00.5,['o1'],,\n"
+      },
+      "ts-offset": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00+01:00,['o1'],,\ne2,a,2022-01-09T15:00:00+01:00,['o1'],,\n"
+      },
+      "ts-offset-compact": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T13:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00+0100,['o1'],,\n"
+      },
+      "ts-offset-then-naive": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00+01:00,['o1'],,\ne2,a,2022-01-09T15:00:00,['o1'],,\n"
+      },
+      "ts-seconds": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-08T10:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-08T10:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,\ne2,a,2022-01-08 10:00:00,['o1'],,\n"
+      },
+      "ts-t": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00,['o1'],,\ne2,a,2022-01-09T15:00:00,['o1'],,\n"
+      },
+      "ts-t-then-space": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00,['o1'],,\ne2,a,2022-01-09 15:00:00,['o1'],,\n"
+      },
+      "ts-z": {
+        "error": "ValueError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00Z,['o1'],,\ne2,a,2022-01-09T15:00:00.000Z,['o1'],,\n"
+      },
+      "ts-z-fraction": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.250000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.250000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00.000Z,['o1'],,\ne2,a,2022-01-09T15:00:00.250Z,['o1'],,\n"
+      },
+      "ts-z-then-offset": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            },
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e2",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            },
+            {
+              "activity": "a",
+              "event": "e2",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T15:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09T14:00:00Z,['o1'],,\ne2,a,2022-01-09T15:00:00+00:00,['o1'],,\n"
+      },
+      "type-prefix-twice": {
+        "ocel": {
+          "e2e": [],
+          "events": [
+            {
+              "activity": "a",
+              "attributes": {},
+              "id": "e1",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00"
+            }
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            {
+              "attributes": {},
+              "id": "o1",
+              "type": "a"
+            }
+          ],
+          "relations": [
+            {
+              "activity": "a",
+              "event": "e1",
+              "object": "o1",
+              "qualifier": "",
+              "timestamp": "2022-01-09T14:00:00.000000+00:00",
+              "type": "a"
+            }
+          ]
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:aocel:type:b\ne1,a,2022-01-09 14:00:00,['o1']\n"
+      },
+      "unclosed-quote": {
+        "error": "ParserError",
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\ne1,a,2022-01-09 14:00:00,['o1'],,\"x\n"
+      },
+      "unrelated-without-id": {
+        "ocel": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        },
+        "text": "ocel:eid,ocel:activity,ocel:timestamp,ocel:type:a,ocel:type:b,x\n,a,2022-01-09 14:00:00,,,\ne2,,2022-01-09 15:00:00,[],,\n"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "read-csv-texts",
+    "fixtures": {},
+    "functions": [
+      "pm4py.read_ocel_csv"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

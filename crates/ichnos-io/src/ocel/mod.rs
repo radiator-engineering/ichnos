@@ -1,14 +1,19 @@
 //! Object-centric event log readers and writers: OCEL 1.0 and OCEL 2.0, as
-//! JSON and XML (pm4py's `read_ocel_json`, `read_ocel2_json`,
-//! `read_ocel_xml`, `read_ocel2_xml`, `read_ocel` and `read_ocel2`, and the
-//! matching `write_*` functions).
+//! JSON, XML and CSV (pm4py's `read_ocel_json`, `read_ocel2_json`,
+//! `read_ocel_xml`, `read_ocel2_xml`, `read_ocel_csv`, `read_ocel2_csv`,
+//! `read_ocel` and `read_ocel2`, and the matching `write_*` functions).
 //!
-//! Every reader ends as pm4py's do: it sorts the events by timestamp, keeping
-//! file order for ties, orders the relations the same way, then runs
-//! [`Ocel::make_consistent`] and [`Ocel::retain_related`]. So an event or
-//! object without a relation is not in the result.
+//! Every JSON and XML reader ends as pm4py's do: it sorts the events by
+//! timestamp, keeping file order for ties, orders the relations the same
+//! way, then runs [`Ocel::make_consistent`] and [`Ocel::retain_related`].
+//! So an event or object without a relation is not in the result. The CSV
+//! readers skip [`Ocel::retain_related`], as pm4py's do.
 
+mod csv;
+mod csv2;
+mod frame;
 mod json;
+mod literal;
 mod time;
 mod write;
 mod xml;
@@ -23,6 +28,10 @@ use ichnos_ocel::Ocel;
 
 use crate::error::{Error, Result};
 
+pub use csv::{read_ocel_csv, read_ocel_csv_from_reader, write_ocel_csv, write_ocel_csv_to_writer};
+pub use csv2::{
+    read_ocel2_csv, read_ocel2_csv_from_reader, write_ocel2_csv, write_ocel2_csv_to_writer,
+};
 pub use json::{
     read_ocel_json, read_ocel_json_from_reader, read_ocel2_json, read_ocel2_json_from_reader,
 };
@@ -55,13 +64,16 @@ impl Default for OcelReadOptions {
 }
 
 /// Reads an OCEL 1.0 log, choosing the format by extension as pm4py's
-/// `read_ocel` does: a name ending in `jsonocel` is JSON and one ending in
-/// `xmlocel` is XML. pm4py's CSV (`csv`) and SQLite (`.sqlite`) readers are
-/// not ported yet. `options` applies to XML.
+/// `read_ocel` does: a name ending in `csv` is CSV, without an objects
+/// table, one ending in `jsonocel` is JSON and one ending in `xmlocel` is
+/// XML. pm4py's SQLite (`.sqlite`) reader is not ported yet. `options`
+/// applies to XML.
 pub fn read_ocel(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
     let path = path.as_ref();
     let name = lower_name(path);
-    if name.ends_with("csv") || name.ends_with(".sqlite") {
+    if name.ends_with("csv") {
+        read_ocel_csv(path, None)
+    } else if name.ends_with(".sqlite") {
         Err(not_ported(path))
     } else if name.ends_with("jsonocel") {
         read_ocel_json(path)
@@ -74,9 +86,9 @@ pub fn read_ocel(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Oc
 
 /// Reads an OCEL 2.0 log, choosing the format by extension as pm4py's
 /// `read_ocel2` does: a name ending in `xml` or `xmlocel` is XML and one
-/// ending in `json` or `jsonocel` is JSON, each optionally followed by `.gz`.
-/// pm4py's bundle (`.ocel.zip`), SQLite (`sqlite`) and CSV (`.ocel.csv`)
-/// readers are not ported yet. `options` applies to XML.
+/// ending in `json` or `jsonocel` is JSON, each optionally followed by `.gz`,
+/// and one ending in `.ocel.csv` is CSV. pm4py's bundle (`.ocel.zip`) and
+/// SQLite (`sqlite`) readers are not ported yet. `options` applies to XML.
 pub fn read_ocel2(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<Ocel> {
     let path = path.as_ref();
     let name = lower_name(path);
@@ -85,8 +97,10 @@ pub fn read_ocel2(path: impl AsRef<Path>, options: &OcelReadOptions) -> Result<O
             .iter()
             .any(|e| name.ends_with(e) || name.ends_with(&format!("{e}.gz")))
     };
-    if name.ends_with(".ocel.zip") || name.ends_with("sqlite") || name.ends_with(".ocel.csv") {
+    if name.ends_with(".ocel.zip") || name.ends_with("sqlite") {
         Err(not_ported(path))
+    } else if name.ends_with(".ocel.csv") {
+        read_ocel2_csv(path)
     } else if matches(["xml", "xmlocel"]) {
         read_ocel2_xml(path, options)
     } else if matches(["json", "jsonocel"]) {
