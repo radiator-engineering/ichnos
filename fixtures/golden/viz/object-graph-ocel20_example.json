@@ -1,0 +1,237 @@
+{
+  "expected": {
+    "dot": {
+      "directed": true,
+      "edges": [
+        [
+          "n3",
+          "n0",
+          {}
+        ],
+        [
+          "n3",
+          "n1",
+          {}
+        ],
+        [
+          "n3",
+          "n5",
+          {}
+        ],
+        [
+          "n4",
+          "n2",
+          {}
+        ],
+        [
+          "n6",
+          "n0",
+          {}
+        ],
+        [
+          "n7",
+          "n1",
+          {}
+        ],
+        [
+          "n8",
+          "n2",
+          {}
+        ]
+      ],
+      "graph": {
+        "bgcolor": "white",
+        "rankdir": "LR"
+      },
+      "nodes": [
+        {
+          "attrs": {
+            "color": "#466EAD",
+            "fixedsize": "false",
+            "fontcolor": "#466EAD",
+            "label": "R1",
+            "shape": "ellipse"
+          },
+          "key": "n0"
+        },
+        {
+          "attrs": {
+            "color": "#466EAD",
+            "fixedsize": "false",
+            "fontcolor": "#466EAD",
+            "label": "R2",
+            "shape": "ellipse"
+          },
+          "key": "n1"
+        },
+        {
+          "attrs": {
+            "color": "#466EAD",
+            "fixedsize": "false",
+            "fontcolor": "#466EAD",
+            "label": "R3",
+            "shape": "ellipse"
+          },
+          "key": "n2"
+        },
+        {
+          "attrs": {
+            "color": "#56EA0E",
+            "fixedsize": "false",
+            "fontcolor": "#56EA0E",
+            "label": "PO1",
+            "shape": "ellipse"
+          },
+          "key": "n3"
+        },
+        {
+          "attrs": {
+            "color": "#56EA0E",
+            "fixedsize": "false",
+            "fontcolor": "#56EA0E",
+            "label": "PO2",
+            "shape": "ellipse"
+          },
+          "key": "n4"
+        },
+        {
+          "attrs": {
+            "color": "#63FE2A",
+            "fixedsize": "false",
+            "fontcolor": "#63FE2A",
+            "label": "PR1",
+            "shape": "ellipse"
+          },
+          "key": "n5"
+        },
+        {
+          "attrs": {
+            "color": "#C453A4",
+            "fixedsize": "false",
+            "fontcolor": "#C453A4",
+            "label": "P1",
+            "shape": "ellipse"
+          },
+          "key": "n6"
+        },
+        {
+          "attrs": {
+            "color": "#C453A4",
+            "fixedsize": "false",
+            "fontcolor": "#C453A4",
+            "label": "P2",
+            "shape": "ellipse"
+          },
+          "key": "n7"
+        },
+        {
+          "attrs": {
+            "color": "#C453A4",
+            "fixedsize": "false",
+            "fontcolor": "#C453A4",
+            "label": "P3",
+            "shape": "ellipse"
+          },
+          "key": "n8"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "colors": {
+        "Invoice": "#466EAD",
+        "Payment": "#C453A4",
+        "Purchase Order": "#56EA0E",
+        "Purchase Requisition": "#63FE2A"
+      },
+      "graph": [
+        [
+          "P1",
+          "R1"
+        ],
+        [
+          "P2",
+          "R2"
+        ],
+        [
+          "P3",
+          "R3"
+        ],
+        [
+          "PO1",
+          "PR1"
+        ],
+        [
+          "PO1",
+          "R1"
+        ],
+        [
+          "PO1",
+          "R2"
+        ],
+        [
+          "PO2",
+          "R3"
+        ]
+      ],
+      "objects": [
+        [
+          "P1",
+          "Payment"
+        ],
+        [
+          "P2",
+          "Payment"
+        ],
+        [
+          "P3",
+          "Payment"
+        ],
+        [
+          "PO1",
+          "Purchase Order"
+        ],
+        [
+          "PO2",
+          "Purchase Order"
+        ],
+        [
+          "PR1",
+          "Purchase Requisition"
+        ],
+        [
+          "R1",
+          "Invoice"
+        ],
+        [
+          "R2",
+          "Invoice"
+        ],
+        [
+          "R3",
+          "Invoice"
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "object-graph-ocel20_example",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.discover_objects_graph",
+      "pm4py.save_vis_object_graph"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
