@@ -1,6 +1,9 @@
 //! Equivalent executions after ancestor/descendant selection and object renaming.
-use crate::transformations::{Id, interaction};
-use crate::{ObjectFilterOptions, Ocel, TransformationError, filter_ocel_objects};
+use crate::transformations::Id;
+use crate::{
+    ObjectFilterOptions, ObjectGraphKind, Ocel, TransformationError, discover_objects_graph,
+    filter_ocel_objects,
+};
 use std::collections::{BTreeMap, BTreeSet};
 
 /// Timestamp-free execution description used as an equivalence key.
@@ -161,7 +164,8 @@ pub fn cluster_equivalent_ocel(
     let reference: BTreeSet<_> = refs.iter().cloned().collect();
     let mut forward = BTreeMap::<Id, BTreeSet<Id>>::new();
     let mut reverse = BTreeMap::<Id, BTreeSet<Id>>::new();
-    for (a, b) in interaction(log) {
+    for (a, b) in discover_objects_graph(log, ObjectGraphKind::Interaction) {
+        let (a, b): (Id, Id) = (a.into(), b.into());
         let ta = starts[&a];
         let tb = starts[&b];
         let edge = if ta < tb || (ta == tb && reference.contains(&a)) {

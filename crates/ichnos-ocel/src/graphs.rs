@@ -1,11 +1,13 @@
 //! Object graphs, ported from pm4py's `algo/transformation/ocel/graphs`.
 
-use std::collections::{BTreeSet, HashMap, HashSet};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
+use std::sync::Arc;
 
 use crate::Ocel;
 
-/// The kinds of object graph of pm4py's `discover_objects_graph`.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+/// The kinds of object graph of pm4py's `discover_objects_graph`, also the
+/// relations of an object-type graph in ichnos-conformance.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum ObjectGraphKind {
     /// Objects related to the same event (undirected).
     Interaction,
@@ -32,6 +34,8 @@ impl ObjectGraphKind {
     ];
 
     /// pm4py's name of the graph type, such as `object_interaction`.
+    ///
+    /// pm4py's O2O enrichment appends `_graph` to it as the qualifier.
     pub fn name(self) -> &'static str {
         match self {
             ObjectGraphKind::Interaction => "object_interaction",
@@ -45,6 +49,12 @@ impl ObjectGraphKind {
     /// The kind with pm4py's name, if any.
     pub fn from_name(name: &str) -> Option<Self> {
         Self::ALL.into_iter().find(|k| k.name() == name)
+    }
+}
+
+impl std::fmt::Display for ObjectGraphKind {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.name())
     }
 }
 
@@ -118,6 +128,18 @@ pub fn discover_objects_graph(ocel: &Ocel, kind: ObjectGraphKind) -> ObjectGraph
                 graph.remove(&p);
             }
         }
+    }
+    graph
+}
+
+/// The interaction graph as an adjacency map: each object maps to the
+/// other objects it shares an event with. Isolated objects are absent.
+pub(crate) fn interaction_neighbours(ocel: &Ocel) -> BTreeMap<Arc<str>, BTreeSet<Arc<str>>> {
+    let mut graph: BTreeMap<Arc<str>, BTreeSet<Arc<str>>> = BTreeMap::new();
+    for (a, b) in discover_objects_graph(ocel, ObjectGraphKind::Interaction) {
+        let (a, b): (Arc<str>, Arc<str>) = (a.into(), b.into());
+        graph.entry(a.clone()).or_default().insert(b.clone());
+        graph.entry(b).or_default().insert(a);
     }
     graph
 }

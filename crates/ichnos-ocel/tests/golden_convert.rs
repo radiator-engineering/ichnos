@@ -62,6 +62,7 @@ fn log_to_ocel_matches_pm4py() {
         "log-to-ocel-running-example-attributes",
         "log-to-ocel-running-example-two-types",
         "log-to-ocel-running-example-separator",
+        "log-to-ocel-running-example-shared-ids",
     ] {
         let g = golden("convert", case);
         let p = &g.meta().params;
@@ -101,7 +102,34 @@ fn log_to_ocel_matches_pm4py() {
                 &*r.event, &*r.object, types[&*r.object],
             ])).collect::<Vec<_>>(),
         });
-        assert_json_eq(&actual, &g.expected, &JsonCompare::default());
+        // Expected difference: a relation takes its object's type, where
+        // pm4py keeps the type of the column that related the object.
+        let mut expected = g.expected.clone();
+        let object_types: std::collections::HashMap<String, Value> = expected["objects"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|x| (x[0].as_str().unwrap().to_owned(), x[1].clone()))
+            .collect();
+        let mut retyped = Vec::new();
+        for r in expected["relations"].as_array_mut().unwrap() {
+            let object_type = &object_types[r[1].as_str().unwrap()];
+            if r[2] != *object_type {
+                retyped.push(format!("{}/{} {}", r[0], r[1], r[2]));
+                r[2] = object_type.clone();
+            }
+        }
+        if case == "log-to-ocel-running-example-shared-ids" {
+            let ids = ["2", "6", "12", "20", "29", "39"];
+            let want: Vec<String> = ids
+                .iter()
+                .map(|e| format!("\"{e}\"/\"t\" \"concept:name\""))
+                .collect();
+            assert_eq!(retyped, want, "{case}");
+        } else {
+            assert!(retyped.is_empty(), "{case}: {retyped:?}");
+        }
+        assert_json_eq(&actual, &expected, &JsonCompare::default());
     }
 }
 

@@ -63,7 +63,7 @@ pub use heuristics::{HeuristicsOptions, heuristics_net, petri_net_heuristics};
 /// Object-type graphs and event type–object type graphs of object-centric
 /// event logs. They live in ichnos-conformance, which compares them.
 pub use ichnos_conformance::ocel::{
-    Etot, ObjectRelation, Otg, OtgEdge, discover_etot, discover_otg,
+    Etot, ObjectGraphKind, Otg, OtgEdge, discover_etot, discover_otg,
 };
 pub use ilp::{IlpActivity, IlpOptions, petri_net_ilp};
 pub use inductive::{

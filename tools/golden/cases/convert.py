@@ -130,6 +130,10 @@ case("log-to-ocel-running-example-two-types", fixture="running-example.csv", fun
              "additional_object_attributes": {"org:resource": ["concept:name"]}})(log_to_ocel)
 case("log-to-ocel-running-example-separator", fixture="running-example.csv", functions=_OCEL,
      params={"object_types": ["org:resource", "case:creator"], "obj_separator": "e"})(log_to_ocel)
+# Split on "e", both columns give the id "t" ("Pete", "check ticket"); a relation from
+# concept:name keeps that type, while the object has type org:resource.
+case("log-to-ocel-running-example-shared-ids", fixture="running-example.csv", functions=_OCEL,
+     params={"object_types": ["org:resource", "concept:name"], "obj_separator": "e"})(log_to_ocel)
 
 for _name, _file in [("example-log", "ocel/example_log.jsonocel"), ("ocel20-example", "ocel/ocel20_example.jsonocel")]:
     for _variant in ["ocel_to_nx", "ocel_features_to_nx"]:
