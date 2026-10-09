@@ -7,6 +7,14 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    /// A DECLARE selection fraction must be finite and in `[0, 1]`.
+    #[error("DECLARE threshold {option}={value} is not in [0, 1]")]
+    DeclareThreshold {
+        /// The invalid option.
+        option: &'static str,
+        /// Its supplied value.
+        value: f64,
+    },
     /// Reading the log failed, for example because an event has no
     /// activity.
     #[error(transparent)]
