@@ -1,0 +1,57 @@
+{
+  "expected": {
+    "activity_nodes": 2,
+    "footprints": {
+      "activities": [
+        "A",
+        "B"
+      ],
+      "activities_always_happening": [
+        "A"
+      ],
+      "end_activities": [
+        "A"
+      ],
+      "max_trace_length_wo_loops": 1,
+      "min_trace_length": 1,
+      "parallel": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "A"
+        ]
+      ],
+      "sequence": [],
+      "skippable": false,
+      "start_activities": [
+        "A"
+      ]
+    },
+    "model_kind": "process_tree",
+    "nodes": 3,
+    "silent_nodes": 0
+  },
+  "meta": {
+    "area": "io",
+    "case": "writer-loop-ptml",
+    "fixtures": {
+      "model": "fixtures/logs/writer-output/loop.ptml"
+    },
+    "functions": [
+      "pm4py.read_ptml",
+      "pm4py.discover_footprints"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_ptml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

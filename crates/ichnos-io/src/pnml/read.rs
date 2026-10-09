@@ -92,7 +92,7 @@ pub fn read_pnml_from_reader(
         let id = node.required("id", "PNML")?;
         let place = net.add_place(id);
         places.insert(id, place);
-        if let Some(name) = node.child_text("name") {
+        if let Some(name) = node.child_text("name").filter(|name| !name.is_empty()) {
             document.place_names.insert(place, name.into());
         }
         if let Some(text) = node.child_text("initialMarking") {
@@ -104,7 +104,10 @@ pub fn read_pnml_from_reader(
             continue;
         }
         let id = node.required("id", "PNML")?;
-        let name = node.child_text("name").unwrap_or(id);
+        let name = node
+            .child_text("name")
+            .filter(|name| !name.is_empty())
+            .unwrap_or(id);
         let mut silent = false;
         let mut stochastic = None;
         for tool in node

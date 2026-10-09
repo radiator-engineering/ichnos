@@ -153,7 +153,7 @@ for rel in TABLE_FIXTURES:
     case(case_id, fixture=rel, functions=["pm4py.format_dataframe", "pm4py.convert_to_event_log"])(summarize)
 
 
-# Imported models are compared by counts and behaviour, never generated ids.
+# Imported PNML ids come from the file, so structure can be compared exactly.
 def summarize_model(fixtures, max_markings=10000):
     path = fixtures["model"]
     if path.suffix == ".pnml":
@@ -187,6 +187,14 @@ def summarize_model(fixtures, max_markings=10000):
                 footprints, status = None, "state_space_limit"
         return {
             "model_kind": "petri_net",
+            "arc_structure": sorted([
+                [a.source.name, a.target.name, a.weight,
+                 "inhibitor" if isinstance(a, InhibitorNet.InhibitorArc) else
+                 "reset" if isinstance(a, ResetNet.ResetArc) else "normal"]
+                for a in net.arcs]),
+            "transition_labels": sorted([[t.name, t.label] for t in net.transitions]),
+            "initial_marking": {p.name: n for p, n in im.items()},
+            "final_marking": {p.name: n for p, n in fm.items()},
             "places": len(net.places), "transitions": len(net.transitions),
             "arcs": len(net.arcs),
             "silent_transitions": sum(t.label is None for t in net.transitions),
@@ -262,3 +270,8 @@ for rel in MODEL_FIXTURES:
                      "pm4py.algo.discovery.footprints.petri.variants.reach_graph.apply"]
         params = {"max_markings": 10000}
     case(case_id, fixtures={"model": rel}, params=params, functions=functions)(summarize_model)
+
+# Exact bytes produced by ichnos, read by the reference implementation.
+for rel in ["special.pnml", "loop.ptml", "boundary.dfg"]:
+    case("writer-" + rel.replace(".", "-"), fixtures={"model": "writer-output/" + rel},
+         functions=["pm4py.read_" + rel.rsplit(".", 1)[1], "pm4py.discover_footprints"])(summarize_model)

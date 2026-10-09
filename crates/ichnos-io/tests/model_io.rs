@@ -4,6 +4,13 @@ use ichnos_model::{
     petri::{ArcKind, Marking},
 };
 
+fn writer_fixture(name: &str, output: &[u8]) {
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../fixtures/logs/writer-output")
+        .join(name);
+    assert_eq!(output, std::fs::read(path).unwrap());
+}
+
 #[test]
 fn pnml_retains_alternative_markings_special_arcs_stochastic_and_data() {
     let xml=br#"<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml"><net id="net&amp;name"><page id="page">
@@ -56,9 +63,26 @@ fn pnml_retains_alternative_markings_special_arcs_stochastic_and_data() {
     assert_eq!(document.transition_data[&t].write_variables, ["y"]);
     let mut output = Vec::new();
     write_pnml_to_writer(&document, &mut output, &Default::default()).unwrap();
+    writer_fixture("special.pnml", &output);
     assert_eq!(
         document,
         read_pnml_from_reader(output.as_slice(), &Default::default()).unwrap()
+    );
+    output.clear();
+    write_pnml_to_writer(
+        &document,
+        &mut output,
+        &PnmlWriteOptions {
+            include_alternative_final_markings: false,
+            ..Default::default()
+        },
+    )
+    .unwrap();
+    let primary_only = read_pnml_from_reader(output.as_slice(), &Default::default()).unwrap();
+    assert!(primary_only.additional_final_markings.is_empty());
+    assert_eq!(
+        primary_only.model.final_marking,
+        document.model.final_marking
     );
     let mut enabled = Marking::new();
     assert!(
@@ -70,6 +94,32 @@ fn pnml_retains_alternative_markings_special_arcs_stochastic_and_data() {
     );
     enabled = document.model.net.fire(t, &enabled).unwrap();
     assert_eq!(enabled.iter().map(|(_, n)| n).sum::<u32>(), 1);
+}
+
+#[test]
+fn writer_loop_and_boundary_only_dfg_have_stable_bytes() {
+    let tree = ProcessTree::node(
+        Operator::Loop,
+        vec![ProcessTree::activity("A"), ProcessTree::activity("B")],
+    );
+    let mut output = Vec::new();
+    write_ptml_to_writer(&tree, &mut output, &Default::default()).unwrap();
+    writer_fixture("loop.ptml", &output);
+    let mut graph = Dfg::new();
+    graph.add_start("only", 2);
+    graph.add_end("only", 2);
+    output.clear();
+    write_dfg_to_writer(&graph, &mut output, &Default::default()).unwrap();
+    writer_fixture("boundary.dfg", &output);
+}
+
+#[test]
+fn pnml_empty_names_fall_back_to_ids() {
+    let document = read_pnml_from_reader(br#"<pnml><net id="n"><place id="p"><name><text/></name></place><transition id="t"><name><text/></name></transition></net></pnml>"#.as_slice(), &Default::default()).unwrap();
+    assert!(document.place_names.is_empty());
+    let (id, transition) = document.model.net.transitions().next().unwrap();
+    assert_eq!(transition.label.as_ref().unwrap().as_str(), "t");
+    assert_eq!(document.transition_names[&id], "t");
 }
 
 #[test]

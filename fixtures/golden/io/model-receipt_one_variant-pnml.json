@@ -1,6 +1,71 @@
 {
   "expected": {
+    "arc_structure": [
+      [
+        "Confirmation of receipt",
+        "p1",
+        1,
+        "normal"
+      ],
+      [
+        "T02 Check confirmation of receipt",
+        "p2",
+        1,
+        "normal"
+      ],
+      [
+        "T04 Determine confirmation of receipt",
+        "p3",
+        1,
+        "normal"
+      ],
+      [
+        "T05 Print and send confirmation of receipt",
+        "p4",
+        1,
+        "normal"
+      ],
+      [
+        "T06 Determine necessity of stop advice",
+        "sink",
+        1,
+        "normal"
+      ],
+      [
+        "p1",
+        "T02 Check confirmation of receipt",
+        1,
+        "normal"
+      ],
+      [
+        "p2",
+        "T04 Determine confirmation of receipt",
+        1,
+        "normal"
+      ],
+      [
+        "p3",
+        "T05 Print and send confirmation of receipt",
+        1,
+        "normal"
+      ],
+      [
+        "p4",
+        "T06 Determine necessity of stop advice",
+        1,
+        "normal"
+      ],
+      [
+        "source",
+        "Confirmation of receipt",
+        1,
+        "normal"
+      ]
+    ],
     "arcs": 10,
+    "final_marking": {
+      "sink": 1
+    },
     "final_tokens": 1,
     "footprints": {
       "activities": [
@@ -35,12 +100,37 @@
     },
     "footprints_status": "complete",
     "inhibitor_arcs": 0,
+    "initial_marking": {
+      "source": 1
+    },
     "initial_tokens": 1,
     "model_kind": "petri_net",
     "places": 6,
     "reset_arcs": 0,
     "silent_transitions": 0,
     "stochastic": [],
+    "transition_labels": [
+      [
+        "Confirmation of receipt",
+        "Confirmation of receipt"
+      ],
+      [
+        "T02 Check confirmation of receipt",
+        "T02 Check confirmation of receipt"
+      ],
+      [
+        "T04 Determine confirmation of receipt",
+        "T04 Determine confirmation of receipt"
+      ],
+      [
+        "T05 Print and send confirmation of receipt",
+        "T05 Print and send confirmation of receipt"
+      ],
+      [
+        "T06 Determine necessity of stop advice",
+        "T06 Determine necessity of stop advice"
+      ]
+    ],
     "transitions": 5
   },
   "meta": {

@@ -23,10 +23,17 @@ use std::{
 pub struct PnmlWriteOptions {
     /// Indent the XML.
     pub indent: bool,
+    /// Include alternative final markings (default true).
+    /// pm4py merges all exported alternatives into one marking on import.
+    /// Disable this to export only the primary final marking for pm4py.
+    pub include_alternative_final_markings: bool,
 }
 impl Default for PnmlWriteOptions {
     fn default() -> Self {
-        Self { indent: true }
+        Self {
+            indent: true,
+            include_alternative_final_markings: true,
+        }
     }
 }
 
@@ -253,8 +260,10 @@ pub fn write_pnml_to_writer(
     // An explicit empty marking must stay empty instead of being guessed on import.
     xml::start(&mut writer, "finalmarkings", &[], false)?;
     marking(&mut writer, net, &document.model.final_marking)?;
-    for alternative in &document.additional_final_markings {
-        marking(&mut writer, net, alternative)?;
+    if options.include_alternative_final_markings {
+        for alternative in &document.additional_final_markings {
+            marking(&mut writer, net, alternative)?;
+        }
     }
     xml::end(&mut writer, "finalmarkings")?;
     if !document.variables.is_empty() {

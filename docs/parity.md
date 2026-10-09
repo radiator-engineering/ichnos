@@ -1282,6 +1282,8 @@ Lanes record each deliberate change from pm4py here.
 
 ### ichnos-io
 
+- PNML preserves alternative final markings; pm4py merges them into one marking on import. `PnmlWriteOptions::include_alternative_final_markings = false` exports only the primary marking for pm4py consumers. Writer goldens read exact ichnos-generated PNML/PTML/DFG bytes with pm4py, including a PNML with two final markings.
+
 - `read_xes` returns an `EventLog`; pm4py returns a DataFrame by default. The oracle uses `return_legacy_log_object=True`.
 - Unknown vendor elements (including their subtrees), text and CDATA are ignored. Attributes without a key or scalar value are omitted because the core model has no null key/value; pm4py can retain `None`.
 - Invalid numeric/date values return errors rather than being silently dropped. Dates retain their input offset; naive dates use UTC. DOCTYPE is rejected and nesting depth is bounded.

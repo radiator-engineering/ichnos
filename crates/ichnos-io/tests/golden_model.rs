@@ -72,7 +72,37 @@ fn pnml_summary(document: &PnmlDocument, unbounded: bool) -> Value {
         })
         .collect();
     stochastic.sort_by_key(|value| serde_json::to_string(value).unwrap());
+    let mut arcs: Vec<_> = net
+        .arcs()
+        .map(|(_, arc)| {
+            let (source, target) = match arc.ends {
+                ArcEnds::PlaceToTransition(p, t) => (&net.place(p).name, &net.transition(t).name),
+                ArcEnds::TransitionToPlace(t, p) => (&net.transition(t).name, &net.place(p).name),
+            };
+            let kind = match arc.kind {
+                ArcKind::Normal => "normal",
+                ArcKind::Inhibitor => "inhibitor",
+                ArcKind::Reset => "reset",
+            };
+            (source, target, arc.weight, kind)
+        })
+        .collect();
+    arcs.sort();
+    let marking = |marking: &Marking| {
+        marking
+            .iter()
+            .map(|(p, n)| (net.place(p).name.clone(), n))
+            .collect::<BTreeMap<_, _>>()
+    };
+    let mut labels: Vec<_> = net
+        .transitions()
+        .map(|(_, t)| (&t.name, &t.label))
+        .collect();
+    labels.sort();
     json!({"model_kind": "petri_net", "places": net.places().count(),
+        "arc_structure": arcs, "transition_labels": labels,
+        "initial_marking": marking(&document.model.initial_marking),
+        "final_marking": marking(&document.model.final_marking),
         "transitions": net.transitions().count(), "arcs": net.arcs().count(),
         "silent_transitions": net.transitions().filter(|(_,t)| t.is_silent()).count(),
         "inhibitor_arcs": net.arcs().filter(|(_,a)| a.kind==ArcKind::Inhibitor).count(),
@@ -103,15 +133,11 @@ fn every_model_fixture_matches_oracle_and_round_trips() {
     let mut checked = 0;
     for entry in fs::read_dir(root.join("fixtures/golden/io")).unwrap() {
         let path = entry.unwrap().path();
-        if !path
-            .file_name()
-            .unwrap()
-            .to_string_lossy()
-            .starts_with("model-")
-        {
+        let name = path.file_name().unwrap().to_string_lossy();
+        if !name.starts_with("model-") && !name.starts_with("writer-") {
             continue;
         }
-        let golden: Value = serde_json::from_slice(&fs::read(path).unwrap()).unwrap();
+        let golden: Value = serde_json::from_slice(&fs::read(&path).unwrap()).unwrap();
         let fixture = golden["meta"]["fixtures"]["model"].as_str().unwrap();
         let actual = match Path::new(fixture).extension().unwrap().to_str().unwrap() {
             "pnml" => {
@@ -121,7 +147,16 @@ fn every_model_fixture_matches_oracle_and_round_trips() {
                 write_pnml_to_writer(&document, &mut xml, &Default::default()).unwrap();
                 let back = read_pnml_from_reader(xml.as_slice(), &Default::default()).unwrap();
                 assert_eq!(document, back, "{fixture}: PNML round trip");
-                pnml_summary(&document, fixture.contains("inh_res_nets/"))
+                let mut oracle_document = document.clone();
+                if name.starts_with("writer-") {
+                    // pm4py merges alternative final markings; ichnos preserves them.
+                    for alternative in &document.additional_final_markings {
+                        for (p, n) in alternative.iter() {
+                            oracle_document.model.final_marking.set(p, n);
+                        }
+                    }
+                }
+                pnml_summary(&oracle_document, fixture.contains("inh_res_nets/"))
             }
             "ptml" => {
                 let tree = read_ptml(root.join(fixture), &Default::default())
@@ -166,7 +201,7 @@ fn every_model_fixture_matches_oracle_and_round_trips() {
         checked += 1;
     }
     assert_eq!(
-        checked, 30,
+        checked, 33,
         "every bounded PNML, PTML and DFG fixture is covered"
     );
 }
