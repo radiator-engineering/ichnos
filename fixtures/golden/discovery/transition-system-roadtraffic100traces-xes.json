@@ -1,0 +1,4402 @@
+{
+  "expected": {
+    "identity": "structured views; equal named states and edges merged; state data aggregated from transition events",
+    "runs": [
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Payment",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Add penalty"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Insert Fine Notification"
+              ],
+              "label": "Payment",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "Send for Credit Collection"
+              ],
+              "label": "Send for Credit Collection",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Add penalty"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Insert Date Appeal to Prefecture"
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Notify Result Appeal to Offender",
+                "Receive Result Appeal from Prefecture"
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture"
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "Send for Credit Collection"
+              ],
+              "label": "Send for Credit Collection",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "set",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ]
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Payment",
+                  2
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Create Fine",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Create Fine",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Create Fine",
+              "to": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Create Fine",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Create Fine",
+              "to": [
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ]
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Payment",
+                  2
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ],
+              "label": "Send for Credit Collection",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Payment",
+                  2
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "multiset",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ],
+              "label": "Send for Credit Collection",
+              "to": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Payment",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Add penalty"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Insert Fine Notification"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              "label": "Payment",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ],
+              "label": "Payment",
+              "to": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Payment",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Create Fine",
+              "to": [
+                "Create Fine"
+              ]
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Add penalty"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Add penalty"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "backward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Insert Date Appeal to Prefecture"
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ],
+              "label": "Send for Credit Collection",
+              "to": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Add penalty",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Notify Result Appeal to Offender",
+                "Receive Result Appeal from Prefecture"
+              ],
+              "label": "Payment",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture"
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Create Fine",
+              "to": [
+                "Create Fine"
+              ]
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Insert Date Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Date Appeal to Prefecture",
+                "Insert Fine Notification"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Receive Result Appeal from Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Receive Result Appeal from Prefecture",
+                "Send Appeal to Prefecture"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "backward",
+          "include_data": false,
+          "view": "set",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ]
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ],
+              "label": "Send for Credit Collection",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Payment",
+                  2
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Create Fine",
+                  1
+                ]
+              ],
+              "label": "Send Fine",
+              "to": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Add penalty",
+              "to": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ]
+              ],
+              "label": "Payment",
+              "to": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Create Fine",
+              "to": [
+                [
+                  "Create Fine",
+                  1
+                ]
+              ]
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Add penalty",
+                  1
+                ],
+                [
+                  "Send for Credit Collection",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Create Fine",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Create Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Insert Date Appeal to Prefecture",
+                  1
+                ],
+                [
+                  "Insert Fine Notification",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Insert Fine Notification",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Payment",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Notify Result Appeal to Offender",
+                  1
+                ],
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Payment",
+                  1
+                ],
+                [
+                  "Send Fine",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Payment",
+                  2
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "Receive Result Appeal from Prefecture",
+                  1
+                ],
+                [
+                  "Send Appeal to Prefecture",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "backward",
+          "include_data": false,
+          "view": "multiset",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [],
+              "label": "Add penalty",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Create Fine",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Insert Fine Notification",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Notify Result Appeal to Offender",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Payment",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Send Appeal to Prefecture",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Send Fine",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "Send for Credit Collection",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 0
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              "label": "Add penalty",
+              "to": [
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine",
+                "Payment"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Create Fine",
+                "Send Fine"
+              ],
+              "label": "Create Fine",
+              "to": [
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Insert Date Appeal to Prefecture",
+              "to": [
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Insert Fine Notification",
+              "to": [
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Notify Result Appeal to Offender",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment",
+                "Send Fine"
+              ],
+              "label": "Payment",
+              "to": [
+                "Send Fine"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Payment"
+              ],
+              "label": "Payment",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Receive Result Appeal from Prefecture",
+              "to": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Send Appeal to Prefecture",
+              "to": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine",
+                "Payment"
+              ],
+              "label": "Send Fine",
+              "to": [
+                "Payment"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "Send Fine"
+              ],
+              "label": "Send Fine",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "Send for Credit Collection"
+              ],
+              "label": "Send for Credit Collection",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Create Fine",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment",
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture",
+                "Add penalty",
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Insert Fine Notification",
+                "Payment",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Payment",
+                "Insert Fine Notification",
+                "Add penalty",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine",
+                "Payment"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send Fine"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "Send for Credit Collection"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 1000000000
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "transition-system-roadtraffic100traces-xes",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.xes"
+    },
+    "functions": [
+      "pm4py.discover_transition_system",
+      "pm4py.algo.discovery.transition_system.algorithm.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,4332 @@
+{
+  "expected": {
+    "identity": "structured views; equal named states and edges merged; state data aggregated from transition events",
+    "runs": [
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine casually",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine thoroughly",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "pay compensation"
+              ],
+              "label": "decide",
+              "to": [
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "decide",
+              "to": [
+                "reinitiate request",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "decide",
+              "to": [
+                "reinitiate request",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "decide",
+              "to": [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reject request"
+              ],
+              "label": "decide",
+              "to": [
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "check ticket"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "decide"
+              ],
+              "label": "examine casually",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "decide"
+              ],
+              "label": "examine casually",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "check ticket"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "decide"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "pay compensation"
+              ],
+              "label": "pay compensation",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "check ticket"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "check ticket"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine casually"
+              ],
+              "label": "register request",
+              "to": [
+                "examine casually",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine thoroughly"
+              ],
+              "label": "register request",
+              "to": [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "check ticket"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "examine casually"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "examine casually",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "examine thoroughly"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reject request"
+              ],
+              "label": "reject request",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "register request"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "register request"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "reinitiate request"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "examine casually"
+              ],
+              "label": "examine casually",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "examine casually"
+              ],
+              "label": "examine casually",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "examine thoroughly"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "pay compensation"
+              ],
+              "label": "decide",
+              "to": [
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "decide",
+              "to": [
+                "check ticket",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "decide",
+              "to": [
+                "examine casually",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "decide",
+              "to": [
+                "examine thoroughly",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reject request"
+              ],
+              "label": "decide",
+              "to": [
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "register request"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "reinitiate request"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "register request"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "reinitiate request"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "pay compensation"
+              ],
+              "label": "pay compensation",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "reject request"
+              ],
+              "label": "reject request",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "set",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "register request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "register request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "reinitiate request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "register request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "reinitiate request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "register request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "reinitiate request",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "pay compensation",
+                  1
+                ]
+              ],
+              "label": "pay compensation",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "reject request",
+                  1
+                ]
+              ],
+              "label": "reject request",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "multiset",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "pay compensation",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "reject request",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually"
+              ],
+              "label": "decide",
+              "to": [
+                "examine casually",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              "label": "decide",
+              "to": [
+                "examine thoroughly",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "reinitiate request",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "reinitiate request",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "check ticket"
+              ],
+              "label": "decide",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "decide"
+              ],
+              "label": "pay compensation",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "decide"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "check ticket"
+              ],
+              "label": "decide",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "decide"
+              ],
+              "label": "reject request",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "check ticket"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "check ticket"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine casually"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine casually",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine thoroughly"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "register request",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "register request",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "register request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "check ticket"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "examine casually"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine casually",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "examine thoroughly"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "register request",
+              "to": [
+                "register request"
+              ]
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "check ticket"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "backward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "pay compensation",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide"
+              ],
+              "label": "reject request",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually"
+              ],
+              "label": "decide",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually"
+              ],
+              "label": "decide",
+              "to": [
+                "decide",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              "label": "decide",
+              "to": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              "label": "decide",
+              "to": [
+                "decide",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "register request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "register request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "reinitiate request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "examine casually"
+              ],
+              "label": "pay compensation",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "examine casually"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "examine thoroughly"
+              ],
+              "label": "reject request",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "check ticket",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "examine casually",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "examine thoroughly",
+                "reinitiate request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "register request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "reinitiate request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "register request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "reinitiate request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "check ticket",
+                "register request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "examine casually",
+                "register request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "examine thoroughly",
+                "register request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "register request",
+              "to": [
+                "register request"
+              ]
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "examine casually"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "examine thoroughly"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "reinitiate request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "backward",
+          "include_data": false,
+          "view": "set",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ],
+              "label": "pay compensation",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ],
+              "label": "reinitiate request",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ],
+              "label": "reject request",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ],
+              "label": "decide",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "pay compensation",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ],
+              "label": "reinitiate request",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ],
+              "label": "reject request",
+              "to": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "check ticket",
+              "to": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "examine casually",
+              "to": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                [
+                  "register request",
+                  1
+                ]
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "register request",
+              "to": [
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "decide",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "check ticket",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine casually",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "examine thoroughly",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "pay compensation",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "decide",
+                  1
+                ],
+                [
+                  "reject request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine casually",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "examine thoroughly",
+                  1
+                ],
+                [
+                  "reinitiate request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                [
+                  "register request",
+                  1
+                ]
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "backward",
+          "include_data": false,
+          "view": "multiset",
+          "window": 2
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [],
+              "label": "check ticket",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "decide",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "examine casually",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "examine thoroughly",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "pay compensation",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "register request",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "reinitiate request",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [],
+              "label": "reject request",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 0
+        }
+      },
+      {
+        "graph": {
+          "edges": [
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "check ticket",
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ],
+              "label": "check ticket",
+              "to": [
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "pay compensation"
+              ],
+              "label": "decide",
+              "to": [
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "decide",
+              "to": [
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "decide",
+              "to": [
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "decide",
+              "to": [
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "decide",
+                "reject request"
+              ],
+              "label": "decide",
+              "to": [
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "examine casually",
+              "to": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "examine casually",
+              "to": [
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ],
+              "label": "examine thoroughly",
+              "to": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "pay compensation"
+              ],
+              "label": "pay compensation",
+              "to": []
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "check ticket",
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ],
+              "label": "register request",
+              "to": [
+                "check ticket",
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "register request",
+              "to": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "register request",
+              "to": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "register request",
+              "to": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "register request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "register request",
+              "to": [
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ],
+              "label": "reinitiate request",
+              "to": [
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "events": [],
+              "from": [
+                "reject request"
+              ],
+              "label": "reject request",
+              "to": []
+            }
+          ],
+          "states": [
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "check ticket",
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "check ticket",
+                "examine thoroughly",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "register request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "check ticket",
+                "examine casually",
+                "decide",
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "examine casually",
+                "check ticket",
+                "decide",
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reinitiate request",
+                "examine thoroughly",
+                "check ticket",
+                "decide",
+                "pay compensation"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": [
+                "reject request"
+              ]
+            },
+            {
+              "incoming": [],
+              "outgoing": [],
+              "view": []
+            }
+          ]
+        },
+        "options": {
+          "direction": "forward",
+          "include_data": false,
+          "view": "sequence",
+          "window": 1000000000
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "transition-system-running-example-xes",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_transition_system",
+      "pm4py.algo.discovery.transition_system.algorithm.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

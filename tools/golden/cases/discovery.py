@@ -339,3 +339,45 @@ if __name__ == "__main__":
     from harness import canonical
 
     print(json.dumps(canonical.normalize(_inductive_run(Path(sys.argv[1]), sys.argv[2]))))
+
+
+# miners-classic view-based transition-system discovery cases.
+def transition_system_case(fixtures,traces=None,activity_key="concept:name"):
+    import json
+    from collections import Counter
+    from pm4py.objects.log.obj import EventLog,Trace,Event
+    from pm4py.algo.discovery.transition_system import algorithm
+    from pm4py.objects.transition_system import constants
+    if traces is None:log=pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    else:log=EventLog([Trace([Event({activity_key:a}) for a in trace]) for trace in traces])
+    trace_ids={id(trace):i for i,trace in enumerate(log)}
+    def abstract(value):
+        if isinstance(value,Counter):return sorted([label,count] for label,count in value.items())
+        if isinstance(value,set):return sorted(value)
+        return list(value)
+    def key(value):return json.dumps(value,ensure_ascii=False,separators=(",",":"))
+    def events(values):return [[trace_ids[id(trace)],i] for trace,i in values]
+    options=[{"direction":d,"view":v,"window":2,"include_data":False} for d in ["forward","backward"] for v in ["sequence","set","multiset"]]
+    if traces is None:options += [{"direction":"forward","view":"sequence","window":w,"include_data":False} for w in [0,1000000000]]
+    else:options=[{"direction":d,"view":v,"window":w,"include_data":data} for d in ["forward","backward"] for v in ["sequence","set","multiset"] for w in [0,1,2,1000000000] for data in [False,True]]
+    runs=[]
+    for option in options:
+        params={"pm4py:param:activity_key":activity_key,**option}
+        model=algorithm.apply(log,parameters=params) if option["include_data"] else pm4py.discover_transition_system(log,activity_key=activity_key,**{k:v for k,v in option.items() if k!="include_data"})
+        states={key(abstract(state.name)):{"view":abstract(state.name),"incoming":[],"outgoing":[]} for state in model.states}
+        edges={}
+        for edge in model.transitions:
+            source=abstract(edge.from_state.name);target=abstract(edge.to_state.name);positions=events(edge.data[constants.EVENTS])
+            edge_key=(key(source),edge.name,key(target))
+            row=edges.setdefault(edge_key,{"from":source,"to":target,"label":edge.name,"events":[]})
+            row["events"].extend(positions)
+            states[key(source)]["outgoing"].extend(positions);states[key(target)]["incoming"].extend(positions)
+        for state in states.values():state["incoming"].sort();state["outgoing"].sort()
+        graph={"states":sorted(states.values(),key=lambda row:key(row["view"])),"edges":[{**edges[k],"events":sorted(edges[k]["events"])} for k in sorted(edges)]}
+        runs.append({"options":option,"graph":graph})
+    return {"runs":runs,"identity":"structured views; equal named states and edges merged; state data aggregated from transition events"}
+TRANSITION_FUNCTIONS=["pm4py.discover_transition_system","pm4py.algo.discovery.transition_system.algorithm.apply"]
+for fixture in ["running-example.xes","receipt.xes","roadtraffic100traces.xes","interleavings/receipt_even.csv","interleavings/receipt_odd.csv"]:
+    case("transition-system-"+fixture.replace("/","-").replace(".","-"),fixture=fixture,functions=TRANSITION_FUNCTIONS)(transition_system_case)
+for name,traces in {"empty":[],"empty-traces":[[],[]],"views":[[],["a","b","a","c"],["a","a","b"],["b","a"],["a","b","a","c"]],"single":[["a"],["a"]],"custom-key":[["λ","","終"],["終","λ","λ"]]}.items():
+    case("transition-system-"+name,functions=TRANSITION_FUNCTIONS,params={"traces":traces,"activity_key":"work" if name=="custom-key" else "concept:name"})(transition_system_case)

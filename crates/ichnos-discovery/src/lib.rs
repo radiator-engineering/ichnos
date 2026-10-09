@@ -27,3 +27,11 @@ pub use inductive::{
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,
 };
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
+
+/// View-based transition-system discovery.
+pub mod transition_system;
+pub use transition_system::{
+    TransitionAbstraction, TransitionDirection, TransitionDiscovery, TransitionEvent,
+    TransitionStateData, TransitionSystemOptions, TransitionView, discover_transition_system,
+    transition_system,
+};
