@@ -1389,8 +1389,9 @@ Lanes record each deliberate change from pm4py here.
 - **Attribute types.** pm4py takes each attribute's type from the pandas column dtype. ichnos infers it from the values with pandas' rules: all integers give an integer column, integers with a gap give floats, mixed values give an object column.
 - **Attribute names.** pm4py's OCEL 1.0 layouts list every attribute column in `attribute-names`, including a column with no values. ichnos lists only names that have a value.
 - **File names.** pm4py appends `.jsonocel`, `.xmlocel`, `.json` or `.xml` to a path that lacks the extension. ichnos writes to the path it is given. A path ending in `.gz` is compressed with gzip.
-- **Encoding.** The writers write UTF-8 only; pm4py takes an `encoding` parameter. The XML writers return an error for a control character, as lxml does.
+- **Encoding.** The writers write UTF-8 only; pm4py takes an `encoding` parameter. The XML writers return an error for a control character, U+FFFE or U+FFFF, as lxml does.
 - **Text times.** pm4py's OCEL 2.0 XML reader can leave an object-change time as a string. pm4py's `write_ocel2_xml` then raises `AttributeError`, and its JSON writers copy the text. ichnos parses every time when it reads, so its writers always write a time.
+- **Read, then write.** The `ocel/write-*` goldens of the fixture files hold pm4py's read-then-write output. ichnos gives the same files when it reads the fixture with its own reader, apart from the reader differences above: the typed XML values change the attribute types in `typed.xmlocel` and `typed20.xmlocel`, and the OCEL 2.0 JSON relation order changes the order of each event's relations.
 
 ### ichnos-discovery (DFG)
 

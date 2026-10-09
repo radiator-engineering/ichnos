@@ -1328,7 +1328,8 @@ impl El {
 }
 
 /// Escapes text as libxml2 does, for an attribute value or element text.
-/// Like lxml, it refuses control characters that XML 1.0 cannot hold.
+/// Like lxml, it refuses the control characters, U+FFFE and U+FFFF, which
+/// XML 1.0 cannot hold.
 fn xml_escape(s: &str, attribute: bool, out: &mut String) -> Result<()> {
     for c in s.chars() {
         match c {
@@ -1340,9 +1341,9 @@ fn xml_escape(s: &str, attribute: bool, out: &mut String) -> Result<()> {
             '\t' if attribute => out.push_str("&#9;"),
             '\r' => out.push_str("&#13;"),
             '\n' | '\t' => out.push(c),
-            c if (c as u32) < 0x20 => {
+            c if (c as u32) < 0x20 || c == '\u{FFFE}' || c == '\u{FFFF}' => {
                 return Err(Error::Ocel(format!(
-                    "XML cannot hold the control character U+{:04X}",
+                    "XML cannot hold the character U+{:04X}",
                     c as u32
                 )));
             }
@@ -1378,8 +1379,11 @@ mod tests {
 
     #[test]
     fn xml_refuses_control_characters() {
-        let el = El::new("a").attr("k", "\u{1}");
-        assert!(el.document().is_err());
+        for c in ['\u{1}', '\u{FFFE}', '\u{FFFF}'] {
+            assert!(El::new("a").attr("k", c).document().is_err());
+            assert!(El::new("a").text(c.to_string()).document().is_err());
+        }
+        assert!(El::new("a").text("\u{FFFD}".into()).document().is_ok());
     }
 
     #[test]
