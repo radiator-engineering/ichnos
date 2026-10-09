@@ -363,7 +363,7 @@ fn write_powl_with(
                 icon_dir: Some(dir.clone()),
                 ..options.clone()
             };
-            render(&powl_dot(powl, &options), &format, program)
+            render(&powl_dot(powl, &options), &format, program, &[])
         });
     let _ = std::fs::remove_dir_all(&dir);
     let rendered = rendered?;
@@ -553,7 +553,8 @@ printf '</svg>'"#,
         )
         .unwrap_err();
         assert!(
-            matches!(err, VizError::DotNotFound(ref f) if f == "svg"),
+            matches!(err, VizError::DotNotFound { ref program, ref format }
+                if program == "ichnos-no-such-dot" && format == "svg"),
             "{err}"
         );
     }

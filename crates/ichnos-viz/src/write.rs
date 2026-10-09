@@ -1,5 +1,6 @@
 //! Saving DOT text, as pm4py's `visualization/common/save.py` does.
 
+use std::collections::BTreeSet;
 use std::io::{ErrorKind, Write as _};
 use std::path::Path;
 use std::process::{Command, Stdio};
@@ -10,14 +11,19 @@ use ichnos_discovery::prefix_tree::PrefixTree;
 use ichnos_model::{
     Bpmn, Dfg, Footprints, HeuristicsNet, Marking, PetriNet, ProcessTree, TransitionSystem,
 };
+use ichnos_ocel::Ocel;
 
 use crate::{
-    AlignmentsDotOptions, BpmnDotOptions, DfgDotOptions, FootprintsDotOptions,
-    HeuristicsNetDotOptions, PerformanceDfgDotOptions, PetriNetDotOptions, PrefixTreeDotOptions,
-    ProcessTreeDotOptions, TransitionSystemDotOptions, VariantAlignment, alignment_table_dot,
-    alignments_dot, bpmn_dot, dfg_dot, footprints_comparison_dot, footprints_dot,
-    heuristics_net_dot, performance_dfg_dot, petri_net_dot, prefix_tree_dot, process_tree_dot,
-    transition_system_dot,
+    AlignmentsDotOptions, BpmnDotOptions, DfgDotOptions, DottedChartAttributes,
+    DottedChartDotOptions, DottedChartPoint, FootprintsDotOptions, HeuristicsNetDotOptions,
+    NetworkAnalysisDotOptions, NetworkAnalysisEdge, ObjectGraphDotOptions, OcPetriNet, Ocdfg,
+    OcdfgDotOptions, OcpnDotOptions, PerformanceDfgDotOptions, PerformanceSpectrum,
+    PerformanceSpectrumDotOptions, PetriNetDotOptions, PrefixTreeDotOptions, ProcessTreeDotOptions,
+    TransitionSystemDotOptions, VariantAlignment, alignment_table_dot, alignments_dot, bpmn_dot,
+    dfg_dot, dotted_chart_dot, footprints_comparison_dot, footprints_dot, heuristics_net_dot,
+    network_analysis_dot, network_analysis_performance_dot, object_graph_dot, ocdfg_dot, ocpn_dot,
+    performance_dfg_dot, performance_spectrum_dot, petri_net_dot, prefix_tree_dot,
+    process_tree_dot, transition_system_dot,
 };
 
 /// Errors from saving a graph.
@@ -30,15 +36,23 @@ pub enum VizError {
         "cannot tell the output format from {0:?}; give the file an extension such as .dot or .svg"
     )]
     UnknownFormat(String),
-    /// The format needs Graphviz, and `dot` is not on the `PATH`.
-    #[error("writing .{0} needs the Graphviz `dot` program, which is not on the PATH")]
-    DotNotFound(String),
-    /// `dot` failed.
-    #[error("Graphviz `dot` failed ({status}): {stderr}")]
+    /// The format needs a Graphviz program that is not on the `PATH`:
+    /// `dot`, or `neato` for the drawings with fixed positions.
+    #[error("writing .{format} needs the Graphviz `{program}` program, which is not on the PATH")]
+    DotNotFound {
+        /// The program that was run.
+        program: String,
+        /// The output format.
+        format: String,
+    },
+    /// A Graphviz program failed.
+    #[error("Graphviz `{program}` failed ({status}): {stderr}")]
     Dot {
+        /// The program that was run.
+        program: String,
         /// The exit status.
         status: String,
-        /// What `dot` wrote to standard error.
+        /// What the program wrote to standard error.
         stderr: String,
     },
     /// Graphviz drew a POWL model without its icons. It needs an SVG image
@@ -58,16 +72,23 @@ pub enum VizError {
 /// needs `dot` on the `PATH` and fails with [`VizError::DotNotFound`]
 /// without it.
 pub fn write_dot(dot: &str, path: impl AsRef<Path>) -> Result<(), VizError> {
-    write_with(dot, path.as_ref(), "dot")
+    write_with(dot, path.as_ref(), "dot", &[])
 }
 
-fn write_with(dot: &str, path: &Path, program: &str) -> Result<(), VizError> {
+/// Saves DOT text whose nodes have fixed positions, as [`write_dot`] does
+/// but rendering with `neato -n1`, as pm4py does for the dotted chart and
+/// the performance spectrum.
+pub fn write_neato(dot: &str, path: impl AsRef<Path>) -> Result<(), VizError> {
+    write_with(dot, path.as_ref(), "neato", &["-n1"])
+}
+
+fn write_with(dot: &str, path: &Path, program: &str, args: &[&str]) -> Result<(), VizError> {
     let format = format_of(path)?;
     if format == "dot" || format == "gv" {
         std::fs::write(path, dot)?;
         return Ok(());
     }
-    std::fs::write(path, render(dot, &format, program)?.stdout)?;
+    std::fs::write(path, render(dot, &format, program, args)?.stdout)?;
     Ok(())
 }
 
@@ -93,13 +114,20 @@ pub(crate) struct Rendered {
     pub(crate) stderr: String,
 }
 
-/// Renders DOT text with `program -T<format>` and returns what it writes.
+/// Renders DOT text with `program <args> -T<format>` and returns what it
+/// writes.
 ///
 /// The DOT text goes to `program` from a separate thread, so a program that
 /// stops reading early, as `dot` does on a syntax error, still gets its exit
 /// status and standard error read.
-pub(crate) fn render(dot: &str, format: &str, program: &str) -> Result<Rendered, VizError> {
+pub(crate) fn render(
+    dot: &str,
+    format: &str,
+    program: &str,
+    args: &[&str],
+) -> Result<Rendered, VizError> {
     let mut child = match Command::new(program)
+        .args(args)
         .arg(format!("-T{format}"))
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
@@ -108,7 +136,10 @@ pub(crate) fn render(dot: &str, format: &str, program: &str) -> Result<Rendered,
     {
         Ok(child) => child,
         Err(e) if e.kind() == ErrorKind::NotFound => {
-            return Err(VizError::DotNotFound(format.to_owned()));
+            return Err(VizError::DotNotFound {
+                program: program.to_owned(),
+                format: format.to_owned(),
+            });
         }
         Err(e) => return Err(e.into()),
     };
@@ -120,6 +151,7 @@ pub(crate) fn render(dot: &str, format: &str, program: &str) -> Result<Rendered,
     let stderr = String::from_utf8_lossy(&output.stderr).trim().to_owned();
     if !output.status.success() {
         return Err(VizError::Dot {
+            program: program.to_owned(),
             status: output.status.to_string(),
             stderr,
         });
@@ -256,6 +288,82 @@ pub fn write_alignment_table(
     write_dot(&alignment_table_dot(rows, options), path)
 }
 
+/// Saves an object-centric DFG drawing ([`ocdfg_dot`]); see [`write_dot`]
+/// for the formats. pm4py's `save_vis_ocdfg`.
+pub fn write_ocdfg(
+    ocdfg: &Ocdfg,
+    options: &OcdfgDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_dot(&ocdfg_dot(ocdfg, options), path)
+}
+
+/// Saves an object-centric Petri net drawing ([`ocpn_dot`]); see
+/// [`write_dot`] for the formats. pm4py's `save_vis_ocpn`.
+pub fn write_ocpn(
+    ocpn: &OcPetriNet,
+    options: &OcpnDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_dot(&ocpn_dot(ocpn, options), path)
+}
+
+/// Saves an object graph drawing ([`object_graph_dot`]); see [`write_dot`]
+/// for the formats. pm4py's `save_vis_object_graph`.
+pub fn write_object_graph(
+    ocel: &Ocel,
+    graph: &BTreeSet<(String, String)>,
+    options: &ObjectGraphDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_dot(&object_graph_dot(ocel, graph, options), path)
+}
+
+/// Saves a network analysis drawing with counts
+/// ([`network_analysis_dot`]); see [`write_dot`] for the formats. pm4py's
+/// `save_vis_network_analysis` with the `frequency` variant.
+pub fn write_network_analysis(
+    edges: &[NetworkAnalysisEdge<u64>],
+    options: &NetworkAnalysisDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_dot(&network_analysis_dot(edges, options), path)
+}
+
+/// Saves a network analysis drawing with durations
+/// ([`network_analysis_performance_dot`]); see [`write_dot`] for the
+/// formats. pm4py's `save_vis_network_analysis` with the `performance`
+/// variant.
+pub fn write_network_analysis_performance(
+    edges: &[NetworkAnalysisEdge<Vec<f64>>],
+    options: &NetworkAnalysisDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_dot(&network_analysis_performance_dot(edges, options), path)
+}
+
+/// Saves a dotted chart ([`dotted_chart_dot`]), rendered with `neato -n1`
+/// ([`write_neato`]). pm4py's `save_vis_dotted_chart`.
+pub fn write_dotted_chart(
+    points: &[DottedChartPoint],
+    attributes: &DottedChartAttributes,
+    options: &DottedChartDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_neato(&dotted_chart_dot(points, attributes, options), path)
+}
+
+/// Saves a performance spectrum ([`performance_spectrum_dot`]), rendered
+/// with `neato -n1` ([`write_neato`]). pm4py's
+/// `save_vis_performance_spectrum`.
+pub fn write_performance_spectrum(
+    spectrum: &PerformanceSpectrum,
+    options: &PerformanceSpectrumDotOptions,
+    path: impl AsRef<Path>,
+) -> Result<(), VizError> {
+    write_neato(&performance_spectrum_dot(spectrum, options), path)
+}
+
 #[cfg(test)]
 pub(crate) mod tests {
     use super::*;
@@ -269,10 +377,11 @@ pub(crate) mod tests {
     #[test]
     fn a_missing_program_is_a_typed_error() {
         let path = scratch("g.svg");
-        let err = write_with("digraph {}\n", &path, "ichnos-no-such-dot").unwrap_err();
+        let err = write_with("digraph {}\n", &path, "ichnos-no-such-dot", &[]).unwrap_err();
         assert!(!path.exists());
         assert!(
-            matches!(err, VizError::DotNotFound(ref f) if f == "svg"),
+            matches!(err, VizError::DotNotFound { ref program, ref format }
+                if program == "ichnos-no-such-dot" && format == "svg"),
             "{err}"
         );
     }
@@ -297,7 +406,7 @@ pub(crate) mod tests {
             "syntax-error",
             "echo 'Error: syntax error in line 1' >&2; exit 1",
         );
-        let err = render(&dot, "svg", program.to_str().unwrap())
+        let err = render(&dot, "svg", program.to_str().unwrap(), &[])
             .err()
             .unwrap();
         let _ = std::fs::remove_file(&program);
