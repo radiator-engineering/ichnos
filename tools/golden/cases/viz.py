@@ -12,7 +12,10 @@ the parsed graph, not the text:
 ``graph`` merges the graph attributes of the top level. A node's ``attrs``
 include the defaults that earlier ``node [...]`` statements set, and a node
 inside a subgraph gets the attribute ``subgraph`` with that subgraph's
-attributes as a JSON string. HTML labels keep their angle brackets; quoted
+attributes as a JSON string. Below the first level of subgraphs it also gets
+``subgraph_depth``, the number of enclosing subgraphs. An edge's ``lhead``
+and ``ltail`` name a cluster; they become ``cluster@<depth>``. An ``image``
+keeps only its file name. HTML labels keep their angle brackets; quoted
 strings lose their quotes. Keys ``n0``, ``n1``, ... come from colour
 refinement on the attributes, as in ``bpmn.py``. The Rust tests parse
 ichnos's DOT the same way and compare the two graphs up to isomorphism.
@@ -42,6 +45,22 @@ ichnos does not read.
 - ``bpmn-*``: ``null``; the diagram is the ``model`` fixture.
 - ``heuristics-net-*``: the net as ``model.py`` describes it, from
   ``pm4py.discover_heuristics_net``.
+- ``transition-system-*``: ``{"states": [name], "transitions": [[from,
+  to, name]]}`` from ``pm4py.discover_transition_system``, with states as
+  indices into ``states``.
+- ``prefix-tree-*``: ``{"nodes": [{"label", "parent", "final",
+  "depth"}]}`` from ``pm4py.discover_prefix_tree``, the root first and then
+  breadth first, children in label order; ``parent`` is an index.
+- ``footprints-*``: ``{"sequence": [[a, b]], "parallel": [[a, b]]}`` from
+  ``pm4py.discover_footprints``; comparisons hold two, as ``first`` and
+  ``second``.
+- ``alignments-*``: ``{"rows": [{"activities", "count", "moves"}]}``, one
+  row per variant in order of its first trace. ``moves`` are the
+  ``[log, model]`` label pairs of the variant's first trace, with ``>>``
+  and ``null`` kept; ``alignments`` says how they are built.
+- ``powl-*``: the model as ``powl.py`` describes it, before pm4py's
+  ``simplify_using_frequent_transitions``. Children are sorted, so the
+  description does not depend on set order.
 """
 
 from __future__ import annotations
@@ -147,6 +166,8 @@ def parse_dot(src: str) -> dict[str, Any]:
     edges: list[tuple[str, str, dict[str, str]]] = []
     # One frame per open graph or subgraph: (graph attrs, node defaults).
     frames: list[tuple[dict[str, str], dict[str, str]]] = [(graph, {})]
+    # Nesting depth of each subgraph, by name.
+    depth: dict[str, int] = {}
     while frames:
         t = take()
         if t == ("op", "}"):
@@ -157,11 +178,12 @@ def parse_dot(src: str) -> dict[str, Any]:
         gattrs, defaults = frames[-1]
         if t == ("id", "subgraph"):
             if peek() != ("op", "{"):
-                take()
+                depth[take()[1]] = len(frames)
             assert take() == ("op", "{")
             frames.append(({}, dict(defaults)))
             continue
-        if t[1] in ("graph", "node", "edge") and peek() == ("op", "["):
+        if t[1] in ("graph", "node", "edge"):
+            # ``attr("node")`` writes the keyword alone, which sets nothing.
             attrs = attr_list()
             if t[1] == "graph":
                 gattrs.update(attrs)
@@ -175,14 +197,22 @@ def parse_dot(src: str) -> dict[str, Any]:
         if peek() is not None and peek()[1] in ("->", "--"):
             take()
             target = take()[1]
-            edges.append((t[1], target, attr_list()))
+            attrs = attr_list()
+            for k in ("lhead", "ltail"):
+                if k in attrs:
+                    attrs[k] = f"cluster@{depth[attrs[k]]}"
+            edges.append((t[1], target, attrs))
             continue
         attrs = dict(defaults)
         attrs.update(attr_list())
+        if "image" in attrs:
+            attrs["image"] = Path(attrs["image"]).name
         # The graphviz package writes a subgraph's attributes before its
         # nodes, so they are complete here.
         if len(frames) > 1:
             attrs["subgraph"] = json.dumps(frames[-1][0], sort_keys=True)
+        if len(frames) > 2:
+            attrs["subgraph_depth"] = str(len(frames) - 1)
         nodes[t[1]] = attrs
     return {"strict": strict, "kind": kind, "graph": graph, "nodes": nodes, "edges": edges}
 
@@ -457,6 +487,170 @@ def heuristics_net(fixtures: dict[str, Path], **params: Any) -> dict[str, Any]:
     return {"model": describe_heuristics_net(net), "dot": canonical_dot(source)}
 
 
+def transition_system(fixtures: dict[str, Path]) -> dict[str, Any]:
+    from pm4py.visualization.transition_system import visualizer
+
+    ts = pm4py.discover_transition_system(load_log(fixtures["log"]))
+    states = sorted(ts.states, key=lambda s: str(s.name))
+    index = {id(s): i for i, s in enumerate(states)}
+    model = {
+        "states": [str(s.name) for s in states],
+        "transitions": sorted(
+            [index[id(t.from_state)], index[id(t.to_state)], str(t.name)]
+            for t in ts.transitions
+        ),
+    }
+    source = _capture(visualizer, lambda path: pm4py.save_vis_transition_system(ts, path))
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def prefix_tree(fixtures: dict[str, Path]) -> dict[str, Any]:
+    from pm4py.visualization.trie import visualizer
+
+    trie = pm4py.discover_prefix_tree(load_log(fixtures["log"]))
+    nodes: list[dict[str, Any]] = []
+    queue = [(trie, None)]
+    while queue:
+        node, parent = queue.pop(0)
+        here = len(nodes)
+        nodes.append(
+            {"label": node.label, "parent": parent, "final": node.final, "depth": node.depth}
+        )
+        queue.extend((c, here) for c in sorted(node.children, key=lambda c: c.label))
+    source = _capture(visualizer, lambda path: pm4py.save_vis_prefix_tree(trie, path))
+    return {"model": {"nodes": nodes}, "dot": canonical_dot(source)}
+
+
+def _footprints(fp: dict[str, Any]) -> dict[str, Any]:
+    return {k: sorted(list(x) for x in fp[k]) for k in ("sequence", "parallel")}
+
+
+def footprints(fixtures: dict[str, Path], compare: str | None = None) -> dict[str, Any]:
+    """Footprints of the log, or with ``compare`` set, the log's against
+    those of its inductive net (``net``) or of the log without the activity
+    ``compare`` names."""
+    from pm4py.visualization.footprints import visualizer
+
+    log = load_log(fixtures["log"])
+    fp = pm4py.discover_footprints(log)
+    if compare is None:
+        source = _capture(visualizer, lambda path: pm4py.save_vis_footprints(fp, path))
+        return {"model": _footprints(fp), "dot": canonical_dot(source)}
+    if compare == "net":
+        other = pm4py.discover_footprints(*pm4py.discover_petri_net_inductive(log))
+    else:
+        other = pm4py.discover_footprints(
+            pm4py.filter_event_attribute_values(
+                log, "concept:name", [compare], level="event", retain=False
+            )
+        )
+    source = _capture(visualizer, lambda path: pm4py.save_vis_footprints((fp, other), path))
+    model = {"first": _footprints(fp), "second": _footprints(other)}
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def alignments(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """The alignment table of the log, with alignments built from each
+    trace rather than searched, since pm4py's search breaks ties
+    differently from run to run. Activities in even positions of the sorted
+    activity list are synchronous moves, the others log moves, and every
+    alignment ends with a silent model move and a model move on ``end >
+    model``, a label pm4py escapes."""
+    from pm4py.statistics.variants.log import get as variants_get
+    from pm4py.visualization.align_table import visualizer
+
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    order = sorted({e["concept:name"] for t in log for e in t})
+    sync = set(order[::2])
+    aligned = [
+        {
+            "alignment": [
+                (a, a) if a in sync else (a, ">>")
+                for a in (e["concept:name"] for e in t)
+            ]
+            + [(">>", None), (">>", "end > model")]
+        }
+        for t in log
+    ]
+    variants = variants_get.get_variants_from_log_trace_idx(log)
+    rows = [
+        {
+            "activities": list(v),
+            "count": len(idx),
+            "moves": [list(m) for m in aligned[idx[0]]["alignment"]],
+        }
+        for v, idx in sorted(variants.items(), key=lambda x: x[1][0])
+    ]
+    source = _capture(visualizer, lambda path: pm4py.save_vis_alignments(log, aligned, path))
+    return {"model": {"rows": rows}, "dot": canonical_dot(source)}
+
+
+def _sorted_powl(p: Any) -> Any:
+    """A copy of a pm4py POWL model with the children of choices and partial
+    orders sorted by their description, keeping the order relation.
+
+    pm4py's discovery orders children by Python's set order. The drawing
+    joins an edge into a cluster to the cluster's first child, so the
+    golden draws this copy to stay the same under every hash seed."""
+    from cases.powl import describe_powl
+    from pm4py.objects.powl.obj import OperatorPOWL, StrictPartialOrder
+    from pm4py.objects.process_tree.obj import Operator
+
+    def key(c: Any) -> str:
+        return json.dumps(describe_powl(c), sort_keys=True)
+
+    if isinstance(p, OperatorPOWL):
+        children = [_sorted_powl(c) for c in p.children]
+        if p.operator == Operator.XOR:
+            children.sort(key=key)
+        return OperatorPOWL(p.operator, children)
+    if isinstance(p, StrictPartialOrder):
+        nodes = p.order.nodes
+        children = [_sorted_powl(c) for c in nodes]
+        perm = sorted(range(len(children)), key=lambda i: key(children[i]))
+        out = StrictPartialOrder([children[i] for i in perm])
+        for i, a in enumerate(nodes):
+            for j, b in enumerate(nodes):
+                if p.order.is_edge(a, b):
+                    out.order.add_edge(children[i], children[j])
+        return out
+    return p
+
+
+class _Drawn(Exception):
+    pass
+
+
+def powl(fixtures: dict[str, Path], text: str | None = None, **params: Any) -> dict[str, Any]:
+    """pm4py's POWL drawing, captured before pm4py renders it to SVG."""
+    from cases.powl import describe_powl
+    from pm4py.visualization.powl.variants import basic
+
+    if text is None:
+        model = pm4py.discover_powl(load_log(fixtures["log"]))
+    else:
+        model = pm4py.parse_powl_model_string(text)
+    model = _sorted_powl(model)
+    sources: list[str] = []
+    original = basic.apply
+
+    def apply(*args: Any, **kwargs: Any) -> Any:
+        sources.append(original(*args, **kwargs).source)
+        raise _Drawn
+
+    basic.apply = apply
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            pm4py.save_vis_powl(model, str(Path(tmp) / "out.svg"), **params)
+    except _Drawn:
+        pass
+    finally:
+        basic.apply = original
+    if len(sources) != 1:
+        raise RuntimeError(f"expected one drawn graph, got {len(sources)}")
+    return {"model": describe_powl(model), "dot": canonical_dot(sources[0])}
+
+
 LOGS = {"running-example": "running-example.xes", "receipt": "receipt.xes"}
 
 for name, log in LOGS.items():
@@ -613,3 +807,61 @@ case(
     ],
     params={"min_dfg_occurrences": 3},
 )(heuristics_net)
+
+for name, log in LOGS.items():
+    case(
+        f"transition-system-{name}",
+        fixture=log,
+        functions=["pm4py.discover_transition_system", "pm4py.save_vis_transition_system"],
+    )(transition_system)
+    case(
+        f"prefix-tree-{name}",
+        fixture=log,
+        functions=["pm4py.discover_prefix_tree", "pm4py.save_vis_prefix_tree"],
+    )(prefix_tree)
+    case(
+        f"footprints-{name}",
+        fixture=log,
+        functions=["pm4py.discover_footprints", "pm4py.save_vis_footprints"],
+    )(footprints)
+    case(
+        f"footprints-{name}-vs-net",
+        fixture=log,
+        functions=[
+            "pm4py.discover_footprints",
+            "pm4py.discover_petri_net_inductive",
+            "pm4py.save_vis_footprints",
+        ],
+        params={"compare": "net"},
+    )(footprints)
+    case(
+        f"alignments-{name}",
+        fixture=log,
+        functions=["pm4py.save_vis_alignments"],
+    )(alignments)
+    case(
+        f"powl-{name}",
+        fixture=log,
+        functions=["pm4py.discover_powl", "pm4py.save_vis_powl"],
+    )(powl)
+
+case(
+    "footprints-running-example-vs-filtered",
+    fixture="running-example.xes",
+    functions=[
+        "pm4py.discover_footprints",
+        "pm4py.filter_event_attribute_values",
+        "pm4py.save_vis_footprints",
+    ],
+    params={"compare": "examine casually"},
+)(footprints)
+case(
+    "powl-frequent-styled",
+    functions=["pm4py.parse_powl_model_string", "pm4py.save_vis_powl"],
+    params={
+        "text": "PO=(nodes={ X ( a, tau ), * ( b, tau ), * ( tau, c ), X ( tau, d ), "
+        "* ( e, f ) }, order={ X ( a, tau )-->* ( b, tau ), * ( b, tau )-->* ( e, f ) })",
+        "bgcolor": "#ddeeff",
+        "rankdir": "LR",
+    },
+)(powl)
