@@ -1,0 +1,42 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [],
+      "relations": []
+    },
+    "writers": {
+      "json": {
+        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [],\n    \"ocel:attribute-names\": [],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {},\n  \"ocel:objects\": {}\n}"
+      },
+      "json2": {
+        "text": "{\n  \"objectTypes\": [],\n  \"eventTypes\": [],\n  \"objects\": [],\n  \"events\": []\n}"
+      },
+      "xml": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\"/>\n    <list key=\"object-types\"/>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events/>\n  <objects/>\n</log>\n"
+      },
+      "xml2": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types/>\n  <event-types/>\n  <objects/>\n  <events/>\n</log>\n"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "write-empty",
+    "fixtures": {},
+    "functions": [
+      "pm4py.write_ocel_json",
+      "pm4py.write_ocel_xml",
+      "pm4py.write_ocel2_json",
+      "pm4py.write_ocel2_xml"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

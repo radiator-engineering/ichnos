@@ -1,0 +1,210 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "place order",
+          "attributes": {
+            "count": [
+              "string",
+              "7"
+            ],
+            "due": [
+              "date",
+              "2022-01-11T23:00:00.000000+00:00"
+            ],
+            "note": [
+              "string",
+              "first"
+            ],
+            "rate": [
+              "float",
+              0.5
+            ],
+            "rush": [
+              "string",
+              "true"
+            ],
+            "share": [
+              "string",
+              "1.25"
+            ],
+            "slot": [
+              "string",
+              "2022-01-09T18:00:00Z"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {
+            "count": [
+              "string",
+              "-2"
+            ],
+            "rush": [
+              "string",
+              "False"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        },
+        {
+          "activity": "pick item",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00"
+        }
+      ],
+      "o2o": [
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i1"
+        },
+        {
+          "qualifier": "contains",
+          "source": "o1",
+          "target": "i2"
+        }
+      ],
+      "object_changes": [
+        {
+          "field": "priority",
+          "object": "o1",
+          "timestamp": "2022-01-09T16:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "string",
+            "3"
+          ]
+        },
+        {
+          "field": "value",
+          "object": "o1",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "order",
+          "value": [
+            "float",
+            99.5
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "priority": [
+              "string",
+              "2"
+            ],
+            "value": [
+              "float",
+              120.5
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              1.5
+            ]
+          },
+          "id": "i1",
+          "type": "item"
+        },
+        {
+          "attributes": {},
+          "id": "i2",
+          "type": "item"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "reordered",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "place order",
+          "event": "e1",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:00:00.123456+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick item",
+          "event": "e2",
+          "object": "i1",
+          "qualifier": "picked",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "pick item",
+          "event": "e3",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "2022-01-09T14:30:00.000000+00:00",
+          "type": "item"
+        }
+      ]
+    },
+    "writers": {
+      "json": {
+        "text": "{\n  \"ocel:global-event\": {\n    \"ocel:activity\": \"__INVALID__\"\n  },\n  \"ocel:global-object\": {\n    \"ocel:type\": \"__INVALID__\"\n  },\n  \"ocel:global-log\": {\n    \"ocel:object-types\": [\n      \"order\",\n      \"item\"\n    ],\n    \"ocel:attribute-names\": [\n      \"count\",\n      \"due\",\n      \"note\",\n      \"priority\",\n      \"rate\",\n      \"rush\",\n      \"share\",\n      \"slot\",\n      \"value\",\n      \"weight\"\n    ],\n    \"ocel:version\": \"1.0\",\n    \"ocel:ordering\": \"timestamp\"\n  },\n  \"ocel:events\": {\n    \"e1\": {\n      \"ocel:activity\": \"place order\",\n      \"ocel:timestamp\": \"2022-01-09T14:00:00Z\",\n      \"ocel:vmap\": {\n        \"note\": \"first\",\n        \"count\": \"7\",\n        \"rate\": 0.5,\n        \"rush\": \"true\",\n        \"due\": \"2022-01-11T23:00:00Z\",\n        \"share\": \"1.25\",\n        \"slot\": \"2022-01-09T18:00:00Z\"\n      },\n      \"ocel:omap\": [\n        \"o1\",\n        \"i1\",\n        \"i2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"o1\",\n          \"ocel:qualifier\": \"\"\n        },\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"reordered\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    },\n    \"e2\": {\n      \"ocel:activity\": \"pick item\",\n      \"ocel:timestamp\": \"2022-01-09T14:30:00Z\",\n      \"ocel:vmap\": {\n        \"count\": \"-2\",\n        \"rush\": \"False\"\n      },\n      \"ocel:omap\": [\n        \"i1\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"picked\"\n        }\n      ]\n    },\n    \"e3\": {\n      \"ocel:activity\": \"pick item\",\n      \"ocel:timestamp\": \"2022-01-09T14:30:00Z\",\n      \"ocel:vmap\": {},\n      \"ocel:omap\": [\n        \"i2\"\n      ],\n      \"ocel:typedOmap\": [\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"\"\n        }\n      ]\n    }\n  },\n  \"ocel:objects\": {\n    \"o1\": {\n      \"ocel:type\": \"order\",\n      \"ocel:ovmap\": {\n        \"value\": 120.5,\n        \"priority\": \"2\"\n      },\n      \"ocel:o2o\": [\n        {\n          \"ocel:oid\": \"i1\",\n          \"ocel:qualifier\": \"contains\"\n        },\n        {\n          \"ocel:oid\": \"i2\",\n          \"ocel:qualifier\": \"contains\"\n        }\n      ]\n    },\n    \"i1\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {\n        \"weight\": 1.5\n      }\n    },\n    \"i2\": {\n      \"ocel:type\": \"item\",\n      \"ocel:ovmap\": {}\n    }\n  },\n  \"ocel:eventTypes\": {\n    \"pick item\": {\n      \"count\": \"string\",\n      \"rush\": \"string\"\n    },\n    \"place order\": {\n      \"note\": \"string\",\n      \"count\": \"string\",\n      \"rate\": \"float\",\n      \"rush\": \"string\",\n      \"due\": \"date\",\n      \"share\": \"string\",\n      \"slot\": \"string\"\n    }\n  },\n  \"ocel:objectTypes\": {\n    \"item\": {\n      \"weight\": \"float\"\n    },\n    \"order\": {\n      \"value\": \"float\",\n      \"priority\": \"string\"\n    }\n  },\n  \"ocel:objectChanges\": [\n    {\n      \"ocel:oid\": \"o1\",\n      \"ocel:type\": \"order\",\n      \"priority\": \"3\",\n      \"ocel:timestamp\": \"2022-01-09T16:00:00+00:00\",\n      \"ocel:field\": \"priority\"\n    },\n    {\n      \"ocel:oid\": \"o1\",\n      \"ocel:type\": \"order\",\n      \"ocel:timestamp\": \"1970-01-01T00:00:00+00:00\",\n      \"ocel:field\": \"value\",\n      \"value\": 99.5\n    }\n  ]\n}"
+      },
+      "json2": {
+        "text": "{\n  \"objectTypes\": [\n    {\n      \"name\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"weight\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    {\n      \"name\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"value\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"priority\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"eventTypes\": [\n    {\n      \"name\": \"pick item\",\n      \"attributes\": [\n        {\n          \"name\": \"count\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"place order\",\n      \"attributes\": [\n        {\n          \"name\": \"note\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"count\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"rate\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"rush\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"due\",\n          \"type\": \"date\"\n        },\n        {\n          \"name\": \"share\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"slot\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"o1\",\n      \"type\": \"order\",\n      \"attributes\": [\n        {\n          \"name\": \"value\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 120.5\n        },\n        {\n          \"name\": \"priority\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": \"2\"\n        },\n        {\n          \"name\": \"priority\",\n          \"time\": \"2022-01-09T16:00:00+00:00\",\n          \"value\": \"3\"\n        },\n        {\n          \"name\": \"value\",\n          \"time\": \"1970-01-01T00:00:00+00:00\",\n          \"value\": 99.5\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"contains\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"contains\"\n        }\n      ]\n    },\n    {\n      \"id\": \"i1\",\n      \"type\": \"item\",\n      \"attributes\": [\n        {\n          \"name\": \"weight\",\n          \"time\": \"1970-01-01T00:00:00Z\",\n          \"value\": 1.5\n        }\n      ]\n    },\n    {\n      \"id\": \"i2\",\n      \"type\": \"item\"\n    }\n  ],\n  \"events\": [\n    {\n      \"id\": \"e1\",\n      \"type\": \"place order\",\n      \"time\": \"2022-01-09T14:00:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"note\",\n          \"value\": \"first\"\n        },\n        {\n          \"name\": \"count\",\n          \"value\": \"7\"\n        },\n        {\n          \"name\": \"rate\",\n          \"value\": 0.5\n        },\n        {\n          \"name\": \"rush\",\n          \"value\": \"true\"\n        },\n        {\n          \"name\": \"due\",\n          \"value\": \"2022-01-11T23:00:00Z\"\n        },\n        {\n          \"name\": \"share\",\n          \"value\": \"1.25\"\n        },\n        {\n          \"name\": \"slot\",\n          \"value\": \"2022-01-09T18:00:00Z\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"o1\",\n          \"qualifier\": \"\"\n        },\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"reordered\"\n        },\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e2\",\n      \"type\": \"pick item\",\n      \"time\": \"2022-01-09T14:30:00Z\",\n      \"attributes\": [\n        {\n          \"name\": \"count\",\n          \"value\": \"-2\"\n        },\n        {\n          \"name\": \"rush\",\n          \"value\": \"False\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"objectId\": \"i1\",\n          \"qualifier\": \"picked\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e3\",\n      \"type\": \"pick item\",\n      \"time\": \"2022-01-09T14:30:00Z\",\n      \"relationships\": [\n        {\n          \"objectId\": \"i2\",\n          \"qualifier\": \"\"\n        }\n      ]\n    }\n  ]\n}"
+      },
+      "xml": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <global scope=\"event\">\n    <string key=\"ocel:activity\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"object\">\n    <string key=\"ocel:type\" value=\"__INVALID__\"/>\n  </global>\n  <global scope=\"log\">\n    <list key=\"attribute-names\">\n      <string key=\"attribute-name\" value=\"count\"/>\n      <string key=\"attribute-name\" value=\"due\"/>\n      <string key=\"attribute-name\" value=\"note\"/>\n      <string key=\"attribute-name\" value=\"priority\"/>\n      <string key=\"attribute-name\" value=\"rate\"/>\n      <string key=\"attribute-name\" value=\"rush\"/>\n      <string key=\"attribute-name\" value=\"share\"/>\n      <string key=\"attribute-name\" value=\"slot\"/>\n      <string key=\"attribute-name\" value=\"value\"/>\n      <string key=\"attribute-name\" value=\"weight\"/>\n    </list>\n    <list key=\"object-types\">\n      <string key=\"object-type\" value=\"order\"/>\n      <string key=\"object-type\" value=\"item\"/>\n    </list>\n    <string key=\"version\" value=\"1.0\"/>\n    <string key=\"ordering\" value=\"timestamp\"/>\n  </global>\n  <events>\n    <event>\n      <string key=\"id\" value=\"e1\"/>\n      <string key=\"activity\" value=\"place order\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:00:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"o1\"/>\n        <string key=\"object-id\" value=\"i1\"/>\n        <string key=\"object-id\" value=\"i2\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"note\" value=\"first\"/>\n        <string key=\"count\" value=\"7\"/>\n        <float key=\"rate\" value=\"0.5\"/>\n        <string key=\"rush\" value=\"true\"/>\n        <date key=\"due\" value=\"2022-01-11T23:00:00Z\"/>\n        <string key=\"share\" value=\"1.25\"/>\n        <string key=\"slot\" value=\"2022-01-09T18:00:00Z\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e2\"/>\n      <string key=\"activity\" value=\"pick item\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i1\"/>\n      </list>\n      <list key=\"vmap\">\n        <string key=\"count\" value=\"-2\"/>\n        <string key=\"rush\" value=\"False\"/>\n      </list>\n    </event>\n    <event>\n      <string key=\"id\" value=\"e3\"/>\n      <string key=\"activity\" value=\"pick item\"/>\n      <date key=\"timestamp\" value=\"2022-01-09T14:30:00Z\"/>\n      <list key=\"omap\">\n        <string key=\"object-id\" value=\"i2\"/>\n      </list>\n      <list key=\"vmap\"/>\n    </event>\n  </events>\n  <objects>\n    <object>\n      <string key=\"id\" value=\"o1\"/>\n      <string key=\"type\" value=\"order\"/>\n      <list key=\"ovmap\">\n        <float key=\"value\" value=\"120.5\"/>\n        <string key=\"priority\" value=\"2\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i1\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\">\n        <float key=\"weight\" value=\"1.5\"/>\n      </list>\n    </object>\n    <object>\n      <string key=\"id\" value=\"i2\"/>\n      <string key=\"type\" value=\"item\"/>\n      <list key=\"ovmap\"/>\n    </object>\n  </objects>\n</log>\n"
+      },
+      "xml2": {
+        "text": "<?xml version='1.0' encoding='UTF-8'?>\n<log>\n  <object-types>\n    <object-type name=\"item\">\n      <attributes>\n        <attribute name=\"weight\" type=\"float\"/>\n      </attributes>\n    </object-type>\n    <object-type name=\"order\">\n      <attributes>\n        <attribute name=\"value\" type=\"float\"/>\n        <attribute name=\"priority\" type=\"string\"/>\n      </attributes>\n    </object-type>\n  </object-types>\n  <event-types>\n    <event-type name=\"pick item\">\n      <attributes>\n        <attribute name=\"count\" type=\"string\"/>\n        <attribute name=\"rush\" type=\"string\"/>\n      </attributes>\n    </event-type>\n    <event-type name=\"place order\">\n      <attributes>\n        <attribute name=\"note\" type=\"string\"/>\n        <attribute name=\"count\" type=\"string\"/>\n        <attribute name=\"rate\" type=\"float\"/>\n        <attribute name=\"rush\" type=\"string\"/>\n        <attribute name=\"due\" type=\"date\"/>\n        <attribute name=\"share\" type=\"string\"/>\n        <attribute name=\"slot\" type=\"string\"/>\n      </attributes>\n    </event-type>\n  </event-types>\n  <objects>\n    <object id=\"o1\" type=\"order\">\n      <attributes>\n        <attribute name=\"value\" time=\"1970-01-01T00:00:00Z\">120.5</attribute>\n        <attribute name=\"priority\" time=\"1970-01-01T00:00:00Z\">2</attribute>\n        <attribute name=\"priority\" time=\"2022-01-09T16:00:00+00:00\">3</attribute>\n        <attribute name=\"value\" time=\"1970-01-01T00:00:00+00:00\">99.5</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"i1\" qualifier=\"contains\"/>\n        <relationship object-id=\"i2\" qualifier=\"contains\"/>\n      </objects>\n    </object>\n    <object id=\"i1\" type=\"item\">\n      <attributes>\n        <attribute name=\"weight\" time=\"1970-01-01T00:00:00Z\">1.5</attribute>\n      </attributes>\n    </object>\n    <object id=\"i2\" type=\"item\">\n      <attributes/>\n    </object>\n  </objects>\n  <events>\n    <event id=\"e1\" type=\"place order\" time=\"2022-01-09T14:00:00.123456+00:00\">\n      <attributes>\n        <attribute name=\"note\">first</attribute>\n        <attribute name=\"count\">7</attribute>\n        <attribute name=\"rate\">0.5</attribute>\n        <attribute name=\"rush\">true</attribute>\n        <attribute name=\"due\">2022-01-11T23:00:00+00:00</attribute>\n        <attribute name=\"share\">1.25</attribute>\n        <attribute name=\"slot\">2022-01-09T18:00:00Z</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"o1\" qualifier=\"\"/>\n        <relationship object-id=\"i1\" qualifier=\"reordered\"/>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n      </objects>\n    </event>\n    <event id=\"e2\" type=\"pick item\" time=\"2022-01-09T14:30:00+00:00\">\n      <attributes>\n        <attribute name=\"count\">-2</attribute>\n        <attribute name=\"rush\">False</attribute>\n      </attributes>\n      <objects>\n        <relationship object-id=\"i1\" qualifier=\"picked\"/>\n      </objects>\n    </event>\n    <event id=\"e3\" type=\"pick item\" time=\"2022-01-09T14:30:00+00:00\">\n      <attributes/>\n      <objects>\n        <relationship object-id=\"i2\" qualifier=\"\"/>\n      </objects>\n    </event>\n  </events>\n</log>\n"
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "write-typed-xmlocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/typed.xmlocel"
+    },
+    "functions": [
+      "pm4py.read_ocel_xml",
+      "pm4py.write_ocel_json",
+      "pm4py.write_ocel_xml",
+      "pm4py.write_ocel2_json",
+      "pm4py.write_ocel2_xml"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
