@@ -144,6 +144,22 @@ or Parquet reader must give the same result to match these goldens.
   position). Case IDs therefore sort as text, so `"10"` comes before `"2"`.
   Events with equal timestamps keep their file order.
 
+## Compact log I/O goldens
+
+The `io` area stores case/event counts, global attribute type sets, and counted
+per-trace type profiles (trace attributes and the union of event attribute types).
+Activity variants use SHA-256 fingerprints with counts; an additional fingerprint
+of the full ordered sequence list checks trace and event order, including missing
+activity names. Fingerprints use UTF-8 JSON with sorted object keys, no whitespace,
+and literal Unicode. Repeated sequences are not stored in full.
+
+The first three traces retain every trace/event attribute for value comparisons,
+including nested attributes. Dates are UTC ISO strings with six fractional digits;
+null pandas values and attributes without text keys are omitted to match the core
+model. Lists retain ordered key/value pairs, containers retain maps, and scalar
+meta-attributes retain both their value and children. Rust tests compare these
+samples with the oracle before checking the full XES write/read round trip.
+
 ## Models: emit behaviour, not structure
 
 Some pm4py outputs are models: Petri nets, process trees, BPMN graphs. Their

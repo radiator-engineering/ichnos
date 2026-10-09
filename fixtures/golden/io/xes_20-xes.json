@@ -1,0 +1,95 @@
+{
+  "expected": {
+    "event_types": {
+      "contenitore": [
+        "container"
+      ],
+      "lista": [
+        "list"
+      ],
+      "sdasaddas": [
+        "string"
+      ]
+    },
+    "n_cases": 1,
+    "n_events": 1,
+    "samples": [
+      {
+        "attributes": {},
+        "events": [
+          {
+            "contenitore": {
+              "container": {
+                "val3": 7,
+                "val4": "666"
+              }
+            },
+            "lista": {
+              "list": [
+                [
+                  "val1",
+                  5
+                ],
+                [
+                  "val2",
+                  "66"
+                ]
+              ]
+            },
+            "sdasaddas": {
+              "meta": {
+                "cost": 0
+              },
+              "value": "ciao"
+            }
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "0b99263f4bec935e7fb92342d0093bd0cd780cb3f12d3f6ce42c1d448e810e0e",
+    "trace_types": {},
+    "type_profiles": {
+      "87c2b1bcb76aaa87e227718070f6e8ded6c528a0d08ca306e0162293bc241d5e": {
+        "count": 1,
+        "events": {
+          "contenitore": [
+            "container"
+          ],
+          "lista": [
+            "list"
+          ],
+          "sdasaddas": [
+            "string"
+          ]
+        },
+        "trace": {}
+      }
+    },
+    "variants": {
+      "1d8fc6ceb1f94c6326d6d5483d258fcb2e179e9869325b245d105c2219bf69fd": 1
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "xes_20-xes",
+    "fixtures": {
+      "log": "fixtures/logs/xes_20.xes"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "variant": "iterparse_20"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

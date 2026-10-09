@@ -1,0 +1,170 @@
+{
+  "expected": {
+    "event_types": {
+      "concept:name": [
+        "string"
+      ],
+      "time:timestamp": [
+        "string"
+      ]
+    },
+    "n_cases": 10,
+    "n_events": 64,
+    "samples": [
+      {
+        "attributes": {
+          "concept:name": "1.0"
+        },
+        "events": [
+          {
+            "concept:name": "a",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "b",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "c",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "e",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "f",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "g",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "g",
+            "time:timestamp": "?"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "2.0"
+        },
+        "events": [
+          {
+            "concept:name": "a",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "b",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "e",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "c",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "f",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "g",
+            "time:timestamp": "?"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "3.0"
+        },
+        "events": [
+          {
+            "concept:name": "a",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "b",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "e",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "f",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "c",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "g",
+            "time:timestamp": "?"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "534dfc520cd42edc4e933654bc993a411a5c4a11d4fef8fed1e2f4e894d5e1b5",
+    "trace_types": {
+      "concept:name": [
+        "string"
+      ]
+    },
+    "type_profiles": {
+      "141f63aa61a1464259018d8ed75fefc997572b124d2a9cc093cb5efa05784a15": {
+        "count": 10,
+        "events": {
+          "concept:name": [
+            "string"
+          ],
+          "time:timestamp": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "0fde24820b3136dfed9ce7b6fdaaaf1cac026a1d4c34274a3c7caa836ea7347a": 1,
+      "25fdf719b2728fe3bf94bc3e854559a2b17920be49680949334efa4f5da171a7": 1,
+      "2675a5af66b277896cadc553da8f535e8ea5c73619c1bf5f7ca443a1cd1d7966": 1,
+      "2ef1e5a2ebf6f6311cd5f1a2d5f7ab03737e81429e0c60767e2699ccd511f14f": 1,
+      "380ac5dfbb13694f537f3d53e2257021dd5d908bee73a7ef5cbbc9b1729c8a83": 1,
+      "43207436e26e51dfda8c3064eb280cedbf05d1f294a96e70f0ecf8c7cc4fd69b": 1,
+      "8901ea9d23e0b9390fac7ceb322286cc48452e673480fc7c5f25ab711844ec0d": 1,
+      "8edca6660e8712896f379f0b4df7a2346663160bee929603cfdb85d54f7a66da": 1,
+      "c762d73fe62aa30b8325032aeac6fbbf1c431057b8076b6810c0cdaa751d5631": 1,
+      "d4e027dbad9862be8a768ccafd44f3ec31c0c2465ea2ea7b6634df7c2bffb454": 1
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "partial-order-example-3-xes",
+    "fixtures": {
+      "log": "fixtures/logs/partial order example 3.xes"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

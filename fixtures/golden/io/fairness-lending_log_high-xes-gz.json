@@ -1,0 +1,398 @@
+{
+  "expected": {
+    "event_types": {
+      "@@index": [
+        "int"
+      ],
+      "activity": [
+        "string"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "resource": [
+        "string"
+      ],
+      "time": [
+        "date"
+      ],
+      "time:timestamp": [
+        "date"
+      ]
+    },
+    "n_cases": 10000,
+    "n_events": 58822,
+    "samples": [
+      {
+        "attributes": {
+          "@@case_index": 0,
+          "CreditScore": 74,
+          "age": 52,
+          "case": 1,
+          "citizen": false,
+          "concept:name": "1",
+          "gender": false,
+          "german speaking": false,
+          "protected": true,
+          "yearsOfEducation": 10
+        },
+        "events": [
+          {
+            "@@index": 0,
+            "activity": "Request Appointment",
+            "concept:name": "Request Appointment",
+            "resource": "Resource 3",
+            "time": "2015-01-05T00:02:00.000000+00:00",
+            "time:timestamp": "2015-01-05T00:02:00.000000+00:00"
+          },
+          {
+            "@@index": 1,
+            "activity": "Set Appointment",
+            "concept:name": "Set Appointment",
+            "resource": "Resource 1",
+            "time": "2015-01-06T01:02:06.000000+00:00",
+            "time:timestamp": "2015-01-06T01:02:06.000000+00:00"
+          },
+          {
+            "@@index": 2,
+            "activity": "Hand In Credit Appliaction",
+            "concept:name": "Hand In Credit Appliaction",
+            "resource": "Online System",
+            "time": "2015-01-07T02:01:17.000000+00:00",
+            "time:timestamp": "2015-01-07T02:01:17.000000+00:00"
+          },
+          {
+            "@@index": 3,
+            "activity": "Verify Borrowers Information",
+            "concept:name": "Verify Borrowers Information",
+            "resource": "Loan Officer 1",
+            "time": "2015-01-07T07:33:36.000000+00:00",
+            "time:timestamp": "2015-01-07T07:33:36.000000+00:00"
+          },
+          {
+            "@@index": 4,
+            "activity": "Make Visit to Assess Colatteral",
+            "concept:name": "Make Visit to Assess Colatteral",
+            "resource": "Loan Officer 1",
+            "time": "2015-01-07T13:07:33.000000+00:00",
+            "time:timestamp": "2015-01-07T13:07:33.000000+00:00"
+          },
+          {
+            "@@index": 5,
+            "activity": "Request Co-Signer On Loan",
+            "concept:name": "Request Co-Signer On Loan",
+            "resource": "Loan Officer 3",
+            "time": "2015-01-07T13:07:33.000000+00:00",
+            "time:timestamp": "2015-01-07T13:07:33.000000+00:00"
+          },
+          {
+            "@@index": 6,
+            "activity": "Submit File to Underwriter",
+            "concept:name": "Submit File to Underwriter",
+            "resource": "Loan Officer 2",
+            "time": "2015-01-07T18:41:30.000000+00:00",
+            "time:timestamp": "2015-01-07T18:41:30.000000+00:00"
+          },
+          {
+            "@@index": 7,
+            "activity": "Sign Loan Agreement",
+            "concept:name": "Sign Loan Agreement",
+            "resource": "Strict UW3",
+            "time": "2015-01-08T19:41:53.000000+00:00",
+            "time:timestamp": "2015-01-08T19:41:53.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "@@case_index": 1,
+          "CreditScore": 68,
+          "age": 47,
+          "case": 10,
+          "citizen": false,
+          "concept:name": "10",
+          "gender": true,
+          "german speaking": true,
+          "protected": false,
+          "yearsOfEducation": 15
+        },
+        "events": [
+          {
+            "@@index": 8,
+            "activity": "Request Appointment",
+            "concept:name": "Request Appointment",
+            "resource": "Resource 3",
+            "time": "2015-01-05T00:00:13.000000+00:00",
+            "time:timestamp": "2015-01-05T00:00:13.000000+00:00"
+          },
+          {
+            "@@index": 9,
+            "activity": "Set Appointment",
+            "concept:name": "Set Appointment",
+            "resource": "Hotline",
+            "time": "2015-01-05T22:14:45.000000+00:00",
+            "time:timestamp": "2015-01-05T22:14:45.000000+00:00"
+          },
+          {
+            "@@index": 10,
+            "activity": "Hand In Credit Appliaction",
+            "concept:name": "Hand In Credit Appliaction",
+            "resource": "Online System",
+            "time": "2015-01-06T20:29:19.000000+00:00",
+            "time:timestamp": "2015-01-06T20:29:19.000000+00:00"
+          },
+          {
+            "@@index": 11,
+            "activity": "Verify Borrowers Information",
+            "concept:name": "Verify Borrowers Information",
+            "resource": "Loan Officer 5",
+            "time": "2015-01-07T10:22:50.000000+00:00",
+            "time:timestamp": "2015-01-07T10:22:50.000000+00:00"
+          },
+          {
+            "@@index": 12,
+            "activity": "Make Visit to Assess Colatteral",
+            "concept:name": "Make Visit to Assess Colatteral",
+            "resource": "Loan Officer 5",
+            "time": "2015-01-08T00:15:37.000000+00:00",
+            "time:timestamp": "2015-01-08T00:15:37.000000+00:00"
+          },
+          {
+            "@@index": 13,
+            "activity": "Submit File to Underwriter",
+            "concept:name": "Submit File to Underwriter",
+            "resource": "Loan Officer 5",
+            "time": "2015-01-08T14:09:08.000000+00:00",
+            "time:timestamp": "2015-01-08T14:09:08.000000+00:00"
+          },
+          {
+            "@@index": 14,
+            "activity": "Loan Denied",
+            "concept:name": "Loan Denied",
+            "resource": "Strict UW1",
+            "time": "2015-01-09T12:22:26.000000+00:00",
+            "time:timestamp": "2015-01-09T12:22:26.000000+00:00"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "@@case_index": 2,
+          "CreditScore": 70,
+          "age": 47,
+          "case": 100,
+          "citizen": true,
+          "concept:name": "100",
+          "gender": false,
+          "german speaking": true,
+          "protected": false,
+          "yearsOfEducation": 7
+        },
+        "events": [
+          {
+            "@@index": 15,
+            "activity": "Request Appointment",
+            "concept:name": "Request Appointment",
+            "resource": "Resource 2",
+            "time": "2015-01-05T00:00:36.000000+00:00",
+            "time:timestamp": "2015-01-05T00:00:36.000000+00:00"
+          },
+          {
+            "@@index": 16,
+            "activity": "Set Appointment",
+            "concept:name": "Set Appointment",
+            "resource": "Hotline",
+            "time": "2015-01-05T22:14:35.000000+00:00",
+            "time:timestamp": "2015-01-05T22:14:35.000000+00:00"
+          },
+          {
+            "@@index": 17,
+            "activity": "Hand In Credit Appliaction",
+            "concept:name": "Hand In Credit Appliaction",
+            "resource": "Online System",
+            "time": "2015-01-06T20:28:55.000000+00:00",
+            "time:timestamp": "2015-01-06T20:28:55.000000+00:00"
+          },
+          {
+            "@@index": 18,
+            "activity": "Verify Borrowers Information",
+            "concept:name": "Verify Borrowers Information",
+            "resource": "Loan Officer 2",
+            "time": "2015-01-07T10:22:33.000000+00:00",
+            "time:timestamp": "2015-01-07T10:22:33.000000+00:00"
+          },
+          {
+            "@@index": 19,
+            "activity": "Submit File to Underwriter",
+            "concept:name": "Submit File to Underwriter",
+            "resource": "Loan Officer 2",
+            "time": "2015-01-08T00:16:02.000000+00:00",
+            "time:timestamp": "2015-01-08T00:16:02.000000+00:00"
+          },
+          {
+            "@@index": 20,
+            "activity": "Sign Loan Agreement",
+            "concept:name": "Sign Loan Agreement",
+            "resource": "Chill UW1",
+            "time": "2015-01-08T22:29:57.000000+00:00",
+            "time:timestamp": "2015-01-08T22:29:57.000000+00:00"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "2773c1b75bd2295939a5c2b6ceca12e8928ad40162d2314d80c75f0113ea503d",
+    "trace_types": {
+      "@@case_index": [
+        "int"
+      ],
+      "CreditScore": [
+        "int"
+      ],
+      "age": [
+        "int"
+      ],
+      "case": [
+        "int"
+      ],
+      "citizen": [
+        "boolean"
+      ],
+      "concept:name": [
+        "string"
+      ],
+      "gender": [
+        "boolean"
+      ],
+      "german speaking": [
+        "boolean"
+      ],
+      "protected": [
+        "boolean"
+      ],
+      "yearsOfEducation": [
+        "int"
+      ]
+    },
+    "type_profiles": {
+      "e3a1cf37aec5b496de24472a83a5b1474cb39db5a4ec1f1ddcebe9921aee86d2": {
+        "count": 10000,
+        "events": {
+          "@@index": [
+            "int"
+          ],
+          "activity": [
+            "string"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "resource": [
+            "string"
+          ],
+          "time": [
+            "date"
+          ],
+          "time:timestamp": [
+            "date"
+          ]
+        },
+        "trace": {
+          "@@case_index": [
+            "int"
+          ],
+          "CreditScore": [
+            "int"
+          ],
+          "age": [
+            "int"
+          ],
+          "case": [
+            "int"
+          ],
+          "citizen": [
+            "boolean"
+          ],
+          "concept:name": [
+            "string"
+          ],
+          "gender": [
+            "boolean"
+          ],
+          "german speaking": [
+            "boolean"
+          ],
+          "protected": [
+            "boolean"
+          ],
+          "yearsOfEducation": [
+            "int"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "05f9b5347a63a4ac96fe20ac066ed290e59c4ec5e00a2162e2db91f6c756313d": 70,
+      "0e5f9f5d770120be09e37a8e7be56a521e0475b5e694fcafa311c7b205afeb3d": 3,
+      "13bfc66903aa8c8800470cd3a260905be05689196b2c5c7d5ee5ddc62ebbfa19": 63,
+      "1617808e6c4cecb4d025e9903a2eae953ef0aad3a63c33ede4d259b35bc12b5a": 1,
+      "1d8667a21113d5368e5eedc3faea0bd6c014fc8164569656d2cdc39660fa3d5f": 3,
+      "236affacb328b8d96dc3b36c538f5ee071240aa2089fee7ea8e4b07465923a49": 1,
+      "236eafc31b7e5a089adc0a8c2673414de69f4573fc0e6c8a2e56aedf42d7a04c": 13,
+      "263bf0a2917f19d1d96834822683a70cbe6b5c48537f3eb968cca9c00cca7ddd": 8,
+      "34837a69d926e781a5ffd1c2de398868cb953836e7bf0e57b5dcb2b24dbc2e43": 1,
+      "3c7385b5982992fdc5743c08ffeccedb90f6c4198aa7e55549b309c781cec804": 203,
+      "4127f9ea72c63fc8453aae683e3edb1e747f0f326a7bbfbf0686eea39f884d42": 1,
+      "440a66e28f5a1ebbbb6fa34ceebcca356783ff7a3d71619215f074f0562214d1": 1,
+      "44684ddb477b2bb263b926dfd869385e9e8f1813420d1e6f944e0923ad726634": 1,
+      "4ad7f2829a80a753720467fa2eedf174bdbeea1a4b72507dba5bba54d79c1c96": 1687,
+      "5655ed9873959b32db0cc2eb45a6c88f1869c9642f842a290f638d59993b8910": 381,
+      "597c880d6c93e30117e9bc365f139868602303482cd3a6e079b09850aa89f424": 14,
+      "65734c84ef7bbdeeb5e61c5be2b4d687f3f1182f334a7ed96efb25f3fb85aeea": 111,
+      "6bf93e19b16bc32cf8c186dcbd45a94a1288be8a94563cfed74d3f172abea080": 473,
+      "6ed11764d198be7a76d13ccc120e467fcb774e8f15de2a5100a57b32bd094fc5": 15,
+      "78d910aed36f464b5b0ca104daab2c2fb5b31d04aeb382a2459281254096bdc0": 79,
+      "793ea9182503d700973095fabcf8aa9c6b32e87af58fe8e8bc31b405286d955a": 3,
+      "7f9252961cb2096033fe92d39671d3f52a2e9c3a4e3fdbecf5b868705474dbc8": 200,
+      "86acb85ef677ac855f88b6a6490c1194e879e1a80853d6ab65e17bf4259c51d9": 1,
+      "8b3c554d59299e3fdf6839e353c47782fc9dea96789d7c5e548abe7d17f9ce7e": 297,
+      "92a8ee34b5cea1460cf50306e9a6eec04fadb2c5272a3b85b0be0f571e8bd197": 12,
+      "9b97a3dc841c08a4241401d344681a5cddc4f1eae2a8e7db61748142952af3b0": 89,
+      "9c40d89d25f999a0f1178f265a8b8b84cab5b984e39af3a5bc11e1ee5a1cc86e": 2,
+      "a09d22bfe0f0f463f8beec00d17176cba2c911a8c14b027acdee16a7f83ce5dc": 18,
+      "a21688d61a4582b2b4cd293b5261cc657e2db42bd64622443bd14daf4b477311": 5,
+      "a80cc6a7e2d99cd5d0dc581f994684641b8bdb7dca73098aeeec45a2c7f3bc5f": 962,
+      "b651561b0e6561e777648f5b0c19b8e7f72ab7d0ac29c28ba98aa8382964b69b": 287,
+      "c125c8240da7a36b1038b4662a01a501059bfb71db1c4bf3f5b67519c2bdd817": 1624,
+      "c3be620d0884f254b29c056de64382e6cc3a0bf0e145bf329f8879a12774e2ce": 1,
+      "c4ce98f7a21818e94137283e2059511e4308637713542a9a4fe58d885c8db6d8": 1,
+      "d2017410e5b77c2bd01145968eec82444dfe84e0dd0e9d7b6afdaba494236ae0": 37,
+      "de3f248fe9d57a92b2422b0724909aafa4fa6edd01327a77a18e4c6b7d45fb77": 1,
+      "ef234e57ef8a139cc6e35d31084597a6620f0dd4be660145954faf1d9c5c31da": 332,
+      "ef9c32748f51d5ea5e60e9989aad3de8babdb7db56e4aca8ad62640d2e9f96d1": 2936,
+      "f576a927fb607f5e16a8e706976e1b8afd988f84243f908ed6cb998c2e97f05a": 3,
+      "f807347e5dea7b89e6bb8c9430c7a4b0e7025458b737a11153dbfbf1d36dfd40": 26,
+      "fd8281211ddb74f5037db4228f82f9ed11c77afb9bfc3fb6d97a6e1483cf8aab": 34
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "fairness-lending_log_high-xes-gz",
+    "fixtures": {
+      "log": "fixtures/logs/fairness/lending_log_high.xes.gz"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

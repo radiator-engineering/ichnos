@@ -1,0 +1,149 @@
+{
+  "expected": {
+    "event_types": {
+      "concept:name": [
+        "string"
+      ],
+      "time:timestamp": [
+        "string"
+      ]
+    },
+    "n_cases": 5,
+    "n_events": 25,
+    "samples": [
+      {
+        "attributes": {
+          "concept:name": "1.0"
+        },
+        "events": [
+          {
+            "concept:name": "S",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "a",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "b",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "c",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "d",
+            "time:timestamp": "?"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "2.0"
+        },
+        "events": [
+          {
+            "concept:name": "S",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "a",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "c",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "b",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "d",
+            "time:timestamp": "?"
+          }
+        ]
+      },
+      {
+        "attributes": {
+          "concept:name": "3.0"
+        },
+        "events": [
+          {
+            "concept:name": "S",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "a",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "c",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "d",
+            "time:timestamp": "?"
+          },
+          {
+            "concept:name": "b",
+            "time:timestamp": "?"
+          }
+        ]
+      }
+    ],
+    "sequence_sha256": "e80c6725ed88c7d5ed5b89f7399b18cd4ddde95c41a45e6fa78e3f59b4de9223",
+    "trace_types": {
+      "concept:name": [
+        "string"
+      ]
+    },
+    "type_profiles": {
+      "141f63aa61a1464259018d8ed75fefc997572b124d2a9cc093cb5efa05784a15": {
+        "count": 5,
+        "events": {
+          "concept:name": [
+            "string"
+          ],
+          "time:timestamp": [
+            "string"
+          ]
+        },
+        "trace": {
+          "concept:name": [
+            "string"
+          ]
+        }
+      }
+    },
+    "variants": {
+      "6ca0125eda75e0ace18f2fe6a7362e68ac87808b2e36481726e3f1dafc65bbd3": 1,
+      "a22714c61ce4cfcd49af402961b250b4664d3181e41df8e281662cead61b3d96": 1,
+      "c34ce777d42d33dfa3b1c1492b95ff90f91338ae943795055a4b808a2f1c2ff6": 1,
+      "d137ca0d3598deb42ba3a509c1a44f4b7e2374186cce5a5149e043b26a04ebf1": 1,
+      "e70fef8f944ee7437067cfbcca7d1d0274bfc108ef0c6f71b031ede43152462c": 1
+    }
+  },
+  "meta": {
+    "area": "io",
+    "case": "partial-order-example-xes",
+    "fixtures": {
+      "log": "fixtures/logs/partial order example.xes"
+    },
+    "functions": [
+      "pm4py.read_xes"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
