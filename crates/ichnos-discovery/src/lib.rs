@@ -8,18 +8,23 @@
 //!   deviation of the time between each pair of activities.
 //! - [`mod@log_skeleton`]: classic log-skeleton relations and frequencies.
 //! - [`mod@declare`]: classic DECLARE constraints and count summaries.
+//! - [`alpha`]: classic alpha and alpha+ Petri-net discovery.
+//! - [`heuristics`]: classic heuristics nets and their Petri nets.
 //!
 //! Every miner takes an [`ichnos_core::EventLog`] with
 //! [`ichnos_core::EventKeys`] and a plain options struct, and returns a model
 //! from `ichnos-model` or a typed summary. Errors are this crate's [`Error`].
 
+pub mod alpha;
 pub mod declare;
 pub mod dfg;
 mod error;
+pub mod heuristics;
 pub mod inductive;
 pub mod log_skeleton;
 pub mod temporal_profile;
 
+pub use alpha::{AlphaOptions, AlphaPlusOptions, petri_net_alpha, petri_net_alpha_plus};
 pub use declare::{
     DeclareActivities, DeclareCounts, DeclareModel, DeclareOptions, DeclareTemplate, declare,
 };
@@ -29,6 +34,7 @@ pub use dfg::{
     eventually_follows_graph, performance_dfg,
 };
 pub use error::{Error, Result};
+pub use heuristics::{HeuristicsOptions, heuristics_net, petri_net_heuristics};
 pub use inductive::{
     InductiveOptions, InductiveVariant, petri_net_inductive, petri_net_inductive_dfg,
     process_tree_inductive, process_tree_inductive_dfg, process_tree_inductive_variants,

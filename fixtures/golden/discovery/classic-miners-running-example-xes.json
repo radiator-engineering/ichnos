@@ -1,0 +1,2278 @@
+{
+  "expected": {
+    "activity_key": "concept:name",
+    "alpha_plus_error": null,
+    "alpha_plus_runs": null,
+    "heuristics": [
+      {
+        "net": {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request",
+            "reject request"
+          ],
+          "activities_occurrences": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "dependency_matrix": [
+            [
+              "check ticket",
+              "decide",
+              0.8571428571428571
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              -0.2857142857142857
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              -0.25
+            ],
+            [
+              "decide",
+              "pay compensation",
+              0.75
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              0.75
+            ],
+            [
+              "decide",
+              "reject request",
+              0.75
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              0.2857142857142857
+            ],
+            [
+              "examine casually",
+              "decide",
+              0.6666666666666666
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              0.25
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              0.5
+            ],
+            [
+              "register request",
+              "check ticket",
+              0.6666666666666666
+            ],
+            [
+              "register request",
+              "examine casually",
+              0.75
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              0.5
+            ]
+          ],
+          "dfg": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "check ticket",
+              "decide",
+              3
+            ],
+            [
+              "check ticket",
+              "pay compensation",
+              2
+            ],
+            [
+              "check ticket",
+              "reinitiate request",
+              2
+            ],
+            [
+              "check ticket",
+              "reject request",
+              2
+            ],
+            [
+              "decide",
+              "check ticket",
+              1
+            ],
+            [
+              "decide",
+              "examine casually",
+              1
+            ],
+            [
+              "decide",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "examine casually",
+              "decide",
+              4
+            ],
+            [
+              "examine casually",
+              "pay compensation",
+              1
+            ],
+            [
+              "examine casually",
+              "reinitiate request",
+              1
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "reject request",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              4
+            ],
+            [
+              "register request",
+              "examine casually",
+              1
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              2
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "pay compensation": 3,
+              "reject request": 3
+            }
+          ],
+          "freq_triples_matrix": [],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "register request"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "reinitiate request"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "check ticket",
+              "occurrences": 9,
+              "outputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "decide"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [
+                [
+                  "check ticket",
+                  "examine casually",
+                  0.6666666666666666
+                ]
+              ],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "check ticket"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "examine casually"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "examine thoroughly"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "decide",
+              "occurrences": 9,
+              "outputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "pay compensation"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "reinitiate request"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "reject request"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "register request"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "reinitiate request"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "examine casually",
+              "occurrences": 6,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "decide"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "register request"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "reinitiate request"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "examine thoroughly",
+              "occurrences": 3,
+              "outputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "decide"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "decide"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "pay compensation",
+              "occurrences": 3,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "check ticket",
+                  "examine casually",
+                  1.0
+                ],
+                [
+                  "check ticket",
+                  "examine thoroughly",
+                  0.75
+                ]
+              ],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "register request",
+              "occurrences": 6,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "check ticket"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "examine casually"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "examine thoroughly"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "check ticket",
+                  "examine casually",
+                  2.0
+                ],
+                [
+                  "check ticket",
+                  "examine thoroughly",
+                  1.0
+                ]
+              ],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "decide"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "reinitiate request",
+              "occurrences": 3,
+              "outputs": [
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "check ticket"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "examine casually"
+                },
+                {
+                  "dependency": 0.5,
+                  "frequency": 1,
+                  "target": "examine thoroughly"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "decide"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "reject request",
+              "occurrences": 3,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "register request": 6
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "net": {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request",
+            "reject request"
+          ],
+          "activities_occurrences": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "dependency_matrix": [
+            [
+              "check ticket",
+              "decide",
+              0.8571428571428571
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              -0.2857142857142857
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              -0.25
+            ],
+            [
+              "decide",
+              "pay compensation",
+              0.75
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              0.75
+            ],
+            [
+              "decide",
+              "reject request",
+              0.75
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              0.2857142857142857
+            ],
+            [
+              "examine casually",
+              "decide",
+              0.6666666666666666
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              0.25
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              0.5
+            ],
+            [
+              "register request",
+              "check ticket",
+              0.6666666666666666
+            ],
+            [
+              "register request",
+              "examine casually",
+              0.75
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              0.5
+            ]
+          ],
+          "dfg": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "check ticket",
+              "decide",
+              3
+            ],
+            [
+              "check ticket",
+              "pay compensation",
+              2
+            ],
+            [
+              "check ticket",
+              "reinitiate request",
+              2
+            ],
+            [
+              "check ticket",
+              "reject request",
+              2
+            ],
+            [
+              "decide",
+              "check ticket",
+              1
+            ],
+            [
+              "decide",
+              "examine casually",
+              1
+            ],
+            [
+              "decide",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "examine casually",
+              "decide",
+              4
+            ],
+            [
+              "examine casually",
+              "pay compensation",
+              1
+            ],
+            [
+              "examine casually",
+              "reinitiate request",
+              1
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "reject request",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              4
+            ],
+            [
+              "register request",
+              "examine casually",
+              1
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              2
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "pay compensation": 3,
+              "reject request": 3
+            }
+          ],
+          "freq_triples_matrix": [],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "check ticket",
+              "occurrences": 9,
+              "outputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "decide"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "check ticket"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "decide",
+              "occurrences": 9,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "register request": 6
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 0.5,
+          "dependency_thresh": 0.8
+        }
+      },
+      {
+        "net": {
+          "activities": [
+            "check ticket",
+            "decide",
+            "examine casually",
+            "examine thoroughly",
+            "pay compensation",
+            "register request",
+            "reinitiate request",
+            "reject request"
+          ],
+          "activities_occurrences": {
+            "check ticket": 9,
+            "decide": 9,
+            "examine casually": 6,
+            "examine thoroughly": 3,
+            "pay compensation": 3,
+            "register request": 6,
+            "reinitiate request": 3,
+            "reject request": 3
+          },
+          "dependency_matrix": [
+            [
+              "check ticket",
+              "decide",
+              0.8571428571428571
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              -0.2857142857142857
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              -0.25
+            ],
+            [
+              "decide",
+              "pay compensation",
+              0.75
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              0.75
+            ],
+            [
+              "decide",
+              "reject request",
+              0.75
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              0.2857142857142857
+            ],
+            [
+              "examine casually",
+              "decide",
+              0.6666666666666666
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              0.25
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              0.5
+            ],
+            [
+              "register request",
+              "check ticket",
+              0.6666666666666666
+            ],
+            [
+              "register request",
+              "examine casually",
+              0.75
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              0.5
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              0.5
+            ]
+          ],
+          "dfg": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "dfg_matrix": [
+            [
+              "check ticket",
+              "decide",
+              6
+            ],
+            [
+              "check ticket",
+              "examine casually",
+              2
+            ],
+            [
+              "check ticket",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "decide",
+              "pay compensation",
+              3
+            ],
+            [
+              "decide",
+              "reinitiate request",
+              3
+            ],
+            [
+              "decide",
+              "reject request",
+              3
+            ],
+            [
+              "examine casually",
+              "check ticket",
+              4
+            ],
+            [
+              "examine casually",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              2
+            ],
+            [
+              "register request",
+              "examine casually",
+              3
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ],
+            [
+              "reinitiate request",
+              "examine thoroughly",
+              1
+            ]
+          ],
+          "dfg_window_2_matrix": [
+            [
+              "check ticket",
+              "decide",
+              3
+            ],
+            [
+              "check ticket",
+              "pay compensation",
+              2
+            ],
+            [
+              "check ticket",
+              "reinitiate request",
+              2
+            ],
+            [
+              "check ticket",
+              "reject request",
+              2
+            ],
+            [
+              "decide",
+              "check ticket",
+              1
+            ],
+            [
+              "decide",
+              "examine casually",
+              1
+            ],
+            [
+              "decide",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "examine casually",
+              "decide",
+              4
+            ],
+            [
+              "examine casually",
+              "pay compensation",
+              1
+            ],
+            [
+              "examine casually",
+              "reinitiate request",
+              1
+            ],
+            [
+              "examine thoroughly",
+              "decide",
+              2
+            ],
+            [
+              "examine thoroughly",
+              "reject request",
+              1
+            ],
+            [
+              "register request",
+              "check ticket",
+              4
+            ],
+            [
+              "register request",
+              "examine casually",
+              1
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              1
+            ],
+            [
+              "reinitiate request",
+              "check ticket",
+              2
+            ],
+            [
+              "reinitiate request",
+              "examine casually",
+              1
+            ]
+          ],
+          "end_activities": [
+            {
+              "pay compensation": 3,
+              "reject request": 3
+            }
+          ],
+          "freq_triples_matrix": [],
+          "nodes": [
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.2857142857142857,
+                  "frequency": 4,
+                  "target": "examine casually"
+                },
+                {
+                  "dependency": 0.25,
+                  "frequency": 2,
+                  "target": "examine thoroughly"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "register request"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "check ticket",
+              "occurrences": 9,
+              "outputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "decide"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.8571428571428571,
+                  "frequency": 6,
+                  "target": "check ticket"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "examine casually"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "decide",
+              "occurrences": 9,
+              "outputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "pay compensation"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "reinitiate request"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "reject request"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "register request"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "examine casually",
+              "occurrences": 6,
+              "outputs": [
+                {
+                  "dependency": 0.2857142857142857,
+                  "frequency": 4,
+                  "target": "check ticket"
+                },
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "decide"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "examine thoroughly",
+              "occurrences": 3,
+              "outputs": [
+                {
+                  "dependency": 0.25,
+                  "frequency": 2,
+                  "target": "check ticket"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "decide"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "pay compensation",
+              "occurrences": 3,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [
+                [
+                  "check ticket",
+                  "examine casually",
+                  1.0
+                ]
+              ],
+              "inputs": [],
+              "loop_length_two": {},
+              "name": "register request",
+              "occurrences": 6,
+              "outputs": [
+                {
+                  "dependency": 0.6666666666666666,
+                  "frequency": 2,
+                  "target": "check ticket"
+                },
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "examine casually"
+                }
+              ]
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "decide"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "reinitiate request",
+              "occurrences": 3,
+              "outputs": []
+            },
+            {
+              "and_measures_in": [],
+              "and_measures_out": [],
+              "inputs": [
+                {
+                  "dependency": 0.75,
+                  "frequency": 3,
+                  "target": "decide"
+                }
+              ],
+              "loop_length_two": {},
+              "name": "reject request",
+              "occurrences": 3,
+              "outputs": []
+            }
+          ],
+          "start_activities": [
+            {
+              "register request": 6
+            }
+          ]
+        },
+        "options": {
+          "and_measure_thresh": 1.0,
+          "dependency_thresh": 0.0,
+          "dfg_pre_cleaning_noise_thresh": 0.2,
+          "loop_length_two_thresh": 0.9,
+          "min_act_count": 2,
+          "min_dfg_occurrences": 2
+        }
+      }
+    ],
+    "models": {
+      "alpha": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "check ticket",
+              "decide",
+              "examine casually",
+              "examine thoroughly",
+              "pay compensation",
+              "register request",
+              "reinitiate request",
+              "reject request"
+            ],
+            "parallel": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              [
+                "examine casually",
+                "check ticket"
+              ],
+              [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            ],
+            "sequence": [
+              [
+                "check ticket",
+                "decide"
+              ],
+              [
+                "decide",
+                "pay compensation"
+              ],
+              [
+                "decide",
+                "reinitiate request"
+              ],
+              [
+                "decide",
+                "reject request"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ],
+              [
+                "examine thoroughly",
+                "decide"
+              ],
+              [
+                "register request",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              [
+                "reinitiate request",
+                "check ticket"
+              ],
+              [
+                "reinitiate request",
+                "examine casually"
+              ],
+              [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            ],
+            "start_activities": [
+              "register request"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "register request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "check ticket"
+            ]
+          ]
+        }
+      },
+      "alpha_plus": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "check ticket",
+              "decide",
+              "examine casually",
+              "examine thoroughly",
+              "pay compensation",
+              "register request",
+              "reinitiate request",
+              "reject request"
+            ],
+            "parallel": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              [
+                "examine casually",
+                "check ticket"
+              ],
+              [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            ],
+            "sequence": [
+              [
+                "check ticket",
+                "decide"
+              ],
+              [
+                "decide",
+                "pay compensation"
+              ],
+              [
+                "decide",
+                "reinitiate request"
+              ],
+              [
+                "decide",
+                "reject request"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ],
+              [
+                "examine thoroughly",
+                "decide"
+              ],
+              [
+                "register request",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              [
+                "reinitiate request",
+                "check ticket"
+              ],
+              [
+                "reinitiate request",
+                "examine casually"
+              ],
+              [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            ],
+            "start_activities": [
+              "register request"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "register request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "check ticket"
+            ]
+          ]
+        }
+      },
+      "alpha_plus_remove_unconnected": {
+        "footprints": {
+          "status": "complete",
+          "value": {
+            "activities": [
+              "check ticket",
+              "decide",
+              "examine casually",
+              "examine thoroughly",
+              "pay compensation",
+              "register request",
+              "reinitiate request",
+              "reject request"
+            ],
+            "parallel": [
+              [
+                "check ticket",
+                "examine casually"
+              ],
+              [
+                "check ticket",
+                "examine thoroughly"
+              ],
+              [
+                "examine casually",
+                "check ticket"
+              ],
+              [
+                "examine thoroughly",
+                "check ticket"
+              ]
+            ],
+            "sequence": [
+              [
+                "check ticket",
+                "decide"
+              ],
+              [
+                "decide",
+                "pay compensation"
+              ],
+              [
+                "decide",
+                "reinitiate request"
+              ],
+              [
+                "decide",
+                "reject request"
+              ],
+              [
+                "examine casually",
+                "decide"
+              ],
+              [
+                "examine thoroughly",
+                "decide"
+              ],
+              [
+                "register request",
+                "check ticket"
+              ],
+              [
+                "register request",
+                "examine casually"
+              ],
+              [
+                "register request",
+                "examine thoroughly"
+              ],
+              [
+                "reinitiate request",
+                "check ticket"
+              ],
+              [
+                "reinitiate request",
+                "examine casually"
+              ],
+              [
+                "reinitiate request",
+                "examine thoroughly"
+              ]
+            ],
+            "start_activities": [
+              "register request"
+            ]
+          }
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "register request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "check ticket"
+            ]
+          ]
+        }
+      },
+      "heuristics_0": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "register request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "decide"
+            ]
+          ]
+        }
+      },
+      "heuristics_1": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "check ticket"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "check ticket",
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "check ticket",
+              "check ticket",
+              "decide"
+            ],
+            [
+              "check ticket",
+              "decide"
+            ],
+            [
+              "check ticket",
+              "decide",
+              "check ticket"
+            ]
+          ]
+        }
+      },
+      "heuristics_2": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              "decide"
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "check ticket",
+              "register request"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly",
+              "register request"
+            ],
+            [
+              "examine thoroughly",
+              "register request"
+            ],
+            [
+              "examine thoroughly",
+              "register request",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              "register request",
+              "examine casually"
+            ],
+            [
+              "examine thoroughly",
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "decide"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "decide"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "examine thoroughly"
+            ]
+          ]
+        }
+      },
+      "heuristics_public": {
+        "footprints": {
+          "status": "state_space_limit",
+          "value": null
+        },
+        "language": {
+          "accepted": [],
+          "depth": 3,
+          "prefixes": [
+            [],
+            [
+              "register request"
+            ],
+            [
+              "register request",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "check ticket",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine casually"
+            ],
+            [
+              "register request",
+              "examine casually",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "check ticket"
+            ],
+            [
+              "register request",
+              "examine thoroughly",
+              "decide"
+            ]
+          ]
+        }
+      }
+    },
+    "traces": null
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "classic-miners-running-example-xes",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_petri_net_alpha",
+      "pm4py.discover_petri_net_alpha_plus",
+      "pm4py.discover_heuristics_net",
+      "pm4py.discover_petri_net_heuristics",
+      "pm4py.algo.discovery.alpha.variants.plus.apply",
+      "pm4py.algo.discovery.heuristics.variants.classic.apply_heu",
+      "pm4py.convert_to_petri_net",
+      "pm4py.discover_footprints",
+      "pm4py.objects.petri_net.semantics.enabled_transitions",
+      "pm4py.objects.petri_net.semantics.execute"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
