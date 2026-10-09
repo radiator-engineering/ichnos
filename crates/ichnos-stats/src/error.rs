@@ -36,6 +36,12 @@ pub enum Error {
     /// Cube boundaries are not finite, exceed the limit, or have fewer than two distinct values.
     #[error("at least two distinct finite cube boundaries, at most 10001, required")]
     InvalidCubeBoundaries,
+    /// A relation or performance observation references an absent event.
+    #[error("unknown OCEL event {0}")]
+    MissingOcelEvent(String),
+    /// A relation references an absent object.
+    #[error("unknown OCEL object {0}")]
+    MissingOcelObject(String),
     /// An option is outside its valid range.
     #[error("invalid option: {0}")]
     InvalidOption(&'static str),
