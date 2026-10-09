@@ -9,26 +9,24 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 env:
   CARGO_TERM_COLOR: always
-  CARGO_BUILD_JOBS: "6"
 
 jobs:
   check:
-    # The org's self-hosted DGX runners serve every private repo in the org.
-    runs-on: [self-hosted, Linux, ARM64, dgx]
+    # GitHub-hosted only. The repo is public, so a fork's PR runs this job;
+    # self-hosted runners must never serve it.
+    runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - name: Set up cargo
-        # Keep build output outside the checkout: actions/checkout cleans
-        # ignored files, which would make every build cold. One target dir
-        # per runner, so parallel jobs never share one.
-        run: |
-          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
-          echo "CARGO_TARGET_DIR=$HOME/.cache/ichnos-ci/$RUNNER_NAME" >> "$GITHUB_ENV"
       - name: Toolchain
-        run: rustup show active-toolchain && cargo --version
+        # rustup installs the channel and components named in rust-toolchain.toml.
+        run: rustup show active-toolchain || rustup toolchain install
+      - uses: Swatinem/rust-cache@v2
       - name: fmt
         run: cargo fmt --all --check
       - name: clippy
