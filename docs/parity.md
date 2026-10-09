@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 35; ported: 397; dropped: 194; total: 626.
+todo: 22; ported: 410; dropped: 194; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -289,19 +289,19 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.discover_ocdfg` | `ocel.py` → `algo/discovery/ocel/ocdfg/algorithm`, `objects/ocel/constants`, `objects/ocel/obj` | `ichnos::ocel::discover_ocdfg` (planned) | `ichnos-ocel` | todo | Variants: classic. |
 | `pm4py.discover_oc_petri_net` | `ocel.py` → `algo/discovery/ocel/ocpn/algorithm`, `objects/ocel/obj`, `objects/ocpn/obj` | `ichnos::ocel::discover_oc_petri_net` (planned) | `ichnos-ocel` | todo | Variants: classic, wo_annotation. |
 | `pm4py.discover_objects_graph` | `ocel.py` → `algo/transformation/ocel/graphs/object_cobirth_graph`, `algo/transformation/ocel/graphs/object_codeath_graph`, `algo/transformation/ocel/graphs/object_descendants_graph`, `algo/transformation/ocel/graphs/object_inheritance_graph`, `algo/transformation/ocel/graphs/object_interaction_graph`, `objects/ocel/obj` | `ichnos::ocel::discover_objects_graph` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_o2o_enrichment` | `ocel.py` → `algo/transformation/ocel/graphs/ocel20_computation`, `objects/ocel/obj` | `ichnos::ocel::o2o_enrichment` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_e2o_lifecycle_enrichment` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/e2o_qualification` | `ichnos::ocel::e2o_lifecycle_enrichment` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.sample_ocel_objects` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/sampling` | `ichnos::ocel::sample_ocel_objects` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.sample_ocel_connected_components` | `ocel.py` → `algo/transformation/ocel/split_ocel/algorithm`, `objects/ocel/obj` | `ichnos::ocel::sample_ocel_connected_components` (planned) | `ichnos-ocel` | todo | Variants: ancestors_descendants, connected_components. |
-| `pm4py.ocel_drop_duplicates` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos::ocel::drop_duplicates` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_merge_duplicates` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::merge_duplicates` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_sort_by_additional_column` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::sort_by_additional_column` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.ocel_add_index_based_timedelta` | `ocel.py` → `objects/ocel/obj` | `ichnos::ocel::add_index_based_timedelta` (planned) | `ichnos-ocel` | todo | Single entry point; preserve source defaults. |
-| `pm4py.cluster_equivalent_ocel` | `ocel.py` → `algo/transformation/ocel/description/algorithm`, `algo/transformation/ocel/split_ocel/algorithm`, `objects/ocel/obj`, `objects/ocel/util/rename_objs_ot_tim_lex` | `ichnos::ocel::cluster_equivalent_ocel` (planned) | `ichnos-ocel` | todo | Variants: ancestors_descendants, connected_components, variant1, variant2. |
-| `pm4py.ocel_drill_down` | `ocel.py` → `algo/transformation/ocel/olap/drill_down/algorithm`, `algo/transformation/ocel/olap/drill_down/variants/classic`, `objects/ocel/obj` | `ichnos::ocel::drill_down` (planned) | `ichnos-ocel` | todo | Variants: classic. |
-| `pm4py.ocel_roll_up` | `ocel.py` → `algo/transformation/ocel/olap/roll_up/algorithm`, `algo/transformation/ocel/olap/roll_up/variants/classic`, `objects/ocel/obj` | `ichnos::ocel::roll_up` (planned) | `ichnos-ocel` | todo | Variants: classic. |
-| `pm4py.ocel_unfold` | `ocel.py` → `algo/transformation/ocel/olap/unfold/algorithm`, `algo/transformation/ocel/olap/unfold/variants/classic`, `objects/ocel/obj` | `ichnos::ocel::unfold` (planned) | `ichnos-ocel` | todo | Variants: classic. |
-| `pm4py.ocel_fold` | `ocel.py` → `algo/transformation/ocel/olap/fold/algorithm`, `algo/transformation/ocel/olap/fold/variants/classic`, `objects/ocel/obj` | `ichnos::ocel::fold` (planned) | `ichnos-ocel` | todo | Variants: classic. |
+| `pm4py.ocel_o2o_enrichment` | `ocel.py` → `algo/transformation/ocel/graphs/ocel20_computation`, `objects/ocel/obj` | `ichnos_ocel::ocel_o2o_enrichment` | `ichnos-ocel` | ported | Appends qualified graph edges to existing O2O rows; defaults to all five graphs. Golden: `ocel_transformations/ocel-o2o-enrichment`. See OCEL transformations below. |
+| `pm4py.ocel_e2o_lifecycle_enrichment` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/e2o_qualification` | `ichnos_ocel::ocel_e2o_lifecycle_enrichment` | `ichnos-ocel` | ported | Assigns creation, termination and other qualifiers from relation order. Golden: `ocel_transformations/ocel-e2o-lifecycle-enrichment`. See OCEL transformations below. |
+| `pm4py.sample_ocel_objects` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/sampling` | `ichnos_ocel::sample_ocel_objects` | `ichnos-ocel` | ported | Samples distinct object ids without replacement and propagates the selection. Golden: `ocel_transformations/sample-ocel-objects`. See OCEL transformations below. |
+| `pm4py.sample_ocel_connected_components` | `ocel.py` → `algo/transformation/ocel/split_ocel/algorithm`, `objects/ocel/obj` | `ichnos_ocel::sample_ocel_connected_components` | `ichnos-ocel` | ported | Samples eligible interaction components after applying all three size limits. Golden: `ocel_transformations/sample-ocel-connected-components`. See OCEL transformations below. |
+| `pm4py.ocel_drop_duplicates` | `ocel.py` → `objects/ocel/obj`, `objects/ocel/util/filtering_utils` | `ichnos_ocel::ocel_drop_duplicates` | `ichnos-ocel` | ported | Keeps the first relation for each activity, timestamp and object, then propagates. Golden: `ocel_transformations/ocel-drop-duplicates`. See OCEL transformations below. |
+| `pm4py.ocel_merge_duplicates` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::ocel_merge_duplicates` | `ichnos-ocel` | ported | Merges events by activity and timestamp, with an optional common-object restriction. Golden: `ocel_transformations/ocel-merge-duplicates`. See OCEL transformations below. |
+| `pm4py.ocel_sort_by_additional_column` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::ocel_sort_by_additional_column` | `ichnos-ocel` | ported | Stably sorts events by a primary field and an additional field; relations keep their order. Golden: `ocel_transformations/ocel-sort-by-additional-column`. See OCEL transformations below. |
+| `pm4py.ocel_add_index_based_timedelta` | `ocel.py` → `objects/ocel/obj` | `ichnos_ocel::ocel_add_index_based_timedelta` | `ichnos-ocel` | ported | Adds one millisecond per event index; repeated ids use their last index. Golden: `ocel_transformations/ocel-add-index-based-timedelta`. See OCEL transformations below. |
+| `pm4py.cluster_equivalent_ocel` | `ocel.py` → `algo/transformation/ocel/description/algorithm`, `algo/transformation/ocel/split_ocel/algorithm`, `objects/ocel/obj`, `objects/ocel/util/rename_objs_ot_tim_lex` | `ichnos_ocel::cluster_equivalent_ocel` | `ichnos-ocel` | ported | Groups ancestor/descendant executions by a timestamp-free description after canonical object renaming. Golden: `ocel_transformations/cluster-equivalent-ocel`. See OCEL transformations below. |
+| `pm4py.ocel_drill_down` | `ocel.py` → `algo/transformation/ocel/olap/drill_down/algorithm`, `algo/transformation/ocel/olap/drill_down/variants/classic`, `objects/ocel/obj` | `ichnos_ocel::ocel_drill_down` | `ichnos-ocel` | ported | Splits object types using static attribute values and updates object-change types. Golden: `ocel_transformations/ocel-drill-down`. See OCEL transformations below. |
+| `pm4py.ocel_roll_up` | `ocel.py` → `algo/transformation/ocel/olap/roll_up/algorithm`, `algo/transformation/ocel/olap/roll_up/variants/classic`, `objects/ocel/obj` | `ichnos_ocel::ocel_roll_up` | `ichnos-ocel` | ported | Collapses tuple-style object subtypes back to their parent type. Golden: `ocel_transformations/ocel-roll-up`. See OCEL transformations below. |
+| `pm4py.ocel_unfold` | `ocel.py` → `algo/transformation/ocel/olap/unfold/algorithm`, `algo/transformation/ocel/olap/unfold/variants/classic`, `objects/ocel/obj` | `ichnos_ocel::ocel_unfold` | `ichnos-ocel` | ported | Splits an activity when related object types and optional qualifiers match. Golden: `ocel_transformations/ocel-unfold`. See OCEL transformations below. |
+| `pm4py.ocel_fold` | `ocel.py` → `algo/transformation/ocel/olap/fold/algorithm`, `algo/transformation/ocel/olap/fold/variants/classic`, `objects/ocel/obj` | `ichnos_ocel::ocel_fold` | `ichnos-ocel` | ported | Collapses the exact activity encoding produced by unfold. Golden: `ocel_transformations/ocel-fold`. See OCEL transformations below. |
 
 ## privacy
 
@@ -2330,3 +2330,25 @@ Port sources: `pm4py/algo/discovery/performance_spectrum/algorithm`, `pm4py/obje
 Crate: `ichnos-viz`. Rows: `pm4py.view_ocdfg`, `pm4py.save_vis_ocdfg`, `pm4py.view_ocpn`, `pm4py.save_vis_ocpn`, `pm4py.view_object_graph`, `pm4py.save_vis_object_graph`.
 
 Port sources: `pm4py/objects/ocel/obj`, `pm4py/objects/ocpn/obj`, `pm4py/vis.py`, `pm4py/visualization/ocel/object_graph/visualizer`, `pm4py/visualization/ocel/ocdfg/visualizer`, `pm4py/visualization/ocel/ocpn/visualizer`.
+
+### ichnos-ocel (OCEL transformations)
+
+The thirteen transformation rows use typed OCEL tables. Each row names its own synthetic golden. `ocel_transformations/real-example-log-jsonocel`, `ocel_transformations/real-newocel-jsonocel` and `ocel_transformations/real-ocel20-example-jsonocel` compare coherent six-object slices of the existing real logs. Sampling goldens enumerate every valid subset on a small population; tests check every draw against that outcome space and reach all outcomes across fixed seeds.
+
+- Functions borrow their input and return an independent log. Several pm4py entry points mutate the caller's tables or share tables in shallow copies.
+- Typed event/object fields, graph enums and options replace column-name strings and parameter dictionaries. The Rust paths above name the package directly; the facade also re-exports `ichnos_ocel`.
+- E2O relations derive activity, timestamp and object type from the first matching event/object row. pm4py stores these fields redundantly on relations. Inputs with inconsistent redundant fields therefore have no exact Rust representation.
+- O2O enrichment keeps existing rows in order, including duplicates, and appends new rows in sorted order. pm4py appends from a Python set whose order depends on the process hash seed.
+- The inheritance qualifier uses the descendants computation, matching pm4py's enrichment entry point. This differs from its standalone inheritance graph function.
+- Events without relations contribute no enrichment edges. pm4py's descendants, cobirth and codeath graph lookups raise for such events.
+- Lifecycle enrichment compares event/object pairs directly. This avoids pm4py's temporary `@@` string-key collisions. Repeated occurrences still let interior relations overwrite creation and termination qualifiers.
+- Sampling accepts a caller-provided RNG. It retains uniform sampling without replacement but does not reproduce Python's random stream or its hash-dependent component order.
+- Component sampling excludes isolated objects and drops globals and OCEL 2.0 tables, matching pm4py's entry point. Object sampling instead preserves and filters those tables.
+- Duplicate merging uses deterministic, collision-free event ids instead of UUIDs. The golden comparison renames new ids by their first event occurrence, preserving the complete event grouping and relation results.
+- Duplicate merging returns `UnrelatedEvent` when an event has no relations. pm4py instead maps its id to a missing value. Both leave E2E ids unchanged, so those rows can refer to old event ids after merging.
+- Sorting returns typed errors for an absent additional attribute column or incomparable scalar/nested values. Missing per-row values and NaN sort last; ties preserve event order.
+- Index-based time deltas return a typed error on timestamp overflow. Relations have no separate timestamp column to update.
+- Equivalent clusters use an ordered `ExecutionDescription` key and retain each original filtered log with its `central_object` in an `OcelExecution`. pm4py stores the central id in its parameter map and returns tuple keys.
+- Clustering errors on missing referenced events/objects or unrelated reference objects instead of Python lookup errors. Attribute values, qualifiers and OCEL 2.0 relations do not participate in the equivalence key, matching pm4py's timestamp-free variant2 description.
+- Drill-down reads static object fields only. Missing, empty and NaN values retain the parent type; object-change values do not drive the split. Drill-down and roll-up use the default `(parent, value)` string encoding; the top-level pm4py entry points likewise do not expose custom formatters or matchers.
+- Missing required object types or attribute columns produce typed errors. Unfold qualifier slices can include a missing qualifier, and an empty slice matches no relations.

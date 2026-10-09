@@ -13,3 +13,10 @@ pub use ocel::{
 pub use summary::OcelSummary;
 
 pub use filtering::*;
+
+pub mod clustering;
+pub mod olap;
+pub mod transformations;
+pub use clustering::*;
+pub use olap::*;
+pub use transformations::*;
