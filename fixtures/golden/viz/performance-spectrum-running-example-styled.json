@@ -1,0 +1,260 @@
+{
+  "expected": {
+    "dot": {
+      "directed": false,
+      "edges": [
+        [
+          "n0",
+          "n14",
+          {
+            "color": "black"
+          }
+        ],
+        [
+          "n1",
+          "n12",
+          {
+            "color": "black"
+          }
+        ],
+        [
+          "n2",
+          "n11",
+          {
+            "color": "black"
+          }
+        ],
+        [
+          "n3",
+          "n13",
+          {
+            "color": "black"
+          }
+        ],
+        [
+          "n4",
+          "n6",
+          {
+            "color": "#D5D4D4"
+          }
+        ],
+        [
+          "n6",
+          "n7",
+          {
+            "color": "#ACACAC"
+          }
+        ],
+        [
+          "n7",
+          "n5",
+          {
+            "color": "#FF6347"
+          }
+        ]
+      ],
+      "graph": {
+        "label": "<<FONT POINT-SIZE=\"20\">Compensation</FONT>>",
+        "labelloc": "top"
+      },
+      "nodes": [
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "0,0.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n0"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "0,300.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n1"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "0,600.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n2"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "0,900.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n3"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "0.0000000000,900.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n4"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "1000.0000000000,0.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n5"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "102.9630153454,600.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n6"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "",
+            "pos": "105.0845060462,300.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n7"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "2011-01-06 15:06:00+00:00",
+            "pos": "0.0000000000,-100.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n8"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "2011-01-11 12:56:30+00:00",
+            "pos": "500.0000000000,-100.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n9"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "2011-01-16 10:47:00+00:00",
+            "pos": "1000.0000000000,-100.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n10"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "check ticket",
+            "pos": "1000.0000000000,600.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n11"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "decide",
+            "pos": "1000.0000000000,300.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n12"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "examine casually",
+            "pos": "1000.0000000000,900.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n13"
+        },
+        {
+          "attrs": {
+            "height": "0px",
+            "label": "pay compensation",
+            "pos": "1000.0000000000,0.0000000000!",
+            "shape": "none",
+            "width": "0px"
+          },
+          "key": "n14"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "activities": [
+        "examine casually",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ],
+      "points": [
+        [
+          1294326360.0,
+          1294413720.0,
+          1294415520.0,
+          1295174820.0
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "performance-spectrum-running-example-styled",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.save_vis_performance_spectrum"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {
+      "activities": [
+        "examine casually",
+        "check ticket",
+        "decide",
+        "pay compensation"
+      ],
+      "graph_title": "Compensation"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

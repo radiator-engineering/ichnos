@@ -12,7 +12,10 @@ the parsed graph, not the text:
 ``graph`` merges the graph attributes of the top level. A node's ``attrs``
 include the defaults that earlier ``node [...]`` statements set, and a node
 inside a subgraph gets the attribute ``subgraph`` with that subgraph's
-attributes as a JSON string. HTML labels keep their angle brackets; quoted
+attributes as a JSON string. Below the first level of subgraphs it also gets
+``subgraph_depth``, the number of enclosing subgraphs. An edge's ``lhead``
+and ``ltail`` name a cluster; they become ``cluster@<depth>``. An ``image``
+keeps only its file name. HTML labels keep their angle brackets; quoted
 strings lose their quotes. Keys ``n0``, ``n1``, ... come from colour
 refinement on the attributes, as in ``bpmn.py``. The Rust tests parse
 ichnos's DOT the same way and compare the two graphs up to isomorphism.
@@ -42,6 +45,48 @@ ichnos does not read.
 - ``bpmn-*``: ``null``; the diagram is the ``model`` fixture.
 - ``heuristics-net-*``: the net as ``model.py`` describes it, from
   ``pm4py.discover_heuristics_net``.
+- ``transition-system-*``: ``{"states": [name], "transitions": [[from,
+  to, name]]}`` from ``pm4py.discover_transition_system``, with states as
+  indices into ``states``.
+- ``prefix-tree-*``: ``{"nodes": [{"label", "parent", "final",
+  "depth"}]}`` from ``pm4py.discover_prefix_tree``, the root first and then
+  breadth first, children in label order; ``parent`` is an index.
+- ``footprints-*``: ``{"sequence": [[a, b]], "parallel": [[a, b]]}`` from
+  ``pm4py.discover_footprints``; comparisons hold two, as ``first`` and
+  ``second``.
+- ``alignments-*``: ``{"rows": [{"activities", "count", "moves"}]}``, one
+  row per variant in order of its first trace. ``moves`` are the
+  ``[log, model]`` label pairs of the variant's first trace, with ``>>``
+  and ``null`` kept; ``alignments`` says how they are built.
+- ``powl-*``: the model as ``powl.py`` describes it, before pm4py's
+  ``simplify_using_frequent_transitions``. Children are sorted, so the
+  description does not depend on set order.
+- ``ocdfg-*``: ``{"activities": {a: counts}, "start": {ot: {a: counts}},
+  "end": ..., "edges": {ot: [[a, b, counts, event-couple durations,
+  object durations]]}, "colors": {ot: colour}}`` from
+  ``pm4py.discover_ocdfg``, where ``counts`` is ``[events, unique objects,
+  total objects]``.
+- ``ocpn-*``: ``{"activities", "nets": {ot: {"net", "double_arcs",
+  "diagnostics"}}, "colors"}`` from ``pm4py.discover_oc_petri_net``, each
+  net as ``model.py`` describes it with transitions renamed ``t<n>``.
+  ``diagnostics`` holds the replay counts ``[p, m, c, r]`` by place and the
+  firing counts by transition, or ``null``.
+- ``object-graph-*``: ``{"objects": [[id, type]], "graph": [[a, b]],
+  "colors"}`` from ``pm4py.discover_objects_graph``.
+- ``network-analysis-*``: ``{"edges": [[source, target, [[value,
+  measure]]]]}`` from ``pm4py.discover_network_analysis``, in pm4py's
+  order, which its pen widths depend on. The measure is a count, or the
+  list of durations for ``performance``.
+- ``dotted-chart-*``: ``{"attributes", "colors": {str(value): colour}}``;
+  the points come from the ``log`` fixture.
+- ``performance-spectrum-*``: ``{"activities", "points"}`` from pm4py's
+  ``log`` variant of the discovery, on the ``log`` fixture.
+
+The OCEL drawings colour object types by Python's string hash, and the
+dotted chart picks colours at random. The cases replace both with fixed
+colours and record them. The dotted chart and the performance spectrum
+write their DOT file and run ``neato`` themselves; the cases record that
+file, with the time zone set to UTC for the spectrum's dates.
 """
 
 from __future__ import annotations
@@ -147,6 +192,8 @@ def parse_dot(src: str) -> dict[str, Any]:
     edges: list[tuple[str, str, dict[str, str]]] = []
     # One frame per open graph or subgraph: (graph attrs, node defaults).
     frames: list[tuple[dict[str, str], dict[str, str]]] = [(graph, {})]
+    # Nesting depth of each subgraph, by name.
+    depth: dict[str, int] = {}
     while frames:
         t = take()
         if t == ("op", "}"):
@@ -157,11 +204,12 @@ def parse_dot(src: str) -> dict[str, Any]:
         gattrs, defaults = frames[-1]
         if t == ("id", "subgraph"):
             if peek() != ("op", "{"):
-                take()
+                depth[take()[1]] = len(frames)
             assert take() == ("op", "{")
             frames.append(({}, dict(defaults)))
             continue
-        if t[1] in ("graph", "node", "edge") and peek() == ("op", "["):
+        if t[1] in ("graph", "node", "edge"):
+            # ``attr("node")`` writes the keyword alone, which sets nothing.
             attrs = attr_list()
             if t[1] == "graph":
                 gattrs.update(attrs)
@@ -175,14 +223,22 @@ def parse_dot(src: str) -> dict[str, Any]:
         if peek() is not None and peek()[1] in ("->", "--"):
             take()
             target = take()[1]
-            edges.append((t[1], target, attr_list()))
+            attrs = attr_list()
+            for k in ("lhead", "ltail"):
+                if k in attrs:
+                    attrs[k] = f"cluster@{depth[attrs[k]]}"
+            edges.append((t[1], target, attrs))
             continue
         attrs = dict(defaults)
         attrs.update(attr_list())
+        if "image" in attrs:
+            attrs["image"] = Path(attrs["image"]).name
         # The graphviz package writes a subgraph's attributes before its
         # nodes, so they are complete here.
         if len(frames) > 1:
             attrs["subgraph"] = json.dumps(frames[-1][0], sort_keys=True)
+        if len(frames) > 2:
+            attrs["subgraph_depth"] = str(len(frames) - 1)
         nodes[t[1]] = attrs
     return {"strict": strict, "kind": kind, "graph": graph, "nodes": nodes, "edges": edges}
 
@@ -457,6 +513,455 @@ def heuristics_net(fixtures: dict[str, Path], **params: Any) -> dict[str, Any]:
     return {"model": describe_heuristics_net(net), "dot": canonical_dot(source)}
 
 
+def transition_system(fixtures: dict[str, Path]) -> dict[str, Any]:
+    from pm4py.visualization.transition_system import visualizer
+
+    ts = pm4py.discover_transition_system(load_log(fixtures["log"]))
+    states = sorted(ts.states, key=lambda s: str(s.name))
+    index = {id(s): i for i, s in enumerate(states)}
+    model = {
+        "states": [str(s.name) for s in states],
+        "transitions": sorted(
+            [index[id(t.from_state)], index[id(t.to_state)], str(t.name)]
+            for t in ts.transitions
+        ),
+    }
+    source = _capture(visualizer, lambda path: pm4py.save_vis_transition_system(ts, path))
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def prefix_tree(fixtures: dict[str, Path]) -> dict[str, Any]:
+    from pm4py.visualization.trie import visualizer
+
+    trie = pm4py.discover_prefix_tree(load_log(fixtures["log"]))
+    nodes: list[dict[str, Any]] = []
+    queue = [(trie, None)]
+    while queue:
+        node, parent = queue.pop(0)
+        here = len(nodes)
+        nodes.append(
+            {"label": node.label, "parent": parent, "final": node.final, "depth": node.depth}
+        )
+        queue.extend((c, here) for c in sorted(node.children, key=lambda c: c.label))
+    source = _capture(visualizer, lambda path: pm4py.save_vis_prefix_tree(trie, path))
+    return {"model": {"nodes": nodes}, "dot": canonical_dot(source)}
+
+
+def _footprints(fp: dict[str, Any]) -> dict[str, Any]:
+    return {k: sorted(list(x) for x in fp[k]) for k in ("sequence", "parallel")}
+
+
+def footprints(fixtures: dict[str, Path], compare: str | None = None) -> dict[str, Any]:
+    """Footprints of the log, or with ``compare`` set, the log's against
+    those of its inductive net (``net``) or of the log without the activity
+    ``compare`` names."""
+    from pm4py.visualization.footprints import visualizer
+
+    log = load_log(fixtures["log"])
+    fp = pm4py.discover_footprints(log)
+    if compare is None:
+        source = _capture(visualizer, lambda path: pm4py.save_vis_footprints(fp, path))
+        return {"model": _footprints(fp), "dot": canonical_dot(source)}
+    if compare == "net":
+        other = pm4py.discover_footprints(*pm4py.discover_petri_net_inductive(log))
+    else:
+        other = pm4py.discover_footprints(
+            pm4py.filter_event_attribute_values(
+                log, "concept:name", [compare], level="event", retain=False
+            )
+        )
+    source = _capture(visualizer, lambda path: pm4py.save_vis_footprints((fp, other), path))
+    model = {"first": _footprints(fp), "second": _footprints(other)}
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def alignments(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """The alignment table of the log, with alignments built from each
+    trace rather than searched, since pm4py's search breaks ties
+    differently from run to run. Activities in even positions of the sorted
+    activity list are synchronous moves, the others log moves, and every
+    alignment ends with a silent model move and a model move on ``end >
+    model``, a label pm4py escapes."""
+    from pm4py.statistics.variants.log import get as variants_get
+    from pm4py.visualization.align_table import visualizer
+
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    order = sorted({e["concept:name"] for t in log for e in t})
+    sync = set(order[::2])
+    aligned = [
+        {
+            "alignment": [
+                (a, a) if a in sync else (a, ">>")
+                for a in (e["concept:name"] for e in t)
+            ]
+            + [(">>", None), (">>", "end > model")]
+        }
+        for t in log
+    ]
+    variants = variants_get.get_variants_from_log_trace_idx(log)
+    rows = [
+        {
+            "activities": list(v),
+            "count": len(idx),
+            "moves": [list(m) for m in aligned[idx[0]]["alignment"]],
+        }
+        for v, idx in sorted(variants.items(), key=lambda x: x[1][0])
+    ]
+    source = _capture(visualizer, lambda path: pm4py.save_vis_alignments(log, aligned, path))
+    return {"model": {"rows": rows}, "dot": canonical_dot(source)}
+
+
+def _sorted_powl(p: Any) -> Any:
+    """A copy of a pm4py POWL model with the children of choices and partial
+    orders sorted by their description, keeping the order relation.
+
+    pm4py's discovery orders children by Python's set order. The drawing
+    joins an edge into a cluster to the cluster's first child, so the
+    golden draws this copy to stay the same under every hash seed."""
+    from cases.powl import describe_powl
+    from pm4py.objects.powl.obj import OperatorPOWL, StrictPartialOrder
+    from pm4py.objects.process_tree.obj import Operator
+
+    def key(c: Any) -> str:
+        return json.dumps(describe_powl(c), sort_keys=True)
+
+    if isinstance(p, OperatorPOWL):
+        children = [_sorted_powl(c) for c in p.children]
+        if p.operator == Operator.XOR:
+            children.sort(key=key)
+        return OperatorPOWL(p.operator, children)
+    if isinstance(p, StrictPartialOrder):
+        nodes = p.order.nodes
+        children = [_sorted_powl(c) for c in nodes]
+        perm = sorted(range(len(children)), key=lambda i: key(children[i]))
+        out = StrictPartialOrder([children[i] for i in perm])
+        for i, a in enumerate(nodes):
+            for j, b in enumerate(nodes):
+                if p.order.is_edge(a, b):
+                    out.order.add_edge(children[i], children[j])
+        return out
+    return p
+
+
+class _Drawn(Exception):
+    pass
+
+
+def powl(fixtures: dict[str, Path], text: str | None = None, **params: Any) -> dict[str, Any]:
+    """pm4py's POWL drawing, captured before pm4py renders it to SVG."""
+    from cases.powl import describe_powl
+    from pm4py.visualization.powl.variants import basic
+
+    if text is None:
+        model = pm4py.discover_powl(load_log(fixtures["log"]))
+    else:
+        model = pm4py.parse_powl_model_string(text)
+    model = _sorted_powl(model)
+    sources: list[str] = []
+    original = basic.apply
+
+    def apply(*args: Any, **kwargs: Any) -> Any:
+        sources.append(original(*args, **kwargs).source)
+        raise _Drawn
+
+    basic.apply = apply
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            pm4py.save_vis_powl(model, str(Path(tmp) / "out.svg"), **params)
+    except _Drawn:
+        pass
+    finally:
+        basic.apply = original
+    if len(sources) != 1:
+        raise RuntimeError(f"expected one drawn graph, got {len(sources)}")
+    return {"model": describe_powl(model), "dot": canonical_dot(sources[0])}
+
+
+def _ocel(fixtures: dict[str, Path]) -> Any:
+    path = fixtures["log"]
+    if "ocel20" in path.name:
+        return pm4py.read_ocel2(str(path))
+    return pm4py.read_ocel(str(path))
+
+
+def _md5_color(value: str) -> str:
+    """The first three bytes of the MD5 digest, as ichnos's default."""
+    import hashlib
+
+    return "#" + hashlib.md5(value.encode()).hexdigest()[:6].upper()
+
+
+class _StableColors:
+    """Replaces ``ot_to_color`` in a visualizer module while it is open.
+
+    pm4py derives object-type colours from Python's string hash, which
+    changes from one process to the next, so the goldens would change on
+    every run."""
+
+    def __init__(self, module: Any) -> None:
+        self.module = module
+
+    def __enter__(self) -> None:
+        self.original = self.module.ot_to_color
+        self.module.ot_to_color = _md5_color
+
+    def __exit__(self, *exc: Any) -> None:
+        self.module.ot_to_color = self.original
+
+
+def _colors(ocel: Any) -> dict[str, str]:
+    return {ot: _md5_color(ot) for ot in sorted(ocel.objects["ocel:type"].unique())}
+
+
+def _counts(d: dict[str, Any], *keys: Any) -> list[int]:
+    out = []
+    for metric in ("events", "unique_objects", "total_objects"):
+        v = d[metric]
+        for k in keys:
+            v = v.get(k, ()) if isinstance(v, dict) else ()
+        out.append(len(v))
+    return out
+
+
+def ocdfg(fixtures: dict[str, Path], **params: Any) -> dict[str, Any]:
+    from pm4py.visualization.ocel.ocdfg import visualizer
+    from pm4py.visualization.ocel.ocdfg.variants import classic
+
+    ocel = _ocel(fixtures)
+    d = pm4py.discover_ocdfg(ocel)
+    edges: dict[str, list[Any]] = {}
+    for ot in sorted(d["edges"]["event_couples"]):
+        pairs = set()
+        for metric in ("event_couples", "unique_objects", "total_objects"):
+            pairs |= set(d["edges"][metric].get(ot, {}))
+        edges[ot] = [
+            [
+                a,
+                b,
+                [len(d["edges"][m].get(ot, {}).get((a, b), ())) for m in
+                 ("event_couples", "unique_objects", "total_objects")],
+                list(d["edges_performance"]["event_couples"].get(ot, {}).get((a, b), [])),
+                list(d["edges_performance"]["total_objects"].get(ot, {}).get((a, b), [])),
+            ]
+            for a, b in sorted(pairs)
+        ]
+    sides = {}
+    for side in ("start_activities", "end_activities"):
+        sides[side] = {
+            ot: {act: _counts(d[side], ot, act) for act in sorted(acts)}
+            for ot, acts in sorted(d[side]["events"].items())
+        }
+    model = {
+        "activities": {
+            act: _counts(d["activities_indep"], act)
+            for act in sorted(d["activities_indep"]["events"])
+        },
+        "start": sides["start_activities"],
+        "end": sides["end_activities"],
+        "edges": edges,
+        "colors": _colors(ocel),
+    }
+    kwargs = dict(params)
+    if kwargs.pop("business_hours", False):
+        kwargs["business_hour_slots"] = constants.DEFAULT_BUSINESS_HOUR_SLOTS
+    with _StableColors(classic):
+        source = _capture(visualizer, lambda path: pm4py.save_vis_ocdfg(d, path, **kwargs))
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def ocpn(fixtures: dict[str, Path], **params: Any) -> dict[str, Any]:
+    from cases.model import describe_net
+    from pm4py.visualization.ocel.ocpn import visualizer
+    from pm4py.visualization.ocel.ocpn.variants import wo_decoration
+
+    ocel = _ocel(fixtures)
+    tbr = params.get("diagnostics_with_tbr", False)
+    p = pm4py.discover_oc_petri_net(ocel, diagnostics_with_tbr=tbr)
+    nets = {}
+    for ot, (net, im, fm) in sorted(p["petri_nets"].items()):
+        _name_transitions(net)
+        diagnostics = None
+        if ot in p["tbr_results"]:
+            places, transitions = p["tbr_results"][ot]
+            diagnostics = {
+                "places": {
+                    x.name: [v["p"], v["m"], v["c"], v["r"]]
+                    for x, v in sorted(places.items(), key=lambda kv: kv[0].name)
+                },
+                "transitions": {
+                    x.name: n for x, n in sorted(transitions.items(), key=lambda kv: kv[0].name)
+                },
+            }
+        nets[ot] = {
+            "net": describe_net(net, im, fm),
+            "double_arcs": dict(sorted(p["double_arcs_on_activity"][ot].items())),
+            "diagnostics": diagnostics,
+        }
+    model = {
+        "activities": sorted(p["activities"]),
+        "nets": nets,
+        "colors": _colors(ocel),
+    }
+    styled = _styled(params)
+    with _StableColors(wo_decoration):
+        source = _capture(visualizer, lambda path: pm4py.save_vis_ocpn(p, path, **styled))
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def object_graph(fixtures: dict[str, Path], **params: Any) -> dict[str, Any]:
+    from pm4py.visualization.ocel.object_graph import visualizer
+    from pm4py.visualization.ocel.object_graph.variants import graphviz
+
+    ocel = _ocel(fixtures)
+    graph = pm4py.discover_objects_graph(ocel, graph_type=params.get("graph_type", "object_interaction"))
+    nodes = {x for e in graph for x in e}
+    types: dict[str, str] = {}
+    for oid, ot in zip(ocel.objects["ocel:oid"], ocel.objects["ocel:type"]):
+        if oid in nodes:
+            types.setdefault(oid, ot)
+    model = {
+        "objects": sorted([oid, ot] for oid, ot in types.items()),
+        "graph": sorted([a, b] for a, b in graph),
+        "colors": _colors(ocel),
+    }
+    with _StableColors(graphviz):
+        if "directed" in params:
+            # ``save_vis_object_graph`` does not pass ``directed`` on.
+            parameters = {"format": "svg", "bgcolor": "white", "directed": params["directed"]}
+            source = visualizer.apply(ocel, graph, parameters=parameters).source
+        else:
+            styled = _styled(params)
+            source = _capture(
+                visualizer, lambda path: pm4py.save_vis_object_graph(ocel, graph, path, **styled)
+            )
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+NETWORK = {
+    "out_column": "case:concept:name",
+    "in_column": "case:concept:name",
+    "node_column_source": "org:resource",
+    "node_column_target": "org:resource",
+    "edge_column": "concept:name",
+}
+
+
+def network_analysis(fixtures: dict[str, Path], **params: Any) -> dict[str, Any]:
+    from pm4py.visualization.network_analysis import visualizer
+
+    performance = params.get("performance", False)
+    edges = pm4py.discover_network_analysis(
+        load_log(fixtures["log"]), performance=performance, **NETWORK
+    )
+    # pm4py's pen widths depend on the order of the edges and values, so
+    # the model keeps it.
+    model = {
+        "edges": [
+            [a, b, [[k, list(v) if performance else v] for k, v in values.items()]]
+            for (a, b), values in edges.items()
+        ]
+    }
+    kwargs = {k: v for k, v in params.items() if k != "performance"}
+    if kwargs.pop("business_hours", False):
+        kwargs["business_hour_slots"] = constants.DEFAULT_BUSINESS_HOUR_SLOTS
+    variant = "performance" if performance else "frequency"
+    source = _capture(
+        visualizer,
+        lambda path: pm4py.save_vis_network_analysis(edges, path, variant=variant, **kwargs),
+    )
+    return {"model": model, "dot": canonical_dot(source)}
+
+
+def _capture_neato(module: Any, call: Any) -> str:
+    """Runs ``call`` with ``module.os.system`` recording the DOT file pm4py
+    passes to ``neato`` and writing an empty image in its place. Dates come
+    out in UTC."""
+    import os
+    import time
+
+    sources: list[str] = []
+
+    class _Os:
+        @staticmethod
+        def system(command: str) -> int:
+            parts = command.split()
+            sources.append(Path(parts[3]).read_text())
+            Path(parts[5]).write_bytes(b"")
+            return 0
+
+    original, tz = module.os, os.environ.get("TZ")
+    module.os = _Os()
+    os.environ["TZ"] = "UTC"
+    time.tzset()
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            call(str(Path(tmp) / "out.svg"))
+    finally:
+        module.os = original
+        if tz is None:
+            del os.environ["TZ"]
+        else:
+            os.environ["TZ"] = tz
+        time.tzset()
+    if len(sources) != 1:
+        raise RuntimeError(f"expected one drawn chart, got {len(sources)}")
+    return sources[0]
+
+
+def dotted_chart(fixtures: dict[str, Path], attributes: list[str], **params: Any) -> dict[str, Any]:
+    import random
+
+    from pm4py.visualization.dotted_chart.variants import classic
+
+    # pm4py picks the colours at random: seed them and record them.
+    build, randint = vars(classic)["__build_color_dict"], classic.randint
+    colors: dict[str, str] = {}
+
+    def recorded(values: Any) -> Any:
+        out = build(values)
+        colors.update({str(k): v for k, v in out.items()})
+        return out
+
+    vars(classic)["__build_color_dict"] = recorded
+    classic.randint = random.Random(0).randint
+    try:
+        source = _capture_neato(
+            classic,
+            lambda path: pm4py.save_vis_dotted_chart(
+                load_log(fixtures["log"]), path, attributes=attributes, **params
+            ),
+        )
+    finally:
+        vars(classic)["__build_color_dict"] = build
+        classic.randint = randint
+    return {"model": {"attributes": attributes, "colors": colors}, "dot": canonical_dot(source)}
+
+
+def performance_spectrum(
+    fixtures: dict[str, Path], activities: list[str], sample_size: int | None = None, **params: Any
+) -> dict[str, Any]:
+    from pm4py.algo.discovery.performance_spectrum import algorithm
+    from pm4py.visualization.performance_spectrum.variants import neato
+
+    # An event log, not a data frame: pm4py then takes the ``log`` variant,
+    # which samples without randomness.
+    log = pm4py.read_xes(str(fixtures["log"]), return_legacy_log_object=True)
+    if sample_size is None:
+        spectrum = algorithm.apply(log, activities)
+        source = _capture_neato(
+            neato,
+            lambda path: pm4py.save_vis_performance_spectrum(log, activities, path, **params),
+        )
+    else:
+        # ``save_vis_performance_spectrum`` does not take a sample size.
+        spectrum = algorithm.apply(log, activities, parameters={"sample_size": sample_size})
+        source = _capture_neato(
+            neato, lambda path: neato.apply(spectrum, parameters={"format": "svg"})
+        )
+    model = {"activities": activities, "points": spectrum["points"]}
+    return {"model": model, "dot": canonical_dot(source)}
+
+
 LOGS = {"running-example": "running-example.xes", "receipt": "receipt.xes"}
 
 for name, log in LOGS.items():
@@ -613,3 +1118,204 @@ case(
     ],
     params={"min_dfg_occurrences": 3},
 )(heuristics_net)
+
+for name, log in LOGS.items():
+    case(
+        f"transition-system-{name}",
+        fixture=log,
+        functions=["pm4py.discover_transition_system", "pm4py.save_vis_transition_system"],
+    )(transition_system)
+    case(
+        f"prefix-tree-{name}",
+        fixture=log,
+        functions=["pm4py.discover_prefix_tree", "pm4py.save_vis_prefix_tree"],
+    )(prefix_tree)
+    case(
+        f"footprints-{name}",
+        fixture=log,
+        functions=["pm4py.discover_footprints", "pm4py.save_vis_footprints"],
+    )(footprints)
+    case(
+        f"footprints-{name}-vs-net",
+        fixture=log,
+        functions=[
+            "pm4py.discover_footprints",
+            "pm4py.discover_petri_net_inductive",
+            "pm4py.save_vis_footprints",
+        ],
+        params={"compare": "net"},
+    )(footprints)
+    case(
+        f"alignments-{name}",
+        fixture=log,
+        functions=["pm4py.save_vis_alignments"],
+    )(alignments)
+    case(
+        f"powl-{name}",
+        fixture=log,
+        functions=["pm4py.discover_powl", "pm4py.save_vis_powl"],
+    )(powl)
+
+case(
+    "footprints-running-example-vs-filtered",
+    fixture="running-example.xes",
+    functions=[
+        "pm4py.discover_footprints",
+        "pm4py.filter_event_attribute_values",
+        "pm4py.save_vis_footprints",
+    ],
+    params={"compare": "examine casually"},
+)(footprints)
+case(
+    "powl-frequent-styled",
+    functions=["pm4py.parse_powl_model_string", "pm4py.save_vis_powl"],
+    params={
+        "text": "PO=(nodes={ X ( a, tau ), * ( b, tau ), * ( tau, c ), X ( tau, d ), "
+        "* ( e, f ) }, order={ X ( a, tau )-->* ( b, tau ), * ( b, tau )-->* ( e, f ) })",
+        "bgcolor": "#ddeeff",
+        "rankdir": "LR",
+    },
+)(powl)
+
+OCELS = {"example_log": "ocel/example_log.jsonocel", "ocel20_example": "ocel/ocel20_example.jsonocel"}
+
+for name, log in OCELS.items():
+    case(
+        f"ocdfg-{name}",
+        fixture=log,
+        functions=["pm4py.discover_ocdfg", "pm4py.save_vis_ocdfg"],
+    )(ocdfg)
+    case(
+        f"ocpn-{name}",
+        fixture=log,
+        functions=["pm4py.discover_oc_petri_net", "pm4py.save_vis_ocpn"],
+    )(ocpn)
+    case(
+        f"object-graph-{name}",
+        fixture=log,
+        functions=["pm4py.discover_objects_graph", "pm4py.save_vis_object_graph"],
+    )(object_graph)
+
+case(
+    "ocdfg-example_log-performance",
+    fixture="ocel/example_log.jsonocel",
+    functions=["pm4py.discover_ocdfg", "pm4py.save_vis_ocdfg"],
+    params={"annotation": "performance"},
+)(ocdfg)
+case(
+    "ocdfg-example_log-performance-business-hours",
+    fixture="ocel/example_log.jsonocel",
+    functions=["pm4py.discover_ocdfg", "pm4py.save_vis_ocdfg"],
+    params={"annotation": "performance", "edge_metric": "total_objects", "business_hours": True},
+)(ocdfg)
+case(
+    "ocdfg-example_log-metrics",
+    fixture="ocel/example_log.jsonocel",
+    functions=["pm4py.discover_ocdfg", "pm4py.save_vis_ocdfg"],
+    params={
+        "act_metric": "unique_objects",
+        "edge_metric": "total_objects",
+        "act_threshold": 3,
+        "edge_threshold": 2,
+        "bgcolor": "#ffeedd",
+        "rankdir": "TB",
+        "graph_title": "Orders",
+    },
+)(ocdfg)
+case(
+    "ocpn-example_log-tbr",
+    fixture="ocel/example_log.jsonocel",
+    functions=["pm4py.discover_oc_petri_net", "pm4py.save_vis_ocpn"],
+    params={"diagnostics_with_tbr": True, "rankdir": "TB", "graph_title": "Orders"},
+)(ocpn)
+case(
+    "object-graph-example_log-descendants",
+    fixture="ocel/example_log.jsonocel",
+    functions=["pm4py.discover_objects_graph", "pm4py.save_vis_object_graph"],
+    params={"graph_type": "object_descendants", "rankdir": "TB", "graph_title": "Descendants"},
+)(object_graph)
+case(
+    "object-graph-example_log-undirected",
+    fixture="ocel/example_log.jsonocel",
+    functions=[
+        "pm4py.discover_objects_graph",
+        "pm4py.visualization.ocel.object_graph.visualizer.apply",
+    ],
+    params={"directed": False},
+)(object_graph)
+
+for name, log in LOGS.items():
+    case(
+        f"network-analysis-{name}",
+        fixture=log,
+        functions=["pm4py.discover_network_analysis", "pm4py.save_vis_network_analysis"],
+    )(network_analysis)
+
+case(
+    "network-analysis-running-example-performance",
+    fixture="running-example.xes",
+    functions=["pm4py.discover_network_analysis", "pm4py.save_vis_network_analysis"],
+    params={"performance": True},
+)(network_analysis)
+case(
+    "network-analysis-running-example-thresholds",
+    fixture="running-example.xes",
+    functions=["pm4py.discover_network_analysis", "pm4py.save_vis_network_analysis"],
+    params={"activity_threshold": 3, "edge_threshold": 2, "graph_title": "Hand-overs"},
+)(network_analysis)
+case(
+    "network-analysis-running-example-performance-business-hours",
+    fixture="running-example.xes",
+    functions=["pm4py.discover_network_analysis", "pm4py.save_vis_network_analysis"],
+    params={"performance": True, "business_hours": True},
+)(network_analysis)
+
+case(
+    "dotted-chart-running-example",
+    fixture="running-example.xes",
+    functions=["pm4py.save_vis_dotted_chart"],
+    params={"attributes": ["time:timestamp", "case:concept:name", "concept:name"]},
+)(dotted_chart)
+case(
+    "dotted-chart-running-example-resources",
+    fixture="running-example.xes",
+    functions=["pm4py.save_vis_dotted_chart"],
+    params={"attributes": ["concept:name", "org:resource"], "graph_title": "Resources"},
+)(dotted_chart)
+case(
+    "dotted-chart-running-example-no-legend",
+    fixture="running-example.xes",
+    functions=["pm4py.save_vis_dotted_chart"],
+    params={
+        "attributes": ["org:resource", "time:timestamp", "concept:name"],
+        "show_legend": False,
+    },
+)(dotted_chart)
+
+case(
+    "performance-spectrum-running-example",
+    fixture="running-example.xes",
+    functions=["pm4py.save_vis_performance_spectrum"],
+    params={"activities": ["register request", "check ticket", "decide"]},
+)(performance_spectrum)
+case(
+    "performance-spectrum-running-example-styled",
+    fixture="running-example.xes",
+    functions=["pm4py.save_vis_performance_spectrum"],
+    params={
+        "activities": ["examine casually", "check ticket", "decide", "pay compensation"],
+        "graph_title": "Compensation",
+    },
+)(performance_spectrum)
+case(
+    "performance-spectrum-receipt-sampled",
+    fixture="receipt.xes",
+    functions=[
+        "pm4py.algo.discovery.performance_spectrum.algorithm.apply",
+        "pm4py.visualization.performance_spectrum.variants.neato.apply",
+    ],
+    params={
+        "activities": ["Confirmation of receipt", "T02 Check confirmation of receipt"],
+        "sample_size": 25,
+    },
+)(performance_spectrum)

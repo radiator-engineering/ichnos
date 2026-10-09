@@ -1,0 +1,364 @@
+{
+  "expected": {
+    "dot": {
+      "directed": true,
+      "edges": [
+        [
+          "n10",
+          "n4",
+          {
+            "dir": "none",
+            "style": ""
+          }
+        ],
+        [
+          "n10",
+          "n6",
+          {
+            "dir": "none",
+            "style": ""
+          }
+        ],
+        [
+          "n7",
+          "n8",
+          {
+            "color": "black",
+            "dir": "forward",
+            "lhead": "cluster@2",
+            "minlen": "2",
+            "style": ""
+          }
+        ],
+        [
+          "n8",
+          "n10",
+          {
+            "color": "black",
+            "dir": "forward",
+            "lhead": "cluster@2",
+            "ltail": "cluster@2",
+            "minlen": "2",
+            "style": ""
+          }
+        ],
+        [
+          "n8",
+          "n5",
+          {
+            "dir": "none",
+            "style": "dashed"
+          }
+        ],
+        [
+          "n8",
+          "n9",
+          {
+            "dir": "none",
+            "lhead": "cluster@3",
+            "minlen": "2",
+            "style": ""
+          }
+        ],
+        [
+          "n9",
+          "n0",
+          {
+            "dir": "none",
+            "style": ""
+          }
+        ],
+        [
+          "n9",
+          "n1",
+          {
+            "dir": "none",
+            "style": ""
+          }
+        ],
+        [
+          "n9",
+          "n3",
+          {
+            "color": "black",
+            "dir": "forward",
+            "ltail": "cluster@4",
+            "minlen": "2",
+            "style": ""
+          }
+        ]
+      ],
+      "graph": {
+        "compound": "true",
+        "fillcolor": "white",
+        "nodesep": "1",
+        "overlap": "scale",
+        "rankdir": "TB",
+        "ranksep": "1",
+        "splines": "true",
+        "style": "filled"
+      },
+      "nodes": [
+        {
+          "attrs": {
+            "fillcolor": "#e6e6e6",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "examine casually",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#ebebeb\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "5",
+            "width": "1.5"
+          },
+          "key": "n0"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#e6e6e6",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "examine thoroughly",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#ebebeb\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "5",
+            "width": "1.5"
+          },
+          "key": "n1"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#ebebeb",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "check ticket",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#f0f0f0\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "4",
+            "width": "1.5"
+          },
+          "key": "n2"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#f0f0f0",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "decide",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#f5f5f5\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "3",
+            "width": "1.5"
+          },
+          "key": "n3"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#f5f5f5",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "pay compensation",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#fafafa\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "2",
+            "width": "1.5"
+          },
+          "key": "n4"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#f5f5f5",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "reinitiate request",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#fafafa\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "2",
+            "width": "1.5"
+          },
+          "key": "n5"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#f5f5f5",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "reject request",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#fafafa\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "2",
+            "width": "1.5"
+          },
+          "key": "n6"
+        },
+        {
+          "attrs": {
+            "fillcolor": "#fafafa",
+            "fixedsize": "false",
+            "fontsize": "18",
+            "label": "register request",
+            "shape": "box",
+            "style": "filled",
+            "subgraph": "{\"fillcolor\": \"#ffffff\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "width": "1.5"
+          },
+          "key": "n7"
+        },
+        {
+          "attrs": {
+            "fixedsize": "true",
+            "fontsize": "18",
+            "height": "0.4",
+            "image": "loop.svg",
+            "label": "",
+            "shape": "ellipse",
+            "subgraph": "{\"fillcolor\": \"#fafafa\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "2",
+            "width": "0.4"
+          },
+          "key": "n8"
+        },
+        {
+          "attrs": {
+            "fixedsize": "true",
+            "fontsize": "18",
+            "height": "0.4",
+            "image": "xor.svg",
+            "label": "",
+            "shape": "ellipse",
+            "subgraph": "{\"fillcolor\": \"#ebebeb\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "5",
+            "width": "0.4"
+          },
+          "key": "n9"
+        },
+        {
+          "attrs": {
+            "fixedsize": "true",
+            "fontsize": "18",
+            "height": "0.4",
+            "image": "xor.svg",
+            "label": "",
+            "shape": "ellipse",
+            "subgraph": "{\"fillcolor\": \"#fafafa\", \"margin\": \"20,20\", \"style\": \"filled\"}",
+            "subgraph_depth": "2",
+            "width": "0.4"
+          },
+          "key": "n10"
+        }
+      ],
+      "strict": false
+    },
+    "model": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "kind": "activity",
+                          "label": "examine casually"
+                        },
+                        {
+                          "kind": "activity",
+                          "label": "examine thoroughly"
+                        }
+                      ],
+                      "kind": "xor"
+                    },
+                    {
+                      "kind": "activity",
+                      "label": "check ticket"
+                    }
+                  ],
+                  "kind": "po",
+                  "order": []
+                },
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "activity",
+              "label": "reinitiate request"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "pay compensation"
+            },
+            {
+              "kind": "activity",
+              "label": "reject request"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "kind": "activity",
+          "label": "register request"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "area": "viz",
+    "case": "powl-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.xes"
+    },
+    "functions": [
+      "pm4py.discover_powl",
+      "pm4py.save_vis_powl"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
