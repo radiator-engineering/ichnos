@@ -1,0 +1,262 @@
+{
+  "expected": {
+    "runs": [
+      {
+        "alpha": 1.0,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "a",
+                "b",
+                "c",
+                "d"
+              ],
+              "parallel": [
+                [
+                  "b",
+                  "c"
+                ],
+                [
+                  "c",
+                  "b"
+                ]
+              ],
+              "sequence": [
+                [
+                  "a",
+                  "b"
+                ],
+                [
+                  "a",
+                  "c"
+                ],
+                [
+                  "b",
+                  "d"
+                ],
+                [
+                  "c",
+                  "d"
+                ]
+              ],
+              "start_activities": [
+                "a"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              [
+                "a",
+                "c"
+              ],
+              [
+                "a",
+                "c",
+                "b"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "alpha": 0.2,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "a",
+                "b",
+                "c",
+                "d"
+              ],
+              "parallel": [
+                [
+                  "b",
+                  "c"
+                ],
+                [
+                  "c",
+                  "b"
+                ]
+              ],
+              "sequence": [
+                [
+                  "a",
+                  "b"
+                ],
+                [
+                  "a",
+                  "c"
+                ],
+                [
+                  "b",
+                  "d"
+                ],
+                [
+                  "c",
+                  "d"
+                ]
+              ],
+              "start_activities": [
+                "a"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              [
+                "a",
+                "c"
+              ],
+              [
+                "a",
+                "c",
+                "b"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "alpha": 0.0,
+        "model": {
+          "footprints": {
+            "status": "complete",
+            "value": {
+              "activities": [
+                "a",
+                "b",
+                "c",
+                "d"
+              ],
+              "parallel": [
+                [
+                  "b",
+                  "c"
+                ],
+                [
+                  "c",
+                  "b"
+                ]
+              ],
+              "sequence": [
+                [
+                  "a",
+                  "b"
+                ],
+                [
+                  "a",
+                  "c"
+                ],
+                [
+                  "b",
+                  "d"
+                ],
+                [
+                  "c",
+                  "d"
+                ]
+              ],
+              "start_activities": [
+                "a"
+              ]
+            }
+          },
+          "language": {
+            "accepted": [],
+            "depth": 3,
+            "prefixes": [
+              [],
+              [
+                "a"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              [
+                "a",
+                "c"
+              ],
+              [
+                "a",
+                "c",
+                "b"
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "solver": "scipy/highs/integer/lexicographic"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "ilp-miner-parallel",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_petri_net_ilp",
+      "pm4py.algo.discovery.ilp.variants.classic.apply",
+      "pm4py.util.lp.variants.scipy_solver.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "activity_key": "concept:name",
+      "traces": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "a",
+          "c",
+          "b",
+          "d"
+        ]
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

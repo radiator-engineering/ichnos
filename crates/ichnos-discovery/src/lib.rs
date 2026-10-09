@@ -24,6 +24,8 @@ pub mod declare;
 pub mod dfg;
 mod error;
 pub mod heuristics;
+/// Binary-region ILP process discovery.
+pub mod ilp;
 pub mod inductive;
 pub mod log_skeleton;
 pub mod temporal_profile;
@@ -47,3 +49,5 @@ pub use inductive::{
 };
 pub use log_skeleton::{LogSkeleton, LogSkeletonOptions, SkeletonRelation, log_skeleton};
 pub use temporal_profile::{TemporalProfile, TemporalProfileOptions, discover_temporal_profile};
+
+pub use ilp::{IlpActivity, IlpOptions, petri_net_ilp};
