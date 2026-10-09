@@ -8,4 +8,6 @@ pub mod filters;
 pub mod time;
 pub mod variants;
 
+/// Numeric and one-hot process cubes.
+pub mod cube;
 pub mod emd;
