@@ -23,4 +23,10 @@ pub enum Error {
     /// A noise threshold is not a fraction in `[0, 1]`.
     #[error("noise threshold {0} is not in [0, 1]")]
     NoiseThreshold(f64),
+    /// An invalid discovery option.
+    #[error("invalid discovery option: {0}")]
+    InvalidOption(&'static str),
+    /// A shared statistics operation failed.
+    #[error(transparent)]
+    Stats(#[from] ichnos_stats::Error),
 }

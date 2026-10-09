@@ -1,0 +1,240 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "a",
+            "target": "o",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "o": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "o"
+        ],
+        "transitions": [
+          {
+            "label": "a",
+            "name": "a"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "i1",
+            "target": "a",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "i1": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "i1"
+        ],
+        "transitions": [
+          {
+            "label": "a",
+            "name": "a"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "i2",
+            "target": "a",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "i2": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "i2"
+        ],
+        "transitions": [
+          {
+            "label": "a",
+            "name": "a"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "a"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "a",
+          "target": "o",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i1",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i2",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "o": 1
+      },
+      "initial_marking": {
+        "i1": 1,
+        "i2": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "i1",
+        "i2",
+        "o"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": "a"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "a",
+          "target": "o",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i1",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i2",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "o": 1
+      },
+      "initial_marking": {
+        "i1": 1,
+        "i2": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "i1",
+        "i2",
+        "o"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": "a"
+        }
+      ]
+    },
+    "is_sound": false,
+    "marking_equation": 1,
+    "model": {
+      "arcs": [
+        {
+          "source": "a",
+          "target": "o",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i1",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "i2",
+          "target": "a",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "o": 1
+      },
+      "initial_marking": {
+        "i1": 1,
+        "i2": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "i1",
+        "i2",
+        "o"
+      ],
+      "transitions": [
+        {
+          "label": "a",
+          "name": "a"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 1.0,
+      "extended_cardoso": 2,
+      "extended_cyclomatic": 1
+    },
+    "soundness": {
+      "messages": [
+        "There is more than one initial or final marking."
+      ],
+      "sound": false
+    },
+    "workflow_net": false
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-two-sources",
+    "fixtures": {},
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {},
+    "params": {
+      "name": "two-sources"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

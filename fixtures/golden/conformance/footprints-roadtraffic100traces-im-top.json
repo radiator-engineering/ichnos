@@ -1,0 +1,1192 @@
+{
+  "expected": {
+    "checks": {
+      "net": {
+        "fitness": {
+          "log_fitness": 0.8689655172413794,
+          "perc_fit_traces": 74.0
+        },
+        "fitness_log": 0.8702194357366771,
+        "fitting": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "footprints": {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Send Fine",
+            "Send for Credit Collection"
+          ],
+          "parallel": [],
+          "sequence": [
+            [
+              "Add penalty",
+              "Send for Credit Collection"
+            ],
+            [
+              "Create Fine",
+              "Payment"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ]
+        },
+        "log": {
+          "end_activities": [],
+          "footprints": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Payment",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ],
+          "is_footprints_fit": false,
+          "min_length_fit": true,
+          "start_activities": []
+        },
+        "precision": 1.0,
+        "precision_log": 1.0,
+        "variants": [
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Payment",
+                "Send Fine"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Payment",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              [
+                "Payment",
+                "Add penalty"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Payment",
+                "Insert Fine Notification"
+              ],
+              [
+                "Send Fine",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Send Fine",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          }
+        ],
+        "violations": {
+          "loose": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Payment",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ],
+          "strict": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Payment",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ]
+        }
+      },
+      "tree": {
+        "fitness": {
+          "log_fitness": 0.8254872563718141,
+          "perc_fit_traces": 57.99999999999999
+        },
+        "fitness_log": 0.8247648902821317,
+        "fitting": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "footprints": {
+          "activities": [
+            "Add penalty",
+            "Create Fine",
+            "Insert Fine Notification",
+            "Payment",
+            "Send Fine",
+            "Send for Credit Collection"
+          ],
+          "activities_always_happening": [
+            "Create Fine"
+          ],
+          "end_activities": [
+            "Payment",
+            "Send for Credit Collection"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
+            [
+              "Add penalty",
+              "Send for Credit Collection"
+            ],
+            [
+              "Create Fine",
+              "Payment"
+            ],
+            [
+              "Create Fine",
+              "Send Fine"
+            ],
+            [
+              "Insert Fine Notification",
+              "Add penalty"
+            ],
+            [
+              "Send Fine",
+              "Insert Fine Notification"
+            ]
+          ],
+          "start_activities": [
+            "Create Fine"
+          ]
+        },
+        "log": {
+          "end_activities": [
+            "Send Fine"
+          ],
+          "footprints": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Payment",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ],
+          "is_footprints_fit": false,
+          "min_length_fit": true,
+          "start_activities": []
+        },
+        "precision": 1.0,
+        "precision_log": 1.0,
+        "variants": [
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [
+              "Send Fine"
+            ],
+            "footprints": [],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [],
+            "is_footprints_fit": true,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [
+              "Send Fine"
+            ],
+            "footprints": [
+              [
+                "Payment",
+                "Send Fine"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Payment",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Insert Fine Notification",
+                "Payment"
+              ],
+              [
+                "Payment",
+                "Add penalty"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Payment"
+              ],
+              [
+                "Payment",
+                "Insert Fine Notification"
+              ],
+              [
+                "Send Fine",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Send Fine",
+                "Payment"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          },
+          {
+            "activities_always_happening": [],
+            "end_activities": [],
+            "footprints": [
+              [
+                "Add penalty",
+                "Send Appeal to Prefecture"
+              ],
+              [
+                "Insert Date Appeal to Prefecture",
+                "Add penalty"
+              ],
+              [
+                "Insert Fine Notification",
+                "Insert Date Appeal to Prefecture"
+              ],
+              [
+                "Notify Result Appeal to Offender",
+                "Payment"
+              ],
+              [
+                "Receive Result Appeal from Prefecture",
+                "Notify Result Appeal to Offender"
+              ],
+              [
+                "Send Appeal to Prefecture",
+                "Receive Result Appeal from Prefecture"
+              ]
+            ],
+            "is_footprints_fit": false,
+            "min_length_fit": true,
+            "start_activities": []
+          }
+        ],
+        "violations": {
+          "loose": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Payment",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ],
+          "strict": [
+            [
+              "Add penalty",
+              "Payment"
+            ],
+            [
+              "Add penalty",
+              "Send Appeal to Prefecture"
+            ],
+            [
+              "Insert Date Appeal to Prefecture",
+              "Add penalty"
+            ],
+            [
+              "Insert Fine Notification",
+              "Insert Date Appeal to Prefecture"
+            ],
+            [
+              "Insert Fine Notification",
+              "Payment"
+            ],
+            [
+              "Notify Result Appeal to Offender",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Add penalty"
+            ],
+            [
+              "Payment",
+              "Insert Fine Notification"
+            ],
+            [
+              "Payment",
+              "Payment"
+            ],
+            [
+              "Payment",
+              "Send Fine"
+            ],
+            [
+              "Receive Result Appeal from Prefecture",
+              "Notify Result Appeal to Offender"
+            ],
+            [
+              "Send Appeal to Prefecture",
+              "Receive Result Appeal from Prefecture"
+            ],
+            [
+              "Send Fine",
+              "Payment"
+            ]
+          ]
+        }
+      }
+    },
+    "log_footprints": {
+      "activities": [
+        "Add penalty",
+        "Create Fine",
+        "Insert Date Appeal to Prefecture",
+        "Insert Fine Notification",
+        "Notify Result Appeal to Offender",
+        "Payment",
+        "Receive Result Appeal from Prefecture",
+        "Send Appeal to Prefecture",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "dfg": [
+        [
+          "Add penalty",
+          "Payment",
+          20
+        ],
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture",
+          1
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection",
+          36
+        ],
+        [
+          "Create Fine",
+          "Payment",
+          23
+        ],
+        [
+          "Create Fine",
+          "Send Fine",
+          77
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty",
+          1
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty",
+          52
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture",
+          1
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment",
+          4
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment",
+          1
+        ],
+        [
+          "Payment",
+          "Add penalty",
+          4
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification",
+          1
+        ],
+        [
+          "Payment",
+          "Payment",
+          5
+        ],
+        [
+          "Payment",
+          "Send Fine",
+          1
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender",
+          1
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture",
+          1
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification",
+          56
+        ],
+        [
+          "Send Fine",
+          "Payment",
+          5
+        ]
+      ],
+      "end_activities": [
+        "Payment",
+        "Send Fine",
+        "Send for Credit Collection"
+      ],
+      "min_trace_length": 2,
+      "parallel": [
+        [
+          "Add penalty",
+          "Payment"
+        ],
+        [
+          "Insert Fine Notification",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Add penalty"
+        ],
+        [
+          "Payment",
+          "Insert Fine Notification"
+        ],
+        [
+          "Payment",
+          "Payment"
+        ],
+        [
+          "Payment",
+          "Send Fine"
+        ],
+        [
+          "Send Fine",
+          "Payment"
+        ]
+      ],
+      "sequence": [
+        [
+          "Add penalty",
+          "Send Appeal to Prefecture"
+        ],
+        [
+          "Add penalty",
+          "Send for Credit Collection"
+        ],
+        [
+          "Create Fine",
+          "Payment"
+        ],
+        [
+          "Create Fine",
+          "Send Fine"
+        ],
+        [
+          "Insert Date Appeal to Prefecture",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Add penalty"
+        ],
+        [
+          "Insert Fine Notification",
+          "Insert Date Appeal to Prefecture"
+        ],
+        [
+          "Notify Result Appeal to Offender",
+          "Payment"
+        ],
+        [
+          "Receive Result Appeal from Prefecture",
+          "Notify Result Appeal to Offender"
+        ],
+        [
+          "Send Appeal to Prefecture",
+          "Receive Result Appeal from Prefecture"
+        ],
+        [
+          "Send Fine",
+          "Insert Fine Notification"
+        ]
+      ],
+      "start_activities": [
+        "Create Fine"
+      ]
+    },
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p0",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p2": 1
+      },
+      "initial_marking": {
+        "p3": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "transitions": [
+        {
+          "label": "Add penalty",
+          "name": "t0"
+        },
+        {
+          "label": "Send Fine",
+          "name": "t1"
+        },
+        {
+          "label": "Create Fine",
+          "name": "t2"
+        },
+        {
+          "label": "Send for Credit Collection",
+          "name": "t3"
+        },
+        {
+          "label": "Payment",
+          "name": "t4"
+        },
+        {
+          "label": "Insert Fine Notification",
+          "name": "t5"
+        }
+      ]
+    },
+    "tree": "->( 'Create Fine', X( 'Payment', ->( 'Send Fine', 'Insert Fine Notification', 'Add penalty', 'Send for Credit Collection' ) ) )",
+    "variants": [
+      [
+        "Create Fine",
+        "Send Fine",
+        "Insert Fine Notification",
+        "Add penalty",
+        "Send for Credit Collection"
+      ],
+      [
+        "Create Fine",
+        "Send Fine"
+      ],
+      [
+        "Create Fine",
+        "Payment"
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        "Insert Fine Notification",
+        "Add penalty",
+        "Payment"
+      ],
+      [
+        "Create Fine",
+        "Payment",
+        "Send Fine"
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        "Insert Fine Notification",
+        "Add penalty",
+        "Payment",
+        "Payment"
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        "Insert Fine Notification",
+        "Payment",
+        "Add penalty",
+        "Payment"
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        "Payment",
+        "Insert Fine Notification",
+        "Add penalty",
+        "Payment"
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        "Payment"
+      ],
+      [
+        "Create Fine",
+        "Send Fine",
+        "Insert Fine Notification",
+        "Insert Date Appeal to Prefecture",
+        "Add penalty",
+        "Send Appeal to Prefecture",
+        "Receive Result Appeal from Prefecture",
+        "Notify Result Appeal to Offender",
+        "Payment"
+      ]
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "footprints-roadtraffic100traces-im-top",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.discover_process_tree_inductive",
+      "pm4py.convert_to_petri_net",
+      "pm4py.convert_to_event_log",
+      "pm4py.discover_footprints",
+      "pm4py.conformance_diagnostics_footprints",
+      "pm4py.fitness_footprints",
+      "pm4py.precision_footprints",
+      "pm4py.check_is_fitting"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

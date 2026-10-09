@@ -1,0 +1,447 @@
+{
+  "expected": {
+    "extended_marking_equation": 10000,
+    "extended_marking_equation_split": 10000,
+    "model": {
+      "arcs": [
+        {
+          "source": "Confirmation of receipt",
+          "target": "p1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T02 Check confirmation of receipt",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T04 Determine confirmation of receipt",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T05 Print and send confirmation of receipt",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "T06 Determine necessity of stop advice",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "T02 Check confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p2",
+          "target": "T04 Determine confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "T05 Print and send confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "T06 Determine necessity of stop advice",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "Confirmation of receipt",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Confirmation of receipt",
+          "name": "Confirmation of receipt"
+        },
+        {
+          "label": "T02 Check confirmation of receipt",
+          "name": "T02 Check confirmation of receipt"
+        },
+        {
+          "label": "T04 Determine confirmation of receipt",
+          "name": "T04 Determine confirmation of receipt"
+        },
+        {
+          "label": "T05 Print and send confirmation of receipt",
+          "name": "T05 Print and send confirmation of receipt"
+        },
+        {
+          "label": "T06 Determine necessity of stop advice",
+          "name": "T06 Determine necessity of stop advice"
+        }
+      ]
+    },
+    "sync_net": {
+      "arcs": [
+        {
+          "source": "(>>, Confirmation of receipt)",
+          "target": "(>>, p1)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, T02 Check confirmation of receipt)",
+          "target": "(>>, p2)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, T04 Determine confirmation of receipt)",
+          "target": "(>>, p3)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, T05 Print and send confirmation of receipt)",
+          "target": "(>>, p4)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, T06 Determine necessity of stop advice)",
+          "target": "(>>, sink)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p1)",
+          "target": "(>>, T02 Check confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p1)",
+          "target": "(t_T02 Check confirmation of receipt_1, T02 Check confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p2)",
+          "target": "(>>, T04 Determine confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p2)",
+          "target": "(t_T04 Determine confirmation of receipt_2, T04 Determine confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p3)",
+          "target": "(>>, T05 Print and send confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p3)",
+          "target": "(t_T05 Print and send confirmation of receipt_3, T05 Print and send confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p4)",
+          "target": "(>>, T06 Determine necessity of stop advice)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, p4)",
+          "target": "(t_T06 Determine necessity of stop advice_4, T06 Determine necessity of stop advice)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, source)",
+          "target": "(>>, Confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(>>, source)",
+          "target": "(t_Confirmation of receipt_0, Confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(p_0, >>)",
+          "target": "(t_Confirmation of receipt_0, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_0, >>)",
+          "target": "(t_Confirmation of receipt_0, Confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(p_1, >>)",
+          "target": "(t_T02 Check confirmation of receipt_1, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_1, >>)",
+          "target": "(t_T02 Check confirmation of receipt_1, T02 Check confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(p_2, >>)",
+          "target": "(t_T04 Determine confirmation of receipt_2, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_2, >>)",
+          "target": "(t_T04 Determine confirmation of receipt_2, T04 Determine confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(p_3, >>)",
+          "target": "(t_T05 Print and send confirmation of receipt_3, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_3, >>)",
+          "target": "(t_T05 Print and send confirmation of receipt_3, T05 Print and send confirmation of receipt)",
+          "weight": 1
+        },
+        {
+          "source": "(p_4, >>)",
+          "target": "(t_T06 Determine necessity of stop advice_4, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(p_4, >>)",
+          "target": "(t_T06 Determine necessity of stop advice_4, T06 Determine necessity of stop advice)",
+          "weight": 1
+        },
+        {
+          "source": "(p_5, >>)",
+          "target": "(t_T10 Determine necessity to stop indication_5, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_Confirmation of receipt_0, >>)",
+          "target": "(p_1, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_Confirmation of receipt_0, Confirmation of receipt)",
+          "target": "(>>, p1)",
+          "weight": 1
+        },
+        {
+          "source": "(t_Confirmation of receipt_0, Confirmation of receipt)",
+          "target": "(p_1, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T02 Check confirmation of receipt_1, >>)",
+          "target": "(p_2, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T02 Check confirmation of receipt_1, T02 Check confirmation of receipt)",
+          "target": "(>>, p2)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T02 Check confirmation of receipt_1, T02 Check confirmation of receipt)",
+          "target": "(p_2, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T04 Determine confirmation of receipt_2, >>)",
+          "target": "(p_3, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T04 Determine confirmation of receipt_2, T04 Determine confirmation of receipt)",
+          "target": "(>>, p3)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T04 Determine confirmation of receipt_2, T04 Determine confirmation of receipt)",
+          "target": "(p_3, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T05 Print and send confirmation of receipt_3, >>)",
+          "target": "(p_4, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T05 Print and send confirmation of receipt_3, T05 Print and send confirmation of receipt)",
+          "target": "(>>, p4)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T05 Print and send confirmation of receipt_3, T05 Print and send confirmation of receipt)",
+          "target": "(p_4, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T06 Determine necessity of stop advice_4, >>)",
+          "target": "(p_5, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T06 Determine necessity of stop advice_4, T06 Determine necessity of stop advice)",
+          "target": "(>>, sink)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T06 Determine necessity of stop advice_4, T06 Determine necessity of stop advice)",
+          "target": "(p_5, >>)",
+          "weight": 1
+        },
+        {
+          "source": "(t_T10 Determine necessity to stop indication_5, >>)",
+          "target": "(p_6, >>)",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "(>>, sink)": 1,
+        "(p_6, >>)": 1
+      },
+      "initial_marking": {
+        "(>>, source)": 1,
+        "(p_0, >>)": 1
+      },
+      "places": [
+        "(>>, p1)",
+        "(>>, p2)",
+        "(>>, p3)",
+        "(>>, p4)",
+        "(>>, sink)",
+        "(>>, source)",
+        "(p_0, >>)",
+        "(p_1, >>)",
+        "(p_2, >>)",
+        "(p_3, >>)",
+        "(p_4, >>)",
+        "(p_5, >>)",
+        "(p_6, >>)"
+      ],
+      "transitions": [
+        {
+          "label": "(>>, Confirmation of receipt)",
+          "name": "(>>, Confirmation of receipt)"
+        },
+        {
+          "label": "(>>, T02 Check confirmation of receipt)",
+          "name": "(>>, T02 Check confirmation of receipt)"
+        },
+        {
+          "label": "(>>, T04 Determine confirmation of receipt)",
+          "name": "(>>, T04 Determine confirmation of receipt)"
+        },
+        {
+          "label": "(>>, T05 Print and send confirmation of receipt)",
+          "name": "(>>, T05 Print and send confirmation of receipt)"
+        },
+        {
+          "label": "(>>, T06 Determine necessity of stop advice)",
+          "name": "(>>, T06 Determine necessity of stop advice)"
+        },
+        {
+          "label": "(Confirmation of receipt, >>)",
+          "name": "(t_Confirmation of receipt_0, >>)"
+        },
+        {
+          "label": "(Confirmation of receipt, Confirmation of receipt)",
+          "name": "(t_Confirmation of receipt_0, Confirmation of receipt)"
+        },
+        {
+          "label": "(T02 Check confirmation of receipt, >>)",
+          "name": "(t_T02 Check confirmation of receipt_1, >>)"
+        },
+        {
+          "label": "(T02 Check confirmation of receipt, T02 Check confirmation of receipt)",
+          "name": "(t_T02 Check confirmation of receipt_1, T02 Check confirmation of receipt)"
+        },
+        {
+          "label": "(T04 Determine confirmation of receipt, >>)",
+          "name": "(t_T04 Determine confirmation of receipt_2, >>)"
+        },
+        {
+          "label": "(T04 Determine confirmation of receipt, T04 Determine confirmation of receipt)",
+          "name": "(t_T04 Determine confirmation of receipt_2, T04 Determine confirmation of receipt)"
+        },
+        {
+          "label": "(T05 Print and send confirmation of receipt, >>)",
+          "name": "(t_T05 Print and send confirmation of receipt_3, >>)"
+        },
+        {
+          "label": "(T05 Print and send confirmation of receipt, T05 Print and send confirmation of receipt)",
+          "name": "(t_T05 Print and send confirmation of receipt_3, T05 Print and send confirmation of receipt)"
+        },
+        {
+          "label": "(T06 Determine necessity of stop advice, >>)",
+          "name": "(t_T06 Determine necessity of stop advice_4, >>)"
+        },
+        {
+          "label": "(T06 Determine necessity of stop advice, T06 Determine necessity of stop advice)",
+          "name": "(t_T06 Determine necessity of stop advice_4, T06 Determine necessity of stop advice)"
+        },
+        {
+          "label": "(T10 Determine necessity to stop indication, >>)",
+          "name": "(t_T10 Determine necessity to stop indication_5, >>)"
+        }
+      ]
+    },
+    "trace": [
+      "Confirmation of receipt",
+      "T02 Check confirmation of receipt",
+      "T04 Determine confirmation of receipt",
+      "T05 Print and send confirmation of receipt",
+      "T06 Determine necessity of stop advice",
+      "T10 Determine necessity to stop indication"
+    ]
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "sync-receipt-one-variant-0",
+    "fixtures": {
+      "log": "fixtures/logs/receipt.xes",
+      "model": "fixtures/logs/receipt_one_variant.pnml"
+    },
+    "functions": [
+      "pm4py.construct_synchronous_product_net",
+      "pm4py.solve_extended_marking_equation"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pm4py.read_xes",
+        "params": {
+          "variant": "iterparse"
+        }
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": 0
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
