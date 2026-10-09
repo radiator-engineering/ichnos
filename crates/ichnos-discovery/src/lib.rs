@@ -6,6 +6,7 @@
 //!   eventually-follows counts.
 //! - [`temporal_profile`]: the temporal profile, the mean and standard
 //!   deviation of the time between each pair of activities.
+//! - [`footprints`]: footprints of logs, traces and DFGs.
 //!
 //! Every miner takes an [`ichnos_core::EventLog`] with
 //! [`ichnos_core::EventKeys`] and a plain options struct, and returns a model
@@ -13,6 +14,7 @@
 
 pub mod dfg;
 mod error;
+pub mod footprints;
 pub mod inductive;
 pub mod temporal_profile;
 
@@ -22,6 +24,9 @@ pub use dfg::{
     eventually_follows_graph, performance_dfg,
 };
 pub use error::{Error, Result};
+pub use footprints::{
+    DfgFootprints, LogFootprints, TraceFootprints, dfg_footprints, log_footprints, trace_footprints,
+};
 pub use inductive::{
     InductiveOptions, InductiveVariant, PowlOptions, PowlVariant, bpmn_inductive,
     bpmn_inductive_dfg, petri_net_inductive, petri_net_inductive_dfg, powl_inductive,

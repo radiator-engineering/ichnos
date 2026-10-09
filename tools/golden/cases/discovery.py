@@ -54,6 +54,24 @@ variant runs on the logs where pm4py finishes in seconds. Each case emits
 ``powl``: :func:`cases.powl.describe_powl` of the model, made independent of
 child order by :func:`canonical_powl`.
 
+Footprints (lane ``miner-powl``) emit each footprints dict with sets as
+sorted lists, pairs as ``[a, b]`` and the DFG as sorted ``[[a, b], count]``:
+
+- ``footprints-log-<log>``: ``entire`` is ``pm4py.discover_footprints`` of
+  the DataFrame (``entire_dataframe``); ``traces`` is the same on
+  ``pm4py.convert_to_event_log`` of it (``trace_by_trace``), one entry per
+  distinct result with its ``count``, sorted; ``dfg`` is the same on the dict
+  of ``pm4py.discover_dfg``; ``powl`` is the same on
+  ``pm4py.discover_powl`` of the DataFrame.
+- ``footprints-log-synthetic-emptytraces``: ``entire`` (``entire_event_log``,
+  through ``footprints.algorithm.apply``) and ``traces`` of a log with empty
+  traces, given as ``traces``.
+- ``footprints-powl-<model>``: ``powl`` is the footprints of each POWL string
+  of ``cases.powl.MODELS``, and ``frequent`` of its
+  ``simplify_using_frequent_transitions()``. ``frequent`` is null when
+  pm4py makes a frequent transition without an activity from two silent
+  steps, which ichnos keeps as they are.
+
 Logs are CSV only until ichnos can read XES in the discovery tests.
 
 Temporal profile (lane ``miner-temporal-profile``), cases
@@ -498,6 +516,121 @@ def _register_powl() -> None:
 
 
 _register_powl()
+
+
+FOOTPRINTS_FUNCTIONS = [
+    "pm4py.discover_footprints",
+    "pm4py.convert_to_event_log",
+    "pm4py.discover_dfg",
+    "pm4py.discover_powl",
+]
+
+
+def footprints_json(fp: dict[str, Any]) -> dict[str, Any]:
+    """A footprints dict with sets as sorted lists."""
+    out: dict[str, Any] = {}
+    for key, value in fp.items():
+        if key == "dfg":
+            out[key] = sorted([[a, b], int(n)] for (a, b), n in value.items())
+        elif key in ("sequence", "parallel"):
+            out[key] = sorted([a, b] for a, b in value)
+        elif isinstance(value, (set, frozenset)):
+            out[key] = sorted(value)
+        elif key == "trace":
+            out[key] = list(value)
+        elif isinstance(value, bool):
+            out[key] = value
+        else:
+            out[key] = int(value)
+    return out
+
+
+def _traces_footprints(log: Any) -> list[dict[str, Any]]:
+    groups: dict[str, dict[str, Any]] = {}
+    for fp in pm4py.discover_footprints(log):
+        j = footprints_json(fp)
+        groups.setdefault(json.dumps(j, sort_keys=True), {**j, "count": 0})["count"] += 1
+    return [groups[k] for k in sorted(groups)]
+
+
+def footprints_log(
+    fixtures: dict[str, Path], traces: list[list[str]] | None = None
+) -> dict[str, Any]:
+    """Footprints of the log in ``fixtures`` and of its DFG and POWL model,
+    or of the log ``traces``."""
+    if traces is not None:
+        from pm4py.algo.discovery.footprints import algorithm as footprints_algorithm
+        from pm4py.objects.log.obj import Event, EventLog, Trace
+
+        log = EventLog()
+        for i, activities in enumerate(traces):
+            trace = Trace(attributes={"concept:name": str(i)})
+            for a in activities:
+                trace.append(Event({"concept:name": a}))
+            log.append(trace)
+        entire = footprints_algorithm.apply(
+            log, variant=footprints_algorithm.Variants.ENTIRE_EVENT_LOG
+        )
+        return {"entire": footprints_json(entire), "traces": _traces_footprints(log)}
+    df = load_log(fixtures["log"])
+    dfg, _, _ = pm4py.discover_dfg(df)
+    return {
+        "entire": footprints_json(pm4py.discover_footprints(df)),
+        "traces": _traces_footprints(pm4py.convert_to_event_log(df)),
+        "dfg": footprints_json(pm4py.discover_footprints(dfg)),
+        "powl": footprints_json(pm4py.discover_footprints(pm4py.discover_powl(df))),
+    }
+
+
+def _has_silent_frequent(model: Any) -> bool:
+    """Whether ``model`` holds a frequent transition without an activity:
+    pm4py makes one from a choice or loop of two silent steps, which
+    ichnos keeps as it is."""
+    if getattr(model, "activity", "") is None:
+        return True
+    return any(_has_silent_frequent(c) for c in getattr(model, "children", []))
+
+
+def footprints_powl(fixtures: dict[str, Path], text: str) -> dict[str, Any]:
+    """Footprints of the POWL string ``text``, before and after
+    ``simplify_using_frequent_transitions()``. ``frequent`` is null when
+    the simplified model differs from ichnos's (see
+    ``_has_silent_frequent``)."""
+    model = pm4py.parse_powl_model_string(text)
+    frequent = model.simplify_using_frequent_transitions()
+    return {
+        "powl": footprints_json(pm4py.discover_footprints(model)),
+        "frequent": None
+        if _has_silent_frequent(frequent)
+        else footprints_json(pm4py.discover_footprints(frequent)),
+    }
+
+
+def _register_footprints() -> None:
+    from cases.powl import MODELS
+
+    for log_id, rel in INDUCTIVE_LOGS.items():
+        case(f"footprints-log-{log_id}", fixture=rel, functions=FOOTPRINTS_FUNCTIONS)(
+            footprints_log
+        )
+    case(
+        "footprints-log-synthetic-emptytraces",
+        functions=["pm4py.algo.discovery.footprints.algorithm.apply"],
+        params={"traces": POWL_SYNTHETIC_LOGS["emptytraces"]},
+    )(footprints_log)
+    for name, text in MODELS:
+        case(
+            f"footprints-powl-{name}",
+            functions=[
+                "pm4py.parse_powl_model_string",
+                "pm4py.discover_footprints",
+                "pm4py.objects.powl.obj.POWL.simplify_using_frequent_transitions",
+            ],
+            params={"text": text},
+        )(footprints_powl)
+
+
+_register_footprints()
 
 # What one seeded run of _inductive_seeds computes, by kind.
 SEEDED_RUNS = {"tree": _inductive_run, "bpmn": _bpmn_inductive_run}
