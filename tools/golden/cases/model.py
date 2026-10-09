@@ -26,6 +26,11 @@ Cases:
   ``petri_net`` describes the converted net (see :func:`describe_converted`).
   Converted heuristics nets are often unbounded, so no footprints: pm4py's
   reachability graph does not end on them.
+- ``networkx-net-*``: ``{"model": ..., "nodes": [...], "edges": [...]}`` from
+  ``pm4py.convert_petri_net_to_networkx``. A node is its name plus its
+  ``attr`` dictionary, sorted by type and name; an edge is ``{"source",
+  "target", "weight", "type"}``, with ``type`` the ``arctype`` property
+  (``"normal"`` when unset), sorted by source and target.
 """
 
 from __future__ import annotations
@@ -100,6 +105,28 @@ def net_reachability_graph(fixtures: dict[str, Path]) -> dict[str, Any]:
         "states": sorted({s.name for s in ts.states}),
         "edges": sorted({(t.from_state.name, t.name, t.to_state.name) for t in ts.transitions}),
     }
+
+
+def net_networkx(fixtures: dict[str, Path]) -> dict[str, Any]:
+    net, im, fm = load_model(fixtures["model"])
+    g = pm4py.convert_petri_net_to_networkx(net, im, fm)
+    nodes = sorted(
+        ({"name": n, **d["attr"]} for n, d in g.nodes(data=True)),
+        key=lambda d: (d["type"], d["name"]),
+    )
+    edges = sorted(
+        (
+            {
+                "source": s,
+                "target": t,
+                "weight": d["attr"]["weight"],
+                "type": d["attr"]["properties"].get("arctype", "normal"),
+            }
+            for s, t, d in g.edges(data=True)
+        ),
+        key=lambda e: (e["source"], e["target"]),
+    )
+    return {"model": describe_net(net, im, fm), "nodes": nodes, "edges": edges}
 
 
 def _matrix(m: dict[Any, dict[Any, Any]]) -> list[list[Any]]:
@@ -202,6 +229,14 @@ for name in TREES:
 for name in [n for n in NETS if n != "roadtraffic"]:
     case_id = "reachability-graph-net-" + name.lower().replace("_", "-")
     case(case_id, fixtures={"model": f"{name}.pnml"}, functions=RG_FUNCTIONS)(net_reachability_graph)
+
+for name in [*NETS, "inh_res_nets/cyber_incident_response"]:
+    case_id = "networkx-net-" + name.rsplit("/", 1)[-1].lower().replace("_", "-")
+    case(
+        case_id,
+        fixtures={"model": f"{name}.pnml"},
+        functions=["pm4py.convert_petri_net_to_networkx"],
+    )(net_networkx)
 
 for case_id, fixture in [
     ("heuristics-net-running-example", "running-example.xes"),

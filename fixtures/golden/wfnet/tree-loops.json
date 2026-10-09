@@ -150,6 +150,91 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "b"
+                    },
+                    {
+                      "kind": "silent"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "kind": "activity",
+                  "label": "a"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "kind": "activity",
+                      "label": "c"
+                    },
+                    {
+                      "kind": "activity",
+                      "label": "d"
+                    }
+                  ],
+                  "kind": "xor"
+                },
+                {
+                  "kind": "silent"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "kind": "silent"
+        },
+        {
+          "kind": "silent"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": "*( ->( 'a', X( tau, 'b' ) ), X( 'c', 'd' ) )",
     "tree_in": "*( ->( 'a', X( 'b', tau ) ), X( 'c', ->( tau, 'd' ) ) )"
   },
@@ -160,7 +245,8 @@
     "functions": [
       "pm4py.parse_process_tree",
       "pm4py.convert_to_petri_net",
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {},
     "params": {

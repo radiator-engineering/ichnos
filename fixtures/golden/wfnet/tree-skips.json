@@ -150,6 +150,96 @@
         }
       ]
     },
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "a"
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "c"
+            },
+            {
+              "kind": "silent"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "children": [
+            {
+              "kind": "silent"
+            },
+            {
+              "kind": "activity",
+              "label": "b"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "kind": "silent"
+        },
+        {
+          "kind": "silent"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    "powl_error": null,
     "tree": "->( X( tau, 'a' ), *( tau, 'b' ), X( tau, 'c' ) )",
     "tree_in": "->( X( tau, 'a' ), *( tau, 'b' ), X( 'c', tau ) )"
   },
@@ -160,7 +250,8 @@
     "functions": [
       "pm4py.parse_process_tree",
       "pm4py.convert_to_petri_net",
-      "pm4py.convert_to_process_tree"
+      "pm4py.convert_to_process_tree",
+      "pm4py.convert_to_powl"
     ],
     "loaders": {},
     "params": {

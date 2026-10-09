@@ -1,4 +1,5 @@
-//! Footprints, reachability graphs and heuristics nets against pm4py's
+//! Footprints, reachability graphs, heuristics nets and Petri net graphs
+//! against pm4py's
 //! (`fixtures/golden/model`).
 //!
 //! There is no PNML or PTML reader yet, so each golden file also describes
@@ -7,17 +8,17 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use ichnos_golden::{Golden, JsonCompare, assert_json_eq, cases, golden};
-use ichnos_model::conversion::EdgeNaming;
+use ichnos_model::conversion::{EdgeNaming, PetriGraphNode};
 use ichnos_model::heuristics_net::{
     DEFAULT_AND_MEASURE_THRESH, DEFAULT_LOOP_LENGTH_TWO_THRESH, HeuristicsEdge, HeuristicsNet,
     Matrix,
 };
-use ichnos_model::petri::ReachabilityOptions;
+use ichnos_model::petri::{ArcKind, ReachabilityOptions};
 use ichnos_model::{AcceptingPetriNet, Footprints, Label, Marking, ProcessTree, TreeFootprints};
-use serde_json::Value;
+use serde_json::{Value, json};
 
 mod common;
-use common::{build_net, str_field};
+use common::{build_accepting, build_net, str_field};
 
 fn check(g: &Golden) {
     let model = g.expected_at("/model");
@@ -298,4 +299,73 @@ fn flatten(m: &Matrix<f64>) -> Vec<(&Label, &Label, f64)> {
     m.iter()
         .flat_map(|(a, row)| row.iter().map(move |(b, &v)| (a, b, v)))
         .collect()
+}
+
+#[test]
+fn petri_net_graphs_match_pm4py() {
+    let ids: Vec<String> = cases("model")
+        .into_iter()
+        .filter(|id| id.starts_with("networkx-"))
+        .collect();
+    assert_eq!(ids.len(), 12, "expected 12 networkx goldens, found {ids:?}");
+    for id in ids {
+        let g = golden("model", &id);
+        let graph = build_accepting(g.expected_at("/model")).to_graph();
+        let name = |n: &PetriGraphNode| match n {
+            PetriGraphNode::Place { name, .. } | PetriGraphNode::Transition { name, .. } => {
+                name.clone()
+            }
+        };
+        let mut nodes: Vec<Value> = graph
+            .node_weights()
+            .map(|n| match n {
+                PetriGraphNode::Place {
+                    name,
+                    in_initial_marking,
+                    in_final_marking,
+                } => json!({
+                    "name": name,
+                    "type": "place",
+                    "is_in_im": in_initial_marking,
+                    "is_in_fm": in_final_marking,
+                }),
+                PetriGraphNode::Transition { name, label } => json!({
+                    "name": name,
+                    "type": "transition",
+                    "label": label.as_ref().map(Label::as_str),
+                }),
+            })
+            .collect();
+        nodes.sort_by_key(|n| {
+            (
+                str_field(n, "type").to_owned(),
+                str_field(n, "name").to_owned(),
+            )
+        });
+        let mut edges: Vec<Value> = graph
+            .raw_edges()
+            .iter()
+            .map(|e| {
+                let kind = match e.weight.kind {
+                    ArcKind::Normal => "normal",
+                    ArcKind::Inhibitor => "inhibitor",
+                    ArcKind::Reset => "reset",
+                };
+                json!({
+                    "source": name(&graph[e.source()]),
+                    "target": name(&graph[e.target()]),
+                    "weight": e.weight.weight,
+                    "type": kind,
+                })
+            })
+            .collect();
+        edges.sort_by_key(|e| {
+            (
+                str_field(e, "source").to_owned(),
+                str_field(e, "target").to_owned(),
+            )
+        });
+        assert_eq!(&json!(nodes), g.expected_at("/nodes"), "{id}: nodes");
+        assert_eq!(&json!(edges), g.expected_at("/edges"), "{id}: edges");
+    }
 }
