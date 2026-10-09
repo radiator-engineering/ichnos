@@ -2,10 +2,11 @@
 
 Each case describes its input net as ``model.py`` does (``model``) and
 gives ``tree``: ``str`` of ``pm4py.convert_to_process_tree`` on the net, or
-``null`` when pm4py raises (the net is not a workflow net, or not block
-structured).
+``null`` when pm4py raises. ``error`` names the ``ValueError`` pm4py raised:
+``not_workflow_net`` or ``not_block_structured``, else ``null``.
 
-- ``net-*``: PNML fixtures.
+- ``net-*``: PNML fixtures, and ``net-two-sources``, built inline, which is
+  not a workflow net.
 - ``tree-*``: a process tree (``tree_in``) converted with
   ``pm4py.convert_to_petri_net``, then back. Visible transitions of that net
   are renamed ``t_<n>`` in order of label and neighbouring places, because
@@ -23,18 +24,42 @@ from harness import case
 from harness.fixtures import load_model
 
 
-def _tree(net: Any, im: Any, fm: Any) -> str | None:
+ERRORS = {
+    "The Petri net provided is not a WF-net": "not_workflow_net",
+    "Parsing of WF-net Failed": "not_block_structured",
+}
+
+
+def _tree(net: Any, im: Any, fm: Any) -> dict[str, Any]:
     try:
-        return str(pm4py.convert_to_process_tree(net, im, fm))
-    except ValueError:
-        return None
+        return {"tree": str(pm4py.convert_to_process_tree(net, im, fm)), "error": None}
+    except ValueError as e:
+        return {"tree": None, "error": ERRORS[str(e)]}
 
 
 def from_net(fixtures: dict[str, Path]) -> dict[str, Any]:
     from cases.model import describe_net
 
     net, im, fm = load_model(fixtures["model"])
-    return {"model": describe_net(net, im, fm), "tree": _tree(net, im, fm)}
+    return {"model": describe_net(net, im, fm), **_tree(net, im, fm)}
+
+
+@case("net-two-sources", functions=["pm4py.convert_to_process_tree"])
+def two_sources(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Two source places, so not a workflow net."""
+    from cases.model import describe_net
+    from pm4py.objects.petri_net.obj import Marking, PetriNet
+    from pm4py.objects.petri_net.utils.petri_utils import add_arc_from_to
+
+    net = PetriNet("two-sources")
+    i1, i2, o = (PetriNet.Place(n) for n in ["i1", "i2", "o"])
+    a, b = PetriNet.Transition("a", "a"), PetriNet.Transition("b", "b")
+    net.places.update([i1, i2, o])
+    net.transitions.update([a, b])
+    for x, y in [(i1, a), (a, o), (i2, b), (b, o)]:
+        add_arc_from_to(x, y, net)
+    im, fm = Marking({i1: 1, i2: 1}), Marking({o: 2})
+    return {"model": describe_net(net, im, fm), **_tree(net, im, fm)}
 
 
 def from_tree(fixtures: dict[str, Path], tree: str | None = None) -> dict[str, Any]:
@@ -54,7 +79,7 @@ def from_tree(fixtures: dict[str, Path], tree: str | None = None) -> dict[str, A
     )
     for i, tr in enumerate(visible):
         tr.name = f"t_{i}"
-    return {"tree_in": str(t), "model": describe_net(net, im, fm), "tree": _tree(net, im, fm)}
+    return {"tree_in": str(t), "model": describe_net(net, im, fm), **_tree(net, im, fm)}
 
 
 for name in [
