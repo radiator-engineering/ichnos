@@ -1,0 +1,130 @@
+{
+  "expected": {
+    "dfg": [
+      [
+        "check ticket",
+        "decide",
+        3
+      ],
+      [
+        "decide",
+        "pay compensation",
+        1
+      ],
+      [
+        "decide",
+        "reinitiate request",
+        1
+      ],
+      [
+        "decide",
+        "reject request",
+        1
+      ],
+      [
+        "examine casually",
+        "check ticket",
+        1
+      ],
+      [
+        "examine thoroughly",
+        "check ticket",
+        2
+      ],
+      [
+        "register request",
+        "examine casually",
+        1
+      ],
+      [
+        "register request",
+        "examine thoroughly",
+        1
+      ],
+      [
+        "reinitiate request",
+        "examine thoroughly",
+        1
+      ]
+    ],
+    "end": {
+      "pay compensation": 1,
+      "reject request": 1
+    },
+    "start": {
+      "register request": 2
+    },
+    "traces": [
+      {
+        "bwc": 100000,
+        "case_id": "1",
+        "closed": 6,
+        "cost": 0,
+        "fitness": 1.0,
+        "visited": 6
+      },
+      {
+        "bwc": 100000,
+        "case_id": "2",
+        "closed": 12,
+        "cost": 20000,
+        "fitness": 0.8,
+        "visited": 13
+      },
+      {
+        "bwc": 140000,
+        "case_id": "3",
+        "closed": 10,
+        "cost": 0,
+        "fitness": 1.0,
+        "visited": 10
+      },
+      {
+        "bwc": 100000,
+        "case_id": "4",
+        "closed": 12,
+        "cost": 20000,
+        "fitness": 0.8,
+        "visited": 13
+      },
+      {
+        "bwc": 180000,
+        "case_id": "5",
+        "closed": 37,
+        "cost": 40000,
+        "fitness": 0.7777777777777778,
+        "visited": 43
+      },
+      {
+        "bwc": 100000,
+        "case_id": "6",
+        "closed": 6,
+        "cost": 0,
+        "fitness": 1.0,
+        "visited": 6
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-dfg-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.filter_variants_top_k",
+      "pm4py.conformance_diagnostics_alignments",
+      "pm4py.discover_dfg"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

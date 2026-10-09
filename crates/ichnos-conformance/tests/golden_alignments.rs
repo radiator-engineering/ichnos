@@ -27,7 +27,12 @@ fn close(actual: f64, expected: f64, tol: Tolerance, what: impl std::fmt::Displa
 fn alignment_cases() -> Vec<String> {
     let ids: Vec<String> = cases("conformance")
         .into_iter()
-        .filter(|id| id.starts_with("alignments-"))
+        .filter(|id| {
+            id.starts_with("alignments-")
+                && !["dfg", "tree", "edit-distance"]
+                    .iter()
+                    .any(|kind| id.starts_with(&format!("alignments-{kind}-")))
+        })
         .collect();
     assert_eq!(ids.len(), 8, "expected 8 alignment goldens, found {ids:?}");
     ids

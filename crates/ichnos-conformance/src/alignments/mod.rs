@@ -45,11 +45,29 @@
 //!
 //! [`align_log`], [`fitness_alignments`] and [`precision_alignments`] are
 //! the log-level entry points of pm4py's simplified interface.
+//!
+//! # Other models
+//!
+//! These follow pm4py's searches step for step, so costs and fitness match
+//! pm4py. The searches are not exact: the cost can exceed the optimum. They
+//! return a [`SequenceAlignment`], whose moves name activities.
+//!
+//! - [`DfgAligner`] aligns against a directly-follows graph, with the
+//!   standard costs.
+//! - [`TreeAligner`] aligns against a process tree, with pm4py's unit costs
+//!   for trees: 1 per log move or visible model move, 0 otherwise.
+//!   Interleaving is not supported.
+//! - [`EditDistanceAligner`] aligns each trace against the closest trace of
+//!   another log, with the standard costs.
 
 pub mod costs;
+mod dfg;
+mod edit_distance;
 mod marking;
 mod petri_net;
 mod precision;
+mod process_tree;
+mod py_heap;
 mod result;
 mod search;
 mod simplex;
@@ -57,6 +75,11 @@ mod state_equation;
 mod sync_product;
 
 pub use costs::ModelCosts;
+pub use dfg::{DfgAligner, align_log_dfg};
+pub use edit_distance::{EditDistanceAligner, align_log_edit_distance};
 pub use petri_net::{Aligner, AlignmentOptions, Heuristic, align_log, fitness_alignments};
 pub use precision::precision_alignments;
-pub use result::{AlignmentFitness, LogAlignment, Move, TraceAlignment};
+pub use process_tree::{TreeAligner, align_log_tree};
+pub use result::{
+    AlignmentFitness, LogAlignment, Move, SequenceAlignment, SequenceMove, TraceAlignment,
+};

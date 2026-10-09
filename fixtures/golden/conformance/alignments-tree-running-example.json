@@ -1,0 +1,59 @@
+{
+  "expected": {
+    "traces": [
+      {
+        "case_id": "1",
+        "cost": 0,
+        "fitness": 1.0
+      },
+      {
+        "case_id": "2",
+        "cost": 2,
+        "fitness": 0.8
+      },
+      {
+        "case_id": "3",
+        "cost": 0,
+        "fitness": 1.0
+      },
+      {
+        "case_id": "4",
+        "cost": 0,
+        "fitness": 1.0
+      },
+      {
+        "case_id": "5",
+        "cost": 3,
+        "fitness": 0.8333333333333334
+      },
+      {
+        "case_id": "6",
+        "cost": 1,
+        "fitness": 0.9
+      }
+    ],
+    "tree": "->( 'register request', X( tau, 'examine casually' ), +( 'examine thoroughly', *( ->( 'check ticket', 'decide' ), 'reinitiate request' ) ), X( 'reject request', 'pay compensation' ) )"
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-tree-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.filter_variants_top_k",
+      "pm4py.conformance_diagnostics_alignments",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -23,6 +23,20 @@ pub enum Error {
     /// exception in the same case.
     #[error("the final marking is not reachable from the initial marking")]
     FinalMarkingUnreachable,
+    /// No path in the DFG leads from a start activity to an end activity,
+    /// so no trace has an alignment.
+    #[error("no path in the DFG leads from a start activity to an end activity")]
+    DfgEndUnreachable,
+    /// The model log of an edit-distance alignment has no traces.
+    #[error("the model log has no traces")]
+    EmptyModelLog,
+    /// The process tree is malformed, for example a loop without exactly
+    /// two children.
+    #[error(transparent)]
+    ProcessTree(#[from] ichnos_model::process_tree::TreeError),
+    /// The process tree has an operator the method has no rules for.
+    #[error("process tree operator {0} is not supported by this method")]
+    UnsupportedOperator(ichnos_model::Operator),
     /// A per-event cost list does not have one entry per event.
     #[error("{actual} log move costs given for a trace of {expected} events")]
     LogMoveCostCount {

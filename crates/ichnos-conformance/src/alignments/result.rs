@@ -1,7 +1,7 @@
 //! Alignment results.
 
 use ichnos_core::Variants;
-use ichnos_model::{PetriNet, TransitionId};
+use ichnos_model::{Label, PetriNet, TransitionId};
 
 /// One move of an alignment.
 ///
@@ -95,19 +95,87 @@ impl TraceAlignment {
     }
 }
 
+/// One move of an alignment against a model whose steps are activities: a
+/// DFG, a process tree or the traces of another log.
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub enum SequenceMove {
+    /// The event and a model step with the same activity happen together.
+    Sync {
+        /// Index of the event in the trace.
+        event: usize,
+    },
+    /// The event happens and the model does not move.
+    Log {
+        /// Index of the event in the trace.
+        event: usize,
+    },
+    /// The model takes a step that no event matches.
+    Model {
+        /// The activity of the step, or `None` for a silent process-tree
+        /// leaf.
+        activity: Option<Label>,
+    },
+}
+
+impl SequenceMove {
+    /// The index of the event in the trace, unless this is a model move.
+    pub fn event(&self) -> Option<usize> {
+        match *self {
+            SequenceMove::Sync { event } | SequenceMove::Log { event } => Some(event),
+            SequenceMove::Model { .. } => None,
+        }
+    }
+}
+
+/// The alignment of one trace against a DFG, a process tree or another
+/// log, with pm4py's diagnostics.
+///
+/// These pm4py methods are not all optimal: see each module for how its
+/// search works. Costs follow the method: 10000 per log or model move for
+/// DFGs and edit distance, 1 per log or visible model move for process
+/// trees.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SequenceAlignment {
+    /// The moves, in order.
+    pub moves: Vec<SequenceMove>,
+    /// The total cost of the moves.
+    pub cost: u64,
+    /// pm4py's trace fitness for the method.
+    pub fitness: f64,
+    /// pm4py's `bwc` for the method: the cost of moving on the log for every
+    /// event plus the cost of aligning the empty trace.
+    pub best_worst_cost: u64,
+    /// Search states taken off the queue (pm4py's `visited`), or 0 for edit
+    /// distance.
+    pub visited_states: usize,
+    /// DFG only: states expanded (pm4py's `closed`); 0 otherwise.
+    pub closed_states: usize,
+}
+
+impl SequenceAlignment {
+    /// Whether the trace fits: its fitness is exactly 1.
+    pub fn is_fit(&self) -> bool {
+        self.fitness == 1.0
+    }
+}
+
 /// The alignments of every trace of a log, computed once per variant.
+///
+/// `A` is [`TraceAlignment`] for Petri nets and [`SequenceAlignment`] for
+/// the other models.
 #[derive(Debug, Clone)]
-pub struct LogAlignment {
+pub struct LogAlignment<A = TraceAlignment> {
     /// The variants of the log.
     pub variants: Variants,
     /// One alignment per variant, in the order of `variants.variants`.
-    /// `None` when the search hit its time limit.
-    pub alignments: Vec<Option<TraceAlignment>>,
+    /// `None` when the search found no alignment: it hit its time limit, or
+    /// the model has no complete run.
+    pub alignments: Vec<Option<A>>,
     trace_variant: Vec<usize>,
 }
 
-impl LogAlignment {
-    pub(crate) fn new(variants: Variants, alignments: Vec<Option<TraceAlignment>>) -> Self {
+impl<A> LogAlignment<A> {
+    pub(crate) fn new(variants: Variants, alignments: Vec<Option<A>>) -> Self {
         let traces = variants.iter().map(|v| v.count()).sum();
         let mut trace_variant = vec![0; traces];
         for (i, v) in variants.iter().enumerate() {
@@ -127,24 +195,25 @@ impl LogAlignment {
         self.trace_variant.len()
     }
 
-    /// The alignment of trace `i`, or `None` if its search hit the time
-    /// limit.
+    /// The alignment of trace `i`, or `None` if its search found none.
     ///
     /// # Panics
     ///
     /// Panics if `i` is not a trace index of the log.
-    pub fn trace(&self, i: usize) -> Option<&TraceAlignment> {
+    pub fn trace(&self, i: usize) -> Option<&A> {
         self.alignments[self.trace_variant[i]].as_ref()
     }
 
     /// The alignment of every trace, in log order, as pm4py's
     /// `conformance_diagnostics_alignments` lists them.
-    pub fn traces(&self) -> impl Iterator<Item = Option<&TraceAlignment>> + '_ {
+    pub fn traces(&self) -> impl Iterator<Item = Option<&A>> + '_ {
         self.trace_variant
             .iter()
             .map(|&v| self.alignments[v].as_ref())
     }
+}
 
+impl LogAlignment<TraceAlignment> {
     /// The log-level fitness of these alignments (pm4py's
     /// `replay_fitness.alignment_based.evaluate`).
     pub fn fitness(&self) -> AlignmentFitness {

@@ -26,10 +26,29 @@ Each case emits:
   :func:`complete_eventually_enabled`. pm4py's version can miss markings
   reached through silent transitions (see ichnos-model's
   ``visible_transitions_eventually_enabled``); ichnos computes this value.
+
+Alignments against other models (lane ``alignments``), each against a model
+built from the log's ``SEQUENCE_TOP_K`` most frequent variants, so that some
+traces deviate:
+
+- ``alignments-dfg-<log>``: the DFG pm4py discovers (``dfg``, ``start``,
+  ``end``) and, per trace, ``cost``, ``fitness``, ``bwc``, ``visited`` (pm4py's ``visited_states``) and
+  ``closed`` from ``conformance_diagnostics_alignments(log, dfg, sa, ea)``.
+- ``alignments-tree-<log>``: the inductive-miner tree (``tree``, pm4py's
+  string form) and, per trace, ``cost`` and ``fitness`` from
+  ``conformance_diagnostics_alignments(log, tree)``.
+  ``alignments-tree-running-example-ptml`` uses the fixture tree instead.
+- ``alignments-edit-distance-<log>``: the model variants (``model``) and,
+  per trace, ``bwc`` and ``cost_choices`` from
+  ``conformance_diagnostics_alignments(log, model_log)``. When several model
+  variants are closest, pm4py's pick depends on string hashing, so
+  ``cost_choices`` lists the cost of each pick it could make. ``cost`` and
+  ``fitness`` are emitted only when there is one choice.
 """
 
 from __future__ import annotations
 
+import difflib
 import hashlib
 import json
 from pathlib import Path
@@ -38,6 +57,7 @@ from typing import Any
 import pm4py
 from pm4py.algo.evaluation.precision.variants import align_etconformance
 from pm4py.objects.petri_net import semantics
+from pm4py.util import string_distance
 
 from harness import case
 from harness.fixtures import load_log, load_model
@@ -219,3 +239,135 @@ for _log_id, _log in ALIGNMENT_LOGS.items():
             fixtures={"log": _log, "model": _net},
             functions=ALIGNMENT_FUNCTIONS,
         )(alignments)
+
+
+SEQUENCE_TOP_K = 2
+
+SEQUENCE_FUNCTIONS = [
+    "pm4py.convert_to_event_log",
+    "pm4py.filter_variants_top_k",
+    "pm4py.conformance_diagnostics_alignments",
+]
+
+
+def _variant(trace: Any) -> tuple[str, ...]:
+    return tuple(e["concept:name"] for e in trace)
+
+
+def _top_k(log: Any) -> Any:
+    return pm4py.filter_variants_top_k(log, SEQUENCE_TOP_K)
+
+
+def alignments_dfg(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Alignments against the DFG of the top variants."""
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    dfg, sa, ea = pm4py.discover_dfg(_top_k(log))
+    diagnostics = pm4py.conformance_diagnostics_alignments(log, dfg, sa, ea)
+    return {
+        "dfg": sorted([a, b, n] for (a, b), n in dfg.items()),
+        "start": dict(sorted(sa.items())),
+        "end": dict(sorted(ea.items())),
+        "traces": [
+            {
+                "case_id": trace.attributes["concept:name"],
+                "cost": d["cost"],
+                "fitness": d["fitness"],
+                "bwc": d["bwc"],
+                "visited": d["visited_states"],
+                "closed": d["closed"],
+            }
+            for trace, d in zip(log, diagnostics)
+        ],
+    }
+
+
+def alignments_tree(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Alignments against the fixture tree, or the IM tree of the top variants."""
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    if "model" in fixtures:
+        tree = load_model(fixtures["model"])
+    else:
+        tree = pm4py.discover_process_tree_inductive(_top_k(log))
+    diagnostics = pm4py.conformance_diagnostics_alignments(log, tree)
+    return {
+        "tree": str(tree),
+        "traces": [
+            {
+                "case_id": trace.attributes["concept:name"],
+                "cost": d["cost"],
+                "fitness": d["fitness"],
+            }
+            for trace, d in zip(log, diagnostics)
+        ],
+    }
+
+
+def _matched(a: tuple[str, ...], b: tuple[str, ...]) -> int:
+    return sum(m.size for m in difflib.SequenceMatcher(None, a, b).get_matching_blocks())
+
+
+def edit_distance_cost_choices(trace: tuple[str, ...], model: list[tuple[str, ...]]) -> list[int]:
+    """Costs pm4py's edit-distance alignment can give ``trace``, one per
+    closest model variant it could pick.
+
+    pm4py takes the trace itself if it is a model variant. Otherwise it
+    takes the first variant at the smallest Levenshtein distance in its
+    candidate order: smallest length difference, then shortest, then an
+    order set by string hashing.
+    """
+    if trace in model:
+        candidates = [trace]
+    else:
+        dist = {m: string_distance.levenshtein_distance(trace, m) for m in model}
+        best = min(dist.values())
+        closest = [m for m in model if dist[m] == best]
+        rank = min((abs(len(m) - len(trace)), len(m)) for m in closest)
+        candidates = [m for m in closest if (abs(len(m) - len(trace)), len(m)) == rank]
+    return sorted({(len(trace) + len(m) - 2 * _matched(trace, m)) * 10000 for m in candidates})
+
+
+def alignments_edit_distance(fixtures: dict[str, Path]) -> dict[str, Any]:
+    """Edit-distance alignments against the top variants."""
+    log = pm4py.convert_to_event_log(load_log(fixtures["log"]))
+    model_log = _top_k(log)
+    model = sorted({_variant(t) for t in model_log})
+    diagnostics = pm4py.conformance_diagnostics_alignments(log, model_log)
+    traces = []
+    for trace, d in zip(log, diagnostics):
+        choices = edit_distance_cost_choices(_variant(trace), model)
+        assert d["cost"] in choices, (d["cost"], choices)
+        record = {
+            "case_id": trace.attributes["concept:name"],
+            "bwc": d["bwc"],
+            "cost_choices": choices,
+        }
+        # With several choices pm4py's cost changes between runs.
+        if len(choices) == 1:
+            record["cost"] = d["cost"]
+            record["fitness"] = d["fitness"]
+        traces.append(record)
+    return {"model": [list(m) for m in model], "traces": traces}
+
+
+for _log_id, _log in ALIGNMENT_LOGS.items():
+    case(
+        f"alignments-dfg-{_log_id}",
+        fixture=_log,
+        functions=[*SEQUENCE_FUNCTIONS, "pm4py.discover_dfg"],
+    )(alignments_dfg)
+    case(
+        f"alignments-tree-{_log_id}",
+        fixture=_log,
+        functions=[*SEQUENCE_FUNCTIONS, "pm4py.discover_process_tree_inductive"],
+    )(alignments_tree)
+    case(
+        f"alignments-edit-distance-{_log_id}",
+        fixture=_log,
+        functions=SEQUENCE_FUNCTIONS,
+    )(alignments_edit_distance)
+
+case(
+    "alignments-tree-running-example-ptml",
+    fixtures={"log": "running-example.csv", "model": "running-example.ptml"},
+    functions=["pm4py.convert_to_event_log", "pm4py.conformance_diagnostics_alignments"],
+)(alignments_tree)

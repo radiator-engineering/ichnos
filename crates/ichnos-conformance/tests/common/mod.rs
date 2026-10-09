@@ -5,6 +5,9 @@
 //! goes away when an `ichnos-io` CSV or XES reader is on `main`. The net
 //! builder goes away when a PNML reader is.
 
+// Each test binary uses a subset of these helpers.
+#![allow(dead_code)]
+
 use std::collections::BTreeMap;
 use std::path::Path;
 use std::sync::Arc;
