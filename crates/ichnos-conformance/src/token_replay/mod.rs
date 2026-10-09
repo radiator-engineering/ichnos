@@ -63,10 +63,12 @@
 //! semantics. pm4py's post-fix and marking-to-activity caches are off by
 //! default and are not ported; they only speed up the replay.
 
-mod net;
+mod fitting;
+pub(crate) mod net;
 mod precision;
 mod replay;
 
+pub use fitting::{check_is_fitting, check_is_fitting_tree};
 pub use precision::precision_token_based_replay;
 
 use std::collections::{BTreeSet, HashMap};
