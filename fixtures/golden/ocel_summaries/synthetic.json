@@ -1,0 +1,814 @@
+{
+  "expected": {
+    "attribute_names": {
+      "ok": [
+        "clerk",
+        "colour",
+        "cost",
+        "weight"
+      ]
+    },
+    "flattening": {
+      "item": {
+        "ok": [
+          {
+            "case:colour": [
+              "string",
+              "blue"
+            ],
+            "case:concept:name": [
+              "string",
+              "item"
+            ],
+            "case:ocel:type": [
+              "string",
+              "item"
+            ],
+            "case:weight": [
+              "float",
+              5.0
+            ],
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "concept:name": [
+              "string",
+              "finish"
+            ],
+            "cost": [
+              "float",
+              3.5
+            ],
+            "ocel:eid": [
+              "string",
+              "e3"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T08:00:00.250000+00:00"
+            ]
+          },
+          {
+            "case:colour": [
+              "string",
+              "blue"
+            ],
+            "case:concept:name": [
+              "string",
+              "item"
+            ],
+            "case:ocel:type": [
+              "string",
+              "item"
+            ],
+            "case:weight": [
+              "float",
+              5.0
+            ],
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "concept:name": [
+              "string",
+              "finish"
+            ],
+            "cost": [
+              "float",
+              2.25
+            ],
+            "ocel:eid": [
+              "string",
+              "e2"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T19:00:00.500000+00:00"
+            ]
+          }
+        ]
+      },
+      "no-such-type": {
+        "ok": []
+      },
+      "order": {
+        "ok": [
+          {
+            "case:colour": [
+              "string",
+              "red"
+            ],
+            "case:concept:name": [
+              "string",
+              "z"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "concept:name": [
+              "string",
+              "finish"
+            ],
+            "cost": [
+              "float",
+              3.5
+            ],
+            "ocel:eid": [
+              "string",
+              "e3"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T08:00:00.250000+00:00"
+            ]
+          },
+          {
+            "case:concept:name": [
+              "string",
+              "a"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "case:weight": [
+              "float",
+              2.0
+            ],
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "concept:name": [
+              "string",
+              "finish"
+            ],
+            "cost": [
+              "float",
+              3.5
+            ],
+            "ocel:eid": [
+              "string",
+              "e3"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T08:00:00.250000+00:00"
+            ]
+          },
+          {
+            "case:colour": [
+              "string",
+              "red"
+            ],
+            "case:concept:name": [
+              "string",
+              "z"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "clerk": [
+              "string",
+              "bob"
+            ],
+            "concept:name": [
+              "string",
+              "start"
+            ],
+            "ocel:eid": [
+              "string",
+              "e1"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-05T16:30:00.000000+00:00"
+            ]
+          },
+          {
+            "case:concept:name": [
+              "string",
+              "a"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "case:weight": [
+              "float",
+              2.0
+            ],
+            "clerk": [
+              "string",
+              "bob"
+            ],
+            "concept:name": [
+              "string",
+              "start"
+            ],
+            "ocel:eid": [
+              "string",
+              "e1"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-05T16:30:00.000000+00:00"
+            ]
+          },
+          {
+            "case:concept:name": [
+              "string",
+              "a"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "case:weight": [
+              "float",
+              2.0
+            ],
+            "concept:name": [
+              "string",
+              "middle"
+            ],
+            "cost": [
+              "float",
+              1.0
+            ],
+            "ocel:eid": [
+              "string",
+              "e4"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T08:00:00.250000+00:00"
+            ]
+          },
+          {
+            "case:colour": [
+              "string",
+              "red"
+            ],
+            "case:concept:name": [
+              "string",
+              "z"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "concept:name": [
+              "string",
+              "finish"
+            ],
+            "cost": [
+              "float",
+              2.25
+            ],
+            "ocel:eid": [
+              "string",
+              "e2"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T19:00:00.500000+00:00"
+            ]
+          },
+          {
+            "case:concept:name": [
+              "string",
+              "b"
+            ],
+            "case:ocel:type": [
+              "string",
+              "order"
+            ],
+            "case:weight": [
+              "float",
+              7.0
+            ],
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "concept:name": [
+              "string",
+              "finish"
+            ],
+            "cost": [
+              "float",
+              2.25
+            ],
+            "ocel:eid": [
+              "string",
+              "e2"
+            ],
+            "time:timestamp": [
+              "date",
+              "2024-01-08T19:00:00.500000+00:00"
+            ]
+          }
+        ]
+      },
+      "unrelated": {
+        "ok": []
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "finish",
+          "attributes": {
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "cost": [
+              "float",
+              3.5
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2024-01-08T08:00:00.250000+00:00"
+        },
+        {
+          "activity": "start",
+          "attributes": {
+            "clerk": [
+              "string",
+              "bob"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2024-01-05T16:30:00.000000+00:00"
+        },
+        {
+          "activity": "middle",
+          "attributes": {
+            "cost": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2024-01-08T08:00:00.250000+00:00"
+        },
+        {
+          "activity": "finish",
+          "attributes": {
+            "clerk": [
+              "string",
+              "ann"
+            ],
+            "cost": [
+              "float",
+              2.25
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2024-01-08T19:00:00.500000+00:00"
+        },
+        {
+          "activity": "unrelated",
+          "attributes": {},
+          "id": "unused",
+          "timestamp": "2024-01-10T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {
+            "colour": [
+              "string",
+              "red"
+            ]
+          },
+          "id": "z",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "a",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "colour": [
+              "string",
+              "blue"
+            ],
+            "weight": [
+              "float",
+              5.0
+            ]
+          },
+          "id": "item",
+          "type": "item"
+        },
+        {
+          "attributes": {
+            "colour": [
+              "string",
+              "green"
+            ]
+          },
+          "id": "lonely",
+          "type": "unrelated"
+        },
+        {
+          "attributes": {
+            "weight": [
+              "float",
+              7.0
+            ]
+          },
+          "id": "b",
+          "type": "order"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "middle",
+          "event": "e4",
+          "object": "a",
+          "qualifier": null,
+          "timestamp": "2024-01-08T08:00:00.250000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "start",
+          "event": "e1",
+          "object": "z",
+          "qualifier": null,
+          "timestamp": "2024-01-05T16:30:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "item",
+          "qualifier": null,
+          "timestamp": "2024-01-08T08:00:00.250000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "start",
+          "event": "e1",
+          "object": "a",
+          "qualifier": null,
+          "timestamp": "2024-01-05T16:30:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "z",
+          "qualifier": null,
+          "timestamp": "2024-01-08T08:00:00.250000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "middle",
+          "event": "e4",
+          "object": "a",
+          "qualifier": null,
+          "timestamp": "2024-01-08T08:00:00.250000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "item",
+          "qualifier": null,
+          "timestamp": "2024-01-08T19:00:00.500000+00:00",
+          "type": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "a",
+          "qualifier": null,
+          "timestamp": "2024-01-08T08:00:00.250000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "b",
+          "qualifier": null,
+          "timestamp": "2024-01-08T19:00:00.500000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "z",
+          "qualifier": null,
+          "timestamp": "2024-01-08T19:00:00.500000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "object_type_activities": {
+      "ok": {
+        "item": [
+          "finish"
+        ],
+        "order": [
+          "finish",
+          "middle",
+          "start"
+        ]
+      }
+    },
+    "object_types": {
+      "ok": [
+        "order",
+        "item",
+        "unrelated"
+      ]
+    },
+    "objects_interactions_summary": {
+      "ok": [
+        {
+          "activity": "start",
+          "event": "e1",
+          "object": "z",
+          "object_2": "a",
+          "type": "order",
+          "type_2": "order"
+        },
+        {
+          "activity": "start",
+          "event": "e1",
+          "object": "a",
+          "object_2": "z",
+          "type": "order",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "item",
+          "object_2": "b",
+          "type": "item",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "item",
+          "object_2": "z",
+          "type": "item",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "b",
+          "object_2": "item",
+          "type": "order",
+          "type_2": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "b",
+          "object_2": "z",
+          "type": "order",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "z",
+          "object_2": "item",
+          "type": "order",
+          "type_2": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e2",
+          "object": "z",
+          "object_2": "b",
+          "type": "order",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "item",
+          "object_2": "z",
+          "type": "item",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "item",
+          "object_2": "a",
+          "type": "item",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "z",
+          "object_2": "item",
+          "type": "order",
+          "type_2": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "z",
+          "object_2": "a",
+          "type": "order",
+          "type_2": "order"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "a",
+          "object_2": "item",
+          "type": "order",
+          "type_2": "item"
+        },
+        {
+          "activity": "finish",
+          "event": "e3",
+          "object": "a",
+          "object_2": "z",
+          "type": "order",
+          "type_2": "order"
+        }
+      ]
+    },
+    "objects_ot_count": {
+      "ok": {
+        "e1": {
+          "order": 2
+        },
+        "e2": {
+          "item": 1,
+          "order": 2
+        },
+        "e3": {
+          "item": 1,
+          "order": 2
+        },
+        "e4": {
+          "order": 2
+        }
+      }
+    },
+    "objects_summary": {
+      "ok": [
+        {
+          "activities": [
+            "middle",
+            "start",
+            "middle",
+            "finish"
+          ],
+          "duration": 228600.25,
+          "end": "2024-01-08T08:00:00.250000+00:00",
+          "interacting": [
+            "item",
+            "z"
+          ],
+          "object": "a",
+          "start": "2024-01-05T16:30:00.000000+00:00"
+        },
+        {
+          "activities": [
+            "finish"
+          ],
+          "duration": 0.0,
+          "end": "2024-01-08T19:00:00.500000+00:00",
+          "interacting": [
+            "item",
+            "z"
+          ],
+          "object": "b",
+          "start": "2024-01-08T19:00:00.500000+00:00"
+        },
+        {
+          "activities": [
+            "finish",
+            "finish"
+          ],
+          "duration": 39600.25,
+          "end": "2024-01-08T19:00:00.500000+00:00",
+          "interacting": [
+            "a",
+            "b",
+            "z"
+          ],
+          "object": "item",
+          "start": "2024-01-08T08:00:00.250000+00:00"
+        },
+        {
+          "activities": [
+            "start",
+            "finish",
+            "finish"
+          ],
+          "duration": 268200.5,
+          "end": "2024-01-08T19:00:00.500000+00:00",
+          "interacting": [
+            "a",
+            "b",
+            "item"
+          ],
+          "object": "z",
+          "start": "2024-01-05T16:30:00.000000+00:00"
+        }
+      ]
+    },
+    "temporal_summary": {
+      "ok": [
+        {
+          "activities": [
+            "start",
+            "start"
+          ],
+          "objects": [
+            "z",
+            "a"
+          ],
+          "timestamp": "2024-01-05T16:30:00.000000+00:00"
+        },
+        {
+          "activities": [
+            "middle",
+            "finish",
+            "finish",
+            "middle",
+            "finish"
+          ],
+          "objects": [
+            "a",
+            "item",
+            "z",
+            "a",
+            "a"
+          ],
+          "timestamp": "2024-01-08T08:00:00.250000+00:00"
+        },
+        {
+          "activities": [
+            "finish",
+            "finish",
+            "finish"
+          ],
+          "objects": [
+            "item",
+            "b",
+            "z"
+          ],
+          "timestamp": "2024-01-08T19:00:00.500000+00:00"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_summaries",
+    "case": "synthetic",
+    "fixtures": {},
+    "functions": [
+      "pm4py.ocel_get_object_types",
+      "pm4py.ocel_get_attribute_names",
+      "pm4py.ocel_flattening",
+      "pm4py.ocel_object_type_activities",
+      "pm4py.ocel_objects_ot_count",
+      "pm4py.ocel_temporal_summary",
+      "pm4py.ocel_objects_summary",
+      "pm4py.ocel_objects_interactions_summary"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -7,6 +7,7 @@ mod graphs;
 mod log_to_ocel;
 mod networkx;
 mod ocel;
+mod summaries;
 mod summary;
 
 pub use graphs::{ObjectGraph, ObjectGraphKind, discover_objects_graph};
@@ -19,6 +20,7 @@ pub use ocel::{
     EventEvent, EventObject, ExtendedRow, ExtendedTable, ObjectChange, ObjectObject, Ocel,
     OcelEvent, OcelObject,
 };
+pub use summaries::{InteractionRow, ObjectSummaryRow, TemporalSummaryRow};
 pub use summary::OcelSummary;
 
 pub use filtering::*;

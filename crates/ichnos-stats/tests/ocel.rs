@@ -471,3 +471,28 @@ fn dangling_references_and_invalid_schedules_are_errors() {
         Err(Error::InvalidOption(_))
     ));
 }
+
+/// `pm4py.ocel_object_type_activities` and `pm4py.ocel_objects_ot_count`
+/// wrap the statistics above; their goldens sit with the other OCEL summaries.
+#[test]
+fn ocel_summary_wrappers_match_pm4py() {
+    let ids = cases("ocel_summaries");
+    assert!(ids.len() >= 7, "{ids:?}");
+    for id in ids {
+        let g = golden("ocel_summaries", &id);
+        let e = &g.expected;
+        let log = build(&e["input"]);
+        let activities = ot_activities::get_object_type_activities(&log).unwrap();
+        assert_eq!(
+            serde_json::to_value(&activities).unwrap(),
+            e["object_type_activities"]["ok"],
+            "{id}"
+        );
+        let counts = objects_ot_count::get_objects_ot_count(&log).unwrap();
+        assert_eq!(
+            serde_json::to_value(&counts).unwrap(),
+            e["objects_ot_count"]["ok"],
+            "{id}"
+        );
+    }
+}
