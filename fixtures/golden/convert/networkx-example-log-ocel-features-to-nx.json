@@ -1,0 +1,342 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "d1",
+        "i1",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "d1",
+        "i2",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "d2",
+        "i3",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "d2",
+        "i4",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "d2",
+        "i7",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "d3",
+        "i8",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "d3",
+        "i9",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "i1",
+        "d1",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i1",
+        "i2",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "i1",
+        "i3",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i1",
+        "i4",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i1",
+        "o1",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i2",
+        "d1",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i2",
+        "i3",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i2",
+        "i4",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i2",
+        "o1",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i3",
+        "d2",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i3",
+        "i4",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "i3",
+        "i7",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "i3",
+        "o1",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i4",
+        "d2",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i4",
+        "i7",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "i4",
+        "o1",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i5",
+        "i6",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i5",
+        "o2",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i6",
+        "i5",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i6",
+        "o2",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i7",
+        "d2",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i7",
+        "i8",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i7",
+        "o3",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i8",
+        "d3",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i8",
+        "i9",
+        {
+          "type": "CODEATH"
+        }
+      ],
+      [
+        "i8",
+        "o3",
+        {
+          "type": "COBIRTH"
+        }
+      ],
+      [
+        "i9",
+        "d3",
+        {
+          "type": "INHERITANCE"
+        }
+      ],
+      [
+        "i9",
+        "o3",
+        {
+          "type": "INTERACTION"
+        }
+      ],
+      [
+        "o3",
+        "i9",
+        {
+          "type": "DESCENDANTS"
+        }
+      ]
+    ],
+    "multigraph": false,
+    "nodes": [
+      [
+        "d1",
+        {}
+      ],
+      [
+        "d2",
+        {}
+      ],
+      [
+        "d3",
+        {}
+      ],
+      [
+        "i1",
+        {}
+      ],
+      [
+        "i2",
+        {}
+      ],
+      [
+        "i3",
+        {}
+      ],
+      [
+        "i4",
+        {}
+      ],
+      [
+        "i5",
+        {}
+      ],
+      [
+        "i6",
+        {}
+      ],
+      [
+        "i7",
+        {}
+      ],
+      [
+        "i8",
+        {}
+      ],
+      [
+        "i9",
+        {}
+      ],
+      [
+        "o1",
+        {}
+      ],
+      [
+        "o2",
+        {}
+      ],
+      [
+        "o3",
+        {}
+      ]
+    ]
+  },
+  "meta": {
+    "area": "convert",
+    "case": "networkx-example-log-ocel-features-to-nx",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.convert_ocel_to_networkx"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "ocel_features_to_nx"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
