@@ -7,6 +7,7 @@
 //!   reachability graphs.
 //! - [`process_tree`]: process trees, pm4py's string syntax, simplification
 //!   and random playout.
+//! - [`dfg`]: directly-follows graphs and their filters.
 //! - [`footprints`]: behavioural footprints of nets and trees.
 //! - [`conversion`]: conversions between model types.
 //!
@@ -19,12 +20,14 @@
 //!   `discover_footprints`, as the golden files store it.
 
 pub mod conversion;
+pub mod dfg;
 mod error;
 pub mod footprints;
 mod label;
 pub mod petri;
 pub mod process_tree;
 
+pub use dfg::Dfg;
 pub use error::Error;
 pub use footprints::{Footprints, TreeFootprints};
 pub use label::Label;

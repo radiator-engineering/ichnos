@@ -3,7 +3,10 @@
 //! Each conversion is a method on the source type, for example
 //! [`ProcessTree::to_petri_net`](crate::ProcessTree::to_petri_net).
 
+mod dfg_to_petri;
 mod tree_to_petri;
+
+pub use dfg_to_petri::{ARTIFICIAL_END, ARTIFICIAL_START};
 
 #[cfg(test)]
 mod tests;
