@@ -1,0 +1,5431 @@
+{
+  "expected": {
+    "expected": {
+      "act-ot-dependent-aggregate-events": {
+        "end": {
+          "delivery": {
+            "Delivery Successful": [
+              "e17",
+              "e19",
+              "e8"
+            ]
+          },
+          "element": {
+            "Create Delivery": [
+              "e16",
+              "e18",
+              "e4"
+            ],
+            "Create Order": [
+              "e11"
+            ],
+            "Remove Item": [
+              "e12"
+            ]
+          },
+          "order": {
+            "Cancel Order": [
+              "e13"
+            ],
+            "Pay Order": [
+              "e10"
+            ],
+            "Send for Credit Collection": [
+              "e23"
+            ]
+          }
+        },
+        "none": {
+          "delivery": {
+            "Create Delivery": [
+              "e16",
+              "e18",
+              "e4"
+            ],
+            "Delivery Failed": [
+              "e6"
+            ],
+            "Delivery Successful": [
+              "e17",
+              "e19",
+              "e8"
+            ],
+            "Retry Delivery": [
+              "e7"
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              "e15"
+            ],
+            "Create Delivery": [
+              "e16",
+              "e18",
+              "e4"
+            ],
+            "Create Order": [
+              "e1",
+              "e11",
+              "e14"
+            ],
+            "Item back in Stock": [
+              "e5"
+            ],
+            "Item out of Stock": [
+              "e3"
+            ],
+            "Remove Item": [
+              "e12"
+            ]
+          },
+          "order": {
+            "Add Item to Order": [
+              "e15"
+            ],
+            "Cancel Order": [
+              "e13"
+            ],
+            "Confirm Order": [
+              "e2"
+            ],
+            "Create Order": [
+              "e1",
+              "e11",
+              "e14"
+            ],
+            "Invoice Sent": [
+              "e20",
+              "e9"
+            ],
+            "Pay Order": [
+              "e10"
+            ],
+            "Payment Reminder": [
+              "e21",
+              "e22"
+            ],
+            "Send for Credit Collection": [
+              "e23"
+            ]
+          }
+        },
+        "start": {
+          "delivery": {
+            "Create Delivery": [
+              "e16",
+              "e18",
+              "e4"
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              "e15"
+            ],
+            "Create Order": [
+              "e1",
+              "e11",
+              "e14"
+            ]
+          },
+          "order": {
+            "Create Order": [
+              "e1",
+              "e11",
+              "e14"
+            ]
+          }
+        }
+      },
+      "act-ot-dependent-aggregate-total-objects": {
+        "end": {
+          "delivery": {
+            "Delivery Successful": [
+              [
+                "e8",
+                "d1"
+              ],
+              [
+                "e17",
+                "d2"
+              ],
+              [
+                "e19",
+                "d3"
+              ]
+            ]
+          },
+          "element": {
+            "Create Delivery": [
+              [
+                "e4",
+                "i1"
+              ],
+              [
+                "e4",
+                "i2"
+              ],
+              [
+                "e16",
+                "i3"
+              ],
+              [
+                "e16",
+                "i4"
+              ],
+              [
+                "e16",
+                "i7"
+              ],
+              [
+                "e18",
+                "i8"
+              ],
+              [
+                "e18",
+                "i9"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e11",
+                "i6"
+              ]
+            ],
+            "Remove Item": [
+              [
+                "e12",
+                "i5"
+              ]
+            ]
+          },
+          "order": {
+            "Cancel Order": [
+              [
+                "e13",
+                "o2"
+              ]
+            ],
+            "Pay Order": [
+              [
+                "e10",
+                "o1"
+              ]
+            ],
+            "Send for Credit Collection": [
+              [
+                "e23",
+                "o3"
+              ]
+            ]
+          }
+        },
+        "none": {
+          "delivery": {
+            "Create Delivery": [
+              [
+                "e4",
+                "d1"
+              ],
+              [
+                "e16",
+                "d2"
+              ],
+              [
+                "e18",
+                "d3"
+              ]
+            ],
+            "Delivery Failed": [
+              [
+                "e6",
+                "d1"
+              ]
+            ],
+            "Delivery Successful": [
+              [
+                "e8",
+                "d1"
+              ],
+              [
+                "e17",
+                "d2"
+              ],
+              [
+                "e19",
+                "d3"
+              ]
+            ],
+            "Retry Delivery": [
+              [
+                "e7",
+                "d1"
+              ]
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              [
+                "e15",
+                "i9"
+              ]
+            ],
+            "Create Delivery": [
+              [
+                "e4",
+                "i2"
+              ],
+              [
+                "e4",
+                "i1"
+              ],
+              [
+                "e16",
+                "i3"
+              ],
+              [
+                "e16",
+                "i4"
+              ],
+              [
+                "e16",
+                "i7"
+              ],
+              [
+                "e18",
+                "i8"
+              ],
+              [
+                "e18",
+                "i9"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e1",
+                "i4"
+              ],
+              [
+                "e1",
+                "i1"
+              ],
+              [
+                "e1",
+                "i3"
+              ],
+              [
+                "e1",
+                "i2"
+              ],
+              [
+                "e11",
+                "i6"
+              ],
+              [
+                "e11",
+                "i5"
+              ],
+              [
+                "e14",
+                "i8"
+              ],
+              [
+                "e14",
+                "i7"
+              ]
+            ],
+            "Item back in Stock": [
+              [
+                "e5",
+                "i3"
+              ]
+            ],
+            "Item out of Stock": [
+              [
+                "e3",
+                "i3"
+              ]
+            ],
+            "Remove Item": [
+              [
+                "e12",
+                "i5"
+              ]
+            ]
+          },
+          "order": {
+            "Add Item to Order": [
+              [
+                "e15",
+                "o3"
+              ]
+            ],
+            "Cancel Order": [
+              [
+                "e13",
+                "o2"
+              ]
+            ],
+            "Confirm Order": [
+              [
+                "e2",
+                "o1"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e1",
+                "o1"
+              ],
+              [
+                "e11",
+                "o2"
+              ],
+              [
+                "e14",
+                "o3"
+              ]
+            ],
+            "Invoice Sent": [
+              [
+                "e9",
+                "o1"
+              ],
+              [
+                "e20",
+                "o3"
+              ]
+            ],
+            "Pay Order": [
+              [
+                "e10",
+                "o1"
+              ]
+            ],
+            "Payment Reminder": [
+              [
+                "e21",
+                "o3"
+              ],
+              [
+                "e22",
+                "o3"
+              ]
+            ],
+            "Send for Credit Collection": [
+              [
+                "e23",
+                "o3"
+              ]
+            ]
+          }
+        },
+        "start": {
+          "delivery": {
+            "Create Delivery": [
+              [
+                "e4",
+                "d1"
+              ],
+              [
+                "e16",
+                "d2"
+              ],
+              [
+                "e18",
+                "d3"
+              ]
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              [
+                "e15",
+                "i9"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e1",
+                "i1"
+              ],
+              [
+                "e1",
+                "i2"
+              ],
+              [
+                "e1",
+                "i3"
+              ],
+              [
+                "e1",
+                "i4"
+              ],
+              [
+                "e11",
+                "i5"
+              ],
+              [
+                "e11",
+                "i6"
+              ],
+              [
+                "e14",
+                "i7"
+              ],
+              [
+                "e14",
+                "i8"
+              ]
+            ]
+          },
+          "order": {
+            "Create Order": [
+              [
+                "e1",
+                "o1"
+              ],
+              [
+                "e11",
+                "o2"
+              ],
+              [
+                "e14",
+                "o3"
+              ]
+            ]
+          }
+        }
+      },
+      "act-ot-dependent-aggregate-unique-objects": {
+        "end": {
+          "delivery": {
+            "Delivery Successful": [
+              "d1",
+              "d2",
+              "d3"
+            ]
+          },
+          "element": {
+            "Create Delivery": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i7",
+              "i8",
+              "i9"
+            ],
+            "Create Order": [
+              "i6"
+            ],
+            "Remove Item": [
+              "i5"
+            ]
+          },
+          "order": {
+            "Cancel Order": [
+              "o2"
+            ],
+            "Pay Order": [
+              "o1"
+            ],
+            "Send for Credit Collection": [
+              "o3"
+            ]
+          }
+        },
+        "none": {
+          "delivery": {
+            "Create Delivery": [
+              "d1",
+              "d2",
+              "d3"
+            ],
+            "Delivery Failed": [
+              "d1"
+            ],
+            "Delivery Successful": [
+              "d1",
+              "d2",
+              "d3"
+            ],
+            "Retry Delivery": [
+              "d1"
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              "i9"
+            ],
+            "Create Delivery": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i7",
+              "i8",
+              "i9"
+            ],
+            "Create Order": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5",
+              "i6",
+              "i7",
+              "i8"
+            ],
+            "Item back in Stock": [
+              "i3"
+            ],
+            "Item out of Stock": [
+              "i3"
+            ],
+            "Remove Item": [
+              "i5"
+            ]
+          },
+          "order": {
+            "Add Item to Order": [
+              "o3"
+            ],
+            "Cancel Order": [
+              "o2"
+            ],
+            "Confirm Order": [
+              "o1"
+            ],
+            "Create Order": [
+              "o1",
+              "o2",
+              "o3"
+            ],
+            "Invoice Sent": [
+              "o1",
+              "o3"
+            ],
+            "Pay Order": [
+              "o1"
+            ],
+            "Payment Reminder": [
+              "o3"
+            ],
+            "Send for Credit Collection": [
+              "o3"
+            ]
+          }
+        },
+        "start": {
+          "delivery": {
+            "Create Delivery": [
+              "d1",
+              "d2",
+              "d3"
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              "i9"
+            ],
+            "Create Order": [
+              "i1",
+              "i2",
+              "i3",
+              "i4",
+              "i5",
+              "i6",
+              "i7",
+              "i8"
+            ]
+          },
+          "order": {
+            "Create Order": [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          }
+        }
+      },
+      "act-ot-dependent-find-associations-from-ocel": {
+        "end": {
+          "delivery": {
+            "Delivery Successful": [
+              [
+                "e8",
+                "d1"
+              ],
+              [
+                "e17",
+                "d2"
+              ],
+              [
+                "e19",
+                "d3"
+              ]
+            ]
+          },
+          "element": {
+            "Create Delivery": [
+              [
+                "e4",
+                "i1"
+              ],
+              [
+                "e4",
+                "i2"
+              ],
+              [
+                "e16",
+                "i3"
+              ],
+              [
+                "e16",
+                "i4"
+              ],
+              [
+                "e16",
+                "i7"
+              ],
+              [
+                "e18",
+                "i8"
+              ],
+              [
+                "e18",
+                "i9"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e11",
+                "i6"
+              ]
+            ],
+            "Remove Item": [
+              [
+                "e12",
+                "i5"
+              ]
+            ]
+          },
+          "order": {
+            "Cancel Order": [
+              [
+                "e13",
+                "o2"
+              ]
+            ],
+            "Pay Order": [
+              [
+                "e10",
+                "o1"
+              ]
+            ],
+            "Send for Credit Collection": [
+              [
+                "e23",
+                "o3"
+              ]
+            ]
+          }
+        },
+        "none": {
+          "delivery": {
+            "Create Delivery": [
+              [
+                "e4",
+                "d1"
+              ],
+              [
+                "e16",
+                "d2"
+              ],
+              [
+                "e18",
+                "d3"
+              ]
+            ],
+            "Delivery Failed": [
+              [
+                "e6",
+                "d1"
+              ]
+            ],
+            "Delivery Successful": [
+              [
+                "e8",
+                "d1"
+              ],
+              [
+                "e17",
+                "d2"
+              ],
+              [
+                "e19",
+                "d3"
+              ]
+            ],
+            "Retry Delivery": [
+              [
+                "e7",
+                "d1"
+              ]
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              [
+                "e15",
+                "i9"
+              ]
+            ],
+            "Create Delivery": [
+              [
+                "e4",
+                "i2"
+              ],
+              [
+                "e4",
+                "i1"
+              ],
+              [
+                "e16",
+                "i3"
+              ],
+              [
+                "e16",
+                "i4"
+              ],
+              [
+                "e16",
+                "i7"
+              ],
+              [
+                "e18",
+                "i8"
+              ],
+              [
+                "e18",
+                "i9"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e1",
+                "i4"
+              ],
+              [
+                "e1",
+                "i1"
+              ],
+              [
+                "e1",
+                "i3"
+              ],
+              [
+                "e1",
+                "i2"
+              ],
+              [
+                "e11",
+                "i6"
+              ],
+              [
+                "e11",
+                "i5"
+              ],
+              [
+                "e14",
+                "i8"
+              ],
+              [
+                "e14",
+                "i7"
+              ]
+            ],
+            "Item back in Stock": [
+              [
+                "e5",
+                "i3"
+              ]
+            ],
+            "Item out of Stock": [
+              [
+                "e3",
+                "i3"
+              ]
+            ],
+            "Remove Item": [
+              [
+                "e12",
+                "i5"
+              ]
+            ]
+          },
+          "order": {
+            "Add Item to Order": [
+              [
+                "e15",
+                "o3"
+              ]
+            ],
+            "Cancel Order": [
+              [
+                "e13",
+                "o2"
+              ]
+            ],
+            "Confirm Order": [
+              [
+                "e2",
+                "o1"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e1",
+                "o1"
+              ],
+              [
+                "e11",
+                "o2"
+              ],
+              [
+                "e14",
+                "o3"
+              ]
+            ],
+            "Invoice Sent": [
+              [
+                "e9",
+                "o1"
+              ],
+              [
+                "e20",
+                "o3"
+              ]
+            ],
+            "Pay Order": [
+              [
+                "e10",
+                "o1"
+              ]
+            ],
+            "Payment Reminder": [
+              [
+                "e21",
+                "o3"
+              ],
+              [
+                "e22",
+                "o3"
+              ]
+            ],
+            "Send for Credit Collection": [
+              [
+                "e23",
+                "o3"
+              ]
+            ]
+          }
+        },
+        "start": {
+          "delivery": {
+            "Create Delivery": [
+              [
+                "e4",
+                "d1"
+              ],
+              [
+                "e16",
+                "d2"
+              ],
+              [
+                "e18",
+                "d3"
+              ]
+            ]
+          },
+          "element": {
+            "Add Item to Order": [
+              [
+                "e15",
+                "i9"
+              ]
+            ],
+            "Create Order": [
+              [
+                "e1",
+                "i1"
+              ],
+              [
+                "e1",
+                "i2"
+              ],
+              [
+                "e1",
+                "i3"
+              ],
+              [
+                "e1",
+                "i4"
+              ],
+              [
+                "e11",
+                "i5"
+              ],
+              [
+                "e11",
+                "i6"
+              ],
+              [
+                "e14",
+                "i7"
+              ],
+              [
+                "e14",
+                "i8"
+              ]
+            ]
+          },
+          "order": {
+            "Create Order": [
+              [
+                "e1",
+                "o1"
+              ],
+              [
+                "e11",
+                "o2"
+              ],
+              [
+                "e14",
+                "o3"
+              ]
+            ]
+          }
+        }
+      },
+      "act-utils-aggregate-events": {
+        "end": {
+          "Cancel Order": [
+            "e13"
+          ],
+          "Create Delivery": [
+            "e16",
+            "e18",
+            "e4"
+          ],
+          "Create Order": [
+            "e11"
+          ],
+          "Delivery Successful": [
+            "e17",
+            "e19",
+            "e8"
+          ],
+          "Pay Order": [
+            "e10"
+          ],
+          "Remove Item": [
+            "e12"
+          ],
+          "Send for Credit Collection": [
+            "e23"
+          ]
+        },
+        "none": {
+          "Add Item to Order": [
+            "e15"
+          ],
+          "Cancel Order": [
+            "e13"
+          ],
+          "Confirm Order": [
+            "e2"
+          ],
+          "Create Delivery": [
+            "e16",
+            "e18",
+            "e4"
+          ],
+          "Create Order": [
+            "e1",
+            "e11",
+            "e14"
+          ],
+          "Delivery Failed": [
+            "e6"
+          ],
+          "Delivery Successful": [
+            "e17",
+            "e19",
+            "e8"
+          ],
+          "Invoice Sent": [
+            "e20",
+            "e9"
+          ],
+          "Item back in Stock": [
+            "e5"
+          ],
+          "Item out of Stock": [
+            "e3"
+          ],
+          "Pay Order": [
+            "e10"
+          ],
+          "Payment Reminder": [
+            "e21",
+            "e22"
+          ],
+          "Remove Item": [
+            "e12"
+          ],
+          "Retry Delivery": [
+            "e7"
+          ],
+          "Send for Credit Collection": [
+            "e23"
+          ]
+        },
+        "start": {
+          "Add Item to Order": [
+            "e15"
+          ],
+          "Create Delivery": [
+            "e16",
+            "e18",
+            "e4"
+          ],
+          "Create Order": [
+            "e1",
+            "e11",
+            "e14"
+          ]
+        }
+      },
+      "act-utils-aggregate-total-objects": {
+        "end": {
+          "Cancel Order": [
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e4",
+              "i2"
+            ],
+            [
+              "e16",
+              "i3"
+            ],
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i7"
+            ],
+            [
+              "e18",
+              "i8"
+            ],
+            [
+              "e18",
+              "i9"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e11",
+              "i6"
+            ]
+          ],
+          "Delivery Successful": [
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e19",
+              "d3"
+            ]
+          ],
+          "Pay Order": [
+            [
+              "e10",
+              "o1"
+            ]
+          ],
+          "Remove Item": [
+            [
+              "e12",
+              "i5"
+            ]
+          ],
+          "Send for Credit Collection": [
+            [
+              "e23",
+              "o3"
+            ]
+          ]
+        },
+        "none": {
+          "Add Item to Order": [
+            [
+              "e15",
+              "i9"
+            ],
+            [
+              "e15",
+              "o3"
+            ]
+          ],
+          "Cancel Order": [
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "Confirm Order": [
+            [
+              "e2",
+              "o1"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "d1"
+            ],
+            [
+              "e4",
+              "i2"
+            ],
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e16",
+              "i3"
+            ],
+            [
+              "e16",
+              "d2"
+            ],
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i7"
+            ],
+            [
+              "e18",
+              "d3"
+            ],
+            [
+              "e18",
+              "i8"
+            ],
+            [
+              "e18",
+              "i9"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e1",
+              "i4"
+            ],
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e11",
+              "i6"
+            ],
+            [
+              "e11",
+              "o2"
+            ],
+            [
+              "e11",
+              "i5"
+            ],
+            [
+              "e14",
+              "i8"
+            ],
+            [
+              "e14",
+              "o3"
+            ],
+            [
+              "e14",
+              "i7"
+            ]
+          ],
+          "Delivery Failed": [
+            [
+              "e6",
+              "d1"
+            ]
+          ],
+          "Delivery Successful": [
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e19",
+              "d3"
+            ]
+          ],
+          "Invoice Sent": [
+            [
+              "e9",
+              "o1"
+            ],
+            [
+              "e20",
+              "o3"
+            ]
+          ],
+          "Item back in Stock": [
+            [
+              "e5",
+              "i3"
+            ]
+          ],
+          "Item out of Stock": [
+            [
+              "e3",
+              "i3"
+            ]
+          ],
+          "Pay Order": [
+            [
+              "e10",
+              "o1"
+            ]
+          ],
+          "Payment Reminder": [
+            [
+              "e21",
+              "o3"
+            ],
+            [
+              "e22",
+              "o3"
+            ]
+          ],
+          "Remove Item": [
+            [
+              "e12",
+              "i5"
+            ]
+          ],
+          "Retry Delivery": [
+            [
+              "e7",
+              "d1"
+            ]
+          ],
+          "Send for Credit Collection": [
+            [
+              "e23",
+              "o3"
+            ]
+          ]
+        },
+        "start": {
+          "Add Item to Order": [
+            [
+              "e15",
+              "i9"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "d1"
+            ],
+            [
+              "e16",
+              "d2"
+            ],
+            [
+              "e18",
+              "d3"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "i4"
+            ],
+            [
+              "e11",
+              "i5"
+            ],
+            [
+              "e11",
+              "i6"
+            ],
+            [
+              "e14",
+              "i7"
+            ],
+            [
+              "e14",
+              "i8"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e11",
+              "o2"
+            ],
+            [
+              "e14",
+              "o3"
+            ]
+          ]
+        }
+      },
+      "act-utils-aggregate-unique-objects": {
+        "end": {
+          "Cancel Order": [
+            "o2"
+          ],
+          "Create Delivery": [
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i7",
+            "i8",
+            "i9"
+          ],
+          "Create Order": [
+            "i6"
+          ],
+          "Delivery Successful": [
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "Pay Order": [
+            "o1"
+          ],
+          "Remove Item": [
+            "i5"
+          ],
+          "Send for Credit Collection": [
+            "o3"
+          ]
+        },
+        "none": {
+          "Add Item to Order": [
+            "i9",
+            "o3"
+          ],
+          "Cancel Order": [
+            "o2"
+          ],
+          "Confirm Order": [
+            "o1"
+          ],
+          "Create Delivery": [
+            "d1",
+            "d2",
+            "d3",
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i7",
+            "i8",
+            "i9"
+          ],
+          "Create Order": [
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i5",
+            "i6",
+            "i7",
+            "i8",
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "Delivery Failed": [
+            "d1"
+          ],
+          "Delivery Successful": [
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "Invoice Sent": [
+            "o1",
+            "o3"
+          ],
+          "Item back in Stock": [
+            "i3"
+          ],
+          "Item out of Stock": [
+            "i3"
+          ],
+          "Pay Order": [
+            "o1"
+          ],
+          "Payment Reminder": [
+            "o3"
+          ],
+          "Remove Item": [
+            "i5"
+          ],
+          "Retry Delivery": [
+            "d1"
+          ],
+          "Send for Credit Collection": [
+            "o3"
+          ]
+        },
+        "start": {
+          "Add Item to Order": [
+            "i9"
+          ],
+          "Create Delivery": [
+            "d1",
+            "d2",
+            "d3"
+          ],
+          "Create Order": [
+            "i1",
+            "i2",
+            "i3",
+            "i4",
+            "i5",
+            "i6",
+            "i7",
+            "i8",
+            "o1",
+            "o2",
+            "o3"
+          ]
+        }
+      },
+      "act-utils-find-associations-from-ocel": {
+        "end": {
+          "Cancel Order": [
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e4",
+              "i2"
+            ],
+            [
+              "e16",
+              "i3"
+            ],
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i7"
+            ],
+            [
+              "e18",
+              "i8"
+            ],
+            [
+              "e18",
+              "i9"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e11",
+              "i6"
+            ]
+          ],
+          "Delivery Successful": [
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e19",
+              "d3"
+            ]
+          ],
+          "Pay Order": [
+            [
+              "e10",
+              "o1"
+            ]
+          ],
+          "Remove Item": [
+            [
+              "e12",
+              "i5"
+            ]
+          ],
+          "Send for Credit Collection": [
+            [
+              "e23",
+              "o3"
+            ]
+          ]
+        },
+        "none": {
+          "Add Item to Order": [
+            [
+              "e15",
+              "i9"
+            ],
+            [
+              "e15",
+              "o3"
+            ]
+          ],
+          "Cancel Order": [
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "Confirm Order": [
+            [
+              "e2",
+              "o1"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "d1"
+            ],
+            [
+              "e4",
+              "i2"
+            ],
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e16",
+              "i3"
+            ],
+            [
+              "e16",
+              "d2"
+            ],
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i7"
+            ],
+            [
+              "e18",
+              "d3"
+            ],
+            [
+              "e18",
+              "i8"
+            ],
+            [
+              "e18",
+              "i9"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e1",
+              "i4"
+            ],
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e11",
+              "i6"
+            ],
+            [
+              "e11",
+              "o2"
+            ],
+            [
+              "e11",
+              "i5"
+            ],
+            [
+              "e14",
+              "i8"
+            ],
+            [
+              "e14",
+              "o3"
+            ],
+            [
+              "e14",
+              "i7"
+            ]
+          ],
+          "Delivery Failed": [
+            [
+              "e6",
+              "d1"
+            ]
+          ],
+          "Delivery Successful": [
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e19",
+              "d3"
+            ]
+          ],
+          "Invoice Sent": [
+            [
+              "e9",
+              "o1"
+            ],
+            [
+              "e20",
+              "o3"
+            ]
+          ],
+          "Item back in Stock": [
+            [
+              "e5",
+              "i3"
+            ]
+          ],
+          "Item out of Stock": [
+            [
+              "e3",
+              "i3"
+            ]
+          ],
+          "Pay Order": [
+            [
+              "e10",
+              "o1"
+            ]
+          ],
+          "Payment Reminder": [
+            [
+              "e21",
+              "o3"
+            ],
+            [
+              "e22",
+              "o3"
+            ]
+          ],
+          "Remove Item": [
+            [
+              "e12",
+              "i5"
+            ]
+          ],
+          "Retry Delivery": [
+            [
+              "e7",
+              "d1"
+            ]
+          ],
+          "Send for Credit Collection": [
+            [
+              "e23",
+              "o3"
+            ]
+          ]
+        },
+        "start": {
+          "Add Item to Order": [
+            [
+              "e15",
+              "i9"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "d1"
+            ],
+            [
+              "e16",
+              "d2"
+            ],
+            [
+              "e18",
+              "d3"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "i4"
+            ],
+            [
+              "e11",
+              "i5"
+            ],
+            [
+              "e11",
+              "i6"
+            ],
+            [
+              "e14",
+              "i7"
+            ],
+            [
+              "e14",
+              "i8"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e11",
+              "o2"
+            ],
+            [
+              "e14",
+              "o3"
+            ]
+          ]
+        }
+      },
+      "act-utils-find-associations-from-relations-df": {
+        "end": {
+          "Cancel Order": [
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e4",
+              "i2"
+            ],
+            [
+              "e16",
+              "i3"
+            ],
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i7"
+            ],
+            [
+              "e18",
+              "i8"
+            ],
+            [
+              "e18",
+              "i9"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e11",
+              "i6"
+            ]
+          ],
+          "Delivery Successful": [
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e19",
+              "d3"
+            ]
+          ],
+          "Pay Order": [
+            [
+              "e10",
+              "o1"
+            ]
+          ],
+          "Remove Item": [
+            [
+              "e12",
+              "i5"
+            ]
+          ],
+          "Send for Credit Collection": [
+            [
+              "e23",
+              "o3"
+            ]
+          ]
+        },
+        "none": {
+          "Add Item to Order": [
+            [
+              "e15",
+              "i9"
+            ],
+            [
+              "e15",
+              "o3"
+            ]
+          ],
+          "Cancel Order": [
+            [
+              "e13",
+              "o2"
+            ]
+          ],
+          "Confirm Order": [
+            [
+              "e2",
+              "o1"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "d1"
+            ],
+            [
+              "e4",
+              "i2"
+            ],
+            [
+              "e4",
+              "i1"
+            ],
+            [
+              "e16",
+              "i3"
+            ],
+            [
+              "e16",
+              "d2"
+            ],
+            [
+              "e16",
+              "i4"
+            ],
+            [
+              "e16",
+              "i7"
+            ],
+            [
+              "e18",
+              "d3"
+            ],
+            [
+              "e18",
+              "i8"
+            ],
+            [
+              "e18",
+              "i9"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e1",
+              "i4"
+            ],
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e11",
+              "i6"
+            ],
+            [
+              "e11",
+              "o2"
+            ],
+            [
+              "e11",
+              "i5"
+            ],
+            [
+              "e14",
+              "i8"
+            ],
+            [
+              "e14",
+              "o3"
+            ],
+            [
+              "e14",
+              "i7"
+            ]
+          ],
+          "Delivery Failed": [
+            [
+              "e6",
+              "d1"
+            ]
+          ],
+          "Delivery Successful": [
+            [
+              "e8",
+              "d1"
+            ],
+            [
+              "e17",
+              "d2"
+            ],
+            [
+              "e19",
+              "d3"
+            ]
+          ],
+          "Invoice Sent": [
+            [
+              "e9",
+              "o1"
+            ],
+            [
+              "e20",
+              "o3"
+            ]
+          ],
+          "Item back in Stock": [
+            [
+              "e5",
+              "i3"
+            ]
+          ],
+          "Item out of Stock": [
+            [
+              "e3",
+              "i3"
+            ]
+          ],
+          "Pay Order": [
+            [
+              "e10",
+              "o1"
+            ]
+          ],
+          "Payment Reminder": [
+            [
+              "e21",
+              "o3"
+            ],
+            [
+              "e22",
+              "o3"
+            ]
+          ],
+          "Remove Item": [
+            [
+              "e12",
+              "i5"
+            ]
+          ],
+          "Retry Delivery": [
+            [
+              "e7",
+              "d1"
+            ]
+          ],
+          "Send for Credit Collection": [
+            [
+              "e23",
+              "o3"
+            ]
+          ]
+        },
+        "start": {
+          "Add Item to Order": [
+            [
+              "e15",
+              "i9"
+            ]
+          ],
+          "Create Delivery": [
+            [
+              "e4",
+              "d1"
+            ],
+            [
+              "e16",
+              "d2"
+            ],
+            [
+              "e18",
+              "d3"
+            ]
+          ],
+          "Create Order": [
+            [
+              "e1",
+              "i1"
+            ],
+            [
+              "e1",
+              "i2"
+            ],
+            [
+              "e1",
+              "i3"
+            ],
+            [
+              "e1",
+              "i4"
+            ],
+            [
+              "e11",
+              "i5"
+            ],
+            [
+              "e11",
+              "i6"
+            ],
+            [
+              "e14",
+              "i7"
+            ],
+            [
+              "e14",
+              "i8"
+            ],
+            [
+              "e1",
+              "o1"
+            ],
+            [
+              "e11",
+              "o2"
+            ],
+            [
+              "e14",
+              "o3"
+            ]
+          ]
+        }
+      },
+      "edge-metrics-aggregate-ev-couples": {
+        "delivery": [
+          [
+            [
+              "Create Delivery",
+              "Delivery Failed"
+            ],
+            [
+              [
+                "e4",
+                "e6"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Delivery",
+              "Delivery Successful"
+            ],
+            [
+              [
+                "e16",
+                "e17"
+              ],
+              [
+                "e18",
+                "e19"
+              ]
+            ]
+          ],
+          [
+            [
+              "Delivery Failed",
+              "Retry Delivery"
+            ],
+            [
+              [
+                "e6",
+                "e7"
+              ]
+            ]
+          ],
+          [
+            [
+              "Retry Delivery",
+              "Delivery Successful"
+            ],
+            [
+              [
+                "e7",
+                "e8"
+              ]
+            ]
+          ]
+        ],
+        "element": [
+          [
+            [
+              "Add Item to Order",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e15",
+                "e18"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e1",
+                "e16"
+              ],
+              [
+                "e1",
+                "e4"
+              ],
+              [
+                "e14",
+                "e16"
+              ],
+              [
+                "e14",
+                "e18"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Item out of Stock"
+            ],
+            [
+              [
+                "e1",
+                "e3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Remove Item"
+            ],
+            [
+              [
+                "e11",
+                "e12"
+              ]
+            ]
+          ],
+          [
+            [
+              "Item back in Stock",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e5",
+                "e16"
+              ]
+            ]
+          ],
+          [
+            [
+              "Item out of Stock",
+              "Item back in Stock"
+            ],
+            [
+              [
+                "e3",
+                "e5"
+              ]
+            ]
+          ]
+        ],
+        "order": [
+          [
+            [
+              "Add Item to Order",
+              "Invoice Sent"
+            ],
+            [
+              [
+                "e15",
+                "e20"
+              ]
+            ]
+          ],
+          [
+            [
+              "Confirm Order",
+              "Invoice Sent"
+            ],
+            [
+              [
+                "e2",
+                "e9"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Add Item to Order"
+            ],
+            [
+              [
+                "e14",
+                "e15"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Cancel Order"
+            ],
+            [
+              [
+                "e11",
+                "e13"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Confirm Order"
+            ],
+            [
+              [
+                "e1",
+                "e2"
+              ]
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Pay Order"
+            ],
+            [
+              [
+                "e9",
+                "e10"
+              ]
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Payment Reminder"
+            ],
+            [
+              [
+                "e20",
+                "e21"
+              ]
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Payment Reminder"
+            ],
+            [
+              [
+                "e21",
+                "e22"
+              ]
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Send for Credit Collection"
+            ],
+            [
+              [
+                "e22",
+                "e23"
+              ]
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-aggregate-total-objects": {
+        "delivery": [
+          [
+            [
+              "Create Delivery",
+              "Delivery Failed"
+            ],
+            [
+              [
+                "e4",
+                "e6",
+                "d1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Delivery",
+              "Delivery Successful"
+            ],
+            [
+              [
+                "e16",
+                "e17",
+                "d2"
+              ],
+              [
+                "e18",
+                "e19",
+                "d3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Delivery Failed",
+              "Retry Delivery"
+            ],
+            [
+              [
+                "e6",
+                "e7",
+                "d1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Retry Delivery",
+              "Delivery Successful"
+            ],
+            [
+              [
+                "e7",
+                "e8",
+                "d1"
+              ]
+            ]
+          ]
+        ],
+        "element": [
+          [
+            [
+              "Add Item to Order",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e15",
+                "e18",
+                "i9"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e1",
+                "e16",
+                "i4"
+              ],
+              [
+                "e1",
+                "e4",
+                "i1"
+              ],
+              [
+                "e1",
+                "e4",
+                "i2"
+              ],
+              [
+                "e14",
+                "e16",
+                "i7"
+              ],
+              [
+                "e14",
+                "e18",
+                "i8"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Item out of Stock"
+            ],
+            [
+              [
+                "e1",
+                "e3",
+                "i3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Remove Item"
+            ],
+            [
+              [
+                "e11",
+                "e12",
+                "i5"
+              ]
+            ]
+          ],
+          [
+            [
+              "Item back in Stock",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e5",
+                "e16",
+                "i3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Item out of Stock",
+              "Item back in Stock"
+            ],
+            [
+              [
+                "e3",
+                "e5",
+                "i3"
+              ]
+            ]
+          ]
+        ],
+        "order": [
+          [
+            [
+              "Add Item to Order",
+              "Invoice Sent"
+            ],
+            [
+              [
+                "e15",
+                "e20",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Confirm Order",
+              "Invoice Sent"
+            ],
+            [
+              [
+                "e2",
+                "e9",
+                "o1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Add Item to Order"
+            ],
+            [
+              [
+                "e14",
+                "e15",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Cancel Order"
+            ],
+            [
+              [
+                "e11",
+                "e13",
+                "o2"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Confirm Order"
+            ],
+            [
+              [
+                "e1",
+                "e2",
+                "o1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Pay Order"
+            ],
+            [
+              [
+                "e9",
+                "e10",
+                "o1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Payment Reminder"
+            ],
+            [
+              [
+                "e20",
+                "e21",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Payment Reminder"
+            ],
+            [
+              [
+                "e21",
+                "e22",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Send for Credit Collection"
+            ],
+            [
+              [
+                "e22",
+                "e23",
+                "o3"
+              ]
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-aggregate-unique-objects": {
+        "delivery": [
+          [
+            [
+              "Create Delivery",
+              "Delivery Failed"
+            ],
+            [
+              "d1"
+            ]
+          ],
+          [
+            [
+              "Create Delivery",
+              "Delivery Successful"
+            ],
+            [
+              "d2",
+              "d3"
+            ]
+          ],
+          [
+            [
+              "Delivery Failed",
+              "Retry Delivery"
+            ],
+            [
+              "d1"
+            ]
+          ],
+          [
+            [
+              "Retry Delivery",
+              "Delivery Successful"
+            ],
+            [
+              "d1"
+            ]
+          ]
+        ],
+        "element": [
+          [
+            [
+              "Add Item to Order",
+              "Create Delivery"
+            ],
+            [
+              "i9"
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Create Delivery"
+            ],
+            [
+              "i1",
+              "i2",
+              "i4",
+              "i7",
+              "i8"
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Item out of Stock"
+            ],
+            [
+              "i3"
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Remove Item"
+            ],
+            [
+              "i5"
+            ]
+          ],
+          [
+            [
+              "Item back in Stock",
+              "Create Delivery"
+            ],
+            [
+              "i3"
+            ]
+          ],
+          [
+            [
+              "Item out of Stock",
+              "Item back in Stock"
+            ],
+            [
+              "i3"
+            ]
+          ]
+        ],
+        "order": [
+          [
+            [
+              "Add Item to Order",
+              "Invoice Sent"
+            ],
+            [
+              "o3"
+            ]
+          ],
+          [
+            [
+              "Confirm Order",
+              "Invoice Sent"
+            ],
+            [
+              "o1"
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Add Item to Order"
+            ],
+            [
+              "o3"
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Cancel Order"
+            ],
+            [
+              "o2"
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Confirm Order"
+            ],
+            [
+              "o1"
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Pay Order"
+            ],
+            [
+              "o1"
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Payment Reminder"
+            ],
+            [
+              "o3"
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Payment Reminder"
+            ],
+            [
+              "o3"
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Send for Credit Collection"
+            ],
+            [
+              "o3"
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-find-associations-per-edge": {
+        "delivery": [
+          [
+            [
+              "Create Delivery",
+              "Delivery Failed"
+            ],
+            [
+              [
+                "e4",
+                "e6",
+                "d1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Delivery",
+              "Delivery Successful"
+            ],
+            [
+              [
+                "e16",
+                "e17",
+                "d2"
+              ],
+              [
+                "e18",
+                "e19",
+                "d3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Delivery Failed",
+              "Retry Delivery"
+            ],
+            [
+              [
+                "e6",
+                "e7",
+                "d1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Retry Delivery",
+              "Delivery Successful"
+            ],
+            [
+              [
+                "e7",
+                "e8",
+                "d1"
+              ]
+            ]
+          ]
+        ],
+        "element": [
+          [
+            [
+              "Add Item to Order",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e15",
+                "e18",
+                "i9"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e1",
+                "e4",
+                "i2"
+              ],
+              [
+                "e1",
+                "e4",
+                "i1"
+              ],
+              [
+                "e1",
+                "e16",
+                "i4"
+              ],
+              [
+                "e14",
+                "e16",
+                "i7"
+              ],
+              [
+                "e14",
+                "e18",
+                "i8"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Item out of Stock"
+            ],
+            [
+              [
+                "e1",
+                "e3",
+                "i3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Remove Item"
+            ],
+            [
+              [
+                "e11",
+                "e12",
+                "i5"
+              ]
+            ]
+          ],
+          [
+            [
+              "Item back in Stock",
+              "Create Delivery"
+            ],
+            [
+              [
+                "e5",
+                "e16",
+                "i3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Item out of Stock",
+              "Item back in Stock"
+            ],
+            [
+              [
+                "e3",
+                "e5",
+                "i3"
+              ]
+            ]
+          ]
+        ],
+        "order": [
+          [
+            [
+              "Add Item to Order",
+              "Invoice Sent"
+            ],
+            [
+              [
+                "e15",
+                "e20",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Confirm Order",
+              "Invoice Sent"
+            ],
+            [
+              [
+                "e2",
+                "e9",
+                "o1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Add Item to Order"
+            ],
+            [
+              [
+                "e14",
+                "e15",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Cancel Order"
+            ],
+            [
+              [
+                "e11",
+                "e13",
+                "o2"
+              ]
+            ]
+          ],
+          [
+            [
+              "Create Order",
+              "Confirm Order"
+            ],
+            [
+              [
+                "e1",
+                "e2",
+                "o1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Pay Order"
+            ],
+            [
+              [
+                "e9",
+                "e10",
+                "o1"
+              ]
+            ]
+          ],
+          [
+            [
+              "Invoice Sent",
+              "Payment Reminder"
+            ],
+            [
+              [
+                "e20",
+                "e21",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Payment Reminder"
+            ],
+            [
+              [
+                "e21",
+                "e22",
+                "o3"
+              ]
+            ]
+          ],
+          [
+            [
+              "Payment Reminder",
+              "Send for Credit Collection"
+            ],
+            [
+              [
+                "e22",
+                "e23",
+                "o3"
+              ]
+            ]
+          ]
+        ]
+      },
+      "edge-metrics-performance-calculation-ocel-aggregation": {
+        "pairs-business": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0,
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                108000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                36000.0,
+                108000.0,
+                108000.0,
+                9540000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                9396000.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                72000.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                180000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                252000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "pairs-elapsed": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                345600.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                86400.0,
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                86400.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                259200.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                172800.0,
+                259200.0,
+                345600.0,
+                32054400.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                172800.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                31708800.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                172800.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                432000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                777600.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                172800.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                86400.0
+              ]
+            ]
+          ]
+        },
+        "pairs-holiday": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0,
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                108000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                36000.0,
+                108000.0,
+                108000.0,
+                9540000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                9396000.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                72000.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                180000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                252000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "pairs-slots": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                0.0,
+                36000.0,
+                36000.0,
+                1908000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                1908000.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "triples-business": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0,
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                108000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                36000.0,
+                108000.0,
+                108000.0,
+                108000.0,
+                9540000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                9396000.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                72000.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                180000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                252000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "triples-elapsed": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                345600.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                86400.0,
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                86400.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                259200.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                172800.0,
+                259200.0,
+                259200.0,
+                345600.0,
+                32054400.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                172800.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                31708800.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                172800.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                432000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                777600.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                172800.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                86400.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                86400.0
+              ]
+            ]
+          ]
+        },
+        "triples-holiday": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0,
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                36000.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                108000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                36000.0,
+                108000.0,
+                108000.0,
+                108000.0,
+                9540000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                9396000.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                72000.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                180000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                252000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                72000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        },
+        "triples-slots": {
+          "delivery": [
+            [
+              [
+                "Create Delivery",
+                "Delivery Failed"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Delivery",
+                "Delivery Successful"
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                "Delivery Failed",
+                "Retry Delivery"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Retry Delivery",
+                "Delivery Successful"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "element": [
+            [
+              [
+                "Add Item to Order",
+                "Create Delivery"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Create Delivery"
+              ],
+              [
+                0.0,
+                0.0,
+                36000.0,
+                36000.0,
+                1908000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Item out of Stock"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Remove Item"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Item back in Stock",
+                "Create Delivery"
+              ],
+              [
+                1908000.0
+              ]
+            ],
+            [
+              [
+                "Item out of Stock",
+                "Item back in Stock"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ],
+          "order": [
+            [
+              [
+                "Add Item to Order",
+                "Invoice Sent"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Confirm Order",
+                "Invoice Sent"
+              ],
+              [
+                36000.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Add Item to Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Cancel Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Create Order",
+                "Confirm Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Pay Order"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Invoice Sent",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Payment Reminder"
+              ],
+              [
+                0.0
+              ]
+            ],
+            [
+              [
+                "Payment Reminder",
+                "Send for Credit Collection"
+              ],
+              [
+                0.0
+              ]
+            ]
+          ]
+        }
+      },
+      "objects-ot-count-get-objects-ot-count": {
+        "e1": {
+          "element": 4,
+          "order": 1
+        },
+        "e10": {
+          "order": 1
+        },
+        "e11": {
+          "element": 2,
+          "order": 1
+        },
+        "e12": {
+          "element": 1
+        },
+        "e13": {
+          "order": 1
+        },
+        "e14": {
+          "element": 2,
+          "order": 1
+        },
+        "e15": {
+          "element": 1,
+          "order": 1
+        },
+        "e16": {
+          "delivery": 1,
+          "element": 3
+        },
+        "e17": {
+          "delivery": 1
+        },
+        "e18": {
+          "delivery": 1,
+          "element": 2
+        },
+        "e19": {
+          "delivery": 1
+        },
+        "e2": {
+          "order": 1
+        },
+        "e20": {
+          "order": 1
+        },
+        "e21": {
+          "order": 1
+        },
+        "e22": {
+          "order": 1
+        },
+        "e23": {
+          "order": 1
+        },
+        "e3": {
+          "element": 1
+        },
+        "e4": {
+          "delivery": 1,
+          "element": 2
+        },
+        "e5": {
+          "element": 1
+        },
+        "e6": {
+          "delivery": 1
+        },
+        "e7": {
+          "delivery": 1
+        },
+        "e8": {
+          "delivery": 1
+        },
+        "e9": {
+          "order": 1
+        }
+      },
+      "ot-activities-get-object-type-activities": {
+        "delivery": [
+          "Create Delivery",
+          "Delivery Failed",
+          "Delivery Successful",
+          "Retry Delivery"
+        ],
+        "element": [
+          "Add Item to Order",
+          "Create Delivery",
+          "Create Order",
+          "Item back in Stock",
+          "Item out of Stock",
+          "Remove Item"
+        ],
+        "order": [
+          "Add Item to Order",
+          "Cancel Order",
+          "Confirm Order",
+          "Create Order",
+          "Invoice Sent",
+          "Pay Order",
+          "Payment Reminder",
+          "Send for Credit Collection"
+        ]
+      }
+    },
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Order",
+          "attributes": {
+            "prova": [
+              "string",
+              "ciao"
+            ],
+            "prova2": [
+              "float",
+              456.0
+            ]
+          },
+          "id": "e1",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Confirm Order",
+          "attributes": {
+            "prova": [
+              "string",
+              "ciao2"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "1980-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item out of Stock",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "1980-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item back in Stock",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "1980-01-05T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Failed",
+          "attributes": {},
+          "id": "e6",
+          "timestamp": "1980-01-08T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Retry Delivery",
+          "attributes": {},
+          "id": "e7",
+          "timestamp": "1980-01-09T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "1980-01-10T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Invoice Sent",
+          "attributes": {},
+          "id": "e9",
+          "timestamp": "1980-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Pay Order",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "1980-01-12T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e11",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Remove Item",
+          "attributes": {},
+          "id": "e12",
+          "timestamp": "1981-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Cancel Order",
+          "attributes": {},
+          "id": "e13",
+          "timestamp": "1981-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e14",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Add Item to Order",
+          "attributes": {},
+          "id": "e15",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e16",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e17",
+          "timestamp": "1981-01-07T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e18",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e19",
+          "timestamp": "1981-01-09T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Invoice Sent",
+          "attributes": {},
+          "id": "e20",
+          "timestamp": "1981-01-10T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment Reminder",
+          "attributes": {},
+          "id": "e21",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment Reminder",
+          "attributes": {},
+          "id": "e22",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Send for Credit Collection",
+          "attributes": {},
+          "id": "e23",
+          "timestamp": "1981-01-12T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "uno"
+            ],
+            "oattr2": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "due"
+            ],
+            "oattr2": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "i1",
+          "type": "element"
+        },
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "tre"
+            ],
+            "oattr2": [
+              "float",
+              3.0
+            ]
+          },
+          "id": "i2",
+          "type": "element"
+        },
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "quattro"
+            ],
+            "oattr2": [
+              "float",
+              4.0
+            ]
+          },
+          "id": "i3",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i4",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "d1",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i5",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i6",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "o3",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i7",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i8",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i9",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "d2",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "d3",
+          "type": "delivery"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Confirm Order",
+          "event": "e2",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-02T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Item out of Stock",
+          "event": "e3",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-03T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Item back in Stock",
+          "event": "e5",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-05T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Failed",
+          "event": "e6",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-08T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Retry Delivery",
+          "event": "e7",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-09T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e8",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-10T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "event": "e9",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Pay Order",
+          "event": "e10",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "i6",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Remove Item",
+          "event": "e12",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1981-01-02T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Cancel Order",
+          "event": "e13",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1981-01-03T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "i8",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "i7",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Add Item to Order",
+          "event": "e15",
+          "object": "i9",
+          "qualifier": "",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Add Item to Order",
+          "event": "e15",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i7",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e17",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1981-01-07T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "d3",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "i8",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "i9",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e19",
+          "object": "d3",
+          "qualifier": "",
+          "timestamp": "1981-01-09T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "event": "e20",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-10T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Payment Reminder",
+          "event": "e21",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Payment Reminder",
+          "event": "e22",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Send for Credit Collection",
+          "event": "e23",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "area": "ocel_stats",
+    "case": "all-example-log",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.read_ocel_json",
+      "pm4py.statistics.ocel.act_utils.aggregate_events",
+      "pm4py.statistics.ocel.act_utils.aggregate_unique_objects",
+      "pm4py.statistics.ocel.act_utils.aggregate_total_objects",
+      "pm4py.statistics.ocel.act_utils.find_associations_from_relations_df",
+      "pm4py.statistics.ocel.act_utils.find_associations_from_ocel",
+      "pm4py.statistics.ocel.act_ot_dependent.aggregate_events",
+      "pm4py.statistics.ocel.act_ot_dependent.aggregate_unique_objects",
+      "pm4py.statistics.ocel.act_ot_dependent.aggregate_total_objects",
+      "pm4py.statistics.ocel.act_ot_dependent.find_associations_from_ocel",
+      "pm4py.statistics.ocel.edge_metrics.aggregate_ev_couples",
+      "pm4py.statistics.ocel.edge_metrics.aggregate_unique_objects",
+      "pm4py.statistics.ocel.edge_metrics.aggregate_total_objects",
+      "pm4py.statistics.ocel.edge_metrics.find_associations_per_edge",
+      "pm4py.statistics.ocel.edge_metrics.performance_calculation_ocel_aggregation",
+      "pm4py.statistics.ocel.objects_ot_count.get_objects_ot_count",
+      "pm4py.statistics.ocel.ot_activities.get_object_type_activities"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

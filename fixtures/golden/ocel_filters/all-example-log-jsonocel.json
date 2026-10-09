@@ -1,0 +1,3308 @@
+{
+  "expected": {
+    "components": [
+      [
+        "d1",
+        "d2",
+        "d3",
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i7",
+        "i8",
+        "i9",
+        "o1",
+        "o3"
+      ],
+      [
+        "i5",
+        "i6",
+        "o2"
+      ]
+    ],
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "Create Order",
+          "attributes": {
+            "prova": [
+              "string",
+              "ciao"
+            ],
+            "prova2": [
+              "float",
+              456.0
+            ]
+          },
+          "id": "e1",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Confirm Order",
+          "attributes": {
+            "prova": [
+              "string",
+              "ciao2"
+            ]
+          },
+          "id": "e2",
+          "timestamp": "1980-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item out of Stock",
+          "attributes": {},
+          "id": "e3",
+          "timestamp": "1980-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e4",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Item back in Stock",
+          "attributes": {},
+          "id": "e5",
+          "timestamp": "1980-01-05T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Failed",
+          "attributes": {},
+          "id": "e6",
+          "timestamp": "1980-01-08T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Retry Delivery",
+          "attributes": {},
+          "id": "e7",
+          "timestamp": "1980-01-09T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e8",
+          "timestamp": "1980-01-10T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Invoice Sent",
+          "attributes": {},
+          "id": "e9",
+          "timestamp": "1980-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Pay Order",
+          "attributes": {},
+          "id": "e10",
+          "timestamp": "1980-01-12T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e11",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Remove Item",
+          "attributes": {},
+          "id": "e12",
+          "timestamp": "1981-01-02T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Cancel Order",
+          "attributes": {},
+          "id": "e13",
+          "timestamp": "1981-01-03T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Order",
+          "attributes": {},
+          "id": "e14",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Add Item to Order",
+          "attributes": {},
+          "id": "e15",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e16",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e17",
+          "timestamp": "1981-01-07T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Create Delivery",
+          "attributes": {},
+          "id": "e18",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Delivery Successful",
+          "attributes": {},
+          "id": "e19",
+          "timestamp": "1981-01-09T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Invoice Sent",
+          "attributes": {},
+          "id": "e20",
+          "timestamp": "1981-01-10T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment Reminder",
+          "attributes": {},
+          "id": "e21",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Payment Reminder",
+          "attributes": {},
+          "id": "e22",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00"
+        },
+        {
+          "activity": "Send for Credit Collection",
+          "attributes": {},
+          "id": "e23",
+          "timestamp": "1981-01-12T00:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "uno"
+            ],
+            "oattr2": [
+              "float",
+              1.0
+            ]
+          },
+          "id": "o1",
+          "type": "order"
+        },
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "due"
+            ],
+            "oattr2": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "i1",
+          "type": "element"
+        },
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "tre"
+            ],
+            "oattr2": [
+              "float",
+              3.0
+            ]
+          },
+          "id": "i2",
+          "type": "element"
+        },
+        {
+          "attributes": {
+            "oattr1": [
+              "string",
+              "quattro"
+            ],
+            "oattr2": [
+              "float",
+              4.0
+            ]
+          },
+          "id": "i3",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i4",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "d1",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "o2",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i5",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i6",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "o3",
+          "type": "order"
+        },
+        {
+          "attributes": {},
+          "id": "i7",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i8",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "i9",
+          "type": "element"
+        },
+        {
+          "attributes": {},
+          "id": "d2",
+          "type": "delivery"
+        },
+        {
+          "attributes": {},
+          "id": "d3",
+          "type": "delivery"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e1",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1980-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Confirm Order",
+          "event": "e2",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-02T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Item out of Stock",
+          "event": "e3",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-03T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "i2",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e4",
+          "object": "i1",
+          "qualifier": "",
+          "timestamp": "1980-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Item back in Stock",
+          "event": "e5",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1980-01-05T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Failed",
+          "event": "e6",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-08T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Retry Delivery",
+          "event": "e7",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-09T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e8",
+          "object": "d1",
+          "qualifier": "",
+          "timestamp": "1980-01-10T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "event": "e9",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Pay Order",
+          "event": "e10",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "1980-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "i6",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e11",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1981-01-01T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Remove Item",
+          "event": "e12",
+          "object": "i5",
+          "qualifier": "",
+          "timestamp": "1981-01-02T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Cancel Order",
+          "event": "e13",
+          "object": "o2",
+          "qualifier": "",
+          "timestamp": "1981-01-03T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "i8",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Order",
+          "event": "e14",
+          "object": "i7",
+          "qualifier": "",
+          "timestamp": "1981-01-04T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Add Item to Order",
+          "event": "e15",
+          "object": "i9",
+          "qualifier": "",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Add Item to Order",
+          "event": "e15",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-05T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i3",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i4",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e16",
+          "object": "i7",
+          "qualifier": "",
+          "timestamp": "1981-01-06T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e17",
+          "object": "d2",
+          "qualifier": "",
+          "timestamp": "1981-01-07T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "d3",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "i8",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Create Delivery",
+          "event": "e18",
+          "object": "i9",
+          "qualifier": "",
+          "timestamp": "1981-01-08T00:00:00.000000+00:00",
+          "type": "element"
+        },
+        {
+          "activity": "Delivery Successful",
+          "event": "e19",
+          "object": "d3",
+          "qualifier": "",
+          "timestamp": "1981-01-09T00:00:00.000000+00:00",
+          "type": "delivery"
+        },
+        {
+          "activity": "Invoice Sent",
+          "event": "e20",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-10T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Payment Reminder",
+          "event": "e21",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Payment Reminder",
+          "event": "e22",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-11T00:00:00.000000+00:00",
+          "type": "order"
+        },
+        {
+          "activity": "Send for Credit Collection",
+          "event": "e23",
+          "object": "o3",
+          "qualifier": "",
+          "timestamp": "1981-01-12T00:00:00.000000+00:00",
+          "type": "order"
+        }
+      ]
+    },
+    "results": [
+      {
+        "args": [
+          "ocel:activity",
+          [
+            "Add Item to Order"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            14
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            9,
+            12
+          ],
+          "relations": [
+            24,
+            25
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:eid",
+          [
+            "e1"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:type",
+          [
+            "delivery"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            3,
+            5,
+            6,
+            7,
+            15,
+            16,
+            17,
+            18
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            5,
+            13,
+            14
+          ],
+          "relations": [
+            7,
+            11,
+            12,
+            13,
+            27,
+            30,
+            31,
+            34
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:oid",
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            8,
+            9
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0
+          ],
+          "relations": [
+            2,
+            5,
+            14,
+            15
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "delivery"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            3,
+            5,
+            6,
+            7,
+            15,
+            16,
+            17,
+            18
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            5,
+            13,
+            14
+          ],
+          "relations": [
+            7,
+            11,
+            12,
+            13,
+            27,
+            30,
+            31,
+            34
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "e1",
+            "e2"
+          ]
+        ],
+        "function": "filter_ocel_events",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "args": [
+          "delivery"
+        ],
+        "function": "filter_ocel_cc_otype",
+        "kwargs": {
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 0,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            8,
+            9
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0
+          ],
+          "relations": [
+            2,
+            5,
+            14,
+            15
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 1,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            8,
+            9
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0
+          ],
+          "relations": [
+            2,
+            5,
+            14,
+            15
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 2,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            9,
+            15
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            14,
+            15,
+            26,
+            28
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 3,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            13,
+            15,
+            16
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            13
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 20,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "delivery"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "level": 2,
+          "positive": true
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            21,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:activity",
+          [
+            "Add Item to Order"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:eid",
+          [
+            "e1"
+          ]
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:type",
+          [
+            "delivery"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            28,
+            29,
+            32,
+            33,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:oid",
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "delivery"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            28,
+            29,
+            32,
+            33,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "e1",
+            "e2"
+          ]
+        ],
+        "function": "filter_ocel_events",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "delivery"
+        ],
+        "function": "filter_ocel_cc_otype",
+        "kwargs": {
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 0,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 1,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 2,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            3,
+            5,
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            7,
+            11,
+            12,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 3,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "relations": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            24,
+            25,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "o1"
+          ]
+        ],
+        "function": "filter_ocel_objects",
+        "kwargs": {
+          "level": 20,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            10,
+            11,
+            12
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            6,
+            7,
+            8
+          ],
+          "relations": [
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "delivery"
+          ]
+        ],
+        "function": "filter_ocel_object_types",
+        "kwargs": {
+          "level": 2,
+          "positive": false
+        },
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            6,
+            7,
+            8,
+            9
+          ],
+          "relations": [
+            2,
+            5,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            22,
+            25,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "ocel:activity",
+          []
+        ],
+        "function": "filter_ocel_event_attribute",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "ocel:type",
+          []
+        ],
+        "function": "filter_ocel_object_attribute",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {
+            "delivery": [
+              "Add Item to Order",
+              "Cancel Order"
+            ]
+          }
+        ],
+        "function": "filter_ocel_object_types_allowed_activities",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "function": "filter_ocel_object_types_allowed_activities",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {
+            "delivery": 2
+          }
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {
+            "delivery": 0
+          }
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            3,
+            5,
+            6,
+            7,
+            15,
+            16,
+            17,
+            18
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ]
+        }
+      },
+      {
+        "args": [
+          {
+            "missing": 0
+          }
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "function": "filter_ocel_object_per_type_count",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "delivery"
+        ],
+        "function": "filter_ocel_start_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            3,
+            15,
+            17
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            7,
+            8,
+            9,
+            26,
+            27,
+            28,
+            29,
+            31,
+            32,
+            33
+          ]
+        }
+      },
+      {
+        "args": [
+          "delivery"
+        ],
+        "function": "filter_ocel_end_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            7,
+            16,
+            18
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            5,
+            13,
+            14
+          ],
+          "relations": [
+            13,
+            30,
+            34
+          ]
+        }
+      },
+      {
+        "args": [
+          "delivery"
+        ],
+        "function": "filter_ocel_activities_connected_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            3,
+            5,
+            6,
+            7,
+            15,
+            16,
+            17,
+            18
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ]
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_start_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_end_events_per_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_activities_connected_object_type",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "1980-01-01T00:00:00+00:00",
+          "1981-01-12T00:00:00+00:00"
+        ],
+        "function": "filter_ocel_events_timestamp",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "1980-01-01T00:00:00+00:00",
+          "1980-01-01T00:00:00+00:00"
+        ],
+        "function": "filter_ocel_events_timestamp",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      {
+        "args": [
+          "1981-01-12T00:00:00+00:00",
+          "1980-01-01T00:00:00+00:00"
+        ],
+        "function": "filter_ocel_events_timestamp",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "o1"
+        ],
+        "function": "filter_ocel_cc_object",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_cc_object",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          1,
+          1
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          2,
+          20
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          1,
+          100000
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          20,
+          2
+        ],
+        "function": "filter_ocel_cc_length",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      },
+      {
+        "args": [
+          "Add Item to Order"
+        ],
+        "function": "filter_ocel_cc_activity",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "relations": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      },
+      {
+        "args": [
+          "missing"
+        ],
+        "function": "filter_ocel_cc_activity",
+        "kwargs": {},
+        "rows": {
+          "e2e": [],
+          "events": [],
+          "o2o": [],
+          "object_changes": [],
+          "objects": [],
+          "relations": []
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "ocel_filters",
+    "case": "all-example-log-jsonocel",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/example_log.jsonocel"
+    },
+    "functions": [
+      "pm4py.read_ocel_json",
+      "pm4py.filter_ocel_event_attribute",
+      "pm4py.filter_ocel_object_attribute",
+      "pm4py.filter_ocel_object_types_allowed_activities",
+      "pm4py.filter_ocel_object_per_type_count",
+      "pm4py.filter_ocel_start_events_per_object_type",
+      "pm4py.filter_ocel_end_events_per_object_type",
+      "pm4py.filter_ocel_events_timestamp",
+      "pm4py.filter_ocel_object_types",
+      "pm4py.filter_ocel_objects",
+      "pm4py.filter_ocel_events",
+      "pm4py.filter_ocel_activities_connected_object_type",
+      "pm4py.filter_ocel_cc_object",
+      "pm4py.filter_ocel_cc_length",
+      "pm4py.filter_ocel_cc_otype",
+      "pm4py.filter_ocel_cc_activity"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
