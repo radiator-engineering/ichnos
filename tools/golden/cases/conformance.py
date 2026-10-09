@@ -70,6 +70,10 @@ over the same logs and nets as the Petri net alignments:
 - ``options``: per non-default parameter set (:data:`TOKEN_REPLAY_OPTIONS`),
   the ``params`` and, per variant, the counts, fitness and ``activated``.
 - ``fitness``: ``pm4py.fitness_token_based_replay``.
+- ``precision``: ``pm4py.precision_token_based_replay``.
+- ``generalization``: ``pm4py.generalization_tbr``.
+- ``prefixes``: per variant, the marking ``pm4py.replay_prefix_tbr``
+  reaches on the variant's first half (``len // 2`` activities).
 """
 
 from __future__ import annotations
@@ -499,6 +503,9 @@ TOKEN_REPLAY_FUNCTIONS = [
     "pm4py.convert_to_event_log",
     "pm4py.conformance_diagnostics_token_based_replay",
     "pm4py.fitness_token_based_replay",
+    "pm4py.precision_token_based_replay",
+    "pm4py.generalization_tbr",
+    "pm4py.replay_prefix_tbr",
 ]
 
 # Non-default parameter sets of pm4py's token replay. Each maps to the
@@ -622,6 +629,21 @@ def token_replay(fixtures: dict[str, Path]) -> dict[str, Any]:
         "variants": [{"activities": list(v), **_replay_details(first[v])} for v in variants],
         "options": options,
         "fitness": pm4py.fitness_token_based_replay(log, net, im, fm),
+        "precision": pm4py.precision_token_based_replay(log, net, im, fm),
+        "generalization": pm4py.generalization_tbr(log, net, im, fm),
+        "prefixes": [
+            {
+                "prefix": list(v[: len(v) // 2]),
+                "reached": {
+                    p.name: n
+                    for p, n in sorted(
+                        pm4py.replay_prefix_tbr(list(v[: len(v) // 2]), net, im, fm).items(),
+                        key=lambda x: x[0].name,
+                    )
+                },
+            }
+            for v in variants
+        ],
     }
 
 

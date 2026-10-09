@@ -3,18 +3,21 @@
 //! The goldens replay on nets with canonical node names, so pm4py's name
 //! order and ichnos's agree. The tests compare token counts, fitness and the
 //! fired transitions exactly, for pm4py's default options and for each
-//! non-default option set the golden lists.
+//! non-default option set the golden lists. They also check ETConformance
+//! precision, generalization and the markings `replay_prefix_tbr` reaches.
 
 mod common;
 
 use std::collections::{BTreeMap, HashMap};
 
+use ichnos_conformance::generalization::{generalization, generalization_tbr};
 use ichnos_conformance::token_replay::{
     TokenReplayOptions, TokenReplayer, TraceReplay, fitness_token_based_replay,
+    precision_token_based_replay, replay_prefix_tbr,
 };
 use ichnos_core::EventKeys;
 use ichnos_golden::{Golden, Tolerance, as_f64, cases, compare_close, golden};
-use ichnos_model::PetriNet;
+use ichnos_model::{Marking, PetriNet};
 use serde_json::Value;
 
 use common::{build_net, load_csv_log};
@@ -87,6 +90,20 @@ fn check_counts(r: &TraceReplay, e: &Value, what: &str) {
     );
 }
 
+fn marking_names(net: &PetriNet, m: &Marking) -> BTreeMap<String, u64> {
+    m.iter()
+        .map(|(p, n)| (net.place(p).name.clone(), u64::from(n)))
+        .collect()
+}
+
+fn expected_marking(e: &Value) -> BTreeMap<String, u64> {
+    e.as_object()
+        .expect("marking")
+        .iter()
+        .map(|(p, n)| (p.clone(), n.as_u64().expect("tokens")))
+        .collect()
+}
+
 fn activities(e: &Value) -> Vec<&str> {
     e["activities"]
         .as_array()
@@ -146,18 +163,11 @@ fn token_replay_matches_pm4py() {
                 e["problems"].as_str().expect("problems"),
                 "{what}: transitions with problems"
             );
-            let reached: BTreeMap<&str, u64> = r
-                .reached_marking
-                .iter()
-                .map(|(p, n)| (net.place(p).name.as_str(), u64::from(n)))
-                .collect();
-            let expected_reached: BTreeMap<&str, u64> = e["reached"]
-                .as_object()
-                .expect("reached")
-                .iter()
-                .map(|(p, n)| (p.as_str(), n.as_u64().expect("tokens")))
-                .collect();
-            assert_eq!(reached, expected_reached, "{what}: reached marking");
+            assert_eq!(
+                marking_names(&net, &r.reached_marking),
+                expected_marking(&e["reached"]),
+                "{what}: reached marking"
+            );
             let mut enabled: Vec<&str> = r
                 .enabled_transitions_in_marking
                 .iter()
@@ -187,6 +197,57 @@ fn token_replay_matches_pm4py() {
                 f64_at(&g, &format!("/fitness/{field}")),
                 Tolerance::METRIC,
                 format_args!("{id}: {field}"),
+            );
+        }
+    }
+}
+
+#[test]
+fn precision_and_generalization_match_pm4py() {
+    let keys = EventKeys::default();
+    for id in token_replay_cases() {
+        let g = golden("conformance", &id);
+        let log = load_csv_log(&g.fixture("log"));
+        let (net, im, fm) = build_net(g.expected_at("/model"));
+        let precision =
+            precision_token_based_replay(&log, &net, &im, &fm, &keys).expect("precision");
+        close(
+            precision,
+            f64_at(&g, "/precision"),
+            Tolerance::METRIC,
+            format_args!("{id}: precision"),
+        );
+        let general = generalization_tbr(&log, &net, &im, &fm, &keys).expect("generalization");
+        close(
+            general,
+            f64_at(&g, "/generalization"),
+            Tolerance::METRIC,
+            format_args!("{id}: generalization"),
+        );
+        let replayer =
+            TokenReplayer::new(&net, &im, &fm, TokenReplayOptions::default()).expect("replayer");
+        let replay = replayer.replay_log(&log, &keys).expect("replay");
+        assert_eq!(generalization(&net, &replay), general, "{id}");
+    }
+}
+
+#[test]
+fn replay_prefix_matches_pm4py() {
+    for id in token_replay_cases() {
+        let g = golden("conformance", &id);
+        let (net, im, fm) = build_net(g.expected_at("/model"));
+        for e in g.expected_at("/prefixes").as_array().expect("prefixes") {
+            let prefix: Vec<&str> = e["prefix"]
+                .as_array()
+                .expect("prefix")
+                .iter()
+                .map(|a| a.as_str().expect("activity"))
+                .collect();
+            let reached = replay_prefix_tbr(&prefix, &net, &im, &fm).expect("prefix replay");
+            assert_eq!(
+                marking_names(&net, &reached),
+                expected_marking(&e["reached"]),
+                "{id}: prefix {prefix:?}"
             );
         }
     }
