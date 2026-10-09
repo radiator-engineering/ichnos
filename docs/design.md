@@ -97,6 +97,23 @@ Other ichnos crates follow one pattern. Each crate defines its own `thiserror` `
 
 `sort_by_timestamp(key, SortOrder)` on `Trace`, `EventLog` and `EventStream` is a stable sort, like Python's `sorted`. Descending order also keeps equal timestamps in input order, as `sorted(..., reverse=True)` does. On a log it sorts each trace's events, then sorts traces by their first event, as pm4py's `sort_timestamp_log` does.
 
+### Sampling
+
+`EventLog::sample_cases(n, seed)` and `EventStream::sample_events(n, seed)` draw without replacement. They use ChaCha8 (`rand_chacha`) seeded from an explicit `u64`, so a seed gives the same sample on every platform. pm4py uses Python's `random` module, whose sequence ichnos does not reproduce. ichnos also returns the sample in input order; pm4py's `random.sample` returns it in random order. pm4py's `sample_events` on an `EventLog` samples traces, so ichnos offers `sample_events` only on `EventStream`.
+
+### Interval and lifecycle logs
+
+`EventLog::to_interval` and `EventLog::to_lifecycle` port pm4py's `interval_lifecycle` helpers. They use the same marker attribute (`PM4PY_TYPE`) and helper attributes (`@@duration`, `@@startevent_*`, `@@custom_lif_id`, `@@origin_ev_idx`), so output matches pm4py's. The business-hours option of `to_interval` belongs with the performance crate and is not ported here.
+
+### Formatting a raw table
+
+`format_batch(batch, &keys, timestamp_format)` is the Arrow form of pm4py's `format_dataframe`. It copies the case, activity and timestamp columns to the standard names, converts timestamps to UTC, drops rows without a case ID, activity or timestamp, casts the case ID and activity to strings, sorts by case, timestamp and input order, and adds `@@index` and `@@case_index`. Running `format_batch` before `from_arrow` gives pm4py's trace and event order for a CSV table. `EventLog::rebase` and `EventStream::rebase` flatten, format and regroup, as pm4py's `rebase` does.
+
+Two differences from pandas:
+
+- pandas tries to parse every string column as a date. `format_batch` parses only the timestamp and start-timestamp columns, so a column of short numeric strings never turns into dates by accident.
+- pandas leaves a column as strings when a value fails to parse. `format_batch` returns `Error::UnparseableTimestamp`. Without an explicit format it accepts ISO 8601 and RFC 3339 forms. Other layouts need `timestamp_format` in chrono syntax, which avoids pandas's day-first and month-first guessing.
+
 ### Not ported, and why
 
 - `serialize` / `deserialize` (pickle). Parquet, Arrow IPC and XES, through `ichnos-io`, cover persistence.

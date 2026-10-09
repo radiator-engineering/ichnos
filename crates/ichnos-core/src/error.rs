@@ -56,6 +56,17 @@ pub enum Error {
         /// The Arrow data type, formatted.
         data_type: String,
     },
+    /// A table lacks a column that an operation needs.
+    #[error("the table has no column `{0}`")]
+    MissingColumn(String),
+    /// A string in a timestamp column does not parse as a date.
+    #[error("value `{value}` in column `{column}` does not parse as a timestamp")]
+    UnparseableTimestamp {
+        /// The column name.
+        column: String,
+        /// The value that failed to parse.
+        value: String,
+    },
     /// An error from the Arrow library.
     #[error(transparent)]
     Arrow(#[from] arrow::error::ArrowError),
