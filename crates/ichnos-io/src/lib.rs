@@ -27,7 +27,9 @@ pub use error::{Error, Result};
 pub use ocel::{
     OcelReadOptions, read_ocel, read_ocel_json, read_ocel_json_from_reader, read_ocel_xml,
     read_ocel_xml_from_reader, read_ocel2, read_ocel2_json, read_ocel2_json_from_reader,
-    read_ocel2_xml, read_ocel2_xml_from_reader,
+    read_ocel2_xml, read_ocel2_xml_from_reader, write_ocel, write_ocel_json,
+    write_ocel_json_to_writer, write_ocel_xml, write_ocel_xml_to_writer, write_ocel2,
+    write_ocel2_json, write_ocel2_json_to_writer, write_ocel2_xml, write_ocel2_xml_to_writer,
 };
 pub use parquet::{
     ParquetReadOptions, ParquetWriteOptions, read_parquet, read_parquet_from_reader, write_parquet,

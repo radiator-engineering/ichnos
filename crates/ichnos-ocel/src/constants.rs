@@ -30,6 +30,8 @@ pub const ID_KEY: &str = "ocel:id";
 pub const OMAP_KEY: &str = "ocel:omap";
 /// The qualified related-objects key of an OCEL 2.0 JSON event.
 pub const TYPED_OMAP_KEY: &str = "ocel:typedOmap";
+/// The object-to-object relations key of an OCEL 2.0 JSON object.
+pub const O2O_KEY: &str = "ocel:o2o";
 /// The event attributes key of OCEL JSON.
 pub const VMAP_KEY: &str = "ocel:vmap";
 /// The object attributes key of OCEL JSON.

@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 141; ported: 304; dropped: 181; total: 626.
+todo: 134; ported: 311; dropped: 181; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -40,17 +40,17 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 | `pm4py.write_ptml` | `write.py` → `objects/process_tree/exporter/exporter`, `objects/process_tree/obj` | `ichnos_io::write_ptml` | `ichnos-io` | ported | Deterministic node ids; emits a silent third loop child for ProM by default. Seven fixture round trips. Interleaving and loops with more than two model children return errors. |
 | `pm4py.write_dfg` | `write.py` → `objects/dfg/exporter/exporter` | `ichnos_io::write_dfg` | `ichnos-io` | ported | Deterministic lexical activity indexes, explicit start/end frequencies; optional inferred boundaries. Empty graphs and boundary-only activities round-trip. Unrepresentable whitespace/newline labels error. |
 | `pm4py.write_bpmn` | `write.py` → `objects/bpmn/exporter/exporter`, `objects/bpmn/layout/layouter`, `objects/bpmn/obj` | `ichnos_io::write_bpmn` | `ichnos-io` | ported | Ports the etree variant. Goldens `io/bpmn-write-*` compare pm4py's write-then-read of each fixture with the ichnos one; the two subprocess fixtures fail to write in both. Golden `io/bpmn-options-all_kinds` writes with both of pm4py's export switches off (`BpmnWriteOptions::plane` and `incoming_outgoing`). Uses stored bounds and waypoints, or pm4py's default layout; Graphviz auto-layout is not ported, as for `write_pnml`. See ichnos-io Behaviour changes. |
-| `pm4py.write_ocel` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. |
+| `pm4py.write_ocel` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel` | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. `ichnos_io::write_ocel` writes names ending in `jsonocel` or `xmlocel`; CSV and SQLite return an error until they are ported. |
 | `pm4py.write_ocel_csv` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
-| `pm4py.write_ocel_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard. |
-| `pm4py.write_ocel_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_xml` (planned) | `ichnos-io` | todo | Variants: classic, ocel20. |
+| `pm4py.write_ocel_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel_json` | `ichnos-io` | ported | `write_ocel_json` writes pm4py's `classic` layout, or the `ocel20` layout when the log has OCEL 2.0 features (qualifiers, o2o relations or object changes), as pm4py's `is_ocel20` test decides. Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
+| `pm4py.write_ocel_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel_xml` | `ichnos-io` | ported | `write_ocel_xml` writes the OCEL 1.0 XML layout (pm4py's `classic` variant). Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
 | `pm4py.write_ocel_sqlite` | `write.py` → `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel_sqlite` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas_exporter. |
-| `pm4py.write_ocel2` | `write.py` → `objects/ocel/exporter/bundled/exporter`, `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. |
+| `pm4py.write_ocel2` | `write.py` → `objects/ocel/exporter/bundled/exporter`, `objects/ocel/exporter/csv/exporter`, `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel2` | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard, pandas, pandas_exporter. `ichnos_io::write_ocel2` writes names ending in `xml`, `xmlocel`, `json` or `jsonocel`, each optionally followed by `.gz`; CSV, SQLite and the bundle return an error until they are ported. |
 | `pm4py.write_ocel2_bundle` | `write.py` → `objects/ocel/exporter/bundled/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_bundle` (planned) | `ichnos-io` | todo | Variants: ocel20. |
 | `pm4py.write_ocel2_csv` | `write.py` → `objects/ocel/exporter/csv/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_csv` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas. |
-| `pm4py.write_ocel2_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_json` (planned) | `ichnos-io` | todo | Variants: classic, ocel20, ocel20_standard. |
+| `pm4py.write_ocel2_json` | `write.py` → `objects/ocel/exporter/jsonocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel2_json` | `ichnos-io` | ported | `write_ocel2_json` writes the OCEL 2.0 JSON layout (pm4py's `ocel20_standard` variant). Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
 | `pm4py.write_ocel2_sqlite` | `write.py` → `objects/ocel/exporter/sqlite/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_sqlite` (planned) | `ichnos-io` | todo | Variants: ocel20, pandas_exporter. |
-| `pm4py.write_ocel2_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos::io::write_ocel2_xml` (planned) | `ichnos-io` | todo | Variants: classic, ocel20. |
+| `pm4py.write_ocel2_xml` | `write.py` → `objects/ocel/exporter/xmlocel/exporter`, `objects/ocel/obj` | `ichnos_io::write_ocel2_xml` | `ichnos-io` | ported | `write_ocel2_xml` writes the OCEL 2.0 XML layout (pm4py's `ocel20` variant). Golden cases `ocel/write-*`: the nine non-CSV fixtures, an empty log and two synthetic logs (`write-synthetic`, `write-synthetic20`) with typed, unicode, escaped and missing values. See the ichnos-io (OCEL) Behaviour changes. |
 
 ## discovery
 
@@ -967,14 +967,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos::stream::algo::conformance::declare::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-running-example`, `declare-receipt`, `declare-roadtraffic100traces` construct pm4py-discovered Declare models, feed every event and compare up to five prefix snapshots plus live delivery. |
 
 ## streaming.algo.conformance.declare.variants.automata
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos::stream::algo::conformance::declare::variants::automata::DeclareStreamingConformance` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos::stream::algo::conformance::declare::variants::automata::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos_stream::StreamingDeclareConformance` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-pending`, `declare-interleaved`, `declare-missing`, `declare-timestamps`, `declare-empty`, `declare-special-labels` check state names, absorbing/immediate deviations, event counts, per-event time fallback and typed constraint identities. Real-log cases compare complete ordered state/history digests and samples. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-self-pairs`, `declare-empty-model` check typed model preparation, all eighteen monitor templates, equal binary labels and ignored count metadata. |
 
 ## streaming.algo.conformance.footprints.algorithm
 
@@ -1384,6 +1384,14 @@ Lanes record each deliberate change from pm4py here.
 - **Missing data.** An object change without a time, which pm4py records with a missing timestamp, is left out of OCEL 2.0 JSON. A repeated OCEL XML object attribute without a time is an error, where pm4py fails to parse it. An XML relation to an unknown object is left out, where pm4py's OCEL 1.0 reader raises `KeyError`. Timestamps that do not parse are errors.
 - **Globals.** OCEL 1.0 JSON globals become nested attribute containers, with list items keyed by the empty string.
 - **Repeated ids.** OCEL 1.0 JSON keys events and objects by id. A repeated id keeps its first position and its last value, as pm4py's `dict` does. The other layouts list events and objects, and keep every row with a repeated id, as pm4py does. See the ichnos-ocel Behaviour changes for how `Ocel` resolves them.
+- **Writers prepare a copy.** Each writer clones the log and runs `make_consistent` and `retain_related` on the clone, as pm4py's writers do on the log itself. pm4py changes the caller's log; ichnos leaves it unchanged.
+- **Attribute order.** pm4py writes attributes in pandas column order, which depends on the reader that built the log. ichnos writes them in the order they first appear in the rows. The golden tests compare these outputs modulo attribute order, and require the same bytes where the two orders agree.
+- **Attribute types.** pm4py takes each attribute's type from the pandas column dtype. ichnos infers it from the values with pandas' rules: all integers give an integer column, integers with a gap give floats, mixed values give an object column.
+- **Attribute names.** pm4py's OCEL 1.0 layouts list every attribute column in `attribute-names`, including a column with no values. ichnos lists only names that have a value.
+- **File names.** pm4py appends `.jsonocel`, `.xmlocel`, `.json` or `.xml` to a path that lacks the extension. ichnos writes to the path it is given. A path ending in `.gz` is compressed with gzip.
+- **Encoding.** The writers write UTF-8 only; pm4py takes an `encoding` parameter. The XML writers return an error for a control character, U+FFFE or U+FFFF, as lxml does.
+- **Text times.** pm4py's OCEL 2.0 XML reader can leave an object-change time as a string. pm4py's `write_ocel2_xml` then raises `AttributeError`, and its JSON writers copy the text. ichnos parses every time when it reads, so its writers always write a time.
+- **Read, then write.** The `ocel/write-*` goldens of the fixture files hold pm4py's read-then-write output. ichnos gives the same files when it reads the fixture with its own reader, apart from the reader differences above: the typed XML values change the attribute types in `typed.xmlocel` and `typed20.xmlocel`, and the OCEL 2.0 JSON relation order changes the order of each event's relations.
 
 ### ichnos-discovery (DFG)
 
@@ -1649,9 +1657,27 @@ Rows cite these as `core-N`.
 - Round-trip JSON float parsing prevents artificial zero-variance deviations from one-ULP profile-mean changes.
 - Native algorithm implementations are not patched.
 
+### ichnos-stream (streaming Declare)
+
+The Declare model types are reused from `ichnos-discovery`; moving them to `ichnos-model` is deferred.
+
+- Typed model constraints replace Python template-name and activity-tuple dictionaries.
+- Typed automaton states replace serialized tuple keys and state strings.
+- Incorrect unary/binary rule arity returns a typed error before monitoring starts.
+- Unknown template strings cannot enter the typed model; pm4py uses a dummy monitor for them.
+- Ignore and Reject policies extend pm4py's default handling of incomplete events.
+- Configurable case/activity/timestamp keys extend pm4py's hardcoded streaming Declare keys.
+- Core display strings replace raw Python case/activity identity, so values with the same display text can share a case or label match.
+- `remove_case` releases monitor state without end-of-case validation or changing historical totals.
+- A removed case ID can be reused as a fresh case; pm4py has no case-removal API.
+- `clear_history` releases event-level deviation records while retaining monitors and totals; pm4py has no history-clearing API.
+- Typed snapshots and history replace pm4py's logging of violated template names.
+- The shared synchronous `StreamSink` contract replaces pm4py's worker locking.
+
 ## Proposed lanes
 
 Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.
+
 
 ### ichnos-stream (IWS alignments and OCEL distribution)
 
