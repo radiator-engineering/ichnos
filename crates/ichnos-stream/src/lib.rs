@@ -22,6 +22,7 @@
 
 mod conformance;
 mod conversion;
+mod declare;
 mod dfg;
 mod error;
 mod footprints;
@@ -47,4 +48,10 @@ pub use tbr::{
 };
 pub use temporal::{
     StreamingTemporalConformance, StreamingTemporalOptions, TemporalDeviation, TemporalProfile,
+};
+
+pub use declare::{
+    DeclareActivities, DeclareAutomatonState, DeclareConstraint, DeclareDeviation,
+    DeclareEventTime, DeclareMissingPolicy, DeclareModel, DeclareTemplate, StreamingDeclareCase,
+    StreamingDeclareConformance, StreamingDeclareOptions, StreamingDeclareResult,
 };

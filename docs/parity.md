@@ -4,7 +4,7 @@ Reference: a checkout of pm4py **2.7.23.8** (commit **24a3bf6**), cross-checked 
 
 ## Summary
 
-todo: 175; ported: 272; dropped: 179; total: 626.
+todo: 172; ported: 275; dropped: 179; total: 626.
 
 Recompute with `tools/parity_count.py`. Completion requires each row to be `ported` with a passing golden test or `dropped` with a reason.
 
@@ -967,14 +967,14 @@ All Rust paths below are **planned**. Lanes replace them with actual public path
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos::stream::algo::conformance::declare::algorithm::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.algorithm.apply` | `streaming/algo/conformance/declare/algorithm.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-running-example`, `declare-receipt`, `declare-roadtraffic100traces` construct native-discovered Declare models, feed every event and compare up to five prefix snapshots plus live delivery. |
 
 ## streaming.algo.conformance.declare.variants.automata
 
 | pm4py | Source | ichnos | Crate | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos::stream::algo::conformance::declare::variants::automata::DeclareStreamingConformance` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
-| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos::stream::algo::conformance::declare::variants::automata::apply` (planned) | `ichnos-stream` | todo | Single entry point; preserve source defaults. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance` | `streaming/algo/conformance/declare/variants/automata.py` → `streaming/algo/interface` | `ichnos_stream::StreamingDeclareConformance` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-pending`, `declare-interleaved`, `declare-missing`, `declare-timestamps`, `declare-empty`, `declare-special-labels` check state names, absorbing/immediate deviations, event counts, per-event time fallback and typed constraint identities. Real-log cases compare complete ordered state/history digests and samples. |
+| `pm4py.streaming.algo.conformance.declare.variants.automata.apply` | `streaming/algo/conformance/declare/variants/automata.py` | `ichnos_stream::StreamingDeclareConformance::new` | `ichnos-stream` | ported | Goldens `stream/declare-all-templates`, `declare-self-pairs`, `declare-empty-model` check typed model preparation, all eighteen monitor templates, equal binary labels and ignored count metadata. |
 
 ## streaming.algo.conformance.footprints.algorithm
 
@@ -1617,6 +1617,29 @@ Rows cite these as `core-N`.
 ## Proposed lanes
 
 Each short heading is a lane slug. Packages group a coherent model, algorithm family or data operation; no package uses a fixed row limit. Complete foundational models before their I/O, miners and conformance consumers. Core log utilities and statistics can proceed once the log model exists; OCEL consumers depend on the OCEL model. Each listed row occurs in exactly one package. Backend-only dataframe rows preserve their operation through a shared Rust implementation. Reuse source dependencies already implemented by earlier packages; every port adds golden coverage for its rows.
+
+### ichnos-stream (streaming Declare)
+
+- `StreamingDeclareConformance` reuses the merged discovery `DeclareModel`, `DeclareTemplate` and typed rule arguments; support/confidence metadata does not affect monitoring.
+- All eighteen automata retain native prefix-only semantics, with no end-of-case validation or batch Declare fitness calculation.
+- Unseen existence requirements and pending response/coexistence obligations do not add deviations.
+- Each immediate violation is counted once per constraint per case; the violated state absorbs subsequent events.
+- Native response monitors discharge one pending activation per target occurrence, which differs from conventional completed-trace Declare semantics.
+- Typed constraint keys and automaton state enums replace serialized Python tuple keys and state-name strings.
+- Supported templates require the correct unary/binary arity; invalid combinations return typed errors.
+- Unknown string templates cannot enter the typed model; native unknown templates silently use a dummy monitor.
+- Missing fields retain native defaults: absent case IDs use `undefined_case` and absent activities advance monitors without a matching label.
+- Optional Ignore counts skipped incomplete events and Reject returns indexed errors before changing monitoring state.
+- Configurable case/activity/timestamp keys are a Rust extension; native streaming Declare hardcodes its keys and ignores these parameters.
+- Case IDs and activities use core display strings rather than native raw Python identities, so mixed typed values sharing a display string can share a case or label match.
+- Existing timestamp attributes retain their core type; absent timestamps use the one-based global processed-event number, as native monitoring does.
+- Global per-event deviation history includes zero-deviation events and grows until explicitly cleared.
+- `remove_case` releases monitors and allows ID reuse without performing end checks or changing historical totals.
+- `clear_history` releases event-level history while preserving cumulative totals and active monitors.
+- Per-case monitor memory is proportional to the number of constraints and does not retain event traces.
+- Typed snapshots/history replace native logging of violated template names; no stdout/logging hooks are included.
+- The consumer uses the shared synchronous StreamSink contract rather than native worker locking.
+- Twelve native-backed goldens compare up to five prefixes, complete ordered real-log state/history digests, typed samples and live delivery.
 
 ### log-model-utils
 

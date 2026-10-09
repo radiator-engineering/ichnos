@@ -1,0 +1,107 @@
+{
+  "expected": {
+    "live": {
+      "cases": {
+        "a": {
+          "constraints_state": [],
+          "deviations": 0,
+          "events": 2
+        }
+      },
+      "deviations_per_time": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "total_deviations": 0,
+      "total_events_processed": 2
+    },
+    "model": [],
+    "snapshots": [
+      {
+        "at": 0,
+        "state": {
+          "cases": {},
+          "deviations_per_time": [],
+          "total_deviations": 0,
+          "total_events_processed": 0
+        }
+      },
+      {
+        "at": 1,
+        "state": {
+          "cases": {
+            "a": {
+              "constraints_state": [],
+              "deviations": 0,
+              "events": 1
+            }
+          },
+          "deviations_per_time": [
+            [
+              1,
+              0
+            ]
+          ],
+          "total_deviations": 0,
+          "total_events_processed": 1
+        }
+      },
+      {
+        "at": 2,
+        "state": {
+          "cases": {
+            "a": {
+              "constraints_state": [],
+              "deviations": 0,
+              "events": 2
+            }
+          },
+          "deviations_per_time": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "total_deviations": 0,
+          "total_events_processed": 2
+        }
+      }
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "declare-empty-model",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.algo.conformance.declare.algorithm.apply",
+      "pm4py.streaming.algo.conformance.declare.variants.automata.apply",
+      "pm4py.streaming.algo.conformance.declare.variants.automata.DeclareStreamingConformance"
+    ],
+    "loaders": {},
+    "params": {
+      "events": [
+        {
+          "case:concept:name": "a",
+          "concept:name": "A"
+        },
+        {
+          "case:concept:name": "a",
+          "concept:name": "B"
+        }
+      ],
+      "model": []
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
