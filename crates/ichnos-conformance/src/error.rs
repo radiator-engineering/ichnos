@@ -10,6 +10,10 @@ pub enum Error {
     /// Reading the log failed, for example because an event has no activity.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),
+    /// A time computation failed, for example on an invalid business
+    /// schedule.
+    #[error(transparent)]
+    Stats(#[from] ichnos_stats::Error),
     /// Exploring the markings reachable through silent transitions hit its
     /// limit; the net may be unbounded.
     #[error(transparent)]
