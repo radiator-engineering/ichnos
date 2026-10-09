@@ -1,0 +1,76 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "act",
+          "attributes": {},
+          "id": "e1",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [
+        {
+          "field": "amount",
+          "object": "o1",
+          "timestamp": "1970-01-01T00:00:00.000000+00:00",
+          "type": "orders",
+          "value": [
+            "int",
+            11
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "attributes": {
+            "amount": [
+              "int",
+              10
+            ]
+          },
+          "id": "o1",
+          "type": "orders"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "act",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": "",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "orders"
+        }
+      ]
+    },
+    "writers": {
+      "bundle-csv": {
+        "error": "ValueError",
+        "message": "Object 'o1' has conflicting time-0 values for attribute 'amount'."
+      },
+      "bundle-parquet": {
+        "error": "ValueError",
+        "message": "Object 'o1' has conflicting time-0 values for attribute 'amount'."
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "bundle-write-time0-conflict",
+    "fixtures": {},
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

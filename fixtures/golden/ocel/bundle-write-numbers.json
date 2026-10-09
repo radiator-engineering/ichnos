@@ -1,0 +1,508 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "a",
+          "attributes": {
+            "f": [
+              "float",
+              "Infinity"
+            ],
+            "g": [
+              "float",
+              1e+16
+            ],
+            "h": [
+              "int",
+              1
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "a",
+          "attributes": {
+            "f": [
+              "float",
+              1.5
+            ],
+            "g": [
+              "float",
+              2.0
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2024-01-02T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "b",
+          "attributes": {
+            "h": [
+              "boolean",
+              true
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2024-01-02T10:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "t"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "a",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "a",
+          "event": "e2",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-02T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "b",
+          "event": "e3",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-02T10:00:00.000000+00:00",
+          "type": "t"
+        }
+      ]
+    },
+    "writers": {
+      "bundle-csv": {
+        "files": {
+          "events/event_a.csv": "ocel_id,ocel_time,f,g,h\r\ne1,2024-01-01T10:00:00+00:00,inf,1e+16,1\r\ne2,2024-01-02T10:00:00+00:00,1.5,2.0,\r\n",
+          "events/event_b.csv": "ocel_id,ocel_time,h\r\ne3,2024-01-02T10:00:00+00:00,true\r\n",
+          "object_changes/object_changes_t.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_t.csv": "ocel_id\r\no1\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"a\": {\n      \"file\": \"events/event_a.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"f\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"g\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"h\",\n          \"type\": \"integer\"\n        }\n      ]\n    },\n    \"b\": {\n      \"file\": \"events/event_b.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"h\",\n          \"type\": \"boolean\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"t\": {\n      \"file\": \"objects/object_t.csv\",\n      \"changesFile\": \"object_changes/object_changes_t.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,\r\ne2,o1,\r\ne3,o1,\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "a",
+                "attributes": {
+                  "f": [
+                    "string",
+                    "inf"
+                  ],
+                  "g": [
+                    "float",
+                    1e+16
+                  ],
+                  "h": [
+                    "int",
+                    1
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "a",
+                "attributes": {
+                  "f": [
+                    "string",
+                    "1.5"
+                  ],
+                  "g": [
+                    "float",
+                    2.0
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "b",
+                "attributes": {
+                  "h": [
+                    "boolean",
+                    true
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "t"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "a",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "a",
+                "event": "e2",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "b",
+                "event": "e3",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00",
+                "type": "t"
+              }
+            ]
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "events/event_a.parquet",
+            8
+          ],
+          [
+            "events/event_b.parquet",
+            8
+          ],
+          [
+            "objects/object_t.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_t.parquet",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "events/event_a.parquet": {
+            "base64": "UEFSMRUEFRgVHEwVBBUAEgAADCwCAAAAZTECAAAAZTIVABUGFQosFQQVEBUGFQYcNgAoAmUyGAJlMRERAAAAAwgBAwIVBBUgFSRMFQQVABIAABA8AIjlcd8NBgAA6LyP8w0GABUAFQYVCiwVBBUQFQYVBhwYCADovI/zDQYAGAgAiOVx3w0GABYAKAgA6LyP8w0GABgIAIjlcd8NBgAREQAAAAMIAQMCFQQVHBUgTBUEFQASAAAONAMAAABpbmYDAAAAMS41FQAVEhUWLBUEFRAVBhUGHDYAKANpbmYYAzEuNRERAAAACSACAAAABAEBAwIVBBUgFSRMFQQVABIAABA8AIDgN3nDQUMAAAAAAAAAQBUAFRIVFiwVBBUQFQYVBhwYCACA4Dd5w0FDGAgAAAAAAAAAQBYAKAgAgOA3ecNBQxgIAAAAAAAAAEAREQAAAAkgAgAAAAQBAQMCFQQVEBUUTBUCFQASAAAIHAEAAAAAAAAAFQAVEhUWLBUEFRAVBhUGHBgIAQAAAAAAAAAYCAEAAAAAAAAAFgIoCAEAAAAAAAAAGAgBAAAAAAAAABERAAAACSACAAAAAwEBAgAVBBlsNQAYBnNjaGVtYRUKABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgBZiUATBwAAAAVCiUCGAFnABUEJQIYAWgAFgQZHBlcJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYEFngWgAEmQCYIHDYAKAJlMhgCZTEREQAZLBUEFQAVAgAVABUQFQIAPBYIGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYEFsABFsgBJsgBJogBHBgIAOi8j/MNBgAYCACI5XHfDQYAFgAoCADovI/zDQYAGAgAiOVx3w0GABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGAFmFQIWBBaMARaUASaMAybQAhw2ACgDaW5mGAMxLjUREQAZLBUEFQAVAgAVABUQFQIAPBYMGQYZJgAEAAAAJgAcFQoZNQAGEBkYAWcVAhYEFswBFtQBJqQEJuQDHBgIAIDgN3nDQUMYCAAAAAAAAABAFgAoCACA4Dd5w0FDGAgAAAAAAAAAQBERABksFQQVABUCABUAFRAVAgA8KQYZJgAEAAAAJgAcFQQZNQAGEBkYAWgVAhYEFrwBFsQBJugFJrgFHBgIAQAAAAAAAAAYCAEAAAAAAAAAFgIoCAEAAAAAAAAAGAgBAAAAAAAAABERABksFQQVABUCABUAFRAVAgA8KQYZJgICAAAAFswGFgQmCBb0BgAZHBgMQVJST1c6c2NoZW1hGNgDLy8vLy8xZ0JBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQVVBQUFEOEFBQUFwQUFBQUh3QUFBQThBQUFBQkFBQUFLRC8vLzhBQUFFQ0VBQUFBQndBQUFBRUFBQUFBQUFBQUFFQUFBQm9BQUFBQ0FBTUFBZ0FCd0FJQUFBQUFBQUFBVUFBQUFEVS8vLy9BQUFCQXhBQUFBQVlBQUFBQkFBQUFBQUFBQUFCQUFBQVp3QUdBQWdBQmdBR0FBQUFBQUFDQUJBQUZBQUlBQVlBQndBTUFBQUFFQUFRQUFBQUFBQUJCUkFBQUFBVUFBQUFCQUFBQUFBQUFBQUJBQUFBWmdBQUFJVC8vLys4Ly8vL0FBQUFDaEFBQUFBa0FBQUFCQUFBQUFBQUFBQUpBQUFBYjJObGJGOTBhVzFsQUFBQUNBQU1BQVlBQ0FBSUFBQUFBQUFDQUFRQUFBQURBQUFBVlZSREFCQUFGQUFJQUFBQUJ3QU1BQUFBRUFBUUFBQUFBQUFBQlJBQUFBQWNBQUFBQkFBQUFBQUFBQUFIQUFBQWIyTmxiRjlwWkFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGVwcAAAcAAAcAAAcAAAcAAAAVAQAAFBBUjE="
+          },
+          "events/event_b.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTMVABUGFQosFQIVEBUGFQYcNgAoAmUzGAJlMxERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAOi8j/MNBgAVABUGFQosFQIVEBUGFQYcGAgA6LyP8w0GABgIAOi8j/MNBgAWACgIAOi8j/MNBgAYCADovI/zDQYAEREAAAADCAECABUAFQ4VEiwVAhUAFQYVBhwYAQEYAQEWACgBARgBARERAAAABxgCAAAAAgEBFQQZTDUAGAZzY2hlbWEVBgAVDCUAGAdvY2VsX2lkJQBMHAAAABUEJQAYCW9jZWxfdGltZSUUTIwRHCwAAAAAABUAJQIYAWgAFgIZHBk8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAmUzGAJlMxERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmrAEmfBwYCADovI/zDQYAGAgA6LyP8w0GABYAKAgA6LyP8w0GABgIAOi8j/MNBgAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVABklBgAZGAFoFQIWAhZUFlgmtAI8GAEBGAEBFgAoAQEYAQEREQAZHBUAFQAVAgA8KQYZJgACAAAAFvACFgImCBaEAwAZHBgMQVJST1c6c2NoZW1hGMwCLy8vLy8vQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDVUFBQUFQQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFZUUFBQUFGQUFBQUFRQUFBQUFBQUFBQVFBQUFHZ0FBQUNFLy8vL3ZQLy8vd0FBQUFvUUFBQUFKQUFBQUFRQUFBQUFBQUFBQ1FBQUFHOWpaV3hmZEdsdFpRQUFBQWdBREFBR0FBZ0FDQUFBQUFBQUFnQUVBQUFBQXdBQUFGVlVRd0FRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSEFBQUFBUUFBQUFBQUFBQUJ3QUFBRzlqWld4ZmFXUUFCQUFFQUFRQUFBQT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAANECAABQQVIx"
+          },
+          "object_changes/object_changes_t.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgHb2NlbF9pZBUCFgAWHBYeJgAmCCkcFQQVABUCAAAAJgAcFQQZJQAGGRgJb2NlbF90aW1lFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYzAIvLy8vLy9BQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNVQUFBQVBBQUFBQVFBQUFDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAhwIAAFBBUjE="
+          },
+          "objects/object_t.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAbzEVABUGFQosFQIVEBUGFQYcNgAoAm8xGAJvMRERAAAAAwgBAgAVBBksNQAYBnNjaGVtYRUCABUMJQAYB29jZWxfaWQlAEwcAAAAFgIZHBkcJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAm8xGAJvMRERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAFmwWAiYIFnQAGRwYDEFSUk9XOnNjaGVtYRigAS8vLy8vM0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFFQUFBQVVBQUFBRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRkcHAAAAFgBAABQQVIx"
+          },
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFSQVKEwVBhUAEgAAEkQCAAAAZTECAAAAZTICAAAAZTMVABUIFQwsFQYVEBUGFQYcNgAoAmUzGAJlMRERAAAABAwCAyQAFQQVDBUQTBUCFQASAAAGFAIAAABvMRUAFQYVCiwVBhUQFQYVBhw2ACgCbzEYAm8xEREAAAADCAEGABUEFQgVDEwVAhUAEgAABAwAAAAAFQAVBhUKLBUGFRAVBhUGHDYAKAAYABERAAAAAwgBBgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYDW9jZWxfZXZlbnRfaWQlAEwcAAAAFQwlABgOb2NlbF9vYmplY3RfaWQlAEwcAAAAFQwlABgOb2NlbF9xdWFsaWZpZXIlAEwcAAAAFgYZHBk8JgAcFQwZNQAGEBkYDW9jZWxfZXZlbnRfaWQVAhYGFoYBFo4BJkwmCBw2ACgCZTMYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWDBkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF9vYmplY3RfaWQVAhYGFmwWdCbCASaWARw2ACgCbzEYAm8xEREAGSwVBBUAFQIAFQAVEBUCADwWDBkGGQYAAAAmABwVDBk1AAYQGRgOb2NlbF9xdWFsaWZpZXIVAhYGFmAWaCayAiaKAhw2ACgAGAAREQAZLBUEFQAVAgAVABUQFQIAPBYAGQYZBgAAABbSAhYGJggW6gIAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjl2WW1wbFkzUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRFFBQUFHOWpaV3hmWlhabGJuUmZhV1FBQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAA2gIAAFBBUjE="
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgOb2NlbF9zb3VyY2VfaWQlAEwcAAAAFQwlABgOb2NlbF90YXJnZXRfaWQlAEwcAAAAFQwlABgOb2NlbF9xdWFsaWZpZXIlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgOb2NlbF9zb3VyY2VfaWQVAhYAFhwWHiYAJggpHBUEFQAVAgAAACYAHBUMGSUABhkYDm9jZWxfdGFyZ2V0X2lkFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGA5vY2VsX3F1YWxpZmllchUCFgAWHBYeJgAmRCkcFQQVABUCAAAAFlQWACYIFloAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjkwWVhKblpYUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRGdBQUFHOWpaV3hmYzI5MWNtTmxYMmxrQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAfgIAAFBBUjE="
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {\n    \"a\": {\n      \"file\": \"events/event_a.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"f\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"g\",\n          \"type\": \"float\"\n        },\n        {\n          \"name\": \"h\",\n          \"type\": \"integer\"\n        }\n      ]\n    },\n    \"b\": {\n      \"file\": \"events/event_b.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"h\",\n          \"type\": \"boolean\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"t\": {\n      \"file\": \"objects/object_t.parquet\",\n      \"changesFile\": \"object_changes/object_changes_t.parquet\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "a",
+                "attributes": {
+                  "f": [
+                    "string",
+                    "inf"
+                  ],
+                  "g": [
+                    "float",
+                    1e+16
+                  ],
+                  "h": [
+                    "float",
+                    1.0
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "a",
+                "attributes": {
+                  "f": [
+                    "string",
+                    "1.5"
+                  ],
+                  "g": [
+                    "float",
+                    2.0
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "b",
+                "attributes": {
+                  "h": [
+                    "boolean",
+                    true
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "t"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "a",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "a",
+                "event": "e2",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "b",
+                "event": "e3",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-02T10:00:00.000000+00:00",
+                "type": "t"
+              }
+            ]
+          }
+        },
+        "tables": {
+          "events/event_a.parquet": {
+            "rows": [
+              [
+                "e1",
+                "2024-01-01T10:00:00+00:00",
+                "inf",
+                1e+16,
+                1
+              ],
+              [
+                "e2",
+                "2024-01-02T10:00:00+00:00",
+                "1.5",
+                2.0,
+                null
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "f",
+                "string",
+                true
+              ],
+              [
+                "g",
+                "double",
+                true
+              ],
+              [
+                "h",
+                "int64",
+                true
+              ]
+            ]
+          },
+          "events/event_b.parquet": {
+            "rows": [
+              [
+                "e3",
+                "2024-01-02T10:00:00+00:00",
+                true
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "h",
+                "bool",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_t.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ]
+            ]
+          },
+          "objects/object_t.parquet": {
+            "rows": [
+              [
+                "o1"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/e2o.parquet": {
+            "rows": [
+              [
+                "e1",
+                "o1",
+                ""
+              ],
+              [
+                "e2",
+                "o1",
+                ""
+              ],
+              [
+                "e3",
+                "o1",
+                ""
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "bundle-write-numbers",
+    "fixtures": {},
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -128,7 +128,8 @@ pub fn write_ocel(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
 /// `write_ocel2` does: a name ending in `xml` or `xmlocel` is XML and one
 /// ending in `json` or `jsonocel` is JSON, each optionally followed by
 /// `.gz`, one ending in `.ocel.csv` is CSV and one ending in `sqlite` is
-/// SQLite. pm4py's bundle (`.ocel.zip`) writer is not ported yet.
+/// SQLite. A name ending in `.ocel.zip` is a bundle of Parquet tables
+/// ([`super::write_ocel2_bundle`]).
 pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     let path = path.as_ref();
     let name = lower_name(path);
@@ -138,7 +139,7 @@ pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
             .any(|e| name.ends_with(e) || name.ends_with(&format!("{e}.gz")))
     };
     if name.ends_with(".ocel.zip") {
-        Err(not_ported(path))
+        super::write_ocel2_bundle(ocel, path, super::BundleStorage::Parquet)
     } else if name.ends_with("sqlite") {
         super::write_ocel2_sqlite(ocel, path)
     } else if name.ends_with(".ocel.csv") {
@@ -150,13 +151,6 @@ pub fn write_ocel2(ocel: &Ocel, path: impl AsRef<Path>) -> Result<()> {
     } else {
         Err(unsupported(path))
     }
-}
-
-fn not_ported(path: &Path) -> Error {
-    Error::Ocel(format!(
-        "writing this OCEL format is not ported yet: {}",
-        path.display()
-    ))
 }
 
 /// Creates `path` and writes to it, through gzip when the name ends in

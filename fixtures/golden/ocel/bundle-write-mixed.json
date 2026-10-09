@@ -1,0 +1,813 @@
+{
+  "expected": {
+    "globals": {},
+    "input": {
+      "e2e": [],
+      "events": [
+        {
+          "activity": "a",
+          "attributes": {
+            "m": [
+              "string",
+              "x"
+            ]
+          },
+          "id": "e1",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "b",
+          "attributes": {
+            "m": [
+              "float",
+              2.5
+            ]
+          },
+          "id": "e2",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "b",
+          "attributes": {
+            "m": [
+              "int",
+              7
+            ]
+          },
+          "id": "e3",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "c",
+          "attributes": {
+            "m": [
+              "boolean",
+              true
+            ]
+          },
+          "id": "e4",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "d",
+          "attributes": {
+            "m": [
+              "date",
+              "2024-01-02T10:00:00.000000+00:00"
+            ]
+          },
+          "id": "e5",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "e",
+          "attributes": {
+            "m": [
+              "boolean",
+              false
+            ]
+          },
+          "id": "e6",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        },
+        {
+          "activity": "e",
+          "attributes": {
+            "m": [
+              "int",
+              3
+            ]
+          },
+          "id": "e7",
+          "timestamp": "2024-01-01T10:00:00.000000+00:00"
+        }
+      ],
+      "o2o": [],
+      "object_changes": [],
+      "objects": [
+        {
+          "attributes": {},
+          "id": "o1",
+          "type": "t"
+        }
+      ],
+      "relations": [
+        {
+          "activity": "a",
+          "event": "e1",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "b",
+          "event": "e2",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "b",
+          "event": "e3",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "c",
+          "event": "e4",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "d",
+          "event": "e5",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "e",
+          "event": "e6",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        },
+        {
+          "activity": "e",
+          "event": "e7",
+          "object": "o1",
+          "qualifier": null,
+          "timestamp": "2024-01-01T10:00:00.000000+00:00",
+          "type": "t"
+        }
+      ]
+    },
+    "writers": {
+      "bundle-csv": {
+        "files": {
+          "events/event_a.csv": "ocel_id,ocel_time,m\r\ne1,2024-01-01T10:00:00+00:00,x\r\n",
+          "events/event_b.csv": "ocel_id,ocel_time,m\r\ne2,2024-01-01T10:00:00+00:00,2.5\r\ne3,2024-01-01T10:00:00+00:00,7.0\r\n",
+          "events/event_c.csv": "ocel_id,ocel_time,m\r\ne4,2024-01-01T10:00:00+00:00,true\r\n",
+          "events/event_d.csv": "ocel_id,ocel_time,m\r\ne5,2024-01-01T10:00:00+00:00,2024-01-02T10:00:00+00:00\r\n",
+          "events/event_e.csv": "ocel_id,ocel_time,m\r\ne6,2024-01-01T10:00:00+00:00,False\r\ne7,2024-01-01T10:00:00+00:00,3\r\n",
+          "object_changes/object_changes_t.csv": "ocel_id,ocel_time,ocel_changed_field\r\n",
+          "objects/object_t.csv": "ocel_id\r\no1\r\n",
+          "ocel-meta.json": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"csv\",\n  \"eventTypes\": {\n    \"a\": {\n      \"file\": \"events/event_a.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"b\": {\n      \"file\": \"events/event_b.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"c\": {\n      \"file\": \"events/event_c.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"boolean\"\n        }\n      ]\n    },\n    \"d\": {\n      \"file\": \"events/event_d.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"time\"\n        }\n      ]\n    },\n    \"e\": {\n      \"file\": \"events/event_e.csv\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"t\": {\n      \"file\": \"objects/object_t.csv\",\n      \"changesFile\": \"object_changes/object_changes_t.csv\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.csv\",\n    \"o2o\": \"relations/o2o.csv\"\n  }\n}",
+          "relations/e2o.csv": "ocel_event_id,ocel_object_id,ocel_qualifier\r\ne1,o1,\r\ne2,o1,\r\ne3,o1,\r\ne4,o1,\r\ne5,o1,\r\ne6,o1,\r\ne7,o1,\r\n",
+          "relations/o2o.csv": "ocel_source_id,ocel_target_id,ocel_qualifier\r\n"
+        },
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "a",
+                "attributes": {
+                  "m": [
+                    "string",
+                    "x"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "b",
+                "attributes": {
+                  "m": [
+                    "float",
+                    2.5
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "b",
+                "attributes": {
+                  "m": [
+                    "float",
+                    7.0
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "c",
+                "attributes": {
+                  "m": [
+                    "boolean",
+                    true
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "d",
+                "attributes": {
+                  "m": [
+                    "date",
+                    "2024-01-02T10:00:00.000000+00:00"
+                  ]
+                },
+                "id": "e5",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "e",
+                "attributes": {
+                  "m": [
+                    "string",
+                    "False"
+                  ]
+                },
+                "id": "e6",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "e",
+                "attributes": {
+                  "m": [
+                    "string",
+                    "3"
+                  ]
+                },
+                "id": "e7",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "t"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "a",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "b",
+                "event": "e2",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "b",
+                "event": "e3",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "c",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "d",
+                "event": "e5",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "e",
+                "event": "e6",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "e",
+                "event": "e7",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              }
+            ]
+          }
+        }
+      },
+      "bundle-parquet": {
+        "entries": [
+          [
+            "ocel-meta.json",
+            8
+          ],
+          [
+            "events/event_a.parquet",
+            8
+          ],
+          [
+            "events/event_b.parquet",
+            8
+          ],
+          [
+            "events/event_c.parquet",
+            8
+          ],
+          [
+            "events/event_d.parquet",
+            8
+          ],
+          [
+            "events/event_e.parquet",
+            8
+          ],
+          [
+            "objects/object_t.parquet",
+            8
+          ],
+          [
+            "object_changes/object_changes_t.parquet",
+            8
+          ],
+          [
+            "relations/e2o.parquet",
+            8
+          ],
+          [
+            "relations/o2o.parquet",
+            8
+          ]
+        ],
+        "files": {
+          "events/event_a.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTEVABUGFQosFQIVEBUGFQYcNgAoAmUxGAJlMRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUGFQosFQIVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAADCAECABUEFQoVDkwVAhUAEgAABRABAAAAeBUAFRIVFiwVAhUQFQYVBhw2ACgBeBgBeBERAAAACSACAAAAAgEBAgAVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQwlAhgBbSUATBwAAAAWAhkcGTwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTEYAmUxEREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAIjlcd8NBgAYCACI5XHfDQYAFgAoCACI5XHfDQYAGAgAiOVx3w0GABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGAFtFQIWAhZyFnom3gImtAIcNgAoAXgYAXgREQAZLBUEFQAVAgAVABUQFQIAPBYCGQYZJgACAAAAFo4DFgImCBamAwAZHBgMQVJST1c6c2NoZW1hGMwCLy8vLy8vQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDVUFBQUFQQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFVUUFBQUFGQUFBQUFRQUFBQUFBQUFBQVFBQUFHMEFBQUNFLy8vL3ZQLy8vd0FBQUFvUUFBQUFKQUFBQUFRQUFBQUFBQUFBQ1FBQUFHOWpaV3hmZEdsdFpRQUFBQWdBREFBR0FBZ0FDQUFBQUFBQUFnQUVBQUFBQXdBQUFGVlVRd0FRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSEFBQUFBUUFBQUFBQUFBQUJ3QUFBRzlqWld4ZmFXUUFCQUFFQUFRQUFBQT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAN4CAABQQVIx"
+          },
+          "events/event_b.parquet": {
+            "base64": "UEFSMRUEFRgVHEwVBBUAEgAADCwCAAAAZTICAAAAZTMVABUGFQosFQQVEBUGFQYcNgAoAmUzGAJlMhERAAAAAwgBAwIVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUGFQosFQQVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAADCAEEABUEFSAVJEwVBBUAEgAAEDwAAAAAAAAEQAAAAAAAABxAFQAVEhUWLBUEFRAVBhUGHBgIAAAAAAAAHEAYCAAAAAAAAARAFgAoCAAAAAAAABxAGAgAAAAAAAAEQBERAAAACSACAAAABAEBAwIVBBlMNQAYBnNjaGVtYRUGABUMJQAYB29jZWxfaWQlAEwcAAAAFQQlABgJb2NlbF90aW1lJRRMjBEcLAAAAAAAFQolAhgBbQAWBBkcGTwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgQWeBaAASZAJggcNgAoAmUzGAJlMhERABksFQQVABUCABUAFRAVAgA8FggZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgQWsAEWuAEmuAEmiAEcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAGSwVBBUAFQIAFQAVEBUCAAAAJgAcFQoZNQAGEBkYAW0VAhYEFswBFtQBJoADJsACHBgIAAAAAAAAHEAYCAAAAAAAAARAFgAoCAAAAAAAABxAGAgAAAAAAAAEQBERABksFQQVABUCABUAFRAVAgA8KQYZJgAEAAAAFvQDFgQmCBaMBAAZHBgMQVJST1c6c2NoZW1hGNgCLy8vLy8vZ0FBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDY0FBQUFSQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFNUUFBQUFHQUFBQUFRQUFBQUFBQUFBQVFBQUFHMEFCZ0FJQUFZQUJnQUFBQUFBQWdDOC8vLy9BQUFBQ2hBQUFBQWtBQUFBQkFBQUFBQUFBQUFKQUFBQWIyTmxiRjkwYVcxbEFBQUFDQUFNQUFZQUNBQUlBQUFBQUFBQ0FBUUFBQUFEQUFBQVZWUkRBQkFBRkFBSUFBQUFCd0FNQUFBQUVBQVFBQUFBQUFBQUJSQUFBQUFjQUFBQUJBQUFBQUFBQUFBSEFBQUFiMk5sYkY5cFpBQUVBQVFBQkFBQUFBPT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAAgDAABQQVIx"
+          },
+          "events/event_c.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTQVABUGFQosFQIVEBUGFQYcNgAoAmU0GAJlNBERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUGFQosFQIVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAADCAECABUAFQ4VEiwVAhUAFQYVBhwYAQEYAQEWACgBARgBARERAAAABxgCAAAAAgEBFQQZTDUAGAZzY2hlbWEVBgAVDCUAGAdvY2VsX2lkJQBMHAAAABUEJQAYCW9jZWxfdGltZSUUTIwRHCwAAAAAABUAJQIYAW0AFgIZHBk8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAmU0GAJlNBERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAJgAcFQQZNQAGEBkYCW9jZWxfdGltZRUCFgIWsAEWuAEmrAEmfBwYCACI5XHfDQYAGAgAiOVx3w0GABYAKAgAiOVx3w0GABgIAIjlcd8NBgAREQAZLBUEFQAVAgAVABUQFQIAAAAmABwVABklBgAZGAFtFQIWAhZUFlgmtAI8GAEBGAEBFgAoAQEYAQEREQAZHBUAFQAVAgA8KQYZJgACAAAAFvACFgImCBaEAwAZHBgMQVJST1c6c2NoZW1hGMwCLy8vLy8vQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDVUFBQUFQQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFZUUFBQUFGQUFBQUFRQUFBQUFBQUFBQVFBQUFHMEFBQUNFLy8vL3ZQLy8vd0FBQUFvUUFBQUFKQUFBQUFRQUFBQUFBQUFBQ1FBQUFHOWpaV3hmZEdsdFpRQUFBQWdBREFBR0FBZ0FDQUFBQUFBQUFnQUVBQUFBQXdBQUFGVlVRd0FRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSEFBQUFBUUFBQUFBQUFBQUJ3QUFBRzlqWld4ZmFXUUFCQUFFQUFRQUFBQT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAANECAABQQVIx"
+          },
+          "events/event_d.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAZTUVABUGFQosFQIVEBUGFQYcNgAoAmU1GAJlNRERAAAAAwgBAgAVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUGFQosFQIVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAADCAECABUEFRAVFEwVAhUAEgAACBwA6LyP8w0GABUAFRIVFiwVAhUQFQYVBhwYCADovI/zDQYAGAgA6LyP8w0GABYAKAgA6LyP8w0GABgIAOi8j/MNBgAREQAAAAkgAgAAAAIBAQIAFQQZTDUAGAZzY2hlbWEVBgAVDCUAGAdvY2VsX2lkJQBMHAAAABUEJQAYCW9jZWxfdGltZSUUTIwRHCwAAAAAABUEJQIYAW0lFEyMERwsAAAAAAAWAhkcGTwmABwVDBk1AAYQGRgHb2NlbF9pZBUCFgIWbBZ0JjQmCBw2ACgCZTUYAmU1EREAGSwVBBUAFQIAFQAVEBUCADwWBBkGGQYAAAAmABwVBBk1AAYQGRgJb2NlbF90aW1lFQIWAhawARa4ASasASZ8HBgIAIjlcd8NBgAYCACI5XHfDQYAFgAoCACI5XHfDQYAGAgAiOVx3w0GABERABksFQQVABUCABUAFRAVAgAAACYAHBUEGTUABhAZGAFtFQIWAha8ARbEASbkAia0AhwYCADovI/zDQYAGAgA6LyP8w0GABYAKAgA6LyP8w0GABgIAOi8j/MNBgAREQAZLBUEFQAVAgAVABUQFQIAPCkGGSYAAgAAABbYAxYCJggW8AMAGRwYDEFSUk9XOnNjaGVtYRjgAi8vLy8vd0FCQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQ2tBQUFBVEFBQUFCUUFBQUFRQUJRQUNBQUdBQWNBREFBQUFCQUFFQUFBQUFBQUFRb1FBQUFBRkFBQUFBUUFBQUFBQUFBQUFRQUFBRzBBQUFERS8vLy9BQUFDQUFRQUFBQURBQUFBVlZSREFMei8vLzhBQUFBS0VBQUFBQ1FBQUFBRUFBQUFBQUFBQUFrQUFBQnZZMlZzWDNScGJXVUFBQUFJQUF3QUJnQUlBQWdBQUFBQUFBSUFCQUFBQUFNQUFBQlZWRU1BRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAABkDAABQQVIx"
+          },
+          "events/event_e.parquet": {
+            "base64": "UEFSMRUEFRgVHEwVBBUAEgAADCwCAAAAZTYCAAAAZTcVABUGFQosFQQVEBUGFQYcNgAoAmU3GAJlNhERAAAAAwgBAwIVBBUQFRRMFQIVABIAAAgcAIjlcd8NBgAVABUGFQosFQQVEBUGFQYcGAgAiOVx3w0GABgIAIjlcd8NBgAWACgIAIjlcd8NBgAYCACI5XHfDQYAEREAAAADCAEEABUEFRwVIEwVBBUAEgAADjQFAAAARmFsc2UBAAAAMxUAFRIVFiwVBBUQFQYVBhw2ACgFRmFsc2UYATMREQAAAAkgAgAAAAQBAQMCFQQZTDUAGAZzY2hlbWEVBgAVDCUAGAdvY2VsX2lkJQBMHAAAABUEJQAYCW9jZWxfdGltZSUUTIwRHCwAAAAAABUMJQIYAW0lAEwcAAAAFgQZHBk8JgAcFQwZNQAGEBkYB29jZWxfaWQVAhYEFngWgAEmQCYIHDYAKAJlNxgCZTYREQAZLBUEFQAVAgAVABUQFQIAPBYIGQYZBgAAACYAHBUEGTUABhAZGAlvY2VsX3RpbWUVAhYEFrABFrgBJrgBJogBHBgIAIjlcd8NBgAYCACI5XHfDQYAFgAoCACI5XHfDQYAGAgAiOVx3w0GABERABksFQQVABUCABUAFRAVAgAAACYAHBUMGTUABhAZGAFtFQIWBBaMARaUASb8AibAAhw2ACgFRmFsc2UYATMREQAZLBUEFQAVAgAVABUQFQIAPBYMGQYZJgAEAAAAFrQDFgQmCBbMAwAZHBgMQVJST1c6c2NoZW1hGMwCLy8vLy8vQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFDVUFBQUFQQUFBQUJRQUFBQVFBQlFBQ0FBR0FBY0FEQUFBQUJBQUVBQUFBQUFBQVFVUUFBQUFGQUFBQUFRQUFBQUFBQUFBQVFBQUFHMEFBQUNFLy8vL3ZQLy8vd0FBQUFvUUFBQUFKQUFBQUFRQUFBQUFBQUFBQ1FBQUFHOWpaV3hmZEdsdFpRQUFBQWdBREFBR0FBZ0FDQUFBQUFBQUFnQUVBQUFBQXdBQUFGVlVRd0FRQUJRQUNBQUFBQWNBREFBQUFCQUFFQUFBQUFBQUFBVVFBQUFBSEFBQUFBUUFBQUFBQUFBQUJ3QUFBRzlqWld4ZmFXUUFCQUFFQUFRQUFBQT0AGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRk8HAAAHAAAHAAAAOYCAABQQVIx"
+          },
+          "object_changes/object_changes_t.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgHb2NlbF9pZCUATBwAAAAVBCUAGAlvY2VsX3RpbWUlFEyMERwsAAAAAAAVDCUAGBJvY2VsX2NoYW5nZWRfZmllbGQlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgHb2NlbF9pZBUCFgAWHBYeJgAmCCkcFQQVABUCAAAAJgAcFQQZJQAGGRgJb2NlbF90aW1lFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGBJvY2VsX2NoYW5nZWRfZmllbGQVAhYAFhwWHiYAJkQpHBUEFQAVAgAAABZUFgAmCBZaABkcGAxBUlJPVzpzY2hlbWEYzAIvLy8vLy9BQUFBQVFBQUFBQUFBS0FBd0FCZ0FGQUFnQUNnQUFBQUFCQkFBTUFBQUFDQUFJQUFBQUJBQUlBQUFBQkFBQUFBTUFBQUNVQUFBQVBBQUFBQVFBQUFDSS8vLy9BQUFBQlJBQUFBQWtBQUFBQkFBQUFBQUFBQUFTQUFBQWIyTmxiRjlqYUdGdVoyVmtYMlpwWld4a0FBQ0UvLy8vdlAvLy93QUFBQW9RQUFBQUpBQUFBQVFBQUFBQUFBQUFDUUFBQUc5alpXeGZkR2x0WlFBQUFBZ0FEQUFHQUFnQUNBQUFBQUFBQWdBRUFBQUFBd0FBQUZWVVF3QVFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFIQUFBQUFRQUFBQUFBQUFBQndBQUFHOWpaV3hmYVdRQUJBQUVBQVFBQUFBPQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAhwIAAFBBUjE="
+          },
+          "objects/object_t.parquet": {
+            "base64": "UEFSMRUEFQwVEEwVAhUAEgAABhQCAAAAbzEVABUGFQosFQIVEBUGFQYcNgAoAm8xGAJvMRERAAAAAwgBAgAVBBksNQAYBnNjaGVtYRUCABUMJQAYB29jZWxfaWQlAEwcAAAAFgIZHBkcJgAcFQwZNQAGEBkYB29jZWxfaWQVAhYCFmwWdCY0JggcNgAoAm8xGAJvMRERABksFQQVABUCABUAFRAVAgA8FgQZBhkGAAAAFmwWAiYIFnQAGRwYDEFSUk9XOnNjaGVtYRigAS8vLy8vM0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFFQUFBQVVBQUFBRUFBVUFBZ0FBQUFIQUF3QUFBQVFBQkFBQUFBQUFBQUZFQUFBQUJ3QUFBQUVBQUFBQUFBQUFBY0FBQUJ2WTJWc1gybGtBQVFBQkFBRUFBQUEAGCBwYXJxdWV0LWNwcC1hcnJvdyB2ZXJzaW9uIDI1LjAuMRkcHAAAAFgBAABQQVIx"
+          },
+          "relations/e2o.parquet": {
+            "base64": "UEFSMRUEFVQVSEwVDhUAEgAAKhQCAAAAZTEFBgAyBQYAMwUGADQFBjA1AgAAAGU2AgAAAGU3FQAVChUOLBUOFRAVBhUGHDYAKAJlNxgCZTEREQAAAAUQAwOIxhoVBBUMFRBMFQIVABIAAAYUAgAAAG8xFQAVBhUKLBUOFRAVBhUGHDYAKAJvMRgCbzEREQAAAAMIAQ4AFQQVCBUMTBUCFQASAAAEDAAAAAAVABUGFQosFQ4VEBUGFQYcNgAoABgAEREAAAADCAEOABUEGUw1ABgGc2NoZW1hFQYAFQwlABgNb2NlbF9ldmVudF9pZCUATBwAAAAVDCUAGA5vY2VsX29iamVjdF9pZCUATBwAAAAVDCUAGA5vY2VsX3F1YWxpZmllciUATBwAAAAWDhkcGTwmABwVDBk1AAYQGRgNb2NlbF9ldmVudF9pZBUCFg4WuAEWsAEmbCYIHDYAKAJlNxgCZTEREQAZLBUEFQAVAgAVABUQFQIAPBYcGQYZBgAAACYAHBUMGTUABhAZGA5vY2VsX29iamVjdF9pZBUCFg4WbBZ0JuQBJrgBHDYAKAJvMRgCbzEREQAZLBUEFQAVAgAVABUQFQIAPBYcGQYZBgAAACYAHBUMGTUABhAZGA5vY2VsX3F1YWxpZmllchUCFg4WYBZoJtQCJqwCHDYAKAAYABERABksFQQVABUCABUAFRAVAgA8FgAZBhkGAAAAFoQDFg4mCBaMAwAZHBgMQVJST1c6c2NoZW1hGLgCLy8vLy8rQUFBQUFRQUFBQUFBQUtBQXdBQmdBRkFBZ0FDZ0FBQUFBQkJBQU1BQUFBQ0FBSUFBQUFCQUFJQUFBQUJBQUFBQU1BQUFCOEFBQUFPQUFBQUFRQUFBQ2cvLy8vQUFBQUJSQUFBQUFnQUFBQUJBQUFBQUFBQUFBT0FBQUFiMk5sYkY5eGRXRnNhV1pwWlhJQUFKRC8vLy9RLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXZZbXBsWTNSZmFXUUFBTUQvLy84UUFCUUFDQUFBQUFjQURBQUFBQkFBRUFBQUFBQUFBQVVRQUFBQUpBQUFBQVFBQUFBQUFBQUFEUUFBQUc5alpXeGZaWFpsYm5SZmFXUUFBQUFFQUFRQUJBQUFBQT09ABggcGFycXVldC1jcHAtYXJyb3cgdmVyc2lvbiAyNS4wLjEZPBwAABwAABwAAADaAgAAUEFSMQ=="
+          },
+          "relations/o2o.parquet": {
+            "base64": "UEFSMRUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEFQAVAkwVABUAEgAAABUEGUw1ABgGc2NoZW1hFQYAFQwlABgOb2NlbF9zb3VyY2VfaWQlAEwcAAAAFQwlABgOb2NlbF90YXJnZXRfaWQlAEwcAAAAFQwlABgOb2NlbF9xdWFsaWZpZXIlAEwcAAAAFgAZHBk8JgAcFQwZJQAGGRgOb2NlbF9zb3VyY2VfaWQVAhYAFhwWHiYAJggpHBUEFQAVAgAAACYAHBUMGSUABhkYDm9jZWxfdGFyZ2V0X2lkFQIWABYcFh4mACYmKRwVBBUAFQIAAAAmABwVDBklAAYZGA5vY2VsX3F1YWxpZmllchUCFgAWHBYeJgAmRCkcFQQVABUCAAAAFlQWACYIFloAGRwYDEFSUk9XOnNjaGVtYRi4Ai8vLy8vK0FBQUFBUUFBQUFBQUFLQUF3QUJnQUZBQWdBQ2dBQUFBQUJCQUFNQUFBQUNBQUlBQUFBQkFBSUFBQUFCQUFBQUFNQUFBQjhBQUFBT0FBQUFBUUFBQUNnLy8vL0FBQUFCUkFBQUFBZ0FBQUFCQUFBQUFBQUFBQU9BQUFBYjJObGJGOXhkV0ZzYVdacFpYSUFBSkQvLy8vUS8vLy9BQUFBQlJBQUFBQWdBQUFBQkFBQUFBQUFBQUFPQUFBQWIyTmxiRjkwWVhKblpYUmZhV1FBQU1ELy8vOFFBQlFBQ0FBQUFBY0FEQUFBQUJBQUVBQUFBQUFBQUFVUUFBQUFKQUFBQUFRQUFBQUFBQUFBRGdBQUFHOWpaV3hmYzI5MWNtTmxYMmxrQUFBRUFBUUFCQUFBQUE9PQAYIHBhcnF1ZXQtY3BwLWFycm93IHZlcnNpb24gMjUuMC4xGTwcAAAcAAAcAAAAfgIAAFBBUjE="
+          }
+        },
+        "meta": "{\n  \"ocelVersion\": \"2.0\",\n  \"bundleFormatVersion\": \"1.0\",\n  \"storageFormat\": \"parquet\",\n  \"eventTypes\": {\n    \"a\": {\n      \"file\": \"events/event_a.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"b\": {\n      \"file\": \"events/event_b.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"float\"\n        }\n      ]\n    },\n    \"c\": {\n      \"file\": \"events/event_c.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"boolean\"\n        }\n      ]\n    },\n    \"d\": {\n      \"file\": \"events/event_d.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"time\"\n        }\n      ]\n    },\n    \"e\": {\n      \"file\": \"events/event_e.parquet\",\n      \"attributes\": [\n        {\n          \"name\": \"m\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"objectTypes\": {\n    \"t\": {\n      \"file\": \"objects/object_t.parquet\",\n      \"changesFile\": \"object_changes/object_changes_t.parquet\",\n      \"attributes\": []\n    }\n  },\n  \"relations\": {\n    \"e2o\": \"relations/e2o.parquet\",\n    \"o2o\": \"relations/o2o.parquet\"\n  }\n}",
+        "reread": {
+          "ocel": {
+            "e2e": [],
+            "events": [
+              {
+                "activity": "a",
+                "attributes": {
+                  "m": [
+                    "string",
+                    "x"
+                  ]
+                },
+                "id": "e1",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "b",
+                "attributes": {
+                  "m": [
+                    "float",
+                    2.5
+                  ]
+                },
+                "id": "e2",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "b",
+                "attributes": {
+                  "m": [
+                    "float",
+                    7.0
+                  ]
+                },
+                "id": "e3",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "c",
+                "attributes": {
+                  "m": [
+                    "boolean",
+                    true
+                  ]
+                },
+                "id": "e4",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "d",
+                "attributes": {
+                  "m": [
+                    "date",
+                    "2024-01-02T10:00:00.000000+00:00"
+                  ]
+                },
+                "id": "e5",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "e",
+                "attributes": {
+                  "m": [
+                    "string",
+                    "False"
+                  ]
+                },
+                "id": "e6",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              },
+              {
+                "activity": "e",
+                "attributes": {
+                  "m": [
+                    "string",
+                    "3"
+                  ]
+                },
+                "id": "e7",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00"
+              }
+            ],
+            "o2o": [],
+            "object_changes": [],
+            "objects": [
+              {
+                "attributes": {},
+                "id": "o1",
+                "type": "t"
+              }
+            ],
+            "relations": [
+              {
+                "activity": "a",
+                "event": "e1",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "b",
+                "event": "e2",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "b",
+                "event": "e3",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "c",
+                "event": "e4",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "d",
+                "event": "e5",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "e",
+                "event": "e6",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              },
+              {
+                "activity": "e",
+                "event": "e7",
+                "object": "o1",
+                "qualifier": "",
+                "timestamp": "2024-01-01T10:00:00.000000+00:00",
+                "type": "t"
+              }
+            ]
+          }
+        },
+        "tables": {
+          "events/event_a.parquet": {
+            "rows": [
+              [
+                "e1",
+                "2024-01-01T10:00:00+00:00",
+                "x"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "m",
+                "string",
+                true
+              ]
+            ]
+          },
+          "events/event_b.parquet": {
+            "rows": [
+              [
+                "e2",
+                "2024-01-01T10:00:00+00:00",
+                2.5
+              ],
+              [
+                "e3",
+                "2024-01-01T10:00:00+00:00",
+                7.0
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "m",
+                "double",
+                true
+              ]
+            ]
+          },
+          "events/event_c.parquet": {
+            "rows": [
+              [
+                "e4",
+                "2024-01-01T10:00:00+00:00",
+                true
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "m",
+                "bool",
+                true
+              ]
+            ]
+          },
+          "events/event_d.parquet": {
+            "rows": [
+              [
+                "e5",
+                "2024-01-01T10:00:00+00:00",
+                "2024-01-02T10:00:00+00:00"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "m",
+                "timestamp[us, tz=UTC]",
+                true
+              ]
+            ]
+          },
+          "events/event_e.parquet": {
+            "rows": [
+              [
+                "e6",
+                "2024-01-01T10:00:00+00:00",
+                "False"
+              ],
+              [
+                "e7",
+                "2024-01-01T10:00:00+00:00",
+                "3"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "m",
+                "string",
+                true
+              ]
+            ]
+          },
+          "object_changes/object_changes_t.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_time",
+                "timestamp[us, tz=UTC]",
+                false
+              ],
+              [
+                "ocel_changed_field",
+                "string",
+                false
+              ]
+            ]
+          },
+          "objects/object_t.parquet": {
+            "rows": [
+              [
+                "o1"
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_id",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/e2o.parquet": {
+            "rows": [
+              [
+                "e1",
+                "o1",
+                ""
+              ],
+              [
+                "e2",
+                "o1",
+                ""
+              ],
+              [
+                "e3",
+                "o1",
+                ""
+              ],
+              [
+                "e4",
+                "o1",
+                ""
+              ],
+              [
+                "e5",
+                "o1",
+                ""
+              ],
+              [
+                "e6",
+                "o1",
+                ""
+              ],
+              [
+                "e7",
+                "o1",
+                ""
+              ]
+            ],
+            "schema": [
+              [
+                "ocel_event_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_object_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          },
+          "relations/o2o.parquet": {
+            "rows": [],
+            "schema": [
+              [
+                "ocel_source_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_target_id",
+                "string",
+                false
+              ],
+              [
+                "ocel_qualifier",
+                "string",
+                false
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "meta": {
+    "area": "ocel",
+    "case": "bundle-write-mixed",
+    "fixtures": {},
+    "functions": [
+      "pm4py.OCEL",
+      "pm4py.write_ocel2_bundle",
+      "pm4py.write_ocel2",
+      "pm4py.read_ocel2_bundle"
+    ],
+    "loaders": {},
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
