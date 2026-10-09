@@ -1,0 +1,647 @@
+{
+  "expected": {
+    "edges": [
+      [
+        "@@change##0",
+        "R3",
+        {
+          "type": "CHANGE"
+        }
+      ],
+      [
+        "@@change##1",
+        "R3",
+        {
+          "type": "CHANGE"
+        }
+      ],
+      [
+        "@@change##2",
+        "PO1",
+        {
+          "type": "CHANGE"
+        }
+      ],
+      [
+        "PO1",
+        "R1",
+        {
+          "qualifier": "Invoice from PO",
+          "type": "O2O"
+        }
+      ],
+      [
+        "PO1",
+        "R2",
+        {
+          "qualifier": "Invoice from PO",
+          "type": "O2O"
+        }
+      ],
+      [
+        "PO2",
+        "R3",
+        {
+          "qualifier": "Maverick buying",
+          "type": "O2O"
+        }
+      ],
+      [
+        "PR1",
+        "PO1",
+        {
+          "qualifier": "PO from PR",
+          "type": "O2O"
+        }
+      ],
+      [
+        "R1",
+        "P1",
+        {
+          "qualifier": "Payment from invoice",
+          "type": "O2O"
+        }
+      ],
+      [
+        "R2",
+        "P2",
+        {
+          "qualifier": "Payment from invoice",
+          "type": "O2O"
+        }
+      ],
+      [
+        "R3",
+        "P3",
+        {
+          "qualifier": "Payment from invoice",
+          "type": "O2O"
+        }
+      ],
+      [
+        "e1",
+        "PR1",
+        {
+          "qualifier": "Regular placement of PR",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e1",
+        "e2",
+        {
+          "object": "PR1",
+          "type": "DF"
+        }
+      ],
+      [
+        "e10",
+        "PO2",
+        {
+          "qualifier": "Purhcase order created with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e10",
+        "R3",
+        {
+          "qualifier": "Purchase order created with maverick buying from",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e10",
+        "e11",
+        {
+          "object": "R3",
+          "type": "DF"
+        }
+      ],
+      [
+        "e11",
+        "R3",
+        {
+          "qualifier": "Payment block due to unethical maverick buying",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e11",
+        "e12",
+        {
+          "object": "R3",
+          "type": "DF"
+        }
+      ],
+      [
+        "e12",
+        "R3",
+        {
+          "qualifier": "Payment block removed ...",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e12",
+        "e13",
+        {
+          "object": "R3",
+          "type": "DF"
+        }
+      ],
+      [
+        "e13",
+        "P3",
+        {
+          "qualifier": "Payment inserted with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e13",
+        "R3",
+        {
+          "qualifier": "Payment for the invoice",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e2",
+        "PR1",
+        {
+          "qualifier": "Regular approval of PR",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e2",
+        "e3",
+        {
+          "object": "PR1",
+          "type": "DF"
+        }
+      ],
+      [
+        "e3",
+        "PO1",
+        {
+          "qualifier": "Created order with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e3",
+        "PR1",
+        {
+          "qualifier": "Created order from PR",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e3",
+        "e4",
+        {
+          "object": "PO1",
+          "type": "DF"
+        }
+      ],
+      [
+        "e4",
+        "PO1",
+        {
+          "qualifier": "Change of quantity",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e4",
+        "e5",
+        {
+          "object": "PO1",
+          "type": "DF"
+        }
+      ],
+      [
+        "e5",
+        "PO1",
+        {
+          "qualifier": "Invoice created starting from the PO",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e5",
+        "R1",
+        {
+          "qualifier": "Invoice created with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e5",
+        "e6",
+        {
+          "object": "PO1",
+          "type": "DF"
+        }
+      ],
+      [
+        "e5",
+        "e7",
+        {
+          "object": "R1",
+          "type": "DF"
+        }
+      ],
+      [
+        "e6",
+        "PO1",
+        {
+          "qualifier": "Invoice created starting from the PO",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e6",
+        "R2",
+        {
+          "qualifier": "Invoice created with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e6",
+        "e8",
+        {
+          "object": "R2",
+          "type": "DF"
+        }
+      ],
+      [
+        "e7",
+        "P1",
+        {
+          "qualifier": "Payment inserted with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e7",
+        "R1",
+        {
+          "qualifier": "Payment for the invoice",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e8",
+        "P2",
+        {
+          "qualifier": "Payment created with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e8",
+        "R2",
+        {
+          "qualifier": "Payment for the invoice",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e9",
+        "R3",
+        {
+          "qualifier": "Invoice created with identifier",
+          "type": "E2O"
+        }
+      ],
+      [
+        "e9",
+        "e10",
+        {
+          "object": "R3",
+          "type": "DF"
+        }
+      ]
+    ],
+    "multigraph": true,
+    "nodes": [
+      [
+        "e1",
+        {
+          "ocel:activity": "Create Purchase Requisition",
+          "ocel:eid": "e1",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-09T14:00:00.000000+00:00"
+          ],
+          "pr_creator": "Mike",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e2",
+        {
+          "ocel:activity": "Approve Purchase Requisition",
+          "ocel:eid": "e2",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-09T15:30:00.000000+00:00"
+          ],
+          "pr_approver": "Tania",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e3",
+        {
+          "ocel:activity": "Create Purchase Order",
+          "ocel:eid": "e3",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-10T08:15:00.000000+00:00"
+          ],
+          "po_creator": "Mike",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e4",
+        {
+          "ocel:activity": "Change PO Quantity",
+          "ocel:eid": "e4",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-13T11:00:00.000000+00:00"
+          ],
+          "po_editor": "Mike",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e5",
+        {
+          "invoice_inserter": "Luke",
+          "ocel:activity": "Insert Invoice",
+          "ocel:eid": "e5",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-14T11:00:00.000000+00:00"
+          ],
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e6",
+        {
+          "invoice_inserter": "Luke",
+          "ocel:activity": "Insert Invoice",
+          "ocel:eid": "e6",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-16T10:00:00.000000+00:00"
+          ],
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e7",
+        {
+          "ocel:activity": "Insert Payment",
+          "ocel:eid": "e7",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-30T22:00:00.000000+00:00"
+          ],
+          "payment_inserter": "Robot",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e8",
+        {
+          "ocel:activity": "Insert Payment",
+          "ocel:eid": "e8",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-31T21:00:00.000000+00:00"
+          ],
+          "payment_inserter": "Robot",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e9",
+        {
+          "invoice_inserter": "Mario",
+          "ocel:activity": "Insert Invoice",
+          "ocel:eid": "e9",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-02T08:00:00.000000+00:00"
+          ],
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e10",
+        {
+          "ocel:activity": "Create Purchase Order",
+          "ocel:eid": "e10",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-02T16:00:00.000000+00:00"
+          ],
+          "po_creator": "Mario",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e11",
+        {
+          "invoice_blocker": "Mario",
+          "ocel:activity": "Set Payment Block",
+          "ocel:eid": "e11",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-03T06:30:00.000000+00:00"
+          ],
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e12",
+        {
+          "invoice_block_rem": "Mario",
+          "ocel:activity": "Remove Payment Block",
+          "ocel:eid": "e12",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-03T22:30:00.000000+00:00"
+          ],
+          "type": "EVENT"
+        }
+      ],
+      [
+        "e13",
+        {
+          "ocel:activity": "Insert Payment",
+          "ocel:eid": "e13",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-28T22:00:00.000000+00:00"
+          ],
+          "payment_inserter": "Robot",
+          "type": "EVENT"
+        }
+      ],
+      [
+        "R1",
+        {
+          "is_blocked": "No",
+          "ocel:oid": "R1",
+          "ocel:type": "Invoice",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "R2",
+        {
+          "is_blocked": "No",
+          "ocel:oid": "R2",
+          "ocel:type": "Invoice",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "R3",
+        {
+          "is_blocked": "No",
+          "ocel:oid": "R3",
+          "ocel:type": "Invoice",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "P1",
+        {
+          "ocel:oid": "P1",
+          "ocel:type": "Payment",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "P2",
+        {
+          "ocel:oid": "P2",
+          "ocel:type": "Payment",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "P3",
+        {
+          "ocel:oid": "P3",
+          "ocel:type": "Payment",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "PO1",
+        {
+          "ocel:oid": "PO1",
+          "ocel:type": "Purchase Order",
+          "po_product": "Cows",
+          "po_quantity": "500",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "PO2",
+        {
+          "ocel:oid": "PO2",
+          "ocel:type": "Purchase Order",
+          "po_product": "Notebooks",
+          "po_quantity": "1",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "PR1",
+        {
+          "ocel:oid": "PR1",
+          "ocel:type": "Purchase Requisition",
+          "pr_product": "Cows",
+          "pr_quantity": "500",
+          "type": "OBJECT"
+        }
+      ],
+      [
+        "@@change##0",
+        {
+          "is_blocked": "Yes",
+          "ocel:field": "is_blocked",
+          "ocel:oid": "R3",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-03T06:30:00.000000+00:00"
+          ],
+          "ocel:type": "Invoice",
+          "type": "CHANGE"
+        }
+      ],
+      [
+        "@@change##1",
+        {
+          "is_blocked": "No",
+          "ocel:field": "is_blocked",
+          "ocel:oid": "R3",
+          "ocel:timestamp": [
+            "date",
+            "2022-02-03T22:30:00.000000+00:00"
+          ],
+          "ocel:type": "Invoice",
+          "type": "CHANGE"
+        }
+      ],
+      [
+        "@@change##2",
+        {
+          "ocel:field": "po_quantity",
+          "ocel:oid": "PO1",
+          "ocel:timestamp": [
+            "date",
+            "2022-01-13T11:00:00.000000+00:00"
+          ],
+          "ocel:type": "Purchase Order",
+          "po_quantity": "600",
+          "type": "CHANGE"
+        }
+      ]
+    ]
+  },
+  "meta": {
+    "area": "convert",
+    "case": "networkx-ocel20-example-ocel-to-nx",
+    "fixtures": {
+      "log": "fixtures/logs/ocel/ocel20_example.jsonocel"
+    },
+    "functions": [
+      "pm4py.convert_ocel_to_networkx"
+    ],
+    "loaders": {
+      "log": {
+        "function": null,
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "ocel_to_nx"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

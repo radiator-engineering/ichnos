@@ -1,6 +1,11 @@
-//! Case service, sojourn, waiting, arrival, and finish enrichment.
+//! Case service, sojourn, waiting, arrival, and finish enrichment, and time
+//! intervals between events.
+
+mod time_intervals;
+
 use ichnos_core::{AttributeValue, EventLog};
 use std::collections::BTreeMap;
+pub use time_intervals::{TimeInterval, TimeIntervalOptions, convert_log_to_time_intervals};
 
 /// Attributes read and written by case enrichment.
 #[derive(Debug, Clone)]
