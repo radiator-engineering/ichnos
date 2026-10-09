@@ -1,0 +1,70 @@
+{
+  "expected": {
+    "events": [
+      {
+        "act": "A",
+        "objects:order": [
+          "o1",
+          "o2"
+        ],
+        "payload": "kept",
+        "when": {
+          "date": "2024-01-01T00:00:00.000000+00:00"
+        }
+      }
+    ],
+    "flattened": {
+      "order": [
+        {
+          "case": "o1",
+          "end": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          },
+          "payload": "kept",
+          "task": "A"
+        },
+        {
+          "case": "o2",
+          "end": {
+            "date": "2024-01-01T00:00:00.000000+00:00"
+          },
+          "payload": "kept",
+          "task": "A"
+        }
+      ]
+    },
+    "types": [
+      "order"
+    ]
+  },
+  "meta": {
+    "area": "stream",
+    "case": "ocel-custom",
+    "fixtures": {},
+    "functions": [
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor",
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.register",
+      "pm4py.streaming.conversion.ocel_flatts_distributor.OcelFlattsDistributor.append"
+    ],
+    "loaders": {},
+    "params": {
+      "custom": true,
+      "events": [
+        {
+          "act": "A",
+          "objects:order": [
+            "o1",
+            "o2"
+          ],
+          "payload": "kept",
+          "when": "2024-01-01T00:00:00+00:00"
+        }
+      ],
+      "types": [
+        "order"
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

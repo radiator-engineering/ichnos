@@ -3,6 +3,17 @@
 /// An error from a reader, conversion or stream observer.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
+    /// Alignment preparation failed in the shared aligner.
+    #[error(transparent)]
+    Alignment(#[from] ichnos_conformance::Error),
+    /// An OCEL object-type field is not a canonical list.
+    #[error("event {event} has a non-list OCEL object field {key:?}")]
+    OcelObjectsType {
+        /// Object-type field.
+        key: String,
+        /// Zero-based input index.
+        event: usize,
+    },
     /// Invalid conformance settings or unsupported model structure.
     #[error("invalid streaming conformance setting: {0}")]
     InvalidConformanceOption(&'static str),

@@ -20,12 +20,14 @@
 //! # Ok::<(), ichnos_stream::Error>(())
 //! ```
 
+mod alignments;
 mod conformance;
 mod conversion;
 mod dfg;
 mod error;
 mod footprints;
 mod live;
+mod ocel;
 mod reader;
 mod tbr;
 mod temporal;
@@ -48,3 +50,9 @@ pub use tbr::{
 pub use temporal::{
     StreamingTemporalConformance, StreamingTemporalOptions, TemporalDeviation, TemporalProfile,
 };
+
+pub use alignments::{
+    StreamingAlignmentOptions, StreamingAlignmentResult, StreamingAlignmentStep,
+    StreamingAlignments,
+};
+pub use ocel::{OcelDistributorOptions, OcelFlatteningDistributor};
