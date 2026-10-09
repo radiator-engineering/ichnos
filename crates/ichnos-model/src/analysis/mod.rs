@@ -15,6 +15,7 @@ mod sync_product;
 mod woflan;
 mod workflow;
 
+pub use decomposition::DecompositionPart;
 pub use simplicity::SimplicityVariant;
 pub use sync_product::{SKIP, SyncMove, SynchronousProduct};
 pub use woflan::SoundnessReport;

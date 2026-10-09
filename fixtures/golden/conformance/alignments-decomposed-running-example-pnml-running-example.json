@@ -1,0 +1,671 @@
+{
+  "expected": {
+    "model": {
+      "arcs": [
+        {
+          "source": "p0",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p1",
+          "target": "t7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p3",
+          "target": "t9",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p4",
+          "target": "t3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t0",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p5",
+          "target": "t6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p6",
+          "target": "t1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p7",
+          "target": "t8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p8",
+          "target": "t4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t0",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t1",
+          "target": "p7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t2",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t3",
+          "target": "p2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t4",
+          "target": "p5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t5",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t6",
+          "target": "p6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t7",
+          "target": "p8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t8",
+          "target": "p4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "t9",
+          "target": "p0",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "p2": 1
+      },
+      "initial_marking": {
+        "p1": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
+      "transitions": [
+        {
+          "label": "examine thoroughly",
+          "name": "t0"
+        },
+        {
+          "label": "decide",
+          "name": "t1"
+        },
+        {
+          "label": "pay compensation",
+          "name": "t2"
+        },
+        {
+          "label": "reject request",
+          "name": "t3"
+        },
+        {
+          "label": null,
+          "name": "t4"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "t5"
+        },
+        {
+          "label": "examine casually",
+          "name": "t6"
+        },
+        {
+          "label": "register request",
+          "name": "t7"
+        },
+        {
+          "label": null,
+          "name": "t8"
+        },
+        {
+          "label": "check ticket",
+          "name": "t9"
+        }
+      ]
+    },
+    "variants": [
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "reject request",
+              "reject request"
+            ],
+            [
+              "decide",
+              "decide"
+            ]
+          ]
+        ],
+        "bwc": 100000,
+        "cost_choices": [
+          2
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              "decide",
+              "decide"
+            ]
+          ]
+        ],
+        "bwc": 100000,
+        "cost_choices": [
+          2
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "pay compensation"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "decide",
+              "decide"
+            ]
+          ]
+        ],
+        "bwc": 140000,
+        "cost_choices": [
+          3
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "examine thoroughly",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "examine thoroughly",
+              "examine thoroughly"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "reject request",
+              "reject request"
+            ],
+            [
+              "decide",
+              "decide"
+            ]
+          ]
+        ],
+        "bwc": 100000,
+        "cost_choices": [
+          2
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "check ticket",
+          "examine thoroughly",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "reinitiate request",
+              "reinitiate request"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "reject request",
+              "reject request"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "decide",
+              "decide"
+            ]
+          ]
+        ],
+        "bwc": 180000,
+        "cost_choices": [
+          4
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reinitiate request",
+          "check ticket",
+          "examine casually",
+          "decide",
+          "reinitiate request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "reject request"
+        ]
+      },
+      {
+        "alignment_choices": [
+          [
+            [
+              "register request",
+              "register request"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "examine casually",
+              "examine casually"
+            ],
+            [
+              "check ticket",
+              "check ticket"
+            ],
+            [
+              "decide",
+              "decide"
+            ],
+            [
+              null,
+              null
+            ],
+            [
+              "pay compensation",
+              "pay compensation"
+            ],
+            [
+              "decide",
+              "decide"
+            ]
+          ]
+        ],
+        "bwc": 100000,
+        "cost_choices": [
+          2
+        ],
+        "fitness_choices": [
+          1.0
+        ],
+        "trace": [
+          "register request",
+          "examine casually",
+          "check ticket",
+          "decide",
+          "pay compensation"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "area": "conformance",
+    "case": "alignments-decomposed-running-example-pnml-running-example",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv",
+      "model": "fixtures/logs/running-example.pnml"
+    },
+    "functions": [
+      "pm4py.convert_to_event_log",
+      "pm4py.algo.conformance.alignments.decomposed.variants.recompos_maximal.apply"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      },
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {},
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

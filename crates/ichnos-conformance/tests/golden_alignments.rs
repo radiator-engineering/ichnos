@@ -29,9 +29,17 @@ fn alignment_cases() -> Vec<String> {
         .into_iter()
         .filter(|id| {
             id.starts_with("alignments-")
-                && !["dfg", "tree", "edit-distance", "discounted"]
-                    .iter()
-                    .any(|kind| id.starts_with(&format!("alignments-{kind}-")))
+                && ![
+                    "dfg",
+                    "tree",
+                    "edit-distance",
+                    "approx",
+                    "subset",
+                    "decomposed",
+                    "discounted",
+                ]
+                .iter()
+                .any(|kind| id.starts_with(&format!("alignments-{kind}-")))
         })
         .collect();
     assert_eq!(ids.len(), 8, "expected 8 alignment goldens, found {ids:?}");
