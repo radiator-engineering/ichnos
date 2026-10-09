@@ -9,7 +9,9 @@ mod common;
 
 use std::time::Instant;
 
-use ichnos_conformance::alignments::{Aligner, AlignmentOptions, Heuristic, precision_alignments};
+use ichnos_conformance::alignments::{
+    Aligner, AlignmentOptions, DEFAULT_DISCOUNT_EXPONENT, Heuristic, precision_alignments,
+};
 use ichnos_core::EventKeys;
 use ichnos_golden::golden;
 
@@ -56,6 +58,16 @@ fn receipt_against_inductive_net() {
             aligned.variants.len(),
         );
     }
+    let start = Instant::now();
+    let discounted = Aligner::new(&net, &im, &fm, AlignmentOptions::default())
+        .expect("easy sound")
+        .align_log_discounted(&log, &keys, DEFAULT_DISCOUNT_EXPONENT)
+        .expect("aligned");
+    println!(
+        "discounted: {:.3} s for {} variants",
+        start.elapsed().as_secs_f64(),
+        discounted.variants.len(),
+    );
     let start = Instant::now();
     let precision = precision_alignments(&log, &net, &im, &fm, &keys).expect("precision");
     println!(

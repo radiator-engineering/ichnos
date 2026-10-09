@@ -1,0 +1,1078 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "check ticket",
+            "target": "p_6",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "decide",
+            "target": "p_8",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "examine casually",
+            "target": "p_7",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "examine thoroughly",
+            "target": "p_7",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "loop_2",
+            "target": "p_4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "loop_3",
+            "target": "p_4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_4",
+            "target": "examine casually",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_4",
+            "target": "examine thoroughly",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_4",
+            "target": "skip_4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_5",
+            "target": "loop_2",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_5",
+            "target": "pay compensation",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_5",
+            "target": "reject request",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_6",
+            "target": "decide",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_6",
+            "target": "loop_3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_7",
+            "target": "check ticket",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_7",
+            "target": "skip_5",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_8",
+            "target": "reinitiate request",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "p_8",
+            "target": "skip_7",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "register request",
+            "target": "p_4",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "reinitiate request",
+            "target": "p_5",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "skip_4",
+            "target": "p_7",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "skip_5",
+            "target": "p_6",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "skip_7",
+            "target": "p_5",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_4",
+          "p_5",
+          "p_6",
+          "p_7",
+          "p_8"
+        ],
+        "transitions": [
+          {
+            "label": "check ticket",
+            "name": "check ticket"
+          },
+          {
+            "label": "decide",
+            "name": "decide"
+          },
+          {
+            "label": "examine casually",
+            "name": "examine casually"
+          },
+          {
+            "label": "examine thoroughly",
+            "name": "examine thoroughly"
+          },
+          {
+            "label": null,
+            "name": "loop_2"
+          },
+          {
+            "label": null,
+            "name": "loop_3"
+          },
+          {
+            "label": "pay compensation",
+            "name": "pay compensation"
+          },
+          {
+            "label": "register request",
+            "name": "register request"
+          },
+          {
+            "label": "reinitiate request",
+            "name": "reinitiate request"
+          },
+          {
+            "label": "reject request",
+            "name": "reject request"
+          },
+          {
+            "label": null,
+            "name": "skip_4"
+          },
+          {
+            "label": null,
+            "name": "skip_5"
+          },
+          {
+            "label": null,
+            "name": "skip_7"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "p_3",
+            "target": "tau_1",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "pay compensation",
+            "target": "p_3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "reject request",
+            "target": "p_3",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "tau_1",
+            "target": "sink",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "sink": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "p_3",
+          "sink"
+        ],
+        "transitions": [
+          {
+            "label": "pay compensation",
+            "name": "pay compensation"
+          },
+          {
+            "label": "reject request",
+            "name": "reject request"
+          },
+          {
+            "label": null,
+            "name": "tau_1"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "source",
+            "target": "register request",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "source": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "source"
+        ],
+        "transitions": [
+          {
+            "label": "register request",
+            "name": "register request"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "register request"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "check ticket",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide",
+          "target": "p_8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "loop_2",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "loop_3",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "tau_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "examine casually",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "examine thoroughly",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "skip_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "loop_2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "pay compensation",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "reject request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "decide",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "loop_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "skip_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "reinitiate request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "skip_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "pay compensation",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reject request",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_4",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_5",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_7",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "register request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_3",
+        "p_4",
+        "p_5",
+        "p_6",
+        "p_7",
+        "p_8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": "check ticket"
+        },
+        {
+          "label": "decide",
+          "name": "decide"
+        },
+        {
+          "label": "examine casually",
+          "name": "examine casually"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "examine thoroughly"
+        },
+        {
+          "label": null,
+          "name": "loop_2"
+        },
+        {
+          "label": null,
+          "name": "loop_3"
+        },
+        {
+          "label": "pay compensation",
+          "name": "pay compensation"
+        },
+        {
+          "label": "register request",
+          "name": "register request"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "reinitiate request"
+        },
+        {
+          "label": "reject request",
+          "name": "reject request"
+        },
+        {
+          "label": null,
+          "name": "skip_4"
+        },
+        {
+          "label": null,
+          "name": "skip_5"
+        },
+        {
+          "label": null,
+          "name": "skip_7"
+        },
+        {
+          "label": null,
+          "name": "tau_1"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "check ticket",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide",
+          "target": "p_8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "loop_2",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "loop_3",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "tau_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "examine casually",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "examine thoroughly",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "skip_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "loop_2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "pay compensation",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "reject request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "decide",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "loop_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "skip_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "reinitiate request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "skip_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "pay compensation",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reject request",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_4",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_5",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_7",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "register request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_3",
+        "p_4",
+        "p_5",
+        "p_6",
+        "p_7",
+        "p_8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": "check ticket"
+        },
+        {
+          "label": "decide",
+          "name": "decide"
+        },
+        {
+          "label": "examine casually",
+          "name": "examine casually"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "examine thoroughly"
+        },
+        {
+          "label": null,
+          "name": "loop_2"
+        },
+        {
+          "label": null,
+          "name": "loop_3"
+        },
+        {
+          "label": "pay compensation",
+          "name": "pay compensation"
+        },
+        {
+          "label": "register request",
+          "name": "register request"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "reinitiate request"
+        },
+        {
+          "label": "reject request",
+          "name": "reject request"
+        },
+        {
+          "label": null,
+          "name": "skip_4"
+        },
+        {
+          "label": null,
+          "name": "skip_5"
+        },
+        {
+          "label": null,
+          "name": "skip_7"
+        },
+        {
+          "label": null,
+          "name": "tau_1"
+        }
+      ]
+    },
+    "is_sound": true,
+    "marking_equation": 7,
+    "model": {
+      "arcs": [
+        {
+          "source": "check ticket",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "decide",
+          "target": "p_8",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine casually",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "examine thoroughly",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "loop_2",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "loop_3",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_3",
+          "target": "tau_1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "examine casually",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "examine thoroughly",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_4",
+          "target": "skip_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "loop_2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "pay compensation",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_5",
+          "target": "reject request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "decide",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_6",
+          "target": "loop_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "check ticket",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_7",
+          "target": "skip_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "reinitiate request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "p_8",
+          "target": "skip_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "pay compensation",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "register request",
+          "target": "p_4",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reinitiate request",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reject request",
+          "target": "p_3",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_4",
+          "target": "p_7",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_5",
+          "target": "p_6",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "skip_7",
+          "target": "p_5",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "register request",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "tau_1",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "p_3",
+        "p_4",
+        "p_5",
+        "p_6",
+        "p_7",
+        "p_8",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "check ticket",
+          "name": "check ticket"
+        },
+        {
+          "label": "decide",
+          "name": "decide"
+        },
+        {
+          "label": "examine casually",
+          "name": "examine casually"
+        },
+        {
+          "label": "examine thoroughly",
+          "name": "examine thoroughly"
+        },
+        {
+          "label": null,
+          "name": "loop_2"
+        },
+        {
+          "label": null,
+          "name": "loop_3"
+        },
+        {
+          "label": "pay compensation",
+          "name": "pay compensation"
+        },
+        {
+          "label": "register request",
+          "name": "register request"
+        },
+        {
+          "label": "reinitiate request",
+          "name": "reinitiate request"
+        },
+        {
+          "label": "reject request",
+          "name": "reject request"
+        },
+        {
+          "label": null,
+          "name": "skip_4"
+        },
+        {
+          "label": null,
+          "name": "skip_5"
+        },
+        {
+          "label": null,
+          "name": "skip_7"
+        },
+        {
+          "label": null,
+          "name": "tau_1"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 0.6470588235294118,
+      "extended_cardoso": 9,
+      "extended_cyclomatic": 14
+    },
+    "soundness": {
+      "messages": [
+        "Input is ok.",
+        "Petri Net is a workflow net.",
+        "Every place is covered by s-components.",
+        "There are no dead tasks.",
+        "All tasks are live."
+      ],
+      "sound": true
+    },
+    "workflow_net": true
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-stochastic-running-example",
+    "fixtures": {
+      "model": "fixtures/logs/stochastic_running_example.pnml"
+    },
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "name": "stochastic-running-example"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

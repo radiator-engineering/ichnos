@@ -1,0 +1,1480 @@
+{
+  "expected": {
+    "decomposition": [
+      {
+        "arcs": [
+          {
+            "source": "a1",
+            "target": "branch_a_middle",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "branch_a_middle",
+            "target": "a2",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "branch_a_middle"
+        ],
+        "transitions": [
+          {
+            "label": "Pick Order Items",
+            "name": "a1"
+          },
+          {
+            "label": "Pack Customer Order",
+            "name": "a2"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "a2",
+            "target": "branch_a_done",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "branch_a_done",
+            "target": "join",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "branch_a_done"
+        ],
+        "transitions": [
+          {
+            "label": "Pack Customer Order",
+            "name": "a2"
+          },
+          {
+            "label": "Consolidate Shipment",
+            "name": "join"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "authorize",
+            "target": "branch_a_start",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "branch_a_start",
+            "target": "a1",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "branch_a_start"
+        ],
+        "transitions": [
+          {
+            "label": "Pick Order Items",
+            "name": "a1"
+          },
+          {
+            "label": "Authorize Fulfillment",
+            "name": "authorize"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "authorize",
+            "target": "branch_b_start",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "branch_b_start",
+            "target": "b1",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "branch_b_start"
+        ],
+        "transitions": [
+          {
+            "label": "Authorize Fulfillment",
+            "name": "authorize"
+          },
+          {
+            "label": "Book Carrier Capacity",
+            "name": "b1"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "authorized",
+            "target": "authorize",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "clean",
+            "target": "authorized",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "reset",
+            "target": "authorized",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "authorized"
+        ],
+        "transitions": [
+          {
+            "label": "Authorize Fulfillment",
+            "name": "authorize"
+          },
+          {
+            "label": "Confirm Full Allocation",
+            "name": "clean"
+          },
+          {
+            "label": "Substitute All Backorders",
+            "name": "reset"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "b1",
+            "target": "branch_b_middle",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "branch_b_middle",
+            "target": "b2",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "branch_b_middle"
+        ],
+        "transitions": [
+          {
+            "label": "Book Carrier Capacity",
+            "name": "b1"
+          },
+          {
+            "label": "Prepare Customs Data",
+            "name": "b2"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "b2",
+            "target": "branch_b_done",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "branch_b_done",
+            "target": "join",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "branch_b_done"
+        ],
+        "transitions": [
+          {
+            "label": "Prepare Customs Data",
+            "name": "b2"
+          },
+          {
+            "label": "Consolidate Shipment",
+            "name": "join"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "check",
+            "target": "checked",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "checked",
+            "target": "plan",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "checked"
+        ],
+        "transitions": [
+          {
+            "label": "Validate Payment",
+            "name": "check"
+          },
+          {
+            "label": "Plan Inventory Allocation",
+            "name": "plan"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "close",
+            "target": "sink",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {
+          "sink": 1
+        },
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "sink"
+        ],
+        "transitions": [
+          {
+            "label": "Dispatch Customer Order",
+            "name": "close"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "gate",
+            "target": "clean",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "gate",
+            "target": "issue",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "gate",
+            "target": "reset",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "issue",
+            "target": "gate",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "plan",
+            "target": "gate",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "gate"
+        ],
+        "transitions": [
+          {
+            "label": "Confirm Full Allocation",
+            "name": "clean"
+          },
+          {
+            "label": "Register Backordered Item",
+            "name": "issue"
+          },
+          {
+            "label": "Plan Inventory Allocation",
+            "name": "plan"
+          },
+          {
+            "label": "Substitute All Backorders",
+            "name": "reset"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "issue",
+            "target": "open_items",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "open_items",
+            "target": "clean",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "open_items",
+            "target": "reset",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "open_items"
+        ],
+        "transitions": [
+          {
+            "label": "Confirm Full Allocation",
+            "name": "clean"
+          },
+          {
+            "label": "Register Backordered Item",
+            "name": "issue"
+          },
+          {
+            "label": "Substitute All Backorders",
+            "name": "reset"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "join",
+            "target": "joined",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "joined",
+            "target": "review",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "joined"
+        ],
+        "transitions": [
+          {
+            "label": "Consolidate Shipment",
+            "name": "join"
+          },
+          {
+            "label": "Inspect Shipment",
+            "name": "review"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "registered",
+            "target": "check",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "start",
+            "target": "registered",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "registered"
+        ],
+        "transitions": [
+          {
+            "label": "Validate Payment",
+            "name": "check"
+          },
+          {
+            "label": "Capture Customer Order",
+            "name": "start"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "review",
+            "target": "reviewed",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "reviewed",
+            "target": "close",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "reviewed",
+            "target": "revise",
+            "type": "normal",
+            "weight": 1
+          },
+          {
+            "source": "revise",
+            "target": "reviewed",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {},
+        "kind": "petri_net",
+        "places": [
+          "reviewed"
+        ],
+        "transitions": [
+          {
+            "label": "Dispatch Customer Order",
+            "name": "close"
+          },
+          {
+            "label": "Inspect Shipment",
+            "name": "review"
+          },
+          {
+            "label": "Repack Shipment",
+            "name": "revise"
+          }
+        ]
+      },
+      {
+        "arcs": [
+          {
+            "source": "source",
+            "target": "start",
+            "type": "normal",
+            "weight": 1
+          }
+        ],
+        "final_marking": {},
+        "initial_marking": {
+          "source": 1
+        },
+        "kind": "petri_net",
+        "places": [
+          "source"
+        ],
+        "transitions": [
+          {
+            "label": "Capture Customer Order",
+            "name": "start"
+          }
+        ]
+      }
+    ],
+    "enabled": [
+      "start"
+    ],
+    "implicit_places": {
+      "arcs": [
+        {
+          "source": "a1",
+          "target": "branch_a_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a2",
+          "target": "branch_a_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_a_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_b_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorized",
+          "target": "authorize",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b1",
+          "target": "branch_b_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b2",
+          "target": "branch_b_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_middle",
+          "target": "a2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_start",
+          "target": "a1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_middle",
+          "target": "b2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_start",
+          "target": "b1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check",
+          "target": "checked",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "checked",
+          "target": "plan",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "clean",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "close",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "clean",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "issue",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "reset",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "open_items",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "join",
+          "target": "joined",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "joined",
+          "target": "review",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "clean",
+          "type": "inhibitor",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "reset",
+          "type": "reset",
+          "weight": 1
+        },
+        {
+          "source": "plan",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "registered",
+          "target": "check",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reset",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "review",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "close",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "revise",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "revise",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start",
+          "target": "registered",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "authorized",
+        "branch_a_done",
+        "branch_a_middle",
+        "branch_a_start",
+        "branch_b_done",
+        "branch_b_middle",
+        "branch_b_start",
+        "checked",
+        "gate",
+        "joined",
+        "open_items",
+        "registered",
+        "reviewed",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Pick Order Items",
+          "name": "a1"
+        },
+        {
+          "label": "Pack Customer Order",
+          "name": "a2"
+        },
+        {
+          "label": "Authorize Fulfillment",
+          "name": "authorize"
+        },
+        {
+          "label": "Book Carrier Capacity",
+          "name": "b1"
+        },
+        {
+          "label": "Prepare Customs Data",
+          "name": "b2"
+        },
+        {
+          "label": "Validate Payment",
+          "name": "check"
+        },
+        {
+          "label": "Confirm Full Allocation",
+          "name": "clean"
+        },
+        {
+          "label": "Dispatch Customer Order",
+          "name": "close"
+        },
+        {
+          "label": "Register Backordered Item",
+          "name": "issue"
+        },
+        {
+          "label": "Consolidate Shipment",
+          "name": "join"
+        },
+        {
+          "label": "Plan Inventory Allocation",
+          "name": "plan"
+        },
+        {
+          "label": "Substitute All Backorders",
+          "name": "reset"
+        },
+        {
+          "label": "Inspect Shipment",
+          "name": "review"
+        },
+        {
+          "label": "Repack Shipment",
+          "name": "revise"
+        },
+        {
+          "label": "Capture Customer Order",
+          "name": "start"
+        }
+      ]
+    },
+    "invisibles": {
+      "arcs": [
+        {
+          "source": "a1",
+          "target": "branch_a_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a2",
+          "target": "branch_a_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_a_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_b_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorized",
+          "target": "authorize",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b1",
+          "target": "branch_b_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b2",
+          "target": "branch_b_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_middle",
+          "target": "a2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_start",
+          "target": "a1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_middle",
+          "target": "b2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_start",
+          "target": "b1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check",
+          "target": "checked",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "checked",
+          "target": "plan",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "clean",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "close",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "clean",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "issue",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "reset",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "open_items",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "join",
+          "target": "joined",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "joined",
+          "target": "review",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "clean",
+          "type": "inhibitor",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "reset",
+          "type": "reset",
+          "weight": 1
+        },
+        {
+          "source": "plan",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "registered",
+          "target": "check",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reset",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "review",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "close",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "revise",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "revise",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start",
+          "target": "registered",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "authorized",
+        "branch_a_done",
+        "branch_a_middle",
+        "branch_a_start",
+        "branch_b_done",
+        "branch_b_middle",
+        "branch_b_start",
+        "checked",
+        "gate",
+        "joined",
+        "open_items",
+        "registered",
+        "reviewed",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Pick Order Items",
+          "name": "a1"
+        },
+        {
+          "label": "Pack Customer Order",
+          "name": "a2"
+        },
+        {
+          "label": "Authorize Fulfillment",
+          "name": "authorize"
+        },
+        {
+          "label": "Book Carrier Capacity",
+          "name": "b1"
+        },
+        {
+          "label": "Prepare Customs Data",
+          "name": "b2"
+        },
+        {
+          "label": "Validate Payment",
+          "name": "check"
+        },
+        {
+          "label": "Confirm Full Allocation",
+          "name": "clean"
+        },
+        {
+          "label": "Dispatch Customer Order",
+          "name": "close"
+        },
+        {
+          "label": "Register Backordered Item",
+          "name": "issue"
+        },
+        {
+          "label": "Consolidate Shipment",
+          "name": "join"
+        },
+        {
+          "label": "Plan Inventory Allocation",
+          "name": "plan"
+        },
+        {
+          "label": "Substitute All Backorders",
+          "name": "reset"
+        },
+        {
+          "label": "Inspect Shipment",
+          "name": "review"
+        },
+        {
+          "label": "Repack Shipment",
+          "name": "revise"
+        },
+        {
+          "label": "Capture Customer Order",
+          "name": "start"
+        }
+      ]
+    },
+    "is_sound": false,
+    "marking_equation": 13,
+    "model": {
+      "arcs": [
+        {
+          "source": "a1",
+          "target": "branch_a_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "a2",
+          "target": "branch_a_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_a_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorize",
+          "target": "branch_b_start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "authorized",
+          "target": "authorize",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b1",
+          "target": "branch_b_middle",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "b2",
+          "target": "branch_b_done",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_middle",
+          "target": "a2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_a_start",
+          "target": "a1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_done",
+          "target": "join",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_middle",
+          "target": "b2",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "branch_b_start",
+          "target": "b1",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "check",
+          "target": "checked",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "checked",
+          "target": "plan",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "clean",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "close",
+          "target": "sink",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "clean",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "issue",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "gate",
+          "target": "reset",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "issue",
+          "target": "open_items",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "join",
+          "target": "joined",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "joined",
+          "target": "review",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "clean",
+          "type": "inhibitor",
+          "weight": 1
+        },
+        {
+          "source": "open_items",
+          "target": "reset",
+          "type": "reset",
+          "weight": 1
+        },
+        {
+          "source": "plan",
+          "target": "gate",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "registered",
+          "target": "check",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reset",
+          "target": "authorized",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "review",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "close",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "reviewed",
+          "target": "revise",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "revise",
+          "target": "reviewed",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "source",
+          "target": "start",
+          "type": "normal",
+          "weight": 1
+        },
+        {
+          "source": "start",
+          "target": "registered",
+          "type": "normal",
+          "weight": 1
+        }
+      ],
+      "final_marking": {
+        "sink": 1
+      },
+      "initial_marking": {
+        "source": 1
+      },
+      "kind": "petri_net",
+      "places": [
+        "authorized",
+        "branch_a_done",
+        "branch_a_middle",
+        "branch_a_start",
+        "branch_b_done",
+        "branch_b_middle",
+        "branch_b_start",
+        "checked",
+        "gate",
+        "joined",
+        "open_items",
+        "registered",
+        "reviewed",
+        "sink",
+        "source"
+      ],
+      "transitions": [
+        {
+          "label": "Pick Order Items",
+          "name": "a1"
+        },
+        {
+          "label": "Pack Customer Order",
+          "name": "a2"
+        },
+        {
+          "label": "Authorize Fulfillment",
+          "name": "authorize"
+        },
+        {
+          "label": "Book Carrier Capacity",
+          "name": "b1"
+        },
+        {
+          "label": "Prepare Customs Data",
+          "name": "b2"
+        },
+        {
+          "label": "Validate Payment",
+          "name": "check"
+        },
+        {
+          "label": "Confirm Full Allocation",
+          "name": "clean"
+        },
+        {
+          "label": "Dispatch Customer Order",
+          "name": "close"
+        },
+        {
+          "label": "Register Backordered Item",
+          "name": "issue"
+        },
+        {
+          "label": "Consolidate Shipment",
+          "name": "join"
+        },
+        {
+          "label": "Plan Inventory Allocation",
+          "name": "plan"
+        },
+        {
+          "label": "Substitute All Backorders",
+          "name": "reset"
+        },
+        {
+          "label": "Inspect Shipment",
+          "name": "review"
+        },
+        {
+          "label": "Repack Shipment",
+          "name": "revise"
+        },
+        {
+          "label": "Capture Customer Order",
+          "name": "start"
+        }
+      ]
+    },
+    "simplicity": {
+      "arc_degree": 0.7499999999999999,
+      "extended_cardoso": 16,
+      "extended_cyclomatic": null
+    },
+    "soundness": {
+      "messages": [
+        "Input is ok.",
+        "Petri Net is a workflow net.",
+        "The following places are not covered by an s-component: [open_items]."
+      ],
+      "sound": false
+    },
+    "workflow_net": true
+  },
+  "meta": {
+    "area": "analysis",
+    "case": "net-order-fulfillment",
+    "fixtures": {
+      "model": "fixtures/logs/inh_res_nets/order_fulfillment.pnml"
+    },
+    "functions": [
+      "pm4py.check_is_workflow_net",
+      "pm4py.check_soundness",
+      "pm4py.analysis.check_is_sound",
+      "pm4py.simplicity_petri_net",
+      "pm4py.maximal_decomposition",
+      "pm4py.reduce_petri_net_implicit_places",
+      "pm4py.reduce_petri_net_invisibles",
+      "pm4py.get_enabled_transitions",
+      "pm4py.solve_marking_equation"
+    ],
+    "loaders": {
+      "model": {
+        "function": "pm4py.read_pnml",
+        "params": {}
+      }
+    },
+    "params": {
+      "name": "order-fulfillment"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

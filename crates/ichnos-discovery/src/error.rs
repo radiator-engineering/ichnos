@@ -11,11 +11,13 @@ pub enum Error {
     /// activity.
     #[error(transparent)]
     Core(#[from] ichnos_core::Error),
-    /// A time computation failed, for example on an invalid business
-    /// schedule.
-    #[error(transparent)]
-    Stats(#[from] ichnos_stats::Error),
     /// A noise threshold is not a fraction in `[0, 1]`.
     #[error("noise threshold {0} is not in [0, 1]")]
     NoiseThreshold(f64),
+    /// An invalid discovery option.
+    #[error("invalid discovery option: {0}")]
+    InvalidOption(&'static str),
+    /// A shared statistics operation failed.
+    #[error(transparent)]
+    Stats(#[from] ichnos_stats::Error),
 }

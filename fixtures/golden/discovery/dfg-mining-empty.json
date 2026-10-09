@@ -1,0 +1,115 @@
+{
+  "expected": {
+    "alias": [],
+    "dfg": {
+      "end_activities": {},
+      "graph": [],
+      "start_activities": {}
+    },
+    "eventually": [],
+    "eventually_options": [
+      {
+        "first": false,
+        "graph": [],
+        "interval": false
+      },
+      {
+        "first": true,
+        "graph": [],
+        "interval": false
+      }
+    ],
+    "frequency_options": [
+      {
+        "graph": [],
+        "keep_once_per_case": false,
+        "window": 0
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": true,
+        "window": 0
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": false,
+        "window": 1
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": true,
+        "window": 1
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": false,
+        "window": 2
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": true,
+        "window": 2
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": false,
+        "window": 99
+      },
+      {
+        "graph": [],
+        "keep_once_per_case": true,
+        "window": 99
+      }
+    ],
+    "minimum_self_distance": {},
+    "performance": {
+      "end_activities": {},
+      "graph": [],
+      "start_activities": {}
+    },
+    "performance_options": [
+      {
+        "business": false,
+        "graph": [],
+        "interval": false,
+        "raw_values": []
+      },
+      {
+        "business": true,
+        "graph": [],
+        "interval": false,
+        "raw_values": []
+      }
+    ],
+    "typed": {
+      "end_activities": {},
+      "graph": [],
+      "start_activities": {}
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "dfg-mining-empty",
+    "fixtures": {},
+    "functions": [
+      "pm4py.discover_dfg",
+      "pm4py.discover_directly_follows_graph",
+      "pm4py.discover_dfg_typed",
+      "pm4py.discover_performance_dfg",
+      "pm4py.derive_minimum_self_distance",
+      "pm4py.discover_eventually_follows_graph",
+      "pm4py.algo.discovery.dfg.variants.native.apply",
+      "pm4py.algo.discovery.dfg.variants.performance.apply",
+      "pm4py.statistics.eventually_follows.log.get.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "traces": [
+        [],
+        []
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

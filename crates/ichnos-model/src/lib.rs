@@ -5,6 +5,8 @@
 //!
 //! - [`petri`]: Petri nets in arena storage, markings, firing rules and
 //!   reachability graphs.
+//! - [`analysis`]: Petri net soundness, simplicity, decomposition,
+//!   implicit places, synchronous products and marking equations.
 //! - [`process_tree`]: process trees, pm4py's string syntax, simplification
 //!   and random playout.
 //! - [`bpmn`]: BPMN diagrams, their gateway reductions and token semantics.
@@ -25,6 +27,7 @@
 //!   [`TreeFootprints`]. Footprints serialize in the JSON shape of pm4py's
 //!   `discover_footprints`, as the golden files store it.
 
+pub mod analysis;
 pub mod bpmn;
 pub mod conversion;
 pub mod dfg;
