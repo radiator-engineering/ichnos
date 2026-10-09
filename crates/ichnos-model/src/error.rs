@@ -1,5 +1,6 @@
 //! The crate-wide error type.
 
+use crate::dfg::DfgError;
 use crate::petri::{NotEnabled, PetriNetError, ReachabilityError};
 use crate::process_tree::{ParseError, TreeError};
 
@@ -25,4 +26,7 @@ pub enum Error {
     /// A process tree string could not be parsed.
     #[error(transparent)]
     Parse(#[from] ParseError),
+    /// A DFG operation named an activity the graph does not have.
+    #[error(transparent)]
+    Dfg(#[from] DfgError),
 }

@@ -236,3 +236,81 @@ fn net_footprints_match_tree_footprints_after_conversion() {
         assert_eq!(from_net, tree.footprints().footprints, "footprints of {s}");
     }
 }
+
+fn sample_dfg() -> crate::Dfg {
+    let mut dfg = crate::Dfg::new();
+    for (a, b, n) in [
+        ("a", "b", 10),
+        ("b", "c", 8),
+        ("c", "d", 9),
+        ("b", "d", 2),
+        ("a", "e", 3),
+        ("e", "d", 3),
+        ("d", "b", 1),
+        ("c", "c", 4),
+        ("e", "f", 1),
+        ("f", "d", 1),
+    ] {
+        dfg.add_edge(a, b, n);
+    }
+    dfg.add_start("a", 13);
+    dfg.add_end("d", 12);
+    dfg.add_end("c", 1);
+    dfg
+}
+
+fn sizes(apn: &AcceptingPetriNet) -> [usize; 4] {
+    let net = &apn.net;
+    [
+        net.place_count(),
+        net.transition_count(),
+        net.arc_count(),
+        net.transitions().filter(|(_, t)| t.is_silent()).count(),
+    ]
+}
+
+/// Traces of a DFG: walks from a start to an end activity along edges.
+fn dfg_language(dfg: &crate::Dfg, max: usize) -> Language {
+    let mut out = Language::new();
+    let mut frontier: Vec<Trace> = dfg
+        .start_activities
+        .keys()
+        .map(|a| vec![a.clone()])
+        .collect();
+    while let Some(t) = frontier.pop() {
+        let last = t.last().unwrap();
+        if dfg.end_activities.contains_key(last) {
+            out.insert(t.clone());
+        }
+        if t.len() < max {
+            for b in dfg.outgoing(last).keys() {
+                let mut n = t.clone();
+                n.push((*b).clone());
+                frontier.push(n);
+            }
+        }
+    }
+    out
+}
+
+#[test]
+fn dfg_to_petri_net_matches_pm4py() {
+    let dfg = sample_dfg();
+    // Sizes from pm4py 2.7.23.8 with explicit start and end activities.
+    let apn = dfg.to_petri_net();
+    assert_eq!(sizes(&apn), [8, 13, 26, 2]);
+    assert_eq!(net_language(&apn, 6), dfg_language(&dfg, 6));
+    let apn = dfg.to_petri_net_invisibles_no_duplicates();
+    assert_eq!(sizes(&apn), [16, 21, 42, 15]);
+    assert_eq!(net_language(&apn, 6), dfg_language(&dfg, 6));
+}
+
+#[test]
+fn dfg_to_petri_net_infers_missing_start_and_end() {
+    let mut dfg = crate::Dfg::new();
+    dfg.add_edge("a", "b", 1);
+    dfg.add_edge("b", "c", 1);
+    let apn = dfg.to_petri_net();
+    let abc: Trace = ["a", "b", "c"].map(Label::from).to_vec();
+    assert_eq!(net_language(&apn, 5), Language::from([abc]));
+}
