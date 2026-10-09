@@ -38,6 +38,13 @@ mod net;
 
 /// Footprints of a log or of one trace (pm4py's `entire_event_log` and
 /// `trace_by_trace` footprints).
+///
+/// `ichnos_discovery::LogFootprints` and `ichnos_discovery::TraceFootprints`
+/// hold the same footprints as discovery results: they group the activities,
+/// start activities and sequence and parallel pairs in a
+/// [`Footprints`], and the trace type keeps the
+/// trace's activities. This type, with flat fields, is the input of footprint
+/// conformance.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct LogFootprints {
     /// How often each activity directly follows another.

@@ -1,0 +1,108 @@
+{
+  "expected": {
+    "powl": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "kind": "activity",
+                          "label": "examine casually"
+                        },
+                        {
+                          "kind": "activity",
+                          "label": "examine thoroughly"
+                        }
+                      ],
+                      "kind": "xor"
+                    },
+                    {
+                      "kind": "activity",
+                      "label": "check ticket"
+                    }
+                  ],
+                  "kind": "po",
+                  "order": []
+                },
+                {
+                  "kind": "activity",
+                  "label": "decide"
+                }
+              ],
+              "kind": "po",
+              "order": [
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            {
+              "kind": "activity",
+              "label": "reinitiate request"
+            }
+          ],
+          "kind": "loop"
+        },
+        {
+          "children": [
+            {
+              "kind": "activity",
+              "label": "pay compensation"
+            },
+            {
+              "kind": "activity",
+              "label": "reject request"
+            }
+          ],
+          "kind": "xor"
+        },
+        {
+          "kind": "activity",
+          "label": "register request"
+        }
+      ],
+      "kind": "po",
+      "order": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "powl-bruteforce-running-example-csv",
+    "fixtures": {
+      "log": "fixtures/logs/running-example.csv"
+    },
+    "functions": [
+      "pm4py.discover_powl"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "bruteforce"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

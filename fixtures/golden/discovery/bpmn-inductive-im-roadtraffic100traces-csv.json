@@ -1,0 +1,376 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n21",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n25",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n26",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n27",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n19",
+          "SequenceFlow"
+        ],
+        [
+          "n18",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n19",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n20",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n21",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n22",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n23",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n24",
+          "n22",
+          "SequenceFlow"
+        ],
+        [
+          "n25",
+          "n24",
+          "SequenceFlow"
+        ],
+        [
+          "n26",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n27",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n18",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n23",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n20",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n5",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n6",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n9",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n10",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n11",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n12",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n13",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n14",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n15",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n16",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n17",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n18",
+          "name": "Add penalty"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n19",
+          "name": "Create Fine"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n20",
+          "name": "Insert Date Appeal to Prefecture"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n21",
+          "name": "Insert Fine Notification"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n22",
+          "name": "Notify Result Appeal to Offender"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n23",
+          "name": "Payment"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n24",
+          "name": "Receive Result Appeal from Prefecture"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n25",
+          "name": "Send Appeal to Prefecture"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n26",
+          "name": "Send Fine"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n27",
+          "name": "Send for Credit Collection"
+        }
+      ]
+    },
+    "tree": "->( 'Create Fine', +( X( tau, *( 'Payment', tau ) ), X( tau, ->( 'Send Fine', X( tau, ->( 'Insert Fine Notification', X( tau, 'Insert Date Appeal to Prefecture' ), 'Add penalty', X( tau, ->( 'Send Appeal to Prefecture', 'Receive Result Appeal from Prefecture', 'Notify Result Appeal to Offender' ) ) ) ) ) ) ), X( tau, 'Send for Credit Collection' ) )"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-im-roadtraffic100traces-csv",
+    "fixtures": {
+      "log": "fixtures/logs/roadtraffic100traces.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "im"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

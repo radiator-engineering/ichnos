@@ -1,0 +1,619 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n10",
+          "n28",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n29",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n29",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n29",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n32",
+          "SequenceFlow"
+        ],
+        [
+          "n18",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n18",
+          "n33",
+          "SequenceFlow"
+        ],
+        [
+          "n19",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n19",
+          "n38",
+          "SequenceFlow"
+        ],
+        [
+          "n19",
+          "n45",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n20",
+          "n39",
+          "SequenceFlow"
+        ],
+        [
+          "n20",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n21",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n21",
+          "n41",
+          "SequenceFlow"
+        ],
+        [
+          "n22",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n22",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n23",
+          "n22",
+          "SequenceFlow"
+        ],
+        [
+          "n23",
+          "n34",
+          "SequenceFlow"
+        ],
+        [
+          "n24",
+          "n30",
+          "SequenceFlow"
+        ],
+        [
+          "n24",
+          "n40",
+          "SequenceFlow"
+        ],
+        [
+          "n25",
+          "n35",
+          "SequenceFlow"
+        ],
+        [
+          "n25",
+          "n42",
+          "SequenceFlow"
+        ],
+        [
+          "n26",
+          "n36",
+          "SequenceFlow"
+        ],
+        [
+          "n26",
+          "n43",
+          "SequenceFlow"
+        ],
+        [
+          "n27",
+          "n37",
+          "SequenceFlow"
+        ],
+        [
+          "n27",
+          "n44",
+          "SequenceFlow"
+        ],
+        [
+          "n29",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n23",
+          "SequenceFlow"
+        ],
+        [
+          "n30",
+          "n25",
+          "SequenceFlow"
+        ],
+        [
+          "n30",
+          "n26",
+          "SequenceFlow"
+        ],
+        [
+          "n30",
+          "n27",
+          "SequenceFlow"
+        ],
+        [
+          "n31",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n32",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n33",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n34",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n35",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n36",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n37",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n38",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n39",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n19",
+          "SequenceFlow"
+        ],
+        [
+          "n40",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n41",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n42",
+          "n11",
+          "SequenceFlow"
+        ],
+        [
+          "n43",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n44",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n45",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n17",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n20",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n21",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n18",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n24",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n6",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n9",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n10",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n11",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n12",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n13",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n14",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n15",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n16",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n17",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n18",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n19",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n20",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n21",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n22",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n23",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n24",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n25",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n26",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n27",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n28",
+          "name": "end"
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Converging",
+          "key": "n29",
+          "name": ""
+        },
+        {
+          "class": "ParallelGateway",
+          "direction": "Diverging",
+          "key": "n30",
+          "name": ""
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n31",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n32",
+          "name": "accept"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n33",
+          "name": "collect reviews"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n34",
+          "name": "decide"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n35",
+          "name": "get review 1"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n36",
+          "name": "get review 2"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n37",
+          "name": "get review 3"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n38",
+          "name": "get review X"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n39",
+          "name": "invite additional reviewer"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n40",
+          "name": "invite reviewers"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n41",
+          "name": "reject"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n42",
+          "name": "time-out 1"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n43",
+          "name": "time-out 2"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n44",
+          "name": "time-out 3"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n45",
+          "name": "time-out X"
+        }
+      ]
+    },
+    "tree": "->( *( tau, 'invite reviewers' ), +( X( 'get review 2', 'time-out 2' ), X( 'time-out 1', 'get review 1' ), X( 'get review 3', 'time-out 3' ) ), *( tau, 'collect reviews' ), *( *( tau, 'decide' ), X( tau, ->( X( tau, *( tau, 'invite additional reviewer' ) ), X( tau, 'get review X', 'time-out X' ) ) ) ), X( *( tau, 'accept' ), *( tau, 'reject' ) ) )"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-imd-reviewing-csv",
+    "fixtures": {
+      "log": "fixtures/logs/reviewing.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imd"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

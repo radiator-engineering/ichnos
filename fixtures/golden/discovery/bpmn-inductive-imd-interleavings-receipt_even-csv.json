@@ -1,0 +1,432 @@
+{
+  "expected": {
+    "bpmn": {
+      "flows": [
+        [
+          "n0",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n1",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n11",
+          "n12",
+          "SequenceFlow"
+        ],
+        [
+          "n12",
+          "n5",
+          "SequenceFlow"
+        ],
+        [
+          "n13",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n14",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n15",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n16",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n17",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n18",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n19",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n2",
+          "n8",
+          "SequenceFlow"
+        ],
+        [
+          "n20",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n21",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n22",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n23",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n24",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n25",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n26",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n27",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n28",
+          "n1",
+          "SequenceFlow"
+        ],
+        [
+          "n3",
+          "n7",
+          "SequenceFlow"
+        ],
+        [
+          "n4",
+          "n10",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n2",
+          "SequenceFlow"
+        ],
+        [
+          "n5",
+          "n4",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n24",
+          "SequenceFlow"
+        ],
+        [
+          "n6",
+          "n3",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n0",
+          "SequenceFlow"
+        ],
+        [
+          "n7",
+          "n25",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n6",
+          "SequenceFlow"
+        ],
+        [
+          "n8",
+          "n9",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n13",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n14",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n15",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n16",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n17",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n18",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n19",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n20",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n21",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n22",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n23",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n26",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n27",
+          "SequenceFlow"
+        ],
+        [
+          "n9",
+          "n28",
+          "SequenceFlow"
+        ]
+      ],
+      "nodes": [
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n0",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n1",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n2",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n3",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Converging",
+          "key": "n4",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n5",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n6",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n7",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n8",
+          "name": ""
+        },
+        {
+          "class": "ExclusiveGateway",
+          "direction": "Diverging",
+          "key": "n9",
+          "name": ""
+        },
+        {
+          "class": "NormalEndEvent",
+          "direction": null,
+          "key": "n10",
+          "name": "end"
+        },
+        {
+          "class": "StartEvent",
+          "direction": null,
+          "key": "n11",
+          "name": "start"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n12",
+          "name": "Confirmation of receipt"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n13",
+          "name": "T03 Adjust confirmation of receipt"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n14",
+          "name": "T04 Determine confirmation of receipt"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n15",
+          "name": "T06 Determine necessity of stop advice"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n16",
+          "name": "T07-2 Draft intern advice aspect 2"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n17",
+          "name": "T07-3 Draft intern advice hold for aspect 3"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n18",
+          "name": "T07-4 Draft internal advice to hold for type 4"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n19",
+          "name": "T07-5 Draft intern advice aspect 5"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n20",
+          "name": "T08 Draft and send request for advice"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n21",
+          "name": "T09-2 Process or receive external advice from party 2"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n22",
+          "name": "T09-3 Process or receive external advice from party 3"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n23",
+          "name": "T11 Create document X request unlicensed"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n24",
+          "name": "T13 Adjust document X request unlicensed"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n25",
+          "name": "T14 Determine document X request unlicensed"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n26",
+          "name": "T16 Report reasons to hold request"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n27",
+          "name": "T18 Adjust report Y to stop indicition"
+        },
+        {
+          "class": "Task",
+          "direction": null,
+          "key": "n28",
+          "name": "T19 Determine report Y to stop indication"
+        }
+      ]
+    },
+    "tree": "->( 'Confirmation of receipt', X( tau, ->( *( tau, X( 'T07-5 Draft intern advice aspect 5', 'T09-3 Process or receive external advice from party 3', 'T19 Determine report Y to stop indication', 'T04 Determine confirmation of receipt', 'T18 Adjust report Y to stop indicition', 'T16 Report reasons to hold request', 'T07-4 Draft internal advice to hold for type 4', 'T09-2 Process or receive external advice from party 2', 'T07-2 Draft intern advice aspect 2', 'T11 Create document X request unlicensed', 'T07-3 Draft intern advice hold for aspect 3', 'T08 Draft and send request for advice', 'T06 Determine necessity of stop advice', 'T03 Adjust confirmation of receipt' ) ), X( tau, 'T13 Adjust document X request unlicensed' ), X( tau, 'T14 Determine document X request unlicensed' ) ) ) )"
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "bpmn-inductive-imd-interleavings-receipt_even-csv",
+    "fixtures": {
+      "log": "fixtures/logs/interleavings/receipt_even.csv"
+    },
+    "functions": [
+      "pm4py.discover_bpmn_inductive",
+      "pm4py.discover_process_tree_inductive"
+    ],
+    "loaders": {
+      "log": {
+        "function": "pandas.read_csv + pm4py.format_dataframe",
+        "params": {}
+      }
+    },
+    "params": {
+      "variant": "imd"
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "expected": {
+    "entire": {
+      "activities": [
+        "a",
+        "b"
+      ],
+      "dfg": [
+        [
+          [
+            "a",
+            "b"
+          ],
+          1
+        ],
+        [
+          [
+            "b",
+            "a"
+          ],
+          1
+        ]
+      ],
+      "end_activities": [
+        "a",
+        "b"
+      ],
+      "min_trace_length": 0,
+      "parallel": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "a"
+        ]
+      ],
+      "sequence": [],
+      "start_activities": [
+        "a",
+        "b"
+      ]
+    },
+    "traces": {
+      "first": [
+        {
+          "activities": [
+            "a",
+            "b"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "b"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
+            [
+              "a",
+              "b"
+            ]
+          ],
+          "start_activities": [
+            "a"
+          ],
+          "trace": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "activities": [
+            "a",
+            "b"
+          ],
+          "count": 1,
+          "dfg": [
+            [
+              [
+                "b",
+                "a"
+              ],
+              1
+            ]
+          ],
+          "end_activities": [
+            "a"
+          ],
+          "min_trace_length": 2,
+          "parallel": [],
+          "sequence": [
+            [
+              "b",
+              "a"
+            ]
+          ],
+          "start_activities": [
+            "b"
+          ],
+          "trace": [
+            "b",
+            "a"
+          ]
+        },
+        {
+          "activities": [
+            "a"
+          ],
+          "count": 1,
+          "dfg": [],
+          "end_activities": [
+            "a"
+          ],
+          "min_trace_length": 1,
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [
+            "a"
+          ],
+          "trace": [
+            "a"
+          ]
+        },
+        {
+          "activities": [],
+          "count": 2,
+          "dfg": [],
+          "end_activities": [],
+          "min_trace_length": 0,
+          "parallel": [],
+          "sequence": [],
+          "start_activities": [],
+          "trace": []
+        }
+      ],
+      "groups": 4,
+      "rest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "traces": 5
+    }
+  },
+  "meta": {
+    "area": "discovery",
+    "case": "footprints-log-synthetic-emptytraces",
+    "fixtures": {},
+    "functions": [
+      "pm4py.algo.discovery.footprints.algorithm.apply"
+    ],
+    "loaders": {},
+    "params": {
+      "traces": [
+        [],
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "a"
+        ],
+        [
+          "a"
+        ],
+        []
+      ]
+    },
+    "pm4py_commit": "24a3bf610aea6ecc4938b1864b3ad71fcfb82084",
+    "pm4py_version": "2.7.23.8"
+  }
+}
