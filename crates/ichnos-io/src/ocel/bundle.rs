@@ -508,7 +508,7 @@ impl Source {
         match self {
             Source::Directory { root, real } => walk(real, root, root, &mut entries)?,
             Source::Archive(archive) => {
-                if central_directory_entries(path)? != Some(archive.len() as u64) {
+                if central_directory_entries(path)?.is_some_and(|n| n != archive.len() as u64) {
                     return Err(error(
                         "OCEL bundle archives cannot contain duplicate entry names.",
                     ));
@@ -587,7 +587,7 @@ fn walk(real: &Path, base: &Path, dir: &Path, entries: &mut HashSet<String>) -> 
 /// The entry count that the archive's end of central directory record
 /// states. The `zip` crate keeps one entry per name, so a smaller count
 /// from it means a name repeats. `None` when the record is not found or
-/// the count is in a ZIP64 record.
+/// the count is in a ZIP64 record; such an archive is not checked.
 fn central_directory_entries(path: &Path) -> Result<Option<u64>> {
     let mut file = File::open(path)?;
     let size = file.seek(SeekFrom::End(0))?;
